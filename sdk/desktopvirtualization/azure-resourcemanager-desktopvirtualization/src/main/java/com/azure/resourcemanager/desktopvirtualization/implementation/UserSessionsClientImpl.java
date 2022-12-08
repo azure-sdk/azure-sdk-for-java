@@ -59,7 +59,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "DesktopVirtualizatio")
-    private interface UserSessionsService {
+    public interface UserSessionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -73,6 +73,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("hostPoolName") String hostPoolName,
             @QueryParam("$filter") String filter,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -127,6 +130,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("hostPoolName") String hostPoolName,
             @PathParam("sessionHostName") String sessionHostname,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -194,6 +200,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param filter OData filter expression. Valid properties for filtering are userprincipalname and sessionstate.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -201,7 +210,12 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UserSessionInner>> listByHostPoolSinglePageAsync(
-        String resourceGroupName, String hostPoolName, String filter) {
+        String resourceGroupName,
+        String hostPoolName,
+        String filter,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -233,6 +247,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
                             resourceGroupName,
                             hostPoolName,
                             filter,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<UserSessionInner>>map(
@@ -253,6 +270,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param filter OData filter expression. Valid properties for filtering are userprincipalname and sessionstate.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -261,7 +281,13 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UserSessionInner>> listByHostPoolSinglePageAsync(
-        String resourceGroupName, String hostPoolName, String filter, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        String filter,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -291,6 +317,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
                 resourceGroupName,
                 hostPoolName,
                 filter,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -310,16 +339,26 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param filter OData filter expression. Valid properties for filtering are userprincipalname and sessionstate.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return userSessionList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<UserSessionInner> listByHostPoolAsync(
-        String resourceGroupName, String hostPoolName, String filter) {
+    private PagedFlux<UserSessionInner> listByHostPoolAsync(
+        String resourceGroupName,
+        String hostPoolName,
+        String filter,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, filter),
+            () ->
+                listByHostPoolSinglePageAsync(
+                    resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink));
     }
 
@@ -334,10 +373,15 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return userSessionList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<UserSessionInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<UserSessionInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
         final String filter = null;
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
         return new PagedFlux<>(
-            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, filter),
+            () ->
+                listByHostPoolSinglePageAsync(
+                    resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink));
     }
 
@@ -347,6 +391,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param filter OData filter expression. Valid properties for filtering are userprincipalname and sessionstate.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -355,9 +402,17 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UserSessionInner> listByHostPoolAsync(
-        String resourceGroupName, String hostPoolName, String filter, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        String filter,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         return new PagedFlux<>(
-            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, filter, context),
+            () ->
+                listByHostPoolSinglePageAsync(
+                    resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip, context),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink, context));
     }
 
@@ -374,7 +429,11 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UserSessionInner> listByHostPool(String resourceGroupName, String hostPoolName) {
         final String filter = null;
-        return new PagedIterable<>(listByHostPoolAsync(resourceGroupName, hostPoolName, filter));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(
+            listByHostPoolAsync(resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip));
     }
 
     /**
@@ -383,6 +442,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param filter OData filter expression. Valid properties for filtering are userprincipalname and sessionstate.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -391,8 +453,15 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UserSessionInner> listByHostPool(
-        String resourceGroupName, String hostPoolName, String filter, Context context) {
-        return new PagedIterable<>(listByHostPoolAsync(resourceGroupName, hostPoolName, filter, context));
+        String resourceGroupName,
+        String hostPoolName,
+        String filter,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
+        return new PagedIterable<>(
+            listByHostPoolAsync(resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip, context));
     }
 
     /**
@@ -408,7 +477,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return a userSession along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<UserSessionInner>> getWithResponseAsync(
+    private Mono<Response<UserSessionInner>> getWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -524,28 +593,10 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return a userSession on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<UserSessionInner> getAsync(
+    private Mono<UserSessionInner> getAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         return getWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get a userSession.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param userSessionId The name of the user session within the specified session host.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a userSession.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public UserSessionInner get(
-        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
-        return getAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId).block();
     }
 
     /**
@@ -568,6 +619,25 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     }
 
     /**
+     * Get a userSession.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param userSessionId The name of the user session within the specified session host.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a userSession.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public UserSessionInner get(
+        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
+        return getWithResponse(resourceGroupName, hostPoolName, sessionHostname, userSessionId, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Remove a userSession.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -581,7 +651,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Void>> deleteWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -699,54 +769,17 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
      * @param userSessionId The name of the user session within the specified session host.
-     * @param force Force flag to login off userSession.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(
-        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId, Boolean force) {
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId, force)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a userSession.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param userSessionId The name of the user session within the specified session host.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         final Boolean force = null;
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId, force)
             .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a userSession.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param userSessionId The name of the user session within the specified session host.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
-        final Boolean force = null;
-        deleteAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId, force).block();
     }
 
     /**
@@ -776,11 +809,31 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     }
 
     /**
+     * Remove a userSession.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param userSessionId The name of the user session within the specified session host.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
+        final Boolean force = null;
+        deleteWithResponse(resourceGroupName, hostPoolName, sessionHostname, userSessionId, force, Context.NONE);
+    }
+
+    /**
      * List userSessions.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -788,7 +841,12 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UserSessionInner>> listSinglePageAsync(
-        String resourceGroupName, String hostPoolName, String sessionHostname) {
+        String resourceGroupName,
+        String hostPoolName,
+        String sessionHostname,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -824,6 +882,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
                             resourceGroupName,
                             hostPoolName,
                             sessionHostname,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<UserSessionInner>>map(
@@ -844,6 +905,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -852,7 +916,13 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UserSessionInner>> listSinglePageAsync(
-        String resourceGroupName, String hostPoolName, String sessionHostname, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        String sessionHostname,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -886,6 +956,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
                 resourceGroupName,
                 hostPoolName,
                 sessionHostname,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -905,16 +978,26 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return userSessionList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<UserSessionInner> listAsync(
-        String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private PagedFlux<UserSessionInner> listAsync(
+        String resourceGroupName,
+        String hostPoolName,
+        String sessionHostname,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, sessionHostname),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -924,6 +1007,33 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return userSessionList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<UserSessionInner> listAsync(
+        String resourceGroupName, String hostPoolName, String sessionHostname) {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List userSessions.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -932,9 +1042,17 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UserSessionInner> listAsync(
-        String resourceGroupName, String hostPoolName, String sessionHostname, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        String sessionHostname,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, sessionHostname, context),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -951,7 +1069,11 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UserSessionInner> list(String resourceGroupName, String hostPoolName, String sessionHostname) {
-        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName, sessionHostname));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip));
     }
 
     /**
@@ -960,6 +1082,9 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -968,8 +1093,15 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UserSessionInner> list(
-        String resourceGroupName, String hostPoolName, String sessionHostname, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName, sessionHostname, context));
+        String resourceGroupName,
+        String hostPoolName,
+        String sessionHostname,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip, context));
     }
 
     /**
@@ -985,7 +1117,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> disconnectWithResponseAsync(
+    private Mono<Response<Void>> disconnectWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1101,27 +1233,10 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disconnectAsync(
+    private Mono<Void> disconnectAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         return disconnectWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId)
             .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Disconnect a userSession.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param userSessionId The name of the user session within the specified session host.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disconnect(
-        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
-        disconnectAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId).block();
     }
 
     /**
@@ -1145,6 +1260,23 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     }
 
     /**
+     * Disconnect a userSession.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param userSessionId The name of the user session within the specified session host.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void disconnect(
+        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
+        disconnectWithResponse(resourceGroupName, hostPoolName, sessionHostname, userSessionId, Context.NONE);
+    }
+
+    /**
      * Send a message to a user.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1158,7 +1290,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> sendMessageWithResponseAsync(
+    private Mono<Response<Void>> sendMessageWithResponseAsync(
         String resourceGroupName,
         String hostPoolName,
         String sessionHostname,
@@ -1286,61 +1418,18 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
      * @param userSessionId The name of the user session within the specified session host.
-     * @param sendMessage Object containing message includes title and message body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> sendMessageAsync(
-        String resourceGroupName,
-        String hostPoolName,
-        String sessionHostname,
-        String userSessionId,
-        SendMessage sendMessage) {
-        return sendMessageWithResponseAsync(
-                resourceGroupName, hostPoolName, sessionHostname, userSessionId, sendMessage)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Send a message to a user.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param userSessionId The name of the user session within the specified session host.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> sendMessageAsync(
+    private Mono<Void> sendMessageAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         final SendMessage sendMessage = null;
         return sendMessageWithResponseAsync(
                 resourceGroupName, hostPoolName, sessionHostname, userSessionId, sendMessage)
             .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Send a message to a user.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @param userSessionId The name of the user session within the specified session host.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void sendMessage(
-        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
-        final SendMessage sendMessage = null;
-        sendMessageAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId, sendMessage).block();
     }
 
     /**
@@ -1371,9 +1460,29 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     }
 
     /**
+     * Send a message to a user.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @param userSessionId The name of the user session within the specified session host.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void sendMessage(
+        String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
+        final SendMessage sendMessage = null;
+        sendMessageWithResponse(
+            resourceGroupName, hostPoolName, sessionHostname, userSessionId, sendMessage, Context.NONE);
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1408,7 +1517,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1444,7 +1554,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1479,7 +1590,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

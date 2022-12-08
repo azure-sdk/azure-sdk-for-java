@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HealthCheckName. */
+/** Represents the name of the health check operation performed. */
 public final class HealthCheckName extends ExpandableStringEnum<HealthCheckName> {
     /** Static value DomainJoinedCheck for HealthCheckName. */
     public static final HealthCheckName DOMAIN_JOINED_CHECK = fromString("DomainJoinedCheck");
