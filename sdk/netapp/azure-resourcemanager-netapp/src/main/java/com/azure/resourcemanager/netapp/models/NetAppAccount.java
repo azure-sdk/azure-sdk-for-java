@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.netapp.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.fluent.models.NetAppAccountInner;
 import java.util.List;
@@ -60,6 +61,13 @@ public interface NetAppAccount {
      * @return the identity value.
      */
     Identity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Azure lifecycle management.

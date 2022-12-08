@@ -26,6 +26,10 @@ public final class BackupInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private BackupProperties innerProperties = new BackupProperties();
 
+    /** Creates an instance of BackupInner class. */
+    public BackupInner() {
+    }
+
     /**
      * Get the location property: Resource location.
      *
