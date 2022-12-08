@@ -4,39 +4,39 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describes query analysis results for execution in source and target. */
-@Immutable
+@Fluent
 public final class QueryExecutionResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(QueryExecutionResult.class);
-
     /*
      * Query text retrieved from the source server
      */
-    @JsonProperty(value = "queryText", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "queryText")
     private String queryText;
 
     /*
      * Total no. of statements in the batch
      */
-    @JsonProperty(value = "statementsInBatch", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "statementsInBatch")
     private Long statementsInBatch;
 
     /*
      * Query analysis result from the source
      */
-    @JsonProperty(value = "sourceResult", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "sourceResult")
     private ExecutionStatistics sourceResult;
 
     /*
      * Query analysis result from the target
      */
-    @JsonProperty(value = "targetResult", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "targetResult")
     private ExecutionStatistics targetResult;
+
+    /** Creates an instance of QueryExecutionResult class. */
+    public QueryExecutionResult() {
+    }
 
     /**
      * Get the queryText property: Query text retrieved from the source server.
@@ -45,6 +45,17 @@ public final class QueryExecutionResult {
      */
     public String queryText() {
         return this.queryText;
+    }
+
+    /**
+     * Set the queryText property: Query text retrieved from the source server.
+     *
+     * @param queryText the queryText value to set.
+     * @return the QueryExecutionResult object itself.
+     */
+    public QueryExecutionResult withQueryText(String queryText) {
+        this.queryText = queryText;
+        return this;
     }
 
     /**
@@ -57,6 +68,17 @@ public final class QueryExecutionResult {
     }
 
     /**
+     * Set the statementsInBatch property: Total no. of statements in the batch.
+     *
+     * @param statementsInBatch the statementsInBatch value to set.
+     * @return the QueryExecutionResult object itself.
+     */
+    public QueryExecutionResult withStatementsInBatch(Long statementsInBatch) {
+        this.statementsInBatch = statementsInBatch;
+        return this;
+    }
+
+    /**
      * Get the sourceResult property: Query analysis result from the source.
      *
      * @return the sourceResult value.
@@ -66,12 +88,34 @@ public final class QueryExecutionResult {
     }
 
     /**
+     * Set the sourceResult property: Query analysis result from the source.
+     *
+     * @param sourceResult the sourceResult value to set.
+     * @return the QueryExecutionResult object itself.
+     */
+    public QueryExecutionResult withSourceResult(ExecutionStatistics sourceResult) {
+        this.sourceResult = sourceResult;
+        return this;
+    }
+
+    /**
      * Get the targetResult property: Query analysis result from the target.
      *
      * @return the targetResult value.
      */
     public ExecutionStatistics targetResult() {
         return this.targetResult;
+    }
+
+    /**
+     * Set the targetResult property: Query analysis result from the target.
+     *
+     * @param targetResult the targetResult value to set.
+     * @return the QueryExecutionResult object itself.
+     */
+    public QueryExecutionResult withTargetResult(ExecutionStatistics targetResult) {
+        this.targetResult = targetResult;
+        return this;
     }
 
     /**

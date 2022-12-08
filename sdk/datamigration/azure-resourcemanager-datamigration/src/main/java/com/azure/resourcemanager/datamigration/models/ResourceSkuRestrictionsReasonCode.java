@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ResourceSkuRestrictionsReasonCode. */
+/** The reason code for restriction. */
 public final class ResourceSkuRestrictionsReasonCode extends ExpandableStringEnum<ResourceSkuRestrictionsReasonCode> {
     /** Static value QuotaId for ResourceSkuRestrictionsReasonCode. */
     public static final ResourceSkuRestrictionsReasonCode QUOTA_ID = fromString("QuotaId");
@@ -28,7 +28,11 @@ public final class ResourceSkuRestrictionsReasonCode extends ExpandableStringEnu
         return fromString(name, ResourceSkuRestrictionsReasonCode.class);
     }
 
-    /** @return known ResourceSkuRestrictionsReasonCode values. */
+    /**
+     * Gets known ResourceSkuRestrictionsReasonCode values.
+     *
+     * @return known ResourceSkuRestrictionsReasonCode values.
+     */
     public static Collection<ResourceSkuRestrictionsReasonCode> values() {
         return values(ResourceSkuRestrictionsReasonCode.class);
     }
