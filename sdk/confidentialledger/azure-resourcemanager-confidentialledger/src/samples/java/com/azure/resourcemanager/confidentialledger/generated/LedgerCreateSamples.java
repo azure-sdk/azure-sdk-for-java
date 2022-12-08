@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for Ledger Create. */
 public final class LedgerCreateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Create.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_Create.json
      */
     /**
      * Sample code: ConfidentialLedgerCreate.
