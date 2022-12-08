@@ -70,7 +70,7 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
      */
     @Host("{$host}")
     @ServiceInterface(name = "ImageBuilderClientVi")
-    private interface VirtualMachineImageTemplatesService {
+    public interface VirtualMachineImageTemplatesService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.VirtualMachineImages/imageTemplates")
         @ExpectedResponses({200})
@@ -1238,21 +1238,6 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
      *
      * @param resourceGroupName The name of the resource group.
      * @param imageTemplateName The name of the image Template.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a virtual machine image template.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageTemplateInner getByResourceGroup(String resourceGroupName, String imageTemplateName) {
-        return getByResourceGroupAsync(resourceGroupName, imageTemplateName).block();
-    }
-
-    /**
-     * Get information about a virtual machine image template.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param imageTemplateName The name of the image Template.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1263,6 +1248,21 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     public Response<ImageTemplateInner> getByResourceGroupWithResponse(
         String resourceGroupName, String imageTemplateName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, imageTemplateName, context).block();
+    }
+
+    /**
+     * Get information about a virtual machine image template.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param imageTemplateName The name of the image Template.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about a virtual machine image template.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ImageTemplateInner getByResourceGroup(String resourceGroupName, String imageTemplateName) {
+        return getByResourceGroupWithResponse(resourceGroupName, imageTemplateName, Context.NONE).getValue();
     }
 
     /**
@@ -2277,22 +2277,6 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
      * @param resourceGroupName The name of the resource group.
      * @param imageTemplateName The name of the image Template.
      * @param runOutputName The name of the run output.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified run output for the specified image template resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RunOutputInner getRunOutput(String resourceGroupName, String imageTemplateName, String runOutputName) {
-        return getRunOutputAsync(resourceGroupName, imageTemplateName, runOutputName).block();
-    }
-
-    /**
-     * Get the specified run output for the specified image template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param imageTemplateName The name of the image Template.
-     * @param runOutputName The name of the run output.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2306,9 +2290,26 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     }
 
     /**
+     * Get the specified run output for the specified image template resource.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param imageTemplateName The name of the image Template.
+     * @param runOutputName The name of the run output.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified run output for the specified image template resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RunOutputInner getRunOutput(String resourceGroupName, String imageTemplateName, String runOutputName) {
+        return getRunOutputWithResponse(resourceGroupName, imageTemplateName, runOutputName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2344,7 +2345,8 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2381,7 +2383,8 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2418,7 +2421,8 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2456,7 +2460,8 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2492,7 +2497,8 @@ public final class VirtualMachineImageTemplatesClientImpl implements VirtualMach
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

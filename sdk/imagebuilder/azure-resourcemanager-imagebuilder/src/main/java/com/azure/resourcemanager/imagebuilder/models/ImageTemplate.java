@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.imagebuilder.fluent.models.ImageTemplateInner;
 import java.util.List;
@@ -53,6 +54,13 @@ public interface ImageTemplate {
      * @return the identity value.
      */
     ImageTemplateIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the source property: Specifies the properties used to describe the source image.

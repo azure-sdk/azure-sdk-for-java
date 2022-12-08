@@ -22,6 +22,10 @@ public final class ImageTemplateIdentityUserAssignedIdentities {
     @JsonProperty(value = "clientId", access = JsonProperty.Access.WRITE_ONLY)
     private String clientId;
 
+    /** Creates an instance of ImageTemplateIdentityUserAssignedIdentities class. */
+    public ImageTemplateIdentityUserAssignedIdentities() {
+    }
+
     /**
      * Get the principalId property: The principal id of user assigned identity.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SharedImageStorageAccountType. */
+/** Storage account type to be used to store the shared image. Omit to use the default (Standard_LRS). */
 public final class SharedImageStorageAccountType extends ExpandableStringEnum<SharedImageStorageAccountType> {
     /** Static value Standard_LRS for SharedImageStorageAccountType. */
     public static final SharedImageStorageAccountType STANDARD_LRS = fromString("Standard_LRS");

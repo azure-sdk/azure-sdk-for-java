@@ -29,6 +29,10 @@ public class ImageTemplateInVMValidator {
     @JsonProperty(value = "name")
     private String name;
 
+    /** Creates an instance of ImageTemplateInVMValidator class. */
+    public ImageTemplateInVMValidator() {
+    }
+
     /**
      * Get the name property: Friendly Name to provide context on what this validation step does.
      *

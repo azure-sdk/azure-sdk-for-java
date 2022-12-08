@@ -21,6 +21,10 @@ public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSo
     @JsonProperty(value = "imageVersionId", required = true)
     private String imageVersionId;
 
+    /** Creates an instance of ImageTemplateSharedImageVersionSource class. */
+    public ImageTemplateSharedImageVersionSource() {
+    }
+
     /**
      * Get the imageVersionId property: ARM resource id of the image version in the shared image gallery.
      *

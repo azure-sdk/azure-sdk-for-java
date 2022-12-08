@@ -14,6 +14,10 @@ import java.util.Map;
 @JsonTypeName("VHD")
 @Fluent
 public final class ImageTemplateVhdDistributor extends ImageTemplateDistributor {
+    /** Creates an instance of ImageTemplateVhdDistributor class. */
+    public ImageTemplateVhdDistributor() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public ImageTemplateVhdDistributor withRunOutputName(String runOutputName) {
