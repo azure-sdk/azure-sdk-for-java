@@ -65,7 +65,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface DeploymentsService {
+    public interface DeploymentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
