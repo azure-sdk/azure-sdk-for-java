@@ -46,13 +46,6 @@ public final class ComputeInstance extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public ComputeInstance withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public ComputeInstance withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -62,13 +55,6 @@ public final class ComputeInstance extends Compute {
     @Override
     public ComputeInstance withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComputeInstance withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

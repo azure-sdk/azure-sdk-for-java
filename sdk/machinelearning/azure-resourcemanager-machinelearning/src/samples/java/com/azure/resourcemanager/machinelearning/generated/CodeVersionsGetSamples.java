@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeVersions Get. */
 public final class CodeVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeVersion/get.json
      */
     /**
-     * Sample code: Get Code Version.
+     * Sample code: Get Workspace Code Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getCodeVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }

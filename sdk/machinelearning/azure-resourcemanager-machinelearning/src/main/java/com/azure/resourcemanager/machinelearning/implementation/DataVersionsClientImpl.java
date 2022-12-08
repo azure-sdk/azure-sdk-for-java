@@ -40,26 +40,26 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
     private final DataVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of DataVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    DataVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    DataVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(DataVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesDataVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesDataVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface DataVersionsService {
+    public interface DataVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"

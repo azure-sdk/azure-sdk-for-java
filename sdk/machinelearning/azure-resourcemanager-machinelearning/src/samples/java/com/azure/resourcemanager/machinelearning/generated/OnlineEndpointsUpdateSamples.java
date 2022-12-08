@@ -17,15 +17,15 @@ import java.util.Map;
 /** Samples for OnlineEndpoints Update. */
 public final class OnlineEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/update.json
      */
     /**
-     * Sample code: Update Online Endpoint.
+     * Sample code: Update Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager)
-        throws IOException {
+    public static void updateWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         OnlineEndpoint resource =
             manager
                 .onlineEndpoints()

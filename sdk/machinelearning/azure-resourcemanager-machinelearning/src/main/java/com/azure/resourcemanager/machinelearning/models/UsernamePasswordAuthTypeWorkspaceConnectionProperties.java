@@ -47,7 +47,7 @@ public final class UsernamePasswordAuthTypeWorkspaceConnectionProperties extends
 
     /** {@inheritDoc} */
     @Override
-    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
+    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withCategory(String category) {
         super.withCategory(category);
         return this;
     }

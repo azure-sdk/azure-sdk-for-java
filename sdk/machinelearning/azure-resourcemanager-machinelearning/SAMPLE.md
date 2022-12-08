@@ -58,6 +58,8 @@
 - [Start](#compute_start)
 - [Stop](#compute_stop)
 - [Update](#compute_update)
+- [UpdateCustomServices](#compute_updatecustomservices)
+- [UpdateIdleShutdownSetting](#compute_updateidleshutdownsetting)
 
 ## DataContainers
 
@@ -102,6 +104,16 @@
 - [Delete](#jobs_delete)
 - [Get](#jobs_get)
 - [List](#jobs_list)
+
+## LabelingJobs
+
+- [CreateOrUpdate](#labelingjobs_createorupdate)
+- [Delete](#labelingjobs_delete)
+- [ExportLabels](#labelingjobs_exportlabels)
+- [Get](#labelingjobs_get)
+- [List](#labelingjobs_list)
+- [Pause](#labelingjobs_pause)
+- [Resume](#labelingjobs_resume)
 
 ## ModelContainers
 
@@ -157,6 +169,71 @@
 
 - [List](#quotas_list)
 - [Update](#quotas_update)
+
+## Registries
+
+- [CreateOrUpdate](#registries_createorupdate)
+- [Delete](#registries_delete)
+- [GetByResourceGroup](#registries_getbyresourcegroup)
+- [List](#registries_list)
+- [ListByResourceGroup](#registries_listbyresourcegroup)
+- [Update](#registries_update)
+
+## RegistryCodeContainers
+
+- [CreateOrUpdate](#registrycodecontainers_createorupdate)
+- [Delete](#registrycodecontainers_delete)
+- [Get](#registrycodecontainers_get)
+- [List](#registrycodecontainers_list)
+
+## RegistryCodeVersions
+
+- [CreateOrUpdate](#registrycodeversions_createorupdate)
+- [Delete](#registrycodeversions_delete)
+- [Get](#registrycodeversions_get)
+- [List](#registrycodeversions_list)
+
+## RegistryComponentContainers
+
+- [CreateOrUpdate](#registrycomponentcontainers_createorupdate)
+- [Delete](#registrycomponentcontainers_delete)
+- [Get](#registrycomponentcontainers_get)
+- [List](#registrycomponentcontainers_list)
+
+## RegistryComponentVersions
+
+- [CreateOrUpdate](#registrycomponentversions_createorupdate)
+- [Delete](#registrycomponentversions_delete)
+- [Get](#registrycomponentversions_get)
+- [List](#registrycomponentversions_list)
+
+## RegistryEnvironmentContainers
+
+- [CreateOrUpdate](#registryenvironmentcontainers_createorupdate)
+- [Delete](#registryenvironmentcontainers_delete)
+- [Get](#registryenvironmentcontainers_get)
+- [List](#registryenvironmentcontainers_list)
+
+## RegistryEnvironmentVersions
+
+- [CreateOrUpdate](#registryenvironmentversions_createorupdate)
+- [Delete](#registryenvironmentversions_delete)
+- [Get](#registryenvironmentversions_get)
+- [List](#registryenvironmentversions_list)
+
+## RegistryModelContainers
+
+- [CreateOrUpdate](#registrymodelcontainers_createorupdate)
+- [Delete](#registrymodelcontainers_delete)
+- [Get](#registrymodelcontainers_get)
+- [List](#registrymodelcontainers_list)
+
+## RegistryModelVersions
+
+- [CreateOrUpdate](#registrymodelversions_createorupdate)
+- [Delete](#registrymodelversions_delete)
+- [Get](#registrymodelversions_get)
+- [List](#registrymodelversions_list)
 
 ## Schedules
 
@@ -225,14 +302,14 @@ import java.util.Map;
 /** Samples for BatchDeployments CreateOrUpdate. */
 public final class BatchDeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Batch Deployment.
+     * Sample code: CreateOrUpdate Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateBatchDeployment(
+    public static void createOrUpdateWorkspaceBatchDeployment(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         manager
             .batchDeployments()
@@ -306,14 +383,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchDeployments Delete. */
 public final class BatchDeploymentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/delete.json
      */
     /**
-     * Sample code: Delete Batch Deployment.
+     * Sample code: Delete Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchDeployments()
             .delete("test-rg", "my-aml-workspace", "testEndpointName", "testDeploymentName", Context.NONE);
@@ -329,14 +407,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchDeployments Get. */
 public final class BatchDeploymentsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/get.json
      */
     /**
-     * Sample code: Get Batch Deployment.
+     * Sample code: Get Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchDeployments()
             .getWithResponse("test-rg", "my-aml-workspace", "testEndpointName", "testDeploymentName", Context.NONE);
@@ -352,14 +431,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchDeployments List. */
 public final class BatchDeploymentsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/list.json
      */
     /**
-     * Sample code: List Batch Deployment.
+     * Sample code: List Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchDeployments()
             .list("test-rg", "my-aml-workspace", "testEndpointName", "string", 1, null, Context.NONE);
@@ -379,14 +459,15 @@ import java.util.Map;
 /** Samples for BatchDeployments Update. */
 public final class BatchDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/update.json
      */
     /**
-     * Sample code: Update Batch Deployment.
+     * Sample code: Update Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void updateWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         BatchDeployment resource =
             manager
                 .batchDeployments()
@@ -429,14 +510,14 @@ import java.util.Map;
 /** Samples for BatchEndpoints CreateOrUpdate. */
 public final class BatchEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Batch Endpoint.
+     * Sample code: CreateOrUpdate Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateBatchEndpoint(
+    public static void createOrUpdateWorkspaceBatchEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchEndpoints()
@@ -486,14 +567,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchEndpoints Delete. */
 public final class BatchEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/delete.json
      */
     /**
-     * Sample code: Delete Batch Endpoint.
+     * Sample code: Delete Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.batchEndpoints().delete("resourceGroup-1234", "testworkspace", "testBatchEndpoint", Context.NONE);
     }
 }
@@ -507,14 +589,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchEndpoints Get. */
 public final class BatchEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/get.json
      */
     /**
-     * Sample code: Get Batch Endpoint.
+     * Sample code: Get Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.batchEndpoints().getWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
 }
@@ -528,14 +611,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchEndpoints List. */
 public final class BatchEndpointsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/list.json
      */
     /**
-     * Sample code: List Batch Endpoint.
+     * Sample code: List Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.batchEndpoints().list("test-rg", "my-aml-workspace", 1, null, Context.NONE);
     }
 }
@@ -549,14 +633,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchEndpoints ListKeys. */
 public final class BatchEndpointsListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/listKeys.json
      */
     /**
-     * Sample code: ListKeys Batch Endpoint.
+     * Sample code: ListKeys Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listKeysBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listKeysWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.batchEndpoints().listKeysWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
 }
@@ -578,15 +663,15 @@ import java.util.Map;
 /** Samples for BatchEndpoints Update. */
 public final class BatchEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/update.json
      */
     /**
-     * Sample code: Update Batch Endpoint.
+     * Sample code: Update Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager)
-        throws IOException {
+    public static void updateWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         BatchEndpoint resource =
             manager
                 .batchEndpoints()
@@ -623,6 +708,8 @@ public final class BatchEndpointsUpdateSamples {
 ### CodeContainers_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.CodeContainerInner;
 import com.azure.resourcemanager.machinelearning.models.CodeContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -630,24 +717,27 @@ import java.util.Map;
 /** Samples for CodeContainers CreateOrUpdate. */
 public final class CodeContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Code Container.
+     * Sample code: CreateOrUpdate Workspace Code Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateCodeContainer(
+    public static void createOrUpdateWorkspaceCodeContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .codeContainers()
-            .define("testContainer")
-            .withExistingWorkspace("testrg123", "testworkspace")
-            .withProperties(
-                new CodeContainerProperties()
-                    .withDescription("string")
-                    .withTags(mapOf("tag1", "value1", "tag2", "value2")))
-            .create();
+            .createOrUpdateWithResponse(
+                "testrg123",
+                "testworkspace",
+                "testContainer",
+                new CodeContainerInner()
+                    .withProperties(
+                        new CodeContainerProperties()
+                            .withDescription("string")
+                            .withTags(mapOf("tag1", "value1", "tag2", "value2"))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -671,14 +761,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeContainers Delete. */
 public final class CodeContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeContainer/delete.json
      */
     /**
-     * Sample code: Delete Code Container.
+     * Sample code: Delete Workspace Code Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteCodeContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeContainers().deleteWithResponse("testrg123", "testworkspace", "testContainer", Context.NONE);
     }
 }
@@ -692,14 +783,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeContainers Get. */
 public final class CodeContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeContainer/get.json
      */
     /**
-     * Sample code: Get Code Container.
+     * Sample code: Get Workspace Code Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getCodeContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeContainers().getWithResponse("testrg123", "testworkspace", "testContainer", Context.NONE);
     }
 }
@@ -713,14 +805,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeContainers List. */
 public final class CodeContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeContainer/list.json
      */
     /**
-     * Sample code: List Code Container.
+     * Sample code: List Workspace Code Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listCodeContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeContainers().list("testrg123", "testworkspace", null, Context.NONE);
     }
 }
@@ -729,6 +822,8 @@ public final class CodeContainersListSamples {
 ### CodeVersions_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
 import com.azure.resourcemanager.machinelearning.models.CodeVersionProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -736,27 +831,31 @@ import java.util.Map;
 /** Samples for CodeVersions CreateOrUpdate. */
 public final class CodeVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeVersion/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Code Version.
+     * Sample code: CreateOrUpdate Workspace Code Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateCodeVersion(
+    public static void createOrUpdateWorkspaceCodeVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .codeVersions()
-            .define("string")
-            .withExistingCode("test-rg", "my-aml-workspace", "string")
-            .withProperties(
-                new CodeVersionProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withCodeUri("fakeTokenPlaceholder"))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                "string",
+                new CodeVersionInner()
+                    .withProperties(
+                        new CodeVersionProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))
+                            .withIsAnonymous(false)
+                            .withCodeUri("fakeTokenPlaceholder")),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -780,14 +879,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeVersions Delete. */
 public final class CodeVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeVersion/delete.json
      */
     /**
-     * Sample code: Delete Code Version.
+     * Sample code: Delete Workspace Code Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteCodeVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeVersions().deleteWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -801,14 +901,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeVersions Get. */
 public final class CodeVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeVersion/get.json
      */
     /**
-     * Sample code: Get Code Version.
+     * Sample code: Get Workspace Code Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getCodeVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -822,14 +923,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeVersions List. */
 public final class CodeVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeVersion/list.json
      */
     /**
-     * Sample code: List Code Version.
+     * Sample code: List Workspace Code Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listCodeVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeVersions().list("test-rg", "my-aml-workspace", "string", "string", 1, null, Context.NONE);
     }
 }
@@ -838,6 +940,8 @@ public final class CodeVersionsListSamples {
 ### ComponentContainers_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -845,25 +949,28 @@ import java.util.Map;
 /** Samples for ComponentContainers CreateOrUpdate. */
 public final class ComponentContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Component Container.
+     * Sample code: CreateOrUpdate Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateComponentContainer(
+    public static void createOrUpdateWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .componentContainers()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new ComponentContainerProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string")))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                new ComponentContainerInner()
+                    .withProperties(
+                        new ComponentContainerProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -887,14 +994,14 @@ import com.azure.core.util.Context;
 /** Samples for ComponentContainers Delete. */
 public final class ComponentContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/delete.json
      */
     /**
-     * Sample code: Delete Component Container.
+     * Sample code: Delete Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteComponentContainer(
+    public static void deleteWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentContainers().deleteWithResponse("test-rg", "my-aml-workspace", "string", Context.NONE);
     }
@@ -909,14 +1016,15 @@ import com.azure.core.util.Context;
 /** Samples for ComponentContainers Get. */
 public final class ComponentContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/get.json
      */
     /**
-     * Sample code: Get Component Container.
+     * Sample code: Get Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getComponentContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceComponentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentContainers().getWithResponse("test-rg", "my-aml-workspace", "string", Context.NONE);
     }
 }
@@ -930,14 +1038,14 @@ import com.azure.core.util.Context;
 /** Samples for ComponentContainers List. */
 public final class ComponentContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/list.json
      */
     /**
-     * Sample code: List Component Container.
+     * Sample code: List Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listComponentContainer(
+    public static void listWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentContainers().list("test-rg", "my-aml-workspace", null, null, Context.NONE);
     }
@@ -948,7 +1056,9 @@ public final class ComponentContainersListSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersionProperties;
 import java.io.IOException;
 import java.util.HashMap;
@@ -957,33 +1067,37 @@ import java.util.Map;
 /** Samples for ComponentVersions CreateOrUpdate. */
 public final class ComponentVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentVersion/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Component Version.
+     * Sample code: CreateOrUpdate Workspace Component Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateComponentVersion(
+    public static void createOrUpdateWorkspaceComponentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         manager
             .componentVersions()
-            .define("string")
-            .withExistingComponent("test-rg", "my-aml-workspace", "string")
-            .withProperties(
-                new ComponentVersionProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withComponentSpec(
-                        SerializerFactory
-                            .createDefaultManagementSerializerAdapter()
-                            .deserialize(
-                                "{\"8ced901b-d826-477d-bfef-329da9672513\":null}",
-                                Object.class,
-                                SerializerEncoding.JSON)))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                "string",
+                new ComponentVersionInner()
+                    .withProperties(
+                        new ComponentVersionProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))
+                            .withIsAnonymous(false)
+                            .withComponentSpec(
+                                SerializerFactory
+                                    .createDefaultManagementSerializerAdapter()
+                                    .deserialize(
+                                        "{\"8ced901b-d826-477d-bfef-329da9672513\":null}",
+                                        Object.class,
+                                        SerializerEncoding.JSON))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -1007,14 +1121,14 @@ import com.azure.core.util.Context;
 /** Samples for ComponentVersions Delete. */
 public final class ComponentVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentVersion/delete.json
      */
     /**
-     * Sample code: Delete Component Version.
+     * Sample code: Delete Workspace Component Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteComponentVersion(
+    public static void deleteWorkspaceComponentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentVersions().deleteWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
@@ -1029,14 +1143,15 @@ import com.azure.core.util.Context;
 /** Samples for ComponentVersions Get. */
 public final class ComponentVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentVersion/get.json
      */
     /**
-     * Sample code: Get Component Version.
+     * Sample code: Get Workspace Component Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getComponentVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -1050,14 +1165,15 @@ import com.azure.core.util.Context;
 /** Samples for ComponentVersions List. */
 public final class ComponentVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentVersion/list.json
      */
     /**
-     * Sample code: List Component Version.
+     * Sample code: List Workspace Component Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listComponentVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .componentVersions()
             .list("test-rg", "my-aml-workspace", "string", "string", 1, null, null, Context.NONE);
@@ -1076,29 +1192,48 @@ import com.azure.resourcemanager.machinelearning.models.ApplicationSharingPolicy
 import com.azure.resourcemanager.machinelearning.models.AssignedUser;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstance;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceAuthorizationType;
+import com.azure.resourcemanager.machinelearning.models.ComputeInstanceAutologgerSettings;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceProperties;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceSshSettings;
+import com.azure.resourcemanager.machinelearning.models.ComputePowerAction;
+import com.azure.resourcemanager.machinelearning.models.ComputeSchedules;
+import com.azure.resourcemanager.machinelearning.models.ComputeStartStopSchedule;
+import com.azure.resourcemanager.machinelearning.models.CronTrigger;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
 import com.azure.resourcemanager.machinelearning.models.DataFactory;
+import com.azure.resourcemanager.machinelearning.models.Docker;
+import com.azure.resourcemanager.machinelearning.models.Endpoint;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVariable;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVariableType;
+import com.azure.resourcemanager.machinelearning.models.Image;
+import com.azure.resourcemanager.machinelearning.models.ImageType;
 import com.azure.resourcemanager.machinelearning.models.InstanceTypeSchema;
 import com.azure.resourcemanager.machinelearning.models.InstanceTypeSchemaResources;
 import com.azure.resourcemanager.machinelearning.models.Kubernetes;
 import com.azure.resourcemanager.machinelearning.models.KubernetesProperties;
+import com.azure.resourcemanager.machinelearning.models.MlflowAutologger;
 import com.azure.resourcemanager.machinelearning.models.OsType;
 import com.azure.resourcemanager.machinelearning.models.PersonalComputeInstanceSettings;
+import com.azure.resourcemanager.machinelearning.models.Protocol;
 import com.azure.resourcemanager.machinelearning.models.RemoteLoginPortPublicAccess;
 import com.azure.resourcemanager.machinelearning.models.ResourceId;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettings;
+import com.azure.resourcemanager.machinelearning.models.ScheduleStatus;
 import com.azure.resourcemanager.machinelearning.models.SshPublicAccess;
+import com.azure.resourcemanager.machinelearning.models.TriggerType;
 import com.azure.resourcemanager.machinelearning.models.VirtualMachineImage;
 import com.azure.resourcemanager.machinelearning.models.VmPriority;
+import com.azure.resourcemanager.machinelearning.models.VolumeDefinition;
+import com.azure.resourcemanager.machinelearning.models.VolumeDefinitionType;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Compute CreateOrUpdate. */
 public final class ComputeCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/BasicAKSCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/BasicAKSCompute.json
      */
     /**
      * Sample code: Create an AKS Compute.
@@ -1116,7 +1251,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/AKSCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/AKSCompute.json
      */
     /**
      * Sample code: Update an AKS Compute.
@@ -1139,7 +1274,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/KubernetesCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/KubernetesCompute.json
      */
     /**
      * Sample code: Attach a Kubernetes Compute.
@@ -1176,7 +1311,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/ComputeInstanceWithSchedules.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/ComputeInstanceWithSchedules.json
      */
     /**
      * Sample code: Create an ComputeInstance Compute with Schedules.
@@ -1204,12 +1339,26 @@ public final class ComputeCreateOrUpdateSamples {
                                     .withAssignedUser(
                                         new AssignedUser()
                                             .withObjectId("00000000-0000-0000-0000-000000000000")
-                                            .withTenantId("00000000-0000-0000-0000-000000000000")))))
+                                            .withTenantId("00000000-0000-0000-0000-000000000000")))
+                            .withSchedules(
+                                new ComputeSchedules()
+                                    .withComputeStartStop(
+                                        Arrays
+                                            .asList(
+                                                new ComputeStartStopSchedule()
+                                                    .withStatus(ScheduleStatus.ENABLED)
+                                                    .withAction(ComputePowerAction.STOP)
+                                                    .withTriggerType(TriggerType.CRON)
+                                                    .withCron(
+                                                        new CronTrigger()
+                                                            .withStartTime("2021-04-23T01:30:00")
+                                                            .withTimeZone("Pacific Standard Time")
+                                                            .withExpression("0 18 * * *")))))))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/BasicAmlCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/BasicAmlCompute.json
      */
     /**
      * Sample code: Create a AML Compute.
@@ -1245,7 +1394,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/ComputeInstance.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/ComputeInstance.json
      */
     /**
      * Sample code: Create an ComputeInstance Compute.
@@ -1266,8 +1415,46 @@ public final class ComputeCreateOrUpdateSamples {
                             .withVmSize("STANDARD_NC6")
                             .withSubnet(new ResourceId().withId("test-subnet-resource-id"))
                             .withApplicationSharingPolicy(ApplicationSharingPolicy.PERSONAL)
+                            .withAutologgerSettings(
+                                new ComputeInstanceAutologgerSettings().withMlflowAutologger(MlflowAutologger.ENABLED))
                             .withSshSettings(
                                 new ComputeInstanceSshSettings().withSshPublicAccess(SshPublicAccess.DISABLED))
+                            .withCustomServices(
+                                Arrays
+                                    .asList(
+                                        new CustomService()
+                                            .withName("rstudio-workbench")
+                                            .withImage(
+                                                new Image()
+                                                    .withType(ImageType.DOCKER)
+                                                    .withReference("ghcr.io/azure/rstudio-workbench:latest")
+                                                    .withAdditionalProperties(mapOf()))
+                                            .withEnvironmentVariables(
+                                                mapOf(
+                                                    "RSP_LICENSE",
+                                                    new EnvironmentVariable()
+                                                        .withType(EnvironmentVariableType.LOCAL)
+                                                        .withValue("XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX")
+                                                        .withAdditionalProperties(mapOf())))
+                                            .withDocker(
+                                                new Docker().withPrivileged(true).withAdditionalProperties(mapOf()))
+                                            .withEndpoints(
+                                                Arrays
+                                                    .asList(
+                                                        new Endpoint()
+                                                            .withProtocol(Protocol.HTTP)
+                                                            .withName("connect")
+                                                            .withTarget(8787)
+                                                            .withPublished(4444)))
+                                            .withVolumes(
+                                                Arrays
+                                                    .asList(
+                                                        new VolumeDefinition()
+                                                            .withType(VolumeDefinitionType.BIND)
+                                                            .withReadOnly(true)
+                                                            .withSource("/mnt/azureuser/")
+                                                            .withTarget("/home/testuser/")))
+                                            .withAdditionalProperties(mapOf())))
                             .withComputeInstanceAuthorizationType(ComputeInstanceAuthorizationType.PERSONAL)
                             .withPersonalComputeInstanceSettings(
                                 new PersonalComputeInstanceSettings()
@@ -1279,7 +1466,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/ComputeInstanceMinimal.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/ComputeInstanceMinimal.json
      */
     /**
      * Sample code: Create an ComputeInstance Compute with minimal inputs.
@@ -1299,7 +1486,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/AmlCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/AmlCompute.json
      */
     /**
      * Sample code: Update a AML Compute.
@@ -1326,7 +1513,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/BasicDataFactoryCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/createOrUpdate/BasicDataFactoryCompute.json
      */
     /**
      * Sample code: Create a DataFactory Compute.
@@ -1366,7 +1553,7 @@ import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction
 /** Samples for Compute Delete. */
 public final class ComputeDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/delete.json
      */
     /**
      * Sample code: Delete Compute.
@@ -1389,7 +1576,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute Get. */
 public final class ComputeGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/AKSCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/get/AKSCompute.json
      */
     /**
      * Sample code: Get a AKS Compute.
@@ -1401,7 +1588,7 @@ public final class ComputeGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/KubernetesCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/get/KubernetesCompute.json
      */
     /**
      * Sample code: Get a Kubernetes Compute.
@@ -1413,7 +1600,7 @@ public final class ComputeGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/ComputeInstance.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/get/ComputeInstance.json
      */
     /**
      * Sample code: Get an ComputeInstance.
@@ -1425,7 +1612,7 @@ public final class ComputeGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/AmlCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/get/AmlCompute.json
      */
     /**
      * Sample code: Get a AML Compute.
@@ -1446,7 +1633,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute List. */
 public final class ComputeListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/list.json
      */
     /**
      * Sample code: Get Computes.
@@ -1467,7 +1654,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute ListKeys. */
 public final class ComputeListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/listKeys.json
      */
     /**
      * Sample code: List AKS Compute Keys.
@@ -1488,7 +1675,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute ListNodes. */
 public final class ComputeListNodesSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/listNodes.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/listNodes.json
      */
     /**
      * Sample code: Get compute nodes information for a compute.
@@ -1510,7 +1697,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute Restart. */
 public final class ComputeRestartSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/restart.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/restart.json
      */
     /**
      * Sample code: Restart ComputeInstance Compute.
@@ -1532,7 +1719,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute Start. */
 public final class ComputeStartSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/start.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/start.json
      */
     /**
      * Sample code: Start ComputeInstance Compute.
@@ -1554,7 +1741,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute Stop. */
 public final class ComputeStopSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/stop.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/stop.json
      */
     /**
      * Sample code: Stop ComputeInstance Compute.
@@ -1580,7 +1767,7 @@ import java.time.Duration;
 /** Samples for Compute Update. */
 public final class ComputeUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/patch.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/patch.json
      */
     /**
      * Sample code: Update a AmlCompute Compute.
@@ -1605,6 +1792,121 @@ public final class ComputeUpdateSamples {
 }
 ```
 
+### Compute_UpdateCustomServices
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
+import com.azure.resourcemanager.machinelearning.models.Docker;
+import com.azure.resourcemanager.machinelearning.models.Endpoint;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVariable;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVariableType;
+import com.azure.resourcemanager.machinelearning.models.Image;
+import com.azure.resourcemanager.machinelearning.models.ImageType;
+import com.azure.resourcemanager.machinelearning.models.Protocol;
+import com.azure.resourcemanager.machinelearning.models.VolumeDefinition;
+import com.azure.resourcemanager.machinelearning.models.VolumeDefinitionType;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for Compute UpdateCustomServices. */
+public final class ComputeUpdateCustomServicesSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/updateCustomServices.json
+     */
+    /**
+     * Sample code: Update Custom Services.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void updateCustomServices(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .computes()
+            .updateCustomServicesWithResponse(
+                "testrg123",
+                "workspaces123",
+                "compute123",
+                Arrays
+                    .asList(
+                        new CustomService()
+                            .withName("rstudio-workbench")
+                            .withImage(
+                                new Image()
+                                    .withType(ImageType.DOCKER)
+                                    .withReference("ghcr.io/azure/rstudio-workbench:latest")
+                                    .withAdditionalProperties(mapOf()))
+                            .withEnvironmentVariables(
+                                mapOf(
+                                    "RSP_LICENSE",
+                                    new EnvironmentVariable()
+                                        .withType(EnvironmentVariableType.LOCAL)
+                                        .withValue("XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX")
+                                        .withAdditionalProperties(mapOf())))
+                            .withDocker(new Docker().withPrivileged(true).withAdditionalProperties(mapOf()))
+                            .withEndpoints(
+                                Arrays
+                                    .asList(
+                                        new Endpoint()
+                                            .withProtocol(Protocol.HTTP)
+                                            .withName("connect")
+                                            .withTarget(8787)
+                                            .withPublished(4444)))
+                            .withVolumes(
+                                Arrays
+                                    .asList(
+                                        new VolumeDefinition()
+                                            .withType(VolumeDefinitionType.BIND)
+                                            .withReadOnly(true)
+                                            .withSource("/mnt/azureuser/")
+                                            .withTarget("/home/testuser/")))
+                            .withAdditionalProperties(mapOf())),
+                Context.NONE);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Compute_UpdateIdleShutdownSetting
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
+
+/** Samples for Compute UpdateIdleShutdownSetting. */
+public final class ComputeUpdateIdleShutdownSettingSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/updateIdleShutdownSetting.json
+     */
+    /**
+     * Sample code: Update idle shutdown setting of ComputeInstance.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void updateIdleShutdownSettingOfComputeInstance(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .computes()
+            .updateIdleShutdownSettingWithResponse(
+                "testrg123",
+                "workspaces123",
+                "compute123",
+                new IdleShutdownSetting().withIdleTimeBeforeShutdown("PT120M"),
+                Context.NONE);
+    }
+}
+```
+
 ### DataContainers_CreateOrUpdate
 
 ```java
@@ -1616,14 +1918,14 @@ import java.util.Map;
 /** Samples for DataContainers CreateOrUpdate. */
 public final class DataContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Data Container.
+     * Sample code: CreateOrUpdate Workspace Data Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateDataContainer(
+    public static void createOrUpdateWorkspaceDataContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .dataContainers()
@@ -1659,14 +1961,15 @@ import com.azure.core.util.Context;
 /** Samples for DataContainers Delete. */
 public final class DataContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataContainer/delete.json
      */
     /**
-     * Sample code: Delete Data Container.
+     * Sample code: Delete Workspace Data Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteDataContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceDataContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataContainers().deleteWithResponse("testrg123", "workspace123", "datacontainer123", Context.NONE);
     }
 }
@@ -1680,14 +1983,15 @@ import com.azure.core.util.Context;
 /** Samples for DataContainers Get. */
 public final class DataContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataContainer/get.json
      */
     /**
-     * Sample code: Get Data Container.
+     * Sample code: Get Workspace Data Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getDataContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceDataContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataContainers().getWithResponse("testrg123", "workspace123", "datacontainer123", Context.NONE);
     }
 }
@@ -1701,14 +2005,15 @@ import com.azure.core.util.Context;
 /** Samples for DataContainers List. */
 public final class DataContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataContainer/list.json
      */
     /**
-     * Sample code: List Data Container.
+     * Sample code: List Workspace Data Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listDataContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceDataContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataContainers().list("testrg123", "workspace123", null, null, Context.NONE);
     }
 }
@@ -1724,14 +2029,14 @@ import java.util.Map;
 /** Samples for DataVersions CreateOrUpdate. */
 public final class DataVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataVersionBase/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Data Version Base.
+     * Sample code: CreateOrUpdate Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateDataVersionBase(
+    public static void createOrUpdateWorkspaceDataVersionBase(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .dataVersions()
@@ -1768,14 +2073,15 @@ import com.azure.core.util.Context;
 /** Samples for DataVersions Delete. */
 public final class DataVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataVersionBase/delete.json
      */
     /**
-     * Sample code: Delete Data Version Base.
+     * Sample code: Delete Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteDataVersionBase(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceDataVersionBase(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataVersions().deleteWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -1789,14 +2095,15 @@ import com.azure.core.util.Context;
 /** Samples for DataVersions Get. */
 public final class DataVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataVersionBase/get.json
      */
     /**
-     * Sample code: Get Data Version Base.
+     * Sample code: Get Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getDataVersionBase(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceDataVersionBase(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -1810,14 +2117,15 @@ import com.azure.core.util.Context;
 /** Samples for DataVersions List. */
 public final class DataVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataVersionBase/list.json
      */
     /**
-     * Sample code: List Data Version Base.
+     * Sample code: List Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listDataVersionBase(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceDataVersionBase(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .dataVersions()
             .list("test-rg", "my-aml-workspace", "string", "string", 1, null, "string", null, Context.NONE);
@@ -1843,7 +2151,7 @@ import java.util.UUID;
 /** Samples for Datastores CreateOrUpdate. */
 public final class DatastoresCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureDataLakeGen1WServicePrincipal/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/AzureDataLakeGen1WServicePrincipal/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (Azure Data Lake Gen1 w/ ServicePrincipal).
@@ -1874,7 +2182,7 @@ public final class DatastoresCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureDataLakeGen2WServicePrincipal/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/AzureDataLakeGen2WServicePrincipal/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (Azure Data Lake Gen2 w/ Service Principal).
@@ -1908,7 +2216,7 @@ public final class DatastoresCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureBlobWAccountKey/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/AzureBlobWAccountKey/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (AzureBlob w/ AccountKey).
@@ -1937,7 +2245,7 @@ public final class DatastoresCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureFileWAccountKey/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/AzureFileWAccountKey/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (Azure File store w/ AccountKey).
@@ -1986,7 +2294,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores Delete. */
 public final class DatastoresDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/delete.json
      */
     /**
      * Sample code: Delete datastore.
@@ -2007,7 +2315,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores Get. */
 public final class DatastoresGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/get.json
      */
     /**
      * Sample code: Get datastore.
@@ -2029,7 +2337,7 @@ import java.util.Arrays;
 /** Samples for Datastores List. */
 public final class DatastoresListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/list.json
      */
     /**
      * Sample code: List datastores.
@@ -2062,7 +2370,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores ListSecrets. */
 public final class DatastoresListSecretsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/listSecrets.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Datastore/listSecrets.json
      */
     /**
      * Sample code: Get datastore secrets.
@@ -2078,6 +2386,8 @@ public final class DatastoresListSecretsSamples {
 ### EnvironmentContainers_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -2085,27 +2395,42 @@ import java.util.Map;
 /** Samples for EnvironmentContainers CreateOrUpdate. */
 public final class EnvironmentContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Environment Container.
+     * Sample code: CreateOrUpdate Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateEnvironmentContainer(
+    public static void createOrUpdateWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentContainers()
-            .define("testEnvironment")
-            .withExistingWorkspace("testrg123", "testworkspace")
-            .withProperties(
-                new EnvironmentContainerProperties()
-                    .withDescription("string")
+            .createOrUpdateWithResponse(
+                "testrg123",
+                "testworkspace",
+                "testEnvironment",
+                new EnvironmentContainerInner()
                     .withProperties(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
-                    .withTags(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
-            .create();
+                        new EnvironmentContainerProperties()
+                            .withDescription("string")
+                            .withProperties(
+                                mapOf(
+                                    "additionalProp1",
+                                    "string",
+                                    "additionalProp2",
+                                    "string",
+                                    "additionalProp3",
+                                    "string"))
+                            .withTags(
+                                mapOf(
+                                    "additionalProp1",
+                                    "string",
+                                    "additionalProp2",
+                                    "string",
+                                    "additionalProp3",
+                                    "string"))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -2129,14 +2454,14 @@ import com.azure.core.util.Context;
 /** Samples for EnvironmentContainers Delete. */
 public final class EnvironmentContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentContainer/delete.json
      */
     /**
-     * Sample code: Delete Environment Container.
+     * Sample code: Delete Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteEnvironmentContainer(
+    public static void deleteWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.environmentContainers().deleteWithResponse("testrg123", "testworkspace", "testContainer", Context.NONE);
     }
@@ -2151,14 +2476,14 @@ import com.azure.core.util.Context;
 /** Samples for EnvironmentContainers Get. */
 public final class EnvironmentContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentContainer/get.json
      */
     /**
-     * Sample code: Get Environment Container.
+     * Sample code: Get Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getEnvironmentContainer(
+    public static void getWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.environmentContainers().getWithResponse("testrg123", "testworkspace", "testEnvironment", Context.NONE);
     }
@@ -2173,14 +2498,14 @@ import com.azure.core.util.Context;
 /** Samples for EnvironmentContainers List. */
 public final class EnvironmentContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentContainer/list.json
      */
     /**
-     * Sample code: List Environment Container.
+     * Sample code: List Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listEnvironmentContainer(
+    public static void listWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.environmentContainers().list("testrg123", "testworkspace", null, null, Context.NONE);
     }
@@ -2190,6 +2515,8 @@ public final class EnvironmentContainersListSamples {
 ### EnvironmentVersions_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionInner;
 import com.azure.resourcemanager.machinelearning.models.BuildContext;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersionProperties;
 import com.azure.resourcemanager.machinelearning.models.InferenceContainerProperties;
@@ -2200,38 +2527,42 @@ import java.util.Map;
 /** Samples for EnvironmentVersions CreateOrUpdate. */
 public final class EnvironmentVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentVersion/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Environment Version.
+     * Sample code: CreateOrUpdate Workspace Environment Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateEnvironmentVersion(
+    public static void createOrUpdateWorkspaceEnvironmentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentVersions()
-            .define("string")
-            .withExistingEnvironment("test-rg", "my-aml-workspace", "string")
-            .withProperties(
-                new EnvironmentVersionProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withBuild(
-                        new BuildContext()
-                            .withContextUri(
-                                "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
-                            .withDockerfilePath("prod/Dockerfile"))
-                    .withCondaFile("string")
-                    .withImage("docker.io/tensorflow/serving:latest")
-                    .withInferenceConfig(
-                        new InferenceContainerProperties()
-                            .withLivenessRoute(new Route().withPath("string").withPort(1))
-                            .withReadinessRoute(new Route().withPath("string").withPort(1))
-                            .withScoringRoute(new Route().withPath("string").withPort(1))))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                "string",
+                new EnvironmentVersionInner()
+                    .withProperties(
+                        new EnvironmentVersionProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))
+                            .withIsAnonymous(false)
+                            .withBuild(
+                                new BuildContext()
+                                    .withContextUri(
+                                        "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
+                                    .withDockerfilePath("prod/Dockerfile"))
+                            .withCondaFile("string")
+                            .withImage("docker.io/tensorflow/serving:latest")
+                            .withInferenceConfig(
+                                new InferenceContainerProperties()
+                                    .withLivenessRoute(new Route().withPath("string").withPort(1))
+                                    .withReadinessRoute(new Route().withPath("string").withPort(1))
+                                    .withScoringRoute(new Route().withPath("string").withPort(1)))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -2255,14 +2586,14 @@ import com.azure.core.util.Context;
 /** Samples for EnvironmentVersions Delete. */
 public final class EnvironmentVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentVersion/delete.json
      */
     /**
-     * Sample code: Delete Environment Version.
+     * Sample code: Delete Workspace Environment Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteEnvironmentVersion(
+    public static void deleteWorkspaceEnvironmentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentVersions()
@@ -2279,14 +2610,15 @@ import com.azure.core.util.Context;
 /** Samples for EnvironmentVersions Get. */
 public final class EnvironmentVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentVersion/get.json
      */
     /**
-     * Sample code: Get Environment Version.
+     * Sample code: Get Workspace Environment Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getEnvironmentVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceEnvironmentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.environmentVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -2300,14 +2632,14 @@ import com.azure.core.util.Context;
 /** Samples for EnvironmentVersions List. */
 public final class EnvironmentVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentVersion/list.json
      */
     /**
-     * Sample code: List Environment Version.
+     * Sample code: List Workspace Environment Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listEnvironmentVersion(
+    public static void listWorkspaceEnvironmentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentVersions()
@@ -2324,7 +2656,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs Cancel. */
 public final class JobsCancelSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/cancel.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/cancel.json
      */
     /**
      * Sample code: Cancel Job.
@@ -2344,6 +2676,7 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.machinelearning.models.AmlToken;
 import com.azure.resourcemanager.machinelearning.models.AutoMLJob;
+import com.azure.resourcemanager.machinelearning.models.AutologgerSettings;
 import com.azure.resourcemanager.machinelearning.models.CommandJob;
 import com.azure.resourcemanager.machinelearning.models.CommandJobLimits;
 import com.azure.resourcemanager.machinelearning.models.Goal;
@@ -2355,6 +2688,7 @@ import com.azure.resourcemanager.machinelearning.models.ImageModelSettingsClassi
 import com.azure.resourcemanager.machinelearning.models.JobResourceConfiguration;
 import com.azure.resourcemanager.machinelearning.models.JobService;
 import com.azure.resourcemanager.machinelearning.models.LiteralJobInput;
+import com.azure.resourcemanager.machinelearning.models.MLFlowAutologgerState;
 import com.azure.resourcemanager.machinelearning.models.MLTableJobInput;
 import com.azure.resourcemanager.machinelearning.models.MedianStoppingPolicy;
 import com.azure.resourcemanager.machinelearning.models.Mpi;
@@ -2375,7 +2709,7 @@ import java.util.Map;
 /** Samples for Jobs CreateOrUpdate. */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/AutoMLJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate AutoML Job.
@@ -2443,7 +2777,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/SweepJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Sweep Job.
@@ -2508,7 +2842,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/PipelineJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Pipeline Job.
@@ -2553,7 +2887,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/CommandJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Command Job.
@@ -2583,6 +2917,8 @@ public final class JobsCreateOrUpdateSamples {
                                 .withJobServiceType("string")
                                 .withPort(1)
                                 .withProperties(mapOf("string", "string"))))
+                    .withAutologgerSettings(
+                        new AutologgerSettings().withMlflowAutologger(MLFlowAutologgerState.ENABLED))
                     .withCodeId("fakeTokenPlaceholder")
                     .withCommand("string")
                     .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))
@@ -2634,7 +2970,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs Delete. */
 public final class JobsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/delete.json
      */
     /**
      * Sample code: Delete Job.
@@ -2655,7 +2991,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs Get. */
 public final class JobsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/CommandJob/get.json
      */
     /**
      * Sample code: Get Command Job.
@@ -2667,7 +3003,7 @@ public final class JobsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/AutoMLJob/get.json
      */
     /**
      * Sample code: Get AutoML Job.
@@ -2679,7 +3015,7 @@ public final class JobsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/SweepJob/get.json
      */
     /**
      * Sample code: Get Sweep Job.
@@ -2691,7 +3027,7 @@ public final class JobsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/PipelineJob/get.json
      */
     /**
      * Sample code: Get Pipeline Job.
@@ -2712,7 +3048,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs List. */
 public final class JobsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/CommandJob/list.json
      */
     /**
      * Sample code: List Command Job.
@@ -2720,11 +3056,11 @@ public final class JobsListSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void listCommandJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.jobs().list("test-rg", "my-aml-workspace", null, "string", "string", null, Context.NONE);
+        manager.jobs().list("test-rg", "my-aml-workspace", null, "string", "string", null, null, null, Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/PipelineJob/list.json
      */
     /**
      * Sample code: List Pipeline Job.
@@ -2732,11 +3068,11 @@ public final class JobsListSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void listPipelineJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.jobs().list("test-rg", "my-aml-workspace", null, "string", "string", null, Context.NONE);
+        manager.jobs().list("test-rg", "my-aml-workspace", null, "string", "string", null, null, null, Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/SweepJob/list.json
      */
     /**
      * Sample code: List Sweep Job.
@@ -2744,11 +3080,11 @@ public final class JobsListSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void listSweepJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.jobs().list("test-rg", "my-aml-workspace", null, "string", "string", null, Context.NONE);
+        manager.jobs().list("test-rg", "my-aml-workspace", null, "string", "string", null, null, null, Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/AutoMLJob/list.json
      */
     /**
      * Sample code: List AutoML Job.
@@ -2756,7 +3092,222 @@ public final class JobsListSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void listAutoMLJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.jobs().list("test-rg", "my-aml-workspace", null, null, null, null, Context.NONE);
+        manager.jobs().list("test-rg", "my-aml-workspace", null, null, null, null, null, null, Context.NONE);
+    }
+}
+```
+
+### LabelingJobs_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.LabelCategory;
+import com.azure.resourcemanager.machinelearning.models.LabelClass;
+import com.azure.resourcemanager.machinelearning.models.LabelingJobImageProperties;
+import com.azure.resourcemanager.machinelearning.models.LabelingJobInstructions;
+import com.azure.resourcemanager.machinelearning.models.LabelingJobProperties;
+import com.azure.resourcemanager.machinelearning.models.MLAssistConfigurationEnabled;
+import com.azure.resourcemanager.machinelearning.models.MultiSelect;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for LabelingJobs CreateOrUpdate. */
+public final class LabelingJobsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateLabelingJob(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .labelingJobs()
+            .define("testLabelingJob")
+            .withExistingWorkspace("workspace-1234", "testworkspace")
+            .withProperties(
+                new LabelingJobProperties()
+                    .withDescription("string")
+                    .withProperties(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                    .withTags(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                    .withJobInstructions(new LabelingJobInstructions().withUri("link/to/instructions"))
+                    .withLabelCategories(
+                        mapOf(
+                            "myCategory1",
+                            new LabelCategory()
+                                .withClasses(
+                                    mapOf(
+                                        "myLabelClass1",
+                                        new LabelClass().withDisplayName("myLabelClass1").withSubclasses(mapOf()),
+                                        "myLabelClass2",
+                                        new LabelClass().withDisplayName("myLabelClass2").withSubclasses(mapOf())))
+                                .withDisplayName("myCategory1Title")
+                                .withMultiSelect(MultiSelect.DISABLED),
+                            "myCategory2",
+                            new LabelCategory()
+                                .withClasses(
+                                    mapOf(
+                                        "myLabelClass1",
+                                        new LabelClass().withDisplayName("myLabelClass1").withSubclasses(mapOf()),
+                                        "myLabelClass2",
+                                        new LabelClass().withDisplayName("myLabelClass2").withSubclasses(mapOf())))
+                                .withDisplayName("myCategory2Title")
+                                .withMultiSelect(MultiSelect.DISABLED)))
+                    .withLabelingJobMediaProperties(new LabelingJobImageProperties())
+                    .withMlAssistConfiguration(
+                        new MLAssistConfigurationEnabled()
+                            .withInferencingComputeBinding(
+                                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/resourceGroup-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace/computes/myscoringcompute")
+                            .withTrainingComputeBinding(
+                                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/resourceGroup-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace/computes/mytrainingompute")))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### LabelingJobs_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LabelingJobs Delete. */
+public final class LabelingJobsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/delete.json
+     */
+    /**
+     * Sample code: Delete Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteLabelingJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.labelingJobs().deleteWithResponse("workspace-1234", "testworkspace", "testLabelingJob", Context.NONE);
+    }
+}
+```
+
+### LabelingJobs_ExportLabels
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.models.DatasetExportSummary;
+
+/** Samples for LabelingJobs ExportLabels. */
+public final class LabelingJobsExportLabelsSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/exportLabels.json
+     */
+    /**
+     * Sample code: ExportLabels Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void exportLabelsLabelingJob(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .labelingJobs()
+            .exportLabels(
+                "workspace-1234", "testworkspace", "testLabelingJob", new DatasetExportSummary(), Context.NONE);
+    }
+}
+```
+
+### LabelingJobs_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LabelingJobs Get. */
+public final class LabelingJobsGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/get.json
+     */
+    /**
+     * Sample code: Get Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getLabelingJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .labelingJobs()
+            .getWithResponse("workspace-1234", "testworkspace", "testLabelingJob", true, true, Context.NONE);
+    }
+}
+```
+
+### LabelingJobs_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LabelingJobs List. */
+public final class LabelingJobsListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/list.json
+     */
+    /**
+     * Sample code: List Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listLabelingJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.labelingJobs().list("workspace-1234", "testworkspace", null, null, Context.NONE);
+    }
+}
+```
+
+### LabelingJobs_Pause
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LabelingJobs Pause. */
+public final class LabelingJobsPauseSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/pause.json
+     */
+    /**
+     * Sample code: Pause Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void pauseLabelingJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.labelingJobs().pauseWithResponse("workspace-1234", "testworkspace", "testLabelingJob", Context.NONE);
+    }
+}
+```
+
+### LabelingJobs_Resume
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LabelingJobs Resume. */
+public final class LabelingJobsResumeSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/LabelingJob/resume.json
+     */
+    /**
+     * Sample code: Resume Labeling Job.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void resumeLabelingJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.labelingJobs().resume("workspace-1234", "testworkspace", "testLabelingJob", Context.NONE);
     }
 }
 ```
@@ -2764,6 +3315,8 @@ public final class JobsListSamples {
 ### ModelContainers_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ModelContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ModelContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -2771,24 +3324,27 @@ import java.util.Map;
 /** Samples for ModelContainers CreateOrUpdate. */
 public final class ModelContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Model Container.
+     * Sample code: CreateOrUpdate Workspace Model Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateModelContainer(
+    public static void createOrUpdateWorkspaceModelContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .modelContainers()
-            .define("testContainer")
-            .withExistingWorkspace("testrg123", "workspace123")
-            .withProperties(
-                new ModelContainerProperties()
-                    .withDescription("Model container description")
-                    .withTags(mapOf("tag1", "value1", "tag2", "value2")))
-            .create();
+            .createOrUpdateWithResponse(
+                "testrg123",
+                "workspace123",
+                "testContainer",
+                new ModelContainerInner()
+                    .withProperties(
+                        new ModelContainerProperties()
+                            .withDescription("Model container description")
+                            .withTags(mapOf("tag1", "value1", "tag2", "value2"))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -2812,14 +3368,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelContainers Delete. */
 public final class ModelContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelContainer/delete.json
      */
     /**
-     * Sample code: Delete Model Container.
+     * Sample code: Delete Workspace Model Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteModelContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelContainers().deleteWithResponse("testrg123", "workspace123", "testContainer", Context.NONE);
     }
 }
@@ -2833,14 +3390,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelContainers Get. */
 public final class ModelContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelContainer/get.json
      */
     /**
-     * Sample code: Get Model Container.
+     * Sample code: Get Workspace Model Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getModelContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelContainers().getWithResponse("testrg123", "workspace123", "testContainer", Context.NONE);
     }
 }
@@ -2854,14 +3412,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelContainers List. */
 public final class ModelContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelContainer/list.json
      */
     /**
-     * Sample code: List Model Container.
+     * Sample code: List Workspace Model Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listModelContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelContainers().list("testrg123", "workspace123", null, null, null, Context.NONE);
     }
 }
@@ -2870,6 +3429,8 @@ public final class ModelContainersListSamples {
 ### ModelVersions_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
 import com.azure.resourcemanager.machinelearning.models.FlavorData;
 import com.azure.resourcemanager.machinelearning.models.ModelVersionProperties;
 import java.util.HashMap;
@@ -2878,29 +3439,33 @@ import java.util.Map;
 /** Samples for ModelVersions CreateOrUpdate. */
 public final class ModelVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelVersion/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Model Version.
+     * Sample code: CreateOrUpdate Workspace Model Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateModelVersion(
+    public static void createOrUpdateWorkspaceModelVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .modelVersions()
-            .define("string")
-            .withExistingModel("test-rg", "my-aml-workspace", "string")
-            .withProperties(
-                new ModelVersionProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
-                    .withModelType("CustomModel")
-                    .withModelUri("string"))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                "string",
+                new ModelVersionInner()
+                    .withProperties(
+                        new ModelVersionProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))
+                            .withIsAnonymous(false)
+                            .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
+                            .withModelType("CustomModel")
+                            .withModelUri("string")),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -2924,14 +3489,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelVersions Delete. */
 public final class ModelVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelVersion/delete.json
      */
     /**
-     * Sample code: Delete Model Version.
+     * Sample code: Delete Workspace Model Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteModelVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelVersions().deleteWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -2945,14 +3511,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelVersions Get. */
 public final class ModelVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelVersion/get.json
      */
     /**
-     * Sample code: Get Model Version.
+     * Sample code: Get Workspace Model Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getModelVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }
@@ -2966,14 +3533,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelVersions List. */
 public final class ModelVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelVersion/list.json
      */
     /**
-     * Sample code: List Model Version.
+     * Sample code: List Workspace Model Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listModelVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .modelVersions()
             .list(
@@ -3018,7 +3586,7 @@ import java.util.Map;
 /** Samples for OnlineDeployments CreateOrUpdate. */
 public final class OnlineDeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/KubernetesOnlineDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Kubernetes Online Deployment.
@@ -3083,7 +3651,7 @@ public final class OnlineDeploymentsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/ManagedOnlineDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Managed Online Deployment.
@@ -3166,14 +3734,14 @@ import com.azure.core.util.Context;
 /** Samples for OnlineDeployments Delete. */
 public final class OnlineDeploymentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineDeployment/delete.json
      */
     /**
-     * Sample code: Delete Online Deployment.
+     * Sample code: Delete Workspace Online Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteOnlineDeployment(
+    public static void deleteWorkspaceOnlineDeployment(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.onlineDeployments().delete("testrg123", "workspace123", "testEndpoint", "testDeployment", Context.NONE);
     }
@@ -3188,7 +3756,7 @@ import com.azure.core.util.Context;
 /** Samples for OnlineDeployments Get. */
 public final class OnlineDeploymentsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/KubernetesOnlineDeployment/get.json
      */
     /**
      * Sample code: Get Kubernetes Online Deployment.
@@ -3203,7 +3771,7 @@ public final class OnlineDeploymentsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/ManagedOnlineDeployment/get.json
      */
     /**
      * Sample code: Get Managed Online Deployment.
@@ -3229,7 +3797,7 @@ import com.azure.resourcemanager.machinelearning.models.DeploymentLogsRequest;
 /** Samples for OnlineDeployments GetLogs. */
 public final class OnlineDeploymentsGetLogsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/getLogs.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/getLogs.json
      */
     /**
      * Sample code: Get Online Deployment Logs.
@@ -3259,7 +3827,7 @@ import com.azure.core.util.Context;
 /** Samples for OnlineDeployments List. */
 public final class OnlineDeploymentsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/list.json
      */
     /**
      * Sample code: List Online Deployments.
@@ -3282,7 +3850,7 @@ import com.azure.core.util.Context;
 /** Samples for OnlineDeployments ListSkus. */
 public final class OnlineDeploymentsListSkusSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/listSkus.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/ManagedOnlineDeployment/listSkus.json
      */
     /**
      * Sample code: List Managed Online Deployment Skus.
@@ -3297,7 +3865,7 @@ public final class OnlineDeploymentsListSkusSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/listSkus.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/KubernetesOnlineDeployment/listSkus.json
      */
     /**
      * Sample code: List Kubernetes Online Deployment Skus.
@@ -3326,7 +3894,7 @@ import java.util.Map;
 /** Samples for OnlineDeployments Update. */
 public final class OnlineDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Managed Online Deployment.
@@ -3354,7 +3922,7 @@ public final class OnlineDeploymentsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Kubernetes Online Deployment.
@@ -3410,14 +3978,14 @@ import java.util.Map;
 /** Samples for OnlineEndpoints CreateOrUpdate. */
 public final class OnlineEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Online Endpoint.
+     * Sample code: CreateOrUpdate Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateOnlineEndpoint(
+    public static void createOrUpdateWorkspaceOnlineEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .onlineEndpoints()
@@ -3468,14 +4036,15 @@ import com.azure.core.util.Context;
 /** Samples for OnlineEndpoints Delete. */
 public final class OnlineEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/delete.json
      */
     /**
-     * Sample code: Delete Online Endpoint.
+     * Sample code: Delete Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.onlineEndpoints().delete("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
 }
@@ -3489,14 +4058,15 @@ import com.azure.core.util.Context;
 /** Samples for OnlineEndpoints Get. */
 public final class OnlineEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/get.json
      */
     /**
-     * Sample code: Get Online Endpoint.
+     * Sample code: Get Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.onlineEndpoints().getWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
 }
@@ -3510,14 +4080,14 @@ import com.azure.core.util.Context;
 /** Samples for OnlineEndpoints GetToken. */
 public final class OnlineEndpointsGetTokenSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/getToken.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/getToken.json
      */
     /**
-     * Sample code: GetToken Online Endpoint.
+     * Sample code: GetToken Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getTokenOnlineEndpoint(
+    public static void getTokenWorkspaceOnlineEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.onlineEndpoints().getTokenWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
@@ -3534,14 +4104,15 @@ import com.azure.resourcemanager.machinelearning.models.OrderString;
 /** Samples for OnlineEndpoints List. */
 public final class OnlineEndpointsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/list.json
      */
     /**
-     * Sample code: List Online Endpoint.
+     * Sample code: List Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .onlineEndpoints()
             .list(
@@ -3567,14 +4138,14 @@ import com.azure.core.util.Context;
 /** Samples for OnlineEndpoints ListKeys. */
 public final class OnlineEndpointsListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/listKeys.json
      */
     /**
-     * Sample code: ListKeys Online Endpoint.
+     * Sample code: ListKeys Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listKeysOnlineEndpoint(
+    public static void listKeysWorkspaceOnlineEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.onlineEndpoints().listKeysWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
@@ -3591,14 +4162,14 @@ import com.azure.resourcemanager.machinelearning.models.RegenerateEndpointKeysRe
 /** Samples for OnlineEndpoints RegenerateKeys. */
 public final class OnlineEndpointsRegenerateKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/regenerateKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/regenerateKeys.json
      */
     /**
-     * Sample code: RegenerateKeys Online Endpoint.
+     * Sample code: RegenerateKeys Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void regenerateKeysOnlineEndpoint(
+    public static void regenerateKeysWorkspaceOnlineEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .onlineEndpoints()
@@ -3628,15 +4199,15 @@ import java.util.Map;
 /** Samples for OnlineEndpoints Update. */
 public final class OnlineEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/update.json
      */
     /**
-     * Sample code: Update Online Endpoint.
+     * Sample code: Update Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager)
-        throws IOException {
+    public static void updateWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         OnlineEndpoint resource =
             manager
                 .onlineEndpoints()
@@ -3678,7 +4249,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/operationsList.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/operationsList.json
      */
     /**
      * Sample code: OperationsList.
@@ -3700,7 +4271,7 @@ import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnec
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/PrivateEndpointConnection/createOrUpdate.json
      */
     /**
      * Sample code: WorkspacePutPrivateEndpointConnection.
@@ -3730,7 +4301,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/PrivateEndpointConnection/delete.json
      */
     /**
      * Sample code: WorkspaceDeletePrivateEndpointConnection.
@@ -3754,7 +4325,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/PrivateEndpointConnection/get.json
      */
     /**
      * Sample code: WorkspaceGetPrivateEndpointConnection.
@@ -3778,7 +4349,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/PrivateEndpointConnection/list.json
      */
     /**
      * Sample code: StorageAccountListPrivateEndpointConnections.
@@ -3800,7 +4371,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateLinkResource/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/PrivateLinkResource/list.json
      */
     /**
      * Sample code: WorkspaceListPrivateLinkResources.
@@ -3822,7 +4393,7 @@ import com.azure.core.util.Context;
 /** Samples for Quotas List. */
 public final class QuotasListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Quota/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Quota/list.json
      */
     /**
      * Sample code: List workspace quotas by VMFamily.
@@ -3848,7 +4419,7 @@ import java.util.Arrays;
 /** Samples for Quotas Update. */
 public final class QuotasUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Quota/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Quota/update.json
      */
     /**
      * Sample code: update quotas.
@@ -3881,6 +4452,1318 @@ public final class QuotasUpdateSamples {
 }
 ```
 
+### Registries_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.AcrDetails;
+import com.azure.resourcemanager.machinelearning.models.ArmResourceId;
+import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.machinelearning.models.RegistryProperties;
+import com.azure.resourcemanager.machinelearning.models.RegistryRegionArmDetails;
+import com.azure.resourcemanager.machinelearning.models.Sku;
+import com.azure.resourcemanager.machinelearning.models.SkuTier;
+import com.azure.resourcemanager.machinelearning.models.StorageAccountDetails;
+import com.azure.resourcemanager.machinelearning.models.SystemCreatedAcrAccount;
+import com.azure.resourcemanager.machinelearning.models.SystemCreatedStorageAccount;
+import com.azure.resourcemanager.machinelearning.models.UserAssignedIdentity;
+import com.azure.resourcemanager.machinelearning.models.UserCreatedAcrAccount;
+import com.azure.resourcemanager.machinelearning.models.UserCreatedStorageAccount;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for Registries CreateOrUpdate. */
+public final class RegistriesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/createOrUpdate-SystemCreated.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry with system created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryWithSystemCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registries()
+            .define("string")
+            .withRegion("string")
+            .withExistingResourceGroup("test-rg")
+            .withProperties(
+                new RegistryProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withRegionDetails(
+                        Arrays
+                            .asList(
+                                new RegistryRegionArmDetails()
+                                    .withAcrDetails(
+                                        Arrays
+                                            .asList(
+                                                new AcrDetails()
+                                                    .withSystemCreatedAcrAccount(
+                                                        new SystemCreatedAcrAccount()
+                                                            .withAcrAccountSku("string")
+                                                            .withArmResourceId(
+                                                                new ArmResourceId().withResourceId("string")))))
+                                    .withLocation("string")
+                                    .withStorageAccountDetails(
+                                        Arrays
+                                            .asList(
+                                                new StorageAccountDetails()
+                                                    .withSystemCreatedStorageAccount(
+                                                        new SystemCreatedStorageAccount()
+                                                            .withArmResourceId(
+                                                                new ArmResourceId().withResourceId("string"))
+                                                            .withStorageAccountHnsEnabled(false)
+                                                            .withStorageAccountType("string")
+                                                            .withAllowBlobPublicAccess(false)))))))
+            .withTags(mapOf())
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.NONE)
+                    .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
+            .withSku(
+                new Sku()
+                    .withName("string")
+                    .withTier(SkuTier.BASIC)
+                    .withSize("string")
+                    .withFamily("string")
+                    .withCapacity(1))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/createOrUpdate-UserCreated.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry with user created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryWithUserCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registries()
+            .define("string")
+            .withRegion("string")
+            .withExistingResourceGroup("test-rg")
+            .withProperties(
+                new RegistryProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withRegionDetails(
+                        Arrays
+                            .asList(
+                                new RegistryRegionArmDetails()
+                                    .withAcrDetails(
+                                        Arrays
+                                            .asList(
+                                                new AcrDetails()
+                                                    .withUserCreatedAcrAccount(
+                                                        new UserCreatedAcrAccount()
+                                                            .withArmResourceId(
+                                                                new ArmResourceId().withResourceId("string")))))
+                                    .withLocation("string")
+                                    .withStorageAccountDetails(
+                                        Arrays
+                                            .asList(
+                                                new StorageAccountDetails()
+                                                    .withUserCreatedStorageAccount(
+                                                        new UserCreatedStorageAccount()
+                                                            .withArmResourceId(
+                                                                new ArmResourceId().withResourceId("string"))))))))
+            .withTags(mapOf())
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.NONE)
+                    .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
+            .withSku(
+                new Sku()
+                    .withName("string")
+                    .withTier(SkuTier.BASIC)
+                    .withSize("string")
+                    .withFamily("string")
+                    .withCapacity(1))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Registries_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Registries Delete. */
+public final class RegistriesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/delete.json
+     */
+    /**
+     * Sample code: Delete Registry.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistry(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registries().delete("test-rg", "string", Context.NONE);
+    }
+}
+```
+
+### Registries_GetByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Registries GetByResourceGroup. */
+public final class RegistriesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/get-UserCreated.json
+     */
+    /**
+     * Sample code: Get Registry with user created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryWithUserCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registries().getByResourceGroupWithResponse("test-rg", "string", Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/get-SystemCreated.json
+     */
+    /**
+     * Sample code: Get Registry with system created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryWithSystemCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registries().getByResourceGroupWithResponse("test-rg", "string", Context.NONE);
+    }
+}
+```
+
+### Registries_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Registries List. */
+public final class RegistriesListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/listBySubscription.json
+     */
+    /**
+     * Sample code: List registries.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistries(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registries().list(null, Context.NONE);
+    }
+}
+```
+
+### Registries_ListByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Registries ListByResourceGroup. */
+public final class RegistriesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/list-UserCreated.json
+     */
+    /**
+     * Sample code: List registries with user created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistriesWithUserCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registries().listByResourceGroup("test-rg", null, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/list-SystemCreated.json
+     */
+    /**
+     * Sample code: List registries with system created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistriesWithSystemCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registries().listByResourceGroup("test-rg", null, Context.NONE);
+    }
+}
+```
+
+### Registries_Update
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.Context;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.machinelearning.models.PartialManagedServiceIdentity;
+import com.azure.resourcemanager.machinelearning.models.PartialSku;
+import com.azure.resourcemanager.machinelearning.models.Registry;
+import com.azure.resourcemanager.machinelearning.models.SkuTier;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for Registries Update. */
+public final class RegistriesUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/update-UserCreated.json
+     */
+    /**
+     * Sample code: Update Registry with user created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void updateRegistryWithUserCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
+        Registry resource =
+            manager.registries().getByResourceGroupWithResponse("test-rg", "string", Context.NONE).getValue();
+        resource
+            .update()
+            .withTags(mapOf())
+            .withIdentity(
+                new PartialManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "string",
+                            SerializerFactory
+                                .createDefaultManagementSerializerAdapter()
+                                .deserialize("{}", Object.class, SerializerEncoding.JSON))))
+            .withKind("string")
+            .withProperties(
+                SerializerFactory
+                    .createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON))
+            .withSku(
+                new PartialSku()
+                    .withCapacity(1)
+                    .withFamily("string")
+                    .withName("string")
+                    .withSize("string")
+                    .withTier(SkuTier.PREMIUM))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registries/update-SystemCreated.json
+     */
+    /**
+     * Sample code: Update Registry with system created accounts.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void updateRegistryWithSystemCreatedAccounts(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
+        Registry resource =
+            manager.registries().getByResourceGroupWithResponse("test-rg", "string", Context.NONE).getValue();
+        resource
+            .update()
+            .withTags(mapOf())
+            .withIdentity(
+                new PartialManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "string",
+                            SerializerFactory
+                                .createDefaultManagementSerializerAdapter()
+                                .deserialize("{}", Object.class, SerializerEncoding.JSON))))
+            .withKind("string")
+            .withProperties(
+                SerializerFactory
+                    .createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON))
+            .withSku(
+                new PartialSku()
+                    .withCapacity(1)
+                    .withFamily("string")
+                    .withName("string")
+                    .withSize("string")
+                    .withTier(SkuTier.PREMIUM))
+            .apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryCodeContainers_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.CodeContainerProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryCodeContainers CreateOrUpdate. */
+public final class RegistryCodeContainersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeContainer/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Code Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryCodeContainers()
+            .define("testContainer")
+            .withExistingRegistry("testrg123", "testregistry")
+            .withProperties(
+                new CodeContainerProperties()
+                    .withDescription("string")
+                    .withTags(mapOf("tag1", "value1", "tag2", "value2")))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryCodeContainers_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryCodeContainers Delete. */
+public final class RegistryCodeContainersDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeContainer/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Code Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryCodeContainers().delete("testrg123", "testregistry", "testContainer", Context.NONE);
+    }
+}
+```
+
+### RegistryCodeContainers_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryCodeContainers Get. */
+public final class RegistryCodeContainersGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeContainer/get.json
+     */
+    /**
+     * Sample code: Get Registry Code Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryCodeContainers().getWithResponse("testrg123", "testregistry", "testContainer", Context.NONE);
+    }
+}
+```
+
+### RegistryCodeContainers_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryCodeContainers List. */
+public final class RegistryCodeContainersListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeContainer/list.json
+     */
+    /**
+     * Sample code: List Registry Code Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryCodeContainers().list("testrg123", "testregistry", null, Context.NONE);
+    }
+}
+```
+
+### RegistryCodeVersions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.CodeVersionProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryCodeVersions CreateOrUpdate. */
+public final class RegistryCodeVersionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeVersion/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Code Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryCodeVersions()
+            .define("string")
+            .withExistingCode("test-rg", "my-aml-registry", "string")
+            .withProperties(
+                new CodeVersionProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withCodeUri("fakeTokenPlaceholder"))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryCodeVersions_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryCodeVersions Delete. */
+public final class RegistryCodeVersionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeVersion/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Code Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryCodeVersions().delete("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryCodeVersions_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryCodeVersions Get. */
+public final class RegistryCodeVersionsGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeVersion/get.json
+     */
+    /**
+     * Sample code: Get Registry Code Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryCodeVersions().getWithResponse("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryCodeVersions_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryCodeVersions List. */
+public final class RegistryCodeVersionsListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/CodeVersion/list.json
+     */
+    /**
+     * Sample code: List Registry Code Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryCodeVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryCodeVersions().list("test-rg", "my-aml-registry", "string", "string", 1, null, Context.NONE);
+    }
+}
+```
+
+### RegistryComponentContainers_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.ComponentContainerProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryComponentContainers CreateOrUpdate. */
+public final class RegistryComponentContainersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentContainer/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Component Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryComponentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryComponentContainers()
+            .define("string")
+            .withExistingRegistry("test-rg", "my-aml-registry")
+            .withProperties(
+                new ComponentContainerProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string")))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryComponentContainers_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryComponentContainers Delete. */
+public final class RegistryComponentContainersDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentContainer/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Component Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryComponentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryComponentContainers().delete("test-rg", "my-aml-registry", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryComponentContainers_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryComponentContainers Get. */
+public final class RegistryComponentContainersGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentContainer/get.json
+     */
+    /**
+     * Sample code: Get Registry Component Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryComponentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryComponentContainers().getWithResponse("test-rg", "my-aml-registry", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryComponentContainers_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryComponentContainers List. */
+public final class RegistryComponentContainersListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentContainer/list.json
+     */
+    /**
+     * Sample code: List Registry Component Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryComponentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryComponentContainers().list("test-rg", "my-aml-registry", null, Context.NONE);
+    }
+}
+```
+
+### RegistryComponentVersions_CreateOrUpdate
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.machinelearning.models.ComponentVersionProperties;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryComponentVersions CreateOrUpdate. */
+public final class RegistryComponentVersionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentVersion/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Component Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
+        manager
+            .registryComponentVersions()
+            .define("string")
+            .withExistingComponent("test-rg", "my-aml-registry", "string")
+            .withProperties(
+                new ComponentVersionProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withComponentSpec(
+                        SerializerFactory
+                            .createDefaultManagementSerializerAdapter()
+                            .deserialize(
+                                "{\"8ced901b-d826-477d-bfef-329da9672513\":null}",
+                                Object.class,
+                                SerializerEncoding.JSON)))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryComponentVersions_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryComponentVersions Delete. */
+public final class RegistryComponentVersionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentVersion/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Component Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryComponentVersions().delete("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryComponentVersions_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryComponentVersions Get. */
+public final class RegistryComponentVersionsGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentVersion/get.json
+     */
+    /**
+     * Sample code: Get Registry Component Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryComponentVersions()
+            .getWithResponse("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryComponentVersions_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryComponentVersions List. */
+public final class RegistryComponentVersionsListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ComponentVersion/list.json
+     */
+    /**
+     * Sample code: List Registry Component Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryComponentVersions()
+            .list("test-rg", "my-aml-registry", "string", "string", 1, null, Context.NONE);
+    }
+}
+```
+
+### RegistryEnvironmentContainers_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryEnvironmentContainers CreateOrUpdate. */
+public final class RegistryEnvironmentContainersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentContainer/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Environment Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryEnvironmentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryEnvironmentContainers()
+            .define("testEnvironment")
+            .withExistingRegistry("testrg123", "testregistry")
+            .withProperties(
+                new EnvironmentContainerProperties()
+                    .withDescription("string")
+                    .withProperties(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                    .withTags(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryEnvironmentContainers_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryEnvironmentContainers Delete. */
+public final class RegistryEnvironmentContainersDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentContainer/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Environment Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryEnvironmentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryEnvironmentContainers().delete("testrg123", "testregistry", "testContainer", Context.NONE);
+    }
+}
+```
+
+### RegistryEnvironmentContainers_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryEnvironmentContainers Get. */
+public final class RegistryEnvironmentContainersGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentContainer/get.json
+     */
+    /**
+     * Sample code: Get Registry Environment Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryEnvironmentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryEnvironmentContainers()
+            .getWithResponse("testrg123", "testregistry", "testEnvironment", Context.NONE);
+    }
+}
+```
+
+### RegistryEnvironmentContainers_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryEnvironmentContainers List. */
+public final class RegistryEnvironmentContainersListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentContainer/list.json
+     */
+    /**
+     * Sample code: List Registry Environment Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryEnvironmentContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryEnvironmentContainers().list("testrg123", "testregistry", null, null, Context.NONE);
+    }
+}
+```
+
+### RegistryEnvironmentVersions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.BuildContext;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVersionProperties;
+import com.azure.resourcemanager.machinelearning.models.InferenceContainerProperties;
+import com.azure.resourcemanager.machinelearning.models.Route;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryEnvironmentVersions CreateOrUpdate. */
+public final class RegistryEnvironmentVersionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentVersion/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Environment Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryEnvironmentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryEnvironmentVersions()
+            .define("string")
+            .withExistingEnvironment("test-rg", "my-aml-registry", "string")
+            .withProperties(
+                new EnvironmentVersionProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withBuild(
+                        new BuildContext()
+                            .withContextUri(
+                                "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
+                            .withDockerfilePath("prod/Dockerfile"))
+                    .withCondaFile("string")
+                    .withImage("docker.io/tensorflow/serving:latest")
+                    .withInferenceConfig(
+                        new InferenceContainerProperties()
+                            .withLivenessRoute(new Route().withPath("string").withPort(1))
+                            .withReadinessRoute(new Route().withPath("string").withPort(1))
+                            .withScoringRoute(new Route().withPath("string").withPort(1))))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryEnvironmentVersions_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryEnvironmentVersions Delete. */
+public final class RegistryEnvironmentVersionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentVersion/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Environment Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryEnvironmentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryEnvironmentVersions().delete("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryEnvironmentVersions_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryEnvironmentVersions Get. */
+public final class RegistryEnvironmentVersionsGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentVersion/get.json
+     */
+    /**
+     * Sample code: Get Registry Environment Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryEnvironmentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryEnvironmentVersions()
+            .getWithResponse("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryEnvironmentVersions_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryEnvironmentVersions List. */
+public final class RegistryEnvironmentVersionsListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/EnvironmentVersion/list.json
+     */
+    /**
+     * Sample code: List Registry Environment Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryEnvironmentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryEnvironmentVersions()
+            .list("test-rg", "my-aml-regsitry", "string", "string", 1, null, null, Context.NONE);
+    }
+}
+```
+
+### RegistryModelContainers_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.ModelContainerProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryModelContainers CreateOrUpdate. */
+public final class RegistryModelContainersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelContainer/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Model Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryModelContainers()
+            .define("testContainer")
+            .withExistingRegistry("testrg123", "registry123")
+            .withProperties(
+                new ModelContainerProperties()
+                    .withDescription("Model container description")
+                    .withTags(mapOf("tag1", "value1", "tag2", "value2")))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryModelContainers_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryModelContainers Delete. */
+public final class RegistryModelContainersDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelContainer/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Model Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryModelContainers().delete("testrg123", "registry123", "testContainer", Context.NONE);
+    }
+}
+```
+
+### RegistryModelContainers_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryModelContainers Get. */
+public final class RegistryModelContainersGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelContainer/get.json
+     */
+    /**
+     * Sample code: Get Registry Model Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryModelContainers().getWithResponse("testrg123", "registry123", "testContainer", Context.NONE);
+    }
+}
+```
+
+### RegistryModelContainers_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryModelContainers List. */
+public final class RegistryModelContainersListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelContainer/list.json
+     */
+    /**
+     * Sample code: List Registry Model Container.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryModelContainers().list("testrg123", "registry123", null, null, Context.NONE);
+    }
+}
+```
+
+### RegistryModelVersions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.machinelearning.models.FlavorData;
+import com.azure.resourcemanager.machinelearning.models.ModelVersionProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for RegistryModelVersions CreateOrUpdate. */
+public final class RegistryModelVersionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelVersion/createOrUpdate.json
+     */
+    /**
+     * Sample code: CreateOrUpdate Registry Model Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void createOrUpdateRegistryModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryModelVersions()
+            .define("string")
+            .withExistingModel("test-rg", "my-aml-registry", "string")
+            .withProperties(
+                new ModelVersionProperties()
+                    .withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
+                    .withModelType("CustomModel")
+                    .withModelUri("string"))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### RegistryModelVersions_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryModelVersions Delete. */
+public final class RegistryModelVersionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelVersion/delete.json
+     */
+    /**
+     * Sample code: Delete Registry Model Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void deleteRegistryModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryModelVersions().delete("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryModelVersions_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryModelVersions Get. */
+public final class RegistryModelVersionsGetSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelVersion/get.json
+     */
+    /**
+     * Sample code: Get Registry Model Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getRegistryModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.registryModelVersions().getWithResponse("test-rg", "my-aml-registry", "string", "string", Context.NONE);
+    }
+}
+```
+
+### RegistryModelVersions_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for RegistryModelVersions List. */
+public final class RegistryModelVersionsListSamples {
+    /*
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Registry/ModelVersion/list.json
+     */
+    /**
+     * Sample code: List Registry Model Version.
+     *
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listRegistryModelVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager
+            .registryModelVersions()
+            .list(
+                "test-rg",
+                "my-aml-registry",
+                "string",
+                null,
+                "string",
+                1,
+                "string",
+                "string",
+                "string",
+                "string",
+                null,
+                Context.NONE);
+    }
+}
+```
+
 ### Schedules_CreateOrUpdate
 
 ```java
@@ -3896,7 +5779,7 @@ import java.util.Map;
 /** Samples for Schedules CreateOrUpdate. */
 public final class SchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Schedule/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Schedule.
@@ -3955,7 +5838,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Schedule/delete.json
      */
     /**
      * Sample code: Delete Schedule.
@@ -3976,7 +5859,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules Get. */
 public final class SchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Schedule/get.json
      */
     /**
      * Sample code: Get Schedule.
@@ -3997,7 +5880,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules List. */
 public final class SchedulesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Schedule/list.json
      */
     /**
      * Sample code: List Schedules.
@@ -4018,7 +5901,7 @@ import com.azure.core.util.Context;
 /** Samples for Usages List. */
 public final class UsagesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Usage/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Usage/list.json
      */
     /**
      * Sample code: List Usages.
@@ -4039,7 +5922,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachineSizes List. */
 public final class VirtualMachineSizesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/VirtualMachineSize/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/VirtualMachineSize/list.json
      */
     /**
      * Sample code: List VM Sizes.
@@ -4055,13 +5938,12 @@ public final class VirtualMachineSizesListSamples {
 ### WorkspaceConnections_Create
 
 ```java
-import com.azure.resourcemanager.machinelearning.models.ConnectionCategory;
 import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceConnectionProperties;
 
 /** Samples for WorkspaceConnections Create. */
 public final class WorkspaceConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/create.json
      */
     /**
      * Sample code: CreateWorkspaceConnection.
@@ -4076,7 +5958,7 @@ public final class WorkspaceConnectionsCreateSamples {
             .withExistingWorkspace("resourceGroup-1", "workspace-1")
             .withProperties(
                 new NoneAuthTypeWorkspaceConnectionProperties()
-                    .withCategory(ConnectionCategory.CONTAINER_REGISTRY)
+                    .withCategory("ContainerRegistry")
                     .withTarget("www.facebook.com"))
             .create();
     }
@@ -4091,7 +5973,7 @@ import com.azure.core.util.Context;
 /** Samples for WorkspaceConnections Delete. */
 public final class WorkspaceConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/delete.json
      */
     /**
      * Sample code: DeleteWorkspaceConnection.
@@ -4115,7 +5997,7 @@ import com.azure.core.util.Context;
 /** Samples for WorkspaceConnections Get. */
 public final class WorkspaceConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/get.json
      */
     /**
      * Sample code: GetWorkspaceConnection.
@@ -4137,7 +6019,7 @@ import com.azure.core.util.Context;
 /** Samples for WorkspaceConnections List. */
 public final class WorkspaceConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/list.json
      */
     /**
      * Sample code: ListWorkspaceConnections.
@@ -4161,7 +6043,7 @@ import com.azure.core.util.Context;
 /** Samples for WorkspaceFeatures List. */
 public final class WorkspaceFeaturesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceFeature/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceFeature/list.json
      */
     /**
      * Sample code: List Workspace features.
@@ -4193,7 +6075,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/create.json
      */
     /**
      * Sample code: Create Workspace.
@@ -4270,7 +6152,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces Delete. */
 public final class WorkspacesDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/delete.json
      */
     /**
      * Sample code: Delete Workspace.
@@ -4295,7 +6177,7 @@ import java.util.Map;
 /** Samples for Workspaces Diagnose. */
 public final class WorkspacesDiagnoseSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/diagnose.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/diagnose.json
      */
     /**
      * Sample code: Diagnose Workspace.
@@ -4344,7 +6226,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/get.json
      */
     /**
      * Sample code: Get Workspace.
@@ -4365,7 +6247,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces List. */
 public final class WorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listBySubscription.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/listBySubscription.json
      */
     /**
      * Sample code: Get Workspaces by subscription.
@@ -4387,7 +6269,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListByResourceGroup. */
 public final class WorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listByResourceGroup.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/listByResourceGroup.json
      */
     /**
      * Sample code: Get Workspaces by Resource Group.
@@ -4409,7 +6291,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListKeys. */
 public final class WorkspacesListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/listKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4430,7 +6312,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListNotebookAccessToken. */
 public final class WorkspacesListNotebookAccessTokenSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listNotebookAccessToken.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/listNotebookAccessToken.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4451,7 +6333,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListNotebookKeys. */
 public final class WorkspacesListNotebookKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Notebook/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Notebook/listKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4472,7 +6354,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListOutboundNetworkDependenciesEndpoints. */
 public final class WorkspacesListOutboundNetworkDependenciesEndpointsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ExternalFQDN/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/ExternalFQDN/get.json
      */
     /**
      * Sample code: ListOutboundNetworkDependenciesEndpoints.
@@ -4496,7 +6378,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListStorageAccountKeys. */
 public final class WorkspacesListStorageAccountKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listStorageAccountKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/listStorageAccountKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4517,7 +6399,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces PrepareNotebook. */
 public final class WorkspacesPrepareNotebookSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Notebook/prepare.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Notebook/prepare.json
      */
     /**
      * Sample code: Prepare Notebook.
@@ -4538,7 +6420,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ResyncKeys. */
 public final class WorkspacesResyncKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/resyncKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/resyncKeys.json
      */
     /**
      * Sample code: Resync Workspace Keys.
@@ -4561,7 +6443,7 @@ import com.azure.resourcemanager.machinelearning.models.Workspace;
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/update.json
      */
     /**
      * Sample code: Update Workspace.
