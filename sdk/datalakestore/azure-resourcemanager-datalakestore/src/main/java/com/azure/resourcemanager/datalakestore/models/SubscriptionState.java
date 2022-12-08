@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SubscriptionState. */
+/** The subscription state. */
 public final class SubscriptionState extends ExpandableStringEnum<SubscriptionState> {
     /** Static value Registered for SubscriptionState. */
     public static final SubscriptionState REGISTERED = fromString("Registered");
@@ -36,7 +36,11 @@ public final class SubscriptionState extends ExpandableStringEnum<SubscriptionSt
         return fromString(name, SubscriptionState.class);
     }
 
-    /** @return known SubscriptionState values. */
+    /**
+     * Gets known SubscriptionState values.
+     *
+     * @return known SubscriptionState values.
+     */
     public static Collection<SubscriptionState> values() {
         return values(SubscriptionState.class);
     }
