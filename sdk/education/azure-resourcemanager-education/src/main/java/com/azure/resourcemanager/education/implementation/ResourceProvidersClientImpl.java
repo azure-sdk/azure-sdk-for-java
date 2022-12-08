@@ -50,7 +50,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "EducationManagementC")
-    private interface ResourceProvidersService {
+    public interface ResourceProvidersService {
         @Headers({"Content-Type: application/json"})
         @Post("/providers/Microsoft.Education/redeemInvitationCode")
         @ExpectedResponses({200})

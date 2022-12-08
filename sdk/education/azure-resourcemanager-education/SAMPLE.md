@@ -483,7 +483,7 @@ public final class ResourceProviderRedeemInvitationCodeSamples {
         manager
             .resourceProviders()
             .redeemInvitationCodeWithResponse(
-                new RedeemRequest().withRedeemCode("exampleRedeemCode").withFirstName("test").withLastName("user"),
+                new RedeemRequest().withRedeemCode("fakeTokenPlaceholder").withFirstName("test").withLastName("user"),
                 Context.NONE);
     }
 }

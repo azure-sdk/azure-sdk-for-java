@@ -55,7 +55,7 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "EducationManagementC")
-    private interface StudentLabsService {
+    public interface StudentLabsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Education/studentLabs")
         @ExpectedResponses({200})

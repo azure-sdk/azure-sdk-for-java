@@ -54,7 +54,7 @@ public final class GrantsClientImpl implements GrantsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "EducationManagementC")
-    private interface GrantsService {
+    public interface GrantsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Education/grants")
         @ExpectedResponses({200})

@@ -56,7 +56,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "EducationManagementC")
-    private interface JoinRequestsService {
+    public interface JoinRequestsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
