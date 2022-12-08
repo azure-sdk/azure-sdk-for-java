@@ -73,6 +73,10 @@ public final class DomainProperties {
     @JsonProperty(value = "userEngagementTracking")
     private UserEngagementTracking userEngagementTracking;
 
+    /** Creates an instance of DomainProperties class. */
+    public DomainProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the resource.
      *

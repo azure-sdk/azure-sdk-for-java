@@ -66,7 +66,7 @@ public final class DomainsClientImpl implements DomainsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "CommunicationService")
-    private interface DomainsService {
+    public interface DomainsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
@@ -332,24 +332,6 @@ public final class DomainsClientImpl implements DomainsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param emailServiceName The name of the EmailService resource.
      * @param domainName The name of the Domains resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Domains resource and its properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DomainResourceInner get(String resourceGroupName, String emailServiceName, String domainName) {
-        return getAsync(resourceGroupName, emailServiceName, domainName).block();
-    }
-
-    /**
-     * Get
-     *
-     * <p>Get the Domains resource and its properties.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param emailServiceName The name of the EmailService resource.
-     * @param domainName The name of the Domains resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -360,6 +342,24 @@ public final class DomainsClientImpl implements DomainsClient {
     public Response<DomainResourceInner> getWithResponse(
         String resourceGroupName, String emailServiceName, String domainName, Context context) {
         return getWithResponseAsync(resourceGroupName, emailServiceName, domainName, context).block();
+    }
+
+    /**
+     * Get
+     *
+     * <p>Get the Domains resource and its properties.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Domains resource and its properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DomainResourceInner get(String resourceGroupName, String emailServiceName, String domainName) {
+        return getWithResponse(resourceGroupName, emailServiceName, domainName, Context.NONE).getValue();
     }
 
     /**

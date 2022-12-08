@@ -26,6 +26,10 @@ public final class UpdateDomainProperties {
     @JsonProperty(value = "userEngagementTracking")
     private UserEngagementTracking userEngagementTracking;
 
+    /** Creates an instance of UpdateDomainProperties class. */
+    public UpdateDomainProperties() {
+    }
+
     /**
      * Get the validSenderUsernames property: Collection of valid sender usernames. This is a key-value pair where
      * key=username and value=display name.
