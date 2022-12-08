@@ -70,7 +70,7 @@ public final class ProvisionedClustersOperationsClientImpl implements Provisione
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridContainerServi")
-    private interface ProvisionedClustersOperationsService {
+    public interface ProvisionedClustersOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"

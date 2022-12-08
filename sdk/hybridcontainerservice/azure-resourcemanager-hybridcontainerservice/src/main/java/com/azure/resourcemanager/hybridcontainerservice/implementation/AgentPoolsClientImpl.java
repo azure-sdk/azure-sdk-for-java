@@ -60,7 +60,7 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridContainerServi")
-    private interface AgentPoolsService {
+    public interface AgentPoolsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
