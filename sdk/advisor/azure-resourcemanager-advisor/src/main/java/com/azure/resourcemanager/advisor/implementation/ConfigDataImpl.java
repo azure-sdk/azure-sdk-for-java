@@ -10,6 +10,7 @@ import com.azure.resourcemanager.advisor.models.ConfigData;
 import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,6 +42,10 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
 
     public CpuThreshold lowCpuThreshold() {
         return this.innerModel().lowCpuThreshold();
+    }
+
+    public DurationModel duration() {
+        return this.innerModel().duration();
     }
 
     public List<DigestConfig> digests() {
@@ -102,6 +107,11 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
 
     public ConfigDataImpl withLowCpuThreshold(CpuThreshold lowCpuThreshold) {
         this.innerModel().withLowCpuThreshold(lowCpuThreshold);
+        return this;
+    }
+
+    public ConfigDataImpl withDuration(DurationModel duration) {
+        this.innerModel().withDuration(duration);
         return this;
     }
 

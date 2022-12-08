@@ -5,15 +5,12 @@
 package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
 import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -21,126 +18,26 @@ import java.util.Map;
 import java.util.UUID;
 
 /** Advisor Recommendation. */
-@JsonFlatten
 @Fluent
-public class ResourceRecommendationBaseInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceRecommendationBaseInner.class);
-
+public final class ResourceRecommendationBaseInner extends ProxyResource {
     /*
-     * The category of the recommendation.
+     * The properties of the recommendation.
      */
-    @JsonProperty(value = "properties.category")
-    private Category category;
+    @JsonProperty(value = "properties")
+    private RecommendationProperties innerProperties;
 
-    /*
-     * The business impact of the recommendation.
-     */
-    @JsonProperty(value = "properties.impact")
-    private Impact impact;
+    /** Creates an instance of ResourceRecommendationBaseInner class. */
+    public ResourceRecommendationBaseInner() {
+    }
 
-    /*
-     * The resource type identified by Advisor.
+    /**
+     * Get the innerProperties property: The properties of the recommendation.
+     *
+     * @return the innerProperties value.
      */
-    @JsonProperty(value = "properties.impactedField")
-    private String impactedField;
-
-    /*
-     * The resource identified by Advisor.
-     */
-    @JsonProperty(value = "properties.impactedValue")
-    private String impactedValue;
-
-    /*
-     * The most recent time that Advisor checked the validity of the
-     * recommendation.
-     */
-    @JsonProperty(value = "properties.lastUpdated")
-    private OffsetDateTime lastUpdated;
-
-    /*
-     * The recommendation metadata.
-     */
-    @JsonProperty(value = "properties.metadata")
-    private Map<String, Object> metadata;
-
-    /*
-     * The recommendation-type GUID.
-     */
-    @JsonProperty(value = "properties.recommendationTypeId")
-    private String recommendationTypeId;
-
-    /*
-     * The potential risk of not implementing the recommendation.
-     */
-    @JsonProperty(value = "properties.risk")
-    private Risk risk;
-
-    /*
-     * A summary of the recommendation.
-     */
-    @JsonProperty(value = "properties.shortDescription")
-    private ShortDescription shortDescription;
-
-    /*
-     * The list of snoozed and dismissed rules for the recommendation.
-     */
-    @JsonProperty(value = "properties.suppressionIds")
-    private List<UUID> suppressionIds;
-
-    /*
-     * Extended properties
-     */
-    @JsonProperty(value = "properties.extendedProperties")
-    private Map<String, String> extendedProperties;
-
-    /*
-     * Metadata of resource that was assessed
-     */
-    @JsonProperty(value = "properties.resourceMetadata")
-    private ResourceMetadata resourceMetadata;
-
-    /*
-     * The detailed description of recommendation.
-     */
-    @JsonProperty(value = "properties.description")
-    private String description;
-
-    /*
-     * The label of recommendation.
-     */
-    @JsonProperty(value = "properties.label")
-    private String label;
-
-    /*
-     * The link to learn more about recommendation and generation logic.
-     */
-    @JsonProperty(value = "properties.learnMoreLink")
-    private String learnMoreLink;
-
-    /*
-     * The potential benefit of implementing recommendation.
-     */
-    @JsonProperty(value = "properties.potentialBenefits")
-    private String potentialBenefits;
-
-    /*
-     * The list of recommended actions to implement recommendation.
-     */
-    @JsonProperty(value = "properties.actions")
-    private List<Map<String, Object>> actions;
-
-    /*
-     * The automated way to apply recommendation.
-     */
-    @JsonProperty(value = "properties.remediation")
-    private Map<String, Object> remediation;
-
-    /*
-     * The recommendation metadata properties exposed to customer to provide
-     * additional information.
-     */
-    @JsonProperty(value = "properties.exposedMetadataProperties")
-    private Map<String, Object> exposedMetadataProperties;
+    private RecommendationProperties innerProperties() {
+        return this.innerProperties;
+    }
 
     /**
      * Get the category property: The category of the recommendation.
@@ -148,7 +45,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the category value.
      */
     public Category category() {
-        return this.category;
+        return this.innerProperties() == null ? null : this.innerProperties().category();
     }
 
     /**
@@ -158,7 +55,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withCategory(Category category) {
-        this.category = category;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withCategory(category);
         return this;
     }
 
@@ -168,7 +68,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the impact value.
      */
     public Impact impact() {
-        return this.impact;
+        return this.innerProperties() == null ? null : this.innerProperties().impact();
     }
 
     /**
@@ -178,7 +78,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withImpact(Impact impact) {
-        this.impact = impact;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withImpact(impact);
         return this;
     }
 
@@ -188,7 +91,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the impactedField value.
      */
     public String impactedField() {
-        return this.impactedField;
+        return this.innerProperties() == null ? null : this.innerProperties().impactedField();
     }
 
     /**
@@ -198,7 +101,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withImpactedField(String impactedField) {
-        this.impactedField = impactedField;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withImpactedField(impactedField);
         return this;
     }
 
@@ -208,7 +114,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the impactedValue value.
      */
     public String impactedValue() {
-        return this.impactedValue;
+        return this.innerProperties() == null ? null : this.innerProperties().impactedValue();
     }
 
     /**
@@ -218,7 +124,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withImpactedValue(String impactedValue) {
-        this.impactedValue = impactedValue;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withImpactedValue(impactedValue);
         return this;
     }
 
@@ -228,7 +137,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the lastUpdated value.
      */
     public OffsetDateTime lastUpdated() {
-        return this.lastUpdated;
+        return this.innerProperties() == null ? null : this.innerProperties().lastUpdated();
     }
 
     /**
@@ -238,7 +147,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withLastUpdated(OffsetDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withLastUpdated(lastUpdated);
         return this;
     }
 
@@ -248,7 +160,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the metadata value.
      */
     public Map<String, Object> metadata() {
-        return this.metadata;
+        return this.innerProperties() == null ? null : this.innerProperties().metadata();
     }
 
     /**
@@ -258,7 +170,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withMetadata(Map<String, Object> metadata) {
-        this.metadata = metadata;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withMetadata(metadata);
         return this;
     }
 
@@ -268,7 +183,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the recommendationTypeId value.
      */
     public String recommendationTypeId() {
-        return this.recommendationTypeId;
+        return this.innerProperties() == null ? null : this.innerProperties().recommendationTypeId();
     }
 
     /**
@@ -278,7 +193,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withRecommendationTypeId(String recommendationTypeId) {
-        this.recommendationTypeId = recommendationTypeId;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withRecommendationTypeId(recommendationTypeId);
         return this;
     }
 
@@ -288,7 +206,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the risk value.
      */
     public Risk risk() {
-        return this.risk;
+        return this.innerProperties() == null ? null : this.innerProperties().risk();
     }
 
     /**
@@ -298,7 +216,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withRisk(Risk risk) {
-        this.risk = risk;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withRisk(risk);
         return this;
     }
 
@@ -308,7 +229,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the shortDescription value.
      */
     public ShortDescription shortDescription() {
-        return this.shortDescription;
+        return this.innerProperties() == null ? null : this.innerProperties().shortDescription();
     }
 
     /**
@@ -318,7 +239,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withShortDescription(ShortDescription shortDescription) {
-        this.shortDescription = shortDescription;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withShortDescription(shortDescription);
         return this;
     }
 
@@ -328,7 +252,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the suppressionIds value.
      */
     public List<UUID> suppressionIds() {
-        return this.suppressionIds;
+        return this.innerProperties() == null ? null : this.innerProperties().suppressionIds();
     }
 
     /**
@@ -338,7 +262,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withSuppressionIds(List<UUID> suppressionIds) {
-        this.suppressionIds = suppressionIds;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withSuppressionIds(suppressionIds);
         return this;
     }
 
@@ -348,7 +275,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the extendedProperties value.
      */
     public Map<String, String> extendedProperties() {
-        return this.extendedProperties;
+        return this.innerProperties() == null ? null : this.innerProperties().extendedProperties();
     }
 
     /**
@@ -358,7 +285,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withExtendedProperties(Map<String, String> extendedProperties) {
-        this.extendedProperties = extendedProperties;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withExtendedProperties(extendedProperties);
         return this;
     }
 
@@ -368,7 +298,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the resourceMetadata value.
      */
     public ResourceMetadata resourceMetadata() {
-        return this.resourceMetadata;
+        return this.innerProperties() == null ? null : this.innerProperties().resourceMetadata();
     }
 
     /**
@@ -378,7 +308,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withResourceMetadata(ResourceMetadata resourceMetadata) {
-        this.resourceMetadata = resourceMetadata;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withResourceMetadata(resourceMetadata);
         return this;
     }
 
@@ -388,7 +321,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the description value.
      */
     public String description() {
-        return this.description;
+        return this.innerProperties() == null ? null : this.innerProperties().description();
     }
 
     /**
@@ -398,7 +331,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withDescription(String description) {
-        this.description = description;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withDescription(description);
         return this;
     }
 
@@ -408,7 +344,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the label value.
      */
     public String label() {
-        return this.label;
+        return this.innerProperties() == null ? null : this.innerProperties().label();
     }
 
     /**
@@ -418,7 +354,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withLabel(String label) {
-        this.label = label;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withLabel(label);
         return this;
     }
 
@@ -428,7 +367,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the learnMoreLink value.
      */
     public String learnMoreLink() {
-        return this.learnMoreLink;
+        return this.innerProperties() == null ? null : this.innerProperties().learnMoreLink();
     }
 
     /**
@@ -438,7 +377,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withLearnMoreLink(String learnMoreLink) {
-        this.learnMoreLink = learnMoreLink;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withLearnMoreLink(learnMoreLink);
         return this;
     }
 
@@ -448,7 +390,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the potentialBenefits value.
      */
     public String potentialBenefits() {
-        return this.potentialBenefits;
+        return this.innerProperties() == null ? null : this.innerProperties().potentialBenefits();
     }
 
     /**
@@ -458,7 +400,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withPotentialBenefits(String potentialBenefits) {
-        this.potentialBenefits = potentialBenefits;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withPotentialBenefits(potentialBenefits);
         return this;
     }
 
@@ -468,7 +413,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the actions value.
      */
     public List<Map<String, Object>> actions() {
-        return this.actions;
+        return this.innerProperties() == null ? null : this.innerProperties().actions();
     }
 
     /**
@@ -478,7 +423,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withActions(List<Map<String, Object>> actions) {
-        this.actions = actions;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withActions(actions);
         return this;
     }
 
@@ -488,7 +436,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the remediation value.
      */
     public Map<String, Object> remediation() {
-        return this.remediation;
+        return this.innerProperties() == null ? null : this.innerProperties().remediation();
     }
 
     /**
@@ -498,7 +446,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the ResourceRecommendationBaseInner object itself.
      */
     public ResourceRecommendationBaseInner withRemediation(Map<String, Object> remediation) {
-        this.remediation = remediation;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withRemediation(remediation);
         return this;
     }
 
@@ -509,7 +460,7 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @return the exposedMetadataProperties value.
      */
     public Map<String, Object> exposedMetadataProperties() {
-        return this.exposedMetadataProperties;
+        return this.innerProperties() == null ? null : this.innerProperties().exposedMetadataProperties();
     }
 
     /**
@@ -521,7 +472,10 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      */
     public ResourceRecommendationBaseInner withExposedMetadataProperties(
         Map<String, Object> exposedMetadataProperties) {
-        this.exposedMetadataProperties = exposedMetadataProperties;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withExposedMetadataProperties(exposedMetadataProperties);
         return this;
     }
 
@@ -531,11 +485,8 @@ public class ResourceRecommendationBaseInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (shortDescription() != null) {
-            shortDescription().validate();
-        }
-        if (resourceMetadata() != null) {
-            resourceMetadata().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }
