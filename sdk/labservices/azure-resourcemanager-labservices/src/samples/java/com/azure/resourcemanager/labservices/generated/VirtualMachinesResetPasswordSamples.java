@@ -21,10 +21,10 @@ public final class VirtualMachinesResetPasswordSamples {
         manager
             .virtualMachines()
             .resetPassword(
-                "fakeResourceGroupNamePlaceholder",
+                "testrg123",
                 "testlab",
                 "template",
-                new ResetPasswordBody().withUsername("example-username").withPassword("example-password"),
+                new ResetPasswordBody().withUsername("example-username").withPassword("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 }

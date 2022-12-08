@@ -44,6 +44,10 @@ public class ScheduleUpdateProperties {
     @JsonProperty(value = "notes")
     private String notes;
 
+    /** Creates an instance of ScheduleUpdateProperties class. */
+    public ScheduleUpdateProperties() {
+    }
+
     /**
      * Get the startAt property: When lab user virtual machines will be started. Timestamp offsets will be ignored and
      * timeZoneId is used instead.

@@ -30,6 +30,10 @@ public final class UserInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private UserProperties innerProperties = new UserProperties();
 
+    /** Creates an instance of UserInner class. */
+    public UserInner() {
+    }
+
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the user resource.
      *

@@ -42,6 +42,10 @@ public final class LabPlanInner extends Resource {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of LabPlanInner class. */
+    public LabPlanInner() {
+    }
+
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the lab plan.
      *

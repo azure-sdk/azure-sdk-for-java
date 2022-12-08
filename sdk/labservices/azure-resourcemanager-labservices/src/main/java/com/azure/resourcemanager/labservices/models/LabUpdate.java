@@ -18,6 +18,10 @@ public final class LabUpdate extends TrackedResourceUpdate {
     @JsonProperty(value = "properties")
     private LabUpdateProperties innerProperties;
 
+    /** Creates an instance of LabUpdate class. */
+    public LabUpdate() {
+    }
+
     /**
      * Get the innerProperties property: Lab resource properties.
      *
