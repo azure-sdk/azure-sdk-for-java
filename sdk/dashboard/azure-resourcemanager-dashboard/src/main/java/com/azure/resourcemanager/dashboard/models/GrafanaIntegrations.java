@@ -20,6 +20,10 @@ public final class GrafanaIntegrations {
     @JsonProperty(value = "azureMonitorWorkspaceIntegrations")
     private List<AzureMonitorWorkspaceIntegration> azureMonitorWorkspaceIntegrations;
 
+    /** Creates an instance of GrafanaIntegrations class. */
+    public GrafanaIntegrations() {
+    }
+
     /**
      * Get the azureMonitorWorkspaceIntegrations property: The azureMonitorWorkspaceIntegrations property.
      *
