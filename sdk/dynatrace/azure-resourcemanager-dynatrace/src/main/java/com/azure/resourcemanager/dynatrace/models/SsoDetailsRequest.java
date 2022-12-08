@@ -16,6 +16,10 @@ public final class SsoDetailsRequest {
     @JsonProperty(value = "userPrincipal")
     private String userPrincipal;
 
+    /** Creates an instance of SsoDetailsRequest class. */
+    public SsoDetailsRequest() {
+    }
+
     /**
      * Get the userPrincipal property: user principal id of the user.
      *

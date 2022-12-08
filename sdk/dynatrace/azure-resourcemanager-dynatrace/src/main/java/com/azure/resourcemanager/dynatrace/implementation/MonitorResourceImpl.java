@@ -210,12 +210,12 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return this;
     }
 
-    public AccountInfoSecure getAccountCredentials() {
-        return serviceManager.monitors().getAccountCredentials(resourceGroupName, monitorName);
-    }
-
     public Response<AccountInfoSecure> getAccountCredentialsWithResponse(Context context) {
         return serviceManager.monitors().getAccountCredentialsWithResponse(resourceGroupName, monitorName, context);
+    }
+
+    public AccountInfoSecure getAccountCredentials() {
+        return serviceManager.monitors().getAccountCredentials(resourceGroupName, monitorName);
     }
 
     public PagedIterable<MonitoredResource> listMonitoredResources() {
@@ -226,12 +226,12 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return serviceManager.monitors().listMonitoredResources(resourceGroupName, monitorName, context);
     }
 
-    public VMExtensionPayload getVMHostPayload() {
-        return serviceManager.monitors().getVMHostPayload(resourceGroupName, monitorName);
-    }
-
     public Response<VMExtensionPayload> getVMHostPayloadWithResponse(Context context) {
         return serviceManager.monitors().getVMHostPayloadWithResponse(resourceGroupName, monitorName, context);
+    }
+
+    public VMExtensionPayload getVMHostPayload() {
+        return serviceManager.monitors().getVMHostPayload(resourceGroupName, monitorName);
     }
 
     public PagedIterable<VMInfo> listHosts() {
@@ -250,12 +250,12 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return serviceManager.monitors().listAppServices(resourceGroupName, monitorName, context);
     }
 
-    public SsoDetailsResponse getSsoDetails() {
-        return serviceManager.monitors().getSsoDetails(resourceGroupName, monitorName);
-    }
-
     public Response<SsoDetailsResponse> getSsoDetailsWithResponse(SsoDetailsRequest request, Context context) {
         return serviceManager.monitors().getSsoDetailsWithResponse(resourceGroupName, monitorName, request, context);
+    }
+
+    public SsoDetailsResponse getSsoDetails() {
+        return serviceManager.monitors().getSsoDetails(resourceGroupName, monitorName);
     }
 
     public PagedIterable<LinkableEnvironmentResponse> listLinkableEnvironments(LinkableEnvironmentRequest request) {
