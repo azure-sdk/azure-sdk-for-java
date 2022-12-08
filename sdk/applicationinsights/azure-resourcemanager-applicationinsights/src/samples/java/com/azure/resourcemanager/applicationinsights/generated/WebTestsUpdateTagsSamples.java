@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for WebTests UpdateTags. */
 public final class WebTestsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdateTagsOnly.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdateTagsOnly.json
      */
     /**
      * Sample code: webTestUpdateTags.
@@ -37,8 +37,6 @@ public final class WebTestsUpdateTagsSamples {
                     "SystemType",
                     "A08",
                     "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Insights/components/my-component",
-                    "Resource",
-                    "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Web/sites/mytestwebapp",
                     "Resource"))
             .apply();
     }

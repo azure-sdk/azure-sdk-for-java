@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MyWorkbookManagedIdentityType. */
+/** The identity type. */
 public final class MyWorkbookManagedIdentityType extends ExpandableStringEnum<MyWorkbookManagedIdentityType> {
     /** Static value UserAssigned for MyWorkbookManagedIdentityType. */
     public static final MyWorkbookManagedIdentityType USER_ASSIGNED = fromString("UserAssigned");
