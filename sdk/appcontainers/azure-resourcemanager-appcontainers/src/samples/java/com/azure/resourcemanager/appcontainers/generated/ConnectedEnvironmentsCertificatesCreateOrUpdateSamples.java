@@ -30,7 +30,7 @@ public final class ConnectedEnvironmentsCertificatesCreateOrUpdateSamples {
                     .withLocation("East US")
                     .withProperties(
                         new CertificateProperties()
-                            .withPassword("private key password")
+                            .withPassword("fakeTokenPlaceholder")
                             .withValue("PFX-or-PEM-blob".getBytes())),
                 Context.NONE);
     }

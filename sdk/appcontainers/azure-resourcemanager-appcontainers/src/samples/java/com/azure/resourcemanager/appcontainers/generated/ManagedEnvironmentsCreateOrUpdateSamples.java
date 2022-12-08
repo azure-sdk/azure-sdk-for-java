@@ -43,13 +43,13 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
             .withAppLogsConfiguration(
                 new AppLogsConfiguration()
                     .withLogAnalyticsConfiguration(
-                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("string")))
+                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("fakeTokenPlaceholder")))
             .withZoneRedundant(true)
             .withCustomDomainConfiguration(
                 new CustomDomainConfiguration()
                     .withDnsSuffix("www.my-name.com")
-                    .withCertificateValue("PFX-or-PEM-blob".getBytes())
-                    .withCertificatePassword("private key password".getBytes()))
+                    .withCertificateValue("Y2VydA==".getBytes())
+                    .withCertificatePassword("fakeTokenPlaceholder"))
             .withWorkloadProfiles(
                 Arrays
                     .asList(

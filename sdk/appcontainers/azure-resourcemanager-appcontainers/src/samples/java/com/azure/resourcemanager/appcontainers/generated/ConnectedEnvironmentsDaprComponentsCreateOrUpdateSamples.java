@@ -40,7 +40,7 @@ public final class ConnectedEnvironmentsDaprComponentsCreateOrUpdateSamples {
                                 new DaprMetadata().withName("url").withValue("<COSMOS-URL>"),
                                 new DaprMetadata().withName("database").withValue("itemsDB"),
                                 new DaprMetadata().withName("collection").withValue("items"),
-                                new DaprMetadata().withName("masterkey").withSecretRef("masterkey")))
+                                new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
                     .withScopes(Arrays.asList("container-app-1", "container-app-2")),
                 Context.NONE);
     }

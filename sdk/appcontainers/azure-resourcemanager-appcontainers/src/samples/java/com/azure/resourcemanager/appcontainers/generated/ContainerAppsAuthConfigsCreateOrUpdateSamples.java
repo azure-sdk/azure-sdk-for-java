@@ -35,7 +35,9 @@ public final class ContainerAppsAuthConfigsCreateOrUpdateSamples {
                     .withFacebook(
                         new Facebook()
                             .withRegistration(
-                                new AppRegistration().withAppId("123").withAppSecretSettingName("facebook-secret"))))
+                                new AppRegistration()
+                                    .withAppId("123")
+                                    .withAppSecretSettingName("fakeTokenPlaceholder"))))
             .create();
     }
 }
