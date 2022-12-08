@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/msi/ci.yml
+      - sdk/msi/azure-resourcemanager-msi-generated/
+    exclude:
+      - sdk/msi/pom.xml
+      - sdk/msi/azure-resourcemanager-msi-generated/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/msi/ci.yml
+      - sdk/msi/azure-resourcemanager-msi-generated/
+    exclude:
+      - sdk/msi/pom.xml
+      - sdk/msi/azure-resourcemanager-msi-generated/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagermsigenerated
+    displayName: azure-resourcemanager-msi-generated
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: msi
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-msi-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermsigenerated
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermsigenerated }}
