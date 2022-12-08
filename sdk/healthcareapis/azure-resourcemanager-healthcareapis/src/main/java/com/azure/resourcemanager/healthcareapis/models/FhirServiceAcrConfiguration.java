@@ -23,6 +23,10 @@ public final class FhirServiceAcrConfiguration {
     @JsonProperty(value = "ociArtifacts")
     private List<ServiceOciArtifactEntry> ociArtifacts;
 
+    /** Creates an instance of FhirServiceAcrConfiguration class. */
+    public FhirServiceAcrConfiguration() {
+    }
+
     /**
      * Get the loginServers property: The list of the Azure container registry login servers.
      *
