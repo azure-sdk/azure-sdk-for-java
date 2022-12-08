@@ -25,6 +25,10 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of PrivateLinkResourceInner class. */
+    public PrivateLinkResourceInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
@@ -62,7 +66,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Get the requiredZoneNames property: The private link resource private link DNS zone name.
      *
      * @return the requiredZoneNames value.
      */
@@ -71,7 +75,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Set the requiredZoneNames property: The private link resource private link DNS zone name.
      *
      * @param requiredZoneNames the requiredZoneNames value to set.
      * @return the PrivateLinkResourceInner object itself.
