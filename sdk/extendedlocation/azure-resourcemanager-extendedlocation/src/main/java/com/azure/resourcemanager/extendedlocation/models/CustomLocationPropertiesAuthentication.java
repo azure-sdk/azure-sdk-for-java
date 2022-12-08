@@ -22,6 +22,10 @@ public final class CustomLocationPropertiesAuthentication {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of CustomLocationPropertiesAuthentication class. */
+    public CustomLocationPropertiesAuthentication() {
+    }
+
     /**
      * Get the type property: The type of the Custom Locations authentication.
      *

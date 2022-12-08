@@ -35,6 +35,10 @@ public final class CustomLocationInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of CustomLocationInner class. */
+    public CustomLocationInner() {
+    }
+
     /**
      * Get the identity property: Identity for the resource.
      *

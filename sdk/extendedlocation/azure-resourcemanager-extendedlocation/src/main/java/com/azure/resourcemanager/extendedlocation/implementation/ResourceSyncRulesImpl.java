@@ -41,15 +41,6 @@ public final class ResourceSyncRulesImpl implements ResourceSyncRules {
         return Utils.mapPage(inner, inner1 -> new ResourceSyncRuleImpl(inner1, this.manager()));
     }
 
-    public ResourceSyncRule get(String resourceGroupName, String resourceName, String childResourceName) {
-        ResourceSyncRuleInner inner = this.serviceClient().get(resourceGroupName, resourceName, childResourceName);
-        if (inner != null) {
-            return new ResourceSyncRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ResourceSyncRule> getWithResponse(
         String resourceGroupName, String resourceName, String childResourceName, Context context) {
         Response<ResourceSyncRuleInner> inner =
@@ -65,13 +56,22 @@ public final class ResourceSyncRulesImpl implements ResourceSyncRules {
         }
     }
 
-    public void delete(String resourceGroupName, String resourceName, String childResourceName) {
-        this.serviceClient().delete(resourceGroupName, resourceName, childResourceName);
+    public ResourceSyncRule get(String resourceGroupName, String resourceName, String childResourceName) {
+        ResourceSyncRuleInner inner = this.serviceClient().get(resourceGroupName, resourceName, childResourceName);
+        if (inner != null) {
+            return new ResourceSyncRuleImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String resourceName, String childResourceName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, resourceName, childResourceName, context);
+    }
+
+    public void delete(String resourceGroupName, String resourceName, String childResourceName) {
+        this.serviceClient().delete(resourceGroupName, resourceName, childResourceName);
     }
 
     public ResourceSyncRule getById(String id) {

@@ -33,6 +33,10 @@ public final class PatchableCustomLocations {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /** Creates an instance of PatchableCustomLocations class. */
+    public PatchableCustomLocations() {
+    }
+
     /**
      * Get the identity property: Identity for the resource.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HostType. */
+/** Type of host the Custom Locations is referencing (Kubernetes, etc...). */
 public final class HostType extends ExpandableStringEnum<HostType> {
     /** Static value Kubernetes for HostType. */
     public static final HostType KUBERNETES = fromString("Kubernetes");

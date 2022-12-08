@@ -24,6 +24,10 @@ public final class ResourceSyncRuleListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<ResourceSyncRuleInner> value;
 
+    /** Creates an instance of ResourceSyncRuleListResult class. */
+    public ResourceSyncRuleListResult() {
+    }
+
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
      *

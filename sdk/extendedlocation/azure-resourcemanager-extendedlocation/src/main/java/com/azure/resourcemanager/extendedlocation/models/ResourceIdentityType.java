@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ResourceIdentityType. */
+/** The identity type. */
 public final class ResourceIdentityType extends ExpandableStringEnum<ResourceIdentityType> {
     /** Static value SystemAssigned for ResourceIdentityType. */
     public static final ResourceIdentityType SYSTEM_ASSIGNED = fromString("SystemAssigned");
