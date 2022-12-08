@@ -22,6 +22,10 @@ public class ArmUserIdentity {
     @JsonProperty(value = "clientId", access = JsonProperty.Access.WRITE_ONLY)
     private String clientId;
 
+    /** Creates an instance of ArmUserIdentity class. */
+    public ArmUserIdentity() {
+    }
+
     /**
      * Get the principalId property: The principalId property.
      *

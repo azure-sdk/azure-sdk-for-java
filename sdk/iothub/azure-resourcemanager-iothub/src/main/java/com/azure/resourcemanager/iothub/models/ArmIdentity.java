@@ -39,6 +39,10 @@ public class ArmIdentity {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, ArmUserIdentity> userAssignedIdentities;
 
+    /** Creates an instance of ArmIdentity class. */
+    public ArmIdentity() {
+    }
+
     /**
      * Get the principalId property: Principal Id.
      *

@@ -55,7 +55,7 @@ public final class IotHubsClientImpl implements IotHubsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "IotHubClientIotHubs")
-    private interface IotHubsService {
+    public interface IotHubsService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs"

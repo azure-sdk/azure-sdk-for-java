@@ -188,6 +188,10 @@ public final class IotHubProperties {
     @JsonProperty(value = "rootCertificate")
     private RootCertificateProperties rootCertificate;
 
+    /** Creates an instance of IotHubProperties class. */
+    public IotHubProperties() {
+    }
+
     /**
      * Get the authorizationPolicies property: The shared access policies you can use to secure a connection to the IoT
      * hub.
