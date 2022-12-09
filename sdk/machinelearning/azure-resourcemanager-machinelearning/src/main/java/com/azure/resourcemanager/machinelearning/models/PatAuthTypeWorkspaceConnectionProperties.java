@@ -47,7 +47,7 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /** {@inheritDoc} */
     @Override
-    public PatAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
+    public PatAuthTypeWorkspaceConnectionProperties withCategory(String category) {
         super.withCategory(category);
         return this;
     }
