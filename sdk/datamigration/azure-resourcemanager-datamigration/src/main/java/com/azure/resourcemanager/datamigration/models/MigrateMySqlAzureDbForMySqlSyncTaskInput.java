@@ -6,15 +6,14 @@ package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
 /** Input for the task that migrates MySQL databases to Azure Database for MySQL for online migrations. */
 @Fluent
-public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MigrateMySqlAzureDbForMySqlSyncTaskInput.class);
-
+public final class MigrateMySqlAzureDbForMySqlSyncTaskInput extends MySqlSchemaMigrationOptions {
     /*
      * Connection information for source MySQL
      */
@@ -32,6 +31,35 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
      */
     @JsonProperty(value = "selectedDatabases", required = true)
     private List<MigrateMySqlAzureDbForMySqlSyncDatabaseInput> selectedDatabases;
+
+    /*
+     * Optional resource Id of the source server if it is an azure instance
+     */
+    @JsonProperty(value = "sourceServerResourceId")
+    private String sourceServerResourceId;
+
+    /*
+     * Optional resource Id of the target server
+     */
+    @JsonProperty(value = "targetServerResourceId")
+    private String targetServerResourceId;
+
+    /*
+     * Optional parameters for fine tuning the data transfer rate during migration
+     */
+    @JsonProperty(value = "optionalAgentSettings")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> optionalAgentSettings;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
+    /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskInput class. */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput() {
+    }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for source MySQL.
@@ -95,13 +123,127 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
     }
 
     /**
+     * Get the sourceServerResourceId property: Optional resource Id of the source server if it is an azure instance.
+     *
+     * @return the sourceServerResourceId value.
+     */
+    public String sourceServerResourceId() {
+        return this.sourceServerResourceId;
+    }
+
+    /**
+     * Set the sourceServerResourceId property: Optional resource Id of the source server if it is an azure instance.
+     *
+     * @param sourceServerResourceId the sourceServerResourceId value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withSourceServerResourceId(String sourceServerResourceId) {
+        this.sourceServerResourceId = sourceServerResourceId;
+        return this;
+    }
+
+    /**
+     * Get the targetServerResourceId property: Optional resource Id of the target server.
+     *
+     * @return the targetServerResourceId value.
+     */
+    public String targetServerResourceId() {
+        return this.targetServerResourceId;
+    }
+
+    /**
+     * Set the targetServerResourceId property: Optional resource Id of the target server.
+     *
+     * @param targetServerResourceId the targetServerResourceId value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withTargetServerResourceId(String targetServerResourceId) {
+        this.targetServerResourceId = targetServerResourceId;
+        return this;
+    }
+
+    /**
+     * Get the optionalAgentSettings property: Optional parameters for fine tuning the data transfer rate during
+     * migration.
+     *
+     * @return the optionalAgentSettings value.
+     */
+    public Map<String, String> optionalAgentSettings() {
+        return this.optionalAgentSettings;
+    }
+
+    /**
+     * Set the optionalAgentSettings property: Optional parameters for fine tuning the data transfer rate during
+     * migration.
+     *
+     * @param optionalAgentSettings the optionalAgentSettings value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withOptionalAgentSettings(
+        Map<String, String> optionalAgentSettings) {
+        this.optionalAgentSettings = optionalAgentSettings;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withEncryptedKeyForSecureFields(
+        String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllViews(Boolean migrateAllViews) {
+        super.withMigrateAllViews(migrateAllViews);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllTriggers(Boolean migrateAllTriggers) {
+        super.withMigrateAllTriggers(migrateAllTriggers);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllEvents(Boolean migrateAllEvents) {
+        super.withMigrateAllEvents(migrateAllEvents);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllRoutines(Boolean migrateAllRoutines) {
+        super.withMigrateAllRoutines(migrateAllRoutines);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (sourceConnectionInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourceConnectionInfo in model"
@@ -110,7 +252,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetConnectionInfo in model"
@@ -119,7 +261,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
             targetConnectionInfo().validate();
         }
         if (selectedDatabases() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property selectedDatabases in model"
@@ -128,4 +270,6 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
             selectedDatabases().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MigrateMySqlAzureDbForMySqlSyncTaskInput.class);
 }
