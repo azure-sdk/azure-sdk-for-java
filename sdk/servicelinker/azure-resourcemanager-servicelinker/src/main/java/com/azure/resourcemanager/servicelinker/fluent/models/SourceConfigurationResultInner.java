@@ -18,6 +18,10 @@ public final class SourceConfigurationResultInner {
     @JsonProperty(value = "configurations")
     private List<SourceConfiguration> configurations;
 
+    /** Creates an instance of SourceConfigurationResultInner class. */
+    public SourceConfigurationResultInner() {
+    }
+
     /**
      * Get the configurations property: The configuration properties for source resource.
      *
