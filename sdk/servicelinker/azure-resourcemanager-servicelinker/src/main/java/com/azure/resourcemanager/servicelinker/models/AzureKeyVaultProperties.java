@@ -20,6 +20,10 @@ public final class AzureKeyVaultProperties extends AzureResourcePropertiesBase {
     @JsonProperty(value = "connectAsKubernetesCsiDriver")
     private Boolean connectAsKubernetesCsiDriver;
 
+    /** Creates an instance of AzureKeyVaultProperties class. */
+    public AzureKeyVaultProperties() {
+    }
+
     /**
      * Get the connectAsKubernetesCsiDriver property: True if connect via Kubernetes CSI Driver.
      *

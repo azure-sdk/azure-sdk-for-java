@@ -57,6 +57,10 @@ public final class LinkerProperties {
     @JsonProperty(value = "scope")
     private String scope;
 
+    /** Creates an instance of LinkerProperties class. */
+    public LinkerProperties() {
+    }
+
     /**
      * Get the targetService property: The target service properties.
      *
