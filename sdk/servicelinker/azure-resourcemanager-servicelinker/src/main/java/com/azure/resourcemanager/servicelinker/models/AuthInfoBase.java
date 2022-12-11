@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class AuthInfoBase {
+    /** Creates an instance of AuthInfoBase class. */
+    public AuthInfoBase() {
+    }
+
     /**
      * Validates the instance.
      *

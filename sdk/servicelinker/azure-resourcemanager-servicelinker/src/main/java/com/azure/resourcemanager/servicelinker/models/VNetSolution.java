@@ -16,6 +16,10 @@ public final class VNetSolution {
     @JsonProperty(value = "type")
     private VNetSolutionType type;
 
+    /** Creates an instance of VNetSolution class. */
+    public VNetSolution() {
+    }
+
     /**
      * Get the type property: Type of VNet solution.
      *
