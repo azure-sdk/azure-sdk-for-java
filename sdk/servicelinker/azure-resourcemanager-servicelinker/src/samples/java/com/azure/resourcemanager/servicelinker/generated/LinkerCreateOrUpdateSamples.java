@@ -15,7 +15,7 @@ import com.azure.resourcemanager.servicelinker.models.ValueSecretInfo;
 /** Samples for Linker CreateOrUpdate. */
 public final class LinkerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithSecretStore.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2006-01-01/examples/PutLinkWithSecretStore.json
      */
     /**
      * Sample code: PutLinkWithSecretStore.
@@ -33,15 +33,12 @@ public final class LinkerCreateOrUpdateSamples {
                     .withId(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DocumentDb/databaseAccounts/test-acc/mongodbDatabases/test-db"))
             .withAuthInfo(new SecretAuthInfo())
-            .withSecretStore(
-                new SecretStore()
-                    .withKeyVaultId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.KeyVault/vaults/test-kv"))
+            .withSecretStore(new SecretStore().withKeyVaultId("fakeTokenPlaceholder"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithServiceEndpoint.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2006-01-01/examples/PutLinkWithServiceEndpoint.json
      */
     /**
      * Sample code: PutLinkWithServiceEndpoint.
@@ -71,7 +68,7 @@ public final class LinkerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2006-01-01/examples/PutLink.json
      */
     /**
      * Sample code: PutLink.
