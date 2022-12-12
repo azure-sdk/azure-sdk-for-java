@@ -15,16 +15,20 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.azurearcdata.fluent.ActiveDirectoryConnectorsClient;
 import com.azure.resourcemanager.azurearcdata.fluent.AzureArcDataManagementClient;
 import com.azure.resourcemanager.azurearcdata.fluent.DataControllersClient;
 import com.azure.resourcemanager.azurearcdata.fluent.OperationsClient;
+import com.azure.resourcemanager.azurearcdata.fluent.PostgresInstancesClient;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlManagedInstancesClient;
+import com.azure.resourcemanager.azurearcdata.fluent.SqlServerDatabasesClient;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlServerInstancesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -32,15 +36,12 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the AzureArcDataManagementClientImpl type. */
 @ServiceClient(builder = AzureArcDataManagementClientBuilder.class)
 public final class AzureArcDataManagementClientImpl implements AzureArcDataManagementClient {
-    private final ClientLogger logger = new ClientLogger(AzureArcDataManagementClientImpl.class);
-
     /** The ID of the Azure subscription. */
     private final String subscriptionId;
 
@@ -161,6 +162,42 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
         return this.dataControllers;
     }
 
+    /** The ActiveDirectoryConnectorsClient object to access its operations. */
+    private final ActiveDirectoryConnectorsClient activeDirectoryConnectors;
+
+    /**
+     * Gets the ActiveDirectoryConnectorsClient object to access its operations.
+     *
+     * @return the ActiveDirectoryConnectorsClient object.
+     */
+    public ActiveDirectoryConnectorsClient getActiveDirectoryConnectors() {
+        return this.activeDirectoryConnectors;
+    }
+
+    /** The PostgresInstancesClient object to access its operations. */
+    private final PostgresInstancesClient postgresInstances;
+
+    /**
+     * Gets the PostgresInstancesClient object to access its operations.
+     *
+     * @return the PostgresInstancesClient object.
+     */
+    public PostgresInstancesClient getPostgresInstances() {
+        return this.postgresInstances;
+    }
+
+    /** The SqlServerDatabasesClient object to access its operations. */
+    private final SqlServerDatabasesClient sqlServerDatabases;
+
+    /**
+     * Gets the SqlServerDatabasesClient object to access its operations.
+     *
+     * @return the SqlServerDatabasesClient object.
+     */
+    public SqlServerDatabasesClient getSqlServerDatabases() {
+        return this.sqlServerDatabases;
+    }
+
     /**
      * Initializes an instance of AzureArcDataManagementClient client.
      *
@@ -183,11 +220,14 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-08-01";
+        this.apiVersion = "2022-06-15-preview";
         this.operations = new OperationsClientImpl(this);
         this.sqlManagedInstances = new SqlManagedInstancesClientImpl(this);
         this.sqlServerInstances = new SqlServerInstancesClientImpl(this);
         this.dataControllers = new DataControllersClientImpl(this);
+        this.activeDirectoryConnectors = new ActiveDirectoryConnectorsClientImpl(this);
+        this.postgresInstances = new PostgresInstancesClientImpl(this);
+        this.sqlServerDatabases = new SqlServerDatabasesClientImpl(this);
     }
 
     /**
@@ -206,10 +246,7 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -273,7 +310,7 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -332,4 +369,6 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AzureArcDataManagementClientImpl.class);
 }

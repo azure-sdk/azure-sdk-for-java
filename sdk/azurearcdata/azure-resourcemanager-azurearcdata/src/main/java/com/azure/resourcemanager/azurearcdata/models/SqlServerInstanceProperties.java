@@ -6,15 +6,12 @@ package com.azure.resourcemanager.azurearcdata.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Properties of SqlServerInstance. */
 @Fluent
 public final class SqlServerInstanceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SqlServerInstanceProperties.class);
-
     /*
      * SQL Server version.
      */
@@ -44,6 +41,12 @@ public final class SqlServerInstanceProperties {
      */
     @JsonProperty(value = "vCore")
     private String vCore;
+
+    /*
+     * The number of total cores of the Operating System Environment (OSE) hosting the SQL Server instance.
+     */
+    @JsonProperty(value = "cores")
+    private String cores;
 
     /*
      * The cloud connectivity status.
@@ -112,10 +115,20 @@ public final class SqlServerInstanceProperties {
     private DefenderStatus azureDefenderStatus;
 
     /*
-     * The provisioningState property.
+     * The provisioning state of the Arc-enabled SQL Server resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /*
+     * Type of host for Azure Arc SQL Server
+     */
+    @JsonProperty(value = "hostType")
+    private HostType hostType;
+
+    /** Creates an instance of SqlServerInstanceProperties class. */
+    public SqlServerInstanceProperties() {
+    }
 
     /**
      * Get the version property: SQL Server version.
@@ -203,6 +216,28 @@ public final class SqlServerInstanceProperties {
      */
     public SqlServerInstanceProperties withVCore(String vCore) {
         this.vCore = vCore;
+        return this;
+    }
+
+    /**
+     * Get the cores property: The number of total cores of the Operating System Environment (OSE) hosting the SQL
+     * Server instance.
+     *
+     * @return the cores value.
+     */
+    public String cores() {
+        return this.cores;
+    }
+
+    /**
+     * Set the cores property: The number of total cores of the Operating System Environment (OSE) hosting the SQL
+     * Server instance.
+     *
+     * @param cores the cores value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withCores(String cores) {
+        this.cores = cores;
         return this;
     }
 
@@ -428,12 +463,32 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: The provisioning state of the Arc-enabled SQL Server resource.
      *
      * @return the provisioningState value.
      */
     public String provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the hostType property: Type of host for Azure Arc SQL Server.
+     *
+     * @return the hostType value.
+     */
+    public HostType hostType() {
+        return this.hostType;
+    }
+
+    /**
+     * Set the hostType property: Type of host for Azure Arc SQL Server.
+     *
+     * @param hostType the hostType value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withHostType(HostType hostType) {
+        this.hostType = hostType;
+        return this;
     }
 
     /**
@@ -443,16 +498,18 @@ public final class SqlServerInstanceProperties {
      */
     public void validate() {
         if (containerResourceId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property containerResourceId in model SqlServerInstanceProperties"));
         }
         if (status() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property status in model SqlServerInstanceProperties"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SqlServerInstanceProperties.class);
 }

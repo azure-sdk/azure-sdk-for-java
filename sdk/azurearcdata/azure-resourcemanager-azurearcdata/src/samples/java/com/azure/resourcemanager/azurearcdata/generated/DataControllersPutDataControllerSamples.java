@@ -21,7 +21,7 @@ import java.util.UUID;
 /** Samples for DataControllers PutDataController. */
 public final class DataControllersPutDataControllerSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2022-06-15-preview/examples/CreateOrUpdateDataController.json
      */
     /**
      * Sample code: Create or update a Data Controller.
@@ -41,24 +41,28 @@ public final class DataControllersPutDataControllerSamples {
                     .withOnPremiseProperty(
                         new OnPremiseProperty()
                             .withId(UUID.fromString("12345678-1234-1234-ab12-1a2b3c4d5e6f"))
-                            .withPublicSigningKey("publicOnPremSigningKey"))
+                            .withPublicSigningKey("fakeTokenPlaceholder"))
                     .withUploadWatermark(
                         new UploadWatermark()
                             .withMetrics(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z"))
                             .withLogs(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z"))
                             .withUsages(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z")))
                     .withBasicLoginInformation(
-                        new BasicLoginInformation().withUsername("username").withPassword("********"))
+                        new BasicLoginInformation().withUsername("username").withPassword("fakeTokenPlaceholder"))
+                    .withMetricsDashboardCredential(
+                        new BasicLoginInformation().withUsername("username").withPassword("fakeTokenPlaceholder"))
+                    .withLogsDashboardCredential(
+                        new BasicLoginInformation().withUsername("username").withPassword("fakeTokenPlaceholder"))
                     .withLogAnalyticsWorkspaceConfig(
                         new LogAnalyticsWorkspaceConfig()
                             .withWorkspaceId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
-                            .withPrimaryKey("********"))
+                            .withPrimaryKey("fakeTokenPlaceholder"))
                     .withUploadServicePrincipal(
                         new UploadServicePrincipal()
                             .withClientId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
                             .withTenantId(UUID.fromString("00000000-1111-2222-3333-444444444444"))
                             .withAuthority("https://login.microsoftonline.com/")
-                            .withClientSecret("********"))
+                            .withClientSecret("fakeTokenPlaceholder"))
                     .withClusterId(
                         "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/connectedk8s")
                     .withExtensionId(

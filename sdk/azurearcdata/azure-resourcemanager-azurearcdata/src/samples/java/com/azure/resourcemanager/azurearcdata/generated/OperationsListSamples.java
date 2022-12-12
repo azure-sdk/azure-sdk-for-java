@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListOperation.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2022-06-15-preview/examples/ListOperation.json
      */
     /**
      * Sample code: Lists all of the available Azure Data Services on Azure Arc API operations.
