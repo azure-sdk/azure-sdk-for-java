@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Parameters in Policy. */
 @Fluent
 public final class PolicyParameters {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyParameters.class);
-
     /*
      * Gets or sets the DataStore Parameters
      */
     @JsonProperty(value = "dataStoreParametersList")
     private List<DataStoreParameters> dataStoreParametersList;
+
+    /** Creates an instance of PolicyParameters class. */
+    public PolicyParameters() {
+    }
 
     /**
      * Get the dataStoreParametersList property: Gets or sets the DataStore Parameters.

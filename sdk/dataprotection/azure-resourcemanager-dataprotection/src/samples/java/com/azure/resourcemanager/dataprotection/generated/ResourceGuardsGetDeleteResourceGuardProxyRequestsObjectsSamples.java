@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourceGuards GetDeleteResourceGuardProxyRequestsObjects. */
 public final class ResourceGuardsGetDeleteResourceGuardProxyRequestsObjectsSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2021-07-01/examples/ResourceGuardCRUD/ListDeleteResourceGuardProxyRequests.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-02-01/examples/ResourceGuardCRUD/ListDeleteResourceGuardProxyRequests.json
      */
     /**
      * Sample code: List OperationsRequestObject.
