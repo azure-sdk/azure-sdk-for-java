@@ -9,6 +9,7 @@ import com.azure.resourcemanager.agrifood.models.ProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PublicNetworkAccess;
 import com.azure.resourcemanager.agrifood.models.SensorIntegration;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.net.URL;
 
 /** FarmBeats ARM Resource properties. */
 @Fluent
@@ -17,7 +18,7 @@ public final class FarmBeatsPropertiesInner {
      * Uri of the FarmBeats instance.
      */
     @JsonProperty(value = "instanceUri", access = JsonProperty.Access.WRITE_ONLY)
-    private String instanceUri;
+    private URL instanceUri;
 
     /*
      * FarmBeats instance provisioning state.
@@ -38,17 +39,21 @@ public final class FarmBeatsPropertiesInner {
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
-     * The Private Endpoint Connection resource.
+     * The private endpoint connection resource.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private PrivateEndpointConnectionInner privateEndpointConnections;
+
+    /** Creates an instance of FarmBeatsPropertiesInner class. */
+    public FarmBeatsPropertiesInner() {
+    }
 
     /**
      * Get the instanceUri property: Uri of the FarmBeats instance.
      *
      * @return the instanceUri value.
      */
-    public String instanceUri() {
+    public URL instanceUri() {
         return this.instanceUri;
     }
 
@@ -102,7 +107,7 @@ public final class FarmBeatsPropertiesInner {
     }
 
     /**
-     * Get the privateEndpointConnections property: The Private Endpoint Connection resource.
+     * Get the privateEndpointConnections property: The private endpoint connection resource.
      *
      * @return the privateEndpointConnections value.
      */

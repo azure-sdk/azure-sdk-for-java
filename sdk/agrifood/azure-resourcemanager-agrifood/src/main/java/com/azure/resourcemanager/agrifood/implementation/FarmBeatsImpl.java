@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.agrifood.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.fluent.models.FarmBeatsInner;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionInner;
@@ -16,6 +17,7 @@ import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.agrifood.models.ProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PublicNetworkAccess;
 import com.azure.resourcemanager.agrifood.models.SensorIntegration;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
@@ -53,7 +55,11 @@ public final class FarmBeatsImpl implements FarmBeats, FarmBeats.Definition, Far
         return this.innerModel().identity();
     }
 
-    public String instanceUri() {
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public URL instanceUri() {
         return this.innerModel().instanceUri();
     }
 

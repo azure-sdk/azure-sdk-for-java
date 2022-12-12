@@ -6,11 +6,13 @@ package com.azure.resourcemanager.agrifood.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.agrifood.models.Identity;
 import com.azure.resourcemanager.agrifood.models.ProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PublicNetworkAccess;
 import com.azure.resourcemanager.agrifood.models.SensorIntegration;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.net.URL;
 import java.util.Map;
 
 /** FarmBeats ARM Resource. */
@@ -27,6 +29,16 @@ public final class FarmBeatsInner extends Resource {
      */
     @JsonProperty(value = "properties")
     private FarmBeatsPropertiesInner innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of FarmBeatsInner class. */
+    public FarmBeatsInner() {
+    }
 
     /**
      * Get the identity property: Identity for the resource.
@@ -57,6 +69,15 @@ public final class FarmBeatsInner extends Resource {
         return this.innerProperties;
     }
 
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
     /** {@inheritDoc} */
     @Override
     public FarmBeatsInner withLocation(String location) {
@@ -76,7 +97,7 @@ public final class FarmBeatsInner extends Resource {
      *
      * @return the instanceUri value.
      */
-    public String instanceUri() {
+    public URL instanceUri() {
         return this.innerProperties() == null ? null : this.innerProperties().instanceUri();
     }
 
@@ -136,7 +157,7 @@ public final class FarmBeatsInner extends Resource {
     }
 
     /**
-     * Get the privateEndpointConnections property: The Private Endpoint Connection resource.
+     * Get the privateEndpointConnections property: The private endpoint connection resource.
      *
      * @return the privateEndpointConnections value.
      */
