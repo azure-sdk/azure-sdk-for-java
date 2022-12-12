@@ -26,6 +26,10 @@ public final class SecretAuthInfo extends AuthInfoBase {
     @JsonProperty(value = "secretInfo")
     private SecretInfoBase secretInfo;
 
+    /** Creates an instance of SecretAuthInfo class. */
+    public SecretAuthInfo() {
+    }
+
     /**
      * Get the name property: Username or account name for secret auth.
      *
