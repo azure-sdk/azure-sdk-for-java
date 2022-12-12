@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ShareAccessProtocol. */
+/** Access protocol to be used by the share. */
 public final class ShareAccessProtocol extends ExpandableStringEnum<ShareAccessProtocol> {
     /** Static value SMB for ShareAccessProtocol. */
     public static final ShareAccessProtocol SMB = fromString("SMB");
@@ -27,7 +27,11 @@ public final class ShareAccessProtocol extends ExpandableStringEnum<ShareAccessP
         return fromString(name, ShareAccessProtocol.class);
     }
 
-    /** @return known ShareAccessProtocol values. */
+    /**
+     * Gets known ShareAccessProtocol values.
+     *
+     * @return known ShareAccessProtocol values.
+     */
     public static Collection<ShareAccessProtocol> values() {
         return values(ShareAccessProtocol.class);
     }
