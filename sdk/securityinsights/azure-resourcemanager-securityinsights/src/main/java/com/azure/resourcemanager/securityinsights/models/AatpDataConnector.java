@@ -22,6 +22,10 @@ public final class AatpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private AatpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of AatpDataConnector class. */
+    public AatpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: AATP (Azure Advanced Threat Protection) data connector properties.
      *
