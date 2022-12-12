@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/OperationsList.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2017-07-01/examples/OperationsList.json
      */
     /**
      * Sample code: GetConfiguration.

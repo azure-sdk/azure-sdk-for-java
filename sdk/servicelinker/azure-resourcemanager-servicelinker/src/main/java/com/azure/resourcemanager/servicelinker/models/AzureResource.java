@@ -26,6 +26,10 @@ public final class AzureResource extends TargetServiceBase {
     @JsonProperty(value = "resourceProperties")
     private AzureResourcePropertiesBase resourceProperties;
 
+    /** Creates an instance of AzureResource class. */
+    public AzureResource() {
+    }
+
     /**
      * Get the id property: The Id of azure resource.
      *
