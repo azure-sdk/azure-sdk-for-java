@@ -16,6 +16,10 @@ public final class SecretStore {
     @JsonProperty(value = "keyVaultId")
     private String keyVaultId;
 
+    /** Creates an instance of SecretStore class. */
+    public SecretStore() {
+    }
+
     /**
      * Get the keyVaultId property: The key vault id to store secret.
      *

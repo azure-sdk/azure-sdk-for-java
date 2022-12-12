@@ -33,6 +33,10 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
     @JsonProperty(value = "secret", required = true)
     private String secret;
 
+    /** Creates an instance of ServicePrincipalSecretAuthInfo class. */
+    public ServicePrincipalSecretAuthInfo() {
+    }
+
     /**
      * Get the clientId property: ServicePrincipal application clientId for servicePrincipal auth.
      *
