@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker Validate. */
 public final class LinkerValidateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/ValidateLinkSuccess.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2014-05-14/examples/ValidateLinkSuccess.json
      */
     /**
      * Sample code: ValidateLinkSuccess.
