@@ -7,23 +7,33 @@ package com.azure.resourcemanager.hybridcompute.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.management.exception.ManagementError;
+import com.azure.resourcemanager.hybridcompute.models.AgentConfiguration;
+import com.azure.resourcemanager.hybridcompute.models.CloudMetadata;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
-import com.azure.resourcemanager.hybridcompute.models.MachineProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.hybridcompute.models.LocationData;
+import com.azure.resourcemanager.hybridcompute.models.OSProfile;
+import com.azure.resourcemanager.hybridcompute.models.ServiceStatuses;
+import com.azure.resourcemanager.hybridcompute.models.StatusTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** Describes a hybrid machine. */
 @Fluent
 public final class MachineInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MachineInner.class);
-
     /*
      * Hybrid Compute Machine properties
      */
     @JsonProperty(value = "properties")
-    private MachineProperties properties;
+    private MachineProperties innerProperties;
+
+    /*
+     * The list of extensions affiliated to the machine
+     */
+    @JsonProperty(value = "resources", access = JsonProperty.Access.WRITE_ONLY)
+    private List<MachineExtensionInner> resources;
 
     /*
      * Identity for the resource.
@@ -32,29 +42,31 @@ public final class MachineInner extends Resource {
     private Identity identity;
 
     /*
-     * The system meta data relating to this resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /**
-     * Get the properties property: Hybrid Compute Machine properties.
-     *
-     * @return the properties value.
-     */
-    public MachineProperties properties() {
-        return this.properties;
+    /** Creates an instance of MachineInner class. */
+    public MachineInner() {
     }
 
     /**
-     * Set the properties property: Hybrid Compute Machine properties.
+     * Get the innerProperties property: Hybrid Compute Machine properties.
      *
-     * @param properties the properties value to set.
-     * @return the MachineInner object itself.
+     * @return the innerProperties value.
      */
-    public MachineInner withProperties(MachineProperties properties) {
-        this.properties = properties;
-        return this;
+    private MachineProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the resources property: The list of extensions affiliated to the machine.
+     *
+     * @return the resources value.
+     */
+    public List<MachineExtensionInner> resources() {
+        return this.resources;
     }
 
     /**
@@ -78,7 +90,7 @@ public final class MachineInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system meta data relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -101,13 +113,397 @@ public final class MachineInner extends Resource {
     }
 
     /**
+     * Get the locationData property: Metadata pertaining to the geographic location of the resource.
+     *
+     * @return the locationData value.
+     */
+    public LocationData locationData() {
+        return this.innerProperties() == null ? null : this.innerProperties().locationData();
+    }
+
+    /**
+     * Set the locationData property: Metadata pertaining to the geographic location of the resource.
+     *
+     * @param locationData the locationData value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withLocationData(LocationData locationData) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withLocationData(locationData);
+        return this;
+    }
+
+    /**
+     * Get the agentConfiguration property: Configurable properties that the user can set locally via the azcmagent
+     * config command, or remotely via ARM.
+     *
+     * @return the agentConfiguration value.
+     */
+    public AgentConfiguration agentConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().agentConfiguration();
+    }
+
+    /**
+     * Get the serviceStatuses property: Statuses of dependent services that are reported back to ARM.
+     *
+     * @return the serviceStatuses value.
+     */
+    public ServiceStatuses serviceStatuses() {
+        return this.innerProperties() == null ? null : this.innerProperties().serviceStatuses();
+    }
+
+    /**
+     * Set the serviceStatuses property: Statuses of dependent services that are reported back to ARM.
+     *
+     * @param serviceStatuses the serviceStatuses value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withServiceStatuses(ServiceStatuses serviceStatuses) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withServiceStatuses(serviceStatuses);
+        return this;
+    }
+
+    /**
+     * Get the cloudMetadata property: The metadata of the cloud environment (Azure/GCP/AWS/OCI...).
+     *
+     * @return the cloudMetadata value.
+     */
+    public CloudMetadata cloudMetadata() {
+        return this.innerProperties() == null ? null : this.innerProperties().cloudMetadata();
+    }
+
+    /**
+     * Set the cloudMetadata property: The metadata of the cloud environment (Azure/GCP/AWS/OCI...).
+     *
+     * @param cloudMetadata the cloudMetadata value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withCloudMetadata(CloudMetadata cloudMetadata) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withCloudMetadata(cloudMetadata);
+        return this;
+    }
+
+    /**
+     * Get the osProfile property: Specifies the operating system settings for the hybrid machine.
+     *
+     * @return the osProfile value.
+     */
+    public OSProfile osProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().osProfile();
+    }
+
+    /**
+     * Set the osProfile property: Specifies the operating system settings for the hybrid machine.
+     *
+     * @param osProfile the osProfile value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withOsProfile(OSProfile osProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withOsProfile(osProfile);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state, which only appears in the response.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the status property: The status of the hybrid machine agent.
+     *
+     * @return the status value.
+     */
+    public StatusTypes status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the lastStatusChange property: The time of the last status change.
+     *
+     * @return the lastStatusChange value.
+     */
+    public OffsetDateTime lastStatusChange() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastStatusChange();
+    }
+
+    /**
+     * Get the errorDetails property: Details about the error state.
+     *
+     * @return the errorDetails value.
+     */
+    public List<ManagementError> errorDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().errorDetails();
+    }
+
+    /**
+     * Get the agentVersion property: The hybrid machine agent full version.
+     *
+     * @return the agentVersion value.
+     */
+    public String agentVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().agentVersion();
+    }
+
+    /**
+     * Get the vmId property: Specifies the hybrid machine unique ID.
+     *
+     * @return the vmId value.
+     */
+    public String vmId() {
+        return this.innerProperties() == null ? null : this.innerProperties().vmId();
+    }
+
+    /**
+     * Set the vmId property: Specifies the hybrid machine unique ID.
+     *
+     * @param vmId the vmId value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withVmId(String vmId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withVmId(vmId);
+        return this;
+    }
+
+    /**
+     * Get the displayName property: Specifies the hybrid machine display name.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    }
+
+    /**
+     * Get the machineFqdn property: Specifies the hybrid machine FQDN.
+     *
+     * @return the machineFqdn value.
+     */
+    public String machineFqdn() {
+        return this.innerProperties() == null ? null : this.innerProperties().machineFqdn();
+    }
+
+    /**
+     * Get the clientPublicKey property: Public Key that the client provides to be used during initial resource
+     * onboarding.
+     *
+     * @return the clientPublicKey value.
+     */
+    public String clientPublicKey() {
+        return this.innerProperties() == null ? null : this.innerProperties().clientPublicKey();
+    }
+
+    /**
+     * Set the clientPublicKey property: Public Key that the client provides to be used during initial resource
+     * onboarding.
+     *
+     * @param clientPublicKey the clientPublicKey value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withClientPublicKey(String clientPublicKey) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withClientPublicKey(clientPublicKey);
+        return this;
+    }
+
+    /**
+     * Get the osName property: The Operating System running on the hybrid machine.
+     *
+     * @return the osName value.
+     */
+    public String osName() {
+        return this.innerProperties() == null ? null : this.innerProperties().osName();
+    }
+
+    /**
+     * Get the osVersion property: The version of Operating System running on the hybrid machine.
+     *
+     * @return the osVersion value.
+     */
+    public String osVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().osVersion();
+    }
+
+    /**
+     * Get the osType property: The type of Operating System (windows/linux).
+     *
+     * @return the osType value.
+     */
+    public String osType() {
+        return this.innerProperties() == null ? null : this.innerProperties().osType();
+    }
+
+    /**
+     * Set the osType property: The type of Operating System (windows/linux).
+     *
+     * @param osType the osType value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withOsType(String osType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withOsType(osType);
+        return this;
+    }
+
+    /**
+     * Get the vmUuid property: Specifies the Arc Machine's unique SMBIOS ID.
+     *
+     * @return the vmUuid value.
+     */
+    public String vmUuid() {
+        return this.innerProperties() == null ? null : this.innerProperties().vmUuid();
+    }
+
+    /**
+     * Get the osSku property: Specifies the Operating System product SKU.
+     *
+     * @return the osSku value.
+     */
+    public String osSku() {
+        return this.innerProperties() == null ? null : this.innerProperties().osSku();
+    }
+
+    /**
+     * Get the domainName property: Specifies the Windows domain name.
+     *
+     * @return the domainName value.
+     */
+    public String domainName() {
+        return this.innerProperties() == null ? null : this.innerProperties().domainName();
+    }
+
+    /**
+     * Get the adFqdn property: Specifies the AD fully qualified display name.
+     *
+     * @return the adFqdn value.
+     */
+    public String adFqdn() {
+        return this.innerProperties() == null ? null : this.innerProperties().adFqdn();
+    }
+
+    /**
+     * Get the dnsFqdn property: Specifies the DNS fully qualified display name.
+     *
+     * @return the dnsFqdn value.
+     */
+    public String dnsFqdn() {
+        return this.innerProperties() == null ? null : this.innerProperties().dnsFqdn();
+    }
+
+    /**
+     * Get the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
+     * to, if any.
+     *
+     * @return the privateLinkScopeResourceId value.
+     */
+    public String privateLinkScopeResourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateLinkScopeResourceId();
+    }
+
+    /**
+     * Set the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
+     * to, if any.
+     *
+     * @param privateLinkScopeResourceId the privateLinkScopeResourceId value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
+        return this;
+    }
+
+    /**
+     * Get the parentClusterResourceId property: The resource id of the parent cluster (Azure HCI) this machine is
+     * assigned to, if any.
+     *
+     * @return the parentClusterResourceId value.
+     */
+    public String parentClusterResourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().parentClusterResourceId();
+    }
+
+    /**
+     * Set the parentClusterResourceId property: The resource id of the parent cluster (Azure HCI) this machine is
+     * assigned to, if any.
+     *
+     * @param parentClusterResourceId the parentClusterResourceId value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withParentClusterResourceId(String parentClusterResourceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withParentClusterResourceId(parentClusterResourceId);
+        return this;
+    }
+
+    /**
+     * Get the mssqlDiscovered property: Specifies whether any MS SQL instance is discovered on the machine.
+     *
+     * @return the mssqlDiscovered value.
+     */
+    public String mssqlDiscovered() {
+        return this.innerProperties() == null ? null : this.innerProperties().mssqlDiscovered();
+    }
+
+    /**
+     * Set the mssqlDiscovered property: Specifies whether any MS SQL instance is discovered on the machine.
+     *
+     * @param mssqlDiscovered the mssqlDiscovered value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withMssqlDiscovered(String mssqlDiscovered) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachineProperties();
+        }
+        this.innerProperties().withMssqlDiscovered(mssqlDiscovered);
+        return this;
+    }
+
+    /**
+     * Get the detectedProperties property: Detected properties from the machine.
+     *
+     * @return the detectedProperties value.
+     */
+    public Map<String, String> detectedProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().detectedProperties();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
+        if (resources() != null) {
+            resources().forEach(e -> e.validate());
         }
         if (identity() != null) {
             identity().validate();
