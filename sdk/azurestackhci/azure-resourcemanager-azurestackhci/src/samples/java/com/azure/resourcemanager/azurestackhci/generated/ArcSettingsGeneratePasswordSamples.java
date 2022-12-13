@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ArcSettings GeneratePassword. */
 public final class ArcSettingsGeneratePasswordSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/GeneratePassword.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2022-12-30-preview/examples/GeneratePassword.json
      */
     /**
      * Sample code: Generate Password.
