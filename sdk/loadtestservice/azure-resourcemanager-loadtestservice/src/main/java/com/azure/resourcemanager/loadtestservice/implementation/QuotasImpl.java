@@ -10,11 +10,11 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.loadtestservice.fluent.QuotasClient;
-import com.azure.resourcemanager.loadtestservice.fluent.models.CheckQuotaAvailabilityResponseInner;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner;
-import com.azure.resourcemanager.loadtestservice.models.CheckQuotaAvailabilityResponse;
-import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequest;
-import com.azure.resourcemanager.loadtestservice.models.QuotaResource;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaAvailabilityResponseInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuota;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaAvailabilityResponse;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaBucketContent;
 import com.azure.resourcemanager.loadtestservice.models.Quotas;
 
 public final class QuotasImpl implements Quotas {
@@ -30,59 +30,60 @@ public final class QuotasImpl implements Quotas {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<QuotaResource> list(String location) {
-        PagedIterable<QuotaResourceInner> inner = this.serviceClient().list(location);
-        return Utils.mapPage(inner, inner1 -> new QuotaResourceImpl(inner1, this.manager()));
+    public PagedIterable<LoadTestingQuota> list(String location) {
+        PagedIterable<LoadTestingQuotaInner> inner = this.serviceClient().list(location);
+        return Utils.mapPage(inner, inner1 -> new LoadTestingQuotaImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<QuotaResource> list(String location, Context context) {
-        PagedIterable<QuotaResourceInner> inner = this.serviceClient().list(location, context);
-        return Utils.mapPage(inner, inner1 -> new QuotaResourceImpl(inner1, this.manager()));
+    public PagedIterable<LoadTestingQuota> list(String location, Context context) {
+        PagedIterable<LoadTestingQuotaInner> inner = this.serviceClient().list(location, context);
+        return Utils.mapPage(inner, inner1 -> new LoadTestingQuotaImpl(inner1, this.manager()));
     }
 
-    public Response<QuotaResource> getWithResponse(String location, String quotaBucketName, Context context) {
-        Response<QuotaResourceInner> inner = this.serviceClient().getWithResponse(location, quotaBucketName, context);
+    public Response<LoadTestingQuota> getWithResponse(String location, String quotaBucketName, Context context) {
+        Response<LoadTestingQuotaInner> inner =
+            this.serviceClient().getWithResponse(location, quotaBucketName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new QuotaResourceImpl(inner.getValue(), this.manager()));
+                new LoadTestingQuotaImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public QuotaResource get(String location, String quotaBucketName) {
-        QuotaResourceInner inner = this.serviceClient().get(location, quotaBucketName);
+    public LoadTestingQuota get(String location, String quotaBucketName) {
+        LoadTestingQuotaInner inner = this.serviceClient().get(location, quotaBucketName);
         if (inner != null) {
-            return new QuotaResourceImpl(inner, this.manager());
+            return new LoadTestingQuotaImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<CheckQuotaAvailabilityResponse> checkAvailabilityWithResponse(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest, Context context) {
-        Response<CheckQuotaAvailabilityResponseInner> inner =
+    public Response<LoadTestingQuotaAvailabilityResponse> checkAvailabilityWithResponse(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest, Context context) {
+        Response<LoadTestingQuotaAvailabilityResponseInner> inner =
             this.serviceClient().checkAvailabilityWithResponse(location, quotaBucketName, quotaBucketRequest, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new CheckQuotaAvailabilityResponseImpl(inner.getValue(), this.manager()));
+                new LoadTestingQuotaAvailabilityResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public CheckQuotaAvailabilityResponse checkAvailability(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest) {
-        CheckQuotaAvailabilityResponseInner inner =
+    public LoadTestingQuotaAvailabilityResponse checkAvailability(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest) {
+        LoadTestingQuotaAvailabilityResponseInner inner =
             this.serviceClient().checkAvailability(location, quotaBucketName, quotaBucketRequest);
         if (inner != null) {
-            return new CheckQuotaAvailabilityResponseImpl(inner, this.manager());
+            return new LoadTestingQuotaAvailabilityResponseImpl(inner, this.manager());
         } else {
             return null;
         }

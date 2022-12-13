@@ -5,17 +5,17 @@
 package com.azure.resourcemanager.loadtestservice.implementation;
 
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.loadtestservice.fluent.models.CheckQuotaAvailabilityResponseInner;
-import com.azure.resourcemanager.loadtestservice.models.CheckQuotaAvailabilityResponse;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuota;
+import com.azure.resourcemanager.loadtestservice.models.ResourceState;
 
-public final class CheckQuotaAvailabilityResponseImpl implements CheckQuotaAvailabilityResponse {
-    private CheckQuotaAvailabilityResponseInner innerObject;
+public final class LoadTestingQuotaImpl implements LoadTestingQuota {
+    private LoadTestingQuotaInner innerObject;
 
     private final com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager;
 
-    CheckQuotaAvailabilityResponseImpl(
-        CheckQuotaAvailabilityResponseInner innerObject,
-        com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
+    LoadTestingQuotaImpl(
+        LoadTestingQuotaInner innerObject, com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -36,15 +36,19 @@ public final class CheckQuotaAvailabilityResponseImpl implements CheckQuotaAvail
         return this.innerModel().systemData();
     }
 
-    public Boolean isAvailable() {
-        return this.innerModel().isAvailable();
+    public Integer limit() {
+        return this.innerModel().limit();
     }
 
-    public String availabilityStatus() {
-        return this.innerModel().availabilityStatus();
+    public Integer usage() {
+        return this.innerModel().usage();
     }
 
-    public CheckQuotaAvailabilityResponseInner innerModel() {
+    public ResourceState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public LoadTestingQuotaInner innerModel() {
         return this.innerObject;
     }
 

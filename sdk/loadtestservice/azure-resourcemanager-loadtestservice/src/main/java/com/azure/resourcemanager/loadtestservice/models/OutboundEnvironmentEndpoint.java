@@ -21,7 +21,7 @@ public interface OutboundEnvironmentEndpoint {
      *
      * @return the endpoints value.
      */
-    List<EndpointDependency> endpoints();
+    List<LoadTestingEndpointDependency> endpoints();
 
     /**
      * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.OutboundEnvironmentEndpointInner object.

@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Check quota availability response object. */
 @Fluent
-public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
+public final class LoadTestingQuotaAvailabilityResponseInner extends ProxyResource {
     /*
      * Check quota availability response properties.
      */
     @JsonProperty(value = "properties")
-    private CheckQuotaAvailabilityResponseProperties innerProperties;
+    private LoadTestingQuotaAvailabilityResponseProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -24,8 +24,8 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CheckQuotaAvailabilityResponseInner class. */
-    public CheckQuotaAvailabilityResponseInner() {
+    /** Creates an instance of LoadTestingQuotaAvailabilityResponseInner class. */
+    public LoadTestingQuotaAvailabilityResponseInner() {
     }
 
     /**
@@ -33,7 +33,7 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
      *
      * @return the innerProperties value.
      */
-    private CheckQuotaAvailabilityResponseProperties innerProperties() {
+    private LoadTestingQuotaAvailabilityResponseProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -59,11 +59,11 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
      * Set the isAvailable property: True/False indicating whether the quota request be granted based on availability.
      *
      * @param isAvailable the isAvailable value to set.
-     * @return the CheckQuotaAvailabilityResponseInner object itself.
+     * @return the LoadTestingQuotaAvailabilityResponseInner object itself.
      */
-    public CheckQuotaAvailabilityResponseInner withIsAvailable(Boolean isAvailable) {
+    public LoadTestingQuotaAvailabilityResponseInner withIsAvailable(Boolean isAvailable) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new CheckQuotaAvailabilityResponseProperties();
+            this.innerProperties = new LoadTestingQuotaAvailabilityResponseProperties();
         }
         this.innerProperties().withIsAvailable(isAvailable);
         return this;
@@ -82,11 +82,11 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
      * Set the availabilityStatus property: Message indicating additional details to add to quota support request.
      *
      * @param availabilityStatus the availabilityStatus value to set.
-     * @return the CheckQuotaAvailabilityResponseInner object itself.
+     * @return the LoadTestingQuotaAvailabilityResponseInner object itself.
      */
-    public CheckQuotaAvailabilityResponseInner withAvailabilityStatus(String availabilityStatus) {
+    public LoadTestingQuotaAvailabilityResponseInner withAvailabilityStatus(String availabilityStatus) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new CheckQuotaAvailabilityResponseProperties();
+            this.innerProperties = new LoadTestingQuotaAvailabilityResponseProperties();
         }
         this.innerProperties().withAvailabilityStatus(availabilityStatus);
         return this;

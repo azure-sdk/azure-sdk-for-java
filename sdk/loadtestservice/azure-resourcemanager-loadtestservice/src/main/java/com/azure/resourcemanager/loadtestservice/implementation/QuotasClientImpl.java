@@ -28,10 +28,10 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.loadtestservice.fluent.QuotasClient;
-import com.azure.resourcemanager.loadtestservice.fluent.models.CheckQuotaAvailabilityResponseInner;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner;
-import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequest;
-import com.azure.resourcemanager.loadtestservice.models.QuotaResourceList;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaAvailabilityResponseInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaBucketContent;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaListResult;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in QuotasClient. */
@@ -58,12 +58,12 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LoadTestClientQuotas")
-    private interface QuotasService {
+    public interface QuotasService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.LoadTestService/locations/{location}/quotas")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaResourceList>> list(
+        Mono<Response<LoadTestingQuotaListResult>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("location") String location,
@@ -77,7 +77,7 @@ public final class QuotasClientImpl implements QuotasClient {
                 + "/{quotaBucketName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaResourceInner>> get(
+        Mono<Response<LoadTestingQuotaInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("location") String location,
@@ -92,13 +92,13 @@ public final class QuotasClientImpl implements QuotasClient {
                 + "/{quotaBucketName}/checkAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CheckQuotaAvailabilityResponseInner>> checkAvailability(
+        Mono<Response<LoadTestingQuotaAvailabilityResponseInner>> checkAvailability(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("location") String location,
             @QueryParam("api-version") String apiVersion,
             @PathParam("quotaBucketName") String quotaBucketName,
-            @BodyParam("application/json") QuotaBucketRequest quotaBucketRequest,
+            @BodyParam("application/json") LoadTestingQuotaBucketContent quotaBucketRequest,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -106,7 +106,7 @@ public final class QuotasClientImpl implements QuotasClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaResourceList>> listNext(
+        Mono<Response<LoadTestingQuotaListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -123,7 +123,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaResourceInner>> listSinglePageAsync(String location) {
+    private Mono<PagedResponse<LoadTestingQuotaInner>> listSinglePageAsync(String location) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -151,7 +151,7 @@ public final class QuotasClientImpl implements QuotasClient {
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .<PagedResponse<QuotaResourceInner>>map(
+            .<PagedResponse<LoadTestingQuotaInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -174,7 +174,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaResourceInner>> listSinglePageAsync(String location, Context context) {
+    private Mono<PagedResponse<LoadTestingQuotaInner>> listSinglePageAsync(String location, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -221,7 +221,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<QuotaResourceInner> listAsync(String location) {
+    private PagedFlux<LoadTestingQuotaInner> listAsync(String location) {
         return new PagedFlux<>(() -> listSinglePageAsync(location), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -236,7 +236,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<QuotaResourceInner> listAsync(String location, Context context) {
+    private PagedFlux<LoadTestingQuotaInner> listAsync(String location, Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(location, context), nextLink -> listNextSinglePageAsync(nextLink, context));
     }
@@ -251,7 +251,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<QuotaResourceInner> list(String location) {
+    public PagedIterable<LoadTestingQuotaInner> list(String location) {
         return new PagedIterable<>(listAsync(location));
     }
 
@@ -266,7 +266,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<QuotaResourceInner> list(String location, Context context) {
+    public PagedIterable<LoadTestingQuotaInner> list(String location, Context context) {
         return new PagedIterable<>(listAsync(location, context));
     }
 
@@ -282,7 +282,7 @@ public final class QuotasClientImpl implements QuotasClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<QuotaResourceInner>> getWithResponseAsync(String location, String quotaBucketName) {
+    private Mono<Response<LoadTestingQuotaInner>> getWithResponseAsync(String location, String quotaBucketName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -331,7 +331,7 @@ public final class QuotasClientImpl implements QuotasClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<QuotaResourceInner>> getWithResponseAsync(
+    private Mono<Response<LoadTestingQuotaInner>> getWithResponseAsync(
         String location, String quotaBucketName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -377,7 +377,7 @@ public final class QuotasClientImpl implements QuotasClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<QuotaResourceInner> getAsync(String location, String quotaBucketName) {
+    private Mono<LoadTestingQuotaInner> getAsync(String location, String quotaBucketName) {
         return getWithResponseAsync(location, quotaBucketName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -393,7 +393,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return the available quota for a quota bucket per region per subscription along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<QuotaResourceInner> getWithResponse(String location, String quotaBucketName, Context context) {
+    public Response<LoadTestingQuotaInner> getWithResponse(String location, String quotaBucketName, Context context) {
         return getWithResponseAsync(location, quotaBucketName, context).block();
     }
 
@@ -408,7 +408,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return the available quota for a quota bucket per region per subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public QuotaResourceInner get(String location, String quotaBucketName) {
+    public LoadTestingQuotaInner get(String location, String quotaBucketName) {
         return getWithResponse(location, quotaBucketName, Context.NONE).getValue();
     }
 
@@ -425,8 +425,8 @@ public final class QuotasClientImpl implements QuotasClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CheckQuotaAvailabilityResponseInner>> checkAvailabilityWithResponseAsync(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest) {
+    private Mono<Response<LoadTestingQuotaAvailabilityResponseInner>> checkAvailabilityWithResponseAsync(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -483,8 +483,8 @@ public final class QuotasClientImpl implements QuotasClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CheckQuotaAvailabilityResponseInner>> checkAvailabilityWithResponseAsync(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest, Context context) {
+    private Mono<Response<LoadTestingQuotaAvailabilityResponseInner>> checkAvailabilityWithResponseAsync(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -536,8 +536,8 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return check quota availability response object on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CheckQuotaAvailabilityResponseInner> checkAvailabilityAsync(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest) {
+    private Mono<LoadTestingQuotaAvailabilityResponseInner> checkAvailabilityAsync(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest) {
         return checkAvailabilityWithResponseAsync(location, quotaBucketName, quotaBucketRequest)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -555,8 +555,8 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return check quota availability response object along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CheckQuotaAvailabilityResponseInner> checkAvailabilityWithResponse(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest, Context context) {
+    public Response<LoadTestingQuotaAvailabilityResponseInner> checkAvailabilityWithResponse(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest, Context context) {
         return checkAvailabilityWithResponseAsync(location, quotaBucketName, quotaBucketRequest, context).block();
     }
 
@@ -572,8 +572,8 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return check quota availability response object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckQuotaAvailabilityResponseInner checkAvailability(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest) {
+    public LoadTestingQuotaAvailabilityResponseInner checkAvailability(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest) {
         return checkAvailabilityWithResponse(location, quotaBucketName, quotaBucketRequest, Context.NONE).getValue();
     }
 
@@ -588,7 +588,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaResourceInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<LoadTestingQuotaInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -601,7 +601,7 @@ public final class QuotasClientImpl implements QuotasClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<QuotaResourceInner>>map(
+            .<PagedResponse<LoadTestingQuotaInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -625,7 +625,7 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return list of quota bucket objects along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaResourceInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<LoadTestingQuotaInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }

@@ -17,7 +17,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<LoadTestResource> list();
+    PagedIterable<LoadTestingResource> list();
 
     /**
      * Lists loadtests resources in a subscription.
@@ -28,7 +28,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<LoadTestResource> list(Context context);
+    PagedIterable<LoadTestingResource> list(Context context);
 
     /**
      * Lists loadtest resources in a resource group.
@@ -39,7 +39,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<LoadTestResource> listByResourceGroup(String resourceGroupName);
+    PagedIterable<LoadTestingResource> listByResourceGroup(String resourceGroupName);
 
     /**
      * Lists loadtest resources in a resource group.
@@ -51,7 +51,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<LoadTestResource> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<LoadTestingResource> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Get a LoadTest resource.
@@ -64,7 +64,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a LoadTest resource along with {@link Response}.
      */
-    Response<LoadTestResource> getByResourceGroupWithResponse(
+    Response<LoadTestingResource> getByResourceGroupWithResponse(
         String resourceGroupName, String loadTestName, Context context);
 
     /**
@@ -77,7 +77,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a LoadTest resource.
      */
-    LoadTestResource getByResourceGroup(String resourceGroupName, String loadTestName);
+    LoadTestingResource getByResourceGroup(String resourceGroupName, String loadTestName);
 
     /**
      * Delete a LoadTest resource.
@@ -138,7 +138,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a LoadTest resource along with {@link Response}.
      */
-    LoadTestResource getById(String id);
+    LoadTestingResource getById(String id);
 
     /**
      * Get a LoadTest resource.
@@ -150,7 +150,7 @@ public interface LoadTests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a LoadTest resource along with {@link Response}.
      */
-    Response<LoadTestResource> getByIdWithResponse(String id, Context context);
+    Response<LoadTestingResource> getByIdWithResponse(String id, Context context);
 
     /**
      * Delete a LoadTest resource.
@@ -174,10 +174,10 @@ public interface LoadTests {
     void deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new LoadTestResource resource.
+     * Begins definition for a new LoadTestingResource resource.
      *
      * @param name resource name.
-     * @return the first stage of the new LoadTestResource definition.
+     * @return the first stage of the new LoadTestingResource definition.
      */
-    LoadTestResource.DefinitionStages.Blank define(String name);
+    LoadTestingResource.DefinitionStages.Blank define(String name);
 }

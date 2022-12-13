@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** New quota request request properties. */
 @Fluent
-public final class QuotaBucketRequestProperties {
+public final class LoadTestingQuotaBucketProperties {
     /*
      * Current quota usage of the quota bucket.
      */
@@ -33,10 +33,10 @@ public final class QuotaBucketRequestProperties {
      * Dimensions for new quota request.
      */
     @JsonProperty(value = "dimensions")
-    private QuotaBucketRequestPropertiesDimensions dimensions;
+    private QuotaBucketRequestPropertiesDimensions loadTestingQuotaBucketDimensions;
 
-    /** Creates an instance of QuotaBucketRequestProperties class. */
-    public QuotaBucketRequestProperties() {
+    /** Creates an instance of LoadTestingQuotaBucketProperties class. */
+    public LoadTestingQuotaBucketProperties() {
     }
 
     /**
@@ -52,9 +52,9 @@ public final class QuotaBucketRequestProperties {
      * Set the currentUsage property: Current quota usage of the quota bucket.
      *
      * @param currentUsage the currentUsage value to set.
-     * @return the QuotaBucketRequestProperties object itself.
+     * @return the LoadTestingQuotaBucketProperties object itself.
      */
-    public QuotaBucketRequestProperties withCurrentUsage(Integer currentUsage) {
+    public LoadTestingQuotaBucketProperties withCurrentUsage(Integer currentUsage) {
         this.currentUsage = currentUsage;
         return this;
     }
@@ -72,9 +72,9 @@ public final class QuotaBucketRequestProperties {
      * Set the currentQuota property: Current quota limit of the quota bucket.
      *
      * @param currentQuota the currentQuota value to set.
-     * @return the QuotaBucketRequestProperties object itself.
+     * @return the LoadTestingQuotaBucketProperties object itself.
      */
-    public QuotaBucketRequestProperties withCurrentQuota(Integer currentQuota) {
+    public LoadTestingQuotaBucketProperties withCurrentQuota(Integer currentQuota) {
         this.currentQuota = currentQuota;
         return this;
     }
@@ -92,30 +92,31 @@ public final class QuotaBucketRequestProperties {
      * Set the newQuota property: New quota limit of the quota bucket.
      *
      * @param newQuota the newQuota value to set.
-     * @return the QuotaBucketRequestProperties object itself.
+     * @return the LoadTestingQuotaBucketProperties object itself.
      */
-    public QuotaBucketRequestProperties withNewQuota(Integer newQuota) {
+    public LoadTestingQuotaBucketProperties withNewQuota(Integer newQuota) {
         this.newQuota = newQuota;
         return this;
     }
 
     /**
-     * Get the dimensions property: Dimensions for new quota request.
+     * Get the loadTestingQuotaBucketDimensions property: Dimensions for new quota request.
      *
-     * @return the dimensions value.
+     * @return the loadTestingQuotaBucketDimensions value.
      */
-    public QuotaBucketRequestPropertiesDimensions dimensions() {
-        return this.dimensions;
+    public QuotaBucketRequestPropertiesDimensions loadTestingQuotaBucketDimensions() {
+        return this.loadTestingQuotaBucketDimensions;
     }
 
     /**
-     * Set the dimensions property: Dimensions for new quota request.
+     * Set the loadTestingQuotaBucketDimensions property: Dimensions for new quota request.
      *
-     * @param dimensions the dimensions value to set.
-     * @return the QuotaBucketRequestProperties object itself.
+     * @param loadTestingQuotaBucketDimensions the loadTestingQuotaBucketDimensions value to set.
+     * @return the LoadTestingQuotaBucketProperties object itself.
      */
-    public QuotaBucketRequestProperties withDimensions(QuotaBucketRequestPropertiesDimensions dimensions) {
-        this.dimensions = dimensions;
+    public LoadTestingQuotaBucketProperties withLoadTestingQuotaBucketDimensions(
+        QuotaBucketRequestPropertiesDimensions loadTestingQuotaBucketDimensions) {
+        this.loadTestingQuotaBucketDimensions = loadTestingQuotaBucketDimensions;
         return this;
     }
 
@@ -125,8 +126,8 @@ public final class QuotaBucketRequestProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (dimensions() != null) {
-            dimensions().validate();
+        if (loadTestingQuotaBucketDimensions() != null) {
+            loadTestingQuotaBucketDimensions().validate();
         }
     }
 }

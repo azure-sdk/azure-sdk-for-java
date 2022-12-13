@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Key and identity details for Customer Managed Key encryption of load test resource. */
 @Fluent
-public final class EncryptionProperties {
+public final class CustomerManagedKeyEncryptionProperties {
     /*
      * All identity configuration for Customer-managed key settings defining which identity should be used to auth to
      * Key Vault.
      */
     @JsonProperty(value = "identity")
-    private EncryptionPropertiesIdentity identity;
+    private EncryptionPropertiesIdentity customerManagedKeyIdentity;
 
     /*
      * key encryption key Url, versioned. Ex:
@@ -25,29 +25,30 @@ public final class EncryptionProperties {
     @JsonProperty(value = "keyUrl")
     private String keyUrl;
 
-    /** Creates an instance of EncryptionProperties class. */
-    public EncryptionProperties() {
+    /** Creates an instance of CustomerManagedKeyEncryptionProperties class. */
+    public CustomerManagedKeyEncryptionProperties() {
     }
 
     /**
-     * Get the identity property: All identity configuration for Customer-managed key settings defining which identity
-     * should be used to auth to Key Vault.
+     * Get the customerManagedKeyIdentity property: All identity configuration for Customer-managed key settings
+     * defining which identity should be used to auth to Key Vault.
      *
-     * @return the identity value.
+     * @return the customerManagedKeyIdentity value.
      */
-    public EncryptionPropertiesIdentity identity() {
-        return this.identity;
+    public EncryptionPropertiesIdentity customerManagedKeyIdentity() {
+        return this.customerManagedKeyIdentity;
     }
 
     /**
-     * Set the identity property: All identity configuration for Customer-managed key settings defining which identity
-     * should be used to auth to Key Vault.
+     * Set the customerManagedKeyIdentity property: All identity configuration for Customer-managed key settings
+     * defining which identity should be used to auth to Key Vault.
      *
-     * @param identity the identity value to set.
-     * @return the EncryptionProperties object itself.
+     * @param customerManagedKeyIdentity the customerManagedKeyIdentity value to set.
+     * @return the CustomerManagedKeyEncryptionProperties object itself.
      */
-    public EncryptionProperties withIdentity(EncryptionPropertiesIdentity identity) {
-        this.identity = identity;
+    public CustomerManagedKeyEncryptionProperties withCustomerManagedKeyIdentity(
+        EncryptionPropertiesIdentity customerManagedKeyIdentity) {
+        this.customerManagedKeyIdentity = customerManagedKeyIdentity;
         return this;
     }
 
@@ -68,9 +69,9 @@ public final class EncryptionProperties {
      * https://contosovault.vault.azure.net/keys/contosokek.
      *
      * @param keyUrl the keyUrl value to set.
-     * @return the EncryptionProperties object itself.
+     * @return the CustomerManagedKeyEncryptionProperties object itself.
      */
-    public EncryptionProperties withKeyUrl(String keyUrl) {
+    public CustomerManagedKeyEncryptionProperties withKeyUrl(String keyUrl) {
         this.keyUrl = keyUrl;
         return this;
     }
@@ -81,8 +82,8 @@ public final class EncryptionProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
+        if (customerManagedKeyIdentity() != null) {
+            customerManagedKeyIdentity().validate();
         }
     }
 }

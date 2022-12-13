@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Details about the connection between the Batch service and the endpoint. */
 @Immutable
-public final class EndpointDetail {
+public final class LoadTestingEndpointDetail {
     /*
      * The port an endpoint is connected to.
      */
     @JsonProperty(value = "port", access = JsonProperty.Access.WRITE_ONLY)
     private Integer port;
 
-    /** Creates an instance of EndpointDetail class. */
-    public EndpointDetail() {
+    /** Creates an instance of LoadTestingEndpointDetail class. */
+    public LoadTestingEndpointDetail() {
     }
 
     /**

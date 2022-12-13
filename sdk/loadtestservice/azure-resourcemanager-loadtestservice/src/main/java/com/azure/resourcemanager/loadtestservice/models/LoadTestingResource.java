@@ -7,11 +7,11 @@ package com.azure.resourcemanager.loadtestservice.models;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner;
 import java.util.Map;
 
-/** An immutable client-side representation of LoadTestResource. */
-public interface LoadTestResource {
+/** An immutable client-side representation of LoadTestingResource. */
+public interface LoadTestingResource {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      *
@@ -87,7 +87,7 @@ public interface LoadTestResource {
      *
      * @return the encryption value.
      */
-    EncryptionProperties encryption();
+    CustomerManagedKeyEncryptionProperties encryption();
 
     /**
      * Gets the region of the resource.
@@ -111,25 +111,25 @@ public interface LoadTestResource {
     String resourceGroupName();
 
     /**
-     * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner object.
+     * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner object.
      *
      * @return the inner object.
      */
-    LoadTestResourceInner innerModel();
+    LoadTestingResourceInner innerModel();
 
-    /** The entirety of the LoadTestResource definition. */
+    /** The entirety of the LoadTestingResource definition. */
     interface Definition
         extends DefinitionStages.Blank,
             DefinitionStages.WithLocation,
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
-    /** The LoadTestResource definition stages. */
+    /** The LoadTestingResource definition stages. */
     interface DefinitionStages {
-        /** The first stage of the LoadTestResource definition. */
+        /** The first stage of the LoadTestingResource definition. */
         interface Blank extends WithLocation {
         }
-        /** The stage of the LoadTestResource definition allowing to specify location. */
+        /** The stage of the LoadTestingResource definition allowing to specify location. */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
@@ -147,7 +147,7 @@ public interface LoadTestResource {
              */
             WithResourceGroup withRegion(String location);
         }
-        /** The stage of the LoadTestResource definition allowing to specify parent resource. */
+        /** The stage of the LoadTestingResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
@@ -158,7 +158,7 @@ public interface LoadTestResource {
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
         /**
-         * The stage of the LoadTestResource definition which contains all the minimum required properties for the
+         * The stage of the LoadTestingResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
@@ -171,7 +171,7 @@ public interface LoadTestResource {
              *
              * @return the created resource.
              */
-            LoadTestResource create();
+            LoadTestingResource create();
 
             /**
              * Executes the create request.
@@ -179,9 +179,9 @@ public interface LoadTestResource {
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
-            LoadTestResource create(Context context);
+            LoadTestingResource create(Context context);
         }
-        /** The stage of the LoadTestResource definition allowing to specify tags. */
+        /** The stage of the LoadTestingResource definition allowing to specify tags. */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
@@ -191,7 +191,7 @@ public interface LoadTestResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the LoadTestResource definition allowing to specify identity. */
+        /** The stage of the LoadTestingResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
              * Specifies the identity property: The type of identity used for the resource..
@@ -201,7 +201,7 @@ public interface LoadTestResource {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
-        /** The stage of the LoadTestResource definition allowing to specify description. */
+        /** The stage of the LoadTestingResource definition allowing to specify description. */
         interface WithDescription {
             /**
              * Specifies the description property: Description of the resource..
@@ -211,7 +211,7 @@ public interface LoadTestResource {
              */
             WithCreate withDescription(String description);
         }
-        /** The stage of the LoadTestResource definition allowing to specify encryption. */
+        /** The stage of the LoadTestingResource definition allowing to specify encryption. */
         interface WithEncryption {
             /**
              * Specifies the encryption property: CMK Encryption property..
@@ -219,17 +219,17 @@ public interface LoadTestResource {
              * @param encryption CMK Encryption property.
              * @return the next definition stage.
              */
-            WithCreate withEncryption(EncryptionProperties encryption);
+            WithCreate withEncryption(CustomerManagedKeyEncryptionProperties encryption);
         }
     }
     /**
-     * Begins update for the LoadTestResource resource.
+     * Begins update for the LoadTestingResource resource.
      *
      * @return the stage of resource update.
      */
-    LoadTestResource.Update update();
+    LoadTestingResource.Update update();
 
-    /** The template for LoadTestResource update. */
+    /** The template for LoadTestingResource update. */
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithIdentity,
@@ -240,7 +240,7 @@ public interface LoadTestResource {
          *
          * @return the updated resource.
          */
-        LoadTestResource apply();
+        LoadTestingResource apply();
 
         /**
          * Executes the update request.
@@ -248,11 +248,11 @@ public interface LoadTestResource {
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
-        LoadTestResource apply(Context context);
+        LoadTestingResource apply(Context context);
     }
-    /** The LoadTestResource update stages. */
+    /** The LoadTestingResource update stages. */
     interface UpdateStages {
-        /** The stage of the LoadTestResource update allowing to specify tags. */
+        /** The stage of the LoadTestingResource update allowing to specify tags. */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
@@ -260,9 +260,9 @@ public interface LoadTestResource {
              * @param tags Resource tags.
              * @return the next definition stage.
              */
-            Update withTags(Object tags);
+            Update withTags(Map<String, String> tags);
         }
-        /** The stage of the LoadTestResource update allowing to specify identity. */
+        /** The stage of the LoadTestingResource update allowing to specify identity. */
         interface WithIdentity {
             /**
              * Specifies the identity property: The type of identity used for the resource..
@@ -272,7 +272,7 @@ public interface LoadTestResource {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
-        /** The stage of the LoadTestResource update allowing to specify description. */
+        /** The stage of the LoadTestingResource update allowing to specify description. */
         interface WithDescription {
             /**
              * Specifies the description property: Description of the resource..
@@ -282,7 +282,7 @@ public interface LoadTestResource {
              */
             Update withDescription(String description);
         }
-        /** The stage of the LoadTestResource update allowing to specify encryption. */
+        /** The stage of the LoadTestingResource update allowing to specify encryption. */
         interface WithEncryption {
             /**
              * Specifies the encryption property: CMK Encryption property..
@@ -290,7 +290,7 @@ public interface LoadTestResource {
              * @param encryption CMK Encryption property.
              * @return the next definition stage.
              */
-            Update withEncryption(EncryptionProperties encryption);
+            Update withEncryption(CustomerManagedKeyEncryptionProperties encryption);
         }
     }
     /**
@@ -298,7 +298,7 @@ public interface LoadTestResource {
      *
      * @return the refreshed resource.
      */
-    LoadTestResource refresh();
+    LoadTestingResource refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
@@ -306,5 +306,5 @@ public interface LoadTestResource {
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
-    LoadTestResource refresh(Context context);
+    LoadTestingResource refresh(Context context);
 }

@@ -12,12 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Quota bucket details object. */
 @Fluent
-public final class QuotaResourceInner extends ProxyResource {
+public final class LoadTestingQuotaInner extends ProxyResource {
     /*
      * Quota bucket resource properties.
      */
     @JsonProperty(value = "properties")
-    private QuotaResourceProperties innerProperties;
+    private LoadTestingQuotaProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -25,8 +25,8 @@ public final class QuotaResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of QuotaResourceInner class. */
-    public QuotaResourceInner() {
+    /** Creates an instance of LoadTestingQuotaInner class. */
+    public LoadTestingQuotaInner() {
     }
 
     /**
@@ -34,7 +34,7 @@ public final class QuotaResourceInner extends ProxyResource {
      *
      * @return the innerProperties value.
      */
-    private QuotaResourceProperties innerProperties() {
+    private LoadTestingQuotaProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -60,11 +60,11 @@ public final class QuotaResourceInner extends ProxyResource {
      * Set the limit property: Current quota limit of the quota bucket.
      *
      * @param limit the limit value to set.
-     * @return the QuotaResourceInner object itself.
+     * @return the LoadTestingQuotaInner object itself.
      */
-    public QuotaResourceInner withLimit(Integer limit) {
+    public LoadTestingQuotaInner withLimit(Integer limit) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new QuotaResourceProperties();
+            this.innerProperties = new LoadTestingQuotaProperties();
         }
         this.innerProperties().withLimit(limit);
         return this;
@@ -83,11 +83,11 @@ public final class QuotaResourceInner extends ProxyResource {
      * Set the usage property: Current quota usage of the quota bucket.
      *
      * @param usage the usage value to set.
-     * @return the QuotaResourceInner object itself.
+     * @return the LoadTestingQuotaInner object itself.
      */
-    public QuotaResourceInner withUsage(Integer usage) {
+    public LoadTestingQuotaInner withUsage(Integer usage) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new QuotaResourceProperties();
+            this.innerProperties = new LoadTestingQuotaProperties();
         }
         this.innerProperties().withUsage(usage);
         return this;

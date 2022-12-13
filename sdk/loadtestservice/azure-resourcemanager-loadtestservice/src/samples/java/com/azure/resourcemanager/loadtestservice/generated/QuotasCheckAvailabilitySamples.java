@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.loadtestservice.generated;
 
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequest;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaBucketContent;
 import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequestPropertiesDimensions;
 
 /** Samples for Quotas CheckAvailability. */
@@ -24,11 +24,11 @@ public final class QuotasCheckAvailabilitySamples {
             .checkAvailabilityWithResponse(
                 "westus",
                 "testQuotaBucket",
-                new QuotaBucketRequest()
+                new LoadTestingQuotaBucketContent()
                     .withCurrentUsage(20)
                     .withCurrentQuota(40)
                     .withNewQuota(50)
-                    .withDimensions(
+                    .withLoadTestingQuotaBucketDimensions(
                         new QuotaBucketRequestPropertiesDimensions()
                             .withSubscriptionId("testsubscriptionId")
                             .withLocation("westus")),

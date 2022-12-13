@@ -211,7 +211,7 @@ public final class LoadTestManager {
                 .append("-")
                 .append("com.azure.resourcemanager.loadtestservice")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -293,7 +293,7 @@ public final class LoadTestManager {
     }
 
     /**
-     * Gets the resource collection API of LoadTests. It manages LoadTestResource.
+     * Gets the resource collection API of LoadTests. It manages LoadTestingResource.
      *
      * @return Resource collection API of LoadTests.
      */

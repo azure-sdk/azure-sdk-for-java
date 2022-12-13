@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.loadtestservice.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.loadtestservice.models.EndpointDependency;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingEndpointDependency;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public final class OutboundEnvironmentEndpointInner {
      * The endpoints for this service to which the Batch service makes outbound calls.
      */
     @JsonProperty(value = "endpoints", access = JsonProperty.Access.WRITE_ONLY)
-    private List<EndpointDependency> endpoints;
+    private List<LoadTestingEndpointDependency> endpoints;
 
     /** Creates an instance of OutboundEnvironmentEndpointInner class. */
     public OutboundEnvironmentEndpointInner() {
@@ -42,7 +42,7 @@ public final class OutboundEnvironmentEndpointInner {
      *
      * @return the endpoints value.
      */
-    public List<EndpointDependency> endpoints() {
+    public List<LoadTestingEndpointDependency> endpoints() {
         return this.endpoints;
     }
 

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Check quota availability response properties. */
 @Fluent
-public final class CheckQuotaAvailabilityResponseProperties {
+public final class LoadTestingQuotaAvailabilityResponseProperties {
     /*
      * True/False indicating whether the quota request be granted based on availability.
      */
@@ -22,8 +22,8 @@ public final class CheckQuotaAvailabilityResponseProperties {
     @JsonProperty(value = "availabilityStatus")
     private String availabilityStatus;
 
-    /** Creates an instance of CheckQuotaAvailabilityResponseProperties class. */
-    public CheckQuotaAvailabilityResponseProperties() {
+    /** Creates an instance of LoadTestingQuotaAvailabilityResponseProperties class. */
+    public LoadTestingQuotaAvailabilityResponseProperties() {
     }
 
     /**
@@ -39,9 +39,9 @@ public final class CheckQuotaAvailabilityResponseProperties {
      * Set the isAvailable property: True/False indicating whether the quota request be granted based on availability.
      *
      * @param isAvailable the isAvailable value to set.
-     * @return the CheckQuotaAvailabilityResponseProperties object itself.
+     * @return the LoadTestingQuotaAvailabilityResponseProperties object itself.
      */
-    public CheckQuotaAvailabilityResponseProperties withIsAvailable(Boolean isAvailable) {
+    public LoadTestingQuotaAvailabilityResponseProperties withIsAvailable(Boolean isAvailable) {
         this.isAvailable = isAvailable;
         return this;
     }
@@ -59,9 +59,9 @@ public final class CheckQuotaAvailabilityResponseProperties {
      * Set the availabilityStatus property: Message indicating additional details to add to quota support request.
      *
      * @param availabilityStatus the availabilityStatus value to set.
-     * @return the CheckQuotaAvailabilityResponseProperties object itself.
+     * @return the LoadTestingQuotaAvailabilityResponseProperties object itself.
      */
-    public CheckQuotaAvailabilityResponseProperties withAvailabilityStatus(String availabilityStatus) {
+    public LoadTestingQuotaAvailabilityResponseProperties withAvailabilityStatus(String availabilityStatus) {
         this.availabilityStatus = availabilityStatus;
         return this;
     }

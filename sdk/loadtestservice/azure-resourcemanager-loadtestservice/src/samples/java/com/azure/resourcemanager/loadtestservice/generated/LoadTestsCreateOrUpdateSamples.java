@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.loadtestservice.generated;
 
-import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.CustomerManagedKeyEncryptionProperties;
 import com.azure.resourcemanager.loadtestservice.models.EncryptionPropertiesIdentity;
 import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentityType;
@@ -39,13 +39,13 @@ public final class LoadTestsCreateOrUpdateSamples {
                             new UserAssignedIdentity())))
             .withDescription("This is new load test resource")
             .withEncryption(
-                new EncryptionProperties()
-                    .withIdentity(
+                new CustomerManagedKeyEncryptionProperties()
+                    .withCustomerManagedKeyIdentity(
                         new EncryptionPropertiesIdentity()
-                            .withType(Type.USER_ASSIGNED)
-                            .withResourceId(
+                            .withCustomerManagedKeyIdentityType(Type.USER_ASSIGNED)
+                            .withResourceIdentifier(
                                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/dummyrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1"))
-                    .withKeyUrl("https://dummy.vault.azure.net/keys/dummykey1"))
+                    .withKeyUrl("fakeTokenPlaceholder"))
             .create();
     }
 

@@ -11,9 +11,9 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner;
 import com.azure.resourcemanager.loadtestservice.fluent.models.OutboundEnvironmentEndpointInner;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResourcePatchRequestBody;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingResourcePatch;
 
 /** An instance of this class provides access to all the operations defined in LoadTestsClient. */
 public interface LoadTestsClient {
@@ -25,7 +25,7 @@ public interface LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<LoadTestResourceInner> list();
+    PagedIterable<LoadTestingResourceInner> list();
 
     /**
      * Lists loadtests resources in a subscription.
@@ -37,7 +37,7 @@ public interface LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<LoadTestResourceInner> list(Context context);
+    PagedIterable<LoadTestingResourceInner> list(Context context);
 
     /**
      * Lists loadtest resources in a resource group.
@@ -49,7 +49,7 @@ public interface LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<LoadTestResourceInner> listByResourceGroup(String resourceGroupName);
+    PagedIterable<LoadTestingResourceInner> listByResourceGroup(String resourceGroupName);
 
     /**
      * Lists loadtest resources in a resource group.
@@ -62,7 +62,7 @@ public interface LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<LoadTestResourceInner> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<LoadTestingResourceInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Get a LoadTest resource.
@@ -76,7 +76,7 @@ public interface LoadTestsClient {
      * @return a LoadTest resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<LoadTestResourceInner> getByResourceGroupWithResponse(
+    Response<LoadTestingResourceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String loadTestName, Context context);
 
     /**
@@ -90,7 +90,7 @@ public interface LoadTestsClient {
      * @return a LoadTest resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LoadTestResourceInner getByResourceGroup(String resourceGroupName, String loadTestName);
+    LoadTestingResourceInner getByResourceGroup(String resourceGroupName, String loadTestName);
 
     /**
      * Create or update LoadTest resource.
@@ -104,8 +104,8 @@ public interface LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource);
+    SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginCreateOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource);
 
     /**
      * Create or update LoadTest resource.
@@ -120,8 +120,8 @@ public interface LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context);
+    SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginCreateOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context);
 
     /**
      * Create or update LoadTest resource.
@@ -135,8 +135,8 @@ public interface LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LoadTestResourceInner createOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource);
+    LoadTestingResourceInner createOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource);
 
     /**
      * Create or update LoadTest resource.
@@ -151,8 +151,8 @@ public interface LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LoadTestResourceInner createOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context);
+    LoadTestingResourceInner createOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context);
 
     /**
      * Update a loadtest resource.
@@ -166,10 +166,8 @@ public interface LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginUpdate(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody);
+    SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody);
 
     /**
      * Update a loadtest resource.
@@ -184,10 +182,10 @@ public interface LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginUpdate(
+    SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginUpdate(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context);
 
     /**
@@ -202,10 +200,8 @@ public interface LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LoadTestResourceInner update(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody);
+    LoadTestingResourceInner update(
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody);
 
     /**
      * Update a loadtest resource.
@@ -220,10 +216,10 @@ public interface LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LoadTestResourceInner update(
+    LoadTestingResourceInner update(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context);
 
     /**

@@ -19,7 +19,7 @@ public interface Quotas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of quota bucket objects as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<QuotaResource> list(String location);
+    PagedIterable<LoadTestingQuota> list(String location);
 
     /**
      * Lists all the available quota per region per subscription.
@@ -31,7 +31,7 @@ public interface Quotas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of quota bucket objects as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<QuotaResource> list(String location, Context context);
+    PagedIterable<LoadTestingQuota> list(String location, Context context);
 
     /**
      * Get the available quota for a quota bucket per region per subscription.
@@ -44,7 +44,7 @@ public interface Quotas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the available quota for a quota bucket per region per subscription along with {@link Response}.
      */
-    Response<QuotaResource> getWithResponse(String location, String quotaBucketName, Context context);
+    Response<LoadTestingQuota> getWithResponse(String location, String quotaBucketName, Context context);
 
     /**
      * Get the available quota for a quota bucket per region per subscription.
@@ -56,7 +56,7 @@ public interface Quotas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the available quota for a quota bucket per region per subscription.
      */
-    QuotaResource get(String location, String quotaBucketName);
+    LoadTestingQuota get(String location, String quotaBucketName);
 
     /**
      * Check Quota Availability on quota bucket per region per subscription.
@@ -70,8 +70,8 @@ public interface Quotas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return check quota availability response object along with {@link Response}.
      */
-    Response<CheckQuotaAvailabilityResponse> checkAvailabilityWithResponse(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest, Context context);
+    Response<LoadTestingQuotaAvailabilityResponse> checkAvailabilityWithResponse(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest, Context context);
 
     /**
      * Check Quota Availability on quota bucket per region per subscription.
@@ -84,6 +84,6 @@ public interface Quotas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return check quota availability response object.
      */
-    CheckQuotaAvailabilityResponse checkAvailability(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest);
+    LoadTestingQuotaAvailabilityResponse checkAvailability(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest);
 }

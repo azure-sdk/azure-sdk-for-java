@@ -5,18 +5,18 @@
 package com.azure.resourcemanager.loadtestservice.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of resources page result. */
 @Fluent
-public final class LoadTestResourcePageList {
+public final class LoadTestingResourcePageList {
     /*
      * List of resources in current page.
      */
     @JsonProperty(value = "value")
-    private List<LoadTestResourceInner> value;
+    private List<LoadTestingResourceInner> value;
 
     /*
      * Link to next page of resources.
@@ -24,8 +24,8 @@ public final class LoadTestResourcePageList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of LoadTestResourcePageList class. */
-    public LoadTestResourcePageList() {
+    /** Creates an instance of LoadTestingResourcePageList class. */
+    public LoadTestingResourcePageList() {
     }
 
     /**
@@ -33,7 +33,7 @@ public final class LoadTestResourcePageList {
      *
      * @return the value value.
      */
-    public List<LoadTestResourceInner> value() {
+    public List<LoadTestingResourceInner> value() {
         return this.value;
     }
 
@@ -41,9 +41,9 @@ public final class LoadTestResourcePageList {
      * Set the value property: List of resources in current page.
      *
      * @param value the value value to set.
-     * @return the LoadTestResourcePageList object itself.
+     * @return the LoadTestingResourcePageList object itself.
      */
-    public LoadTestResourcePageList withValue(List<LoadTestResourceInner> value) {
+    public LoadTestingResourcePageList withValue(List<LoadTestingResourceInner> value) {
         this.value = value;
         return this;
     }
@@ -61,9 +61,9 @@ public final class LoadTestResourcePageList {
      * Set the nextLink property: Link to next page of resources.
      *
      * @param nextLink the nextLink value to set.
-     * @return the LoadTestResourcePageList object itself.
+     * @return the LoadTestingResourcePageList object itself.
      */
-    public LoadTestResourcePageList withNextLink(String nextLink) {
+    public LoadTestingResourcePageList withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }

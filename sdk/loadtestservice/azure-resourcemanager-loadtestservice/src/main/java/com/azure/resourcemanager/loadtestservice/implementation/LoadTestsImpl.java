@@ -10,9 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.loadtestservice.fluent.LoadTestsClient;
-import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner;
 import com.azure.resourcemanager.loadtestservice.fluent.models.OutboundEnvironmentEndpointInner;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResource;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingResource;
 import com.azure.resourcemanager.loadtestservice.models.LoadTests;
 import com.azure.resourcemanager.loadtestservice.models.OutboundEnvironmentEndpoint;
 
@@ -29,46 +29,46 @@ public final class LoadTestsImpl implements LoadTests {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<LoadTestResource> list() {
-        PagedIterable<LoadTestResourceInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new LoadTestResourceImpl(inner1, this.manager()));
+    public PagedIterable<LoadTestingResource> list() {
+        PagedIterable<LoadTestingResourceInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new LoadTestingResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<LoadTestResource> list(Context context) {
-        PagedIterable<LoadTestResourceInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new LoadTestResourceImpl(inner1, this.manager()));
+    public PagedIterable<LoadTestingResource> list(Context context) {
+        PagedIterable<LoadTestingResourceInner> inner = this.serviceClient().list(context);
+        return Utils.mapPage(inner, inner1 -> new LoadTestingResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<LoadTestResource> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<LoadTestResourceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new LoadTestResourceImpl(inner1, this.manager()));
+    public PagedIterable<LoadTestingResource> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<LoadTestingResourceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return Utils.mapPage(inner, inner1 -> new LoadTestingResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<LoadTestResource> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<LoadTestResourceInner> inner =
+    public PagedIterable<LoadTestingResource> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<LoadTestingResourceInner> inner =
             this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new LoadTestResourceImpl(inner1, this.manager()));
+        return Utils.mapPage(inner, inner1 -> new LoadTestingResourceImpl(inner1, this.manager()));
     }
 
-    public Response<LoadTestResource> getByResourceGroupWithResponse(
+    public Response<LoadTestingResource> getByResourceGroupWithResponse(
         String resourceGroupName, String loadTestName, Context context) {
-        Response<LoadTestResourceInner> inner =
+        Response<LoadTestingResourceInner> inner =
             this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, loadTestName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new LoadTestResourceImpl(inner.getValue(), this.manager()));
+                new LoadTestingResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public LoadTestResource getByResourceGroup(String resourceGroupName, String loadTestName) {
-        LoadTestResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, loadTestName);
+    public LoadTestingResource getByResourceGroup(String resourceGroupName, String loadTestName) {
+        LoadTestingResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, loadTestName);
         if (inner != null) {
-            return new LoadTestResourceImpl(inner, this.manager());
+            return new LoadTestingResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -96,7 +96,7 @@ public final class LoadTestsImpl implements LoadTests {
         return Utils.mapPage(inner, inner1 -> new OutboundEnvironmentEndpointImpl(inner1, this.manager()));
     }
 
-    public LoadTestResource getById(String id) {
+    public LoadTestingResource getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -115,7 +115,7 @@ public final class LoadTestsImpl implements LoadTests {
         return this.getByResourceGroupWithResponse(resourceGroupName, loadTestName, Context.NONE).getValue();
     }
 
-    public Response<LoadTestResource> getByIdWithResponse(String id, Context context) {
+    public Response<LoadTestingResource> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -180,7 +180,7 @@ public final class LoadTestsImpl implements LoadTests {
         return this.serviceManager;
     }
 
-    public LoadTestResourceImpl define(String name) {
-        return new LoadTestResourceImpl(name, this.manager());
+    public LoadTestingResourceImpl define(String name) {
+        return new LoadTestingResourceImpl(name, this.manager());
     }
 }

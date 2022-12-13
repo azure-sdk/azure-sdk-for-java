@@ -7,17 +7,17 @@ package com.azure.resourcemanager.loadtestservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaBucketRequestProperties;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaBucketProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Request object of new quota for a quota bucket. */
 @Fluent
-public final class QuotaBucketRequest extends ProxyResource {
+public final class LoadTestingQuotaBucketContent extends ProxyResource {
     /*
      * New quota request request properties.
      */
     @JsonProperty(value = "properties")
-    private QuotaBucketRequestProperties innerProperties;
+    private LoadTestingQuotaBucketProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -25,8 +25,8 @@ public final class QuotaBucketRequest extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of QuotaBucketRequest class. */
-    public QuotaBucketRequest() {
+    /** Creates an instance of LoadTestingQuotaBucketContent class. */
+    public LoadTestingQuotaBucketContent() {
     }
 
     /**
@@ -34,7 +34,7 @@ public final class QuotaBucketRequest extends ProxyResource {
      *
      * @return the innerProperties value.
      */
-    private QuotaBucketRequestProperties innerProperties() {
+    private LoadTestingQuotaBucketProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -60,11 +60,11 @@ public final class QuotaBucketRequest extends ProxyResource {
      * Set the currentUsage property: Current quota usage of the quota bucket.
      *
      * @param currentUsage the currentUsage value to set.
-     * @return the QuotaBucketRequest object itself.
+     * @return the LoadTestingQuotaBucketContent object itself.
      */
-    public QuotaBucketRequest withCurrentUsage(Integer currentUsage) {
+    public LoadTestingQuotaBucketContent withCurrentUsage(Integer currentUsage) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new QuotaBucketRequestProperties();
+            this.innerProperties = new LoadTestingQuotaBucketProperties();
         }
         this.innerProperties().withCurrentUsage(currentUsage);
         return this;
@@ -83,11 +83,11 @@ public final class QuotaBucketRequest extends ProxyResource {
      * Set the currentQuota property: Current quota limit of the quota bucket.
      *
      * @param currentQuota the currentQuota value to set.
-     * @return the QuotaBucketRequest object itself.
+     * @return the LoadTestingQuotaBucketContent object itself.
      */
-    public QuotaBucketRequest withCurrentQuota(Integer currentQuota) {
+    public LoadTestingQuotaBucketContent withCurrentQuota(Integer currentQuota) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new QuotaBucketRequestProperties();
+            this.innerProperties = new LoadTestingQuotaBucketProperties();
         }
         this.innerProperties().withCurrentQuota(currentQuota);
         return this;
@@ -106,36 +106,37 @@ public final class QuotaBucketRequest extends ProxyResource {
      * Set the newQuota property: New quota limit of the quota bucket.
      *
      * @param newQuota the newQuota value to set.
-     * @return the QuotaBucketRequest object itself.
+     * @return the LoadTestingQuotaBucketContent object itself.
      */
-    public QuotaBucketRequest withNewQuota(Integer newQuota) {
+    public LoadTestingQuotaBucketContent withNewQuota(Integer newQuota) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new QuotaBucketRequestProperties();
+            this.innerProperties = new LoadTestingQuotaBucketProperties();
         }
         this.innerProperties().withNewQuota(newQuota);
         return this;
     }
 
     /**
-     * Get the dimensions property: Dimensions for new quota request.
+     * Get the loadTestingQuotaBucketDimensions property: Dimensions for new quota request.
      *
-     * @return the dimensions value.
+     * @return the loadTestingQuotaBucketDimensions value.
      */
-    public QuotaBucketRequestPropertiesDimensions dimensions() {
-        return this.innerProperties() == null ? null : this.innerProperties().dimensions();
+    public QuotaBucketRequestPropertiesDimensions loadTestingQuotaBucketDimensions() {
+        return this.innerProperties() == null ? null : this.innerProperties().loadTestingQuotaBucketDimensions();
     }
 
     /**
-     * Set the dimensions property: Dimensions for new quota request.
+     * Set the loadTestingQuotaBucketDimensions property: Dimensions for new quota request.
      *
-     * @param dimensions the dimensions value to set.
-     * @return the QuotaBucketRequest object itself.
+     * @param loadTestingQuotaBucketDimensions the loadTestingQuotaBucketDimensions value to set.
+     * @return the LoadTestingQuotaBucketContent object itself.
      */
-    public QuotaBucketRequest withDimensions(QuotaBucketRequestPropertiesDimensions dimensions) {
+    public LoadTestingQuotaBucketContent withLoadTestingQuotaBucketDimensions(
+        QuotaBucketRequestPropertiesDimensions loadTestingQuotaBucketDimensions) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new QuotaBucketRequestProperties();
+            this.innerProperties = new LoadTestingQuotaBucketProperties();
         }
-        this.innerProperties().withDimensions(dimensions);
+        this.innerProperties().withLoadTestingQuotaBucketDimensions(loadTestingQuotaBucketDimensions);
         return this;
     }
 

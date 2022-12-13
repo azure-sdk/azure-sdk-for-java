@@ -11,7 +11,7 @@ import java.util.List;
 
 /** Values returned by the List operation. */
 @Fluent
-public final class OutboundEnvironmentEndpointCollection {
+public final class OutboundEnvironmentEndpointListResult {
     /*
      * The collection of outbound network dependency endpoints returned by the listing operation.
      */
@@ -24,8 +24,8 @@ public final class OutboundEnvironmentEndpointCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of OutboundEnvironmentEndpointCollection class. */
-    public OutboundEnvironmentEndpointCollection() {
+    /** Creates an instance of OutboundEnvironmentEndpointListResult class. */
+    public OutboundEnvironmentEndpointListResult() {
     }
 
     /**
@@ -51,9 +51,9 @@ public final class OutboundEnvironmentEndpointCollection {
      * Set the nextLink property: The continuation token.
      *
      * @param nextLink the nextLink value to set.
-     * @return the OutboundEnvironmentEndpointCollection object itself.
+     * @return the OutboundEnvironmentEndpointListResult object itself.
      */
-    public OutboundEnvironmentEndpointCollection withNextLink(String nextLink) {
+    public OutboundEnvironmentEndpointListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }

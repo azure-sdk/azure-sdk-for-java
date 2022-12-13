@@ -5,18 +5,18 @@
 package com.azure.resourcemanager.loadtestservice.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of quota bucket objects. It contains a URL link to get the next set of results. */
 @Immutable
-public final class QuotaResourceList {
+public final class LoadTestingQuotaListResult {
     /*
      * List of quota bucket objects provided by the loadtestservice.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<QuotaResourceInner> value;
+    private List<LoadTestingQuotaInner> value;
 
     /*
      * URL to get the next set of quota bucket objects results (if there are any).
@@ -24,8 +24,8 @@ public final class QuotaResourceList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of QuotaResourceList class. */
-    public QuotaResourceList() {
+    /** Creates an instance of LoadTestingQuotaListResult class. */
+    public LoadTestingQuotaListResult() {
     }
 
     /**
@@ -33,7 +33,7 @@ public final class QuotaResourceList {
      *
      * @return the value value.
      */
-    public List<QuotaResourceInner> value() {
+    public List<LoadTestingQuotaInner> value() {
         return this.value;
     }
 
