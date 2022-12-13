@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Status. */
+/** Status of the cluster agent. */
 public final class Status extends ExpandableStringEnum<Status> {
     /** Static value NotYetRegistered for Status. */
     public static final Status NOT_YET_REGISTERED = fromString("NotYetRegistered");
@@ -24,6 +24,18 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /** Static value Error for Status. */
     public static final Status ERROR = fromString("Error");
+
+    /** Static value NotSpecified for Status. */
+    public static final Status NOT_SPECIFIED = fromString("NotSpecified");
+
+    /** Static value Succeeded for Status. */
+    public static final Status SUCCEEDED = fromString("Succeeded");
+
+    /** Static value Failed for Status. */
+    public static final Status FAILED = fromString("Failed");
+
+    /** Static value InProgress for Status. */
+    public static final Status IN_PROGRESS = fromString("InProgress");
 
     /**
      * Creates or finds a Status from its string representation.

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions ListByArcSetting. */
 public final class ExtensionsListByArcSettingSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/ListExtensionsByArcSetting.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2022-12-30-preview/examples/ListExtensionsByArcSetting.json
      */
     /**
      * Sample code: List Extensions under ArcSetting resource.

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters CreateIdentity. */
 public final class ClustersCreateIdentitySamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/CreateClusterIdentity.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2022-12-30-preview/examples/CreateClusterIdentity.json
      */
     /**
      * Sample code: Create cluster Identity.

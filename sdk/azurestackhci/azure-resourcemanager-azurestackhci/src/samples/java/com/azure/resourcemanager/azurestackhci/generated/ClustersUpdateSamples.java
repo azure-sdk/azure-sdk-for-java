@@ -8,6 +8,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.models.Cluster;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.DiagnosticLevel;
+import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.azurestackhci.models.WindowsServerSubscription;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Map;
 /** Samples for Clusters Update. */
 public final class ClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/UpdateCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2022-12-30-preview/examples/UpdateCluster.json
      */
     /**
      * Sample code: Update cluster.
@@ -28,6 +29,7 @@ public final class ClustersUpdateSamples {
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+            .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
             .withCloudManagementEndpoint("https://98294836-31be-4668-aeae-698667faf99b.waconazure.com")
             .withDesiredProperties(
                 new ClusterDesiredProperties()
