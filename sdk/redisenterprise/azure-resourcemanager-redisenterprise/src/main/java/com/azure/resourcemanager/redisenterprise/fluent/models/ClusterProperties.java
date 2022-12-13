@@ -9,20 +9,10 @@ import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/**
- * RedisEnterprise cluster properties Properties of RedisEnterprise clusters, as opposed to general resource properties
- * like location, tags.
- */
+/** Properties of a RedisEnterprise cluster. */
 @Fluent
 public final class ClusterProperties {
-    /*
-     * The minimum TLS version for the cluster to support, e.g. '1.2'
-     */
-    @JsonProperty(value = "minimumTlsVersion")
-    private TlsVersion minimumTlsVersion;
-
     /*
      * DNS name of the cluster endpoint
      */
@@ -30,13 +20,19 @@ public final class ClusterProperties {
     private String hostname;
 
     /*
-     * Current provisioning status of the cluster
+     * The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "minTlsVersion")
+    private TlsVersion minTlsVersion;
+
+    /*
+     * Current provisioning status of the last operation on the cluster.
+     */
+    @JsonProperty(value = "provisioningState", required = true, access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
-     * Current resource status of the cluster
+     * Current resource status of the cluster.
      */
     @JsonProperty(value = "resourceState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceState resourceState;
@@ -47,31 +43,8 @@ public final class ClusterProperties {
     @JsonProperty(value = "redisVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String redisVersion;
 
-    /*
-     * List of private endpoint connections associated with the specified
-     * RedisEnterprise cluster
-     */
-    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
-    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
-
-    /**
-     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @return the minimumTlsVersion value.
-     */
-    public TlsVersion minimumTlsVersion() {
-        return this.minimumTlsVersion;
-    }
-
-    /**
-     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @param minimumTlsVersion the minimumTlsVersion value to set.
-     * @return the ClusterProperties object itself.
-     */
-    public ClusterProperties withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
-        this.minimumTlsVersion = minimumTlsVersion;
-        return this;
+    /** Creates an instance of ClusterProperties class. */
+    public ClusterProperties() {
     }
 
     /**
@@ -84,7 +57,27 @@ public final class ClusterProperties {
     }
 
     /**
-     * Get the provisioningState property: Current provisioning status of the cluster.
+     * Get the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @return the minTlsVersion value.
+     */
+    public TlsVersion minTlsVersion() {
+        return this.minTlsVersion;
+    }
+
+    /**
+     * Set the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @param minTlsVersion the minTlsVersion value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withMinTlsVersion(TlsVersion minTlsVersion) {
+        this.minTlsVersion = minTlsVersion;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Current provisioning status of the last operation on the cluster.
      *
      * @return the provisioningState value.
      */
@@ -111,23 +104,10 @@ public final class ClusterProperties {
     }
 
     /**
-     * Get the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * RedisEnterprise cluster.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.privateEndpointConnections;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (privateEndpointConnections() != null) {
-            privateEndpointConnections().forEach(e -> e.validate());
-        }
     }
 }

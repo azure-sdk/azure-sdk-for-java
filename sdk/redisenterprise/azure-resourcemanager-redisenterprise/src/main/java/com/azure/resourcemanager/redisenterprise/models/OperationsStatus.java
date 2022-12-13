@@ -10,27 +10,27 @@ import com.azure.core.util.Context;
 /** Resource collection API of OperationsStatus. */
 public interface OperationsStatus {
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation.
-     */
-    OperationStatus get(String location, String operationId);
-
-    /**
-     * Gets the status of operation.
-     *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
+     * @param location The location name.
+     * @param operationId Operation ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response}.
+     * @return information about a database in a RedisEnterprise cluster along with {@link Response}.
      */
     Response<OperationStatus> getWithResponse(String location, String operationId, Context context);
+
+    /**
+     * Gets information about a database in a RedisEnterprise cluster.
+     *
+     * @param location The location name.
+     * @param operationId Operation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about a database in a RedisEnterprise cluster.
+     */
+    OperationStatus get(String location, String operationId);
 }

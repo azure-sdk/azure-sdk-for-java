@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.redisenterprise.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
 
@@ -31,7 +32,14 @@ public interface PrivateEndpointConnection {
     String type();
 
     /**
-     * Gets the privateEndpoint property: The resource of private end point.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the privateEndpoint property: The private endpoint that is connected.
      *
      * @return the privateEndpoint value.
      */
@@ -74,7 +82,7 @@ public interface PrivateEndpointConnection {
              * Specifies resourceGroupName, clusterName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param clusterName The name of the RedisEnterprise cluster.
+             * @param clusterName Name of cluster.
              * @return the next definition stage.
              */
             WithCreate withExistingRedisEnterprise(String resourceGroupName, String clusterName);
@@ -103,9 +111,9 @@ public interface PrivateEndpointConnection {
         /** The stage of the PrivateEndpointConnection definition allowing to specify privateEndpoint. */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
+             * Specifies the privateEndpoint property: The private endpoint that is connected.
              *
-             * @param privateEndpoint The resource of private end point.
+             * @param privateEndpoint The private endpoint that is connected.
              * @return the next definition stage.
              */
             WithCreate withPrivateEndpoint(PrivateEndpoint privateEndpoint);
@@ -123,56 +131,6 @@ public interface PrivateEndpointConnection {
              * @return the next definition stage.
              */
             WithCreate withPrivateLinkServiceConnectionState(
-                PrivateLinkServiceConnectionState privateLinkServiceConnectionState);
-        }
-    }
-    /**
-     * Begins update for the PrivateEndpointConnection resource.
-     *
-     * @return the stage of resource update.
-     */
-    PrivateEndpointConnection.Update update();
-
-    /** The template for PrivateEndpointConnection update. */
-    interface Update extends UpdateStages.WithPrivateEndpoint, UpdateStages.WithPrivateLinkServiceConnectionState {
-        /**
-         * Executes the update request.
-         *
-         * @return the updated resource.
-         */
-        PrivateEndpointConnection apply();
-
-        /**
-         * Executes the update request.
-         *
-         * @param context The context to associate with this operation.
-         * @return the updated resource.
-         */
-        PrivateEndpointConnection apply(Context context);
-    }
-    /** The PrivateEndpointConnection update stages. */
-    interface UpdateStages {
-        /** The stage of the PrivateEndpointConnection update allowing to specify privateEndpoint. */
-        interface WithPrivateEndpoint {
-            /**
-             * Specifies the privateEndpoint property: The resource of private end point..
-             *
-             * @param privateEndpoint The resource of private end point.
-             * @return the next definition stage.
-             */
-            Update withPrivateEndpoint(PrivateEndpoint privateEndpoint);
-        }
-        /** The stage of the PrivateEndpointConnection update allowing to specify privateLinkServiceConnectionState. */
-        interface WithPrivateLinkServiceConnectionState {
-            /**
-             * Specifies the privateLinkServiceConnectionState property: A collection of information about the state of
-             * the connection between service consumer and provider..
-             *
-             * @param privateLinkServiceConnectionState A collection of information about the state of the connection
-             *     between service consumer and provider.
-             * @return the next definition stage.
-             */
-            Update withPrivateLinkServiceConnectionState(
                 PrivateLinkServiceConnectionState privateLinkServiceConnectionState);
         }
     }

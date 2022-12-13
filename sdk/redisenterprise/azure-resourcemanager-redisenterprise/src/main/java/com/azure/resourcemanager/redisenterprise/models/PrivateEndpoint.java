@@ -4,25 +4,40 @@
 
 package com.azure.resourcemanager.redisenterprise.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Private Endpoint resource. */
-@Immutable
+/** The private endpoint resource. */
+@Fluent
 public final class PrivateEndpoint {
     /*
-     * The ARM identifier for Private Endpoint
+     * The ARM resource id of the private endpoint resource
      */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "id")
     private String id;
 
+    /** Creates an instance of PrivateEndpoint class. */
+    public PrivateEndpoint() {
+    }
+
     /**
-     * Get the id property: The ARM identifier for Private Endpoint.
+     * Get the id property: The ARM resource id of the private endpoint resource.
      *
      * @return the id value.
      */
     public String id() {
         return this.id;
+    }
+
+    /**
+     * Set the id property: The ARM resource id of the private endpoint resource.
+     *
+     * @param id the id value to set.
+     * @return the PrivateEndpoint object itself.
+     */
+    public PrivateEndpoint withId(String id) {
+        this.id = id;
+        return this;
     }
 
     /**

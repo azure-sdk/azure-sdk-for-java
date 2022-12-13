@@ -4,52 +4,45 @@
 
 package com.azure.resourcemanager.redisenterprise.models;
 
-import com.azure.core.management.exception.ManagementError;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
 
 /** An immutable client-side representation of OperationStatus. */
 public interface OperationStatus {
     /**
-     * Gets the id property: The operation's unique id.
+     * Gets the id property: Fully qualified resource Id for the resource.
      *
      * @return the id value.
      */
     String id();
 
     /**
-     * Gets the name property: The operation's name.
+     * Gets the name property: The name of the resource.
      *
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the startTime property: The start time of the operation.
+     * Gets the type property: The type of the resource.
      *
-     * @return the startTime value.
+     * @return the type value.
      */
-    String startTime();
+    String type();
 
     /**
-     * Gets the endTime property: The end time of the operation.
+     * Gets the properties property: The resource-specific properties for this resource.
      *
-     * @return the endTime value.
+     * @return the properties value.
      */
-    String endTime();
+    Object properties();
 
     /**
-     * Gets the status property: The current status of the operation.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the status value.
+     * @return the systemData value.
      */
-    String status();
-
-    /**
-     * Gets the error property: Error response Error response describing why the operation failed.
-     *
-     * @return the error value.
-     */
-    ManagementError error();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner object.

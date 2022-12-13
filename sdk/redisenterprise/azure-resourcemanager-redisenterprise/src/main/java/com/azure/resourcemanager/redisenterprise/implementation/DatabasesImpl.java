@@ -15,9 +15,9 @@ import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import com.azure.resourcemanager.redisenterprise.models.AccessKeys;
 import com.azure.resourcemanager.redisenterprise.models.Database;
 import com.azure.resourcemanager.redisenterprise.models.Databases;
-import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
+import com.azure.resourcemanager.redisenterprise.models.ExportParameters;
 import com.azure.resourcemanager.redisenterprise.models.ForceUnlinkParameters;
-import com.azure.resourcemanager.redisenterprise.models.ImportClusterParameters;
+import com.azure.resourcemanager.redisenterprise.models.ImportParameters;
 import com.azure.resourcemanager.redisenterprise.models.RegenerateKeyParameters;
 
 public final class DatabasesImpl implements Databases {
@@ -44,15 +44,6 @@ public final class DatabasesImpl implements Databases {
         return Utils.mapPage(inner, inner1 -> new DatabaseImpl(inner1, this.manager()));
     }
 
-    public Database get(String resourceGroupName, String clusterName, String databaseName) {
-        DatabaseInner inner = this.serviceClient().get(resourceGroupName, clusterName, databaseName);
-        if (inner != null) {
-            return new DatabaseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Database> getWithResponse(
         String resourceGroupName, String clusterName, String databaseName, Context context) {
         Response<DatabaseInner> inner =
@@ -68,6 +59,35 @@ public final class DatabasesImpl implements Databases {
         }
     }
 
+    public Database get(String resourceGroupName, String clusterName, String databaseName) {
+        DatabaseInner inner = this.serviceClient().get(resourceGroupName, clusterName, databaseName);
+        if (inner != null) {
+            return new DatabaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Database update(String resourceGroupName, String clusterName, String databaseName, Object properties) {
+        DatabaseInner inner = this.serviceClient().update(resourceGroupName, clusterName, databaseName, properties);
+        if (inner != null) {
+            return new DatabaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Database update(
+        String resourceGroupName, String clusterName, String databaseName, Object properties, Context context) {
+        DatabaseInner inner =
+            this.serviceClient().update(resourceGroupName, clusterName, databaseName, properties, context);
+        if (inner != null) {
+            return new DatabaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String resourceGroupName, String clusterName, String databaseName) {
         this.serviceClient().delete(resourceGroupName, clusterName, databaseName);
     }
@@ -76,13 +96,36 @@ public final class DatabasesImpl implements Databases {
         this.serviceClient().delete(resourceGroupName, clusterName, databaseName, context);
     }
 
-    public AccessKeys listKeys(String resourceGroupName, String clusterName, String databaseName) {
-        AccessKeysInner inner = this.serviceClient().listKeys(resourceGroupName, clusterName, databaseName);
-        if (inner != null) {
-            return new AccessKeysImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void exportRdb(String resourceGroupName, String clusterName, String databaseName, ExportParameters body) {
+        this.serviceClient().exportRdb(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void exportRdb(
+        String resourceGroupName, String clusterName, String databaseName, ExportParameters body, Context context) {
+        this.serviceClient().exportRdb(resourceGroupName, clusterName, databaseName, body, context);
+    }
+
+    public void forceUnlink(
+        String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters body) {
+        this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void forceUnlink(
+        String resourceGroupName,
+        String clusterName,
+        String databaseName,
+        ForceUnlinkParameters body,
+        Context context) {
+        this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, body, context);
+    }
+
+    public void importRdb(String resourceGroupName, String clusterName, String databaseName, ImportParameters body) {
+        this.serviceClient().importRdb(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void importRdb(
+        String resourceGroupName, String clusterName, String databaseName, ImportParameters body, Context context) {
+        this.serviceClient().importRdb(resourceGroupName, clusterName, databaseName, body, context);
     }
 
     public Response<AccessKeys> listKeysWithResponse(
@@ -100,10 +143,18 @@ public final class DatabasesImpl implements Databases {
         }
     }
 
+    public AccessKeys listKeys(String resourceGroupName, String clusterName, String databaseName) {
+        AccessKeysInner inner = this.serviceClient().listKeys(resourceGroupName, clusterName, databaseName);
+        if (inner != null) {
+            return new AccessKeysImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public AccessKeys regenerateKey(
-        String resourceGroupName, String clusterName, String databaseName, RegenerateKeyParameters parameters) {
-        AccessKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, parameters);
+        String resourceGroupName, String clusterName, String databaseName, RegenerateKeyParameters body) {
+        AccessKeysInner inner = this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, body);
         if (inner != null) {
             return new AccessKeysImpl(inner, this.manager());
         } else {
@@ -115,57 +166,15 @@ public final class DatabasesImpl implements Databases {
         String resourceGroupName,
         String clusterName,
         String databaseName,
-        RegenerateKeyParameters parameters,
+        RegenerateKeyParameters body,
         Context context) {
         AccessKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, parameters, context);
+            this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, body, context);
         if (inner != null) {
             return new AccessKeysImpl(inner, this.manager());
         } else {
             return null;
         }
-    }
-
-    public void importMethod(
-        String resourceGroupName, String clusterName, String databaseName, ImportClusterParameters parameters) {
-        this.serviceClient().importMethod(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void importMethod(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ImportClusterParameters parameters,
-        Context context) {
-        this.serviceClient().importMethod(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
-    public void export(
-        String resourceGroupName, String clusterName, String databaseName, ExportClusterParameters parameters) {
-        this.serviceClient().export(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void export(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ExportClusterParameters parameters,
-        Context context) {
-        this.serviceClient().export(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
-    public void forceUnlink(
-        String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters parameters) {
-        this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void forceUnlink(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ForceUnlinkParameters parameters,
-        Context context) {
-        this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
     public Database getById(String id) {

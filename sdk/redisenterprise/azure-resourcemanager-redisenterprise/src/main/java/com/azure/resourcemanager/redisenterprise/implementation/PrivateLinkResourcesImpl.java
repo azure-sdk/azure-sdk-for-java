@@ -8,8 +8,8 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.PrivateLinkResourcesClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkResourceInner;
-import com.azure.resourcemanager.redisenterprise.models.PrivateLinkResource;
+import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkInner;
+import com.azure.resourcemanager.redisenterprise.models.PrivateLink;
 import com.azure.resourcemanager.redisenterprise.models.PrivateLinkResources;
 
 public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
@@ -26,17 +26,15 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<PrivateLinkResource> listByCluster(String resourceGroupName, String clusterName) {
-        PagedIterable<PrivateLinkResourceInner> inner =
-            this.serviceClient().listByCluster(resourceGroupName, clusterName);
-        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
+    public PagedIterable<PrivateLink> listByCluster(String resourceGroupName, String clusterName) {
+        PagedIterable<PrivateLinkInner> inner = this.serviceClient().listByCluster(resourceGroupName, clusterName);
+        return Utils.mapPage(inner, inner1 -> new PrivateLinkImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<PrivateLinkResource> listByCluster(
-        String resourceGroupName, String clusterName, Context context) {
-        PagedIterable<PrivateLinkResourceInner> inner =
+    public PagedIterable<PrivateLink> listByCluster(String resourceGroupName, String clusterName, Context context) {
+        PagedIterable<PrivateLinkInner> inner =
             this.serviceClient().listByCluster(resourceGroupName, clusterName, context);
-        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
+        return Utils.mapPage(inner, inner1 -> new PrivateLinkImpl(inner1, this.manager()));
     }
 
     private PrivateLinkResourcesClient serviceClient() {

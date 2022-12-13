@@ -13,7 +13,7 @@ import com.azure.resourcemanager.redisenterprise.fluent.models.OperationInner;
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public interface OperationsClient {
     /**
-     * Lists all of the available REST API operations of the Microsoft.Cache provider.
+     * List the operations for the provider.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -24,7 +24,7 @@ public interface OperationsClient {
     PagedIterable<OperationInner> list();
 
     /**
-     * Lists all of the available REST API operations of the Microsoft.Cache provider.
+     * List the operations for the provider.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

@@ -17,204 +17,26 @@ import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
 /** An instance of this class provides access to all the operations defined in RedisEnterprisesClient. */
 public interface RedisEnterprisesClient {
     /**
-     * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
+     * Lists all RedisEnterprise clusters in a subscription.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     * @return the response of a Cluster list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(
-        String resourceGroupName, String clusterName, ClusterInner parameters);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ClusterInner> list();
 
     /**
-     * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
+     * Lists all RedisEnterprise clusters in a subscription.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     * @return the response of a Cluster list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(
-        String resourceGroupName, String clusterName, ClusterInner parameters, Context context);
-
-    /**
-     * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters);
-
-    /**
-     * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters, Context context);
-
-    /**
-     * Updates an existing RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(
-        String resourceGroupName, String clusterName, ClusterUpdate parameters);
-
-    /**
-     * Updates an existing RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(
-        String resourceGroupName, String clusterName, ClusterUpdate parameters, Context context);
-
-    /**
-     * Updates an existing RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate parameters);
-
-    /**
-     * Updates an existing RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate parameters, Context context);
-
-    /**
-     * Deletes a RedisEnterprise cache cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName);
-
-    /**
-     * Deletes a RedisEnterprise cache cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName, Context context);
-
-    /**
-     * Deletes a RedisEnterprise cache cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String clusterName);
-
-    /**
-     * Deletes a RedisEnterprise cache cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String clusterName, Context context);
-
-    /**
-     * Gets information about a RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterInner getByResourceGroup(String resourceGroupName, String clusterName);
-
-    /**
-     * Gets information about a RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ClusterInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String clusterName, Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ClusterInner> list(Context context);
 
     /**
      * Lists all RedisEnterprise clusters in a resource group.
@@ -223,7 +45,7 @@ public interface RedisEnterprisesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
+     * @return the response of a Cluster list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ClusterInner> listByResourceGroup(String resourceGroupName);
@@ -236,32 +58,208 @@ public interface RedisEnterprisesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
+     * @return the response of a Cluster list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ClusterInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Gets information about a RedisEnterprise cluster.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ClusterInner> list();
-
-    /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
-     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return information about a RedisEnterprise cluster along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ClusterInner> list(Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ClusterInner> getByResourceGroupWithResponse(
+        String resourceGroupName, String clusterName, Context context);
+
+    /**
+     * Gets information about a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ClusterInner getByResourceGroup(String resourceGroupName, String clusterName);
+
+    /**
+     * Creates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(
+        String resourceGroupName, String clusterName, ClusterInner resource);
+
+    /**
+     * Creates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(
+        String resourceGroupName, String clusterName, ClusterInner resource, Context context);
+
+    /**
+     * Creates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ClusterInner create(String resourceGroupName, String clusterName, ClusterInner resource);
+
+    /**
+     * Creates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ClusterInner create(String resourceGroupName, String clusterName, ClusterInner resource, Context context);
+
+    /**
+     * Updates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(
+        String resourceGroupName, String clusterName, ClusterUpdate properties);
+
+    /**
+     * Updates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(
+        String resourceGroupName, String clusterName, ClusterUpdate properties, Context context);
+
+    /**
+     * Updates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate properties);
+
+    /**
+     * Updates a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate properties, Context context);
+
+    /**
+     * Deletes a RedisEnterprise cluster and its databases.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName);
+
+    /**
+     * Deletes a RedisEnterprise cluster and its databases.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName, Context context);
+
+    /**
+     * Deletes a RedisEnterprise cluster and its databases.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String clusterName);
+
+    /**
+     * Deletes a RedisEnterprise cluster and its databases.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String clusterName, Context context);
 }

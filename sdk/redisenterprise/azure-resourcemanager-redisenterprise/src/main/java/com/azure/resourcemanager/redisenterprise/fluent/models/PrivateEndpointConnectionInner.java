@@ -6,22 +6,33 @@ package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.redisenterprise.models.PrivateEndpoint;
 import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.PrivateLinkServiceConnectionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Private Endpoint Connection resource. */
+/** Describes a private endpoint connection to a RedisEnterprise cluster. */
 @Fluent
 public final class PrivateEndpointConnectionInner extends ProxyResource {
     /*
-     * Resource properties.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private PrivateEndpointConnectionProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of PrivateEndpointConnectionInner class. */
+    public PrivateEndpointConnectionInner() {
+    }
+
     /**
-     * Get the innerProperties property: Resource properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      *
      * @return the innerProperties value.
      */
@@ -30,7 +41,16 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the privateEndpoint property: The private endpoint that is connected.
      *
      * @return the privateEndpoint value.
      */
@@ -39,7 +59,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
+     * Set the privateEndpoint property: The private endpoint that is connected.
      *
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionInner object itself.

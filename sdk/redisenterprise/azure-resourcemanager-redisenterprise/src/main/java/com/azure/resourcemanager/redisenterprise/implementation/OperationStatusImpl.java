@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.redisenterprise.implementation;
 
-import com.azure.core.management.exception.ManagementError;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
 import com.azure.resourcemanager.redisenterprise.models.OperationStatus;
 
@@ -28,20 +28,16 @@ public final class OperationStatusImpl implements OperationStatus {
         return this.innerModel().name();
     }
 
-    public String startTime() {
-        return this.innerModel().startTime();
+    public String type() {
+        return this.innerModel().type();
     }
 
-    public String endTime() {
-        return this.innerModel().endTime();
+    public Object properties() {
+        return this.innerModel().properties();
     }
 
-    public String status() {
-        return this.innerModel().status();
-    }
-
-    public ManagementError error() {
-        return this.innerModel().error();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public OperationStatusInner innerModel() {

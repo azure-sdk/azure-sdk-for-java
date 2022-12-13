@@ -5,14 +5,12 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterProperties;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import java.util.Map;
 
-/** A partial update to the RedisEnterprise cluster. */
+/** The type used for update operations of the Cluster. */
 @Fluent
 public final class ClusterUpdate {
     /*
@@ -22,17 +20,21 @@ public final class ClusterUpdate {
     private Sku sku;
 
     /*
-     * RedisEnterprise cluster properties Other properties of the cluster.
-     */
-    @JsonProperty(value = "properties")
-    private ClusterProperties innerProperties;
-
-    /*
      * Resource tags.
      */
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /*
+     * The updatable properties of the Cluster.
+     */
+    @JsonProperty(value = "properties")
+    private ClusterUpdateProperties innerProperties;
+
+    /** Creates an instance of ClusterUpdate class. */
+    public ClusterUpdate() {
+    }
 
     /**
      * Get the sku property: The SKU to create, which affects price, performance, and features.
@@ -52,15 +54,6 @@ public final class ClusterUpdate {
     public ClusterUpdate withSku(Sku sku) {
         this.sku = sku;
         return this;
-    }
-
-    /**
-     * Get the innerProperties property: RedisEnterprise cluster properties Other properties of the cluster.
-     *
-     * @return the innerProperties value.
-     */
-    private ClusterProperties innerProperties() {
-        return this.innerProperties;
     }
 
     /**
@@ -84,72 +77,58 @@ public final class ClusterUpdate {
     }
 
     /**
-     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
+     * Get the innerProperties property: The updatable properties of the Cluster.
      *
-     * @return the minimumTlsVersion value.
+     * @return the innerProperties value.
      */
-    public TlsVersion minimumTlsVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().minimumTlsVersion();
+    private ClusterUpdateProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
+     * Get the sku property: The SKU to create, which affects price, performance, and features.
      *
-     * @param minimumTlsVersion the minimumTlsVersion value to set.
+     * @return the sku value.
+     */
+    public Sku skuPropertiesSku() {
+        return this.innerProperties() == null ? null : this.innerProperties().sku();
+    }
+
+    /**
+     * Set the sku property: The SKU to create, which affects price, performance, and features.
+     *
+     * @param sku the sku value to set.
      * @return the ClusterUpdate object itself.
      */
-    public ClusterUpdate withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
+    public ClusterUpdate withSkuPropertiesSku(Sku sku) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
+            this.innerProperties = new ClusterUpdateProperties();
         }
-        this.innerProperties().withMinimumTlsVersion(minimumTlsVersion);
+        this.innerProperties().withSku(sku);
         return this;
     }
 
     /**
-     * Get the hostname property: DNS name of the cluster endpoint.
+     * Get the tags property: Resource tags.
      *
-     * @return the hostname value.
+     * @return the tags value.
      */
-    public String hostname() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostname();
+    public Map<String, String> tagsPropertiesTags() {
+        return this.innerProperties() == null ? null : this.innerProperties().tags();
     }
 
     /**
-     * Get the provisioningState property: Current provisioning status of the cluster.
+     * Set the tags property: Resource tags.
      *
-     * @return the provisioningState value.
+     * @param tags the tags value to set.
+     * @return the ClusterUpdate object itself.
      */
-    public ProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the resourceState property: Current resource status of the cluster.
-     *
-     * @return the resourceState value.
-     */
-    public ResourceState resourceState() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceState();
-    }
-
-    /**
-     * Get the redisVersion property: Version of redis the cluster supports, e.g. '6'.
-     *
-     * @return the redisVersion value.
-     */
-    public String redisVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().redisVersion();
-    }
-
-    /**
-     * Get the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * RedisEnterprise cluster.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    public ClusterUpdate withTagsPropertiesTags(Map<String, String> tags) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterUpdateProperties();
+        }
+        this.innerProperties().withTags(tags);
+        return this;
     }
 
     /**

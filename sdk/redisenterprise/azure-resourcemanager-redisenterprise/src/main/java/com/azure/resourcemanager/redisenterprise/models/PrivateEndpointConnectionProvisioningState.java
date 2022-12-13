@@ -8,20 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PrivateEndpointConnectionProvisioningState. */
+/** The current provisioning state. */
 public final class PrivateEndpointConnectionProvisioningState
     extends ExpandableStringEnum<PrivateEndpointConnectionProvisioningState> {
     /** Static value Succeeded for PrivateEndpointConnectionProvisioningState. */
     public static final PrivateEndpointConnectionProvisioningState SUCCEEDED = fromString("Succeeded");
+
+    /** Static value Failed for PrivateEndpointConnectionProvisioningState. */
+    public static final PrivateEndpointConnectionProvisioningState FAILED = fromString("Failed");
+
+    /** Static value Canceled for PrivateEndpointConnectionProvisioningState. */
+    public static final PrivateEndpointConnectionProvisioningState CANCELED = fromString("Canceled");
 
     /** Static value Creating for PrivateEndpointConnectionProvisioningState. */
     public static final PrivateEndpointConnectionProvisioningState CREATING = fromString("Creating");
 
     /** Static value Deleting for PrivateEndpointConnectionProvisioningState. */
     public static final PrivateEndpointConnectionProvisioningState DELETING = fromString("Deleting");
-
-    /** Static value Failed for PrivateEndpointConnectionProvisioningState. */
-    public static final PrivateEndpointConnectionProvisioningState FAILED = fromString("Failed");
 
     /**
      * Creates or finds a PrivateEndpointConnectionProvisioningState from its string representation.
@@ -34,7 +37,11 @@ public final class PrivateEndpointConnectionProvisioningState
         return fromString(name, PrivateEndpointConnectionProvisioningState.class);
     }
 
-    /** @return known PrivateEndpointConnectionProvisioningState values. */
+    /**
+     * Gets known PrivateEndpointConnectionProvisioningState values.
+     *
+     * @return known PrivateEndpointConnectionProvisioningState values.
+     */
     public static Collection<PrivateEndpointConnectionProvisioningState> values() {
         return values(PrivateEndpointConnectionProvisioningState.class);
     }

@@ -6,19 +6,19 @@ package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 import java.util.List;
 
-/** The response of a PrivateEndpointConnection list operation. */
+/** The response of a Cluster list operation. */
 @Fluent
-public final class PrivateEndpointConnectionListResult {
+public final class ClusterListResult {
     /*
-     * The PrivateEndpointConnection items on this page
+     * The Cluster items on this page
      */
     @JsonProperty(value = "value", required = true)
-    private List<PrivateEndpointConnectionInner> value;
+    private List<ClusterInner> value;
 
     /*
      * The link to the next page of items
@@ -26,26 +26,26 @@ public final class PrivateEndpointConnectionListResult {
     @JsonProperty(value = "nextLink")
     private URL nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionListResult class. */
-    public PrivateEndpointConnectionListResult() {
+    /** Creates an instance of ClusterListResult class. */
+    public ClusterListResult() {
     }
 
     /**
-     * Get the value property: The PrivateEndpointConnection items on this page.
+     * Get the value property: The Cluster items on this page.
      *
      * @return the value value.
      */
-    public List<PrivateEndpointConnectionInner> value() {
+    public List<ClusterInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The PrivateEndpointConnection items on this page.
+     * Set the value property: The Cluster items on this page.
      *
      * @param value the value value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the ClusterListResult object itself.
      */
-    public PrivateEndpointConnectionListResult withValue(List<PrivateEndpointConnectionInner> value) {
+    public ClusterListResult withValue(List<ClusterInner> value) {
         this.value = value;
         return this;
     }
@@ -63,9 +63,9 @@ public final class PrivateEndpointConnectionListResult {
      * Set the nextLink property: The link to the next page of items.
      *
      * @param nextLink the nextLink value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the ClusterListResult object itself.
      */
-    public PrivateEndpointConnectionListResult withNextLink(URL nextLink) {
+    public ClusterListResult withNextLink(URL nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -79,12 +79,11 @@ public final class PrivateEndpointConnectionListResult {
         if (value() == null) {
             throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model PrivateEndpointConnectionListResult"));
+                    new IllegalArgumentException("Missing required property value in model ClusterListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ClusterListResult.class);
 }

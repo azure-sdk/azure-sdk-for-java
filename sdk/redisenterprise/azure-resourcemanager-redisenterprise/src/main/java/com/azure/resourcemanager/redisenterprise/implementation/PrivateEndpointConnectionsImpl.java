@@ -28,27 +28,17 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String clusterName) {
-        PagedIterable<PrivateEndpointConnectionInner> inner = this.serviceClient().list(resourceGroupName, clusterName);
+    public PagedIterable<PrivateEndpointConnection> listByCluster(String resourceGroupName, String clusterName) {
+        PagedIterable<PrivateEndpointConnectionInner> inner =
+            this.serviceClient().listByCluster(resourceGroupName, clusterName);
         return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<PrivateEndpointConnection> list(
+    public PagedIterable<PrivateEndpointConnection> listByCluster(
         String resourceGroupName, String clusterName, Context context) {
         PagedIterable<PrivateEndpointConnectionInner> inner =
-            this.serviceClient().list(resourceGroupName, clusterName, context);
+            this.serviceClient().listByCluster(resourceGroupName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
-    }
-
-    public PrivateEndpointConnection get(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
-        PrivateEndpointConnectionInner inner =
-            this.serviceClient().get(resourceGroupName, clusterName, privateEndpointConnectionName);
-        if (inner != null) {
-            return new PrivateEndpointConnectionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<PrivateEndpointConnection> getWithResponse(
@@ -68,15 +58,52 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         }
     }
 
+    public PrivateEndpointConnection get(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
+        PrivateEndpointConnectionInner inner =
+            this.serviceClient().get(resourceGroupName, clusterName, privateEndpointConnectionName);
+        if (inner != null) {
+            return new PrivateEndpointConnectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnection update(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties) {
+        PrivateEndpointConnectionInner inner =
+            this.serviceClient().update(resourceGroupName, clusterName, privateEndpointConnectionName, properties);
+        if (inner != null) {
+            return new PrivateEndpointConnectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnection update(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context) {
+        PrivateEndpointConnectionInner inner =
+            this
+                .serviceClient()
+                .update(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context);
+        if (inner != null) {
+            return new PrivateEndpointConnectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
         this.serviceClient().delete(resourceGroupName, clusterName, privateEndpointConnectionName);
     }
 
-    public Response<Void> deleteWithResponse(
+    public void delete(
         String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
-        return this
-            .serviceClient()
-            .deleteWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, context);
+        this.serviceClient().delete(resourceGroupName, clusterName, privateEndpointConnectionName, context);
     }
 
     public PrivateEndpointConnection getById(String id) {
@@ -168,10 +195,10 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
                                 "The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.",
                                 id)));
         }
-        this.deleteWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, Context.NONE);
+        this.delete(resourceGroupName, clusterName, privateEndpointConnectionName, Context.NONE);
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -198,7 +225,7 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
                                 "The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.",
                                 id)));
         }
-        return this.deleteWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, context);
+        this.delete(resourceGroupName, clusterName, privateEndpointConnectionName, context);
     }
 
     private PrivateEndpointConnectionsClient serviceClient() {

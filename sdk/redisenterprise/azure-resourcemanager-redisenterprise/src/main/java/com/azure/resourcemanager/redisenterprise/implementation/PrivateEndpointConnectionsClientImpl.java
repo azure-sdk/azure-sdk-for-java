@@ -12,6 +12,7 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
@@ -65,19 +66,19 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @Host("{$host}")
     @ServiceInterface(name = "RedisEnterpriseManag")
-    private interface PrivateEndpointConnectionsService {
+    public interface PrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache"
                 + "/redisEnterprise/{clusterName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateEndpointConnectionListResult>> list(
+        Mono<Response<PrivateEndpointConnectionListResult>> listByCluster(
             @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("clusterName") String clusterName,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -89,11 +90,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> get(
             @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("clusterName") String clusterName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -101,16 +102,33 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache"
                 + "/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}")
-        @ExpectedResponses({201})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> put(
+        Mono<Response<Flux<ByteBuffer>>> create(
             @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("clusterName") String clusterName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
-            @BodyParam("application/json") PrivateEndpointConnectionInner properties,
+            @BodyParam("application/json") PrivateEndpointConnectionInner resource,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Patch(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache"
+                + "/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> update(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("clusterName") String clusterName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @BodyParam("application/json") Object properties,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -118,32 +136,42 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache"
                 + "/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}")
-        @ExpectedResponses({200, 204})
+        @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
+        Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("clusterName") String clusterName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PrivateEndpointConnectionListResult>> listByClusterNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a PrivateEndpointConnection list operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listSinglePageAsync(
+    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listByClusterSinglePageAsync(
         String resourceGroupName, String clusterName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -151,6 +179,12 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
@@ -158,46 +192,45 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .list(
+                        .listByCluster(
                             this.client.getEndpoint(),
-                            resourceGroupName,
-                            clusterName,
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            clusterName,
                             accept,
                             context))
             .<PagedResponse<PrivateEndpointConnectionInner>>map(
                 res ->
                     new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a PrivateEndpointConnection list operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listSinglePageAsync(
+    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listByClusterSinglePageAsync(
         String resourceGroupName, String clusterName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -205,6 +238,12 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
@@ -212,109 +251,109 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
+            .listByCluster(
                 this.client.getEndpoint(),
-                resourceGroupName,
-                clusterName,
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                resourceGroupName,
+                clusterName,
                 accept,
                 context)
             .map(
                 res ->
                     new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null));
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null));
     }
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     *     with {@link PagedFlux}.
+     * @return the response of a PrivateEndpointConnection list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateEndpointConnectionInner> listAsync(String resourceGroupName, String clusterName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, clusterName));
+    private PagedFlux<PrivateEndpointConnectionInner> listByClusterAsync(String resourceGroupName, String clusterName) {
+        return new PagedFlux<>(
+            () -> listByClusterSinglePageAsync(resourceGroupName, clusterName),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     *     with {@link PagedFlux}.
+     * @return the response of a PrivateEndpointConnection list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateEndpointConnectionInner> listAsync(
+    private PagedFlux<PrivateEndpointConnectionInner> listByClusterAsync(
         String resourceGroupName, String clusterName, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, clusterName, context));
+        return new PagedFlux<>(
+            () -> listByClusterSinglePageAsync(resourceGroupName, clusterName, context),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     *     with {@link PagedIterable}.
+     * @return the response of a PrivateEndpointConnection list operation as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateEndpointConnectionInner> list(String resourceGroupName, String clusterName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, clusterName));
+    public PagedIterable<PrivateEndpointConnectionInner> listByCluster(String resourceGroupName, String clusterName) {
+        return new PagedIterable<>(listByClusterAsync(resourceGroupName, clusterName));
     }
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     *     with {@link PagedIterable}.
+     * @return the response of a PrivateEndpointConnection list operation as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateEndpointConnectionInner> list(
+    public PagedIterable<PrivateEndpointConnectionInner> listByCluster(
         String resourceGroupName, String clusterName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, clusterName, context));
+        return new PagedIterable<>(listByClusterAsync(resourceGroupName, clusterName, context));
     }
 
     /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster along with {@link Response}
+     *     on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> getWithResponseAsync(
@@ -324,6 +363,12 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -337,12 +382,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                 .error(
                     new IllegalArgumentException(
                         "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -351,29 +390,28 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     service
                         .get(
                             this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
                             resourceGroupName,
                             clusterName,
                             privateEndpointConnectionName,
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster along with {@link Response}
+     *     on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> getWithResponseAsync(
@@ -384,6 +422,12 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
@@ -397,84 +441,50 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter privateEndpointConnectionName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
                 resourceGroupName,
                 clusterName,
                 privateEndpointConnectionName,
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
                 accept,
                 context);
     }
 
     /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster on successful
-     *     completion of {@link Mono}.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> getAsync(
         String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
         return getWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName)
-            .flatMap(
-                (Response<PrivateEndpointConnectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
-        return getAsync(resourceGroupName, clusterName, privateEndpointConnectionName).block();
-    }
-
-    /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with {@link
-     *     Response}.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateEndpointConnectionInner> getWithResponse(
@@ -483,30 +493,52 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> putWithResponseAsync(
+    public PrivateEndpointConnectionInner get(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
+        return getWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties) {
+        PrivateEndpointConnectionInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -515,62 +547,55 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         if (privateEndpointConnectionName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter privateEndpointConnectionName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .put(
+                        .create(
                             this.client.getEndpoint(),
-                            resourceGroupName,
-                            clusterName,
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            clusterName,
                             privateEndpointConnectionName,
-                            properties,
+                            resource,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> putWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
+        PrivateEndpointConnectionInner resource,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -578,6 +603,12 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
@@ -585,59 +616,53 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         if (privateEndpointConnectionName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter privateEndpointConnectionName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .put(
+            .create(
                 this.client.getEndpoint(),
-                resourceGroupName,
-                clusterName,
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                resourceGroupName,
+                clusterName,
                 privateEndpointConnectionName,
-                properties,
+                resource,
                 accept,
                 context);
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the Private Endpoint Connection resource.
+     * @return the {@link PollerFlux} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginPutAsync(
+    private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreateAsync(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties) {
+        PrivateEndpointConnectionInner resource) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            putWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties);
+            createWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource);
         return this
             .client
             .<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(
@@ -649,29 +674,29 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the Private Endpoint Connection resource.
+     * @return the {@link PollerFlux} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginPutAsync(
+    private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreateAsync(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
+        PrivateEndpointConnectionInner resource,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            putWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context);
+            createWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource, context);
         return this
             .client
             .<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(
@@ -683,168 +708,174 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the Private Endpoint Connection resource.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginPut(
+    public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreate(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties) {
-        return beginPutAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties).getSyncPoller();
-    }
-
-    /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the Private Endpoint Connection resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginPut(
-        String resourceGroupName,
-        String clusterName,
-        String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
-        Context context) {
-        return beginPutAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context)
+        PrivateEndpointConnectionInner resource) {
+        return beginCreateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource)
             .getSyncPoller();
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PrivateEndpointConnectionInner> putAsync(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreate(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties) {
-        return beginPutAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties)
+        PrivateEndpointConnectionInner resource,
+        Context context) {
+        return beginCreateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateEndpointConnectionInner> createAsync(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        PrivateEndpointConnectionInner resource) {
+        return beginCreateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource on successful completion of {@link Mono}.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PrivateEndpointConnectionInner> putAsync(
+    private Mono<PrivateEndpointConnectionInner> createAsync(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
+        PrivateEndpointConnectionInner resource,
         Context context) {
-        return beginPutAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context)
+        return beginCreateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner put(
+    public PrivateEndpointConnectionInner create(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties) {
-        return putAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties).block();
+        PrivateEndpointConnectionInner resource) {
+        return createAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource).block();
     }
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner put(
+    public PrivateEndpointConnectionInner create(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
+        PrivateEndpointConnectionInner resource,
         Context context) {
-        return putAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context).block();
+        return createAsync(resourceGroupName, clusterName, privateEndpointConnectionName, resource, context).block();
     }
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Updates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -853,11 +884,324 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
+        if (privateEndpointConnectionName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .update(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            clusterName,
+                            privateEndpointConnectionName,
+                            properties,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
         if (this.client.getSubscriptionId() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (clusterName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .update(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                clusterName,
+                privateEndpointConnectionName,
+                properties,
+                accept,
+                context);
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginUpdateAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            updateWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties);
+        return this
+            .client
+            .<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                PrivateEndpointConnectionInner.class,
+                PrivateEndpointConnectionInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginUpdateAsync(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            updateWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context);
+        return this
+            .client
+            .<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                PrivateEndpointConnectionInner.class,
+                PrivateEndpointConnectionInner.class,
+                context);
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginUpdate(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties) {
+        return beginUpdateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties)
+            .getSyncPoller();
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginUpdate(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateEndpointConnectionInner> updateAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties) {
+        return beginUpdateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateEndpointConnectionInner> updateAsync(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner update(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties) {
+        return updateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties).block();
+    }
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner update(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context) {
+        return updateAsync(resourceGroupName, clusterName, privateEndpointConnectionName, properties, context).block();
+    }
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (clusterName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -872,10 +1216,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            resourceGroupName,
-                            clusterName,
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            clusterName,
                             privateEndpointConnectionName,
                             accept,
                             context))
@@ -883,12 +1227,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -896,7 +1239,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -904,18 +1247,18 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -928,22 +1271,101 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         return service
             .delete(
                 this.client.getEndpoint(),
-                resourceGroupName,
-                clusterName,
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                resourceGroupName,
+                clusterName,
                 privateEndpointConnectionName,
                 accept,
                 context);
     }
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
+        return beginDeleteAsync(resourceGroupName, clusterName, privateEndpointConnectionName).getSyncPoller();
+    }
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
+        return beginDeleteAsync(resourceGroupName, clusterName, privateEndpointConnectionName, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -951,17 +1373,37 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
-        return deleteWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+        return beginDeleteAsync(resourceGroupName, clusterName, privateEndpointConnectionName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
+        return beginDeleteAsync(resourceGroupName, clusterName, privateEndpointConnectionName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -972,21 +1414,95 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
+    public void delete(
         String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, clusterName, privateEndpointConnectionName, context).block();
+        deleteAsync(resourceGroupName, clusterName, privateEndpointConnectionName, context).block();
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PrivateEndpointConnection list operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listByClusterNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<PrivateEndpointConnectionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PrivateEndpointConnection list operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listByClusterNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null));
     }
 }

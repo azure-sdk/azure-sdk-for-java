@@ -19,14 +19,17 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /** Static value Canceled for ProvisioningState. */
     public static final ProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Creating for ProvisioningState. */
-    public static final ProvisioningState CREATING = fromString("Creating");
+    /** Static value Provisioning for ProvisioningState. */
+    public static final ProvisioningState PROVISIONING = fromString("Provisioning");
 
     /** Static value Updating for ProvisioningState. */
     public static final ProvisioningState UPDATING = fromString("Updating");
 
     /** Static value Deleting for ProvisioningState. */
     public static final ProvisioningState DELETING = fromString("Deleting");
+
+    /** Static value Accepted for ProvisioningState. */
+    public static final ProvisioningState ACCEPTED = fromString("Accepted");
 
     /**
      * Creates or finds a ProvisioningState from its string representation.
@@ -39,7 +42,11 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
         return fromString(name, ProvisioningState.class);
     }
 
-    /** @return known ProvisioningState values. */
+    /**
+     * Gets known ProvisioningState values.
+     *
+     * @return known ProvisioningState values.
+     */
     public static Collection<ProvisioningState> values() {
         return values(ProvisioningState.class);
     }

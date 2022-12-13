@@ -26,8 +26,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.redisenterprise.fluent.PrivateLinkResourcesClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkResourceInner;
-import com.azure.resourcemanager.redisenterprise.models.PrivateLinkResourceListResult;
+import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkInner;
+import com.azure.resourcemanager.redisenterprise.models.PrivateLinkListResult;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
@@ -56,36 +56,46 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @Host("{$host}")
     @ServiceInterface(name = "RedisEnterpriseManag")
-    private interface PrivateLinkResourcesService {
+    public interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache"
                 + "/redisEnterprise/{clusterName}/privateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateLinkResourceListResult>> listByCluster(
+        Mono<Response<PrivateLinkListResult>> listByCluster(
             @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("clusterName") String clusterName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PrivateLinkListResult>> listByClusterNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Gets the private link resources that need to be created for a RedisEnterprise cluster.
+     * Lists all private link resources in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a RedisEnterprise cluster along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a PrivateLink list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>> listByClusterSinglePageAsync(
+    private Mono<PagedResponse<PrivateLinkInner>> listByClusterSinglePageAsync(
         String resourceGroupName, String clusterName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -93,18 +103,18 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -113,39 +123,50 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                     service
                         .listByCluster(
                             this.client.getEndpoint(),
-                            resourceGroupName,
-                            clusterName,
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            clusterName,
                             accept,
                             context))
-            .<PagedResponse<PrivateLinkResourceInner>>map(
+            .<PagedResponse<PrivateLinkInner>>map(
                 res ->
                     new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the private link resources that need to be created for a RedisEnterprise cluster.
+     * Lists all private link resources in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a RedisEnterprise cluster along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a PrivateLink list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateLinkResourceInner>> listByClusterSinglePageAsync(
+    private Mono<PagedResponse<PrivateLinkInner>> listByClusterSinglePageAsync(
         String resourceGroupName, String clusterName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -154,94 +175,168 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         if (clusterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter clusterName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByCluster(
                 this.client.getEndpoint(),
-                resourceGroupName,
-                clusterName,
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                resourceGroupName,
+                clusterName,
                 accept,
                 context)
             .map(
                 res ->
                     new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null));
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null));
     }
 
     /**
-     * Gets the private link resources that need to be created for a RedisEnterprise cluster.
+     * Lists all private link resources in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a RedisEnterprise cluster as paginated response
-     *     with {@link PagedFlux}.
+     * @return the response of a PrivateLink list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateLinkResourceInner> listByClusterAsync(String resourceGroupName, String clusterName) {
-        return new PagedFlux<>(() -> listByClusterSinglePageAsync(resourceGroupName, clusterName));
+    private PagedFlux<PrivateLinkInner> listByClusterAsync(String resourceGroupName, String clusterName) {
+        return new PagedFlux<>(
+            () -> listByClusterSinglePageAsync(resourceGroupName, clusterName),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Gets the private link resources that need to be created for a RedisEnterprise cluster.
+     * Lists all private link resources in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a RedisEnterprise cluster as paginated response
-     *     with {@link PagedFlux}.
+     * @return the response of a PrivateLink list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateLinkResourceInner> listByClusterAsync(
+    private PagedFlux<PrivateLinkInner> listByClusterAsync(
         String resourceGroupName, String clusterName, Context context) {
-        return new PagedFlux<>(() -> listByClusterSinglePageAsync(resourceGroupName, clusterName, context));
+        return new PagedFlux<>(
+            () -> listByClusterSinglePageAsync(resourceGroupName, clusterName, context),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Gets the private link resources that need to be created for a RedisEnterprise cluster.
+     * Lists all private link resources in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a RedisEnterprise cluster as paginated response
-     *     with {@link PagedIterable}.
+     * @return the response of a PrivateLink list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateLinkResourceInner> listByCluster(String resourceGroupName, String clusterName) {
+    public PagedIterable<PrivateLinkInner> listByCluster(String resourceGroupName, String clusterName) {
         return new PagedIterable<>(listByClusterAsync(resourceGroupName, clusterName));
     }
 
     /**
-     * Gets the private link resources that need to be created for a RedisEnterprise cluster.
+     * Lists all private link resources in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a RedisEnterprise cluster as paginated response
-     *     with {@link PagedIterable}.
+     * @return the response of a PrivateLink list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateLinkResourceInner> listByCluster(
+    public PagedIterable<PrivateLinkInner> listByCluster(
         String resourceGroupName, String clusterName, Context context) {
         return new PagedIterable<>(listByClusterAsync(resourceGroupName, clusterName, context));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PrivateLink list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PrivateLinkInner>> listByClusterNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<PrivateLinkInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PrivateLink list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PrivateLinkInner>> listByClusterNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink().toString(),
+                        null));
     }
 }

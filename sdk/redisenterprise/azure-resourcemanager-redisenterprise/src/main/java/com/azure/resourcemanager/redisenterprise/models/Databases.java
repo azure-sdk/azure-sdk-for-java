@@ -11,27 +11,27 @@ import com.azure.core.util.Context;
 /** Resource collection API of Databases. */
 public interface Databases {
     /**
-     * Gets all databases in the specified RedisEnterprise cluster.
+     * Lists all databases in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all databases in the specified RedisEnterprise cluster as paginated response with {@link PagedIterable}.
+     * @return the response of a Database list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Database> listByCluster(String resourceGroupName, String clusterName);
 
     /**
-     * Gets all databases in the specified RedisEnterprise cluster.
+     * Lists all databases in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all databases in the specified RedisEnterprise cluster as paginated response with {@link PagedIterable}.
+     * @return the response of a Database list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Database> listByCluster(String resourceGroupName, String clusterName, Context context);
 
@@ -39,21 +39,8 @@ public interface Databases {
      * Gets information about a database in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a database in a RedisEnterprise cluster.
-     */
-    Database get(String resourceGroupName, String clusterName, String databaseName);
-
-    /**
-     * Gets information about a database in a RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -64,11 +51,54 @@ public interface Databases {
         String resourceGroupName, String clusterName, String databaseName, Context context);
 
     /**
-     * Deletes a single database.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about a database in a RedisEnterprise cluster.
+     */
+    Database get(String resourceGroupName, String clusterName, String databaseName);
+
+    /**
+     * Updates a database.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Database on a RedisEnterprise cluster.
+     */
+    Database update(String resourceGroupName, String clusterName, String databaseName, Object properties);
+
+    /**
+     * Updates a database.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Database on a RedisEnterprise cluster.
+     */
+    Database update(
+        String resourceGroupName, String clusterName, String databaseName, Object properties, Context context);
+
+    /**
+     * Deletes a database.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -76,11 +106,11 @@ public interface Databases {
     void delete(String resourceGroupName, String clusterName, String databaseName);
 
     /**
-     * Deletes a single database.
+     * Deletes a database.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,164 +119,150 @@ public interface Databases {
     void delete(String resourceGroupName, String clusterName, String databaseName, Context context);
 
     /**
-     * Retrieves the access keys for the RedisEnterprise database.
+     * Exports RDB file(s).
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
      */
-    AccessKeys listKeys(String resourceGroupName, String clusterName, String databaseName);
+    void exportRdb(String resourceGroupName, String clusterName, String databaseName, ExportParameters body);
+
+    /**
+     * Exports RDB file(s).
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void exportRdb(
+        String resourceGroupName, String clusterName, String databaseName, ExportParameters body, Context context);
+
+    /**
+     * Forcibly unlinks one or more databases from a replication group.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void forceUnlink(String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters body);
+
+    /**
+     * Forcibly unlinks one or more databases from a replication group.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void forceUnlink(
+        String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters body, Context context);
+
+    /**
+     * Imports RDB file(s).
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void importRdb(String resourceGroupName, String clusterName, String databaseName, ImportParameters body);
+
+    /**
+     * Imports RDB file(s).
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void importRdb(
+        String resourceGroupName, String clusterName, String databaseName, ImportParameters body, Context context);
 
     /**
      * Retrieves the access keys for the RedisEnterprise database.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys along with {@link Response}.
+     * @return redis Enterprise access keys response along with {@link Response}.
      */
     Response<AccessKeys> listKeysWithResponse(
         String resourceGroupName, String clusterName, String databaseName, Context context);
 
     /**
-     * Regenerates the RedisEnterprise database's access keys.
+     * Retrieves the access keys for the RedisEnterprise database.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Specifies which key to regenerate.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return redis Enterprise access keys response.
+     */
+    AccessKeys listKeys(String resourceGroupName, String clusterName, String databaseName);
+
+    /**
+     * Regenerates an access key for the RedisEnterprise database.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return redis Enterprise access keys response.
      */
     AccessKeys regenerateKey(
-        String resourceGroupName, String clusterName, String databaseName, RegenerateKeyParameters parameters);
+        String resourceGroupName, String clusterName, String databaseName, RegenerateKeyParameters body);
 
     /**
-     * Regenerates the RedisEnterprise database's access keys.
+     * Regenerates an access key for the RedisEnterprise database.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Specifies which key to regenerate.
+     * @param clusterName Name of cluster.
+     * @param databaseName Name of database.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return redis Enterprise access keys response.
      */
     AccessKeys regenerateKey(
         String resourceGroupName,
         String clusterName,
         String databaseName,
-        RegenerateKeyParameters parameters,
-        Context context);
-
-    /**
-     * Imports database files to target database.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Storage information for importing into the cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importMethod(
-        String resourceGroupName, String clusterName, String databaseName, ImportClusterParameters parameters);
-
-    /**
-     * Imports database files to target database.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Storage information for importing into the cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importMethod(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ImportClusterParameters parameters,
-        Context context);
-
-    /**
-     * Exports a database file from target database.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Storage information for exporting into the cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void export(String resourceGroupName, String clusterName, String databaseName, ExportClusterParameters parameters);
-
-    /**
-     * Exports a database file from target database.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Storage information for exporting into the cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void export(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ExportClusterParameters parameters,
-        Context context);
-
-    /**
-     * Forcibly removes the link to the specified database resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Information identifying the database to be unlinked.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void forceUnlink(
-        String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters parameters);
-
-    /**
-     * Forcibly removes the link to the specified database resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @param parameters Information identifying the database to be unlinked.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void forceUnlink(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ForceUnlinkParameters parameters,
+        RegenerateKeyParameters body,
         Context context);
 
     /**
@@ -273,7 +289,7 @@ public interface Databases {
     Response<Database> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a single database.
+     * Deletes a database.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -283,7 +299,7 @@ public interface Databases {
     void deleteById(String id);
 
     /**
-     * Deletes a single database.
+     * Deletes a database.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
-import java.util.List;
 
 /** An immutable client-side representation of Database. */
 public interface Database {
@@ -33,41 +33,19 @@ public interface Database {
     String type();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the clientProtocol property: Specifies whether redis clients can connect using TLS-encrypted or plaintext
      * redis protocols. Default is TLS-encrypted.
      *
      * @return the clientProtocol value.
      */
-    Protocol clientProtocol();
-
-    /**
-     * Gets the port property: TCP port of the database endpoint. Specified at create time. Defaults to an available
-     * port.
-     *
-     * @return the port value.
-     */
-    Integer port();
-
-    /**
-     * Gets the provisioningState property: Current provisioning status of the database.
-     *
-     * @return the provisioningState value.
-     */
-    ProvisioningState provisioningState();
-
-    /**
-     * Gets the resourceState property: Current resource status of the database.
-     *
-     * @return the resourceState value.
-     */
-    ResourceState resourceState();
-
-    /**
-     * Gets the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
-     *
-     * @return the clusteringPolicy value.
-     */
-    ClusteringPolicy clusteringPolicy();
+    ClientProtocol clientProtocol();
 
     /**
      * Gets the evictionPolicy property: Redis eviction policy - default is VolatileLRU.
@@ -77,26 +55,26 @@ public interface Database {
     EvictionPolicy evictionPolicy();
 
     /**
+     * Gets the port property: Port number for the database to listen on. The only valid value currently, is 10000.
+     * Other values may be valid in the future.
+     *
+     * @return the port value.
+     */
+    int port();
+
+    /**
+     * Gets the provisioningState property: Provisioning state of the database.
+     *
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
      * Gets the persistence property: Persistence settings.
      *
      * @return the persistence value.
      */
     Persistence persistence();
-
-    /**
-     * Gets the modules property: Optional set of redis modules to enable in this database - modules can only be added
-     * at creation time.
-     *
-     * @return the modules value.
-     */
-    List<Module> modules();
-
-    /**
-     * Gets the geoReplication property: Optional set of properties to configure geo replication for this database.
-     *
-     * @return the geoReplication value.
-     */
-    DatabasePropertiesGeoReplication geoReplication();
 
     /**
      * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner object.
@@ -120,7 +98,7 @@ public interface Database {
              * Specifies resourceGroupName, clusterName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param clusterName The name of the RedisEnterprise cluster.
+             * @param clusterName Name of cluster.
              * @return the next definition stage.
              */
             WithCreate withExistingRedisEnterprise(String resourceGroupName, String clusterName);
@@ -131,12 +109,9 @@ public interface Database {
          */
         interface WithCreate
             extends DefinitionStages.WithClientProtocol,
-                DefinitionStages.WithPort,
-                DefinitionStages.WithClusteringPolicy,
                 DefinitionStages.WithEvictionPolicy,
-                DefinitionStages.WithPersistence,
-                DefinitionStages.WithModules,
-                DefinitionStages.WithGeoReplication {
+                DefinitionStages.WithPort,
+                DefinitionStages.WithPersistence {
             /**
              * Executes the create request.
              *
@@ -162,29 +137,7 @@ public interface Database {
              *     protocols. Default is TLS-encrypted.
              * @return the next definition stage.
              */
-            WithCreate withClientProtocol(Protocol clientProtocol);
-        }
-        /** The stage of the Database definition allowing to specify port. */
-        interface WithPort {
-            /**
-             * Specifies the port property: TCP port of the database endpoint. Specified at create time. Defaults to an
-             * available port..
-             *
-             * @param port TCP port of the database endpoint. Specified at create time. Defaults to an available port.
-             * @return the next definition stage.
-             */
-            WithCreate withPort(Integer port);
-        }
-        /** The stage of the Database definition allowing to specify clusteringPolicy. */
-        interface WithClusteringPolicy {
-            /**
-             * Specifies the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create
-             * time..
-             *
-             * @param clusteringPolicy Clustering policy - default is OSSCluster. Specified at create time.
-             * @return the next definition stage.
-             */
-            WithCreate withClusteringPolicy(ClusteringPolicy clusteringPolicy);
+            WithCreate withClientProtocol(ClientProtocol clientProtocol);
         }
         /** The stage of the Database definition allowing to specify evictionPolicy. */
         interface WithEvictionPolicy {
@@ -196,6 +149,18 @@ public interface Database {
              */
             WithCreate withEvictionPolicy(EvictionPolicy evictionPolicy);
         }
+        /** The stage of the Database definition allowing to specify port. */
+        interface WithPort {
+            /**
+             * Specifies the port property: Port number for the database to listen on. The only valid value currently,
+             * is 10000. Other values may be valid in the future..
+             *
+             * @param port Port number for the database to listen on. The only valid value currently, is 10000. Other
+             *     values may be valid in the future.
+             * @return the next definition stage.
+             */
+            WithCreate withPort(int port);
+        }
         /** The stage of the Database definition allowing to specify persistence. */
         interface WithPersistence {
             /**
@@ -205,89 +170,6 @@ public interface Database {
              * @return the next definition stage.
              */
             WithCreate withPersistence(Persistence persistence);
-        }
-        /** The stage of the Database definition allowing to specify modules. */
-        interface WithModules {
-            /**
-             * Specifies the modules property: Optional set of redis modules to enable in this database - modules can
-             * only be added at creation time..
-             *
-             * @param modules Optional set of redis modules to enable in this database - modules can only be added at
-             *     creation time.
-             * @return the next definition stage.
-             */
-            WithCreate withModules(List<Module> modules);
-        }
-        /** The stage of the Database definition allowing to specify geoReplication. */
-        interface WithGeoReplication {
-            /**
-             * Specifies the geoReplication property: Optional set of properties to configure geo replication for this
-             * database..
-             *
-             * @param geoReplication Optional set of properties to configure geo replication for this database.
-             * @return the next definition stage.
-             */
-            WithCreate withGeoReplication(DatabasePropertiesGeoReplication geoReplication);
-        }
-    }
-    /**
-     * Begins update for the Database resource.
-     *
-     * @return the stage of resource update.
-     */
-    Database.Update update();
-
-    /** The template for Database update. */
-    interface Update
-        extends UpdateStages.WithClientProtocol, UpdateStages.WithEvictionPolicy, UpdateStages.WithPersistence {
-        /**
-         * Executes the update request.
-         *
-         * @return the updated resource.
-         */
-        Database apply();
-
-        /**
-         * Executes the update request.
-         *
-         * @param context The context to associate with this operation.
-         * @return the updated resource.
-         */
-        Database apply(Context context);
-    }
-    /** The Database update stages. */
-    interface UpdateStages {
-        /** The stage of the Database update allowing to specify clientProtocol. */
-        interface WithClientProtocol {
-            /**
-             * Specifies the clientProtocol property: Specifies whether redis clients can connect using TLS-encrypted or
-             * plaintext redis protocols. Default is TLS-encrypted..
-             *
-             * @param clientProtocol Specifies whether redis clients can connect using TLS-encrypted or plaintext redis
-             *     protocols. Default is TLS-encrypted.
-             * @return the next definition stage.
-             */
-            Update withClientProtocol(Protocol clientProtocol);
-        }
-        /** The stage of the Database update allowing to specify evictionPolicy. */
-        interface WithEvictionPolicy {
-            /**
-             * Specifies the evictionPolicy property: Redis eviction policy - default is VolatileLRU.
-             *
-             * @param evictionPolicy Redis eviction policy - default is VolatileLRU.
-             * @return the next definition stage.
-             */
-            Update withEvictionPolicy(EvictionPolicy evictionPolicy);
-        }
-        /** The stage of the Database update allowing to specify persistence. */
-        interface WithPersistence {
-            /**
-             * Specifies the persistence property: Persistence settings.
-             *
-             * @param persistence Persistence settings.
-             * @return the next definition stage.
-             */
-            Update withPersistence(Persistence persistence);
         }
     }
     /**
@@ -306,13 +188,67 @@ public interface Database {
     Database refresh(Context context);
 
     /**
-     * Retrieves the access keys for the RedisEnterprise database.
+     * Exports RDB file(s).
      *
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
      */
-    AccessKeys listKeys();
+    void exportRdb(ExportParameters body);
+
+    /**
+     * Exports RDB file(s).
+     *
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void exportRdb(ExportParameters body, Context context);
+
+    /**
+     * Forcibly unlinks one or more databases from a replication group.
+     *
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void forceUnlink(ForceUnlinkParameters body);
+
+    /**
+     * Forcibly unlinks one or more databases from a replication group.
+     *
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void forceUnlink(ForceUnlinkParameters body, Context context);
+
+    /**
+     * Imports RDB file(s).
+     *
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void importRdb(ImportParameters body);
+
+    /**
+     * Imports RDB file(s).
+     *
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void importRdb(ImportParameters body, Context context);
 
     /**
      * Retrieves the access keys for the RedisEnterprise database.
@@ -321,93 +257,39 @@ public interface Database {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys along with {@link Response}.
+     * @return redis Enterprise access keys response along with {@link Response}.
      */
     Response<AccessKeys> listKeysWithResponse(Context context);
 
     /**
-     * Regenerates the RedisEnterprise database's access keys.
+     * Retrieves the access keys for the RedisEnterprise database.
      *
-     * @param parameters Specifies which key to regenerate.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return redis Enterprise access keys response.
+     */
+    AccessKeys listKeys();
+
+    /**
+     * Regenerates an access key for the RedisEnterprise database.
+     *
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return redis Enterprise access keys response.
      */
-    AccessKeys regenerateKey(RegenerateKeyParameters parameters);
+    AccessKeys regenerateKey(RegenerateKeyParameters body);
 
     /**
-     * Regenerates the RedisEnterprise database's access keys.
+     * Regenerates an access key for the RedisEnterprise database.
      *
-     * @param parameters Specifies which key to regenerate.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return redis Enterprise access keys response.
      */
-    AccessKeys regenerateKey(RegenerateKeyParameters parameters, Context context);
-
-    /**
-     * Imports database files to target database.
-     *
-     * @param parameters Storage information for importing into the cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importMethod(ImportClusterParameters parameters);
-
-    /**
-     * Imports database files to target database.
-     *
-     * @param parameters Storage information for importing into the cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importMethod(ImportClusterParameters parameters, Context context);
-
-    /**
-     * Exports a database file from target database.
-     *
-     * @param parameters Storage information for exporting into the cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void export(ExportClusterParameters parameters);
-
-    /**
-     * Exports a database file from target database.
-     *
-     * @param parameters Storage information for exporting into the cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void export(ExportClusterParameters parameters, Context context);
-
-    /**
-     * Forcibly removes the link to the specified database resource.
-     *
-     * @param parameters Information identifying the database to be unlinked.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void forceUnlink(ForceUnlinkParameters parameters);
-
-    /**
-     * Forcibly removes the link to the specified database resource.
-     *
-     * @param parameters Information identifying the database to be unlinked.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void forceUnlink(ForceUnlinkParameters parameters, Context context);
+    AccessKeys regenerateKey(RegenerateKeyParameters body, Context context);
 }

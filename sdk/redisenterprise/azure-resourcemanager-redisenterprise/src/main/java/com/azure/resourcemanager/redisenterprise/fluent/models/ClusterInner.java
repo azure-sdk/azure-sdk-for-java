@@ -6,18 +6,24 @@ package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import java.util.Map;
 
 /** Describes the RedisEnterprise cluster. */
 @Fluent
 public final class ClusterInner extends Resource {
+    /*
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private ClusterProperties innerProperties;
+
     /*
      * The SKU to create, which affects price, performance, and features.
      */
@@ -25,16 +31,23 @@ public final class ClusterInner extends Resource {
     private Sku sku;
 
     /*
-     * The Availability Zones where this cluster will be deployed.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "zones")
-    private List<String> zones;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
-    /*
-     * RedisEnterprise cluster properties Other properties of the cluster.
+    /** Creates an instance of ClusterInner class. */
+    public ClusterInner() {
+    }
+
+    /**
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     *
+     * @return the innerProperties value.
      */
-    @JsonProperty(value = "properties")
-    private ClusterProperties innerProperties;
+    private ClusterProperties innerProperties() {
+        return this.innerProperties;
+    }
 
     /**
      * Get the sku property: The SKU to create, which affects price, performance, and features.
@@ -57,32 +70,12 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the zones property: The Availability Zones where this cluster will be deployed.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the zones value.
+     * @return the systemData value.
      */
-    public List<String> zones() {
-        return this.zones;
-    }
-
-    /**
-     * Set the zones property: The Availability Zones where this cluster will be deployed.
-     *
-     * @param zones the zones value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withZones(List<String> zones) {
-        this.zones = zones;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: RedisEnterprise cluster properties Other properties of the cluster.
-     *
-     * @return the innerProperties value.
-     */
-    private ClusterProperties innerProperties() {
-        return this.innerProperties;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -100,29 +93,6 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @return the minimumTlsVersion value.
-     */
-    public TlsVersion minimumTlsVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().minimumTlsVersion();
-    }
-
-    /**
-     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @param minimumTlsVersion the minimumTlsVersion value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withMinimumTlsVersion(minimumTlsVersion);
-        return this;
-    }
-
-    /**
      * Get the hostname property: DNS name of the cluster endpoint.
      *
      * @return the hostname value.
@@ -132,7 +102,30 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: Current provisioning status of the cluster.
+     * Get the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @return the minTlsVersion value.
+     */
+    public TlsVersion minTlsVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().minTlsVersion();
+    }
+
+    /**
+     * Set the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @param minTlsVersion the minTlsVersion value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withMinTlsVersion(TlsVersion minTlsVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withMinTlsVersion(minTlsVersion);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Current provisioning status of the last operation on the cluster.
      *
      * @return the provisioningState value.
      */
@@ -159,30 +152,20 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * RedisEnterprise cluster.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (sku() == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sku in model ClusterInner"));
         } else {
             sku().validate();
-        }
-        if (innerProperties() != null) {
-            innerProperties().validate();
         }
     }
 

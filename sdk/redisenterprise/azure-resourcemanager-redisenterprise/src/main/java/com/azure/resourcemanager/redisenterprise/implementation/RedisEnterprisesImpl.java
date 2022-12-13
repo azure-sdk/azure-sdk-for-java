@@ -28,21 +28,24 @@ public final class RedisEnterprisesImpl implements RedisEnterprises {
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String clusterName) {
-        this.serviceClient().delete(resourceGroupName, clusterName);
+    public PagedIterable<Cluster> list() {
+        PagedIterable<ClusterInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String clusterName, Context context) {
-        this.serviceClient().delete(resourceGroupName, clusterName, context);
+    public PagedIterable<Cluster> list(Context context) {
+        PagedIterable<ClusterInner> inner = this.serviceClient().list(context);
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
-    public Cluster getByResourceGroup(String resourceGroupName, String clusterName) {
-        ClusterInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, clusterName);
-        if (inner != null) {
-            return new ClusterImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<Cluster> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<ClusterInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Cluster> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<ClusterInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
     public Response<Cluster> getByResourceGroupWithResponse(
@@ -60,24 +63,21 @@ public final class RedisEnterprisesImpl implements RedisEnterprises {
         }
     }
 
-    public PagedIterable<Cluster> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<ClusterInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
+    public Cluster getByResourceGroup(String resourceGroupName, String clusterName) {
+        ClusterInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, clusterName);
+        if (inner != null) {
+            return new ClusterImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<Cluster> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<ClusterInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
+    public void deleteByResourceGroup(String resourceGroupName, String clusterName) {
+        this.serviceClient().delete(resourceGroupName, clusterName);
     }
 
-    public PagedIterable<Cluster> list() {
-        PagedIterable<ClusterInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Cluster> list(Context context) {
-        PagedIterable<ClusterInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String clusterName, Context context) {
+        this.serviceClient().delete(resourceGroupName, clusterName, context);
     }
 
     public Cluster getById(String id) {

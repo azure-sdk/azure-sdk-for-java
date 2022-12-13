@@ -5,71 +5,32 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 @Fluent
 public final class PrivateLinkServiceConnectionState {
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by
-     * the owner of the service.
+     * A message indicating if changes on the service provider require any updates on the consumer.
      */
-    @JsonProperty(value = "status")
-    private PrivateEndpointServiceConnectionStatus status;
+    @JsonProperty(value = "actionsRequired", required = true)
+    private String actionsRequired;
 
     /*
      * The reason for approval/rejection of the connection.
      */
-    @JsonProperty(value = "description")
+    @JsonProperty(value = "description", required = true)
     private String description;
 
     /*
-     * A message indicating if changes on the service provider require any
-     * updates on the consumer.
+     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
      */
-    @JsonProperty(value = "actionsRequired")
-    private String actionsRequired;
+    @JsonProperty(value = "status", required = true)
+    private PrivateEndpointServiceConnectionStatus status;
 
-    /**
-     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
-     *
-     * @return the status value.
-     */
-    public PrivateEndpointServiceConnectionStatus status() {
-        return this.status;
-    }
-
-    /**
-     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
-     *
-     * @param status the status value to set.
-     * @return the PrivateLinkServiceConnectionState object itself.
-     */
-    public PrivateLinkServiceConnectionState withStatus(PrivateEndpointServiceConnectionStatus status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Get the description property: The reason for approval/rejection of the connection.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.description;
-    }
-
-    /**
-     * Set the description property: The reason for approval/rejection of the connection.
-     *
-     * @param description the description value to set.
-     * @return the PrivateLinkServiceConnectionState object itself.
-     */
-    public PrivateLinkServiceConnectionState withDescription(String description) {
-        this.description = description;
-        return this;
+    /** Creates an instance of PrivateLinkServiceConnectionState class. */
+    public PrivateLinkServiceConnectionState() {
     }
 
     /**
@@ -95,10 +56,72 @@ public final class PrivateLinkServiceConnectionState {
     }
 
     /**
+     * Get the description property: The reason for approval/rejection of the connection.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Set the description property: The reason for approval/rejection of the connection.
+     *
+     * @param description the description value to set.
+     * @return the PrivateLinkServiceConnectionState object itself.
+     */
+    public PrivateLinkServiceConnectionState withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
+     * service.
+     *
+     * @return the status value.
+     */
+    public PrivateEndpointServiceConnectionStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
+     * service.
+     *
+     * @param status the status value to set.
+     * @return the PrivateLinkServiceConnectionState object itself.
+     */
+    public PrivateLinkServiceConnectionState withStatus(PrivateEndpointServiceConnectionStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (actionsRequired() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property actionsRequired in model PrivateLinkServiceConnectionState"));
+        }
+        if (description() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property description in model PrivateLinkServiceConnectionState"));
+        }
+        if (status() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property status in model PrivateLinkServiceConnectionState"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkServiceConnectionState.class);
 }

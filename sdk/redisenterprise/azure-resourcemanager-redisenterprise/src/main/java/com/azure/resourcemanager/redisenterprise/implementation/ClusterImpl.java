@@ -5,20 +5,17 @@
 package com.azure.resourcemanager.redisenterprise.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.redisenterprise.models.Cluster;
 import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
-import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.Update {
     private ClusterInner innerObject;
@@ -54,21 +51,16 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().sku();
     }
 
-    public List<String> zones() {
-        List<String> inner = this.innerModel().zones();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public TlsVersion minimumTlsVersion() {
-        return this.innerModel().minimumTlsVersion();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String hostname() {
         return this.innerModel().hostname();
+    }
+
+    public TlsVersion minTlsVersion() {
+        return this.innerModel().minTlsVersion();
     }
 
     public ProvisioningState provisioningState() {
@@ -83,26 +75,16 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().redisVersion();
     }
 
-    public List<PrivateEndpointConnection> privateEndpointConnections() {
-        List<PrivateEndpointConnectionInner> inner = this.innerModel().privateEndpointConnections();
-        if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ClusterInner innerModel() {
@@ -117,7 +99,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     private String clusterName;
 
-    private ClusterUpdate updateParameters;
+    private ClusterUpdate updateProperties;
 
     public ClusterImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -149,7 +131,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public ClusterImpl update() {
-        this.updateParameters = new ClusterUpdate();
+        this.updateProperties = new ClusterUpdate();
         return this;
     }
 
@@ -158,7 +140,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             serviceManager
                 .serviceClient()
                 .getRedisEnterprises()
-                .update(resourceGroupName, clusterName, updateParameters, Context.NONE);
+                .update(resourceGroupName, clusterName, updateProperties, Context.NONE);
         return this;
     }
 
@@ -167,7 +149,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             serviceManager
                 .serviceClient()
                 .getRedisEnterprises()
-                .update(resourceGroupName, clusterName, updateParameters, context);
+                .update(resourceGroupName, clusterName, updateProperties, context);
         return this;
     }
 
@@ -214,7 +196,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             this.innerModel().withSku(sku);
             return this;
         } else {
-            this.updateParameters.withSku(sku);
+            this.updateProperties.withSku(sku);
             return this;
         }
     }
@@ -224,24 +206,24 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
-    public ClusterImpl withZones(List<String> zones) {
-        this.innerModel().withZones(zones);
+    public ClusterImpl withMinTlsVersion(TlsVersion minTlsVersion) {
+        this.innerModel().withMinTlsVersion(minTlsVersion);
         return this;
     }
 
-    public ClusterImpl withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
-        if (isInCreateMode()) {
-            this.innerModel().withMinimumTlsVersion(minimumTlsVersion);
-            return this;
-        } else {
-            this.updateParameters.withMinimumTlsVersion(minimumTlsVersion);
-            return this;
-        }
+    public ClusterImpl withSkuPropertiesSku(Sku skuPropertiesSku) {
+        this.updateProperties.withSkuPropertiesSku(skuPropertiesSku);
+        return this;
+    }
+
+    public ClusterImpl withTagsPropertiesTags(Map<String, String> tagsPropertiesTags) {
+        this.updateProperties.withTagsPropertiesTags(tagsPropertiesTags);
+        return this;
     }
 
     private boolean isInCreateMode() {

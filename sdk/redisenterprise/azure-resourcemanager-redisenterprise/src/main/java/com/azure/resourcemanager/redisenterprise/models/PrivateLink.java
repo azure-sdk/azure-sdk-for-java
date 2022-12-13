@@ -4,11 +4,12 @@
 
 package com.azure.resourcemanager.redisenterprise.models;
 
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkResourceInner;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkInner;
 import java.util.List;
 
-/** An immutable client-side representation of PrivateLinkResource. */
-public interface PrivateLinkResource {
+/** An immutable client-side representation of PrivateLink. */
+public interface PrivateLink {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      *
@@ -29,6 +30,13 @@ public interface PrivateLinkResource {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the groupId property: The private link resource group id.
@@ -52,9 +60,9 @@ public interface PrivateLinkResource {
     List<String> requiredZoneNames();
 
     /**
-     * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkResourceInner object.
+     * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkInner object.
      *
      * @return the inner object.
      */
-    PrivateLinkResourceInner innerModel();
+    PrivateLinkInner innerModel();
 }

@@ -16,159 +16,261 @@ import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointCo
 /** An instance of this class provides access to all the operations defined in PrivateEndpointConnectionsClient. */
 public interface PrivateEndpointConnectionsClient {
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     *     with {@link PagedIterable}.
+     * @return the response of a PrivateEndpointConnection list operation as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateEndpointConnectionInner> list(String resourceGroupName, String clusterName);
+    PagedIterable<PrivateEndpointConnectionInner> listByCluster(String resourceGroupName, String clusterName);
 
     /**
-     * Lists all the private endpoint connections associated with the RedisEnterprise cluster.
+     * Lists all private endpoint connections in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param clusterName Name of cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     *     with {@link PagedIterable}.
+     * @return the response of a PrivateEndpointConnection list operation as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateEndpointConnectionInner> list(String resourceGroupName, String clusterName, Context context);
+    PagedIterable<PrivateEndpointConnectionInner> listByCluster(
+        String resourceGroupName, String clusterName, Context context);
 
     /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner get(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName);
-
-    /**
-     * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the RedisEnterprise cluster along with {@link
-     *     Response}.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateEndpointConnectionInner> getWithResponse(
         String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Gets information about a private endpoint connection in a RedisEnterprise cluster.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the Private Endpoint Connection resource.
+     * @return information about a private endpoint connection in a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateEndpointConnectionInner get(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName);
+
+    /**
+     * Creates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginPut(
+    SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreate(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties);
+        PrivateEndpointConnectionInner resource);
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the Private Endpoint Connection resource.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginPut(
+    SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreate(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
+        PrivateEndpointConnectionInner resource,
         Context context);
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner put(
+    PrivateEndpointConnectionInner create(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties);
+        PrivateEndpointConnectionInner resource);
 
     /**
-     * Updates the state of the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Creates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @param properties The private endpoint connection properties.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner put(
+    PrivateEndpointConnectionInner create(
         String resourceGroupName,
         String clusterName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner properties,
+        PrivateEndpointConnectionInner resource,
         Context context);
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Updates a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginUpdate(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties);
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a private endpoint connection to a RedisEnterprise
+     *     cluster.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginUpdate(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context);
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateEndpointConnectionInner update(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Object properties);
+
+    /**
+     * Updates a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a private endpoint connection to a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateEndpointConnectionInner update(
+        String resourceGroupName,
+        String clusterName,
+        String privateEndpointConnectionName,
+        Object properties,
+        Context context);
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName);
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
+
+    /**
+     * Deletes a private endpoint connection.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -177,19 +279,16 @@ public interface PrivateEndpointConnectionsClient {
     void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName);
 
     /**
-     * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
+     * Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
+     * @param clusterName Name of cluster.
+     * @param privateEndpointConnectionName Name of private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
+    void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
 }

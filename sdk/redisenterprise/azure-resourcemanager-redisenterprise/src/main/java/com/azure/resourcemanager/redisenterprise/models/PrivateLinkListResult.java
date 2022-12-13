@@ -6,19 +6,19 @@ package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 import java.util.List;
 
-/** The response of a PrivateEndpointConnection list operation. */
+/** The response of a PrivateLink list operation. */
 @Fluent
-public final class PrivateEndpointConnectionListResult {
+public final class PrivateLinkListResult {
     /*
-     * The PrivateEndpointConnection items on this page
+     * The PrivateLink items on this page
      */
     @JsonProperty(value = "value", required = true)
-    private List<PrivateEndpointConnectionInner> value;
+    private List<PrivateLinkInner> value;
 
     /*
      * The link to the next page of items
@@ -26,26 +26,26 @@ public final class PrivateEndpointConnectionListResult {
     @JsonProperty(value = "nextLink")
     private URL nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionListResult class. */
-    public PrivateEndpointConnectionListResult() {
+    /** Creates an instance of PrivateLinkListResult class. */
+    public PrivateLinkListResult() {
     }
 
     /**
-     * Get the value property: The PrivateEndpointConnection items on this page.
+     * Get the value property: The PrivateLink items on this page.
      *
      * @return the value value.
      */
-    public List<PrivateEndpointConnectionInner> value() {
+    public List<PrivateLinkInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The PrivateEndpointConnection items on this page.
+     * Set the value property: The PrivateLink items on this page.
      *
      * @param value the value value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the PrivateLinkListResult object itself.
      */
-    public PrivateEndpointConnectionListResult withValue(List<PrivateEndpointConnectionInner> value) {
+    public PrivateLinkListResult withValue(List<PrivateLinkInner> value) {
         this.value = value;
         return this;
     }
@@ -63,9 +63,9 @@ public final class PrivateEndpointConnectionListResult {
      * Set the nextLink property: The link to the next page of items.
      *
      * @param nextLink the nextLink value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the PrivateLinkListResult object itself.
      */
-    public PrivateEndpointConnectionListResult withNextLink(URL nextLink) {
+    public PrivateLinkListResult withNextLink(URL nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -79,12 +79,11 @@ public final class PrivateEndpointConnectionListResult {
         if (value() == null) {
             throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model PrivateEndpointConnectionListResult"));
+                    new IllegalArgumentException("Missing required property value in model PrivateLinkListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkListResult.class);
 }

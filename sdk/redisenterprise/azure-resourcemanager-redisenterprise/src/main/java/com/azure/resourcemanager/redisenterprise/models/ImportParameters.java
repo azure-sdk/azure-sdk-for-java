@@ -9,14 +9,18 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Import RDB files into a target database Parameters for a Redis Enterprise import operation. */
+/** Import request. Parameters for a Redis Enterprise import operation. */
 @Fluent
-public final class ImportClusterParameters {
+public final class ImportParameters {
     /*
      * SAS URIs for the target blobs to import from
      */
     @JsonProperty(value = "sasUris", required = true)
     private List<String> sasUris;
+
+    /** Creates an instance of ImportParameters class. */
+    public ImportParameters() {
+    }
 
     /**
      * Get the sasUris property: SAS URIs for the target blobs to import from.
@@ -31,9 +35,9 @@ public final class ImportClusterParameters {
      * Set the sasUris property: SAS URIs for the target blobs to import from.
      *
      * @param sasUris the sasUris value to set.
-     * @return the ImportClusterParameters object itself.
+     * @return the ImportParameters object itself.
      */
-    public ImportClusterParameters withSasUris(List<String> sasUris) {
+    public ImportParameters withSasUris(List<String> sasUris) {
         this.sasUris = sasUris;
         return this;
     }
@@ -47,9 +51,9 @@ public final class ImportClusterParameters {
         if (sasUris() == null) {
             throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sasUris in model ImportClusterParameters"));
+                    new IllegalArgumentException("Missing required property sasUris in model ImportParameters"));
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ImportClusterParameters.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ImportParameters.class);
 }

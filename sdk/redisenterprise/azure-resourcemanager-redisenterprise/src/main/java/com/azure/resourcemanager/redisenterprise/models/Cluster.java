@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
-import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of Cluster. */
@@ -55,18 +55,11 @@ public interface Cluster {
     Sku sku();
 
     /**
-     * Gets the zones property: The Availability Zones where this cluster will be deployed.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the zones value.
+     * @return the systemData value.
      */
-    List<String> zones();
-
-    /**
-     * Gets the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @return the minimumTlsVersion value.
-     */
-    TlsVersion minimumTlsVersion();
+    SystemData systemData();
 
     /**
      * Gets the hostname property: DNS name of the cluster endpoint.
@@ -76,7 +69,14 @@ public interface Cluster {
     String hostname();
 
     /**
-     * Gets the provisioningState property: Current provisioning status of the cluster.
+     * Gets the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @return the minTlsVersion value.
+     */
+    TlsVersion minTlsVersion();
+
+    /**
+     * Gets the provisioningState property: Current provisioning status of the last operation on the cluster.
      *
      * @return the provisioningState value.
      */
@@ -97,14 +97,6 @@ public interface Cluster {
     String redisVersion();
 
     /**
-     * Gets the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * RedisEnterprise cluster.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    List<PrivateEndpointConnection> privateEndpointConnections();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -117,6 +109,13 @@ public interface Cluster {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner object.
@@ -180,8 +179,7 @@ public interface Cluster {
          * The stage of the Cluster definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithZones, DefinitionStages.WithMinimumTlsVersion {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithMinTlsVersion {
             /**
              * Executes the create request.
              *
@@ -207,25 +205,16 @@ public interface Cluster {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the Cluster definition allowing to specify zones. */
-        interface WithZones {
+        /** The stage of the Cluster definition allowing to specify minTlsVersion. */
+        interface WithMinTlsVersion {
             /**
-             * Specifies the zones property: The Availability Zones where this cluster will be deployed..
+             * Specifies the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the
+             * default of '1.2'..
              *
-             * @param zones The Availability Zones where this cluster will be deployed.
+             * @param minTlsVersion The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
              * @return the next definition stage.
              */
-            WithCreate withZones(List<String> zones);
-        }
-        /** The stage of the Cluster definition allowing to specify minimumTlsVersion. */
-        interface WithMinimumTlsVersion {
-            /**
-             * Specifies the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-             *
-             * @param minimumTlsVersion The minimum TLS version for the cluster to support, e.g. '1.2'.
-             * @return the next definition stage.
-             */
-            WithCreate withMinimumTlsVersion(TlsVersion minimumTlsVersion);
+            WithCreate withMinTlsVersion(TlsVersion minTlsVersion);
         }
     }
     /**
@@ -236,7 +225,11 @@ public interface Cluster {
     Cluster.Update update();
 
     /** The template for Cluster update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithMinimumTlsVersion {
+    interface Update
+        extends UpdateStages.WithTags,
+            UpdateStages.WithSku,
+            UpdateStages.WithSkuPropertiesSku,
+            UpdateStages.WithTagsPropertiesTags {
         /**
          * Executes the update request.
          *
@@ -274,15 +267,26 @@ public interface Cluster {
              */
             Update withSku(Sku sku);
         }
-        /** The stage of the Cluster update allowing to specify minimumTlsVersion. */
-        interface WithMinimumTlsVersion {
+        /** The stage of the Cluster update allowing to specify skuPropertiesSku. */
+        interface WithSkuPropertiesSku {
             /**
-             * Specifies the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
+             * Specifies the skuPropertiesSku property: The SKU to create, which affects price, performance, and
+             * features..
              *
-             * @param minimumTlsVersion The minimum TLS version for the cluster to support, e.g. '1.2'.
+             * @param skuPropertiesSku The SKU to create, which affects price, performance, and features.
              * @return the next definition stage.
              */
-            Update withMinimumTlsVersion(TlsVersion minimumTlsVersion);
+            Update withSkuPropertiesSku(Sku skuPropertiesSku);
+        }
+        /** The stage of the Cluster update allowing to specify tagsPropertiesTags. */
+        interface WithTagsPropertiesTags {
+            /**
+             * Specifies the tagsPropertiesTags property: Resource tags..
+             *
+             * @param tagsPropertiesTags Resource tags.
+             * @return the next definition stage.
+             */
+            Update withTagsPropertiesTags(Map<String, String> tagsPropertiesTags);
         }
     }
     /**

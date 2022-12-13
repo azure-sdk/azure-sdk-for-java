@@ -8,21 +8,25 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Regenerate access keys request Specifies which access keys to reset to a new random value. */
+/** Regenerate access keys request. Specifies which access keys to reset to a new random value. */
 @Fluent
 public final class RegenerateKeyParameters {
     /*
      * Which access key to regenerate.
      */
     @JsonProperty(value = "keyType", required = true)
-    private AccessKeyType keyType;
+    private KeyType keyType;
+
+    /** Creates an instance of RegenerateKeyParameters class. */
+    public RegenerateKeyParameters() {
+    }
 
     /**
      * Get the keyType property: Which access key to regenerate.
      *
      * @return the keyType value.
      */
-    public AccessKeyType keyType() {
+    public KeyType keyType() {
         return this.keyType;
     }
 
@@ -32,7 +36,7 @@ public final class RegenerateKeyParameters {
      * @param keyType the keyType value to set.
      * @return the RegenerateKeyParameters object itself.
      */
-    public RegenerateKeyParameters withKeyType(AccessKeyType keyType) {
+    public RegenerateKeyParameters withKeyType(KeyType keyType) {
         this.keyType = keyType;
         return this;
     }

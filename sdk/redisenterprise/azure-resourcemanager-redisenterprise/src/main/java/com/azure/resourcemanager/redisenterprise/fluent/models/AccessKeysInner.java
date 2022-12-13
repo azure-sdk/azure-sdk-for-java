@@ -4,23 +4,28 @@
 
 package com.azure.resourcemanager.redisenterprise.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Access keys The secret access keys used for authenticating connections to redis. */
-@Immutable
+/** Redis Enterprise access keys response. */
+@Fluent
 public final class AccessKeysInner {
     /*
      * The current primary key that clients can use to authenticate
      */
-    @JsonProperty(value = "primaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "primaryKey", required = true)
     private String primaryKey;
 
     /*
      * The current secondary key that clients can use to authenticate
      */
-    @JsonProperty(value = "secondaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "secondaryKey", required = true)
     private String secondaryKey;
+
+    /** Creates an instance of AccessKeysInner class. */
+    public AccessKeysInner() {
+    }
 
     /**
      * Get the primaryKey property: The current primary key that clients can use to authenticate.
@@ -29,6 +34,17 @@ public final class AccessKeysInner {
      */
     public String primaryKey() {
         return this.primaryKey;
+    }
+
+    /**
+     * Set the primaryKey property: The current primary key that clients can use to authenticate.
+     *
+     * @param primaryKey the primaryKey value to set.
+     * @return the AccessKeysInner object itself.
+     */
+    public AccessKeysInner withPrimaryKey(String primaryKey) {
+        this.primaryKey = primaryKey;
+        return this;
     }
 
     /**
@@ -41,10 +57,33 @@ public final class AccessKeysInner {
     }
 
     /**
+     * Set the secondaryKey property: The current secondary key that clients can use to authenticate.
+     *
+     * @param secondaryKey the secondaryKey value to set.
+     * @return the AccessKeysInner object itself.
+     */
+    public AccessKeysInner withSecondaryKey(String secondaryKey) {
+        this.secondaryKey = secondaryKey;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (primaryKey() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property primaryKey in model AccessKeysInner"));
+        }
+        if (secondaryKey() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property secondaryKey in model AccessKeysInner"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AccessKeysInner.class);
 }

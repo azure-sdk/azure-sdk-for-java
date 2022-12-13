@@ -7,20 +7,20 @@ package com.azure.resourcemanager.redisenterprise.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Persistence settings Persistence-related configuration for the RedisEnterprise database. */
+/** Persistence-related configuration for the RedisEnterprise database. */
 @Fluent
 public final class Persistence {
     /*
-     * Sets whether AOF is enabled.
+     * Sets whether AOF is enabled. Defaults to false.
      */
-    @JsonProperty(value = "aofEnabled")
-    private Boolean aofEnabled;
+    @JsonProperty(value = "aofEnabled", required = true)
+    private boolean aofEnabled;
 
     /*
-     * Sets whether RDB is enabled.
+     * Sets whether RDB is enabled. Defaults to false.
      */
-    @JsonProperty(value = "rdbEnabled")
-    private Boolean rdbEnabled;
+    @JsonProperty(value = "rdbEnabled", required = true)
+    private boolean rdbEnabled;
 
     /*
      * Sets the frequency at which data is written to disk.
@@ -34,42 +34,46 @@ public final class Persistence {
     @JsonProperty(value = "rdbFrequency")
     private RdbFrequency rdbFrequency;
 
+    /** Creates an instance of Persistence class. */
+    public Persistence() {
+    }
+
     /**
-     * Get the aofEnabled property: Sets whether AOF is enabled.
+     * Get the aofEnabled property: Sets whether AOF is enabled. Defaults to false.
      *
      * @return the aofEnabled value.
      */
-    public Boolean aofEnabled() {
+    public boolean aofEnabled() {
         return this.aofEnabled;
     }
 
     /**
-     * Set the aofEnabled property: Sets whether AOF is enabled.
+     * Set the aofEnabled property: Sets whether AOF is enabled. Defaults to false.
      *
      * @param aofEnabled the aofEnabled value to set.
      * @return the Persistence object itself.
      */
-    public Persistence withAofEnabled(Boolean aofEnabled) {
+    public Persistence withAofEnabled(boolean aofEnabled) {
         this.aofEnabled = aofEnabled;
         return this;
     }
 
     /**
-     * Get the rdbEnabled property: Sets whether RDB is enabled.
+     * Get the rdbEnabled property: Sets whether RDB is enabled. Defaults to false.
      *
      * @return the rdbEnabled value.
      */
-    public Boolean rdbEnabled() {
+    public boolean rdbEnabled() {
         return this.rdbEnabled;
     }
 
     /**
-     * Set the rdbEnabled property: Sets whether RDB is enabled.
+     * Set the rdbEnabled property: Sets whether RDB is enabled. Defaults to false.
      *
      * @param rdbEnabled the rdbEnabled value to set.
      * @return the Persistence object itself.
      */
-    public Persistence withRdbEnabled(Boolean rdbEnabled) {
+    public Persistence withRdbEnabled(boolean rdbEnabled) {
         this.rdbEnabled = rdbEnabled;
         return this;
     }

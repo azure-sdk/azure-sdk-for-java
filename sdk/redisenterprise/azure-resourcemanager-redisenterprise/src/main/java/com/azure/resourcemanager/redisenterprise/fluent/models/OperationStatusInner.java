@@ -5,166 +5,56 @@
 package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.exception.ManagementError;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The status of a long-running operation. */
+/** Proxy resource for selecting azure location. */
 @Fluent
-public final class OperationStatusInner {
+public final class OperationStatusInner extends ProxyResource {
     /*
-     * The operation's unique id.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "id")
-    private String id;
+    @JsonProperty(value = "properties")
+    private Object properties;
 
     /*
-     * The operation's name.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "name")
-    private String name;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
-    /*
-     * The start time of the operation.
-     */
-    @JsonProperty(value = "startTime")
-    private String startTime;
-
-    /*
-     * The end time of the operation.
-     */
-    @JsonProperty(value = "endTime")
-    private String endTime;
-
-    /*
-     * The current status of the operation.
-     */
-    @JsonProperty(value = "status")
-    private String status;
-
-    /*
-     * Error response Error response describing why the operation failed.
-     */
-    @JsonProperty(value = "error")
-    private ManagementError error;
-
-    /**
-     * Get the id property: The operation's unique id.
-     *
-     * @return the id value.
-     */
-    public String id() {
-        return this.id;
+    /** Creates an instance of OperationStatusInner class. */
+    public OperationStatusInner() {
     }
 
     /**
-     * Set the id property: The operation's unique id.
+     * Get the properties property: The resource-specific properties for this resource.
      *
-     * @param id the id value to set.
+     * @return the properties value.
+     */
+    public Object properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The resource-specific properties for this resource.
+     *
+     * @param properties the properties value to set.
      * @return the OperationStatusInner object itself.
      */
-    public OperationStatusInner withId(String id) {
-        this.id = id;
+    public OperationStatusInner withProperties(Object properties) {
+        this.properties = properties;
         return this;
     }
 
     /**
-     * Get the name property: The operation's name.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the name value.
+     * @return the systemData value.
      */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Set the name property: The operation's name.
-     *
-     * @param name the name value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get the startTime property: The start time of the operation.
-     *
-     * @return the startTime value.
-     */
-    public String startTime() {
-        return this.startTime;
-    }
-
-    /**
-     * Set the startTime property: The start time of the operation.
-     *
-     * @param startTime the startTime value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withStartTime(String startTime) {
-        this.startTime = startTime;
-        return this;
-    }
-
-    /**
-     * Get the endTime property: The end time of the operation.
-     *
-     * @return the endTime value.
-     */
-    public String endTime() {
-        return this.endTime;
-    }
-
-    /**
-     * Set the endTime property: The end time of the operation.
-     *
-     * @param endTime the endTime value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withEndTime(String endTime) {
-        this.endTime = endTime;
-        return this;
-    }
-
-    /**
-     * Get the status property: The current status of the operation.
-     *
-     * @return the status value.
-     */
-    public String status() {
-        return this.status;
-    }
-
-    /**
-     * Set the status property: The current status of the operation.
-     *
-     * @param status the status value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withStatus(String status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Get the error property: Error response Error response describing why the operation failed.
-     *
-     * @return the error value.
-     */
-    public ManagementError error() {
-        return this.error;
-    }
-
-    /**
-     * Set the error property: Error response Error response describing why the operation failed.
-     *
-     * @param error the error value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withError(ManagementError error) {
-        this.error = error;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
