@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.BandwidthScheduleInner;
 import java.util.List;
@@ -32,6 +33,13 @@ public interface BandwidthSchedule {
     String type();
 
     /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of BandwidthSchedule.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the start property: The start time of the schedule in UTC.
      *
      * @return the start value.
@@ -58,6 +66,13 @@ public interface BandwidthSchedule {
      * @return the days value.
      */
     List<DayOfWeek> days();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.BandwidthScheduleInner object.
