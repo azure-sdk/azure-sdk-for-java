@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HealthCheckResult. */
+/** Represents the Health state of the health check we performed. */
 public final class HealthCheckResult extends ExpandableStringEnum<HealthCheckResult> {
     /** Static value Unknown for HealthCheckResult. */
     public static final HealthCheckResult UNKNOWN = fromString("Unknown");

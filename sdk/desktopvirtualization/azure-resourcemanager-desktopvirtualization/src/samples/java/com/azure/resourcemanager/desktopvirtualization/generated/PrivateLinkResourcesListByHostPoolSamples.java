@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources ListByHostPool. */
 public final class PrivateLinkResourcesListByHostPoolSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateLinkResources_ListByHostPool.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2022-10-14-preview/examples/PrivateLinkResources_ListByHostPool.json
      */
     /**
      * Sample code: PrivateLinkResources_ListByHostPool.
@@ -18,6 +18,6 @@ public final class PrivateLinkResourcesListByHostPoolSamples {
      */
     public static void privateLinkResourcesListByHostPool(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.privateLinkResources().listByHostPool("resourceGroup1", "hostPool1", Context.NONE);
+        manager.privateLinkResources().listByHostPool("resourceGroup1", "hostPool1", null, null, null, Context.NONE);
     }
 }

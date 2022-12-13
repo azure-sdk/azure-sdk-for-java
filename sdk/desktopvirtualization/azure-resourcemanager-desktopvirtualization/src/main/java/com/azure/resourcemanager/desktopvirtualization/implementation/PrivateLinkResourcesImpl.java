@@ -26,19 +26,6 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<PrivateLinkResource> listByHostPool(String resourceGroupName, String hostPoolName) {
-        PagedIterable<PrivateLinkResourceInner> inner =
-            this.serviceClient().listByHostPool(resourceGroupName, hostPoolName);
-        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<PrivateLinkResource> listByHostPool(
-        String resourceGroupName, String hostPoolName, Context context) {
-        PagedIterable<PrivateLinkResourceInner> inner =
-            this.serviceClient().listByHostPool(resourceGroupName, hostPoolName, context);
-        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
-    }
-
     public PagedIterable<PrivateLinkResource> listByWorkspace(String resourceGroupName, String workspaceName) {
         PagedIterable<PrivateLinkResourceInner> inner =
             this.serviceClient().listByWorkspace(resourceGroupName, workspaceName);
@@ -46,9 +33,36 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
     }
 
     public PagedIterable<PrivateLinkResource> listByWorkspace(
-        String resourceGroupName, String workspaceName, Context context) {
+        String resourceGroupName,
+        String workspaceName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         PagedIterable<PrivateLinkResourceInner> inner =
-            this.serviceClient().listByWorkspace(resourceGroupName, workspaceName, context);
+            this
+                .serviceClient()
+                .listByWorkspace(resourceGroupName, workspaceName, pageSize, isDescending, initialSkip, context);
+        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PrivateLinkResource> listByHostPool(String resourceGroupName, String hostPoolName) {
+        PagedIterable<PrivateLinkResourceInner> inner =
+            this.serviceClient().listByHostPool(resourceGroupName, hostPoolName);
+        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PrivateLinkResource> listByHostPool(
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
+        PagedIterable<PrivateLinkResourceInner> inner =
+            this
+                .serviceClient()
+                .listByHostPool(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context);
         return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
