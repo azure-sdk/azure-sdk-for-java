@@ -33,11 +33,11 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.loadtestservice.fluent.LoadTestsClient;
-import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner;
 import com.azure.resourcemanager.loadtestservice.fluent.models.OutboundEnvironmentEndpointInner;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResourcePageList;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResourcePatchRequestBody;
-import com.azure.resourcemanager.loadtestservice.models.OutboundEnvironmentEndpointCollection;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingResourcePageList;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingResourcePatch;
+import com.azure.resourcemanager.loadtestservice.models.OutboundEnvironmentEndpointListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -67,12 +67,12 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LoadTestClientLoadTe")
-    private interface LoadTestsService {
+    public interface LoadTestsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.LoadTestService/loadTests")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LoadTestResourcePageList>> list(
+        Mono<Response<LoadTestingResourcePageList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("api-version") String apiVersion,
@@ -85,7 +85,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
                 + "/loadTests")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LoadTestResourcePageList>> listByResourceGroup(
+        Mono<Response<LoadTestingResourcePageList>> listByResourceGroup(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -99,7 +99,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
                 + "/loadTests/{loadTestName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LoadTestResourceInner>> getByResourceGroup(
+        Mono<Response<LoadTestingResourceInner>> getByResourceGroup(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -120,7 +120,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("loadTestName") String loadTestName,
-            @BodyParam("application/json") LoadTestResourceInner loadTestResource,
+            @BodyParam("application/json") LoadTestingResourceInner loadTestResource,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -136,7 +136,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("loadTestName") String loadTestName,
-            @BodyParam("application/json") LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+            @BodyParam("application/json") LoadTestingResourcePatch loadTestResourcePatchRequestBody,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -161,7 +161,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
                 + "/loadTests/{loadTestName}/outboundNetworkDependenciesEndpoints")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OutboundEnvironmentEndpointCollection>> listOutboundNetworkDependenciesEndpoints(
+        Mono<Response<OutboundEnvironmentEndpointListResult>> listOutboundNetworkDependenciesEndpoints(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -174,7 +174,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LoadTestResourcePageList>> listBySubscriptionNext(
+        Mono<Response<LoadTestingResourcePageList>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -184,7 +184,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LoadTestResourcePageList>> listByResourceGroupNext(
+        Mono<Response<LoadTestingResourcePageList>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -194,7 +194,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OutboundEnvironmentEndpointCollection>> listOutboundNetworkDependenciesEndpointsNext(
+        Mono<Response<OutboundEnvironmentEndpointListResult>> listOutboundNetworkDependenciesEndpointsNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -209,7 +209,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<LoadTestingResourceInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -233,7 +233,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .<PagedResponse<LoadTestResourceInner>>map(
+            .<PagedResponse<LoadTestingResourceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -255,7 +255,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<LoadTestingResourceInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -296,7 +296,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LoadTestResourceInner> listAsync() {
+    private PagedFlux<LoadTestingResourceInner> listAsync() {
         return new PagedFlux<>(
             () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
@@ -311,7 +311,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LoadTestResourceInner> listAsync(Context context) {
+    private PagedFlux<LoadTestingResourceInner> listAsync(Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
@@ -324,7 +324,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LoadTestResourceInner> list() {
+    public PagedIterable<LoadTestingResourceInner> list() {
         return new PagedIterable<>(listAsync());
     }
 
@@ -338,7 +338,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LoadTestResourceInner> list(Context context) {
+    public PagedIterable<LoadTestingResourceInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
     }
 
@@ -352,7 +352,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
+    private Mono<PagedResponse<LoadTestingResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -381,7 +381,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .<PagedResponse<LoadTestResourceInner>>map(
+            .<PagedResponse<LoadTestingResourceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -404,7 +404,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listByResourceGroupSinglePageAsync(
+    private Mono<PagedResponse<LoadTestingResourceInner>> listByResourceGroupSinglePageAsync(
         String resourceGroupName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -453,7 +453,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LoadTestResourceInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<LoadTestingResourceInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
@@ -470,7 +470,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LoadTestResourceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
+    private PagedFlux<LoadTestingResourceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
@@ -486,7 +486,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LoadTestResourceInner> listByResourceGroup(String resourceGroupName) {
+    public PagedIterable<LoadTestingResourceInner> listByResourceGroup(String resourceGroupName) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
     }
 
@@ -501,7 +501,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LoadTestResourceInner> listByResourceGroup(String resourceGroupName, Context context) {
+    public PagedIterable<LoadTestingResourceInner> listByResourceGroup(String resourceGroupName, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
     }
 
@@ -516,7 +516,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return a LoadTest resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<LoadTestResourceInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<LoadTestingResourceInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String loadTestName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -565,7 +565,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return a LoadTest resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<LoadTestResourceInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<LoadTestingResourceInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String loadTestName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -610,7 +610,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return a LoadTest resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LoadTestResourceInner> getByResourceGroupAsync(String resourceGroupName, String loadTestName) {
+    private Mono<LoadTestingResourceInner> getByResourceGroupAsync(String resourceGroupName, String loadTestName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, loadTestName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -627,7 +627,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return a LoadTest resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<LoadTestResourceInner> getByResourceGroupWithResponse(
+    public Response<LoadTestingResourceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String loadTestName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, loadTestName, context).block();
     }
@@ -643,7 +643,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return a LoadTest resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LoadTestResourceInner getByResourceGroup(String resourceGroupName, String loadTestName) {
+    public LoadTestingResourceInner getByResourceGroup(String resourceGroupName, String loadTestName) {
         return getByResourceGroupWithResponse(resourceGroupName, loadTestName, Context.NONE).getValue();
     }
 
@@ -660,7 +660,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource) {
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -717,7 +717,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context) {
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -769,17 +769,17 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link PollerFlux} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource) {
+    private PollerFlux<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             createOrUpdateWithResponseAsync(resourceGroupName, loadTestName, loadTestResource);
         return this
             .client
-            .<LoadTestResourceInner, LoadTestResourceInner>getLroResult(
+            .<LoadTestingResourceInner, LoadTestingResourceInner>getLroResult(
                 mono,
                 this.client.getHttpPipeline(),
-                LoadTestResourceInner.class,
-                LoadTestResourceInner.class,
+                LoadTestingResourceInner.class,
+                LoadTestingResourceInner.class,
                 this.client.getContext());
     }
 
@@ -796,15 +796,19 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link PollerFlux} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context) {
+    private PollerFlux<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             createOrUpdateWithResponseAsync(resourceGroupName, loadTestName, loadTestResource, context);
         return this
             .client
-            .<LoadTestResourceInner, LoadTestResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), LoadTestResourceInner.class, LoadTestResourceInner.class, context);
+            .<LoadTestingResourceInner, LoadTestingResourceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                LoadTestingResourceInner.class,
+                LoadTestingResourceInner.class,
+                context);
     }
 
     /**
@@ -819,8 +823,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource) {
+    public SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginCreateOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource) {
         return beginCreateOrUpdateAsync(resourceGroupName, loadTestName, loadTestResource).getSyncPoller();
     }
 
@@ -837,8 +841,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context) {
+    public SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginCreateOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, loadTestName, loadTestResource, context).getSyncPoller();
     }
 
@@ -854,8 +858,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LoadTestResourceInner> createOrUpdateAsync(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource) {
+    private Mono<LoadTestingResourceInner> createOrUpdateAsync(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource) {
         return beginCreateOrUpdateAsync(resourceGroupName, loadTestName, loadTestResource)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -874,8 +878,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LoadTestResourceInner> createOrUpdateAsync(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context) {
+    private Mono<LoadTestingResourceInner> createOrUpdateAsync(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, loadTestName, loadTestResource, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -893,8 +897,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LoadTestResourceInner createOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource) {
+    public LoadTestingResourceInner createOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource) {
         return createOrUpdateAsync(resourceGroupName, loadTestName, loadTestResource).block();
     }
 
@@ -911,8 +915,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LoadTestResourceInner createOrUpdate(
-        String resourceGroupName, String loadTestName, LoadTestResourceInner loadTestResource, Context context) {
+    public LoadTestingResourceInner createOrUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourceInner loadTestResource, Context context) {
         return createOrUpdateAsync(resourceGroupName, loadTestName, loadTestResource, context).block();
     }
 
@@ -929,9 +933,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody) {
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -992,7 +994,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1047,19 +1049,17 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link PollerFlux} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginUpdateAsync(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody) {
+    private PollerFlux<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginUpdateAsync(
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             updateWithResponseAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody);
         return this
             .client
-            .<LoadTestResourceInner, LoadTestResourceInner>getLroResult(
+            .<LoadTestingResourceInner, LoadTestingResourceInner>getLroResult(
                 mono,
                 this.client.getHttpPipeline(),
-                LoadTestResourceInner.class,
-                LoadTestResourceInner.class,
+                LoadTestingResourceInner.class,
+                LoadTestingResourceInner.class,
                 this.client.getContext());
     }
 
@@ -1076,18 +1076,22 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link PollerFlux} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginUpdateAsync(
+    private PollerFlux<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginUpdateAsync(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             updateWithResponseAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody, context);
         return this
             .client
-            .<LoadTestResourceInner, LoadTestResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), LoadTestResourceInner.class, LoadTestResourceInner.class, context);
+            .<LoadTestingResourceInner, LoadTestingResourceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                LoadTestingResourceInner.class,
+                LoadTestingResourceInner.class,
+                context);
     }
 
     /**
@@ -1102,10 +1106,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginUpdate(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody) {
+    public SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginUpdate(
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody) {
         return beginUpdateAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody).getSyncPoller();
     }
 
@@ -1122,10 +1124,10 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return the {@link SyncPoller} for polling of loadTest details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LoadTestResourceInner>, LoadTestResourceInner> beginUpdate(
+    public SyncPoller<PollResult<LoadTestingResourceInner>, LoadTestingResourceInner> beginUpdate(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context) {
         return beginUpdateAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody, context)
             .getSyncPoller();
@@ -1143,10 +1145,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LoadTestResourceInner> updateAsync(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody) {
+    private Mono<LoadTestingResourceInner> updateAsync(
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody) {
         return beginUpdateAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -1165,10 +1165,10 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LoadTestResourceInner> updateAsync(
+    private Mono<LoadTestingResourceInner> updateAsync(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context) {
         return beginUpdateAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody, context)
             .last()
@@ -1187,10 +1187,8 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LoadTestResourceInner update(
-        String resourceGroupName,
-        String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody) {
+    public LoadTestingResourceInner update(
+        String resourceGroupName, String loadTestName, LoadTestingResourcePatch loadTestResourcePatchRequestBody) {
         return updateAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody).block();
     }
 
@@ -1207,10 +1205,10 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return loadTest details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LoadTestResourceInner update(
+    public LoadTestingResourceInner update(
         String resourceGroupName,
         String loadTestName,
-        LoadTestResourcePatchRequestBody loadTestResourcePatchRequestBody,
+        LoadTestingResourcePatch loadTestResourcePatchRequestBody,
         Context context) {
         return updateAsync(resourceGroupName, loadTestName, loadTestResourcePatchRequestBody, context).block();
     }
@@ -1639,7 +1637,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<LoadTestingResourceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1653,7 +1651,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<LoadTestResourceInner>>map(
+            .<PagedResponse<LoadTestingResourceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1677,7 +1675,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listBySubscriptionNextSinglePageAsync(
+    private Mono<PagedResponse<LoadTestingResourceInner>> listBySubscriptionNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1714,7 +1712,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<LoadTestingResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1728,7 +1726,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<LoadTestResourceInner>>map(
+            .<PagedResponse<LoadTestingResourceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1752,7 +1750,7 @@ public final class LoadTestsClientImpl implements LoadTestsClient {
      * @return list of resources page result along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LoadTestResourceInner>> listByResourceGroupNextSinglePageAsync(
+    private Mono<PagedResponse<LoadTestingResourceInner>> listByResourceGroupNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));

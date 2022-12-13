@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.loadtestservice.implementation;
 
 import com.azure.resourcemanager.loadtestservice.fluent.models.OutboundEnvironmentEndpointInner;
-import com.azure.resourcemanager.loadtestservice.models.EndpointDependency;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingEndpointDependency;
 import com.azure.resourcemanager.loadtestservice.models.OutboundEnvironmentEndpoint;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +26,8 @@ public final class OutboundEnvironmentEndpointImpl implements OutboundEnvironmen
         return this.innerModel().category();
     }
 
-    public List<EndpointDependency> endpoints() {
-        List<EndpointDependency> inner = this.innerModel().endpoints();
+    public List<LoadTestingEndpointDependency> endpoints() {
+        List<LoadTestingEndpointDependency> inner = this.innerModel().endpoints();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {

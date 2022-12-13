@@ -9,9 +9,9 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.loadtestservice.fluent.models.CheckQuotaAvailabilityResponseInner;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner;
-import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequest;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaAvailabilityResponseInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaBucketContent;
 
 /** An instance of this class provides access to all the operations defined in QuotasClient. */
 public interface QuotasClient {
@@ -25,7 +25,7 @@ public interface QuotasClient {
      * @return list of quota bucket objects as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<QuotaResourceInner> list(String location);
+    PagedIterable<LoadTestingQuotaInner> list(String location);
 
     /**
      * Lists all the available quota per region per subscription.
@@ -38,7 +38,7 @@ public interface QuotasClient {
      * @return list of quota bucket objects as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<QuotaResourceInner> list(String location, Context context);
+    PagedIterable<LoadTestingQuotaInner> list(String location, Context context);
 
     /**
      * Get the available quota for a quota bucket per region per subscription.
@@ -52,7 +52,7 @@ public interface QuotasClient {
      * @return the available quota for a quota bucket per region per subscription along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<QuotaResourceInner> getWithResponse(String location, String quotaBucketName, Context context);
+    Response<LoadTestingQuotaInner> getWithResponse(String location, String quotaBucketName, Context context);
 
     /**
      * Get the available quota for a quota bucket per region per subscription.
@@ -65,7 +65,7 @@ public interface QuotasClient {
      * @return the available quota for a quota bucket per region per subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    QuotaResourceInner get(String location, String quotaBucketName);
+    LoadTestingQuotaInner get(String location, String quotaBucketName);
 
     /**
      * Check Quota Availability on quota bucket per region per subscription.
@@ -80,8 +80,8 @@ public interface QuotasClient {
      * @return check quota availability response object along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CheckQuotaAvailabilityResponseInner> checkAvailabilityWithResponse(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest, Context context);
+    Response<LoadTestingQuotaAvailabilityResponseInner> checkAvailabilityWithResponse(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest, Context context);
 
     /**
      * Check Quota Availability on quota bucket per region per subscription.
@@ -95,6 +95,6 @@ public interface QuotasClient {
      * @return check quota availability response object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CheckQuotaAvailabilityResponseInner checkAvailability(
-        String location, String quotaBucketName, QuotaBucketRequest quotaBucketRequest);
+    LoadTestingQuotaAvailabilityResponseInner checkAvailability(
+        String location, String quotaBucketName, LoadTestingQuotaBucketContent quotaBucketRequest);
 }

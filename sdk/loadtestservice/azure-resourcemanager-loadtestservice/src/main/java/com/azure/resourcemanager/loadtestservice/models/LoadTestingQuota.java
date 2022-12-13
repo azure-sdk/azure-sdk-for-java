@@ -5,10 +5,10 @@
 package com.azure.resourcemanager.loadtestservice.models;
 
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner;
 
-/** An immutable client-side representation of QuotaResource. */
-public interface QuotaResource {
+/** An immutable client-side representation of LoadTestingQuota. */
+public interface LoadTestingQuota {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      *
@@ -59,9 +59,9 @@ public interface QuotaResource {
     ResourceState provisioningState();
 
     /**
-     * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner object.
+     * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaInner object.
      *
      * @return the inner object.
      */
-    QuotaResourceInner innerModel();
+    LoadTestingQuotaInner innerModel();
 }

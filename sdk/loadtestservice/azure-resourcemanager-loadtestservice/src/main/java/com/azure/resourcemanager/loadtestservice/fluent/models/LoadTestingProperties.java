@@ -5,13 +5,13 @@
 package com.azure.resourcemanager.loadtestservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.CustomerManagedKeyEncryptionProperties;
 import com.azure.resourcemanager.loadtestservice.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** LoadTest resource properties. */
 @Fluent
-public final class LoadTestProperties {
+public final class LoadTestingProperties {
     /*
      * Description of the resource.
      */
@@ -34,10 +34,10 @@ public final class LoadTestProperties {
      * CMK Encryption property.
      */
     @JsonProperty(value = "encryption")
-    private EncryptionProperties encryption;
+    private CustomerManagedKeyEncryptionProperties encryption;
 
-    /** Creates an instance of LoadTestProperties class. */
-    public LoadTestProperties() {
+    /** Creates an instance of LoadTestingProperties class. */
+    public LoadTestingProperties() {
     }
 
     /**
@@ -53,9 +53,9 @@ public final class LoadTestProperties {
      * Set the description property: Description of the resource.
      *
      * @param description the description value to set.
-     * @return the LoadTestProperties object itself.
+     * @return the LoadTestingProperties object itself.
      */
-    public LoadTestProperties withDescription(String description) {
+    public LoadTestingProperties withDescription(String description) {
         this.description = description;
         return this;
     }
@@ -83,7 +83,7 @@ public final class LoadTestProperties {
      *
      * @return the encryption value.
      */
-    public EncryptionProperties encryption() {
+    public CustomerManagedKeyEncryptionProperties encryption() {
         return this.encryption;
     }
 
@@ -91,9 +91,9 @@ public final class LoadTestProperties {
      * Set the encryption property: CMK Encryption property.
      *
      * @param encryption the encryption value to set.
-     * @return the LoadTestProperties object itself.
+     * @return the LoadTestingProperties object itself.
      */
-    public LoadTestProperties withEncryption(EncryptionProperties encryption) {
+    public LoadTestingProperties withEncryption(CustomerManagedKeyEncryptionProperties encryption) {
         this.encryption = encryption;
         return this;
     }

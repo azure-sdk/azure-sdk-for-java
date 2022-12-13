@@ -7,18 +7,18 @@ package com.azure.resourcemanager.loadtestservice.implementation;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestResourceInner;
-import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResource;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResourcePatchRequestBody;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingResourceInner;
+import com.azure.resourcemanager.loadtestservice.models.CustomerManagedKeyEncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingResource;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingResourcePatch;
 import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.loadtestservice.models.ResourceState;
 import java.util.Collections;
 import java.util.Map;
 
-public final class LoadTestResourceImpl
-    implements LoadTestResource, LoadTestResource.Definition, LoadTestResource.Update {
-    private LoadTestResourceInner innerObject;
+public final class LoadTestingResourceImpl
+    implements LoadTestingResource, LoadTestingResource.Definition, LoadTestingResource.Update {
+    private LoadTestingResourceInner innerObject;
 
     private final com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager;
 
@@ -67,7 +67,7 @@ public final class LoadTestResourceImpl
         return this.innerModel().dataPlaneUri();
     }
 
-    public EncryptionProperties encryption() {
+    public CustomerManagedKeyEncryptionProperties encryption() {
         return this.innerModel().encryption();
     }
 
@@ -83,7 +83,7 @@ public final class LoadTestResourceImpl
         return resourceGroupName;
     }
 
-    public LoadTestResourceInner innerModel() {
+    public LoadTestingResourceInner innerModel() {
         return this.innerObject;
     }
 
@@ -95,14 +95,14 @@ public final class LoadTestResourceImpl
 
     private String loadTestName;
 
-    private LoadTestResourcePatchRequestBody updateLoadTestResourcePatchRequestBody;
+    private LoadTestingResourcePatch updateLoadTestResourcePatchRequestBody;
 
-    public LoadTestResourceImpl withExistingResourceGroup(String resourceGroupName) {
+    public LoadTestingResourceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
         return this;
     }
 
-    public LoadTestResource create() {
+    public LoadTestingResource create() {
         this.innerObject =
             serviceManager
                 .serviceClient()
@@ -111,7 +111,7 @@ public final class LoadTestResourceImpl
         return this;
     }
 
-    public LoadTestResource create(Context context) {
+    public LoadTestingResource create(Context context) {
         this.innerObject =
             serviceManager
                 .serviceClient()
@@ -120,18 +120,18 @@ public final class LoadTestResourceImpl
         return this;
     }
 
-    LoadTestResourceImpl(String name, com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
-        this.innerObject = new LoadTestResourceInner();
+    LoadTestingResourceImpl(String name, com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
+        this.innerObject = new LoadTestingResourceInner();
         this.serviceManager = serviceManager;
         this.loadTestName = name;
     }
 
-    public LoadTestResourceImpl update() {
-        this.updateLoadTestResourcePatchRequestBody = new LoadTestResourcePatchRequestBody();
+    public LoadTestingResourceImpl update() {
+        this.updateLoadTestResourcePatchRequestBody = new LoadTestingResourcePatch();
         return this;
     }
 
-    public LoadTestResource apply() {
+    public LoadTestingResource apply() {
         this.innerObject =
             serviceManager
                 .serviceClient()
@@ -140,7 +140,7 @@ public final class LoadTestResourceImpl
         return this;
     }
 
-    public LoadTestResource apply(Context context) {
+    public LoadTestingResource apply(Context context) {
         this.innerObject =
             serviceManager
                 .serviceClient()
@@ -149,15 +149,16 @@ public final class LoadTestResourceImpl
         return this;
     }
 
-    LoadTestResourceImpl(
-        LoadTestResourceInner innerObject, com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
+    LoadTestingResourceImpl(
+        LoadTestingResourceInner innerObject,
+        com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
         this.loadTestName = Utils.getValueFromIdByName(innerObject.id(), "loadTests");
     }
 
-    public LoadTestResource refresh() {
+    public LoadTestingResource refresh() {
         this.innerObject =
             serviceManager
                 .serviceClient()
@@ -167,7 +168,7 @@ public final class LoadTestResourceImpl
         return this;
     }
 
-    public LoadTestResource refresh(Context context) {
+    public LoadTestingResource refresh(Context context) {
         this.innerObject =
             serviceManager
                 .serviceClient()
@@ -177,22 +178,27 @@ public final class LoadTestResourceImpl
         return this;
     }
 
-    public LoadTestResourceImpl withRegion(Region location) {
+    public LoadTestingResourceImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
     }
 
-    public LoadTestResourceImpl withRegion(String location) {
+    public LoadTestingResourceImpl withRegion(String location) {
         this.innerModel().withLocation(location);
         return this;
     }
 
-    public LoadTestResourceImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
+    public LoadTestingResourceImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateLoadTestResourcePatchRequestBody.withTags(tags);
+            return this;
+        }
     }
 
-    public LoadTestResourceImpl withIdentity(ManagedServiceIdentity identity) {
+    public LoadTestingResourceImpl withIdentity(ManagedServiceIdentity identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
             return this;
@@ -202,7 +208,7 @@ public final class LoadTestResourceImpl
         }
     }
 
-    public LoadTestResourceImpl withDescription(String description) {
+    public LoadTestingResourceImpl withDescription(String description) {
         if (isInCreateMode()) {
             this.innerModel().withDescription(description);
             return this;
@@ -212,7 +218,7 @@ public final class LoadTestResourceImpl
         }
     }
 
-    public LoadTestResourceImpl withEncryption(EncryptionProperties encryption) {
+    public LoadTestingResourceImpl withEncryption(CustomerManagedKeyEncryptionProperties encryption) {
         if (isInCreateMode()) {
             this.innerModel().withEncryption(encryption);
             return this;
@@ -220,11 +226,6 @@ public final class LoadTestResourceImpl
             this.updateLoadTestResourcePatchRequestBody.withEncryption(encryption);
             return this;
         }
-    }
-
-    public LoadTestResourceImpl withTags(Object tags) {
-        this.updateLoadTestResourcePatchRequestBody.withTags(tags);
-        return this;
     }
 
     private boolean isInCreateMode() {

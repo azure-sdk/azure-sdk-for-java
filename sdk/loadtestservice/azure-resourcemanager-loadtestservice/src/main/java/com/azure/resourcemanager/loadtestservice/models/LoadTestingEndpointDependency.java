@@ -10,7 +10,7 @@ import java.util.List;
 
 /** A domain name and connection details used to access a dependency. */
 @Immutable
-public final class EndpointDependency {
+public final class LoadTestingEndpointDependency {
     /*
      * The domain name of the dependency. Domain names may be fully qualified or may contain a * wildcard.
      */
@@ -27,10 +27,10 @@ public final class EndpointDependency {
      * The list of connection details for this endpoint.
      */
     @JsonProperty(value = "endpointDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private List<EndpointDetail> endpointDetails;
+    private List<LoadTestingEndpointDetail> endpointDetails;
 
-    /** Creates an instance of EndpointDependency class. */
-    public EndpointDependency() {
+    /** Creates an instance of LoadTestingEndpointDependency class. */
+    public LoadTestingEndpointDependency() {
     }
 
     /**
@@ -58,7 +58,7 @@ public final class EndpointDependency {
      *
      * @return the endpointDetails value.
      */
-    public List<EndpointDetail> endpointDetails() {
+    public List<LoadTestingEndpointDetail> endpointDetails() {
         return this.endpointDetails;
     }
 

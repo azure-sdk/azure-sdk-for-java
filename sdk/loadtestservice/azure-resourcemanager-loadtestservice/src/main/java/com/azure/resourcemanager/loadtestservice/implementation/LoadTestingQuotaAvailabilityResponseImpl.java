@@ -5,17 +5,17 @@
 package com.azure.resourcemanager.loadtestservice.implementation;
 
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.loadtestservice.fluent.models.QuotaResourceInner;
-import com.azure.resourcemanager.loadtestservice.models.QuotaResource;
-import com.azure.resourcemanager.loadtestservice.models.ResourceState;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaAvailabilityResponseInner;
+import com.azure.resourcemanager.loadtestservice.models.LoadTestingQuotaAvailabilityResponse;
 
-public final class QuotaResourceImpl implements QuotaResource {
-    private QuotaResourceInner innerObject;
+public final class LoadTestingQuotaAvailabilityResponseImpl implements LoadTestingQuotaAvailabilityResponse {
+    private LoadTestingQuotaAvailabilityResponseInner innerObject;
 
     private final com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager;
 
-    QuotaResourceImpl(
-        QuotaResourceInner innerObject, com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
+    LoadTestingQuotaAvailabilityResponseImpl(
+        LoadTestingQuotaAvailabilityResponseInner innerObject,
+        com.azure.resourcemanager.loadtestservice.LoadTestManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -36,19 +36,15 @@ public final class QuotaResourceImpl implements QuotaResource {
         return this.innerModel().systemData();
     }
 
-    public Integer limit() {
-        return this.innerModel().limit();
+    public Boolean isAvailable() {
+        return this.innerModel().isAvailable();
     }
 
-    public Integer usage() {
-        return this.innerModel().usage();
+    public String availabilityStatus() {
+        return this.innerModel().availabilityStatus();
     }
 
-    public ResourceState provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public QuotaResourceInner innerModel() {
+    public LoadTestingQuotaAvailabilityResponseInner innerModel() {
         return this.innerObject;
     }
 

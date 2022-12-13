@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Quota bucket resource properties. */
 @Fluent
-public final class QuotaResourceProperties {
+public final class LoadTestingQuotaProperties {
     /*
      * Current quota limit of the quota bucket.
      */
@@ -29,8 +29,8 @@ public final class QuotaResourceProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceState provisioningState;
 
-    /** Creates an instance of QuotaResourceProperties class. */
-    public QuotaResourceProperties() {
+    /** Creates an instance of LoadTestingQuotaProperties class. */
+    public LoadTestingQuotaProperties() {
     }
 
     /**
@@ -46,9 +46,9 @@ public final class QuotaResourceProperties {
      * Set the limit property: Current quota limit of the quota bucket.
      *
      * @param limit the limit value to set.
-     * @return the QuotaResourceProperties object itself.
+     * @return the LoadTestingQuotaProperties object itself.
      */
-    public QuotaResourceProperties withLimit(Integer limit) {
+    public LoadTestingQuotaProperties withLimit(Integer limit) {
         this.limit = limit;
         return this;
     }
@@ -66,9 +66,9 @@ public final class QuotaResourceProperties {
      * Set the usage property: Current quota usage of the quota bucket.
      *
      * @param usage the usage value to set.
-     * @return the QuotaResourceProperties object itself.
+     * @return the LoadTestingQuotaProperties object itself.
      */
-    public QuotaResourceProperties withUsage(Integer usage) {
+    public LoadTestingQuotaProperties withUsage(Integer usage) {
         this.usage = usage;
         return this;
     }

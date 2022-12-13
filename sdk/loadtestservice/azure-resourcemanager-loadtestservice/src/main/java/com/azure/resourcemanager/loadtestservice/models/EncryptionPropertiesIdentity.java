@@ -17,7 +17,7 @@ public class EncryptionPropertiesIdentity {
      * Managed identity type to use for accessing encryption key Url
      */
     @JsonProperty(value = "type")
-    private Type type;
+    private Type customerManagedKeyIdentityType;
 
     /*
      * user assigned identity to use for accessing key encryption key Url. Ex:
@@ -25,53 +25,53 @@ public class EncryptionPropertiesIdentity {
      * group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId
      */
     @JsonProperty(value = "resourceId")
-    private String resourceId;
+    private String resourceIdentifier;
 
     /** Creates an instance of EncryptionPropertiesIdentity class. */
     public EncryptionPropertiesIdentity() {
     }
 
     /**
-     * Get the type property: Managed identity type to use for accessing encryption key Url.
+     * Get the customerManagedKeyIdentityType property: Managed identity type to use for accessing encryption key Url.
      *
-     * @return the type value.
+     * @return the customerManagedKeyIdentityType value.
      */
-    public Type type() {
-        return this.type;
+    public Type customerManagedKeyIdentityType() {
+        return this.customerManagedKeyIdentityType;
     }
 
     /**
-     * Set the type property: Managed identity type to use for accessing encryption key Url.
+     * Set the customerManagedKeyIdentityType property: Managed identity type to use for accessing encryption key Url.
      *
-     * @param type the type value to set.
+     * @param customerManagedKeyIdentityType the customerManagedKeyIdentityType value to set.
      * @return the EncryptionPropertiesIdentity object itself.
      */
-    public EncryptionPropertiesIdentity withType(Type type) {
-        this.type = type;
+    public EncryptionPropertiesIdentity withCustomerManagedKeyIdentityType(Type customerManagedKeyIdentityType) {
+        this.customerManagedKeyIdentityType = customerManagedKeyIdentityType;
         return this;
     }
 
     /**
-     * Get the resourceId property: user assigned identity to use for accessing key encryption key Url. Ex:
+     * Get the resourceIdentifier property: user assigned identity to use for accessing key encryption key Url. Ex:
      * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/&lt;resource
      * group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
      *
-     * @return the resourceId value.
+     * @return the resourceIdentifier value.
      */
-    public String resourceId() {
-        return this.resourceId;
+    public String resourceIdentifier() {
+        return this.resourceIdentifier;
     }
 
     /**
-     * Set the resourceId property: user assigned identity to use for accessing key encryption key Url. Ex:
+     * Set the resourceIdentifier property: user assigned identity to use for accessing key encryption key Url. Ex:
      * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/&lt;resource
      * group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
      *
-     * @param resourceId the resourceId value to set.
+     * @param resourceIdentifier the resourceIdentifier value to set.
      * @return the EncryptionPropertiesIdentity object itself.
      */
-    public EncryptionPropertiesIdentity withResourceId(String resourceId) {
-        this.resourceId = resourceId;
+    public EncryptionPropertiesIdentity withResourceIdentifier(String resourceIdentifier) {
+        this.resourceIdentifier = resourceIdentifier;
         return this;
     }
 

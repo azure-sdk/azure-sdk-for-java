@@ -7,7 +7,7 @@ package com.azure.resourcemanager.loadtestservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.CustomerManagedKeyEncryptionProperties;
 import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.loadtestservice.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,12 +15,12 @@ import java.util.Map;
 
 /** LoadTest details. */
 @Fluent
-public final class LoadTestResourceInner extends Resource {
+public final class LoadTestingResourceInner extends Resource {
     /*
      * Load Test resource properties
      */
     @JsonProperty(value = "properties")
-    private LoadTestProperties innerProperties;
+    private LoadTestingProperties innerProperties;
 
     /*
      * The type of identity used for the resource.
@@ -34,8 +34,8 @@ public final class LoadTestResourceInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of LoadTestResourceInner class. */
-    public LoadTestResourceInner() {
+    /** Creates an instance of LoadTestingResourceInner class. */
+    public LoadTestingResourceInner() {
     }
 
     /**
@@ -43,7 +43,7 @@ public final class LoadTestResourceInner extends Resource {
      *
      * @return the innerProperties value.
      */
-    private LoadTestProperties innerProperties() {
+    private LoadTestingProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -60,9 +60,9 @@ public final class LoadTestResourceInner extends Resource {
      * Set the identity property: The type of identity used for the resource.
      *
      * @param identity the identity value to set.
-     * @return the LoadTestResourceInner object itself.
+     * @return the LoadTestingResourceInner object itself.
      */
-    public LoadTestResourceInner withIdentity(ManagedServiceIdentity identity) {
+    public LoadTestingResourceInner withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -78,14 +78,14 @@ public final class LoadTestResourceInner extends Resource {
 
     /** {@inheritDoc} */
     @Override
-    public LoadTestResourceInner withLocation(String location) {
+    public LoadTestingResourceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public LoadTestResourceInner withTags(Map<String, String> tags) {
+    public LoadTestingResourceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
     }
@@ -103,11 +103,11 @@ public final class LoadTestResourceInner extends Resource {
      * Set the description property: Description of the resource.
      *
      * @param description the description value to set.
-     * @return the LoadTestResourceInner object itself.
+     * @return the LoadTestingResourceInner object itself.
      */
-    public LoadTestResourceInner withDescription(String description) {
+    public LoadTestingResourceInner withDescription(String description) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new LoadTestProperties();
+            this.innerProperties = new LoadTestingProperties();
         }
         this.innerProperties().withDescription(description);
         return this;
@@ -136,7 +136,7 @@ public final class LoadTestResourceInner extends Resource {
      *
      * @return the encryption value.
      */
-    public EncryptionProperties encryption() {
+    public CustomerManagedKeyEncryptionProperties encryption() {
         return this.innerProperties() == null ? null : this.innerProperties().encryption();
     }
 
@@ -144,11 +144,11 @@ public final class LoadTestResourceInner extends Resource {
      * Set the encryption property: CMK Encryption property.
      *
      * @param encryption the encryption value to set.
-     * @return the LoadTestResourceInner object itself.
+     * @return the LoadTestingResourceInner object itself.
      */
-    public LoadTestResourceInner withEncryption(EncryptionProperties encryption) {
+    public LoadTestingResourceInner withEncryption(CustomerManagedKeyEncryptionProperties encryption) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new LoadTestProperties();
+            this.innerProperties = new LoadTestingProperties();
         }
         this.innerProperties().withEncryption(encryption);
         return this;

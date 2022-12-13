@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.loadtestservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.CustomerManagedKeyEncryptionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Load Test resource properties. */
@@ -21,7 +21,7 @@ public final class LoadTestResourcePatchRequestBodyProperties {
      * CMK Encryption property.
      */
     @JsonProperty(value = "encryption")
-    private EncryptionProperties encryption;
+    private CustomerManagedKeyEncryptionProperties encryption;
 
     /** Creates an instance of LoadTestResourcePatchRequestBodyProperties class. */
     public LoadTestResourcePatchRequestBodyProperties() {
@@ -52,7 +52,7 @@ public final class LoadTestResourcePatchRequestBodyProperties {
      *
      * @return the encryption value.
      */
-    public EncryptionProperties encryption() {
+    public CustomerManagedKeyEncryptionProperties encryption() {
         return this.encryption;
     }
 
@@ -62,7 +62,8 @@ public final class LoadTestResourcePatchRequestBodyProperties {
      * @param encryption the encryption value to set.
      * @return the LoadTestResourcePatchRequestBodyProperties object itself.
      */
-    public LoadTestResourcePatchRequestBodyProperties withEncryption(EncryptionProperties encryption) {
+    public LoadTestResourcePatchRequestBodyProperties withEncryption(
+        CustomerManagedKeyEncryptionProperties encryption) {
         this.encryption = encryption;
         return this;
     }

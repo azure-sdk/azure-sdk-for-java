@@ -5,10 +5,10 @@
 package com.azure.resourcemanager.loadtestservice.models;
 
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.loadtestservice.fluent.models.CheckQuotaAvailabilityResponseInner;
+import com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaAvailabilityResponseInner;
 
-/** An immutable client-side representation of CheckQuotaAvailabilityResponse. */
-public interface CheckQuotaAvailabilityResponse {
+/** An immutable client-side representation of LoadTestingQuotaAvailabilityResponse. */
+public interface LoadTestingQuotaAvailabilityResponse {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      *
@@ -52,10 +52,10 @@ public interface CheckQuotaAvailabilityResponse {
     String availabilityStatus();
 
     /**
-     * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.CheckQuotaAvailabilityResponseInner
+     * Gets the inner com.azure.resourcemanager.loadtestservice.fluent.models.LoadTestingQuotaAvailabilityResponseInner
      * object.
      *
      * @return the inner object.
      */
-    CheckQuotaAvailabilityResponseInner innerModel();
+    LoadTestingQuotaAvailabilityResponseInner innerModel();
 }
