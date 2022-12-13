@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ExportJobsOperationResult Get. */
 public final class ExportJobsOperationResultGetSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2021-07-01/examples/JobCRUD/GetExportJobsOperationResult.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-02-01/examples/JobCRUD/GetExportJobsOperationResult.json
      */
     /**
      * Sample code: Get Export Jobs Operation Result.
