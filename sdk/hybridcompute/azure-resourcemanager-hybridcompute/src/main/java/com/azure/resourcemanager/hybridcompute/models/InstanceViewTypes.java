@@ -24,7 +24,11 @@ public final class InstanceViewTypes extends ExpandableStringEnum<InstanceViewTy
         return fromString(name, InstanceViewTypes.class);
     }
 
-    /** @return known InstanceViewTypes values. */
+    /**
+     * Gets known InstanceViewTypes values.
+     *
+     * @return known InstanceViewTypes values.
+     */
     public static Collection<InstanceViewTypes> values() {
         return values(InstanceViewTypes.class);
     }
