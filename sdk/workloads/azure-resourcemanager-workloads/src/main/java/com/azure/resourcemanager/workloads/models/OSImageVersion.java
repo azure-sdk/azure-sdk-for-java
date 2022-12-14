@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OSImageVersion. */
+/** OS image version. */
 public final class OSImageVersion extends ExpandableStringEnum<OSImageVersion> {
     /** Static value latest for OSImageVersion. */
     public static final OSImageVersion LATEST = fromString("latest");

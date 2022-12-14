@@ -63,7 +63,7 @@ public final class WordpressInstancesClientImpl implements WordpressInstancesCli
      */
     @Host("{$host}")
     @ServiceInterface(name = "WorkloadsClientWordp")
-    private interface WordpressInstancesService {
+    public interface WordpressInstancesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads"
@@ -437,21 +437,6 @@ public final class WordpressInstancesClientImpl implements WordpressInstancesCli
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the WordPress instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WordpressInstanceResourceInner get(String resourceGroupName, String phpWorkloadName) {
-        return getAsync(resourceGroupName, phpWorkloadName).block();
-    }
-
-    /**
-     * Gets the WordPress instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -462,6 +447,21 @@ public final class WordpressInstancesClientImpl implements WordpressInstancesCli
     public Response<WordpressInstanceResourceInner> getWithResponse(
         String resourceGroupName, String phpWorkloadName, Context context) {
         return getWithResponseAsync(resourceGroupName, phpWorkloadName, context).block();
+    }
+
+    /**
+     * Gets the WordPress instance resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the WordPress instance resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WordpressInstanceResourceInner get(String resourceGroupName, String phpWorkloadName) {
+        return getWithResponse(resourceGroupName, phpWorkloadName, Context.NONE).getValue();
     }
 
     /**
@@ -878,20 +878,6 @@ public final class WordpressInstancesClientImpl implements WordpressInstancesCli
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String phpWorkloadName) {
-        deleteAsync(resourceGroupName, phpWorkloadName).block();
-    }
-
-    /**
-     * Delete WordPress instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -904,9 +890,24 @@ public final class WordpressInstancesClientImpl implements WordpressInstancesCli
     }
 
     /**
+     * Delete WordPress instance resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String phpWorkloadName) {
+        deleteWithResponse(resourceGroupName, phpWorkloadName, Context.NONE);
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -942,7 +943,8 @@ public final class WordpressInstancesClientImpl implements WordpressInstancesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

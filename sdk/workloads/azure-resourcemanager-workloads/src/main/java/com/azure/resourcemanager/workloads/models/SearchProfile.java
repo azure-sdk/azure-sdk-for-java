@@ -18,6 +18,10 @@ public final class SearchProfile extends NodeProfile {
     @JsonProperty(value = "searchType", required = true)
     private SearchType searchType;
 
+    /** Creates an instance of SearchProfile class. */
+    public SearchProfile() {
+    }
+
     /**
      * Get the searchType property: Search type.
      *

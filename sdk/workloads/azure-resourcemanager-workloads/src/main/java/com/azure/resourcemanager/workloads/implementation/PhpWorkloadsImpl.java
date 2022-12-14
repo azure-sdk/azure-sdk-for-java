@@ -48,15 +48,6 @@ public final class PhpWorkloadsImpl implements PhpWorkloads {
         return Utils.mapPage(inner, inner1 -> new PhpWorkloadResourceImpl(inner1, this.manager()));
     }
 
-    public PhpWorkloadResource getByResourceGroup(String resourceGroupName, String phpWorkloadName) {
-        PhpWorkloadResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, phpWorkloadName);
-        if (inner != null) {
-            return new PhpWorkloadResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PhpWorkloadResource> getByResourceGroupWithResponse(
         String resourceGroupName, String phpWorkloadName, Context context) {
         Response<PhpWorkloadResourceInner> inner =
@@ -72,8 +63,13 @@ public final class PhpWorkloadsImpl implements PhpWorkloads {
         }
     }
 
-    public void delete(String resourceGroupName, String phpWorkloadName, String deleteInfra) {
-        this.serviceClient().delete(resourceGroupName, phpWorkloadName, deleteInfra);
+    public PhpWorkloadResource getByResourceGroup(String resourceGroupName, String phpWorkloadName) {
+        PhpWorkloadResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, phpWorkloadName);
+        if (inner != null) {
+            return new PhpWorkloadResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String phpWorkloadName) {

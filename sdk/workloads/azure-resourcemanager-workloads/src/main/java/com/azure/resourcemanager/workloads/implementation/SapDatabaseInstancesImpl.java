@@ -29,17 +29,6 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
         this.serviceManager = serviceManager;
     }
 
-    public SapDatabaseInstance get(
-        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
-        SapDatabaseInstanceInner inner =
-            this.serviceClient().get(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
-        if (inner != null) {
-            return new SapDatabaseInstanceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SapDatabaseInstance> getWithResponse(
         String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName, Context context) {
         Response<SapDatabaseInstanceInner> inner =
@@ -52,6 +41,17 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SapDatabaseInstanceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapDatabaseInstance get(
+        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        SapDatabaseInstanceInner inner =
+            this.serviceClient().get(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
+        if (inner != null) {
+            return new SapDatabaseInstanceImpl(inner, this.manager());
         } else {
             return null;
         }

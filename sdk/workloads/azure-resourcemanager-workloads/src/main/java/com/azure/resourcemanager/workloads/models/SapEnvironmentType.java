@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapEnvironmentType. */
+/** Defines the environment type - Production/Non Production. */
 public final class SapEnvironmentType extends ExpandableStringEnum<SapEnvironmentType> {
     /** Static value NonProd for SapEnvironmentType. */
     public static final SapEnvironmentType NON_PROD = fromString("NonProd");

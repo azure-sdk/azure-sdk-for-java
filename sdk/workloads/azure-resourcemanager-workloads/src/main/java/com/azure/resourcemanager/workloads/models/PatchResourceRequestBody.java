@@ -25,6 +25,10 @@ public final class PatchResourceRequestBody {
     @JsonProperty(value = "identity")
     private PatchResourceRequestBodyIdentity identity;
 
+    /** Creates an instance of PatchResourceRequestBody class. */
+    public PatchResourceRequestBody() {
+    }
+
     /**
      * Get the tags property: Resource tags.
      *

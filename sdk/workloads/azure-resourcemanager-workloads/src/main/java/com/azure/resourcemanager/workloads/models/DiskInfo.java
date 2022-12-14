@@ -23,6 +23,10 @@ public final class DiskInfo {
     @JsonProperty(value = "sizeInGB")
     private Long sizeInGB;
 
+    /** Creates an instance of DiskInfo class. */
+    public DiskInfo() {
+    }
+
     /**
      * Get the storageType property: Storage type.
      *
