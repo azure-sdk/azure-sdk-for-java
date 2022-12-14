@@ -56,6 +56,10 @@ public final class ManagedEnvironmentImpl
         return this.innerModel().sku();
     }
 
+    public String kind() {
+        return this.innerModel().kind();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
@@ -176,7 +180,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
+                .update(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -185,7 +189,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), context);
+                .update(resourceGroupName, environmentName, this.innerModel(), context);
         return this;
     }
 
@@ -245,6 +249,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withSku(EnvironmentSkuProperties sku) {
         this.innerModel().withSku(sku);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 

@@ -60,7 +60,7 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface DaprComponentsService {
+    public interface DaprComponentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"

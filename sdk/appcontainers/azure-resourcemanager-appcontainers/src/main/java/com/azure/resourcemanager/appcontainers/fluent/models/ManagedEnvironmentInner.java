@@ -27,6 +27,12 @@ public final class ManagedEnvironmentInner extends Resource {
     private EnvironmentSkuProperties sku;
 
     /*
+     * Kind of the Environment.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
+    /*
      * Managed environment resource specific properties
      */
     @JsonProperty(value = "properties")
@@ -59,6 +65,26 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withSku(EnvironmentSkuProperties sku) {
         this.sku = sku;
+        return this;
+    }
+
+    /**
+     * Get the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Kind of the Environment.
+     *
+     * @param kind the kind value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withKind(String kind) {
+        this.kind = kind;
         return this;
     }
 

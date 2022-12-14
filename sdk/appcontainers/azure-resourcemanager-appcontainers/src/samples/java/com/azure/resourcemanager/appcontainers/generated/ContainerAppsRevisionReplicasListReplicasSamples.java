@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisionReplicas ListReplicas. */
 public final class ContainerAppsRevisionReplicasListReplicasSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Replicas_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/Replicas_List.json
      */
     /**
      * Sample code: List Container App's replicas.

@@ -57,6 +57,13 @@ public interface ManagedEnvironment {
     EnvironmentSkuProperties sku();
 
     /**
+     * Gets the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -225,6 +232,7 @@ public interface ManagedEnvironment {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSku,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithDaprAIInstrumentationKey,
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
@@ -266,6 +274,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withSku(EnvironmentSkuProperties sku);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
         }
         /** The stage of the ManagedEnvironment definition allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
@@ -355,6 +373,7 @@ public interface ManagedEnvironment {
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithSku,
+            UpdateStages.WithKind,
             UpdateStages.WithDaprAIInstrumentationKey,
             UpdateStages.WithDaprAIConnectionString,
             UpdateStages.WithVnetConfiguration,
@@ -397,6 +416,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withSku(EnvironmentSkuProperties sku);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            Update withKind(String kind);
         }
         /** The stage of the ManagedEnvironment update allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
