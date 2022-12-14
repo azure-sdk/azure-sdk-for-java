@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The compute power action. */
+/** [Required] The compute power action. */
 public final class ComputePowerAction extends ExpandableStringEnum<ComputePowerAction> {
     /** Static value Start for ComputePowerAction. */
     public static final ComputePowerAction START = fromString("Start");

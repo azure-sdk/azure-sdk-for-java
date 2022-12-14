@@ -47,7 +47,7 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
 
     /** {@inheritDoc} */
     @Override
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCategory(String category) {
         super.withCategory(category);
         return this;
     }

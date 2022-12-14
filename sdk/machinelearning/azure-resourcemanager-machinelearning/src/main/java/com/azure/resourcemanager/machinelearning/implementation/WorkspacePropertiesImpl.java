@@ -10,11 +10,11 @@ import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceProperti
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceProperties;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceProvisioningState;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,7 +63,7 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         return this.innerModel().discoveryUrl();
     }
 
-    public ProvisioningState provisioningState() {
+    public WorkspaceProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
@@ -149,6 +149,18 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public String softDeletedAt() {
+        return this.innerModel().softDeletedAt();
+    }
+
+    public String scheduledPurgeDate() {
+        return this.innerModel().scheduledPurgeDate();
+    }
+
+    public String systemDatastoresAuthMode() {
+        return this.innerModel().systemDatastoresAuthMode();
     }
 
     public WorkspacePropertiesInner innerModel() {
