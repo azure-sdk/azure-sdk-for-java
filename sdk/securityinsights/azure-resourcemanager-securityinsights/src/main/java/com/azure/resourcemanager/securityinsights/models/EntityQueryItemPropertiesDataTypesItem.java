@@ -16,6 +16,10 @@ public final class EntityQueryItemPropertiesDataTypesItem {
     @JsonProperty(value = "dataType")
     private String dataType;
 
+    /** Creates an instance of EntityQueryItemPropertiesDataTypesItem class. */
+    public EntityQueryItemPropertiesDataTypesItem() {
+    }
+
     /**
      * Get the dataType property: Data type name.
      *

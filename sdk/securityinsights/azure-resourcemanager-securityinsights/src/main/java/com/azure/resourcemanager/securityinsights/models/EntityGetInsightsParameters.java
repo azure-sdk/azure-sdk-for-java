@@ -38,6 +38,10 @@ public final class EntityGetInsightsParameters {
     @JsonProperty(value = "insightQueryIds")
     private List<UUID> insightQueryIds;
 
+    /** Creates an instance of EntityGetInsightsParameters class. */
+    public EntityGetInsightsParameters() {
+    }
+
     /**
      * Get the startTime property: The start timeline date, so the results returned are after this date.
      *

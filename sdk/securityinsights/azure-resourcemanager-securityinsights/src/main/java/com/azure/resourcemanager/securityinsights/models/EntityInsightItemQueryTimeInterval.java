@@ -23,6 +23,10 @@ public final class EntityInsightItemQueryTimeInterval {
     @JsonProperty(value = "endTime")
     private OffsetDateTime endTime;
 
+    /** Creates an instance of EntityInsightItemQueryTimeInterval class. */
+    public EntityInsightItemQueryTimeInterval() {
+    }
+
     /**
      * Get the startTime property: Insight query start time.
      *

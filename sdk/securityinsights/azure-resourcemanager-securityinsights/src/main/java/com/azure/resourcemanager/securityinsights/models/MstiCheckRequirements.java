@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.MstiCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents Microsoft Threat Intelligence requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MicrosoftThreatIntelligence")
-@Fluent
+@Immutable
 public final class MstiCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * Microsoft Threat Intelligence requirements check properties.
      */
     @JsonProperty(value = "properties")
     private MstiCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of MstiCheckRequirements class. */
+    public MstiCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: Microsoft Threat Intelligence requirements check properties.

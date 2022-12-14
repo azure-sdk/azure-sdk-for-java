@@ -30,6 +30,10 @@ public final class FusionSourceSettings {
     @JsonProperty(value = "sourceSubTypes")
     private List<FusionSourceSubTypeSetting> sourceSubTypes;
 
+    /** Creates an instance of FusionSourceSettings class. */
+    public FusionSourceSettings() {
+    }
+
     /**
      * Get the enabled property: Determines whether this source signal is enabled or disabled in Fusion detection.
      *

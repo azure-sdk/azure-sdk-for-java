@@ -23,6 +23,10 @@ public final class BookmarkInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private BookmarkProperties innerProperties;
 
+    /** Creates an instance of BookmarkInner class. */
+    public BookmarkInner() {
+    }
+
     /**
      * Get the innerProperties property: Bookmark properties.
      *

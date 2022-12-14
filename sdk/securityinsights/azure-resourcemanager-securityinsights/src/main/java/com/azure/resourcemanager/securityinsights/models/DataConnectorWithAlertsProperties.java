@@ -16,6 +16,10 @@ public class DataConnectorWithAlertsProperties {
     @JsonProperty(value = "dataTypes")
     private AlertsDataTypeOfDataConnector dataTypes;
 
+    /** Creates an instance of DataConnectorWithAlertsProperties class. */
+    public DataConnectorWithAlertsProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

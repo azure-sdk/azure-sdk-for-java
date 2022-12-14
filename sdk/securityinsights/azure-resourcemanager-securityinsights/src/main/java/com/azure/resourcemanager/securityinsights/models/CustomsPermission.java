@@ -22,6 +22,10 @@ public class CustomsPermission {
     @JsonProperty(value = "description")
     private String description;
 
+    /** Creates an instance of CustomsPermission class. */
+    public CustomsPermission() {
+    }
+
     /**
      * Get the name property: Customs permissions name.
      *

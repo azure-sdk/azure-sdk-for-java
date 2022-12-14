@@ -168,6 +168,10 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "deliveryLocation")
     private DeliveryLocation deliveryLocation;
 
+    /** Creates an instance of MailMessageEntityProperties class. */
+    public MailMessageEntityProperties() {
+    }
+
     /**
      * Get the fileEntityIds property: The File entity ids of this mail message's attachments.
      *
