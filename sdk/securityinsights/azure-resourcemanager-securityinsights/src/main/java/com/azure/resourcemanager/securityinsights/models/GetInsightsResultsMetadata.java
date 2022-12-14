@@ -23,6 +23,10 @@ public final class GetInsightsResultsMetadata {
     @JsonProperty(value = "errors")
     private List<GetInsightsErrorKind> errors;
 
+    /** Creates an instance of GetInsightsResultsMetadata class. */
+    public GetInsightsResultsMetadata() {
+    }
+
     /**
      * Get the totalCount property: the total items found for the insights request.
      *

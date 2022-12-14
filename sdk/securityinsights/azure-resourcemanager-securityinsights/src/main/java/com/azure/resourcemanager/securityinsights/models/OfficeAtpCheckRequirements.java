@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficeAtpCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents OfficeATP (Office 365 Advanced Threat Protection) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("OfficeATP")
-@Fluent
+@Immutable
 public final class OfficeAtpCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * OfficeATP (Office 365 Advanced Threat Protection) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private OfficeAtpCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of OfficeAtpCheckRequirements class. */
+    public OfficeAtpCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: OfficeATP (Office 365 Advanced Threat Protection) requirements check

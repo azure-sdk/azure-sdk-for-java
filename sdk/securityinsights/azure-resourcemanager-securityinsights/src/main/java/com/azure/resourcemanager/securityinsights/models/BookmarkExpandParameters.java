@@ -30,6 +30,10 @@ public final class BookmarkExpandParameters {
     @JsonProperty(value = "startTime")
     private OffsetDateTime startTime;
 
+    /** Creates an instance of BookmarkExpandParameters class. */
+    public BookmarkExpandParameters() {
+    }
+
     /**
      * Get the endTime property: The end date filter, so the only expansion results returned are before this date.
      *

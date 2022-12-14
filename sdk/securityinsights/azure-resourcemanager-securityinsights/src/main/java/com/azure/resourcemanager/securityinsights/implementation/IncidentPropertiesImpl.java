@@ -31,40 +31,36 @@ public final class IncidentPropertiesImpl implements IncidentProperties {
         this.serviceManager = serviceManager;
     }
 
-    public IncidentAdditionalData additionalData() {
-        return this.innerModel().additionalData();
-    }
-
-    public IncidentClassification classification() {
-        return this.innerModel().classification();
-    }
-
-    public String classificationComment() {
-        return this.innerModel().classificationComment();
-    }
-
-    public IncidentClassificationReason classificationReason() {
-        return this.innerModel().classificationReason();
-    }
-
-    public OffsetDateTime createdTimeUtc() {
-        return this.innerModel().createdTimeUtc();
+    public String title() {
+        return this.innerModel().title();
     }
 
     public String description() {
         return this.innerModel().description();
     }
 
-    public OffsetDateTime firstActivityTimeUtc() {
-        return this.innerModel().firstActivityTimeUtc();
+    public IncidentSeverity severity() {
+        return this.innerModel().severity();
     }
 
-    public String incidentUrl() {
-        return this.innerModel().incidentUrl();
+    public IncidentStatus status() {
+        return this.innerModel().status();
     }
 
-    public Integer incidentNumber() {
-        return this.innerModel().incidentNumber();
+    public IncidentClassification classification() {
+        return this.innerModel().classification();
+    }
+
+    public IncidentClassificationReason classificationReason() {
+        return this.innerModel().classificationReason();
+    }
+
+    public String classificationComment() {
+        return this.innerModel().classificationComment();
+    }
+
+    public IncidentOwnerInfo owner() {
+        return this.innerModel().owner();
     }
 
     public List<IncidentLabel> labels() {
@@ -76,12 +72,8 @@ public final class IncidentPropertiesImpl implements IncidentProperties {
         }
     }
 
-    public String providerName() {
-        return this.innerModel().providerName();
-    }
-
-    public String providerIncidentId() {
-        return this.innerModel().providerIncidentId();
+    public OffsetDateTime firstActivityTimeUtc() {
+        return this.innerModel().firstActivityTimeUtc();
     }
 
     public OffsetDateTime lastActivityTimeUtc() {
@@ -92,8 +84,16 @@ public final class IncidentPropertiesImpl implements IncidentProperties {
         return this.innerModel().lastModifiedTimeUtc();
     }
 
-    public IncidentOwnerInfo owner() {
-        return this.innerModel().owner();
+    public OffsetDateTime createdTimeUtc() {
+        return this.innerModel().createdTimeUtc();
+    }
+
+    public Integer incidentNumber() {
+        return this.innerModel().incidentNumber();
+    }
+
+    public IncidentAdditionalData additionalData() {
+        return this.innerModel().additionalData();
     }
 
     public List<String> relatedAnalyticRuleIds() {
@@ -105,12 +105,16 @@ public final class IncidentPropertiesImpl implements IncidentProperties {
         }
     }
 
-    public IncidentSeverity severity() {
-        return this.innerModel().severity();
+    public String incidentUrl() {
+        return this.innerModel().incidentUrl();
     }
 
-    public IncidentStatus status() {
-        return this.innerModel().status();
+    public String providerName() {
+        return this.innerModel().providerName();
+    }
+
+    public String providerIncidentId() {
+        return this.innerModel().providerIncidentId();
     }
 
     public TeamInformation teamInformation() {
@@ -120,10 +124,6 @@ public final class IncidentPropertiesImpl implements IncidentProperties {
         } else {
             return null;
         }
-    }
-
-    public String title() {
-        return this.innerModel().title();
     }
 
     public IncidentPropertiesInner innerModel() {

@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.AccountEntityProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,13 +16,17 @@ import java.util.UUID;
 /** Represents an account entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Account")
-@Fluent
+@Immutable
 public final class AccountEntity extends EntityInner {
     /*
      * Account entity properties
      */
     @JsonProperty(value = "properties")
     private AccountEntityProperties innerProperties;
+
+    /** Creates an instance of AccountEntity class. */
+    public AccountEntity() {
+    }
 
     /**
      * Get the innerProperties property: Account entity properties.

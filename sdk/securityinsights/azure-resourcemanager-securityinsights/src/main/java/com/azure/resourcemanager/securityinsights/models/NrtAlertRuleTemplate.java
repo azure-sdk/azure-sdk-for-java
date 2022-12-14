@@ -25,6 +25,10 @@ public final class NrtAlertRuleTemplate extends AlertRuleTemplateInner {
     @JsonProperty(value = "properties")
     private NrtAlertRuleTemplateProperties innerProperties;
 
+    /** Creates an instance of NrtAlertRuleTemplate class. */
+    public NrtAlertRuleTemplate() {
+    }
+
     /**
      * Get the innerProperties property: NRT alert rule template properties.
      *
@@ -194,6 +198,29 @@ public final class NrtAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new NrtAlertRuleTemplateProperties();
         }
         this.innerProperties().withEventGroupingSettings(eventGroupingSettings);
+        return this;
+    }
+
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sentinelEntitiesMappings();
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleTemplate object itself.
+     */
+    public NrtAlertRuleTemplate withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NrtAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSentinelEntitiesMappings(sentinelEntitiesMappings);
         return this;
     }
 

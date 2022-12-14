@@ -19,6 +19,10 @@ public final class Dynamics365DataConnectorProperties extends DataConnectorTenan
     @JsonProperty(value = "dataTypes", required = true)
     private Dynamics365DataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of Dynamics365DataConnectorProperties class. */
+    public Dynamics365DataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

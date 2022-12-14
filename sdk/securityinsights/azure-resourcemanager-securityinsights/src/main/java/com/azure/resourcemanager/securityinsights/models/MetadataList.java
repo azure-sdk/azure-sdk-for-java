@@ -25,6 +25,10 @@ public final class MetadataList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of MetadataList class. */
+    public MetadataList() {
+    }
+
     /**
      * Get the value property: Array of metadata.
      *
