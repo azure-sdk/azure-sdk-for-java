@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Database specific information for MySQL to Azure Database for MySQL migration task inputs. */
 @Fluent
 public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(MigrateMySqlAzureDbForMySqlSyncDatabaseInput.class);
-
     /*
      * Name of the database
      */
@@ -23,29 +19,21 @@ public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
     private String name;
 
     /*
-     * Name of target database. Note: Target database will be truncated before
-     * starting migration.
+     * Name of target database. Note: Target database will be truncated before starting migration.
      */
     @JsonProperty(value = "targetDatabaseName")
     private String targetDatabaseName;
 
     /*
-     * Migration settings which tune the migration behavior
+     * Mapping of source to target tables
      */
-    @JsonProperty(value = "migrationSetting")
-    private Map<String, String> migrationSetting;
+    @JsonProperty(value = "tableMap")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tableMap;
 
-    /*
-     * Source settings to tune source endpoint migration behavior
-     */
-    @JsonProperty(value = "sourceSetting")
-    private Map<String, String> sourceSetting;
-
-    /*
-     * Target settings to tune target endpoint migration behavior
-     */
-    @JsonProperty(value = "targetSetting")
-    private Map<String, String> targetSetting;
+    /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncDatabaseInput class. */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput() {
+    }
 
     /**
      * Get the name property: Name of the database.
@@ -90,62 +78,22 @@ public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
     }
 
     /**
-     * Get the migrationSetting property: Migration settings which tune the migration behavior.
+     * Get the tableMap property: Mapping of source to target tables.
      *
-     * @return the migrationSetting value.
+     * @return the tableMap value.
      */
-    public Map<String, String> migrationSetting() {
-        return this.migrationSetting;
+    public Map<String, String> tableMap() {
+        return this.tableMap;
     }
 
     /**
-     * Set the migrationSetting property: Migration settings which tune the migration behavior.
+     * Set the tableMap property: Mapping of source to target tables.
      *
-     * @param migrationSetting the migrationSetting value to set.
+     * @param tableMap the tableMap value to set.
      * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
      */
-    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withMigrationSetting(Map<String, String> migrationSetting) {
-        this.migrationSetting = migrationSetting;
-        return this;
-    }
-
-    /**
-     * Get the sourceSetting property: Source settings to tune source endpoint migration behavior.
-     *
-     * @return the sourceSetting value.
-     */
-    public Map<String, String> sourceSetting() {
-        return this.sourceSetting;
-    }
-
-    /**
-     * Set the sourceSetting property: Source settings to tune source endpoint migration behavior.
-     *
-     * @param sourceSetting the sourceSetting value to set.
-     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
-     */
-    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withSourceSetting(Map<String, String> sourceSetting) {
-        this.sourceSetting = sourceSetting;
-        return this;
-    }
-
-    /**
-     * Get the targetSetting property: Target settings to tune target endpoint migration behavior.
-     *
-     * @return the targetSetting value.
-     */
-    public Map<String, String> targetSetting() {
-        return this.targetSetting;
-    }
-
-    /**
-     * Set the targetSetting property: Target settings to tune target endpoint migration behavior.
-     *
-     * @param targetSetting the targetSetting value to set.
-     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
-     */
-    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTargetSetting(Map<String, String> targetSetting) {
-        this.targetSetting = targetSetting;
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTableMap(Map<String, String> tableMap) {
+        this.tableMap = tableMap;
         return this;
     }
 
