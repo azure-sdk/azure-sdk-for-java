@@ -5,16 +5,11 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.postgresqlflexibleserver.models.ConfigurationDataType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of a configuration. */
 @Fluent
 public final class ConfigurationProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConfigurationProperties.class);
-
     /*
      * Value of the configuration.
      */
@@ -37,7 +32,7 @@ public final class ConfigurationProperties {
      * Data type of the configuration.
      */
     @JsonProperty(value = "dataType", access = JsonProperty.Access.WRITE_ONLY)
-    private ConfigurationDataType dataType;
+    private String dataType;
 
     /*
      * Allowed values of the configuration.
@@ -50,6 +45,10 @@ public final class ConfigurationProperties {
      */
     @JsonProperty(value = "source")
     private String source;
+
+    /** Creates an instance of ConfigurationProperties class. */
+    public ConfigurationProperties() {
+    }
 
     /**
      * Get the value property: Value of the configuration.
@@ -94,7 +93,7 @@ public final class ConfigurationProperties {
      *
      * @return the dataType value.
      */
-    public ConfigurationDataType dataType() {
+    public String dataType() {
         return this.dataType;
     }
 
