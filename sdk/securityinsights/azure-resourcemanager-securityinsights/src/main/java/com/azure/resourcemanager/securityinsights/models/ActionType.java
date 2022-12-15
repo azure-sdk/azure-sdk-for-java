@@ -16,6 +16,9 @@ public final class ActionType extends ExpandableStringEnum<ActionType> {
     /** Static value RunPlaybook for ActionType. */
     public static final ActionType RUN_PLAYBOOK = fromString("RunPlaybook");
 
+    /** Static value AddIncidentTask for ActionType. */
+    public static final ActionType ADD_INCIDENT_TASK = fromString("AddIncidentTask");
+
     /**
      * Creates or finds a ActionType from its string representation.
      *

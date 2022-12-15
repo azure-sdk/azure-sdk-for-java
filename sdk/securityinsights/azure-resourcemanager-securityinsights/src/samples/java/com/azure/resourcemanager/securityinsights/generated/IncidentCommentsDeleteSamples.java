@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for IncidentComments Delete. */
 public final class IncidentCommentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/incidents/comments/DeleteIncidentComment.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-12-01-preview/examples/incidents/IncidentComments/IncidentComments_Delete.json
      */
     /**
-     * Sample code: Delete the incident comment.
+     * Sample code: IncidentComments_Delete.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void deleteTheIncidentComment(
+    public static void incidentCommentsDelete(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .incidentComments()
