@@ -12,7 +12,7 @@ import com.azure.resourcemanager.servicelinker.models.ServicePrincipalSecretAuth
 /** Samples for Linker Update. */
 public final class LinkerUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PatchLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2011-05-24/examples/PatchLink.json
      */
     /**
      * Sample code: PatchLink.
@@ -35,7 +35,10 @@ public final class LinkerUpdateSamples {
                     .withId(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DocumentDb/databaseAccounts/test-acc/mongodbDatabases/test-db"))
             .withAuthInfo(
-                new ServicePrincipalSecretAuthInfo().withClientId("name").withPrincipalId("id").withSecret("secret"))
+                new ServicePrincipalSecretAuthInfo()
+                    .withClientId("name")
+                    .withPrincipalId("id")
+                    .withSecret("fakeTokenPlaceholder"))
             .apply();
     }
 }

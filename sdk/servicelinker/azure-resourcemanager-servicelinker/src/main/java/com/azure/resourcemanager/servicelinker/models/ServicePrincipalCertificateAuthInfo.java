@@ -33,6 +33,10 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
     @JsonProperty(value = "certificate", required = true)
     private String certificate;
 
+    /** Creates an instance of ServicePrincipalCertificateAuthInfo class. */
+    public ServicePrincipalCertificateAuthInfo() {
+    }
+
     /**
      * Get the clientId property: Application clientId for servicePrincipal auth.
      *
