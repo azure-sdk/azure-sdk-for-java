@@ -219,7 +219,7 @@ public final class AppConfigurationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appconfiguration")
                 .append("/")
-                .append("1.0.0-beta.6");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
