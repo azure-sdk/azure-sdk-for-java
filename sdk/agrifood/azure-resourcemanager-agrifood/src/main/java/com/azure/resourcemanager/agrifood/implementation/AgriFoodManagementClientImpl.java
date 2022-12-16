@@ -36,21 +36,22 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the AgriFoodManagementClientImpl type. */
 @ServiceClient(builder = AgriFoodManagementClientBuilder.class)
 public final class AgriFoodManagementClientImpl implements AgriFoodManagementClient {
-    /** The ID of the target subscription. */
-    private final String subscriptionId;
+    /** The ID of the target subscription. The value must be an UUID. */
+    private final UUID subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
-    public String getSubscriptionId() {
+    public UUID getSubscriptionId() {
         return this.subscriptionId;
     }
 
@@ -205,7 +206,7 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     AgriFoodManagementClientImpl(
@@ -213,7 +214,7 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
         AzureEnvironment environment,
-        String subscriptionId,
+        UUID subscriptionId,
         String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
