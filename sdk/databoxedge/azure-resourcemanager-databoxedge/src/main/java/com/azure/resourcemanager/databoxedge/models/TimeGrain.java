@@ -45,7 +45,11 @@ public final class TimeGrain extends ExpandableStringEnum<TimeGrain> {
         return fromString(name, TimeGrain.class);
     }
 
-    /** @return known TimeGrain values. */
+    /**
+     * Gets known TimeGrain values.
+     *
+     * @return known TimeGrain values.
+     */
     public static Collection<TimeGrain> values() {
         return values(TimeGrain.class);
     }

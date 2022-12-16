@@ -5,45 +5,51 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.AzureContainerDataFormat;
 import com.azure.resourcemanager.databoxedge.models.ContainerStatus;
 import com.azure.resourcemanager.databoxedge.models.RefreshDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Represents a container on the Data Box Edge/Gateway device. */
-@JsonFlatten
 @Fluent
-public class ContainerInner extends ArmBaseModel {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContainerInner.class);
+public final class ContainerInner extends ArmBaseModel {
+    /*
+     * The container properties.
+     */
+    @JsonProperty(value = "properties", required = true)
+    private ContainerProperties innerProperties = new ContainerProperties();
 
     /*
-     * Current status of the container.
+     * Metadata pertaining to creation and last modification of Container
      */
-    @JsonProperty(value = "properties.containerStatus", access = JsonProperty.Access.WRITE_ONLY)
-    private ContainerStatus containerStatus;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
-    /*
-     * DataFormat for Container
-     */
-    @JsonProperty(value = "properties.dataFormat", required = true)
-    private AzureContainerDataFormat dataFormat;
+    /** Creates an instance of ContainerInner class. */
+    public ContainerInner() {
+    }
 
-    /*
-     * Details of the refresh job on this container.
+    /**
+     * Get the innerProperties property: The container properties.
+     *
+     * @return the innerProperties value.
      */
-    @JsonProperty(value = "properties.refreshDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private RefreshDetails refreshDetails;
+    private ContainerProperties innerProperties() {
+        return this.innerProperties;
+    }
 
-    /*
-     * The UTC time when container got created.
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Container.
+     *
+     * @return the systemData value.
      */
-    @JsonProperty(value = "properties.createdDateTime", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime createdDateTime;
+    public SystemData systemData() {
+        return this.systemData;
+    }
 
     /**
      * Get the containerStatus property: Current status of the container.
@@ -51,7 +57,7 @@ public class ContainerInner extends ArmBaseModel {
      * @return the containerStatus value.
      */
     public ContainerStatus containerStatus() {
-        return this.containerStatus;
+        return this.innerProperties() == null ? null : this.innerProperties().containerStatus();
     }
 
     /**
@@ -60,7 +66,7 @@ public class ContainerInner extends ArmBaseModel {
      * @return the dataFormat value.
      */
     public AzureContainerDataFormat dataFormat() {
-        return this.dataFormat;
+        return this.innerProperties() == null ? null : this.innerProperties().dataFormat();
     }
 
     /**
@@ -70,7 +76,10 @@ public class ContainerInner extends ArmBaseModel {
      * @return the ContainerInner object itself.
      */
     public ContainerInner withDataFormat(AzureContainerDataFormat dataFormat) {
-        this.dataFormat = dataFormat;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ContainerProperties();
+        }
+        this.innerProperties().withDataFormat(dataFormat);
         return this;
     }
 
@@ -80,7 +89,7 @@ public class ContainerInner extends ArmBaseModel {
      * @return the refreshDetails value.
      */
     public RefreshDetails refreshDetails() {
-        return this.refreshDetails;
+        return this.innerProperties() == null ? null : this.innerProperties().refreshDetails();
     }
 
     /**
@@ -89,7 +98,7 @@ public class ContainerInner extends ArmBaseModel {
      * @return the createdDateTime value.
      */
     public OffsetDateTime createdDateTime() {
-        return this.createdDateTime;
+        return this.innerProperties() == null ? null : this.innerProperties().createdDateTime();
     }
 
     /**
@@ -100,13 +109,14 @@ public class ContainerInner extends ArmBaseModel {
     @Override
     public void validate() {
         super.validate();
-        if (dataFormat() == null) {
-            throw logger
+        if (innerProperties() == null) {
+            throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property dataFormat in model ContainerInner"));
-        }
-        if (refreshDetails() != null) {
-            refreshDetails().validate();
+                    new IllegalArgumentException("Missing required property innerProperties in model ContainerInner"));
+        } else {
+            innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ContainerInner.class);
 }
