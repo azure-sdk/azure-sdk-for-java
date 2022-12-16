@@ -80,6 +80,10 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
         return this.innerModel().protectedSettings();
     }
 
+    public Boolean enableAutomaticUpgrade() {
+        return this.innerModel().enableAutomaticUpgrade();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }
@@ -215,6 +219,11 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
 
     public ExtensionImpl withProtectedSettings(Object protectedSettings) {
         this.innerModel().withProtectedSettings(protectedSettings);
+        return this;
+    }
+
+    public ExtensionImpl withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade) {
+        this.innerModel().withEnableAutomaticUpgrade(enableAutomaticUpgrade);
         return this;
     }
 }
