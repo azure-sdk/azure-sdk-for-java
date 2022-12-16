@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.AggregatedCostsClient;
 import com.azure.resourcemanager.consumption.fluent.models.ManagementGroupAggregatedCostResultInner;
 import com.azure.resourcemanager.consumption.models.AggregatedCosts;
 import com.azure.resourcemanager.consumption.models.ManagementGroupAggregatedCostResult;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AggregatedCostsImpl implements AggregatedCosts {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AggregatedCostsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AggregatedCostsImpl.class);
 
     private final AggregatedCostsClient innerClient;
 
@@ -25,15 +24,6 @@ public final class AggregatedCostsImpl implements AggregatedCosts {
         AggregatedCostsClient innerClient, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public ManagementGroupAggregatedCostResult getByManagementGroup(String managementGroupId) {
-        ManagementGroupAggregatedCostResultInner inner = this.serviceClient().getByManagementGroup(managementGroupId);
-        if (inner != null) {
-            return new ManagementGroupAggregatedCostResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<ManagementGroupAggregatedCostResult> getByManagementGroupWithResponse(
@@ -51,10 +41,8 @@ public final class AggregatedCostsImpl implements AggregatedCosts {
         }
     }
 
-    public ManagementGroupAggregatedCostResult getForBillingPeriodByManagementGroup(
-        String managementGroupId, String billingPeriodName) {
-        ManagementGroupAggregatedCostResultInner inner =
-            this.serviceClient().getForBillingPeriodByManagementGroup(managementGroupId, billingPeriodName);
+    public ManagementGroupAggregatedCostResult getByManagementGroup(String managementGroupId) {
+        ManagementGroupAggregatedCostResultInner inner = this.serviceClient().getByManagementGroup(managementGroupId);
         if (inner != null) {
             return new ManagementGroupAggregatedCostResultImpl(inner, this.manager());
         } else {
@@ -74,6 +62,17 @@ public final class AggregatedCostsImpl implements AggregatedCosts {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ManagementGroupAggregatedCostResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ManagementGroupAggregatedCostResult getForBillingPeriodByManagementGroup(
+        String managementGroupId, String billingPeriodName) {
+        ManagementGroupAggregatedCostResultInner inner =
+            this.serviceClient().getForBillingPeriodByManagementGroup(managementGroupId, billingPeriodName);
+        if (inner != null) {
+            return new ManagementGroupAggregatedCostResultImpl(inner, this.manager());
         } else {
             return null;
         }
