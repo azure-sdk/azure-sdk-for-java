@@ -57,7 +57,7 @@ public final class ContainerAppsRevisionsClientImpl implements ContainerAppsRevi
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ContainerAppsRevisionsService {
+    public interface ContainerAppsRevisionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"
