@@ -23,20 +23,6 @@ public interface ComponentLinkedStorageAccountsOperationsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
      * @param storageType The type of the Application Insights component data source for the linked storage account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component linked storage accounts.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ComponentLinkedStorageAccountsInner get(String resourceGroupName, String resourceName, StorageType storageType);
-
-    /**
-     * Returns the current linked storage settings for an Application Insights component.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName The name of the Application Insights component resource.
-     * @param storageType The type of the Application Insights component data source for the linked storage account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -48,24 +34,18 @@ public interface ComponentLinkedStorageAccountsOperationsClient {
         String resourceGroupName, String resourceName, StorageType storageType, Context context);
 
     /**
-     * Replace current linked storage account for an Application Insights component.
+     * Returns the current linked storage settings for an Application Insights component.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
      * @param storageType The type of the Application Insights component data source for the linked storage account.
-     * @param linkedStorageAccountsProperties Properties that need to be specified to update linked storage accounts for
-     *     an Application Insights component.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an Application Insights component linked storage accounts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ComponentLinkedStorageAccountsInner createAndUpdate(
-        String resourceGroupName,
-        String resourceName,
-        StorageType storageType,
-        ComponentLinkedStorageAccountsInner linkedStorageAccountsProperties);
+    ComponentLinkedStorageAccountsInner get(String resourceGroupName, String resourceName, StorageType storageType);
 
     /**
      * Replace current linked storage account for an Application Insights component.
@@ -90,24 +70,24 @@ public interface ComponentLinkedStorageAccountsOperationsClient {
         Context context);
 
     /**
-     * Update linked storage accounts for an Application Insights component.
+     * Replace current linked storage account for an Application Insights component.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
      * @param storageType The type of the Application Insights component data source for the linked storage account.
-     * @param linkedStorageAccountsProperties Properties that need to be specified to update a linked storage accounts
-     *     for an Application Insights component.
+     * @param linkedStorageAccountsProperties Properties that need to be specified to update linked storage accounts for
+     *     an Application Insights component.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an Application Insights component linked storage accounts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ComponentLinkedStorageAccountsInner update(
+    ComponentLinkedStorageAccountsInner createAndUpdate(
         String resourceGroupName,
         String resourceName,
         StorageType storageType,
-        ComponentLinkedStorageAccountsPatch linkedStorageAccountsProperties);
+        ComponentLinkedStorageAccountsInner linkedStorageAccountsProperties);
 
     /**
      * Update linked storage accounts for an Application Insights component.
@@ -132,17 +112,24 @@ public interface ComponentLinkedStorageAccountsOperationsClient {
         Context context);
 
     /**
-     * Delete linked storage accounts for an Application Insights component.
+     * Update linked storage accounts for an Application Insights component.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
      * @param storageType The type of the Application Insights component data source for the linked storage account.
+     * @param linkedStorageAccountsProperties Properties that need to be specified to update a linked storage accounts
+     *     for an Application Insights component.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Application Insights component linked storage accounts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String resourceName, StorageType storageType);
+    ComponentLinkedStorageAccountsInner update(
+        String resourceGroupName,
+        String resourceName,
+        StorageType storageType,
+        ComponentLinkedStorageAccountsPatch linkedStorageAccountsProperties);
 
     /**
      * Delete linked storage accounts for an Application Insights component.
@@ -159,4 +146,17 @@ public interface ComponentLinkedStorageAccountsOperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
         String resourceGroupName, String resourceName, StorageType storageType, Context context);
+
+    /**
+     * Delete linked storage accounts for an Application Insights component.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName The name of the Application Insights component resource.
+     * @param storageType The type of the Application Insights component data source for the linked storage account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String resourceName, StorageType storageType);
 }

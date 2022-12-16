@@ -18,6 +18,6 @@ public final class ComponentsDeleteSamples {
      */
     public static void componentsDelete(
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.components().deleteWithResponse("my-resource-group", "my-component", Context.NONE);
+        manager.components().deleteByResourceGroupWithResponse("my-resource-group", "my-component", Context.NONE);
     }
 }
