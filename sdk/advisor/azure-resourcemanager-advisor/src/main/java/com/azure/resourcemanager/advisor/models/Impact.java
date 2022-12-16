@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Impact. */
+/** The business impact of the recommendation. */
 public final class Impact extends ExpandableStringEnum<Impact> {
     /** Static value High for Impact. */
     public static final Impact HIGH = fromString("High");
@@ -30,7 +30,11 @@ public final class Impact extends ExpandableStringEnum<Impact> {
         return fromString(name, Impact.class);
     }
 
-    /** @return known Impact values. */
+    /**
+     * Gets known Impact values.
+     *
+     * @return known Impact values.
+     */
     public static Collection<Impact> values() {
         return values(Impact.class);
     }
