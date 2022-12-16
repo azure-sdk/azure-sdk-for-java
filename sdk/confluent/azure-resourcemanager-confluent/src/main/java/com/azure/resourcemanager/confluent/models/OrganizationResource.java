@@ -63,7 +63,9 @@ public interface OrganizationResource {
     OffsetDateTime createdTime();
 
     /**
-     * Gets the provisioningState property: ProvisioningState Provision states for confluent RP.
+     * Gets the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for confluent RP.
      *
      * @return the provisioningState value.
      */
@@ -110,6 +112,13 @@ public interface OrganizationResource {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.confluent.fluent.models.OrganizationResourceInner object.
