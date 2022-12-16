@@ -13,7 +13,7 @@ import java.io.IOException;
 /** Samples for MachineExtensions Update. */
 public final class MachineExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateExtension.json
      */
     /**
      * Sample code: Create or Update a Machine Extension (PATCH).

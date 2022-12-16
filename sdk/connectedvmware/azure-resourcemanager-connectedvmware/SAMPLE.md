@@ -24,7 +24,7 @@
 - [Create](#guestagents_create)
 - [Delete](#guestagents_delete)
 - [Get](#guestagents_get)
-- [ListByVm](#guestagents_listbyvm)
+- [List](#guestagents_list)
 
 ## Hosts
 
@@ -40,7 +40,7 @@
 - [Create](#hybrididentitymetadata_create)
 - [Delete](#hybrididentitymetadata_delete)
 - [Get](#hybrididentitymetadata_get)
-- [ListByVm](#hybrididentitymetadata_listbyvm)
+- [List](#hybrididentitymetadata_list)
 
 ## InventoryItems
 
@@ -70,6 +70,10 @@
 - [ListByResourceGroup](#resourcepools_listbyresourcegroup)
 - [Update](#resourcepools_update)
 
+## ResourceProvider
+
+- [UpgradeExtensions](#resourceprovider_upgradeextensions)
+
 ## VCenters
 
 - [Create](#vcenters_create)
@@ -91,7 +95,7 @@
 ## VirtualMachines
 
 - [AssessPatches](#virtualmachines_assesspatches)
-- [Create](#virtualmachines_create)
+- [CreateOrUpdate](#virtualmachines_createorupdate)
 - [Delete](#virtualmachines_delete)
 - [GetByResourceGroup](#virtualmachines_getbyresourcegroup)
 - [InstallPatches](#virtualmachines_installpatches)
@@ -118,7 +122,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for Clusters Create. */
 public final class ClustersCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateCluster.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateCluster.json
      */
     /**
      * Sample code: CreateCluster.
@@ -152,7 +156,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters Delete. */
 public final class ClustersDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteCluster.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteCluster.json
      */
     /**
      * Sample code: DeleteCluster.
@@ -173,7 +177,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetByResourceGroup. */
 public final class ClustersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetCluster.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetCluster.json
      */
     /**
      * Sample code: GetCluster.
@@ -194,7 +198,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters List. */
 public final class ClustersListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListClusters.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListClusters.json
      */
     /**
      * Sample code: ListClusters.
@@ -215,7 +219,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters ListByResourceGroup. */
 public final class ClustersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListClustersByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListClustersByResourceGroup.json
      */
     /**
      * Sample code: ListClustersByResourceGroup.
@@ -240,7 +244,7 @@ import java.util.Map;
 /** Samples for Clusters Update. */
 public final class ClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateCluster.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateCluster.json
      */
     /**
      * Sample code: UpdateCluster.
@@ -274,7 +278,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for Datastores Create. */
 public final class DatastoresCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateDatastore.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateDatastore.json
      */
     /**
      * Sample code: CreateDatastore.
@@ -308,7 +312,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores Delete. */
 public final class DatastoresDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteDatastore.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteDatastore.json
      */
     /**
      * Sample code: DeleteDatastore.
@@ -329,7 +333,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores GetByResourceGroup. */
 public final class DatastoresGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetDatastore.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetDatastore.json
      */
     /**
      * Sample code: GetDatastore.
@@ -350,7 +354,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores List. */
 public final class DatastoresListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListDatastores.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListDatastores.json
      */
     /**
      * Sample code: ListDatastores.
@@ -371,7 +375,7 @@ import com.azure.core.util.Context;
 /** Samples for Datastores ListByResourceGroup. */
 public final class DatastoresListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListDatastoresByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListDatastoresByResourceGroup.json
      */
     /**
      * Sample code: ListDatastoresByResourceGroup.
@@ -396,7 +400,7 @@ import java.util.Map;
 /** Samples for Datastores Update. */
 public final class DatastoresUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateDatastore.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateDatastore.json
      */
     /**
      * Sample code: UpdateDatastore.
@@ -432,7 +436,7 @@ import com.azure.resourcemanager.connectedvmware.models.ProvisioningAction;
 /** Samples for GuestAgents Create. */
 public final class GuestAgentsCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateGuestAgent.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateGuestAgent.json
      */
     /**
      * Sample code: CreateGuestAgent.
@@ -444,7 +448,7 @@ public final class GuestAgentsCreateSamples {
             .guestAgents()
             .define("default")
             .withExistingVirtualMachine("testrg", "ContosoVm")
-            .withCredentials(new GuestCredential().withUsername("tempuser").withPassword("<password>"))
+            .withCredentials(new GuestCredential().withUsername("tempuser").withPassword("fakeTokenPlaceholder"))
             .withHttpProxyConfig(new HttpProxyConfiguration().withHttpsProxy("http://192.1.2.3:8080"))
             .withProvisioningAction(ProvisioningAction.INSTALL)
             .create();
@@ -460,7 +464,7 @@ import com.azure.core.util.Context;
 /** Samples for GuestAgents Delete. */
 public final class GuestAgentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteGuestAgent.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteGuestAgent.json
      */
     /**
      * Sample code: DeleteGuestAgent.
@@ -481,7 +485,7 @@ import com.azure.core.util.Context;
 /** Samples for GuestAgents Get. */
 public final class GuestAgentsGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetGuestAgent.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetGuestAgent.json
      */
     /**
      * Sample code: GetGuestAgent.
@@ -494,15 +498,15 @@ public final class GuestAgentsGetSamples {
 }
 ```
 
-### GuestAgents_ListByVm
+### GuestAgents_List
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for GuestAgents ListByVm. */
-public final class GuestAgentsListByVmSamples {
+/** Samples for GuestAgents List. */
+public final class GuestAgentsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GuestAgent_ListByVm.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GuestAgent_ListByVm.json
      */
     /**
      * Sample code: GuestAgentListByVm.
@@ -510,7 +514,7 @@ public final class GuestAgentsListByVmSamples {
      * @param manager Entry point to ConnectedVMwareManager.
      */
     public static void guestAgentListByVm(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.guestAgents().listByVm("testrg", "ContosoVm", Context.NONE);
+        manager.guestAgents().list("testrg", "ContosoVm", Context.NONE);
     }
 }
 ```
@@ -523,7 +527,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for Hosts Create. */
 public final class HostsCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateHost.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateHost.json
      */
     /**
      * Sample code: CreateHost.
@@ -557,7 +561,7 @@ import com.azure.core.util.Context;
 /** Samples for Hosts Delete. */
 public final class HostsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteHost.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteHost.json
      */
     /**
      * Sample code: DeleteHost.
@@ -578,7 +582,7 @@ import com.azure.core.util.Context;
 /** Samples for Hosts GetByResourceGroup. */
 public final class HostsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetHost.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetHost.json
      */
     /**
      * Sample code: GetHost.
@@ -599,7 +603,7 @@ import com.azure.core.util.Context;
 /** Samples for Hosts List. */
 public final class HostsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListHosts.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListHosts.json
      */
     /**
      * Sample code: ListHosts.
@@ -620,7 +624,7 @@ import com.azure.core.util.Context;
 /** Samples for Hosts ListByResourceGroup. */
 public final class HostsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListHostsByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListHostsByResourceGroup.json
      */
     /**
      * Sample code: ListHostsByResourceGroup.
@@ -645,7 +649,7 @@ import java.util.Map;
 /** Samples for Hosts Update. */
 public final class HostsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateHost.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateHost.json
      */
     /**
      * Sample code: UpdateHost.
@@ -677,7 +681,7 @@ public final class HostsUpdateSamples {
 /** Samples for HybridIdentityMetadata Create. */
 public final class HybridIdentityMetadataCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateHybridIdentityMetadata.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateHybridIdentityMetadata.json
      */
     /**
      * Sample code: CreateHybridIdentityMetadata.
@@ -705,7 +709,7 @@ import com.azure.core.util.Context;
 /** Samples for HybridIdentityMetadata Delete. */
 public final class HybridIdentityMetadataDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteHybridIdentityMetadata.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteHybridIdentityMetadata.json
      */
     /**
      * Sample code: DeleteHybridIdentityMetadata.
@@ -727,7 +731,7 @@ import com.azure.core.util.Context;
 /** Samples for HybridIdentityMetadata Get. */
 public final class HybridIdentityMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetHybridIdentityMetadata.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetHybridIdentityMetadata.json
      */
     /**
      * Sample code: GetHybridIdentityMetadata.
@@ -741,15 +745,15 @@ public final class HybridIdentityMetadataGetSamples {
 }
 ```
 
-### HybridIdentityMetadata_ListByVm
+### HybridIdentityMetadata_List
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for HybridIdentityMetadata ListByVm. */
-public final class HybridIdentityMetadataListByVmSamples {
+/** Samples for HybridIdentityMetadata List. */
+public final class HybridIdentityMetadataListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/HybridIdentityMetadata_ListByVm.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/HybridIdentityMetadata_ListByVm.json
      */
     /**
      * Sample code: HybridIdentityMetadataListByVm.
@@ -758,7 +762,7 @@ public final class HybridIdentityMetadataListByVmSamples {
      */
     public static void hybridIdentityMetadataListByVm(
         com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.hybridIdentityMetadatas().listByVm("testrg", "ContosoVm", Context.NONE);
+        manager.hybridIdentityMetadatas().list("testrg", "ContosoVm", Context.NONE);
     }
 }
 ```
@@ -766,10 +770,12 @@ public final class HybridIdentityMetadataListByVmSamples {
 ### InventoryItems_Create
 
 ```java
+import com.azure.resourcemanager.connectedvmware.models.ResourcePoolInventoryItem;
+
 /** Samples for InventoryItems Create. */
 public final class InventoryItemsCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateInventoryItem.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateInventoryItem.json
      */
     /**
      * Sample code: CreateInventoryItem.
@@ -777,7 +783,12 @@ public final class InventoryItemsCreateSamples {
      * @param manager Entry point to ConnectedVMwareManager.
      */
     public static void createInventoryItem(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.inventoryItems().define("testItem").withExistingVcenter("testrg", "ContosoVCenter").create();
+        manager
+            .inventoryItems()
+            .define("testItem")
+            .withExistingVcenter("testrg", "ContosoVCenter")
+            .withProperties(new ResourcePoolInventoryItem())
+            .create();
     }
 }
 ```
@@ -790,7 +801,7 @@ import com.azure.core.util.Context;
 /** Samples for InventoryItems Delete. */
 public final class InventoryItemsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteInventoryItem.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteInventoryItem.json
      */
     /**
      * Sample code: DeleteInventoryItem.
@@ -811,7 +822,7 @@ import com.azure.core.util.Context;
 /** Samples for InventoryItems Get. */
 public final class InventoryItemsGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetInventoryItem.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetInventoryItem.json
      */
     /**
      * Sample code: GetInventoryItem.
@@ -832,7 +843,7 @@ import com.azure.core.util.Context;
 /** Samples for InventoryItems ListByVCenter. */
 public final class InventoryItemsListByVCenterSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/InventoryItems_ListByVCenter.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/InventoryItems_ListByVCenter.json
      */
     /**
      * Sample code: InventoryItemsListByVCenter.
@@ -856,7 +867,7 @@ import java.io.IOException;
 /** Samples for MachineExtensions CreateOrUpdate. */
 public final class MachineExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/PUTExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/PUTExtension.json
      */
     /**
      * Sample code: Create or Update a Machine Extension (PUT).
@@ -894,7 +905,7 @@ import com.azure.core.util.Context;
 /** Samples for MachineExtensions Delete. */
 public final class MachineExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DELETEExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DELETEExtension.json
      */
     /**
      * Sample code: Delete a Machine Extension.
@@ -916,7 +927,7 @@ import com.azure.core.util.Context;
 /** Samples for MachineExtensions Get. */
 public final class MachineExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GETExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GETExtension.json
      */
     /**
      * Sample code: Get Machine Extension.
@@ -939,7 +950,7 @@ import com.azure.core.util.Context;
 /** Samples for MachineExtensions List. */
 public final class MachineExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/LISTExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/LISTExtension.json
      */
     /**
      * Sample code: Get all Machine Extensions.
@@ -965,7 +976,7 @@ import java.io.IOException;
 /** Samples for MachineExtensions Update. */
 public final class MachineExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateExtension.json
      */
     /**
      * Sample code: Create or Update a Machine Extension (PATCH).
@@ -1005,7 +1016,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListOperations.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListOperations.json
      */
     /**
      * Sample code: ListOperations.
@@ -1026,7 +1037,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for ResourcePools Create. */
 public final class ResourcePoolsCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateResourcePool.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateResourcePool.json
      */
     /**
      * Sample code: CreateResourcePool.
@@ -1060,7 +1071,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourcePools Delete. */
 public final class ResourcePoolsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteResourcePool.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteResourcePool.json
      */
     /**
      * Sample code: DeleteResourcePool.
@@ -1081,7 +1092,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourcePools GetByResourceGroup. */
 public final class ResourcePoolsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetResourcePool.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetResourcePool.json
      */
     /**
      * Sample code: GetResourcePool.
@@ -1102,7 +1113,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourcePools List. */
 public final class ResourcePoolsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListResourcePools.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListResourcePools.json
      */
     /**
      * Sample code: ListResourcePools.
@@ -1123,7 +1134,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourcePools ListByResourceGroup. */
 public final class ResourcePoolsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListResourcePoolsByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListResourcePoolsByResourceGroup.json
      */
     /**
      * Sample code: ListResourcePoolsByResourceGroup.
@@ -1148,7 +1159,7 @@ import java.util.Map;
 /** Samples for ResourcePools Update. */
 public final class ResourcePoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateResourcePool.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateResourcePool.json
      */
     /**
      * Sample code: UpdateResourcePool.
@@ -1174,6 +1185,55 @@ public final class ResourcePoolsUpdateSamples {
 }
 ```
 
+### ResourceProvider_UpgradeExtensions
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.connectedvmware.models.ExtensionTargetProperties;
+import com.azure.resourcemanager.connectedvmware.models.MachineExtensionUpgrade;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for ResourceProvider UpgradeExtensions. */
+public final class ResourceProviderUpgradeExtensionsSamples {
+    /*
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/Extensions_Upgrade.json
+     */
+    /**
+     * Sample code: Upgrade Machine Extensions.
+     *
+     * @param manager Entry point to ConnectedVMwareManager.
+     */
+    public static void upgradeMachineExtensions(
+        com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
+        manager
+            .resourceProviders()
+            .upgradeExtensions(
+                "myResourceGroup",
+                "myMachine",
+                new MachineExtensionUpgrade()
+                    .withExtensionTargets(
+                        mapOf(
+                            "Microsoft.Azure.Monitoring",
+                            new ExtensionTargetProperties().withTargetVersion("2.0"),
+                            "Microsoft.Compute.CustomScriptExtension",
+                            new ExtensionTargetProperties().withTargetVersion("1.10"))),
+                Context.NONE);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### VCenters_Create
 
 ```java
@@ -1183,7 +1243,7 @@ import com.azure.resourcemanager.connectedvmware.models.VICredential;
 /** Samples for VCenters Create. */
 public final class VCentersCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateVCenter.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateVCenter.json
      */
     /**
      * Sample code: CreateVCenter.
@@ -1203,7 +1263,7 @@ public final class VCentersCreateSamples {
                     .withName(
                         "/subscriptions/a5015e1c-867f-4533-8541-85cd470d0cfb/resourceGroups/demoRG/providers/Microsoft.ExtendedLocation/customLocations/contoso"))
             .withPort(1234)
-            .withCredentials(new VICredential().withUsername("tempuser").withPassword("<password>"))
+            .withCredentials(new VICredential().withUsername("tempuser").withPassword("fakeTokenPlaceholder"))
             .create();
     }
 }
@@ -1217,7 +1277,7 @@ import com.azure.core.util.Context;
 /** Samples for VCenters Delete. */
 public final class VCentersDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteVCenter.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteVCenter.json
      */
     /**
      * Sample code: DeleteVCenter.
@@ -1238,7 +1298,7 @@ import com.azure.core.util.Context;
 /** Samples for VCenters GetByResourceGroup. */
 public final class VCentersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetVCenter.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetVCenter.json
      */
     /**
      * Sample code: GetVCenter.
@@ -1259,7 +1319,7 @@ import com.azure.core.util.Context;
 /** Samples for VCenters List. */
 public final class VCentersListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVCenters.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVCenters.json
      */
     /**
      * Sample code: ListVCenters.
@@ -1280,7 +1340,7 @@ import com.azure.core.util.Context;
 /** Samples for VCenters ListByResourceGroup. */
 public final class VCentersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVCentersByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVCentersByResourceGroup.json
      */
     /**
      * Sample code: ListVCentersByResourceGroup.
@@ -1305,7 +1365,7 @@ import java.util.Map;
 /** Samples for VCenters Update. */
 public final class VCentersUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVCenter.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVCenter.json
      */
     /**
      * Sample code: UpdateVCenter.
@@ -1339,7 +1399,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for VirtualMachineTemplates Create. */
 public final class VirtualMachineTemplatesCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateVirtualMachineTemplate.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateVirtualMachineTemplate.json
      */
     /**
      * Sample code: CreateVirtualMachineTemplate.
@@ -1374,7 +1434,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachineTemplates Delete. */
 public final class VirtualMachineTemplatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteVirtualMachineTemplate.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteVirtualMachineTemplate.json
      */
     /**
      * Sample code: DeleteVirtualMachineTemplate.
@@ -1396,7 +1456,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachineTemplates GetByResourceGroup. */
 public final class VirtualMachineTemplatesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetVirtualMachineTemplate.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetVirtualMachineTemplate.json
      */
     /**
      * Sample code: GetVirtualMachineTemplate.
@@ -1418,7 +1478,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachineTemplates List. */
 public final class VirtualMachineTemplatesListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVirtualMachineTemplates.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVirtualMachineTemplates.json
      */
     /**
      * Sample code: ListVirtualMachineTemplates.
@@ -1440,7 +1500,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachineTemplates ListByResourceGroup. */
 public final class VirtualMachineTemplatesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVirtualMachineTemplatesByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVirtualMachineTemplatesByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualMachineTemplatesByResourceGroup.
@@ -1465,7 +1525,7 @@ import java.util.Map;
 /** Samples for VirtualMachineTemplates Update. */
 public final class VirtualMachineTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVirtualMachineTemplate.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVirtualMachineTemplate.json
      */
     /**
      * Sample code: UpdateVirtualMachineTemplate.
@@ -1503,7 +1563,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines AssessPatches. */
 public final class VirtualMachinesAssessPatchesSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/VirtualMachineAssessPatches.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/VirtualMachineAssessPatches.json
      */
     /**
      * Sample code: Assess patch state of a machine.
@@ -1517,16 +1577,16 @@ public final class VirtualMachinesAssessPatchesSamples {
 }
 ```
 
-### VirtualMachines_Create
+### VirtualMachines_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 import com.azure.resourcemanager.connectedvmware.models.HardwareProfile;
 
-/** Samples for VirtualMachines Create. */
-public final class VirtualMachinesCreateSamples {
+/** Samples for VirtualMachines CreateOrUpdate. */
+public final class VirtualMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateVirtualMachine.json
      */
     /**
      * Sample code: CreateVirtualMachine.
@@ -1564,7 +1624,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Delete. */
 public final class VirtualMachinesDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteVirtualMachine.json
      */
     /**
      * Sample code: DeleteVirtualMachine.
@@ -1585,7 +1645,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines GetByResourceGroup. */
 public final class VirtualMachinesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetVirtualMachine.json
      */
     /**
      * Sample code: GetVirtualMachine.
@@ -1612,7 +1672,7 @@ import java.util.Arrays;
 /** Samples for VirtualMachines InstallPatches. */
 public final class VirtualMachinesInstallPatchesSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/VirtualMachineInstallPatches.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/VirtualMachineInstallPatches.json
      */
     /**
      * Sample code: Install patch state of a machine.
@@ -1650,7 +1710,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines List. */
 public final class VirtualMachinesListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVirtualMachines.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVirtualMachines.json
      */
     /**
      * Sample code: ListVirtualMachines.
@@ -1671,7 +1731,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines ListByResourceGroup. */
 public final class VirtualMachinesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVirtualMachinesByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVirtualMachinesByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualMachinesByResourceGroup.
@@ -1693,7 +1753,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Restart. */
 public final class VirtualMachinesRestartSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/RestartVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/RestartVirtualMachine.json
      */
     /**
      * Sample code: RestartVirtualMachine.
@@ -1714,7 +1774,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Start. */
 public final class VirtualMachinesStartSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/StartVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/StartVirtualMachine.json
      */
     /**
      * Sample code: StartVirtualMachine.
@@ -1736,7 +1796,7 @@ import com.azure.resourcemanager.connectedvmware.models.StopVirtualMachineOption
 /** Samples for VirtualMachines Stop. */
 public final class VirtualMachinesStopSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/StopVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/StopVirtualMachine.json
      */
     /**
      * Sample code: StopVirtualMachine.
@@ -1762,7 +1822,7 @@ import java.util.Map;
 /** Samples for VirtualMachines Update. */
 public final class VirtualMachinesUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVirtualMachine.json
      */
     /**
      * Sample code: UpdateVirtualMachine.
@@ -1796,7 +1856,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for VirtualNetworks Create. */
 public final class VirtualNetworksCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateVirtualNetwork.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateVirtualNetwork.json
      */
     /**
      * Sample code: CreateVirtualNetwork.
@@ -1830,7 +1890,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualNetworks Delete. */
 public final class VirtualNetworksDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteVirtualNetwork.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteVirtualNetwork.json
      */
     /**
      * Sample code: DeleteVirtualNetwork.
@@ -1851,7 +1911,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualNetworks GetByResourceGroup. */
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetVirtualNetwork.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetVirtualNetwork.json
      */
     /**
      * Sample code: GetVirtualNetwork.
@@ -1872,7 +1932,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualNetworks List. */
 public final class VirtualNetworksListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVirtualNetworks.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVirtualNetworks.json
      */
     /**
      * Sample code: ListVirtualNetworks.
@@ -1893,7 +1953,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualNetworks ListByResourceGroup. */
 public final class VirtualNetworksListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVirtualNetworksByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVirtualNetworksByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualNetworksByResourceGroup.
@@ -1918,7 +1978,7 @@ import java.util.Map;
 /** Samples for VirtualNetworks Update. */
 public final class VirtualNetworksUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVirtualNetwork.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVirtualNetwork.json
      */
     /**
      * Sample code: UpdateVirtualNetwork.

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VirtualScsiSharing. */
+/** Defines the sharing mode for sharing the SCSI bus. */
 public final class VirtualScsiSharing extends ExpandableStringEnum<VirtualScsiSharing> {
     /** Static value noSharing for VirtualScsiSharing. */
     public static final VirtualScsiSharing NO_SHARING = fromString("noSharing");

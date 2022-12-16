@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourcePools GetByResourceGroup. */
 public final class ResourcePoolsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetResourcePool.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetResourcePool.json
      */
     /**
      * Sample code: GetResourcePool.

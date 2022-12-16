@@ -25,6 +25,10 @@ public final class VirtualMachinesList {
     @JsonProperty(value = "value", required = true)
     private List<VirtualMachineInner> value;
 
+    /** Creates an instance of VirtualMachinesList class. */
+    public VirtualMachinesList() {
+    }
+
     /**
      * Get the nextLink property: Url to follow for getting next page of VirtualMachines.
      *

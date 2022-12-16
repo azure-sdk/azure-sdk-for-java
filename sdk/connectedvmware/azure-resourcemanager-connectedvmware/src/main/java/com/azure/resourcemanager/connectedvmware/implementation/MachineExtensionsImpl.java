@@ -28,27 +28,18 @@ public final class MachineExtensionsImpl implements MachineExtensions {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String name, String extensionName) {
-        this.serviceClient().delete(resourceGroupName, name, extensionName);
+    public void delete(String resourceGroupName, String virtualMachineName, String extensionName) {
+        this.serviceClient().delete(resourceGroupName, virtualMachineName, extensionName);
     }
 
-    public void delete(String resourceGroupName, String name, String extensionName, Context context) {
-        this.serviceClient().delete(resourceGroupName, name, extensionName, context);
-    }
-
-    public MachineExtension get(String resourceGroupName, String name, String extensionName) {
-        MachineExtensionInner inner = this.serviceClient().get(resourceGroupName, name, extensionName);
-        if (inner != null) {
-            return new MachineExtensionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
+        this.serviceClient().delete(resourceGroupName, virtualMachineName, extensionName, context);
     }
 
     public Response<MachineExtension> getWithResponse(
-        String resourceGroupName, String name, String extensionName, Context context) {
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
         Response<MachineExtensionInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, name, extensionName, context);
+            this.serviceClient().getWithResponse(resourceGroupName, virtualMachineName, extensionName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -60,14 +51,24 @@ public final class MachineExtensionsImpl implements MachineExtensions {
         }
     }
 
-    public PagedIterable<MachineExtension> list(String resourceGroupName, String name) {
-        PagedIterable<MachineExtensionInner> inner = this.serviceClient().list(resourceGroupName, name);
+    public MachineExtension get(String resourceGroupName, String virtualMachineName, String extensionName) {
+        MachineExtensionInner inner = this.serviceClient().get(resourceGroupName, virtualMachineName, extensionName);
+        if (inner != null) {
+            return new MachineExtensionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<MachineExtension> list(String resourceGroupName, String virtualMachineName) {
+        PagedIterable<MachineExtensionInner> inner = this.serviceClient().list(resourceGroupName, virtualMachineName);
         return Utils.mapPage(inner, inner1 -> new MachineExtensionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<MachineExtension> list(String resourceGroupName, String name, String expand, Context context) {
+    public PagedIterable<MachineExtension> list(
+        String resourceGroupName, String virtualMachineName, String expand, Context context) {
         PagedIterable<MachineExtensionInner> inner =
-            this.serviceClient().list(resourceGroupName, name, expand, context);
+            this.serviceClient().list(resourceGroupName, virtualMachineName, expand, context);
         return Utils.mapPage(inner, inner1 -> new MachineExtensionImpl(inner1, this.manager()));
     }
 
@@ -80,8 +81,8 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = Utils.getValueFromIdByName(id, "virtualMachines");
-        if (name == null) {
+        String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
+        if (virtualMachineName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -95,7 +96,7 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, name, extensionName, Context.NONE).getValue();
+        return this.getWithResponse(resourceGroupName, virtualMachineName, extensionName, Context.NONE).getValue();
     }
 
     public Response<MachineExtension> getByIdWithResponse(String id, Context context) {
@@ -107,8 +108,8 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = Utils.getValueFromIdByName(id, "virtualMachines");
-        if (name == null) {
+        String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
+        if (virtualMachineName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -122,7 +123,7 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, name, extensionName, context);
+        return this.getWithResponse(resourceGroupName, virtualMachineName, extensionName, context);
     }
 
     public void deleteById(String id) {
@@ -134,8 +135,8 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = Utils.getValueFromIdByName(id, "virtualMachines");
-        if (name == null) {
+        String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
+        if (virtualMachineName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -149,7 +150,7 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        this.delete(resourceGroupName, name, extensionName, Context.NONE);
+        this.delete(resourceGroupName, virtualMachineName, extensionName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
@@ -161,8 +162,8 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = Utils.getValueFromIdByName(id, "virtualMachines");
-        if (name == null) {
+        String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
+        if (virtualMachineName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -176,7 +177,7 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        this.delete(resourceGroupName, name, extensionName, context);
+        this.delete(resourceGroupName, virtualMachineName, extensionName, context);
     }
 
     private MachineExtensionsClient serviceClient() {
