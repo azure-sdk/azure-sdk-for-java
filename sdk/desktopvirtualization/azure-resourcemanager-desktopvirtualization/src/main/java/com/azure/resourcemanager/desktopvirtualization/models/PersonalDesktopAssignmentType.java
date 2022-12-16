@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PersonalDesktopAssignmentType. */
+/** PersonalDesktopAssignment type for HostPool. */
 public final class PersonalDesktopAssignmentType extends ExpandableStringEnum<PersonalDesktopAssignmentType> {
     /** Static value Automatic for PersonalDesktopAssignmentType. */
     public static final PersonalDesktopAssignmentType AUTOMATIC = fromString("Automatic");

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for HostPools RetrieveRegistrationToken. */
 public final class HostPoolsRetrieveRegistrationTokenSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPools_RetrieveRegistrationToken_Post.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-09-09/examples/HostPools_RetrieveRegistrationToken_Post.json
      */
     /**
      * Sample code: HostPools_RetrieveRegistrationToken_Post.
