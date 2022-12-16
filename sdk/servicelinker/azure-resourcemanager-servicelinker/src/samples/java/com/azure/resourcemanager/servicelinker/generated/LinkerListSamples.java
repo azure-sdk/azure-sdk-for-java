@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker List. */
 public final class LinkerListSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/LinkList.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2018-05-23-preview/examples/LinkList.json
      */
     /**
      * Sample code: LinkList.

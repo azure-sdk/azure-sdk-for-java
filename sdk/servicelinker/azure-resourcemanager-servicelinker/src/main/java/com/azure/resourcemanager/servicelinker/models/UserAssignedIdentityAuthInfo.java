@@ -26,6 +26,10 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
     @JsonProperty(value = "subscriptionId")
     private String subscriptionId;
 
+    /** Creates an instance of UserAssignedIdentityAuthInfo class. */
+    public UserAssignedIdentityAuthInfo() {
+    }
+
     /**
      * Get the clientId property: Client Id for userAssignedIdentity.
      *

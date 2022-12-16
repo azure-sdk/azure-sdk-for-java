@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SecretType. */
+/** The secret type. */
 public final class SecretType extends ExpandableStringEnum<SecretType> {
     /** Static value rawValue for SecretType. */
     public static final SecretType RAW_VALUE = fromString("rawValue");
