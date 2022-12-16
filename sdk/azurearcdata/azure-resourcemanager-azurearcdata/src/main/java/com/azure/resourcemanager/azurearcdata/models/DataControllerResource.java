@@ -62,7 +62,7 @@ public interface DataControllerResource {
     DataControllerProperties properties();
 
     /**
-     * Gets the systemData property: Read only system data.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -81,6 +81,13 @@ public interface DataControllerResource {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.azurearcdata.fluent.models.DataControllerResourceInner object.
@@ -189,7 +196,7 @@ public interface DataControllerResource {
     DataControllerResource.Update update();
 
     /** The template for DataControllerResource update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -216,6 +223,16 @@ public interface DataControllerResource {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the DataControllerResource update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The data controller's properties.
+             *
+             * @param properties The data controller's properties.
+             * @return the next definition stage.
+             */
+            Update withProperties(DataControllerProperties properties);
         }
     }
     /**
