@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BillingFrequency. */
+/** The frequency at which the product will be billed. */
 public final class BillingFrequency extends ExpandableStringEnum<BillingFrequency> {
     /** Static value OneTime for BillingFrequency. */
     public static final BillingFrequency ONE_TIME = fromString("OneTime");
@@ -30,7 +30,11 @@ public final class BillingFrequency extends ExpandableStringEnum<BillingFrequenc
         return fromString(name, BillingFrequency.class);
     }
 
-    /** @return known BillingFrequency values. */
+    /**
+     * Gets known BillingFrequency values.
+     *
+     * @return known BillingFrequency values.
+     */
     public static Collection<BillingFrequency> values() {
         return values(BillingFrequency.class);
     }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StatusReasonCodeForBillingProfile. */
+/** Reason for the specified billing profile status. */
 public final class StatusReasonCodeForBillingProfile extends ExpandableStringEnum<StatusReasonCodeForBillingProfile> {
     /** Static value PastDue for StatusReasonCodeForBillingProfile. */
     public static final StatusReasonCodeForBillingProfile PAST_DUE = fromString("PastDue");
@@ -30,7 +30,11 @@ public final class StatusReasonCodeForBillingProfile extends ExpandableStringEnu
         return fromString(name, StatusReasonCodeForBillingProfile.class);
     }
 
-    /** @return known StatusReasonCodeForBillingProfile values. */
+    /**
+     * Gets known StatusReasonCodeForBillingProfile values.
+     *
+     * @return known StatusReasonCodeForBillingProfile values.
+     */
     public static Collection<StatusReasonCodeForBillingProfile> values() {
         return values(StatusReasonCodeForBillingProfile.class);
     }
