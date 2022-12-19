@@ -8,13 +8,16 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SourceDataStoreType. */
+/** Gets or sets the type of the source data store. */
 public final class SourceDataStoreType extends ExpandableStringEnum<SourceDataStoreType> {
     /** Static value ArchiveStore for SourceDataStoreType. */
     public static final SourceDataStoreType ARCHIVE_STORE = fromString("ArchiveStore");
 
     /** Static value SnapshotStore for SourceDataStoreType. */
     public static final SourceDataStoreType SNAPSHOT_STORE = fromString("SnapshotStore");
+
+    /** Static value OperationalStore for SourceDataStoreType. */
+    public static final SourceDataStoreType OPERATIONAL_STORE = fromString("OperationalStore");
 
     /** Static value VaultStore for SourceDataStoreType. */
     public static final SourceDataStoreType VAULT_STORE = fromString("VaultStore");
@@ -30,7 +33,11 @@ public final class SourceDataStoreType extends ExpandableStringEnum<SourceDataSt
         return fromString(name, SourceDataStoreType.class);
     }
 
-    /** @return known SourceDataStoreType values. */
+    /**
+     * Gets known SourceDataStoreType values.
+     *
+     * @return known SourceDataStoreType values.
+     */
     public static Collection<SourceDataStoreType> values() {
         return values(SourceDataStoreType.class);
     }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FeatureType. */
+/** backup support feature type. */
 public final class FeatureType extends ExpandableStringEnum<FeatureType> {
     /** Static value Invalid for FeatureType. */
     public static final FeatureType INVALID = fromString("Invalid");
@@ -27,7 +27,11 @@ public final class FeatureType extends ExpandableStringEnum<FeatureType> {
         return fromString(name, FeatureType.class);
     }
 
-    /** @return known FeatureType values. */
+    /**
+     * Gets known FeatureType values.
+     *
+     * @return known FeatureType values.
+     */
     public static Collection<FeatureType> values() {
         return values(FeatureType.class);
     }

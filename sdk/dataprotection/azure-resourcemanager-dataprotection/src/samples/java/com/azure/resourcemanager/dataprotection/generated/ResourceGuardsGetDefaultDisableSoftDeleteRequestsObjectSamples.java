@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourceGuards GetDefaultDisableSoftDeleteRequestsObject. */
 public final class ResourceGuardsGetDefaultDisableSoftDeleteRequestsObjectSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2021-07-01/examples/ResourceGuardCRUD/GetDefaultDisableSoftDeleteRequests.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2022-12-01/examples/ResourceGuardCRUD/GetDefaultDisableSoftDeleteRequests.json
      */
     /**
      * Sample code: Get DefaultOperationsRequestObject.
