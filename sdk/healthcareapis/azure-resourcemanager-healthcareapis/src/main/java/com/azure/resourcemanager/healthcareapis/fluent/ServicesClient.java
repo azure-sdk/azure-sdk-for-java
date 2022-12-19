@@ -13,24 +13,13 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.healthcareapis.fluent.models.ServicesDescriptionInner;
 import com.azure.resourcemanager.healthcareapis.fluent.models.ServicesNameAvailabilityInfoInner;
+import com.azure.resourcemanager.healthcareapis.fluent.models.ValidateMedtechMappingsResultInner;
 import com.azure.resourcemanager.healthcareapis.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.healthcareapis.models.ServicesPatchDescription;
+import com.azure.resourcemanager.healthcareapis.models.ValidateMedtechMappingsParameters;
 
 /** An instance of this class provides access to all the operations defined in ServicesClient. */
 public interface ServicesClient {
-    /**
-     * Get the metadata of a service instance.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of a service instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName);
-
     /**
      * Get the metadata of a service instance.
      *
@@ -45,6 +34,19 @@ public interface ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServicesDescriptionInner> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context);
+
+    /**
+     * Get the metadata of a service instance.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of a service instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName);
 
     /**
      * Create or update the metadata of a service instance.
@@ -280,6 +282,21 @@ public interface ServicesClient {
      *
      * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
      *     name of the service instance to check.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties indicating whether a given service name is available along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ServicesNameAvailabilityInfoInner> checkNameAvailabilityWithResponse(
+        CheckNameAvailabilityParameters checkNameAvailabilityInputs, Context context);
+
+    /**
+     * Check if a service instance name is available.
+     *
+     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
+     *     name of the service instance to check.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -290,17 +307,29 @@ public interface ServicesClient {
         CheckNameAvailabilityParameters checkNameAvailabilityInputs);
 
     /**
-     * Check if a service instance name is available.
+     * Validates Medtech mapping files against sample device data.
      *
-     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
-     *     name of the service instance to check.
+     * @param validationRequestInputs The mapping files and device events which will be validated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given service name is available along with {@link Response}.
+     * @return the result returned from the Medtech Mapping Validation Service along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServicesNameAvailabilityInfoInner> checkNameAvailabilityWithResponse(
-        CheckNameAvailabilityParameters checkNameAvailabilityInputs, Context context);
+    Response<ValidateMedtechMappingsResultInner> validateMedtechMappingsWithResponse(
+        ValidateMedtechMappingsParameters validationRequestInputs, Context context);
+
+    /**
+     * Validates Medtech mapping files against sample device data.
+     *
+     * @param validationRequestInputs The mapping files and device events which will be validated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from the Medtech Mapping Validation Service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ValidateMedtechMappingsResultInner validateMedtechMappings(
+        ValidateMedtechMappingsParameters validationRequestInputs);
 }

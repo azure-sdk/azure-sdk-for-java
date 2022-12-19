@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OperationResultStatus. */
+/** The status of the operation being performed. */
 public final class OperationResultStatus extends ExpandableStringEnum<OperationResultStatus> {
     /** Static value Canceled for OperationResultStatus. */
     public static final OperationResultStatus CANCELED = fromString("Canceled");
@@ -36,7 +36,11 @@ public final class OperationResultStatus extends ExpandableStringEnum<OperationR
         return fromString(name, OperationResultStatus.class);
     }
 
-    /** @return known OperationResultStatus values. */
+    /**
+     * Gets known OperationResultStatus values.
+     *
+     * @return known OperationResultStatus values.
+     */
     public static Collection<OperationResultStatus> values() {
         return values(OperationResultStatus.class);
     }
