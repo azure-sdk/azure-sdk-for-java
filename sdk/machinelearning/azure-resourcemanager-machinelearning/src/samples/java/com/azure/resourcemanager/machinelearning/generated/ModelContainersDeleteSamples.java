@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for ModelContainers Delete. */
 public final class ModelContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelContainer/delete.json
      */
     /**
-     * Sample code: Delete Model Container.
+     * Sample code: Delete Workspace Model Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteModelContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceModelContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelContainers().deleteWithResponse("testrg123", "workspace123", "testContainer", Context.NONE);
     }
 }

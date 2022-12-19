@@ -31,26 +31,26 @@ public final class VirtualMachineSizesClientImpl implements VirtualMachineSizesC
     private final VirtualMachineSizesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of VirtualMachineSizesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    VirtualMachineSizesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    VirtualMachineSizesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(VirtualMachineSizesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesVirtualMachineSizes to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesVirtualMachineSizes to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface VirtualMachineSizesService {
+    public interface VirtualMachineSizesService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.MachineLearningServices/locations/{location}/vmSizes")
         @ExpectedResponses({200})

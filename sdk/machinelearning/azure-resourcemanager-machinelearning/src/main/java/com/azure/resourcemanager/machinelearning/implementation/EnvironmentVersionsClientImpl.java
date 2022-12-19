@@ -40,26 +40,26 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
     private final EnvironmentVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of EnvironmentVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    EnvironmentVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    EnvironmentVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(EnvironmentVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesEnvironmentVersions to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesEnvironmentVersions to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface EnvironmentVersionsService {
+    public interface EnvironmentVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
