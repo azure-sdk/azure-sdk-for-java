@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner;
 
 /** An immutable client-side representation of ProjectTask. */
@@ -44,6 +46,20 @@ public interface ProjectTask {
      * @return the properties value.
      */
     ProjectTaskProperties properties();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner object.
@@ -177,7 +193,23 @@ public interface ProjectTask {
     ProjectTask refresh(Context context);
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * Cancel a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * cancels a task if it's currently queued or running.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a task resource along with {@link Response}.
+     */
+    Response<ProjectTask> cancelWithResponse(Context context);
+
+    /**
+     * Cancel a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
      * cancels a task if it's currently queued or running.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -187,14 +219,31 @@ public interface ProjectTask {
     ProjectTask cancel();
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
+     * Execute a command on a task
      *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
+     *
+     * @param parameters Command to execute.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return base class for all types of DMS command properties along with {@link Response}.
      */
-    Response<ProjectTask> cancelWithResponse(Context context);
+    Response<CommandProperties> commandWithResponse(CommandPropertiesInner parameters, Context context);
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
+     *
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS command properties.
+     */
+    CommandProperties command(CommandPropertiesInner parameters);
 }
