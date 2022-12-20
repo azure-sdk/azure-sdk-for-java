@@ -57,7 +57,7 @@ public final class DeletedProtectionContainersClientImpl implements DeletedProte
      */
     @Host("{$host}")
     @ServiceInterface(name = "RecoveryServicesBack")
-    private interface DeletedProtectionContainersService {
+    public interface DeletedProtectionContainersService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"
@@ -140,7 +140,7 @@ public final class DeletedProtectionContainersClientImpl implements DeletedProte
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -199,7 +199,7 @@ public final class DeletedProtectionContainersClientImpl implements DeletedProte
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 
@@ -326,7 +326,7 @@ public final class DeletedProtectionContainersClientImpl implements DeletedProte
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -366,7 +366,7 @@ public final class DeletedProtectionContainersClientImpl implements DeletedProte
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 }

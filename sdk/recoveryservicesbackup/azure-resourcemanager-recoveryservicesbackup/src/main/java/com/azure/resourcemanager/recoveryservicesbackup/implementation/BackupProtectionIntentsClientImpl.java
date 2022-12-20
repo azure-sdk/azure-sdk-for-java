@@ -56,7 +56,7 @@ public final class BackupProtectionIntentsClientImpl implements BackupProtection
      */
     @Host("{$host}")
     @ServiceInterface(name = "RecoveryServicesBack")
-    private interface BackupProtectionIntentsService {
+    public interface BackupProtectionIntentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"
@@ -142,7 +142,7 @@ public final class BackupProtectionIntentsClientImpl implements BackupProtection
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -203,7 +203,7 @@ public final class BackupProtectionIntentsClientImpl implements BackupProtection
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 
@@ -335,7 +335,7 @@ public final class BackupProtectionIntentsClientImpl implements BackupProtection
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -375,7 +375,7 @@ public final class BackupProtectionIntentsClientImpl implements BackupProtection
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 }

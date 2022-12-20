@@ -24,7 +24,7 @@ import java.util.List;
 @Fluent
 public class IaasVMRestoreRequest extends RestoreRequest {
     /*
-     * ID of the backup copy to be recovered.
+     * Recovery Point ID Name of the backup copy to be recovered.
      */
     @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
@@ -158,7 +158,7 @@ public class IaasVMRestoreRequest extends RestoreRequest {
     }
 
     /**
-     * Get the recoveryPointId property: ID of the backup copy to be recovered.
+     * Get the recoveryPointId property: Recovery Point ID Name of the backup copy to be recovered.
      *
      * @return the recoveryPointId value.
      */
@@ -167,7 +167,7 @@ public class IaasVMRestoreRequest extends RestoreRequest {
     }
 
     /**
-     * Set the recoveryPointId property: ID of the backup copy to be recovered.
+     * Set the recoveryPointId property: Recovery Point ID Name of the backup copy to be recovered.
      *
      * @param recoveryPointId the recoveryPointId value to set.
      * @return the IaasVMRestoreRequest object itself.
