@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Organization Update. */
 public final class OrganizationUpdateSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_Update.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2022-10-07-preview/examples/Organization_Update.json
      */
     /**
      * Sample code: Confluent_Update.

@@ -63,7 +63,9 @@ public interface OrganizationResource {
     OffsetDateTime createdTime();
 
     /**
-     * Gets the provisioningState property: ProvisioningState Provision states for confluent RP.
+     * Gets the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for confluent RP.
      *
      * @return the provisioningState value.
      */
@@ -98,6 +100,13 @@ public interface OrganizationResource {
     UserDetail userDetail();
 
     /**
+     * Gets the linkOrganization property: Link an existing Confluent organization.
+     *
+     * @return the linkOrganization value.
+     */
+    LinkOrganization linkOrganization();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -110,6 +119,13 @@ public interface OrganizationResource {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.confluent.fluent.models.OrganizationResourceInner object.
@@ -184,7 +200,7 @@ public interface OrganizationResource {
          * The stage of the OrganizationResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithLinkOrganization {
             /**
              * Executes the create request.
              *
@@ -209,6 +225,16 @@ public interface OrganizationResource {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the OrganizationResource definition allowing to specify linkOrganization. */
+        interface WithLinkOrganization {
+            /**
+             * Specifies the linkOrganization property: Link an existing Confluent organization.
+             *
+             * @param linkOrganization Link an existing Confluent organization.
+             * @return the next definition stage.
+             */
+            WithCreate withLinkOrganization(LinkOrganization linkOrganization);
         }
     }
     /**

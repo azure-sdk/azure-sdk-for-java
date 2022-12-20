@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Organization ListByResourceGroup. */
 public final class OrganizationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_ListByResourceGroup.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2022-10-07-preview/examples/Organization_ListByResourceGroup.json
      */
     /**
      * Sample code: Organization_ListByResourceGroup.

@@ -8,7 +8,11 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SaaSOfferStatus. */
+/**
+ * SaaSOfferStatus
+ *
+ * <p>SaaS Offer Status for confluent RP.
+ */
 public final class SaaSOfferStatus extends ExpandableStringEnum<SaaSOfferStatus> {
     /** Static value Started for SaaSOfferStatus. */
     public static final SaaSOfferStatus STARTED = fromString("Started");
@@ -51,7 +55,11 @@ public final class SaaSOfferStatus extends ExpandableStringEnum<SaaSOfferStatus>
         return fromString(name, SaaSOfferStatus.class);
     }
 
-    /** @return known SaaSOfferStatus values. */
+    /**
+     * Gets known SaaSOfferStatus values.
+     *
+     * @return known SaaSOfferStatus values.
+     */
     public static Collection<SaaSOfferStatus> values() {
         return values(SaaSOfferStatus.class);
     }

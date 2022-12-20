@@ -12,10 +12,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Validations ValidateOrganization. */
-public final class ValidationsValidateOrganizationSamples {
+/** Samples for Validations ValidateOrganizationV2. */
+public final class ValidationsValidateOrganizationV2Samples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2022-10-07-preview/examples/Validations_ValidateOrganizations.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2022-10-07-preview/examples/Validations_ValidateOrganizationsV2.json
      */
     /**
      * Sample code: Validations_ValidateOrganizations.
@@ -25,7 +25,7 @@ public final class ValidationsValidateOrganizationSamples {
     public static void validationsValidateOrganizations(com.azure.resourcemanager.confluent.ConfluentManager manager) {
         manager
             .validations()
-            .validateOrganizationWithResponse(
+            .validateOrganizationV2WithResponse(
                 "myResourceGroup",
                 "myOrganization",
                 new OrganizationResourceInner()
