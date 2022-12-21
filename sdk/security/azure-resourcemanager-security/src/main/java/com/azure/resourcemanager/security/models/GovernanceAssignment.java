@@ -100,7 +100,7 @@ public interface GovernanceAssignment {
              * @param scope Scope of the query, can be subscription
              *     (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or management group
              *     (/providers/Microsoft.Management/managementGroups/mgName).
-             * @param assessmentName The Assessment Key - Unique key for the assessment type.
+             * @param assessmentName The Assessment Key - A unique key for the assessment type.
              * @return the next definition stage.
              */
             WithCreate withExistingAssessment(String scope, String assessmentName);

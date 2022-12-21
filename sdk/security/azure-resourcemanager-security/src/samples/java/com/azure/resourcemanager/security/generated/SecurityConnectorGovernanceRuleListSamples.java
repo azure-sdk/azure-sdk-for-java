@@ -12,11 +12,11 @@ public final class SecurityConnectorGovernanceRuleListSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListBySecurityConnectorGovernanceRules_example.json
      */
     /**
-     * Sample code: List security governanceRules by security connector level scope.
+     * Sample code: List governance rules by security connector level scope.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceRulesBySecurityConnectorLevelScope(
+    public static void listGovernanceRulesBySecurityConnectorLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager.securityConnectorGovernanceRules().list("gcpResourceGroup", "gcpconnector", Context.NONE);
     }

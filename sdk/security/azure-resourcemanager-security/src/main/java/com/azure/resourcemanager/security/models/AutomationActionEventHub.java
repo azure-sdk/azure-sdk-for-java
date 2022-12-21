@@ -24,13 +24,20 @@ public final class AutomationActionEventHub extends AutomationAction {
     private String eventHubResourceId;
 
     /*
-     * The target Event Hub SAS policy name.
+     * Indicates whether trusted service authentication is enabled.
+     */
+    @JsonProperty(value = "isTrustedServiceEnabled")
+    private Boolean isTrustedServiceEnabled;
+
+    /*
+     * The target Event Hub SAS policy name. Should be provided only when isTrustedServiceEnabled is set to false.
      */
     @JsonProperty(value = "sasPolicyName", access = JsonProperty.Access.WRITE_ONLY)
     private String sasPolicyName;
 
     /*
-     * The target Event Hub connection string (it will not be included in any response).
+     * The target Event Hub connection string (it will not be included in any response). Should be provided only when
+     * isTrustedServiceEnabled is set to false.
      */
     @JsonProperty(value = "connectionString")
     private String connectionString;
@@ -60,7 +67,28 @@ public final class AutomationActionEventHub extends AutomationAction {
     }
 
     /**
-     * Get the sasPolicyName property: The target Event Hub SAS policy name.
+     * Get the isTrustedServiceEnabled property: Indicates whether trusted service authentication is enabled.
+     *
+     * @return the isTrustedServiceEnabled value.
+     */
+    public Boolean isTrustedServiceEnabled() {
+        return this.isTrustedServiceEnabled;
+    }
+
+    /**
+     * Set the isTrustedServiceEnabled property: Indicates whether trusted service authentication is enabled.
+     *
+     * @param isTrustedServiceEnabled the isTrustedServiceEnabled value to set.
+     * @return the AutomationActionEventHub object itself.
+     */
+    public AutomationActionEventHub withIsTrustedServiceEnabled(Boolean isTrustedServiceEnabled) {
+        this.isTrustedServiceEnabled = isTrustedServiceEnabled;
+        return this;
+    }
+
+    /**
+     * Get the sasPolicyName property: The target Event Hub SAS policy name. Should be provided only when
+     * isTrustedServiceEnabled is set to false.
      *
      * @return the sasPolicyName value.
      */
@@ -70,7 +98,7 @@ public final class AutomationActionEventHub extends AutomationAction {
 
     /**
      * Get the connectionString property: The target Event Hub connection string (it will not be included in any
-     * response).
+     * response). Should be provided only when isTrustedServiceEnabled is set to false.
      *
      * @return the connectionString value.
      */
@@ -80,7 +108,7 @@ public final class AutomationActionEventHub extends AutomationAction {
 
     /**
      * Set the connectionString property: The target Event Hub connection string (it will not be included in any
-     * response).
+     * response). Should be provided only when isTrustedServiceEnabled is set to false.
      *
      * @param connectionString the connectionString value to set.
      * @return the AutomationActionEventHub object itself.

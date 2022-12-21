@@ -12,7 +12,7 @@ public final class GovernanceRulesOperationRuleIdExecuteSingleSecurityConnectorS
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Execute Governance rule.
+     * Sample code: Execute governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */

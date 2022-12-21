@@ -409,6 +409,20 @@ public interface SecurityCenter {
     SecurityConnectorGovernanceRulesOperationsClient getSecurityConnectorGovernanceRulesOperations();
 
     /**
+     * Gets the ManagementGroupGovernanceRulesClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesClient object.
+     */
+    ManagementGroupGovernanceRulesClient getManagementGroupGovernanceRules();
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesOperationsClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesOperationsClient object.
+     */
+    ManagementGroupGovernanceRulesOperationsClient getManagementGroupGovernanceRulesOperations();
+
+    /**
      * Gets the SubscriptionGovernanceRulesExecuteStatusClient object to access its operations.
      *
      * @return the SubscriptionGovernanceRulesExecuteStatusClient object.
@@ -421,6 +435,20 @@ public interface SecurityCenter {
      * @return the SecurityConnectorGovernanceRulesExecuteStatusClient object.
      */
     SecurityConnectorGovernanceRulesExecuteStatusClient getSecurityConnectorGovernanceRulesExecuteStatus();
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesExecuteStatusClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesExecuteStatusClient object.
+     */
+    ManagementGroupGovernanceRulesExecuteStatusClient getManagementGroupGovernanceRulesExecuteStatus();
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesDeleteStatusClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesDeleteStatusClient object.
+     */
+    ManagementGroupGovernanceRulesDeleteStatusClient getManagementGroupGovernanceRulesDeleteStatus();
 
     /**
      * Gets the GovernanceAssignmentsClient object to access its operations.
