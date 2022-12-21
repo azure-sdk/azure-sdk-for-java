@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OSImageSku. */
+/** OS image sku. */
 public final class OSImageSku extends ExpandableStringEnum<OSImageSku> {
     /** Static value 18.04-LTS for OSImageSku. */
     public static final OSImageSku ONE_EIGHT_ZERO_FOUR_LTS = fromString("18.04-LTS");

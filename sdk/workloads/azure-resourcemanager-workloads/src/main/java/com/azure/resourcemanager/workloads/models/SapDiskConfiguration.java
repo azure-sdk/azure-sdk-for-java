@@ -52,6 +52,10 @@ public final class SapDiskConfiguration {
     @JsonProperty(value = "diskStorageType")
     private String diskStorageType;
 
+    /** Creates an instance of SapDiskConfiguration class. */
+    public SapDiskConfiguration() {
+    }
+
     /**
      * Get the volume property: The volume name.
      *

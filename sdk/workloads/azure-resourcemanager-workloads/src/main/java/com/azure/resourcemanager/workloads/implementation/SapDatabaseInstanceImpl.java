@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.SapDatabaseInstanceInner;
 import com.azure.resourcemanager.workloads.models.DatabaseVmDetails;
+import com.azure.resourcemanager.workloads.models.LoadBalancerDetails;
 import com.azure.resourcemanager.workloads.models.SapDatabaseInstance;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
@@ -67,6 +68,10 @@ public final class SapDatabaseInstanceImpl
 
     public String ipAddress() {
         return this.innerModel().ipAddress();
+    }
+
+    public LoadBalancerDetails loadBalancerDetails() {
+        return this.innerModel().loadBalancerDetails();
     }
 
     public List<DatabaseVmDetails> vmDetails() {

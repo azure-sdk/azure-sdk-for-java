@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkloadKind. */
+/** Indicates which kind of php workload this resource represent e.g WordPress. */
 public final class WorkloadKind extends ExpandableStringEnum<WorkloadKind> {
     /** Static value WordPress for WorkloadKind. */
     public static final WorkloadKind WORD_PRESS = fromString("WordPress");

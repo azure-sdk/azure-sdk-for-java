@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LocationType. */
+/** Type of the extended location. */
 public final class LocationType extends ExpandableStringEnum<LocationType> {
     /** Static value Region for LocationType. */
     public static final LocationType REGION = fromString("Region");

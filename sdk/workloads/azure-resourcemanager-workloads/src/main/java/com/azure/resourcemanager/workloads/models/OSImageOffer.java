@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OSImageOffer. */
+/** OS image offer. */
 public final class OSImageOffer extends ExpandableStringEnum<OSImageOffer> {
     /** Static value UbuntuServer for OSImageOffer. */
     public static final OSImageOffer UBUNTU_SERVER = fromString("UbuntuServer");

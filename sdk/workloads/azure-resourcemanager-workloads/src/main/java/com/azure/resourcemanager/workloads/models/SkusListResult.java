@@ -24,6 +24,10 @@ public final class SkusListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of SkusListResult class. */
+    public SkusListResult() {
+    }
+
     /**
      * Get the value property: List of SKUs supported by the resource provider.
      *
