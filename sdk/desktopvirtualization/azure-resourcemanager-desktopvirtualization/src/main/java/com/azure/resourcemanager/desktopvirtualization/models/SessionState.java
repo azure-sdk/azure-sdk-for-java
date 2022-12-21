@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SessionState. */
+/** State of user session. */
 public final class SessionState extends ExpandableStringEnum<SessionState> {
     /** Static value Unknown for SessionState. */
     public static final SessionState UNKNOWN = fromString("Unknown");

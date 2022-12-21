@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationGroups Delete. */
 public final class ApplicationGroupsDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2022-10-14-preview/examples/ApplicationGroup_Delete.json
      */
     /**
      * Sample code: ApplicationGroup_Delete.
@@ -18,6 +18,8 @@ public final class ApplicationGroupsDeleteSamples {
      */
     public static void applicationGroupDelete(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.applicationGroups().deleteWithResponse("resourceGroup1", "applicationGroup1", Context.NONE);
+        manager
+            .applicationGroups()
+            .deleteByResourceGroupWithResponse("resourceGroup1", "applicationGroup1", Context.NONE);
     }
 }
