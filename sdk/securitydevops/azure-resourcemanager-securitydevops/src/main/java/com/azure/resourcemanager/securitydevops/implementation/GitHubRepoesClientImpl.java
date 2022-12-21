@@ -63,7 +63,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface GitHubRepoesService {
+    public interface GitHubRepoesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
@@ -134,7 +134,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
                 + "/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -1099,7 +1099,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1168,7 +1168,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1236,7 +1236,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1269,7 +1269,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1298,7 +1298,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1330,7 +1330,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1350,7 +1350,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1377,7 +1377,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1402,7 +1402,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1423,7 +1423,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1451,7 +1451,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1470,7 +1470,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.

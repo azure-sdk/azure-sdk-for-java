@@ -147,7 +147,7 @@ public interface GitHubOwnersClient {
         Context context);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -162,7 +162,7 @@ public interface GitHubOwnersClient {
         String resourceGroupName, String gitHubConnectorName, String gitHubOwnerName);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -183,7 +183,7 @@ public interface GitHubOwnersClient {
         Context context);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -197,7 +197,7 @@ public interface GitHubOwnersClient {
     GitHubOwnerInner update(String resourceGroupName, String gitHubConnectorName, String gitHubOwnerName);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.

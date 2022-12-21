@@ -23,7 +23,7 @@ public final class GitHubConnectorCreateOrUpdateSamples {
             .define("testconnector")
             .withRegion("West US")
             .withExistingResourceGroup("westusrg")
-            .withProperties(new GitHubConnectorProperties().withCode("00000000000000000000"))
+            .withProperties(new GitHubConnectorProperties().withCode("fakeTokenPlaceholder"))
             .create();
     }
 }
