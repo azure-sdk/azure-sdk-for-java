@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ConfigurationType. */
+/** The type of the spark config properties file. */
 public final class ConfigurationType extends ExpandableStringEnum<ConfigurationType> {
     /** Static value File for ConfigurationType. */
     public static final ConfigurationType FILE = fromString("File");
@@ -27,7 +27,11 @@ public final class ConfigurationType extends ExpandableStringEnum<ConfigurationT
         return fromString(name, ConfigurationType.class);
     }
 
-    /** @return known ConfigurationType values. */
+    /**
+     * Gets known ConfigurationType values.
+     *
+     * @return known ConfigurationType values.
+     */
     public static Collection<ConfigurationType> values() {
         return values(ConfigurationType.class);
     }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ColumnDataType. */
+/** The column data type. */
 public final class ColumnDataType extends ExpandableStringEnum<ColumnDataType> {
     /** Static value image for ColumnDataType. */
     public static final ColumnDataType IMAGE = fromString("image");
@@ -123,7 +123,11 @@ public final class ColumnDataType extends ExpandableStringEnum<ColumnDataType> {
         return fromString(name, ColumnDataType.class);
     }
 
-    /** @return known ColumnDataType values. */
+    /**
+     * Gets known ColumnDataType values.
+     *
+     * @return known ColumnDataType values.
+     */
     public static Collection<ColumnDataType> values() {
         return values(ColumnDataType.class);
     }
