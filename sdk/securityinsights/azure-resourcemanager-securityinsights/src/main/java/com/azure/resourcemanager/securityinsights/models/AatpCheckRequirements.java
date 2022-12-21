@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.AatpCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents AATP (Azure Advanced Threat Protection) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureAdvancedThreatProtection")
-@Fluent
+@Immutable
 public final class AatpCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * AATP (Azure Advanced Threat Protection) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private AatpCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of AatpCheckRequirements class. */
+    public AatpCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: AATP (Azure Advanced Threat Protection) requirements check properties.

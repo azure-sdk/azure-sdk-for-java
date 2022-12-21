@@ -22,6 +22,10 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private ApiPollingParameters innerProperties;
 
+    /** Creates an instance of CodelessApiPollingDataConnector class. */
+    public CodelessApiPollingDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Codeless poling data connector properties.
      *

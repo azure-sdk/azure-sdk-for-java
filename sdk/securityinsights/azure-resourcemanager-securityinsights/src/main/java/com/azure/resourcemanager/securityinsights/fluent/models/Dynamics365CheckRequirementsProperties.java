@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** Dynamics365 requirements check properties. */
 @Fluent
 public final class Dynamics365CheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of Dynamics365CheckRequirementsProperties class. */
+    public Dynamics365CheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public Dynamics365CheckRequirementsProperties withTenantId(String tenantId) {

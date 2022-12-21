@@ -24,6 +24,10 @@ public final class AwsCloudTrailDataConnectorProperties {
     @JsonProperty(value = "dataTypes", required = true)
     private AwsCloudTrailDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of AwsCloudTrailDataConnectorProperties class. */
+    public AwsCloudTrailDataConnectorProperties() {
+    }
+
     /**
      * Get the awsRoleArn property: The Aws Role Arn (with CloudTrailReadOnly policy) that is used to access the Aws
      * account.
