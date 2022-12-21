@@ -41,6 +41,10 @@ public final class CacheProfile {
     @JsonProperty(value = "cacheResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String cacheResourceId;
 
+    /** Creates an instance of CacheProfile class. */
+    public CacheProfile() {
+    }
+
     /**
      * Get the name property: Cache name.
      *

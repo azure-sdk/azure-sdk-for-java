@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AzureFrontDoorEnabled. */
+/** Whether to enable Azure front door. */
 public final class AzureFrontDoorEnabled extends ExpandableStringEnum<AzureFrontDoorEnabled> {
     /** Static value Enabled for AzureFrontDoorEnabled. */
     public static final AzureFrontDoorEnabled ENABLED = fromString("Enabled");

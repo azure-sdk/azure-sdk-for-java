@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.workloads.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.PhpWorkloadResourceInner;
 import com.azure.resourcemanager.workloads.models.BackupProfile;
@@ -70,6 +71,10 @@ public final class PhpWorkloadResourceImpl
 
     public PhpWorkloadResourceIdentity identity() {
         return this.innerModel().identity();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String appLocation() {

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FileShareStorageType. */
+/** File share backing storage type. */
 public final class FileShareStorageType extends ExpandableStringEnum<FileShareStorageType> {
     /** Static value Standard_LRS for FileShareStorageType. */
     public static final FileShareStorageType STANDARD_LRS = fromString("Standard_LRS");
