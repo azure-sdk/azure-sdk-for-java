@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RehydrationPriority. */
+/** Priority to be used for rehydration. Values High or Standard. */
 public final class RehydrationPriority extends ExpandableStringEnum<RehydrationPriority> {
     /** Static value Invalid for RehydrationPriority. */
     public static final RehydrationPriority INVALID = fromString("Invalid");
@@ -30,7 +30,11 @@ public final class RehydrationPriority extends ExpandableStringEnum<RehydrationP
         return fromString(name, RehydrationPriority.class);
     }
 
-    /** @return known RehydrationPriority values. */
+    /**
+     * Gets known RehydrationPriority values.
+     *
+     * @return known RehydrationPriority values.
+     */
     public static Collection<RehydrationPriority> values() {
         return values(RehydrationPriority.class);
     }
