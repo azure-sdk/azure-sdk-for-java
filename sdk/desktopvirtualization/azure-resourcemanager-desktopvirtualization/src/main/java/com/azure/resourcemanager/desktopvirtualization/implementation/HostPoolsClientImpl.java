@@ -62,7 +62,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "DesktopVirtualizatio")
-    private interface HostPoolsService {
+    public interface HostPoolsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -137,6 +137,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -148,6 +151,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -198,7 +204,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return a host pool along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<HostPoolInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<HostPoolInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String hostPoolName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -292,24 +298,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return a host pool on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> getByResourceGroupAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<HostPoolInner> getByResourceGroupAsync(String resourceGroupName, String hostPoolName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, hostPoolName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get a host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a host pool.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public HostPoolInner getByResourceGroup(String resourceGroupName, String hostPoolName) {
-        return getByResourceGroupAsync(resourceGroupName, hostPoolName).block();
     }
 
     /**
@@ -330,6 +321,21 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     }
 
     /**
+     * Get a host pool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a host pool.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HostPoolInner getByResourceGroup(String resourceGroupName, String hostPoolName) {
+        return getByResourceGroupWithResponse(resourceGroupName, hostPoolName, Context.NONE).getValue();
+    }
+
+    /**
      * Create or update a host pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -341,7 +347,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<HostPoolInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<HostPoolInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -449,26 +455,10 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> createOrUpdateAsync(
+    private Mono<HostPoolInner> createOrUpdateAsync(
         String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
         return createOrUpdateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create or update a host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param hostPool Object containing HostPool definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public HostPoolInner createOrUpdate(String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
-        return createOrUpdateAsync(resourceGroupName, hostPoolName, hostPool).block();
     }
 
     /**
@@ -490,6 +480,22 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     }
 
     /**
+     * Create or update a host pool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param hostPool Object containing HostPool definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a HostPool definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HostPoolInner createOrUpdate(String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
+        return createOrUpdateWithResponse(resourceGroupName, hostPoolName, hostPool, Context.NONE).getValue();
+    }
+
+    /**
      * Remove a host pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -501,7 +507,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName, Boolean force) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -591,46 +597,15 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param force Force flag to delete sessionHost.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, Boolean force) {
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, force).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName) {
         final Boolean force = null;
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, force).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String hostPoolName) {
-        final Boolean force = null;
-        deleteAsync(resourceGroupName, hostPoolName, force).block();
     }
 
     /**
@@ -652,6 +627,21 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     }
 
     /**
+     * Remove a host pool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String hostPoolName) {
+        final Boolean force = null;
+        deleteWithResponse(resourceGroupName, hostPoolName, force, Context.NONE);
+    }
+
+    /**
      * Update a host pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -663,7 +653,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<HostPoolInner>> updateWithResponseAsync(
+    private Mono<Response<HostPoolInner>> updateWithResponseAsync(
         String resourceGroupName, String hostPoolName, HostPoolPatch hostPool) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -760,49 +750,16 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param hostPool Object containing HostPool definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName, HostPoolPatch hostPool) {
-        return updateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName) {
         final HostPoolPatch hostPool = null;
         return updateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public HostPoolInner update(String resourceGroupName, String hostPoolName) {
-        final HostPoolPatch hostPool = null;
-        return updateAsync(resourceGroupName, hostPoolName, hostPool).block();
     }
 
     /**
@@ -824,16 +781,36 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     }
 
     /**
+     * Update a host pool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a HostPool definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HostPoolInner update(String resourceGroupName, String hostPoolName) {
+        final HostPoolPatch hostPool = null;
+        return updateWithResponse(resourceGroupName, hostPoolName, hostPool, Context.NONE).getValue();
+    }
+
+    /**
      * List hostPools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HostPoolInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
+    private Mono<PagedResponse<HostPoolInner>> listByResourceGroupSinglePageAsync(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -860,6 +837,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<HostPoolInner>>map(
@@ -878,6 +858,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * List hostPools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -886,7 +869,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -911,6 +894,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -928,15 +914,19 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * List hostPools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<HostPoolInner> listByResourceGroupAsync(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, pageSize, isDescending, initialSkip),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
@@ -944,6 +934,28 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * List hostPools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return hostPoolList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName) {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, pageSize, isDescending, initialSkip),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List hostPools.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -951,9 +963,10 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
+    private PagedFlux<HostPoolInner> listByResourceGroupAsync(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, pageSize, isDescending, initialSkip, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
@@ -968,13 +981,19 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HostPoolInner> listByResourceGroup(String resourceGroupName) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, pageSize, isDescending, initialSkip));
     }
 
     /**
      * List hostPools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -982,19 +1001,26 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HostPoolInner> listByResourceGroup(String resourceGroupName, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
+    public PagedIterable<HostPoolInner> listByResourceGroup(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        return new PagedIterable<>(
+            listByResourceGroupAsync(resourceGroupName, pageSize, isDescending, initialSkip, context));
     }
 
     /**
      * List hostPools in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HostPoolInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<HostPoolInner>> listSinglePageAsync(
+        Integer pageSize, Boolean isDescending, Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1016,6 +1042,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
                             this.client.getEndpoint(),
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<HostPoolInner>>map(
@@ -1033,6 +1062,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * List hostPools in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1040,7 +1072,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HostPoolInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<HostPoolInner>> listSinglePageAsync(
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1060,6 +1093,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
                 this.client.getEndpoint(),
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -1076,18 +1112,44 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * List hostPools in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<HostPoolInner> listAsync() {
-        return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<HostPoolInner> listAsync(Integer pageSize, Boolean isDescending, Integer initialSkip) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List hostPools in subscription.
      *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return hostPoolList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<HostPoolInner> listAsync() {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List hostPools in subscription.
+     *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1095,9 +1157,11 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HostPoolInner> listAsync(Context context) {
+    private PagedFlux<HostPoolInner> listAsync(
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(pageSize, isDescending, initialSkip, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -1109,12 +1173,18 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HostPoolInner> list() {
-        return new PagedIterable<>(listAsync());
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(listAsync(pageSize, isDescending, initialSkip));
     }
 
     /**
      * List hostPools in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1122,8 +1192,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HostPoolInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
+    public PagedIterable<HostPoolInner> list(
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        return new PagedIterable<>(listAsync(pageSize, isDescending, initialSkip, context));
     }
 
     /**
@@ -1138,7 +1209,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<RegistrationInfoInner>> retrieveRegistrationTokenWithResponseAsync(
+    private Mono<Response<RegistrationInfoInner>> retrieveRegistrationTokenWithResponseAsync(
         String resourceGroupName, String hostPoolName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1233,24 +1304,9 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a RegistrationInfo definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<RegistrationInfoInner> retrieveRegistrationTokenAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<RegistrationInfoInner> retrieveRegistrationTokenAsync(String resourceGroupName, String hostPoolName) {
         return retrieveRegistrationTokenWithResponseAsync(resourceGroupName, hostPoolName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Registration token of the host pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a RegistrationInfo definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RegistrationInfoInner retrieveRegistrationToken(String resourceGroupName, String hostPoolName) {
-        return retrieveRegistrationTokenAsync(resourceGroupName, hostPoolName).block();
     }
 
     /**
@@ -1271,9 +1327,25 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     }
 
     /**
+     * Registration token of the host pool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a RegistrationInfo definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RegistrationInfoInner retrieveRegistrationToken(String resourceGroupName, String hostPoolName) {
+        return retrieveRegistrationTokenWithResponse(resourceGroupName, hostPoolName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1309,7 +1381,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1346,7 +1419,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1381,7 +1455,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -59,7 +59,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "DesktopVirtualizatio")
-    private interface SessionHostsService {
+    public interface SessionHostsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -123,6 +123,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("hostPoolName") String hostPoolName,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -149,7 +152,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return a session host along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<SessionHostInner>> getWithResponseAsync(
+    private Mono<Response<SessionHostInner>> getWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -255,25 +258,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return a session host on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<SessionHostInner> getAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private Mono<SessionHostInner> getAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
         return getWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get a session host.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a session host.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SessionHostInner get(String resourceGroupName, String hostPoolName, String sessionHostname) {
-        return getAsync(resourceGroupName, hostPoolName, sessionHostname).block();
     }
 
     /**
@@ -295,6 +282,22 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
     }
 
     /**
+     * Get a session host.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a session host.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SessionHostInner get(String resourceGroupName, String hostPoolName, String sessionHostname) {
+        return getWithResponse(resourceGroupName, hostPoolName, sessionHostname, Context.NONE).getValue();
+    }
+
+    /**
      * Remove a SessionHost.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -307,7 +310,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Void>> deleteWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -410,51 +413,16 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
-     * @param force Force flag to force sessionHost deletion even when userSession exists.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(
-        String resourceGroupName, String hostPoolName, String sessionHostname, Boolean force) {
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a SessionHost.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
         final Boolean force = null;
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force)
             .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a SessionHost.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String hostPoolName, String sessionHostname) {
-        final Boolean force = null;
-        deleteAsync(resourceGroupName, hostPoolName, sessionHostname, force).block();
     }
 
     /**
@@ -477,6 +445,22 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
     }
 
     /**
+     * Remove a SessionHost.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String hostPoolName, String sessionHostname) {
+        final Boolean force = null;
+        deleteWithResponse(resourceGroupName, hostPoolName, sessionHostname, force, Context.NONE);
+    }
+
+    /**
      * Update a session host.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -490,7 +474,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return represents a SessionHost definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<SessionHostInner>> updateWithResponseAsync(
+    private Mono<Response<SessionHostInner>> updateWithResponseAsync(
         String resourceGroupName,
         String hostPoolName,
         String sessionHostname,
@@ -611,59 +595,17 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
-     * @param force Force flag to update assign, unassign or reassign personal desktop.
-     * @param sessionHost Object containing SessionHost definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return represents a SessionHost definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<SessionHostInner> updateAsync(
-        String resourceGroupName,
-        String hostPoolName,
-        String sessionHostname,
-        Boolean force,
-        SessionHostPatch sessionHost) {
-        return updateWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force, sessionHost)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a session host.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<SessionHostInner> updateAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private Mono<SessionHostInner> updateAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
         final Boolean force = null;
         final SessionHostPatch sessionHost = null;
         return updateWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force, sessionHost)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a session host.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param sessionHostname The name of the session host within the specified host pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SessionHost definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SessionHostInner update(String resourceGroupName, String hostPoolName, String sessionHostname) {
-        final Boolean force = null;
-        final SessionHostPatch sessionHost = null;
-        return updateAsync(resourceGroupName, hostPoolName, sessionHostname, force, sessionHost).block();
     }
 
     /**
@@ -693,17 +635,40 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
     }
 
     /**
+     * Update a session host.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param sessionHostname The name of the session host within the specified host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SessionHost definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SessionHostInner update(String resourceGroupName, String hostPoolName, String sessionHostname) {
+        final Boolean force = null;
+        final SessionHostPatch sessionHost = null;
+        return updateWithResponse(resourceGroupName, hostPoolName, sessionHostname, force, sessionHost, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * List sessionHosts.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sessionHostList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SessionHostInner>> listSinglePageAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<PagedResponse<SessionHostInner>> listSinglePageAsync(
+        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -734,6 +699,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             hostPoolName,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<SessionHostInner>>map(
@@ -753,6 +721,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -761,7 +732,12 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SessionHostInner>> listSinglePageAsync(
-        String resourceGroupName, String hostPoolName, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -790,6 +766,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 hostPoolName,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -808,15 +787,20 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sessionHostList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<SessionHostInner> listAsync(
+        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName), nextLink -> listNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -824,6 +808,29 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return sessionHostList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName) {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List sessionHosts.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -831,9 +838,15 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return sessionHostList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName, Context context) {
+    private PagedFlux<SessionHostInner> listAsync(
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, context),
+            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -849,7 +862,10 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip));
     }
 
     /**
@@ -857,6 +873,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -864,14 +883,22 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return sessionHostList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName, context));
+    public PagedIterable<SessionHostInner> list(
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -906,7 +933,8 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

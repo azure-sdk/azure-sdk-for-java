@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PreferredAppGroupType. */
+/** The type of preferred application group type, default to Desktop Application Group. */
 public final class PreferredAppGroupType extends ExpandableStringEnum<PreferredAppGroupType> {
     /** Static value None for PreferredAppGroupType. */
     public static final PreferredAppGroupType NONE = fromString("None");

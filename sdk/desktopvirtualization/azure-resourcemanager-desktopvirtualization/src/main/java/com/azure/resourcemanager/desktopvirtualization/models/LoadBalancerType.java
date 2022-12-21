@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LoadBalancerType. */
+/** The type of the load balancer. */
 public final class LoadBalancerType extends ExpandableStringEnum<LoadBalancerType> {
     /** Static value BreadthFirst for LoadBalancerType. */
     public static final LoadBalancerType BREADTH_FIRST = fromString("BreadthFirst");

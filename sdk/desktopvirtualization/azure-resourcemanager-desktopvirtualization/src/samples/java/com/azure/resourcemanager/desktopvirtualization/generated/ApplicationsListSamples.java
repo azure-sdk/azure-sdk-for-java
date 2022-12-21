@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications List. */
 public final class ApplicationsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2022-10-14-preview/examples/Application_List.json
      */
     /**
      * Sample code: Applications_List.
@@ -18,6 +18,6 @@ public final class ApplicationsListSamples {
      */
     public static void applicationsList(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.applications().list("resourceGroup1", "applicationGroup1", Context.NONE);
+        manager.applications().list("resourceGroup1", "applicationGroup1", 10, true, 0, Context.NONE);
     }
 }
