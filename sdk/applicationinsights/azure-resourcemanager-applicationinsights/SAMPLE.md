@@ -86,6 +86,38 @@
 - [ListByResourceGroup](#myworkbooks_listbyresourcegroup)
 - [Update](#myworkbooks_update)
 
+## PrivateEndpointConnections
+
+- [CreateOrUpdate](#privateendpointconnections_createorupdate)
+- [Delete](#privateendpointconnections_delete)
+- [Get](#privateendpointconnections_get)
+- [ListByPrivateLinkScope](#privateendpointconnections_listbyprivatelinkscope)
+
+## PrivateLinkResources
+
+- [Get](#privatelinkresources_get)
+- [ListByPrivateLinkScope](#privatelinkresources_listbyprivatelinkscope)
+
+## PrivateLinkScopeOperationStatus
+
+- [GetByResourceGroup](#privatelinkscopeoperationstatus_getbyresourcegroup)
+
+## PrivateLinkScopedResources
+
+- [CreateOrUpdate](#privatelinkscopedresources_createorupdate)
+- [Delete](#privatelinkscopedresources_delete)
+- [Get](#privatelinkscopedresources_get)
+- [ListByPrivateLinkScope](#privatelinkscopedresources_listbyprivatelinkscope)
+
+## PrivateLinkScopes
+
+- [CreateOrUpdate](#privatelinkscopes_createorupdate)
+- [Delete](#privatelinkscopes_delete)
+- [GetByResourceGroup](#privatelinkscopes_getbyresourcegroup)
+- [List](#privatelinkscopes_list)
+- [ListByResourceGroup](#privatelinkscopes_listbyresourcegroup)
+- [UpdateTags](#privatelinkscopes_updatetags)
+
 ## ProactiveDetectionConfigurations
 
 - [Get](#proactivedetectionconfigurations_get)
@@ -564,7 +596,7 @@ public final class ComponentCurrentBillingFeaturesUpdateSamples {
                 new ApplicationInsightsComponentBillingFeaturesInner()
                     .withDataVolumeCap(
                         new ApplicationInsightsComponentDataVolumeCap()
-                            .withCap(100.0f)
+                            .withCap(100.0F)
                             .withStopSendNotificationWhenHitCap(true))
                     .withCurrentBillingFeatures(Arrays.asList("Basic", "Application Insights Enterprise")),
                 Context.NONE);
@@ -812,7 +844,7 @@ public final class ComponentsDeleteSamples {
      */
     public static void componentsDelete(
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.components().deleteWithResponse("my-resource-group", "my-component", Context.NONE);
+        manager.components().deleteByResourceGroupWithResponse("my-resource-group", "my-component", Context.NONE);
     }
 }
 ```
@@ -1562,7 +1594,8 @@ public final class MyWorkbooksDeleteSamples {
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .myWorkbooks()
-            .deleteWithResponse("my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
     }
 }
 ```
@@ -1722,6 +1755,487 @@ public final class MyWorkbooksUpdateSamples {
 }
 ```
 
+### PrivateEndpointConnections_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.applicationinsights.models.PrivateEndpointServiceConnectionStatus;
+import com.azure.resourcemanager.applicationinsights.models.PrivateLinkServiceConnectionState;
+
+/** Samples for PrivateEndpointConnections CreateOrUpdate. */
+public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateEndpointConnectionUpdate.json
+     */
+    /**
+     * Sample code: Approve or reject a private endpoint connection with a given name.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void approveOrRejectAPrivateEndpointConnectionWithAGivenName(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateEndpointConnections()
+            .define("private-endpoint-connection-name")
+            .withExistingPrivateLinkScope("MyResourceGroup", "MyPrivateLinkScope")
+            .withPrivateLinkServiceConnectionState(
+                new PrivateLinkServiceConnectionState()
+                    .withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
+                    .withDescription("Approved by johndoe@contoso.com"))
+            .create();
+    }
+}
+```
+
+### PrivateEndpointConnections_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateEndpointConnections Delete. */
+public final class PrivateEndpointConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateEndpointConnectionDelete.json
+     */
+    /**
+     * Sample code: Deletes a private endpoint connection with a given name.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void deletesAPrivateEndpointConnectionWithAGivenName(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateEndpointConnections()
+            .delete("MyResourceGroup", "MyPrivateLinkScope", "private-endpoint-connection-name", Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateEndpointConnections Get. */
+public final class PrivateEndpointConnectionsGetSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateEndpointConnectionGet.json
+     */
+    /**
+     * Sample code: Gets private endpoint connection.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getsPrivateEndpointConnection(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateEndpointConnections()
+            .getWithResponse("MyResourceGroup", "MyPrivateLinkScope", "private-endpoint-connection-name", Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_ListByPrivateLinkScope
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateEndpointConnections ListByPrivateLinkScope. */
+public final class PrivateEndpointConnectionsListByPrivateLinkScopeSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateEndpointConnectionList.json
+     */
+    /**
+     * Sample code: Gets list of private endpoint connections on a private link scope.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getsListOfPrivateEndpointConnectionsOnAPrivateLinkScope(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateEndpointConnections()
+            .listByPrivateLinkScopeWithResponse("MyResourceGroup", "MyPrivateLinkScope", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkResources Get. */
+public final class PrivateLinkResourcesGetSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopePrivateLinkResourceGet.json
+     */
+    /**
+     * Sample code: Gets private endpoint connection.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getsPrivateEndpointConnection(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkResources()
+            .getWithResponse("MyResourceGroup", "MyPrivateLinkScope", "azuremonitor", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_ListByPrivateLinkScope
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkResources ListByPrivateLinkScope. */
+public final class PrivateLinkResourcesListByPrivateLinkScopeSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopePrivateLinkResourceListGet.json
+     */
+    /**
+     * Sample code: Gets private endpoint connection.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getsPrivateEndpointConnection(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkResources()
+            .listByPrivateLinkScopeWithResponse("MyResourceGroup", "MyPrivateLinkScope", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopeOperationStatus_GetByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopeOperationStatus GetByResourceGroup. */
+public final class PrivateLinkScopeOperationStatusGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/privateLinkScopeOperationStatuses.json
+     */
+    /**
+     * Sample code: Get specific operation status.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getSpecificOperationStatus(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopeOperationStatus()
+            .getByResourceGroupWithResponse("MyResourceGroup", "713192d7-503f-477a-9cfe-4efc3ee2bd11", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopedResources_CreateOrUpdate
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.applicationinsights.models.ScopedResource;
+
+/** Samples for PrivateLinkScopedResources CreateOrUpdate. */
+public final class PrivateLinkScopedResourcesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopedResourceUpdate.json
+     */
+    /**
+     * Sample code: Update a scoped resource in a private link scope.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void updateAScopedResourceInAPrivateLinkScope(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        ScopedResource resource =
+            manager
+                .privateLinkScopedResources()
+                .getWithResponse("MyResourceGroup", "MyPrivateLinkScope", "scoped-resource-name", Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withLinkedResourceId(
+                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/MyResourceGroup/providers/Microsoft.Insights/components/my-component")
+            .apply();
+    }
+}
+```
+
+### PrivateLinkScopedResources_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopedResources Delete. */
+public final class PrivateLinkScopedResourcesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopedResourceDelete.json
+     */
+    /**
+     * Sample code: Deletes a scoped resource with a given name.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void deletesAScopedResourceWithAGivenName(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopedResources()
+            .delete("MyResourceGroup", "MyPrivateLinkScope", "scoped-resource-name", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopedResources_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopedResources Get. */
+public final class PrivateLinkScopedResourcesGetSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopedResourceGet.json
+     */
+    /**
+     * Sample code: Gets private link scoped resource.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getsPrivateLinkScopedResource(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopedResources()
+            .getWithResponse("MyResourceGroup", "MyPrivateLinkScope", "scoped-resource-name", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopedResources_ListByPrivateLinkScope
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopedResources ListByPrivateLinkScope. */
+public final class PrivateLinkScopedResourcesListByPrivateLinkScopeSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopedResourceList.json
+     */
+    /**
+     * Sample code: Gets list of scoped resources in a private link scope.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void getsListOfScopedResourcesInAPrivateLinkScope(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopedResources()
+            .listByPrivateLinkScope("MyResourceGroup", "MyPrivateLinkScope", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopes_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.applicationinsights.models.AccessMode;
+import com.azure.resourcemanager.applicationinsights.models.AccessModeSettings;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for PrivateLinkScopes CreateOrUpdate. */
+public final class PrivateLinkScopesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesCreate.json
+     */
+    /**
+     * Sample code: PrivateLinkScopeCreate.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopeCreate(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopes()
+            .define("my-privatelinkscope")
+            .withRegion("Global")
+            .withExistingResourceGroup("my-resource-group")
+            .withAccessModeSettings(
+                new AccessModeSettings()
+                    .withQueryAccessMode(AccessMode.OPEN)
+                    .withIngestionAccessMode(AccessMode.OPEN)
+                    .withExclusions(Arrays.asList()))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesUpdate.json
+     */
+    /**
+     * Sample code: PrivateLinkScopeUpdate.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopeUpdate(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopes()
+            .define("my-privatelinkscope")
+            .withRegion("Global")
+            .withExistingResourceGroup("my-resource-group")
+            .withAccessModeSettings(
+                new AccessModeSettings()
+                    .withQueryAccessMode(AccessMode.OPEN)
+                    .withIngestionAccessMode(AccessMode.OPEN)
+                    .withExclusions(Arrays.asList()))
+            .withTags(mapOf("Tag1", "Value1"))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### PrivateLinkScopes_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopes Delete. */
+public final class PrivateLinkScopesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesDelete.json
+     */
+    /**
+     * Sample code: PrivateLinkScopesDelete.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopesDelete(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager.privateLinkScopes().delete("my-resource-group", "my-privatelinkscope", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopes_GetByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopes GetByResourceGroup. */
+public final class PrivateLinkScopesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesGet.json
+     */
+    /**
+     * Sample code: PrivateLinkScopeGet.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopeGet(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .privateLinkScopes()
+            .getByResourceGroupWithResponse("my-resource-group", "my-privatelinkscope", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopes_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopes List. */
+public final class PrivateLinkScopesListSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesList.json
+     */
+    /**
+     * Sample code: PrivateLinkScopesList.json.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopesListJson(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager.privateLinkScopes().list(Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopes_ListByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PrivateLinkScopes ListByResourceGroup. */
+public final class PrivateLinkScopesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesListByResourceGroup.json
+     */
+    /**
+     * Sample code: PrivateLinkScopeListByResourceGroup.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopeListByResourceGroup(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager.privateLinkScopes().listByResourceGroup("my-resource-group", Context.NONE);
+    }
+}
+```
+
+### PrivateLinkScopes_UpdateTags
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.applicationinsights.models.AzureMonitorPrivateLinkScope;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for PrivateLinkScopes UpdateTags. */
+public final class PrivateLinkScopesUpdateTagsSamples {
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-09-01/examples/PrivateLinkScopesUpdateTagsOnly.json
+     */
+    /**
+     * Sample code: PrivateLinkScopeUpdateTagsOnly.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void privateLinkScopeUpdateTagsOnly(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        AzureMonitorPrivateLinkScope resource =
+            manager
+                .privateLinkScopes()
+                .getByResourceGroupWithResponse("my-resource-group", "my-privatelinkscope", Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("Tag1", "Value1", "Tag2", "Value2")).apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### ProactiveDetectionConfigurations_Get
 
 ```java
@@ -1840,15 +2354,18 @@ public final class WebTestLocationsListSamples {
 ### WebTests_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.applicationinsights.models.HeaderField;
 import com.azure.resourcemanager.applicationinsights.models.WebTestGeolocation;
 import com.azure.resourcemanager.applicationinsights.models.WebTestKind;
 import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesConfiguration;
+import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesRequest;
+import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesValidationRules;
 import java.util.Arrays;
 
 /** Samples for WebTests CreateOrUpdate. */
 public final class WebTestsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestCreate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestCreate.json
      */
     /**
      * Sample code: webTestCreate.
@@ -1889,7 +2406,50 @@ public final class WebTestsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestCreateStandard.json
+     */
+    /**
+     * Sample code: webTestCreateStandard.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void webTestCreateStandard(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .webTests()
+            .define("my-webtest-my-component")
+            .withRegion("South Central US")
+            .withExistingResourceGroup("my-resource-group")
+            .withSyntheticMonitorId("my-webtest-my-component")
+            .withWebTestName("my-webtest-my-component")
+            .withDescription("Ping web test alert for mytestwebapp")
+            .withEnabled(true)
+            .withFrequency(900)
+            .withTimeout(120)
+            .withWebTestKind(WebTestKind.STANDARD)
+            .withRetryEnabled(true)
+            .withLocations(Arrays.asList(new WebTestGeolocation().withLocation("us-fl-mia-edge")))
+            .withRequest(
+                new WebTestPropertiesRequest()
+                    .withRequestUrl("https://bing.com")
+                    .withHeaders(
+                        Arrays
+                            .asList(
+                                new HeaderField()
+                                    .withHeaderFieldName("fakeTokenPlaceholder")
+                                    .withHeaderFieldValue("de-DE"),
+                                new HeaderField()
+                                    .withHeaderFieldName("fakeTokenPlaceholder")
+                                    .withHeaderFieldValue("de-DE")))
+                    .withHttpVerb("POST")
+                    .withRequestBody("SGVsbG8gd29ybGQ="))
+            .withValidationRules(
+                new WebTestPropertiesValidationRules().withSslCheck(true).withSslCertRemainingLifetimeCheck(100))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdate.json
      */
     /**
      * Sample code: webTestUpdate.
@@ -1940,7 +2500,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests Delete. */
 public final class WebTestsDeleteSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestDelete.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestDelete.json
      */
     /**
      * Sample code: webTestDelete.
@@ -1948,7 +2508,9 @@ public final class WebTestsDeleteSamples {
      * @param manager Entry point to ApplicationInsightsManager.
      */
     public static void webTestDelete(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.webTests().deleteWithResponse("my-resource-group", "my-webtest-01-mywebservice", Context.NONE);
+        manager
+            .webTests()
+            .deleteByResourceGroupWithResponse("my-resource-group", "my-webtest-01-mywebservice", Context.NONE);
     }
 }
 ```
@@ -1961,7 +2523,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests GetByResourceGroup. */
 public final class WebTestsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestGet.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestGet.json
      */
     /**
      * Sample code: webTestGet.
@@ -1984,7 +2546,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests List. */
 public final class WebTestsListSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestList.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestList.json
      */
     /**
      * Sample code: webTestList.
@@ -2005,7 +2567,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByComponent. */
 public final class WebTestsListByComponentSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByComponent.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByComponent.json
      */
     /**
      * Sample code: webTestListByComponent.
@@ -2027,7 +2589,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByResourceGroup. */
 public final class WebTestsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByResourceGroup.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByResourceGroup.json
      */
     /**
      * Sample code: webTestListByResourceGroup.
@@ -2052,7 +2614,7 @@ import java.util.Map;
 /** Samples for WebTests UpdateTags. */
 public final class WebTestsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdateTagsOnly.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdateTagsOnly.json
      */
     /**
      * Sample code: webTestUpdateTags.
@@ -2077,8 +2639,6 @@ public final class WebTestsUpdateTagsSamples {
                     "SystemType",
                     "A08",
                     "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Insights/components/my-component",
-                    "Resource",
-                    "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Web/sites/mytestwebapp",
                     "Resource"))
             .apply();
     }
@@ -2362,7 +2922,9 @@ public final class WorkbookTemplatesDeleteSamples {
      */
     public static void workbookTemplateDelete(
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.workbookTemplates().deleteWithResponse("my-resource-group", "my-template-resource", Context.NONE);
+        manager
+            .workbookTemplates()
+            .deleteByResourceGroupWithResponse("my-resource-group", "my-template-resource", Context.NONE);
     }
 }
 ```
@@ -2566,7 +3128,8 @@ public final class WorkbooksDeleteSamples {
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .workbooks()
-            .deleteWithResponse("my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
     }
 }
 ```
