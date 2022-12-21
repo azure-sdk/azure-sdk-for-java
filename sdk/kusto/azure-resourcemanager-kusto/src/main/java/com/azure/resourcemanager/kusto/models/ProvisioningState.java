@@ -28,6 +28,9 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /** Static value Moving for ProvisioningState. */
     public static final ProvisioningState MOVING = fromString("Moving");
 
+    /** Static value Canceled for ProvisioningState. */
+    public static final ProvisioningState CANCELED = fromString("Canceled");
+
     /**
      * Creates or finds a ProvisioningState from its string representation.
      *
