@@ -63,9 +63,7 @@ public final class WorkspacesUpdateSamples {
                     .withCmk(
                         new CustomerManagedKeyDetails()
                             .withKey(
-                                new WorkspaceKeyDetails()
-                                    .withName("default")
-                                    .withKeyVaultUrl("https://vault.azure.net/keys/key1"))))
+                                new WorkspaceKeyDetails().withName("default").withKeyVaultUrl("fakeTokenPlaceholder"))))
             .withPublicNetworkAccess(WorkspacePublicNetworkAccess.ENABLED)
             .apply();
     }

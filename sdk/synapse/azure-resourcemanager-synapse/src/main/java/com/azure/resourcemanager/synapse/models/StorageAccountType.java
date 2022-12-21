@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StorageAccountType. */
+/** The storage account type used to store backups for this sql pool. */
 public final class StorageAccountType extends ExpandableStringEnum<StorageAccountType> {
     /** Static value GRS for StorageAccountType. */
     public static final StorageAccountType GRS = fromString("GRS");
@@ -27,7 +27,11 @@ public final class StorageAccountType extends ExpandableStringEnum<StorageAccoun
         return fromString(name, StorageAccountType.class);
     }
 
-    /** @return known StorageAccountType values. */
+    /**
+     * Gets known StorageAccountType values.
+     *
+     * @return known StorageAccountType values.
+     */
     public static Collection<StorageAccountType> values() {
         return values(StorageAccountType.class);
     }

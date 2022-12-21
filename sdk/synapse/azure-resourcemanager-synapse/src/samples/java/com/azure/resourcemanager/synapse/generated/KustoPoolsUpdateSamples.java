@@ -31,7 +31,6 @@ public final class KustoPoolsUpdateSamples {
             .withSku(new AzureSku().withName(SkuName.STORAGE_OPTIMIZED).withCapacity(2).withSize(SkuSize.MEDIUM))
             .withEnableStreamingIngest(true)
             .withEnablePurge(true)
-            .withWorkspaceUid("11111111-2222-3333-444444444444")
             .apply();
     }
 }
