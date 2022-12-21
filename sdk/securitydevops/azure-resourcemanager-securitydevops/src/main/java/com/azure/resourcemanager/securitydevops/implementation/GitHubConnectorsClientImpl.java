@@ -64,7 +64,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface GitHubConnectorsService {
+    public interface GitHubConnectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"

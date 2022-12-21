@@ -13,37 +13,37 @@ public final class AzureDevOpsRepoProperties {
     /*
      * The provisioningState property.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
+
+    /*
+     * Gets or sets AzureDevOps org Name.
+     */
+    @JsonProperty(value = "orgName", access = JsonProperty.Access.WRITE_ONLY)
+    private String orgName;
+
+    /*
+     * Gets or sets AzureDevOps project Name.
+     */
+    @JsonProperty(value = "projectName", access = JsonProperty.Access.WRITE_ONLY)
+    private String projectName;
 
     /*
      * Gets or sets Azure DevOps repo id.
      */
-    @JsonProperty(value = "repoId")
+    @JsonProperty(value = "repoId", access = JsonProperty.Access.WRITE_ONLY)
     private String repoId;
 
     /*
      * Gets or sets AzureDevOps repo url.
      */
-    @JsonProperty(value = "repoUrl")
+    @JsonProperty(value = "repoUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String repoUrl;
-
-    /*
-     * Gets or sets AzureDevOps Org Name.
-     */
-    @JsonProperty(value = "orgName")
-    private String orgName;
-
-    /*
-     * Gets or sets AzureDevOps Project Name.
-     */
-    @JsonProperty(value = "projectName")
-    private String projectName;
 
     /*
      * Gets or sets AzureDevOps repo visibility, whether it is public or private etc.
      */
-    @JsonProperty(value = "visibility")
+    @JsonProperty(value = "visibility", access = JsonProperty.Access.WRITE_ONLY)
     private String visibility;
 
     /*
@@ -66,14 +66,21 @@ public final class AzureDevOpsRepoProperties {
     }
 
     /**
-     * Set the provisioningState property: The provisioningState property.
+     * Get the orgName property: Gets or sets AzureDevOps org Name.
      *
-     * @param provisioningState the provisioningState value to set.
-     * @return the AzureDevOpsRepoProperties object itself.
+     * @return the orgName value.
      */
-    public AzureDevOpsRepoProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
+    public String orgName() {
+        return this.orgName;
+    }
+
+    /**
+     * Get the projectName property: Gets or sets AzureDevOps project Name.
+     *
+     * @return the projectName value.
+     */
+    public String projectName() {
+        return this.projectName;
     }
 
     /**
@@ -86,17 +93,6 @@ public final class AzureDevOpsRepoProperties {
     }
 
     /**
-     * Set the repoId property: Gets or sets Azure DevOps repo id.
-     *
-     * @param repoId the repoId value to set.
-     * @return the AzureDevOpsRepoProperties object itself.
-     */
-    public AzureDevOpsRepoProperties withRepoId(String repoId) {
-        this.repoId = repoId;
-        return this;
-    }
-
-    /**
      * Get the repoUrl property: Gets or sets AzureDevOps repo url.
      *
      * @return the repoUrl value.
@@ -106,74 +102,12 @@ public final class AzureDevOpsRepoProperties {
     }
 
     /**
-     * Set the repoUrl property: Gets or sets AzureDevOps repo url.
-     *
-     * @param repoUrl the repoUrl value to set.
-     * @return the AzureDevOpsRepoProperties object itself.
-     */
-    public AzureDevOpsRepoProperties withRepoUrl(String repoUrl) {
-        this.repoUrl = repoUrl;
-        return this;
-    }
-
-    /**
-     * Get the orgName property: Gets or sets AzureDevOps Org Name.
-     *
-     * @return the orgName value.
-     */
-    public String orgName() {
-        return this.orgName;
-    }
-
-    /**
-     * Set the orgName property: Gets or sets AzureDevOps Org Name.
-     *
-     * @param orgName the orgName value to set.
-     * @return the AzureDevOpsRepoProperties object itself.
-     */
-    public AzureDevOpsRepoProperties withOrgName(String orgName) {
-        this.orgName = orgName;
-        return this;
-    }
-
-    /**
-     * Get the projectName property: Gets or sets AzureDevOps Project Name.
-     *
-     * @return the projectName value.
-     */
-    public String projectName() {
-        return this.projectName;
-    }
-
-    /**
-     * Set the projectName property: Gets or sets AzureDevOps Project Name.
-     *
-     * @param projectName the projectName value to set.
-     * @return the AzureDevOpsRepoProperties object itself.
-     */
-    public AzureDevOpsRepoProperties withProjectName(String projectName) {
-        this.projectName = projectName;
-        return this;
-    }
-
-    /**
      * Get the visibility property: Gets or sets AzureDevOps repo visibility, whether it is public or private etc.
      *
      * @return the visibility value.
      */
     public String visibility() {
         return this.visibility;
-    }
-
-    /**
-     * Set the visibility property: Gets or sets AzureDevOps repo visibility, whether it is public or private etc.
-     *
-     * @param visibility the visibility value to set.
-     * @return the AzureDevOpsRepoProperties object itself.
-     */
-    public AzureDevOpsRepoProperties withVisibility(String visibility) {
-        this.visibility = visibility;
-        return this;
     }
 
     /**

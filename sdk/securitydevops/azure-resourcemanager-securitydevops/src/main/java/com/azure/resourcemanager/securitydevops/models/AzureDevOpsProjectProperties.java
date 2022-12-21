@@ -13,20 +13,20 @@ public final class AzureDevOpsProjectProperties {
     /*
      * The provisioningState property.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
+
+    /*
+     * Gets or sets AzureDevOps org Name.
+     */
+    @JsonProperty(value = "orgName")
+    private String orgName;
 
     /*
      * Gets or sets AzureDevOps Project Id.
      */
     @JsonProperty(value = "projectId")
     private String projectId;
-
-    /*
-     * Gets or sets AzureDevOps Org Name.
-     */
-    @JsonProperty(value = "orgName")
-    private String orgName;
 
     /*
      * The autoDiscovery property.
@@ -48,13 +48,22 @@ public final class AzureDevOpsProjectProperties {
     }
 
     /**
-     * Set the provisioningState property: The provisioningState property.
+     * Get the orgName property: Gets or sets AzureDevOps org Name.
      *
-     * @param provisioningState the provisioningState value to set.
+     * @return the orgName value.
+     */
+    public String orgName() {
+        return this.orgName;
+    }
+
+    /**
+     * Set the orgName property: Gets or sets AzureDevOps org Name.
+     *
+     * @param orgName the orgName value to set.
      * @return the AzureDevOpsProjectProperties object itself.
      */
-    public AzureDevOpsProjectProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
+    public AzureDevOpsProjectProperties withOrgName(String orgName) {
+        this.orgName = orgName;
         return this;
     }
 
@@ -75,26 +84,6 @@ public final class AzureDevOpsProjectProperties {
      */
     public AzureDevOpsProjectProperties withProjectId(String projectId) {
         this.projectId = projectId;
-        return this;
-    }
-
-    /**
-     * Get the orgName property: Gets or sets AzureDevOps Org Name.
-     *
-     * @return the orgName value.
-     */
-    public String orgName() {
-        return this.orgName;
-    }
-
-    /**
-     * Set the orgName property: Gets or sets AzureDevOps Org Name.
-     *
-     * @param orgName the orgName value to set.
-     * @return the AzureDevOpsProjectProperties object itself.
-     */
-    public AzureDevOpsProjectProperties withOrgName(String orgName) {
-        this.orgName = orgName;
         return this;
     }
 

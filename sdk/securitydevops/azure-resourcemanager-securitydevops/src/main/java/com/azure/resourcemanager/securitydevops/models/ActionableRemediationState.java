@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ActionableRemediationState. */
+/**
+ * ActionableRemediation Setting. None - the setting was never set. Enabled - ActionableRemediation is enabled. Disabled
+ * - ActionableRemediation is disabled.
+ */
 public final class ActionableRemediationState extends ExpandableStringEnum<ActionableRemediationState> {
     /** Static value None for ActionableRemediationState. */
     public static final ActionableRemediationState NONE = fromString("None");

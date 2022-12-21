@@ -12,7 +12,10 @@ import java.util.List;
 @Fluent
 public final class ActionableRemediation {
     /*
-     * The state property.
+     * ActionableRemediation Setting.
+     * None - the setting was never set.
+     * Enabled - ActionableRemediation is enabled.
+     * Disabled - ActionableRemediation is disabled.
      */
     @JsonProperty(value = "state")
     private ActionableRemediationState state;
@@ -40,7 +43,8 @@ public final class ActionableRemediation {
     }
 
     /**
-     * Get the state property: The state property.
+     * Get the state property: ActionableRemediation Setting. None - the setting was never set. Enabled -
+     * ActionableRemediation is enabled. Disabled - ActionableRemediation is disabled.
      *
      * @return the state value.
      */
@@ -49,7 +53,8 @@ public final class ActionableRemediation {
     }
 
     /**
-     * Set the state property: The state property.
+     * Set the state property: ActionableRemediation Setting. None - the setting was never set. Enabled -
+     * ActionableRemediation is enabled. Disabled - ActionableRemediation is disabled.
      *
      * @param state the state value to set.
      * @return the ActionableRemediation object itself.

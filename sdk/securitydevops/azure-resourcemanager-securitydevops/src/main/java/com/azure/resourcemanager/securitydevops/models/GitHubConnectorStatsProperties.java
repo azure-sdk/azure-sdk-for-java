@@ -13,7 +13,7 @@ public final class GitHubConnectorStatsProperties {
     /*
      * The provisioningState property.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
@@ -39,17 +39,6 @@ public final class GitHubConnectorStatsProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: The provisioningState property.
-     *
-     * @param provisioningState the provisioningState value to set.
-     * @return the GitHubConnectorStatsProperties object itself.
-     */
-    public GitHubConnectorStatsProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**

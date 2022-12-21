@@ -54,7 +54,7 @@ public final class GitHubConnectorStatsOperationsClientImpl implements GitHubCon
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface GitHubConnectorStatsOperationsService {
+    public interface GitHubConnectorStatsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"

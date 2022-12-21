@@ -63,7 +63,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface AzureDevOpsProjectsService {
+    public interface AzureDevOpsProjectsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
@@ -122,7 +122,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
                 + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}/projects"
                 + "/{azureDevOpsProjectName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -970,7 +970,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1042,7 +1042,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1113,7 +1113,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1186,7 +1186,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1255,7 +1255,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1287,7 +1287,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1346,7 +1346,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1407,7 +1407,7 @@ public final class AzureDevOpsProjectsClientImpl implements AzureDevOpsProjectsC
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
