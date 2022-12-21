@@ -47,6 +47,13 @@ public interface IncidentComment {
     SystemData systemData();
 
     /**
+     * Gets the message property: The comment message.
+     *
+     * @return the message value.
+     */
+    String message();
+
+    /**
      * Gets the createdTimeUtc property: The time the comment was created.
      *
      * @return the createdTimeUtc value.
@@ -59,13 +66,6 @@ public interface IncidentComment {
      * @return the lastModifiedTimeUtc value.
      */
     OffsetDateTime lastModifiedTimeUtc();
-
-    /**
-     * Gets the message property: The comment message.
-     *
-     * @return the message value.
-     */
-    String message();
 
     /**
      * Gets the author property: Describes the client that created the comment.

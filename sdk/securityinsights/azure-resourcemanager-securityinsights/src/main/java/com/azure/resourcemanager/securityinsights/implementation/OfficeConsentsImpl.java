@@ -38,15 +38,6 @@ public final class OfficeConsentsImpl implements OfficeConsents {
         return Utils.mapPage(inner, inner1 -> new OfficeConsentImpl(inner1, this.manager()));
     }
 
-    public OfficeConsent get(String resourceGroupName, String workspaceName, String consentId) {
-        OfficeConsentInner inner = this.serviceClient().get(resourceGroupName, workspaceName, consentId);
-        if (inner != null) {
-            return new OfficeConsentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<OfficeConsent> getWithResponse(
         String resourceGroupName, String workspaceName, String consentId, Context context) {
         Response<OfficeConsentInner> inner =
@@ -62,13 +53,22 @@ public final class OfficeConsentsImpl implements OfficeConsents {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String consentId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, consentId);
+    public OfficeConsent get(String resourceGroupName, String workspaceName, String consentId) {
+        OfficeConsentInner inner = this.serviceClient().get(resourceGroupName, workspaceName, consentId);
+        if (inner != null) {
+            return new OfficeConsentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String consentId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, consentId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String consentId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, consentId);
     }
 
     private OfficeConsentsClient serviceClient() {

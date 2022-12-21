@@ -37,6 +37,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class DataConnectorsCheckRequirements {
+    /** Creates an instance of DataConnectorsCheckRequirements class. */
+    public DataConnectorsCheckRequirements() {
+    }
+
     /**
      * Validates the instance.
      *

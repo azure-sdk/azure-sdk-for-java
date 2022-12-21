@@ -137,6 +137,10 @@ public final class MetadataPropertiesPatch {
     @JsonProperty(value = "previewImagesDark")
     private List<String> previewImagesDark;
 
+    /** Creates an instance of MetadataPropertiesPatch class. */
+    public MetadataPropertiesPatch() {
+    }
+
     /**
      * Get the contentId property: Static ID for the content. Used to identify dependencies and content from solutions
      * or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the

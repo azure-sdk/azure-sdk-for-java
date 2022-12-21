@@ -36,6 +36,10 @@ public final class FileEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "hostEntityId", access = JsonProperty.Access.WRITE_ONLY)
     private String hostEntityId;
 
+    /** Creates an instance of FileEntityProperties class. */
+    public FileEntityProperties() {
+    }
+
     /**
      * Get the directory property: The full path to the file.
      *

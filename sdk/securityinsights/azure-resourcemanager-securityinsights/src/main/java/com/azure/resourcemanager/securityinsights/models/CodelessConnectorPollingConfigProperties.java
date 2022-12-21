@@ -41,6 +41,10 @@ public final class CodelessConnectorPollingConfigProperties {
     @JsonProperty(value = "response")
     private CodelessConnectorPollingResponseProperties response;
 
+    /** Creates an instance of CodelessConnectorPollingConfigProperties class. */
+    public CodelessConnectorPollingConfigProperties() {
+    }
+
     /**
      * Get the isActive property: The poller active status.
      *

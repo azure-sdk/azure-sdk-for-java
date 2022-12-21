@@ -22,6 +22,10 @@ public class SampleQueries {
     @JsonProperty(value = "query")
     private String query;
 
+    /** Creates an instance of SampleQueries class. */
+    public SampleQueries() {
+    }
+
     /**
      * Get the description property: The sample query description.
      *

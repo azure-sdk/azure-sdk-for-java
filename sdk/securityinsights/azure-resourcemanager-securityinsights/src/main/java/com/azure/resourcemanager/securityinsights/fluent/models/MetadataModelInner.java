@@ -25,6 +25,10 @@ public final class MetadataModelInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private MetadataProperties innerProperties;
 
+    /** Creates an instance of MetadataModelInner class. */
+    public MetadataModelInner() {
+    }
+
     /**
      * Get the innerProperties property: Metadata properties.
      *

@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AmazonWebServicesCloudTrail")
 @Immutable
 public final class AwsCloudTrailCheckRequirements extends DataConnectorsCheckRequirements {
+    /** Creates an instance of AwsCloudTrailCheckRequirements class. */
+    public AwsCloudTrailCheckRequirements() {
+    }
+
     /**
      * Validates the instance.
      *

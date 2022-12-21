@@ -9,15 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for IncidentComments Get. */
 public final class IncidentCommentsGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/incidents/comments/GetIncidentCommentById.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-12-01-preview/examples/incidents/IncidentComments/IncidentComments_Get.json
      */
     /**
-     * Sample code: Get an incident comment.
+     * Sample code: IncidentComments_Get.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void getAnIncidentComment(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+    public static void incidentCommentsGet(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .incidentComments()
             .getWithResponse(

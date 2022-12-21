@@ -30,6 +30,10 @@ public final class NicEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "vlans", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> vlans;
 
+    /** Creates an instance of NicEntityProperties class. */
+    public NicEntityProperties() {
+    }
+
     /**
      * Get the macAddress property: The MAC address of this network interface.
      *
