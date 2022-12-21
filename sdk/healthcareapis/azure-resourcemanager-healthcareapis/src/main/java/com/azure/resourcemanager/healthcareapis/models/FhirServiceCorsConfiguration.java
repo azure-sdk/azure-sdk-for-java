@@ -41,6 +41,10 @@ public final class FhirServiceCorsConfiguration {
     @JsonProperty(value = "allowCredentials")
     private Boolean allowCredentials;
 
+    /** Creates an instance of FhirServiceCorsConfiguration class. */
+    public FhirServiceCorsConfiguration() {
+    }
+
     /**
      * Get the origins property: The origins to be allowed via CORS.
      *

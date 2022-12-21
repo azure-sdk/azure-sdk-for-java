@@ -50,7 +50,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface OperationResultsService {
+    public interface OperationResultsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/providers/Microsoft.HealthcareApis/locations/{locationName}"
@@ -175,30 +175,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationResultsDescriptionInner> getAsync(String locationName, String operationResultId) {
-        return getWithResponseAsync(locationName, operationResultId)
-            .flatMap(
-                (Response<OperationResultsDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get the operation result for a long running operation.
-     *
-     * @param locationName The location of the operation.
-     * @param operationResultId The ID of the operation result to get.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationResultsDescriptionInner get(String locationName, String operationResultId) {
-        return getAsync(locationName, operationResultId).block();
+        return getWithResponseAsync(locationName, operationResultId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -216,5 +193,20 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     public Response<OperationResultsDescriptionInner> getWithResponse(
         String locationName, String operationResultId, Context context) {
         return getWithResponseAsync(locationName, operationResultId, context).block();
+    }
+
+    /**
+     * Get the operation result for a long running operation.
+     *
+     * @param locationName The location of the operation.
+     * @param operationResultId The ID of the operation result to get.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the operation result for a long running operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationResultsDescriptionInner get(String locationName, String operationResultId) {
+        return getWithResponse(locationName, operationResultId, Context.NONE).getValue();
     }
 }

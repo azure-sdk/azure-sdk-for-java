@@ -36,9 +36,11 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.healthcareapis.fluent.ServicesClient;
 import com.azure.resourcemanager.healthcareapis.fluent.models.ServicesDescriptionInner;
 import com.azure.resourcemanager.healthcareapis.fluent.models.ServicesNameAvailabilityInfoInner;
+import com.azure.resourcemanager.healthcareapis.fluent.models.ValidateMedtechMappingsResultInner;
 import com.azure.resourcemanager.healthcareapis.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.healthcareapis.models.ServicesDescriptionListResult;
 import com.azure.resourcemanager.healthcareapis.models.ServicesPatchDescription;
+import com.azure.resourcemanager.healthcareapis.models.ValidateMedtechMappingsParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -67,7 +69,7 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface ServicesService {
+    public interface ServicesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
@@ -164,6 +166,18 @@ public final class ServicesClientImpl implements ServicesClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @BodyParam("application/json") CheckNameAvailabilityParameters checkNameAvailabilityInputs,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.HealthcareApis/validateMedtechMappings")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ValidateMedtechMappingsResultInner>> validateMedtechMappings(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") ValidateMedtechMappingsParameters validationRequestInputs,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -295,29 +309,7 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServicesDescriptionInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<ServicesDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get the metadata of a service instance.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of a service instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName) {
-        return getByResourceGroupAsync(resourceGroupName, resourceName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -335,6 +327,21 @@ public final class ServicesClientImpl implements ServicesClient {
     public Response<ServicesDescriptionInner> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName, context).block();
+    }
+
+    /**
+     * Get the metadata of a service instance.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of a service instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -1545,30 +1552,7 @@ public final class ServicesClientImpl implements ServicesClient {
     private Mono<ServicesNameAvailabilityInfoInner> checkNameAvailabilityAsync(
         CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
         return checkNameAvailabilityWithResponseAsync(checkNameAvailabilityInputs)
-            .flatMap(
-                (Response<ServicesNameAvailabilityInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Check if a service instance name is available.
-     *
-     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
-     *     name of the service instance to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given service name is available.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ServicesNameAvailabilityInfoInner checkNameAvailability(
-        CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
-        return checkNameAvailabilityAsync(checkNameAvailabilityInputs).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1589,9 +1573,165 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
+     * Check if a service instance name is available.
+     *
+     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
+     *     name of the service instance to check.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties indicating whether a given service name is available.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ServicesNameAvailabilityInfoInner checkNameAvailability(
+        CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
+        return checkNameAvailabilityWithResponse(checkNameAvailabilityInputs, Context.NONE).getValue();
+    }
+
+    /**
+     * Validates Medtech mapping files against sample device data.
+     *
+     * @param validationRequestInputs The mapping files and device events which will be validated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from the Medtech Mapping Validation Service along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ValidateMedtechMappingsResultInner>> validateMedtechMappingsWithResponseAsync(
+        ValidateMedtechMappingsParameters validationRequestInputs) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (validationRequestInputs == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter validationRequestInputs is required and cannot be null."));
+        } else {
+            validationRequestInputs.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .validateMedtechMappings(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            validationRequestInputs,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Validates Medtech mapping files against sample device data.
+     *
+     * @param validationRequestInputs The mapping files and device events which will be validated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from the Medtech Mapping Validation Service along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ValidateMedtechMappingsResultInner>> validateMedtechMappingsWithResponseAsync(
+        ValidateMedtechMappingsParameters validationRequestInputs, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (validationRequestInputs == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter validationRequestInputs is required and cannot be null."));
+        } else {
+            validationRequestInputs.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .validateMedtechMappings(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                validationRequestInputs,
+                accept,
+                context);
+    }
+
+    /**
+     * Validates Medtech mapping files against sample device data.
+     *
+     * @param validationRequestInputs The mapping files and device events which will be validated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from the Medtech Mapping Validation Service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ValidateMedtechMappingsResultInner> validateMedtechMappingsAsync(
+        ValidateMedtechMappingsParameters validationRequestInputs) {
+        return validateMedtechMappingsWithResponseAsync(validationRequestInputs)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Validates Medtech mapping files against sample device data.
+     *
+     * @param validationRequestInputs The mapping files and device events which will be validated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from the Medtech Mapping Validation Service along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ValidateMedtechMappingsResultInner> validateMedtechMappingsWithResponse(
+        ValidateMedtechMappingsParameters validationRequestInputs, Context context) {
+        return validateMedtechMappingsWithResponseAsync(validationRequestInputs, context).block();
+    }
+
+    /**
+     * Validates Medtech mapping files against sample device data.
+     *
+     * @param validationRequestInputs The mapping files and device events which will be validated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from the Medtech Mapping Validation Service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidateMedtechMappingsResultInner validateMedtechMappings(
+        ValidateMedtechMappingsParameters validationRequestInputs) {
+        return validateMedtechMappingsWithResponse(validationRequestInputs, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1627,7 +1767,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1664,7 +1805,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1701,7 +1843,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

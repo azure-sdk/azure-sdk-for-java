@@ -12,10 +12,13 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.healthcareapis.fluent.ServicesClient;
 import com.azure.resourcemanager.healthcareapis.fluent.models.ServicesDescriptionInner;
 import com.azure.resourcemanager.healthcareapis.fluent.models.ServicesNameAvailabilityInfoInner;
+import com.azure.resourcemanager.healthcareapis.fluent.models.ValidateMedtechMappingsResultInner;
 import com.azure.resourcemanager.healthcareapis.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.healthcareapis.models.Services;
 import com.azure.resourcemanager.healthcareapis.models.ServicesDescription;
 import com.azure.resourcemanager.healthcareapis.models.ServicesNameAvailabilityInfo;
+import com.azure.resourcemanager.healthcareapis.models.ValidateMedtechMappingsParameters;
+import com.azure.resourcemanager.healthcareapis.models.ValidateMedtechMappingsResult;
 
 public final class ServicesImpl implements Services {
     private static final ClientLogger LOGGER = new ClientLogger(ServicesImpl.class);
@@ -30,15 +33,6 @@ public final class ServicesImpl implements Services {
         this.serviceManager = serviceManager;
     }
 
-    public ServicesDescription getByResourceGroup(String resourceGroupName, String resourceName) {
-        ServicesDescriptionInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
-        if (inner != null) {
-            return new ServicesDescriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ServicesDescription> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         Response<ServicesDescriptionInner> inner =
@@ -49,6 +43,15 @@ public final class ServicesImpl implements Services {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ServicesDescriptionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ServicesDescription getByResourceGroup(String resourceGroupName, String resourceName) {
+        ServicesDescriptionInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
+        if (inner != null) {
+            return new ServicesDescriptionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -83,6 +86,21 @@ public final class ServicesImpl implements Services {
         return Utils.mapPage(inner, inner1 -> new ServicesDescriptionImpl(inner1, this.manager()));
     }
 
+    public Response<ServicesNameAvailabilityInfo> checkNameAvailabilityWithResponse(
+        CheckNameAvailabilityParameters checkNameAvailabilityInputs, Context context) {
+        Response<ServicesNameAvailabilityInfoInner> inner =
+            this.serviceClient().checkNameAvailabilityWithResponse(checkNameAvailabilityInputs, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ServicesNameAvailabilityInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
     public ServicesNameAvailabilityInfo checkNameAvailability(
         CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
         ServicesNameAvailabilityInfoInner inner =
@@ -94,16 +112,27 @@ public final class ServicesImpl implements Services {
         }
     }
 
-    public Response<ServicesNameAvailabilityInfo> checkNameAvailabilityWithResponse(
-        CheckNameAvailabilityParameters checkNameAvailabilityInputs, Context context) {
-        Response<ServicesNameAvailabilityInfoInner> inner =
-            this.serviceClient().checkNameAvailabilityWithResponse(checkNameAvailabilityInputs, context);
+    public Response<ValidateMedtechMappingsResult> validateMedtechMappingsWithResponse(
+        ValidateMedtechMappingsParameters validationRequestInputs, Context context) {
+        Response<ValidateMedtechMappingsResultInner> inner =
+            this.serviceClient().validateMedtechMappingsWithResponse(validationRequestInputs, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new ServicesNameAvailabilityInfoImpl(inner.getValue(), this.manager()));
+                new ValidateMedtechMappingsResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ValidateMedtechMappingsResult validateMedtechMappings(
+        ValidateMedtechMappingsParameters validationRequestInputs) {
+        ValidateMedtechMappingsResultInner inner =
+            this.serviceClient().validateMedtechMappings(validationRequestInputs);
+        if (inner != null) {
+            return new ValidateMedtechMappingsResultImpl(inner, this.manager());
         } else {
             return null;
         }

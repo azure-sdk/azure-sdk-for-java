@@ -79,6 +79,10 @@ public final class IotConnectorImpl implements IotConnector, IotConnector.Defini
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public IotConnectorInner innerModel() {
         return this.innerObject;
     }
