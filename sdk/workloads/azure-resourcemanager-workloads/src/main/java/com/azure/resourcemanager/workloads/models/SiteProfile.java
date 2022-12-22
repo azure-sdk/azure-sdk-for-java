@@ -16,6 +16,10 @@ public final class SiteProfile {
     @JsonProperty(value = "domainName")
     private String domainName;
 
+    /** Creates an instance of SiteProfile class. */
+    public SiteProfile() {
+    }
+
     /**
      * Get the domainName property: Domain name for the application site URL.
      *

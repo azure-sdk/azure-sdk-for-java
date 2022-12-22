@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkloadMonitorProvisioningState. */
+/** State of provisioning of the SAP monitor. */
 public final class WorkloadMonitorProvisioningState extends ExpandableStringEnum<WorkloadMonitorProvisioningState> {
     /** Static value Accepted for WorkloadMonitorProvisioningState. */
     public static final WorkloadMonitorProvisioningState ACCEPTED = fromString("Accepted");

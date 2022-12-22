@@ -7,7 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for DatabaseTier. */
+/** Tier of the server SKU. */
 public enum DatabaseTier {
     /** Enum value Burstable. */
     BURSTABLE("Burstable"),
@@ -33,6 +33,9 @@ public enum DatabaseTier {
      */
     @JsonCreator
     public static DatabaseTier fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DatabaseTier[] items = DatabaseTier.values();
         for (DatabaseTier item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -42,6 +45,7 @@ public enum DatabaseTier {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

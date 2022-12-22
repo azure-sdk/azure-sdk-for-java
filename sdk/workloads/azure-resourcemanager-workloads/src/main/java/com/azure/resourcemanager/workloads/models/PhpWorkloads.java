@@ -58,18 +58,6 @@ public interface PhpWorkloads {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the PHP workload resource.
-     */
-    PhpWorkloadResource getByResourceGroup(String resourceGroupName, String phpWorkloadName);
-
-    /**
-     * Gets the PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -80,16 +68,16 @@ public interface PhpWorkloads {
         String resourceGroupName, String phpWorkloadName, Context context);
 
     /**
-     * Delete PHP workload resource.
+     * Gets the PHP workload resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @param deleteInfra Whether to delete infra along with workload resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the PHP workload resource.
      */
-    void delete(String resourceGroupName, String phpWorkloadName, String deleteInfra);
+    PhpWorkloadResource getByResourceGroup(String resourceGroupName, String phpWorkloadName);
 
     /**
      * Delete PHP workload resource.

@@ -48,19 +48,6 @@ public interface WordpressInstancesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the WordPress instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    WordpressInstanceResourceInner get(String resourceGroupName, String phpWorkloadName);
-
-    /**
-     * Gets the WordPress instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -72,6 +59,19 @@ public interface WordpressInstancesClient {
         String resourceGroupName, String phpWorkloadName, Context context);
 
     /**
+     * Gets the WordPress instance resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the WordPress instance resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    WordpressInstanceResourceInner get(String resourceGroupName, String phpWorkloadName);
+
+    /**
      * Create or updated WordPress instance resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -138,18 +138,6 @@ public interface WordpressInstancesClient {
         String phpWorkloadName,
         WordpressInstanceResourceInner wordpressInstanceResource,
         Context context);
-
-    /**
-     * Delete WordPress instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String phpWorkloadName);
 
     /**
      * Delete WordPress instance resource.
@@ -164,4 +152,16 @@ public interface WordpressInstancesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String phpWorkloadName, Context context);
+
+    /**
+     * Delete WordPress instance resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String phpWorkloadName);
 }

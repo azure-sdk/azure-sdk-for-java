@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapHealthState. */
+/** Defines the health of SAP Instances. */
 public final class SapHealthState extends ExpandableStringEnum<SapHealthState> {
     /** Static value Unknown for SapHealthState. */
     public static final SapHealthState UNKNOWN = fromString("Unknown");

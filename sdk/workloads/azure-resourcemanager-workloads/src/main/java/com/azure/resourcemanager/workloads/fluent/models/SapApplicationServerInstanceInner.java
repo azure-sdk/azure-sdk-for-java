@@ -11,27 +11,32 @@ import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StorageInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
-/** Define the SAP Application Server Instance. */
+/** Define the SAP Application Server Instance resource. */
 @Fluent
 public final class SapApplicationServerInstanceInner extends Resource {
     /*
-     * Defines the SAP Application Server properties.
+     * Defines the SAP Application Server instance properties.
      */
     @JsonProperty(value = "properties")
     private SapApplicationServerProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of SapApplicationServerInstanceInner class. */
+    public SapApplicationServerInstanceInner() {
+    }
+
     /**
-     * Get the innerProperties property: Defines the SAP Application Server properties.
+     * Get the innerProperties property: Defines the SAP Application Server instance properties.
      *
      * @return the innerProperties value.
      */
@@ -63,7 +68,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the instanceNo property: The application server instance id.
+     * Get the instanceNo property: Application server Instance Number.
      *
      * @return the instanceNo value.
      */
@@ -72,7 +77,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the subnet property: The application server subnet.
+     * Get the subnet property: Application server Subnet.
      *
      * @return the subnet value.
      */
@@ -81,7 +86,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the hostname property: The application server SAP host name.
+     * Get the hostname property: Application server instance SAP hostname.
      *
      * @return the hostname value.
      */
@@ -90,7 +95,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the kernelVersion property: The application server SAP kernel version.
+     * Get the kernelVersion property: Application server instance SAP Kernel Version.
      *
      * @return the kernelVersion value.
      */
@@ -99,7 +104,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the kernelPatch property: The application server SAP kernel patch.
+     * Get the kernelPatch property: Application server instance SAP Kernel Patch level.
      *
      * @return the kernelPatch value.
      */
@@ -108,7 +113,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the ipAddress property: The application server SAP IP Address.
+     * Get the ipAddress property: Application server instance SAP IP Address.
      *
      * @return the ipAddress value.
      */
@@ -117,7 +122,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the gatewayPort property: The application server gateway Port.
+     * Get the gatewayPort property: Application server instance gateway Port.
      *
      * @return the gatewayPort value.
      */
@@ -126,7 +131,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the icmHttpPort property: The application server ICM HTTP Port.
+     * Get the icmHttpPort property: Application server instance ICM HTTP Port.
      *
      * @return the icmHttpPort value.
      */
@@ -135,7 +140,7 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the icmHttpsPort property: The application server ICM HTTPS Port.
+     * Get the icmHttpsPort property: Application server instance ICM HTTPS Port.
      *
      * @return the icmHttpsPort value.
      */
@@ -162,7 +167,17 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the health property: Defines the SAP Instance health.
+     * Get the storageDetails property: Storage details of all the Storage Accounts attached to the App Virtual Machine.
+     * For e.g. NFS on AFS Shared Storage.
+     *
+     * @return the storageDetails value.
+     */
+    public List<StorageInformation> storageDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageDetails();
+    }
+
+    /**
+     * Get the health property: Defines the health of SAP Instances.
      *
      * @return the health value.
      */

@@ -23,6 +23,10 @@ public final class VmssNodesProfile extends NodeProfile {
     @JsonProperty(value = "autoScaleMaxCount")
     private Integer autoScaleMaxCount;
 
+    /** Creates an instance of VmssNodesProfile class. */
+    public VmssNodesProfile() {
+    }
+
     /**
      * Get the autoScaleMinCount property: Minimum number of nodes for autoscale.
      *
