@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PlatformType. */
+/** Host OS supported by the Arc addon. */
 public final class PlatformType extends ExpandableStringEnum<PlatformType> {
     /** Static value Windows for PlatformType. */
     public static final PlatformType WINDOWS = fromString("Windows");
@@ -27,7 +27,11 @@ public final class PlatformType extends ExpandableStringEnum<PlatformType> {
         return fromString(name, PlatformType.class);
     }
 
-    /** @return known PlatformType values. */
+    /**
+     * Gets known PlatformType values.
+     *
+     * @return known PlatformType values.
+     */
     public static Collection<PlatformType> values() {
         return values(PlatformType.class);
     }
