@@ -14,8 +14,8 @@ import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpPropertiesStati
 import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
 import java.util.Arrays;
 
-/** Samples for SimOperation BulkUploadEncrypted. */
-public final class SimOperationBulkUploadEncryptedSamples {
+/** Samples for Sims BulkUploadEncrypted. */
+public final class SimsBulkUploadEncryptedSamples {
     /*
      * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkUploadEncrypted.json
      */
@@ -27,7 +27,7 @@ public final class SimOperationBulkUploadEncryptedSamples {
     public static void bulkUploadEncryptedSIMsToASIMGroup(
         com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
         manager
-            .simOperations()
+            .sims()
             .bulkUploadEncrypted(
                 "rg1",
                 "testSimGroup",

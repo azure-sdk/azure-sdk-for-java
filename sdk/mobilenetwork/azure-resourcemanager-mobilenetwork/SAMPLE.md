@@ -30,12 +30,6 @@
 
 - [List](#operations_list)
 
-## PacketCoreControlPlaneOperation
-
-- [CollectDiagnosticsPackage](#packetcorecontrolplaneoperation_collectdiagnosticspackage)
-- [Reinstall](#packetcorecontrolplaneoperation_reinstall)
-- [Rollback](#packetcorecontrolplaneoperation_rollback)
-
 ## PacketCoreControlPlaneVersions
 
 - [Get](#packetcorecontrolplaneversions_get)
@@ -43,11 +37,14 @@
 
 ## PacketCoreControlPlanes
 
+- [CollectDiagnosticsPackage](#packetcorecontrolplanes_collectdiagnosticspackage)
 - [CreateOrUpdate](#packetcorecontrolplanes_createorupdate)
 - [Delete](#packetcorecontrolplanes_delete)
 - [GetByResourceGroup](#packetcorecontrolplanes_getbyresourcegroup)
 - [List](#packetcorecontrolplanes_list)
 - [ListByResourceGroup](#packetcorecontrolplanes_listbyresourcegroup)
+- [Reinstall](#packetcorecontrolplanes_reinstall)
+- [Rollback](#packetcorecontrolplanes_rollback)
 - [UpdateTags](#packetcorecontrolplanes_updatetags)
 
 ## PacketCoreDataPlanes
@@ -75,12 +72,6 @@
 - [ListByResourceGroup](#simgroups_listbyresourcegroup)
 - [UpdateTags](#simgroups_updatetags)
 
-## SimOperation
-
-- [BulkDelete](#simoperation_bulkdelete)
-- [BulkUpload](#simoperation_bulkupload)
-- [BulkUploadEncrypted](#simoperation_bulkuploadencrypted)
-
 ## SimPolicies
 
 - [CreateOrUpdate](#simpolicies_createorupdate)
@@ -91,6 +82,9 @@
 
 ## Sims
 
+- [BulkDelete](#sims_bulkdelete)
+- [BulkUpload](#sims_bulkupload)
+- [BulkUploadEncrypted](#sims_bulkuploadencrypted)
 - [CreateOrUpdate](#sims_createorupdate)
 - [Delete](#sims_delete)
 - [Get](#sims_get)
@@ -569,81 +563,6 @@ public final class OperationsListSamples {
 }
 ```
 
-### PacketCoreControlPlaneOperation_CollectDiagnosticsPackage
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlaneCollectDiagnosticsPackage;
-
-/** Samples for PacketCoreControlPlaneOperation CollectDiagnosticsPackage. */
-public final class PacketCoreControlPlaneOperationCollectDiagnosticsPackageSamples {
-    /*
-     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/PacketCoreControlPlaneCollectDiagnosticsPackage.json
-     */
-    /**
-     * Sample code: Collect diagnostics package from packet core control plane.
-     *
-     * @param manager Entry point to MobileNetworkManager.
-     */
-    public static void collectDiagnosticsPackageFromPacketCoreControlPlane(
-        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
-        manager
-            .packetCoreControlPlaneOperations()
-            .collectDiagnosticsPackage(
-                "rg1",
-                "TestPacketCoreCP",
-                new PacketCoreControlPlaneCollectDiagnosticsPackage()
-                    .withStorageAccountBlobUrl(
-                        "https://contosoaccount.blob.core.windows.net/container/diagnosticsPackage.zip"),
-                Context.NONE);
-    }
-}
-```
-
-### PacketCoreControlPlaneOperation_Reinstall
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PacketCoreControlPlaneOperation Reinstall. */
-public final class PacketCoreControlPlaneOperationReinstallSamples {
-    /*
-     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/PacketCoreControlPlaneReinstall.json
-     */
-    /**
-     * Sample code: Reinstall packet core control plane.
-     *
-     * @param manager Entry point to MobileNetworkManager.
-     */
-    public static void reinstallPacketCoreControlPlane(
-        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
-        manager.packetCoreControlPlaneOperations().reinstall("rg1", "TestPacketCoreCP", Context.NONE);
-    }
-}
-```
-
-### PacketCoreControlPlaneOperation_Rollback
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PacketCoreControlPlaneOperation Rollback. */
-public final class PacketCoreControlPlaneOperationRollbackSamples {
-    /*
-     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/PacketCoreControlPlaneRollback.json
-     */
-    /**
-     * Sample code: Rollback packet core control plane.
-     *
-     * @param manager Entry point to MobileNetworkManager.
-     */
-    public static void rollbackPacketCoreControlPlane(
-        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
-        manager.packetCoreControlPlaneOperations().rollback("rg1", "TestPacketCoreCP", Context.NONE);
-    }
-}
-```
-
 ### PacketCoreControlPlaneVersions_Get
 
 ```java
@@ -684,6 +603,37 @@ public final class PacketCoreControlPlaneVersionsListSamples {
     public static void getSupportedPacketCoreControlPlaneVersions(
         com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
         manager.packetCoreControlPlaneVersions().list(Context.NONE);
+    }
+}
+```
+
+### PacketCoreControlPlanes_CollectDiagnosticsPackage
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlaneCollectDiagnosticsPackage;
+
+/** Samples for PacketCoreControlPlanes CollectDiagnosticsPackage. */
+public final class PacketCoreControlPlanesCollectDiagnosticsPackageSamples {
+    /*
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/PacketCoreControlPlaneCollectDiagnosticsPackage.json
+     */
+    /**
+     * Sample code: Collect diagnostics package from packet core control plane.
+     *
+     * @param manager Entry point to MobileNetworkManager.
+     */
+    public static void collectDiagnosticsPackageFromPacketCoreControlPlane(
+        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
+        manager
+            .packetCoreControlPlanes()
+            .collectDiagnosticsPackage(
+                "rg1",
+                "TestPacketCoreCP",
+                new PacketCoreControlPlaneCollectDiagnosticsPackage()
+                    .withStorageAccountBlobUrl(
+                        "https://contosoaccount.blob.core.windows.net/container/diagnosticsPackage.zip"),
+                Context.NONE);
     }
 }
 ```
@@ -842,6 +792,50 @@ public final class PacketCoreControlPlanesListByResourceGroupSamples {
     public static void listPacketCoreControlPlanesInResourceGroup(
         com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
         manager.packetCoreControlPlanes().listByResourceGroup("rg1", Context.NONE);
+    }
+}
+```
+
+### PacketCoreControlPlanes_Reinstall
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PacketCoreControlPlanes Reinstall. */
+public final class PacketCoreControlPlanesReinstallSamples {
+    /*
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/PacketCoreControlPlaneReinstall.json
+     */
+    /**
+     * Sample code: Reinstall packet core control plane.
+     *
+     * @param manager Entry point to MobileNetworkManager.
+     */
+    public static void reinstallPacketCoreControlPlane(
+        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
+        manager.packetCoreControlPlanes().reinstall("rg1", "TestPacketCoreCP", Context.NONE);
+    }
+}
+```
+
+### PacketCoreControlPlanes_Rollback
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for PacketCoreControlPlanes Rollback. */
+public final class PacketCoreControlPlanesRollbackSamples {
+    /*
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/PacketCoreControlPlaneRollback.json
+     */
+    /**
+     * Sample code: Rollback packet core control plane.
+     *
+     * @param manager Entry point to MobileNetworkManager.
+     */
+    public static void rollbackPacketCoreControlPlane(
+        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
+        manager.packetCoreControlPlanes().rollback("rg1", "TestPacketCoreCP", Context.NONE);
     }
 }
 ```
@@ -1364,220 +1358,6 @@ public final class SimGroupsUpdateTagsSamples {
 }
 ```
 
-### SimOperation_BulkDelete
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.mobilenetwork.models.SimDeleteList;
-import java.util.Arrays;
-
-/** Samples for SimOperation BulkDelete. */
-public final class SimOperationBulkDeleteSamples {
-    /*
-     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkDelete.json
-     */
-    /**
-     * Sample code: Bulk delete SIMs from a SIM group.
-     *
-     * @param manager Entry point to MobileNetworkManager.
-     */
-    public static void bulkDeleteSIMsFromASIMGroup(
-        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
-        manager
-            .simOperations()
-            .bulkDelete(
-                "testResourceGroupName",
-                "testSimGroup",
-                new SimDeleteList().withSims(Arrays.asList("testSim", "testSim2")),
-                Context.NONE);
-    }
-}
-```
-
-### SimOperation_BulkUpload
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.mobilenetwork.models.AttachedDataNetworkResourceId;
-import com.azure.resourcemanager.mobilenetwork.models.SimNameAndProperties;
-import com.azure.resourcemanager.mobilenetwork.models.SimPolicyResourceId;
-import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpProperties;
-import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpPropertiesStaticIp;
-import com.azure.resourcemanager.mobilenetwork.models.SimUploadList;
-import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
-import java.util.Arrays;
-
-/** Samples for SimOperation BulkUpload. */
-public final class SimOperationBulkUploadSamples {
-    /*
-     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkUpload.json
-     */
-    /**
-     * Sample code: Bulk upload SIMs in a SIM group.
-     *
-     * @param manager Entry point to MobileNetworkManager.
-     */
-    public static void bulkUploadSIMsInASIMGroup(com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
-        manager
-            .simOperations()
-            .bulkUpload(
-                "rg1",
-                "testSimGroup",
-                new SimUploadList()
-                    .withSims(
-                        Arrays
-                            .asList(
-                                new SimNameAndProperties()
-                                    .withName("testSim")
-                                    .withAuthenticationKey("fakeTokenPlaceholder")
-                                    .withOperatorKeyCode("fakeTokenPlaceholder")
-                                    .withInternationalMobileSubscriberIdentity("00000")
-                                    .withIntegratedCircuitCardIdentifier("8900000000000000000")
-                                    .withDeviceType("Video camera")
-                                    .withSimPolicy(
-                                        new SimPolicyResourceId()
-                                            .withId(
-                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
-                                    .withStaticIpConfiguration(
-                                        Arrays
-                                            .asList(
-                                                new SimStaticIpProperties()
-                                                    .withAttachedDataNetwork(
-                                                        new AttachedDataNetworkResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
-                                                    .withSlice(
-                                                        new SliceResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
-                                                    .withStaticIp(
-                                                        new SimStaticIpPropertiesStaticIp()
-                                                            .withIpv4Address("2.4.0.1")))),
-                                new SimNameAndProperties()
-                                    .withName("testSim2")
-                                    .withAuthenticationKey("fakeTokenPlaceholder")
-                                    .withOperatorKeyCode("fakeTokenPlaceholder")
-                                    .withInternationalMobileSubscriberIdentity("00000")
-                                    .withIntegratedCircuitCardIdentifier("8900000000000000001")
-                                    .withDeviceType("Video camera")
-                                    .withSimPolicy(
-                                        new SimPolicyResourceId()
-                                            .withId(
-                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
-                                    .withStaticIpConfiguration(
-                                        Arrays
-                                            .asList(
-                                                new SimStaticIpProperties()
-                                                    .withAttachedDataNetwork(
-                                                        new AttachedDataNetworkResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
-                                                    .withSlice(
-                                                        new SliceResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
-                                                    .withStaticIp(
-                                                        new SimStaticIpPropertiesStaticIp()
-                                                            .withIpv4Address("2.4.0.2")))))),
-                Context.NONE);
-    }
-}
-```
-
-### SimOperation_BulkUploadEncrypted
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.mobilenetwork.models.AttachedDataNetworkResourceId;
-import com.azure.resourcemanager.mobilenetwork.models.EncryptedSimUploadList;
-import com.azure.resourcemanager.mobilenetwork.models.SimNameAndEncryptedProperties;
-import com.azure.resourcemanager.mobilenetwork.models.SimPolicyResourceId;
-import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpProperties;
-import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpPropertiesStaticIp;
-import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
-import java.util.Arrays;
-
-/** Samples for SimOperation BulkUploadEncrypted. */
-public final class SimOperationBulkUploadEncryptedSamples {
-    /*
-     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkUploadEncrypted.json
-     */
-    /**
-     * Sample code: Bulk upload encrypted SIMs to a SIM group.
-     *
-     * @param manager Entry point to MobileNetworkManager.
-     */
-    public static void bulkUploadEncryptedSIMsToASIMGroup(
-        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
-        manager
-            .simOperations()
-            .bulkUploadEncrypted(
-                "rg1",
-                "testSimGroup",
-                new EncryptedSimUploadList()
-                    .withVersion(1)
-                    .withAzureKeyIdentifier(1)
-                    .withVendorKeyFingerprint("fakeTokenPlaceholder")
-                    .withEncryptedTransportKey("fakeTokenPlaceholder")
-                    .withSignedTransportKey("fakeTokenPlaceholder")
-                    .withSims(
-                        Arrays
-                            .asList(
-                                new SimNameAndEncryptedProperties()
-                                    .withName("testSim")
-                                    .withEncryptedCredentials("fakeTokenPlaceholder")
-                                    .withInternationalMobileSubscriberIdentity("00000")
-                                    .withIntegratedCircuitCardIdentifier("8900000000000000000")
-                                    .withDeviceType("Video camera")
-                                    .withSimPolicy(
-                                        new SimPolicyResourceId()
-                                            .withId(
-                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
-                                    .withStaticIpConfiguration(
-                                        Arrays
-                                            .asList(
-                                                new SimStaticIpProperties()
-                                                    .withAttachedDataNetwork(
-                                                        new AttachedDataNetworkResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
-                                                    .withSlice(
-                                                        new SliceResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
-                                                    .withStaticIp(
-                                                        new SimStaticIpPropertiesStaticIp()
-                                                            .withIpv4Address("2.4.0.1")))),
-                                new SimNameAndEncryptedProperties()
-                                    .withName("testSim2")
-                                    .withEncryptedCredentials("fakeTokenPlaceholder")
-                                    .withInternationalMobileSubscriberIdentity("00000")
-                                    .withIntegratedCircuitCardIdentifier("8900000000000000001")
-                                    .withDeviceType("Video camera")
-                                    .withSimPolicy(
-                                        new SimPolicyResourceId()
-                                            .withId(
-                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
-                                    .withStaticIpConfiguration(
-                                        Arrays
-                                            .asList(
-                                                new SimStaticIpProperties()
-                                                    .withAttachedDataNetwork(
-                                                        new AttachedDataNetworkResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
-                                                    .withSlice(
-                                                        new SliceResourceId()
-                                                            .withId(
-                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
-                                                    .withStaticIp(
-                                                        new SimStaticIpPropertiesStaticIp()
-                                                            .withIpv4Address("2.4.0.2")))))),
-                Context.NONE);
-    }
-}
-```
-
 ### SimPolicies_CreateOrUpdate
 
 ```java
@@ -1750,6 +1530,220 @@ public final class SimPoliciesUpdateTagsSamples {
             map.put(key, value);
         }
         return map;
+    }
+}
+```
+
+### Sims_BulkDelete
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.mobilenetwork.models.SimDeleteList;
+import java.util.Arrays;
+
+/** Samples for Sims BulkDelete. */
+public final class SimsBulkDeleteSamples {
+    /*
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkDelete.json
+     */
+    /**
+     * Sample code: Bulk delete SIMs from a SIM group.
+     *
+     * @param manager Entry point to MobileNetworkManager.
+     */
+    public static void bulkDeleteSIMsFromASIMGroup(
+        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
+        manager
+            .sims()
+            .bulkDelete(
+                "testResourceGroupName",
+                "testSimGroup",
+                new SimDeleteList().withSims(Arrays.asList("testSim", "testSim2")),
+                Context.NONE);
+    }
+}
+```
+
+### Sims_BulkUpload
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.mobilenetwork.models.AttachedDataNetworkResourceId;
+import com.azure.resourcemanager.mobilenetwork.models.SimNameAndProperties;
+import com.azure.resourcemanager.mobilenetwork.models.SimPolicyResourceId;
+import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpProperties;
+import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpPropertiesStaticIp;
+import com.azure.resourcemanager.mobilenetwork.models.SimUploadList;
+import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
+import java.util.Arrays;
+
+/** Samples for Sims BulkUpload. */
+public final class SimsBulkUploadSamples {
+    /*
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkUpload.json
+     */
+    /**
+     * Sample code: Bulk upload SIMs in a SIM group.
+     *
+     * @param manager Entry point to MobileNetworkManager.
+     */
+    public static void bulkUploadSIMsInASIMGroup(com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
+        manager
+            .sims()
+            .bulkUpload(
+                "rg1",
+                "testSimGroup",
+                new SimUploadList()
+                    .withSims(
+                        Arrays
+                            .asList(
+                                new SimNameAndProperties()
+                                    .withName("testSim")
+                                    .withAuthenticationKey("fakeTokenPlaceholder")
+                                    .withOperatorKeyCode("fakeTokenPlaceholder")
+                                    .withInternationalMobileSubscriberIdentity("00000")
+                                    .withIntegratedCircuitCardIdentifier("8900000000000000000")
+                                    .withDeviceType("Video camera")
+                                    .withSimPolicy(
+                                        new SimPolicyResourceId()
+                                            .withId(
+                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
+                                    .withStaticIpConfiguration(
+                                        Arrays
+                                            .asList(
+                                                new SimStaticIpProperties()
+                                                    .withAttachedDataNetwork(
+                                                        new AttachedDataNetworkResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
+                                                    .withSlice(
+                                                        new SliceResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
+                                                    .withStaticIp(
+                                                        new SimStaticIpPropertiesStaticIp()
+                                                            .withIpv4Address("2.4.0.1")))),
+                                new SimNameAndProperties()
+                                    .withName("testSim2")
+                                    .withAuthenticationKey("fakeTokenPlaceholder")
+                                    .withOperatorKeyCode("fakeTokenPlaceholder")
+                                    .withInternationalMobileSubscriberIdentity("00000")
+                                    .withIntegratedCircuitCardIdentifier("8900000000000000001")
+                                    .withDeviceType("Video camera")
+                                    .withSimPolicy(
+                                        new SimPolicyResourceId()
+                                            .withId(
+                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
+                                    .withStaticIpConfiguration(
+                                        Arrays
+                                            .asList(
+                                                new SimStaticIpProperties()
+                                                    .withAttachedDataNetwork(
+                                                        new AttachedDataNetworkResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
+                                                    .withSlice(
+                                                        new SliceResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
+                                                    .withStaticIp(
+                                                        new SimStaticIpPropertiesStaticIp()
+                                                            .withIpv4Address("2.4.0.2")))))),
+                Context.NONE);
+    }
+}
+```
+
+### Sims_BulkUploadEncrypted
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.mobilenetwork.models.AttachedDataNetworkResourceId;
+import com.azure.resourcemanager.mobilenetwork.models.EncryptedSimUploadList;
+import com.azure.resourcemanager.mobilenetwork.models.SimNameAndEncryptedProperties;
+import com.azure.resourcemanager.mobilenetwork.models.SimPolicyResourceId;
+import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpProperties;
+import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpPropertiesStaticIp;
+import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
+import java.util.Arrays;
+
+/** Samples for Sims BulkUploadEncrypted. */
+public final class SimsBulkUploadEncryptedSamples {
+    /*
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkUploadEncrypted.json
+     */
+    /**
+     * Sample code: Bulk upload encrypted SIMs to a SIM group.
+     *
+     * @param manager Entry point to MobileNetworkManager.
+     */
+    public static void bulkUploadEncryptedSIMsToASIMGroup(
+        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
+        manager
+            .sims()
+            .bulkUploadEncrypted(
+                "rg1",
+                "testSimGroup",
+                new EncryptedSimUploadList()
+                    .withVersion(1)
+                    .withAzureKeyIdentifier(1)
+                    .withVendorKeyFingerprint("fakeTokenPlaceholder")
+                    .withEncryptedTransportKey("fakeTokenPlaceholder")
+                    .withSignedTransportKey("fakeTokenPlaceholder")
+                    .withSims(
+                        Arrays
+                            .asList(
+                                new SimNameAndEncryptedProperties()
+                                    .withName("testSim")
+                                    .withEncryptedCredentials("fakeTokenPlaceholder")
+                                    .withInternationalMobileSubscriberIdentity("00000")
+                                    .withIntegratedCircuitCardIdentifier("8900000000000000000")
+                                    .withDeviceType("Video camera")
+                                    .withSimPolicy(
+                                        new SimPolicyResourceId()
+                                            .withId(
+                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
+                                    .withStaticIpConfiguration(
+                                        Arrays
+                                            .asList(
+                                                new SimStaticIpProperties()
+                                                    .withAttachedDataNetwork(
+                                                        new AttachedDataNetworkResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
+                                                    .withSlice(
+                                                        new SliceResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
+                                                    .withStaticIp(
+                                                        new SimStaticIpPropertiesStaticIp()
+                                                            .withIpv4Address("2.4.0.1")))),
+                                new SimNameAndEncryptedProperties()
+                                    .withName("testSim2")
+                                    .withEncryptedCredentials("fakeTokenPlaceholder")
+                                    .withInternationalMobileSubscriberIdentity("00000")
+                                    .withIntegratedCircuitCardIdentifier("8900000000000000001")
+                                    .withDeviceType("Video camera")
+                                    .withSimPolicy(
+                                        new SimPolicyResourceId()
+                                            .withId(
+                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/simPolicies/MySimPolicy"))
+                                    .withStaticIpConfiguration(
+                                        Arrays
+                                            .asList(
+                                                new SimStaticIpProperties()
+                                                    .withAttachedDataNetwork(
+                                                        new AttachedDataNetworkResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/TestPacketCoreCP/packetCoreDataPlanes/TestPacketCoreDP/attachedDataNetworks/TestAttachedDataNetwork"))
+                                                    .withSlice(
+                                                        new SliceResourceId()
+                                                            .withId(
+                                                                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.MobileNetwork/mobileNetworks/testMobileNetwork/slices/testSlice"))
+                                                    .withStaticIp(
+                                                        new SimStaticIpPropertiesStaticIp()
+                                                            .withIpv4Address("2.4.0.2")))))),
+                Context.NONE);
     }
 }
 ```

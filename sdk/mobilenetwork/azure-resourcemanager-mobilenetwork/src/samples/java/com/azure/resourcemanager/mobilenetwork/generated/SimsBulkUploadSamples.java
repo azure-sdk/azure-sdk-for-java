@@ -14,8 +14,8 @@ import com.azure.resourcemanager.mobilenetwork.models.SimUploadList;
 import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
 import java.util.Arrays;
 
-/** Samples for SimOperation BulkUpload. */
-public final class SimOperationBulkUploadSamples {
+/** Samples for Sims BulkUpload. */
+public final class SimsBulkUploadSamples {
     /*
      * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2022-11-01/examples/SimBulkUpload.json
      */
@@ -26,7 +26,7 @@ public final class SimOperationBulkUploadSamples {
      */
     public static void bulkUploadSIMsInASIMGroup(com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
         manager
-            .simOperations()
+            .sims()
             .bulkUpload(
                 "rg1",
                 "testSimGroup",
