@@ -22,10 +22,15 @@ import com.azure.core.annotation.UnexpectedResponseExceptionType;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.security.fluent.SecurityConnectorGovernanceRulesOperationsClient;
 import com.azure.resourcemanager.security.fluent.models.GovernanceRuleInner;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -99,9 +104,9 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security"
                 + "/securityConnectors/{securityConnectorName}/providers/Microsoft.Security/governanceRules/{ruleId}")
-        @ExpectedResponses({200, 204})
+        @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
+        Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -112,16 +117,16 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId along with {@link Response} on successful
+     * @return a specific governance rule for the requested scope by ruleId along with {@link Response} on successful
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -169,17 +174,17 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId along with {@link Response} on successful
+     * @return a specific governance rule for the requested scope by ruleId along with {@link Response} on successful
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -224,16 +229,16 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId on successful completion of {@link Mono}.
+     * @return a specific governance rule for the requested scope by ruleId on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GovernanceRuleInner> getAsync(String resourceGroupName, String securityConnectorName, String ruleId) {
@@ -242,17 +247,17 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId along with {@link Response}.
+     * @return a specific governance rule for the requested scope by ruleId along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GovernanceRuleInner> getWithResponse(
@@ -261,16 +266,16 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId.
+     * @return a specific governance rule for the requested scope by ruleId.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public GovernanceRuleInner get(String resourceGroupName, String securityConnectorName, String ruleId) {
@@ -278,18 +283,17 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Creates or update a security GovernanceRule on the given security connector.
+     * Creates or updates a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return governance rule over a given scope along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GovernanceRuleInner>> createOrUpdateWithResponseAsync(
@@ -342,19 +346,18 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Creates or update a security GovernanceRule on the given security connector.
+     * Creates or updates a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return governance rule over a given scope along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GovernanceRuleInner>> createOrUpdateWithResponseAsync(
@@ -408,17 +411,17 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Creates or update a security GovernanceRule on the given security connector.
+     * Creates or updates a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope on successful completion of {@link Mono}.
+     * @return governance rule over a given scope on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GovernanceRuleInner> createOrUpdateAsync(
@@ -428,18 +431,18 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Creates or update a security GovernanceRule on the given security connector.
+     * Creates or updates a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope along with {@link Response}.
+     * @return governance rule over a given scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GovernanceRuleInner> createOrUpdateWithResponse(
@@ -454,17 +457,17 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Creates or update a security GovernanceRule on the given security connector.
+     * Creates or updates a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope.
+     * @return governance rule over a given scope.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public GovernanceRuleInner createOrUpdate(
@@ -475,19 +478,19 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName, String securityConnectorName, String ruleId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -529,12 +532,12 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -542,7 +545,7 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -581,12 +584,96 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
     }
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String securityConnectorName, String ruleId) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, securityConnectorName, ruleId);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Delete a Governance rule over a given scope.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param securityConnectorName The security connector name.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, securityConnectorName, ruleId, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Delete a Governance rule over a given scope.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param securityConnectorName The security connector name.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String securityConnectorName, String ruleId) {
+        return beginDeleteAsync(resourceGroupName, securityConnectorName, ruleId).getSyncPoller();
+    }
+
+    /**
+     * Delete a Governance rule over a given scope.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param securityConnectorName The security connector name.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
+        return beginDeleteAsync(resourceGroupName, securityConnectorName, ruleId, context).getSyncPoller();
+    }
+
+    /**
+     * Delete a Governance rule over a given scope.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param securityConnectorName The security connector name.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -594,42 +681,62 @@ public final class SecurityConnectorGovernanceRulesOperationsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String securityConnectorName, String ruleId) {
-        return deleteWithResponseAsync(resourceGroupName, securityConnectorName, ruleId)
-            .flatMap(ignored -> Mono.empty());
+        return beginDeleteAsync(resourceGroupName, securityConnectorName, ruleId)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, securityConnectorName, ruleId, context).block();
+        return beginDeleteAsync(resourceGroupName, securityConnectorName, ruleId, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String securityConnectorName, String ruleId) {
-        deleteWithResponse(resourceGroupName, securityConnectorName, ruleId, Context.NONE);
+        deleteAsync(resourceGroupName, securityConnectorName, ruleId).block();
+    }
+
+    /**
+     * Delete a Governance rule over a given scope.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param securityConnectorName The security connector name.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
+        deleteAsync(resourceGroupName, securityConnectorName, ruleId, context).block();
     }
 }
