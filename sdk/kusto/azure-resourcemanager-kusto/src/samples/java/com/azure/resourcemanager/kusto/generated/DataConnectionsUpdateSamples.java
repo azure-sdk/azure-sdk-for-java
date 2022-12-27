@@ -6,15 +6,47 @@ package com.azure.resourcemanager.kusto.generated;
 
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.kusto.models.BlobStorageEventType;
+import com.azure.resourcemanager.kusto.models.CosmosDbDataConnection;
 import com.azure.resourcemanager.kusto.models.DatabaseRouting;
 import com.azure.resourcemanager.kusto.models.EventGridDataConnection;
 import com.azure.resourcemanager.kusto.models.EventGridDataFormat;
 import com.azure.resourcemanager.kusto.models.EventHubDataConnection;
+import java.time.OffsetDateTime;
 
 /** Samples for DataConnections Update. */
 public final class DataConnectionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/azure-kusto/resource-manager/Microsoft.Kusto/stable/2022-07-07/examples/KustoDataConnectionsUpdate.json
+     * x-ms-original-file: specification/azure-kusto/resource-manager/Microsoft.Kusto/stable/2022-11-11/examples/KustoDataConnectionsCosmosDbUpdate.json
+     */
+    /**
+     * Sample code: KustoDataConnectionsCosmosDbUpdate.
+     *
+     * @param manager Entry point to KustoManager.
+     */
+    public static void kustoDataConnectionsCosmosDbUpdate(com.azure.resourcemanager.kusto.KustoManager manager) {
+        manager
+            .dataConnections()
+            .update(
+                "kustorptest",
+                "kustoCluster",
+                "KustoDatabase1",
+                "dataConnectionTest",
+                new CosmosDbDataConnection()
+                    .withLocation("westus")
+                    .withTableName("TestTable")
+                    .withMappingRuleName("TestMapping")
+                    .withManagedIdentityResourceId(
+                        "/subscriptions/12345678-1234-1234-1234-123456789098/resourceGroups/kustorptest/providers/Microsoft.ManagedIdentity/userAssignedIdentities/managedidentityTest1")
+                    .withCosmosDbAccountResourceId(
+                        "/subscriptions/12345678-1234-1234-1234-123456789098/resourceGroups/kustorptest/providers/Microsoft.DocumentDb/databaseAccounts/cosmosDbAccountTest1")
+                    .withCosmosDbDatabase("cosmosDbDatabaseTest")
+                    .withCosmosDbContainer("cosmosDbContainerTest")
+                    .withRetrievalStartDate(OffsetDateTime.parse("2022-07-29T12:00:00.6554616Z")),
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/azure-kusto/resource-manager/Microsoft.Kusto/stable/2022-11-11/examples/KustoDataConnectionsUpdate.json
      */
     /**
      * Sample code: KustoDataConnectionsUpdate.
@@ -40,7 +72,7 @@ public final class DataConnectionsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/azure-kusto/resource-manager/Microsoft.Kusto/stable/2022-07-07/examples/KustoDataConnectionsEventGridUpdate.json
+     * x-ms-original-file: specification/azure-kusto/resource-manager/Microsoft.Kusto/stable/2022-11-11/examples/KustoDataConnectionsEventGridUpdate.json
      */
     /**
      * Sample code: KustoDataConnectionsEventGridUpdate.
