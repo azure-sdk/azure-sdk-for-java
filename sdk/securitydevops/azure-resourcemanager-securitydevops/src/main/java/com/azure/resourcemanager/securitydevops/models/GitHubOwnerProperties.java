@@ -13,7 +13,7 @@ public final class GitHubOwnerProperties {
     /*
      * The provisioningState property.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
@@ -33,17 +33,6 @@ public final class GitHubOwnerProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: The provisioningState property.
-     *
-     * @param provisioningState the provisioningState value to set.
-     * @return the GitHubOwnerProperties object itself.
-     */
-    public GitHubOwnerProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**

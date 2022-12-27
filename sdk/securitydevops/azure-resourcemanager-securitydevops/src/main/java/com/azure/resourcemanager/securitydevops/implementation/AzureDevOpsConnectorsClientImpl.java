@@ -65,7 +65,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface AzureDevOpsConnectorsService {
+    public interface AzureDevOpsConnectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"

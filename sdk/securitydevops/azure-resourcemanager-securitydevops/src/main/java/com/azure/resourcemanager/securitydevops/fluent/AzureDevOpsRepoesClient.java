@@ -224,7 +224,7 @@ public interface AzureDevOpsRepoesClient {
         Context context);
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
@@ -245,14 +245,14 @@ public interface AzureDevOpsRepoesClient {
         String azureDevOpsRepoName);
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -270,7 +270,7 @@ public interface AzureDevOpsRepoesClient {
         Context context);
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
@@ -291,14 +291,14 @@ public interface AzureDevOpsRepoesClient {
         String azureDevOpsRepoName);
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

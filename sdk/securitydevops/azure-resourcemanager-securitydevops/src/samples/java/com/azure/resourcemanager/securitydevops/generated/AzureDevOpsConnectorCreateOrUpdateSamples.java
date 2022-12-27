@@ -29,7 +29,7 @@ public final class AzureDevOpsConnectorCreateOrUpdateSamples {
             .withExistingResourceGroup("westusrg")
             .withProperties(
                 new AzureDevOpsConnectorProperties()
-                    .withAuthorization(new AuthorizationInfo().withCode("00000000000000000000"))
+                    .withAuthorization(new AuthorizationInfo().withCode("fakeTokenPlaceholder"))
                     .withOrgs(
                         Arrays
                             .asList(
