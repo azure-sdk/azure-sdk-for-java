@@ -16,6 +16,10 @@ public final class ThreatIntelligenceMetrics {
     @JsonProperty(value = "properties")
     private ThreatIntelligenceMetric properties;
 
+    /** Creates an instance of ThreatIntelligenceMetrics class. */
+    public ThreatIntelligenceMetrics() {
+    }
+
     /**
      * Get the properties property: Threat intelligence metrics.
      *

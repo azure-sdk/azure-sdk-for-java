@@ -12,6 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
@@ -125,6 +126,16 @@ public final class NrtAlertRuleProperties {
      */
     @JsonProperty(value = "eventGroupingSettings")
     private EventGroupingSettings eventGroupingSettings;
+
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /** Creates an instance of NrtAlertRuleProperties class. */
+    public NrtAlertRuleProperties() {
+    }
 
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
@@ -464,6 +475,26 @@ public final class NrtAlertRuleProperties {
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleProperties object itself.
+     */
+    public NrtAlertRuleProperties withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -502,6 +533,9 @@ public final class NrtAlertRuleProperties {
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 

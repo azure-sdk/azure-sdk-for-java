@@ -63,6 +63,10 @@ public final class ThreatIntelligenceAlertRuleProperties {
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /** Creates an instance of ThreatIntelligenceAlertRuleProperties class. */
+    public ThreatIntelligenceAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
      *

@@ -19,6 +19,10 @@ public final class MstiDataConnectorProperties extends DataConnectorTenantId {
     @JsonProperty(value = "dataTypes", required = true)
     private MstiDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of MstiDataConnectorProperties class. */
+    public MstiDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

@@ -23,6 +23,10 @@ public final class PlaybookActionProperties {
     @JsonProperty(value = "tenantId")
     private UUID tenantId;
 
+    /** Creates an instance of PlaybookActionProperties class. */
+    public PlaybookActionProperties() {
+    }
+
     /**
      * Get the logicAppResourceId property: The resource id of the playbook resource.
      *

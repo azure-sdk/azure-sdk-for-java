@@ -103,6 +103,10 @@ public final class AnomalySecurityMLAnalyticsSettingsProperties {
     @JsonProperty(value = "settingsDefinitionId")
     private UUID settingsDefinitionId;
 
+    /** Creates an instance of AnomalySecurityMLAnalyticsSettingsProperties class. */
+    public AnomalySecurityMLAnalyticsSettingsProperties() {
+    }
+
     /**
      * Get the description property: The description of the SecurityMLAnalyticsSettings.
      *

@@ -17,6 +17,10 @@ public final class ActionResponseInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private ActionResponseProperties innerProperties;
 
+    /** Creates an instance of ActionResponseInner class. */
+    public ActionResponseInner() {
+    }
+
     /**
      * Get the innerProperties property: Action properties for get request.
      *

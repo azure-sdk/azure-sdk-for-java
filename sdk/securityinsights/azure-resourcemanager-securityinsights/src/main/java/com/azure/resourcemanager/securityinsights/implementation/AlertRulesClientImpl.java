@@ -58,7 +58,7 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsAler")
-    private interface AlertRulesService {
+    public interface AlertRulesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -437,22 +437,6 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the alert rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AlertRuleInner get(String resourceGroupName, String workspaceName, String ruleId) {
-        return getAsync(resourceGroupName, workspaceName, ruleId).block();
-    }
-
-    /**
-     * Gets the alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -463,6 +447,22 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
     public Response<AlertRuleInner> getWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, ruleId, context).block();
+    }
+
+    /**
+     * Gets the alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the alert rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AlertRuleInner get(String resourceGroupName, String workspaceName, String ruleId) {
+        return getWithResponse(resourceGroupName, workspaceName, ruleId, Context.NONE).getValue();
     }
 
     /**
@@ -609,24 +609,6 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
      * @param alertRule The alert rule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return alert rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AlertRuleInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, ruleId, alertRule).block();
-    }
-
-    /**
-     * Creates or updates the alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
-     * @param alertRule The alert rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -637,6 +619,24 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
     public Response<AlertRuleInner> createOrUpdateWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, ruleId, alertRule, context).block();
+    }
+
+    /**
+     * Creates or updates the alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @param alertRule The alert rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return alert rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AlertRuleInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, alertRule, Context.NONE).getValue();
     }
 
     /**
@@ -765,21 +765,6 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String ruleId) {
-        deleteAsync(resourceGroupName, workspaceName, ruleId).block();
-    }
-
-    /**
-     * Delete the alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -790,6 +775,21 @@ public final class AlertRulesClientImpl implements AlertRulesClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, ruleId, context).block();
+    }
+
+    /**
+     * Delete the alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String ruleId) {
+        deleteWithResponse(resourceGroupName, workspaceName, ruleId, Context.NONE);
     }
 
     /**
