@@ -1,7 +1,6 @@
 ## Generate autorest code
 
 ```yaml
-require: https://github.com/Azure/azure-rest-api-specs/blob/038922fd638b28f04ad706a916b486f8392c7cef/specification/loadtestservice/data-plane/readme.md
 java: true
 data-plane: true
 title: LoadTestingClient
@@ -14,5 +13,6 @@ generate-builder-per-client: false
 partial-update: true
 output-folder: $(azure-sdk-for-java-folder)/sdk/loadtesting/azure-developer-loadtesting
 service-versions:
-- '2022-11-01'
+  - '2022-11-01'
+require: /mnt/vss/_work/1/s/azure-rest-api-specs/specification/loadtestservice/data-plane/readme.md
 ```
