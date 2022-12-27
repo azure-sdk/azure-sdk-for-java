@@ -72,7 +72,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      */
     @Host("{$host}")
     @ServiceInterface(name = "SynapseManagementCli")
-    private interface WorkspaceManagedSqlServerEncryptionProtectorsService {
+    public interface WorkspaceManagedSqlServerEncryptionProtectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
@@ -148,7 +148,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -205,7 +207,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -263,7 +267,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -277,35 +283,13 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     private Mono<EncryptionProtectorInner> getAsync(
         String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, encryptionProtectorName)
-            .flatMap(
-                (Response<EncryptionProtectorInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param encryptionProtectorName The name of the encryption protector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's encryption protector.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EncryptionProtectorInner get(
-        String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName) {
-        return getAsync(resourceGroupName, workspaceName, encryptionProtectorName).block();
-    }
-
-    /**
-     * Get workspace managed sql server's encryption protector.
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -326,7 +310,28 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param encryptionProtectorName The name of the encryption protector.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return workspace managed sql server's encryption protector.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EncryptionProtectorInner get(
+        String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName) {
+        return getWithResponse(resourceGroupName, workspaceName, encryptionProtectorName, Context.NONE).getValue();
+    }
+
+    /**
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -392,7 +397,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -457,7 +464,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -487,7 +496,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -521,7 +532,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -543,7 +556,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -567,7 +582,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -590,7 +607,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -615,7 +634,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -636,7 +657,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -660,7 +683,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -719,7 +744,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -776,7 +803,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -793,7 +822,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -813,7 +844,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -829,7 +862,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -847,7 +882,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -901,7 +938,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -956,7 +995,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -978,7 +1019,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1004,7 +1047,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1021,7 +1066,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1042,7 +1089,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1061,7 +1110,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1084,7 +1135,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1100,7 +1153,9 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     }
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1122,7 +1177,8 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1158,7 +1214,8 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
