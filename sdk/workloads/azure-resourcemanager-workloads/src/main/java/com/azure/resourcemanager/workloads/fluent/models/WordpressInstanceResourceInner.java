@@ -6,6 +6,7 @@ package com.azure.resourcemanager.workloads.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.workloads.models.ApplicationProvisioningState;
 import com.azure.resourcemanager.workloads.models.WordpressVersions;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +20,16 @@ public final class WordpressInstanceResourceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WordpressInstanceResourceProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of WordpressInstanceResourceInner class. */
+    public WordpressInstanceResourceInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
@@ -26,6 +37,15 @@ public final class WordpressInstanceResourceInner extends ProxyResource {
      */
     private WordpressInstanceResourceProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

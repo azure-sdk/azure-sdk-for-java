@@ -34,6 +34,10 @@ public final class OsImageProfile {
     @JsonProperty(value = "version")
     private OSImageVersion version;
 
+    /** Creates an instance of OsImageProfile class. */
+    public OsImageProfile() {
+    }
+
     /**
      * Get the publisher property: OS image publisher.
      *

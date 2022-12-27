@@ -17,6 +17,6 @@ public final class WordpressInstancesDeleteSamples {
      * @param manager Entry point to WorkloadsManager.
      */
     public static void workloads(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.wordpressInstances().deleteWithResponse("test-rg", "wp39", Context.NONE);
+        manager.wordpressInstances().deleteByResourceGroupWithResponse("test-rg", "wp39", Context.NONE);
     }
 }

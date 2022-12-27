@@ -45,6 +45,16 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
     @JsonProperty(value = "highAvailabilityConfig")
     private HighAvailabilityConfiguration highAvailabilityConfig;
 
+    /*
+     * The storage configuration.
+     */
+    @JsonProperty(value = "storageConfiguration")
+    private StorageConfiguration storageConfiguration;
+
+    /** Creates an instance of ThreeTierConfiguration class. */
+    public ThreeTierConfiguration() {
+    }
+
     /**
      * Get the networkConfiguration property: Network configuration common to all servers.
      *
@@ -145,6 +155,26 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
         return this;
     }
 
+    /**
+     * Get the storageConfiguration property: The storage configuration.
+     *
+     * @return the storageConfiguration value.
+     */
+    public StorageConfiguration storageConfiguration() {
+        return this.storageConfiguration;
+    }
+
+    /**
+     * Set the storageConfiguration property: The storage configuration.
+     *
+     * @param storageConfiguration the storageConfiguration value to set.
+     * @return the ThreeTierConfiguration object itself.
+     */
+    public ThreeTierConfiguration withStorageConfiguration(StorageConfiguration storageConfiguration) {
+        this.storageConfiguration = storageConfiguration;
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public ThreeTierConfiguration withAppResourceGroup(String appResourceGroup) {
@@ -189,6 +219,9 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
         }
         if (highAvailabilityConfig() != null) {
             highAvailabilityConfig().validate();
+        }
+        if (storageConfiguration() != null) {
+            storageConfiguration().validate();
         }
     }
 

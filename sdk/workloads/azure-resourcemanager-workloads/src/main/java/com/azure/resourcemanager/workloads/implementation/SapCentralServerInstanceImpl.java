@@ -12,6 +12,7 @@ import com.azure.resourcemanager.workloads.models.CentralServerVmDetails;
 import com.azure.resourcemanager.workloads.models.EnqueueReplicationServerProperties;
 import com.azure.resourcemanager.workloads.models.EnqueueServerProperties;
 import com.azure.resourcemanager.workloads.models.GatewayServerProperties;
+import com.azure.resourcemanager.workloads.models.LoadBalancerDetails;
 import com.azure.resourcemanager.workloads.models.MessageServerProperties;
 import com.azure.resourcemanager.workloads.models.SapCentralServerInstance;
 import com.azure.resourcemanager.workloads.models.SapHealthState;
@@ -88,6 +89,10 @@ public final class SapCentralServerInstanceImpl
 
     public String kernelPatch() {
         return this.innerModel().kernelPatch();
+    }
+
+    public LoadBalancerDetails loadBalancerDetails() {
+        return this.innerModel().loadBalancerDetails();
     }
 
     public List<CentralServerVmDetails> vmDetails() {
