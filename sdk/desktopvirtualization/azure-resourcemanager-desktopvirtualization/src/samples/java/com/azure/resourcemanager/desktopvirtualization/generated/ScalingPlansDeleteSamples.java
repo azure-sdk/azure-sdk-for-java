@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans Delete. */
 public final class ScalingPlansDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2022-10-14-preview/examples/ScalingPlan_Delete.json
      */
     /**
      * Sample code: ScalingPlans_Delete.
@@ -18,6 +18,6 @@ public final class ScalingPlansDeleteSamples {
      */
     public static void scalingPlansDelete(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.scalingPlans().deleteWithResponse("resourceGroup1", "scalingPlan1", Context.NONE);
+        manager.scalingPlans().deleteByResourceGroupWithResponse("resourceGroup1", "scalingPlan1", Context.NONE);
     }
 }

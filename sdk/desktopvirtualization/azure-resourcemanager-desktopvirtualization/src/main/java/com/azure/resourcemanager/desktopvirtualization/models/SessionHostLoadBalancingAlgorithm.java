@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SessionHostLoadBalancingAlgorithm. */
+/** Load balancing algorithm for ramp up period. */
 public final class SessionHostLoadBalancingAlgorithm extends ExpandableStringEnum<SessionHostLoadBalancingAlgorithm> {
     /** Static value BreadthFirst for SessionHostLoadBalancingAlgorithm. */
     public static final SessionHostLoadBalancingAlgorithm BREADTH_FIRST = fromString("BreadthFirst");
