@@ -409,18 +409,39 @@ public interface SecurityCenter {
     SecurityConnectorGovernanceRulesOperationsClient getSecurityConnectorGovernanceRulesOperations();
 
     /**
-     * Gets the SubscriptionGovernanceRulesExecuteStatusClient object to access its operations.
+     * Gets the ManagementGroupGovernanceRulesClient object to access its operations.
      *
-     * @return the SubscriptionGovernanceRulesExecuteStatusClient object.
+     * @return the ManagementGroupGovernanceRulesClient object.
      */
-    SubscriptionGovernanceRulesExecuteStatusClient getSubscriptionGovernanceRulesExecuteStatus();
+    ManagementGroupGovernanceRulesClient getManagementGroupGovernanceRules();
 
     /**
-     * Gets the SecurityConnectorGovernanceRulesExecuteStatusClient object to access its operations.
+     * Gets the ManagementGroupGovernanceRulesOperationsClient object to access its operations.
      *
-     * @return the SecurityConnectorGovernanceRulesExecuteStatusClient object.
+     * @return the ManagementGroupGovernanceRulesOperationsClient object.
      */
-    SecurityConnectorGovernanceRulesExecuteStatusClient getSecurityConnectorGovernanceRulesExecuteStatus();
+    ManagementGroupGovernanceRulesOperationsClient getManagementGroupGovernanceRulesOperations();
+
+    /**
+     * Gets the SubscriptionGovernanceRulesOperationResultsClient object to access its operations.
+     *
+     * @return the SubscriptionGovernanceRulesOperationResultsClient object.
+     */
+    SubscriptionGovernanceRulesOperationResultsClient getSubscriptionGovernanceRulesOperationResults();
+
+    /**
+     * Gets the SecurityConnectorGovernanceRulesOperationResultsClient object to access its operations.
+     *
+     * @return the SecurityConnectorGovernanceRulesOperationResultsClient object.
+     */
+    SecurityConnectorGovernanceRulesOperationResultsClient getSecurityConnectorGovernanceRulesOperationResults();
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesOperationResultsClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesOperationResultsClient object.
+     */
+    ManagementGroupGovernanceRulesOperationResultsClient getManagementGroupGovernanceRulesOperationResults();
 
     /**
      * Gets the GovernanceAssignmentsClient object to access its operations.

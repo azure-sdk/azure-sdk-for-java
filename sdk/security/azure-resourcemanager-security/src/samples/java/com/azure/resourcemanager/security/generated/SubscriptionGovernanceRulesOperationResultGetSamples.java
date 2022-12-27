@@ -6,20 +6,21 @@ package com.azure.resourcemanager.security.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for SubscriptionGovernanceRulesExecuteStatus Get. */
-public final class SubscriptionGovernanceRulesExecuteStatusGetSamples {
+/** Samples for SubscriptionGovernanceRulesOperationResult Get. */
+public final class SubscriptionGovernanceRulesOperationResultGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetGovernanceRuleExecuteStatus_example.json
      */
     /**
-     * Sample code: Get security governanceRules execution status by specific governanceRuleId.
+     * Sample code: Get governance rules long run operation result by specific governance rule ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
+    public static void getGovernanceRulesLongRunOperationResultBySpecificGovernanceRuleID(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .subscriptionGovernanceRulesExecuteStatus()
-            .get("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", "58b33f4f-c8c7-4b01-99cc-d437db4d40dd", Context.NONE);
+            .subscriptionGovernanceRulesOperationResults()
+            .getWithResponse(
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", "58b33f4f-c8c7-4b01-99cc-d437db4d40dd", Context.NONE);
     }
 }

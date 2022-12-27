@@ -172,6 +172,7 @@
 - [CreateOrUpdate](#governancerulesoperation_createorupdate)
 - [Delete](#governancerulesoperation_delete)
 - [Get](#governancerulesoperation_get)
+- [RuleIdExecuteSingleManagementGroup](#governancerulesoperation_ruleidexecutesinglemanagementgroup)
 - [RuleIdExecuteSingleSecurityConnector](#governancerulesoperation_ruleidexecutesinglesecurityconnector)
 - [RuleIdExecuteSingleSubscription](#governancerulesoperation_ruleidexecutesinglesubscription)
 
@@ -231,6 +232,20 @@
 - [Get](#locations_get)
 - [List](#locations_list)
 
+## ManagementGroupGovernanceRule
+
+- [List](#managementgroupgovernancerule_list)
+
+## ManagementGroupGovernanceRulesOperation
+
+- [CreateOrUpdate](#managementgroupgovernancerulesoperation_createorupdate)
+- [Delete](#managementgroupgovernancerulesoperation_delete)
+- [Get](#managementgroupgovernancerulesoperation_get)
+
+## ManagementGroupGovernanceRulesOperationResult
+
+- [Get](#managementgroupgovernancerulesoperationresult_get)
+
 ## MdeOnboardings
 
 - [Get](#mdeonboardings_get)
@@ -286,15 +301,15 @@
 
 - [List](#securityconnectorgovernancerule_list)
 
-## SecurityConnectorGovernanceRulesExecuteStatus
-
-- [Get](#securityconnectorgovernancerulesexecutestatus_get)
-
 ## SecurityConnectorGovernanceRulesOperation
 
 - [CreateOrUpdate](#securityconnectorgovernancerulesoperation_createorupdate)
 - [Delete](#securityconnectorgovernancerulesoperation_delete)
 - [Get](#securityconnectorgovernancerulesoperation_get)
+
+## SecurityConnectorGovernanceRulesOperationResult
+
+- [Get](#securityconnectorgovernancerulesoperationresult_get)
 
 ## SecurityConnectors
 
@@ -365,9 +380,9 @@
 - [List](#subassessments_list)
 - [ListAll](#subassessments_listall)
 
-## SubscriptionGovernanceRulesExecuteStatus
+## SubscriptionGovernanceRulesOperationResult
 
-- [Get](#subscriptiongovernancerulesexecutestatus_get)
+- [Get](#subscriptiongovernancerulesoperationresult_get)
 
 ## Tasks
 
@@ -3088,11 +3103,11 @@ public final class GovernanceAssignmentsGetSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/GetGovernanceAssignment_example.json
      */
     /**
-     * Sample code: Get security governanceAssignment by specific governanceAssignmentKey.
+     * Sample code: Get governanceAssignment by specific governanceAssignmentKey.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceAssignmentBySpecificGovernanceAssignmentKey(
+    public static void getGovernanceAssignmentBySpecificGovernanceAssignmentKey(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceAssignments()
@@ -3116,11 +3131,11 @@ public final class GovernanceAssignmentsListSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/ListGovernanceAssignments_example.json
      */
     /**
-     * Sample code: List security governanceAssignments.
+     * Sample code: List governance assignments.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceAssignments(com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void listGovernanceAssignments(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceAssignments()
             .list(
@@ -3142,11 +3157,11 @@ public final class GovernanceRuleListSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListBySubscriptionGovernanceRules_example.json
      */
     /**
-     * Sample code: List security governanceRules by subscription level scope.
+     * Sample code: List governance rules by subscription level scope.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceRulesBySubscriptionLevelScope(
+    public static void listGovernanceRulesBySubscriptionLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager.governanceRules().list(Context.NONE);
     }
@@ -3172,7 +3187,7 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutGovernanceRule_example.json
      */
     /**
-     * Sample code: Create Governance rule.
+     * Sample code: Create governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
@@ -3182,7 +3197,7 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
             .governanceRulesOperations()
             .define("ad9a8e26-29d9-4829-bb30-e597a58cdbb8")
             .withDisplayName("Admin's rule")
-            .withDescription("A rule on critical recommendations")
+            .withDescription("A rule for critical recommendations")
             .withRemediationTimeframe("7.00:00:00")
             .withIsGracePeriod(true)
             .withRulePriority(200)
@@ -3223,11 +3238,11 @@ public final class GovernanceRulesOperationDeleteSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteGovernanceRule_example.json
      */
     /**
-     * Sample code: Delete security GovernanceRule.
+     * Sample code: Delete governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void deleteSecurityGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void deleteGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.governanceRulesOperations().deleteWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
     }
 }
@@ -3244,13 +3259,35 @@ public final class GovernanceRulesOperationGetSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetGovernanceRule_example.json
      */
     /**
-     * Sample code: Get security governanceRules by specific governanceRuleId.
+     * Sample code: Get a governance rule by its' ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesBySpecificGovernanceRuleId(
-        com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void getAGovernanceRuleByItsID(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.governanceRulesOperations().getWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+    }
+}
+```
+
+### GovernanceRulesOperation_RuleIdExecuteSingleManagementGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for GovernanceRulesOperation RuleIdExecuteSingleManagementGroup. */
+public final class GovernanceRulesOperationRuleIdExecuteSingleManagementGroupSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Execute governance rule.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void executeGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .governanceRulesOperations()
+            .ruleIdExecuteSingleManagementGroup("contoso", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, Context.NONE);
     }
 }
 ```
@@ -3266,7 +3303,7 @@ public final class GovernanceRulesOperationRuleIdExecuteSingleSecurityConnectorS
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Execute Governance rule.
+     * Sample code: Execute governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
@@ -4285,6 +4322,168 @@ public final class LocationsListSamples {
 }
 ```
 
+### ManagementGroupGovernanceRule_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagementGroupGovernanceRule List. */
+public final class ManagementGroupGovernanceRuleListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListByManagementGroupGovernanceRules_example.json
+     */
+    /**
+     * Sample code: List governance rules by management group level scope.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGovernanceRulesByManagementGroupLevelScope(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.managementGroupGovernanceRules().list("contoso", Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperation_CreateOrUpdate
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.Context;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.security.fluent.models.GovernanceRuleInner;
+import com.azure.resourcemanager.security.models.GovernanceRuleEmailNotification;
+import com.azure.resourcemanager.security.models.GovernanceRuleOwnerSource;
+import com.azure.resourcemanager.security.models.GovernanceRuleOwnerSourceType;
+import com.azure.resourcemanager.security.models.GovernanceRuleSourceResourceType;
+import com.azure.resourcemanager.security.models.GovernanceRuleType;
+import java.io.IOException;
+import java.util.Arrays;
+
+/** Samples for ManagementGroupGovernanceRulesOperation CreateOrUpdate. */
+public final class ManagementGroupGovernanceRulesOperationCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Create Governance rule.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager)
+        throws IOException {
+        manager
+            .managementGroupGovernanceRulesOperations()
+            .createOrUpdateWithResponse(
+                "contoso",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                new GovernanceRuleInner()
+                    .withDisplayName("Management group rule")
+                    .withDescription("A rule for a management group")
+                    .withRemediationTimeframe("7.00:00:00")
+                    .withIsGracePeriod(true)
+                    .withRulePriority(200)
+                    .withIsDisabled(false)
+                    .withRuleType(GovernanceRuleType.INTEGRATED)
+                    .withSourceResourceType(GovernanceRuleSourceResourceType.ASSESSMENTS)
+                    .withExcludedScopes(Arrays.asList("/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23"))
+                    .withConditionSets(
+                        Arrays
+                            .asList(
+                                SerializerFactory
+                                    .createDefaultManagementSerializerAdapter()
+                                    .deserialize(
+                                        "{\"conditions\":[{\"operator\":\"In\",\"property\":\"$.AssessmentKey\",\"value\":\"[\\\"b1cd27e0-4ecc-4246-939f-49c426d9d72f\\\","
+                                            + " \\\"fe83f80b-073d-4ccf-93d9-6797eb870201\\\"]\"}]}",
+                                        Object.class,
+                                        SerializerEncoding.JSON)))
+                    .withOwnerSource(
+                        new GovernanceRuleOwnerSource()
+                            .withType(GovernanceRuleOwnerSourceType.MANUALLY)
+                            .withValue("user@contoso.com"))
+                    .withGovernanceEmailNotification(
+                        new GovernanceRuleEmailNotification()
+                            .withDisableManagerEmailNotification(true)
+                            .withDisableOwnerEmailNotification(false)),
+                Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperation_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagementGroupGovernanceRulesOperation Delete. */
+public final class ManagementGroupGovernanceRulesOperationDeleteSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Delete Governance rule.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void deleteGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesOperations()
+            .delete("contoso", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperation_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagementGroupGovernanceRulesOperation Get. */
+public final class ManagementGroupGovernanceRulesOperationGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Get governance rules by specific governanceRuleId.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGovernanceRulesBySpecificGovernanceRuleId(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesOperations()
+            .getWithResponse("contoso", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperationResult_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagementGroupGovernanceRulesOperationResult Get. */
+public final class ManagementGroupGovernanceRulesOperationResultGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRuleExecuteStatus_example.json
+     */
+    /**
+     * Sample code: Get governance rules long run operation result by specific governance rule ID.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGovernanceRulesLongRunOperationResultBySpecificGovernanceRuleID(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesOperationResults()
+            .getWithResponse(
+                "contoso",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
+                Context.NONE);
+    }
+}
+```
+
 ### MdeOnboardings_Get
 
 ```java
@@ -4804,42 +5003,13 @@ public final class SecurityConnectorGovernanceRuleListSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListBySecurityConnectorGovernanceRules_example.json
      */
     /**
-     * Sample code: List security governanceRules by security connector level scope.
+     * Sample code: List governance rules by security connector level scope.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceRulesBySecurityConnectorLevelScope(
+    public static void listGovernanceRulesBySecurityConnectorLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager.securityConnectorGovernanceRules().list("gcpResourceGroup", "gcpconnector", Context.NONE);
-    }
-}
-```
-
-### SecurityConnectorGovernanceRulesExecuteStatus_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for SecurityConnectorGovernanceRulesExecuteStatus Get. */
-public final class SecurityConnectorGovernanceRulesExecuteStatusGetSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRuleExecuteStatus_example.json
-     */
-    /**
-     * Sample code: Get security governanceRules execution status by specific governanceRuleId.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void getSecurityGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager
-            .securityConnectorGovernanceRulesExecuteStatus()
-            .get(
-                "gcpResourceGroup",
-                "gcpconnector",
-                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
-                "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
-                Context.NONE);
     }
 }
 ```
@@ -4920,15 +5090,14 @@ public final class SecurityConnectorGovernanceRulesOperationDeleteSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Delete security GovernanceRule.
+     * Sample code: Delete governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void deleteSecurityGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void deleteGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectorGovernanceRulesOperations()
-            .deleteWithResponse(
-                "gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+            .delete("gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
     }
 }
 ```
@@ -4944,15 +5113,43 @@ public final class SecurityConnectorGovernanceRulesOperationGetSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Get security governanceRules by specific governanceRuleId.
+     * Sample code: Get a governance rule by its' ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesBySpecificGovernanceRuleId(
-        com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void getAGovernanceRuleByItsID(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectorGovernanceRulesOperations()
             .getWithResponse("gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+    }
+}
+```
+
+### SecurityConnectorGovernanceRulesOperationResult_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for SecurityConnectorGovernanceRulesOperationResult Get. */
+public final class SecurityConnectorGovernanceRulesOperationResultGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRuleExecuteStatus_example.json
+     */
+    /**
+     * Sample code: Get governance rules long run operation result by specific governance rule ID.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGovernanceRulesLongRunOperationResultBySpecificGovernanceRuleID(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .securityConnectorGovernanceRulesOperationResults()
+            .getWithResponse(
+                "gcpResourceGroup",
+                "gcpconnector",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
+                Context.NONE);
     }
 }
 ```
@@ -6029,26 +6226,27 @@ public final class SubAssessmentsListAllSamples {
 }
 ```
 
-### SubscriptionGovernanceRulesExecuteStatus_Get
+### SubscriptionGovernanceRulesOperationResult_Get
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for SubscriptionGovernanceRulesExecuteStatus Get. */
-public final class SubscriptionGovernanceRulesExecuteStatusGetSamples {
+/** Samples for SubscriptionGovernanceRulesOperationResult Get. */
+public final class SubscriptionGovernanceRulesOperationResultGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetGovernanceRuleExecuteStatus_example.json
      */
     /**
-     * Sample code: Get security governanceRules execution status by specific governanceRuleId.
+     * Sample code: Get governance rules long run operation result by specific governance rule ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
+    public static void getGovernanceRulesLongRunOperationResultBySpecificGovernanceRuleID(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .subscriptionGovernanceRulesExecuteStatus()
-            .get("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", "58b33f4f-c8c7-4b01-99cc-d437db4d40dd", Context.NONE);
+            .subscriptionGovernanceRulesOperationResults()
+            .getWithResponse(
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", "58b33f4f-c8c7-4b01-99cc-d437db4d40dd", Context.NONE);
     }
 }
 ```

@@ -12,11 +12,11 @@ public final class GovernanceAssignmentsGetSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/GetGovernanceAssignment_example.json
      */
     /**
-     * Sample code: Get security governanceAssignment by specific governanceAssignmentKey.
+     * Sample code: Get governanceAssignment by specific governanceAssignmentKey.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceAssignmentBySpecificGovernanceAssignmentKey(
+    public static void getGovernanceAssignmentBySpecificGovernanceAssignmentKey(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceAssignments()
