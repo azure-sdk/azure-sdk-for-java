@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HealthStateType. */
+/** List of Cache health states. */
 public final class HealthStateType extends ExpandableStringEnum<HealthStateType> {
     /** Static value Unknown for HealthStateType. */
     public static final HealthStateType UNKNOWN = fromString("Unknown");
