@@ -46,26 +46,26 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     private final BatchDeploymentsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of BatchDeploymentsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    BatchDeploymentsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    BatchDeploymentsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(BatchDeploymentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesBatchDeployments to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesBatchDeployments to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface BatchDeploymentsService {
+    public interface BatchDeploymentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
