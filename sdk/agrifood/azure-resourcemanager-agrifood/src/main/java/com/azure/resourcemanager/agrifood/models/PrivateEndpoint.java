@@ -7,17 +7,21 @@ package com.azure.resourcemanager.agrifood.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Private Endpoint resource. */
+/** The private endpoint resource. */
 @Immutable
 public final class PrivateEndpoint {
     /*
-     * The ARM identifier for Private Endpoint
+     * The ARM identifier for private endpoint.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
+    /** Creates an instance of PrivateEndpoint class. */
+    public PrivateEndpoint() {
+    }
+
     /**
-     * Get the id property: The ARM identifier for Private Endpoint.
+     * Get the id property: The ARM identifier for private endpoint.
      *
      * @return the id value.
      */

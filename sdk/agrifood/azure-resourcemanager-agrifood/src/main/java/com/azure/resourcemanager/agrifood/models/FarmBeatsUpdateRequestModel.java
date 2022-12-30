@@ -37,6 +37,10 @@ public final class FarmBeatsUpdateRequestModel {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /** Creates an instance of FarmBeatsUpdateRequestModel class. */
+    public FarmBeatsUpdateRequestModel() {
+    }
+
     /**
      * Get the location property: Geo-location where the resource lives.
      *
