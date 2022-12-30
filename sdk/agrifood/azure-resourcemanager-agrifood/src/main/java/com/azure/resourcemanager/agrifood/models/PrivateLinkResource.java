@@ -53,7 +53,7 @@ public interface PrivateLinkResource {
     List<String> requiredMembers();
 
     /**
-     * Gets the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Gets the requiredZoneNames property: The private link resource private link DNS zone name.
      *
      * @return the requiredZoneNames value.
      */

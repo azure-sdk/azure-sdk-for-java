@@ -25,6 +25,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.agrifood.fluent.LocationsClient;
 import com.azure.resourcemanager.agrifood.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.agrifood.models.CheckNameAvailabilityRequest;
+import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LocationsClient. */
@@ -52,14 +53,14 @@ public final class LocationsClientImpl implements LocationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface LocationsService {
+    public interface LocationsService {
         @Headers({"Content-Type: application/json"})
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.AgFoodPlatform/checkNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckNameAvailabilityResponseInner>> checkNameAvailability(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") CheckNameAvailabilityRequest body,
             @HeaderParam("Accept") String accept,
@@ -170,20 +171,6 @@ public final class LocationsClientImpl implements LocationsClient {
      * Checks the name availability of the resource with requested resource name.
      *
      * @param body NameAvailabilityRequest object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest body) {
-        return checkNameAvailabilityAsync(body).block();
-    }
-
-    /**
-     * Checks the name availability of the resource with requested resource name.
-     *
-     * @param body NameAvailabilityRequest object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -194,5 +181,19 @@ public final class LocationsClientImpl implements LocationsClient {
     public Response<CheckNameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityRequest body, Context context) {
         return checkNameAvailabilityWithResponseAsync(body, context).block();
+    }
+
+    /**
+     * Checks the name availability of the resource with requested resource name.
+     *
+     * @param body NameAvailabilityRequest object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest body) {
+        return checkNameAvailabilityWithResponse(body, Context.NONE).getValue();
     }
 }

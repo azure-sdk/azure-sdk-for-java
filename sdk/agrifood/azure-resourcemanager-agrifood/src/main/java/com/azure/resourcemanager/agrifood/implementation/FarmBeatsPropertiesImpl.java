@@ -11,6 +11,7 @@ import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.agrifood.models.ProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PublicNetworkAccess;
 import com.azure.resourcemanager.agrifood.models.SensorIntegration;
+import java.net.URL;
 
 public final class FarmBeatsPropertiesImpl implements FarmBeatsProperties {
     private FarmBeatsPropertiesInner innerObject;
@@ -23,7 +24,7 @@ public final class FarmBeatsPropertiesImpl implements FarmBeatsProperties {
         this.serviceManager = serviceManager;
     }
 
-    public String instanceUri() {
+    public URL instanceUri() {
         return this.innerModel().instanceUri();
     }
 
