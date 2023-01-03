@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DomainJoinedType. */
+/** True if the HPC Cache is joined to the Active Directory domain. */
 public final class DomainJoinedType extends ExpandableStringEnum<DomainJoinedType> {
     /** Static value Yes for DomainJoinedType. */
     public static final DomainJoinedType YES = fromString("Yes");

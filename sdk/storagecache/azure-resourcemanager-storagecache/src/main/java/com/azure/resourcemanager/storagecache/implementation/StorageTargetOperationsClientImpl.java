@@ -55,7 +55,7 @@ public final class StorageTargetOperationsClientImpl implements StorageTargetOpe
      */
     @Host("{$host}")
     @ServiceInterface(name = "StorageCacheManageme")
-    private interface StorageTargetOperationsService {
+    public interface StorageTargetOperationsService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"

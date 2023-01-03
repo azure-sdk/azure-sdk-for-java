@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OperationalStateType. */
+/** Storage target operational state. */
 public final class OperationalStateType extends ExpandableStringEnum<OperationalStateType> {
     /** Static value Ready for OperationalStateType. */
     public static final OperationalStateType READY = fromString("Ready");

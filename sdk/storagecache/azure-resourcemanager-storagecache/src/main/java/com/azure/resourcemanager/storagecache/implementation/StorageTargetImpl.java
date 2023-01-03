@@ -201,6 +201,14 @@ public final class StorageTargetImpl implements StorageTarget, StorageTarget.Def
         serviceManager.storageTargets().dnsRefresh(resourceGroupName, cacheName, storageTargetName, context);
     }
 
+    public void restoreDefaults() {
+        serviceManager.storageTargets().restoreDefaults(resourceGroupName, cacheName, storageTargetName);
+    }
+
+    public void restoreDefaults(Context context) {
+        serviceManager.storageTargets().restoreDefaults(resourceGroupName, cacheName, storageTargetName, context);
+    }
+
     public StorageTargetImpl withJunctions(List<NamespaceJunction> junctions) {
         this.innerModel().withJunctions(junctions);
         return this;
