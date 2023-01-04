@@ -65,7 +65,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ContainerAppsSourceControlsService {
+    public interface ContainerAppsSourceControlsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"

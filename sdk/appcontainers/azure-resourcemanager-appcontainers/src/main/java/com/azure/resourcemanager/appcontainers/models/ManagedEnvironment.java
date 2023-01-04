@@ -8,6 +8,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.appcontainers.fluent.models.DaprResiliencyDefaultsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,13 @@ public interface ManagedEnvironment {
     EnvironmentSkuProperties sku();
 
     /**
+     * Gets the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -92,6 +100,13 @@ public interface ManagedEnvironment {
      * @return the vnetConfiguration value.
      */
     VnetConfiguration vnetConfiguration();
+
+    /**
+     * Gets the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+     *
+     * @return the daprResiliencyDefaults value.
+     */
+    DaprResiliencyDefaults daprResiliencyDefaults();
 
     /**
      * Gets the deploymentErrors property: Any errors that occurred during deployment or deployment validation.
@@ -149,6 +164,20 @@ public interface ManagedEnvironment {
      * @return the workloadProfiles value.
      */
     List<WorkloadProfile> workloadProfiles();
+
+    /**
+     * Gets the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @return the kedaConfiguration value.
+     */
+    KedaConfiguration kedaConfiguration();
+
+    /**
+     * Gets the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @return the daprConfiguration value.
+     */
+    DaprConfiguration daprConfiguration();
 
     /**
      * Gets the region of the resource.
@@ -225,13 +254,17 @@ public interface ManagedEnvironment {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSku,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithDaprAIInstrumentationKey,
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
+                DefinitionStages.WithDaprResiliencyDefaults,
                 DefinitionStages.WithAppLogsConfiguration,
                 DefinitionStages.WithZoneRedundant,
                 DefinitionStages.WithCustomDomainConfiguration,
-                DefinitionStages.WithWorkloadProfiles {
+                DefinitionStages.WithWorkloadProfiles,
+                DefinitionStages.WithKedaConfiguration,
+                DefinitionStages.WithDaprConfiguration {
             /**
              * Executes the create request.
              *
@@ -267,6 +300,16 @@ public interface ManagedEnvironment {
              */
             WithCreate withSku(EnvironmentSkuProperties sku);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
         /** The stage of the ManagedEnvironment definition allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
             /**
@@ -300,6 +343,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withVnetConfiguration(VnetConfiguration vnetConfiguration);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify daprResiliencyDefaults. */
+        interface WithDaprResiliencyDefaults {
+            /**
+             * Specifies the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+             *
+             * @param daprResiliencyDefaults Dapr Resiliency Default Policies.
+             * @return the next definition stage.
+             */
+            WithCreate withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults);
         }
         /** The stage of the ManagedEnvironment definition allowing to specify appLogsConfiguration. */
         interface WithAppLogsConfiguration {
@@ -343,6 +396,26 @@ public interface ManagedEnvironment {
              */
             WithCreate withWorkloadProfiles(List<WorkloadProfile> workloadProfiles);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify kedaConfiguration. */
+        interface WithKedaConfiguration {
+            /**
+             * Specifies the kedaConfiguration property: The configuration of Keda component..
+             *
+             * @param kedaConfiguration The configuration of Keda component.
+             * @return the next definition stage.
+             */
+            WithCreate withKedaConfiguration(KedaConfiguration kedaConfiguration);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify daprConfiguration. */
+        interface WithDaprConfiguration {
+            /**
+             * Specifies the daprConfiguration property: The configuration of Dapr component..
+             *
+             * @param daprConfiguration The configuration of Dapr component.
+             * @return the next definition stage.
+             */
+            WithCreate withDaprConfiguration(DaprConfiguration daprConfiguration);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -355,12 +428,16 @@ public interface ManagedEnvironment {
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithSku,
+            UpdateStages.WithKind,
             UpdateStages.WithDaprAIInstrumentationKey,
             UpdateStages.WithDaprAIConnectionString,
             UpdateStages.WithVnetConfiguration,
+            UpdateStages.WithDaprResiliencyDefaults,
             UpdateStages.WithAppLogsConfiguration,
             UpdateStages.WithCustomDomainConfiguration,
-            UpdateStages.WithWorkloadProfiles {
+            UpdateStages.WithWorkloadProfiles,
+            UpdateStages.WithKedaConfiguration,
+            UpdateStages.WithDaprConfiguration {
         /**
          * Executes the update request.
          *
@@ -398,6 +475,16 @@ public interface ManagedEnvironment {
              */
             Update withSku(EnvironmentSkuProperties sku);
         }
+        /** The stage of the ManagedEnvironment update allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            Update withKind(String kind);
+        }
         /** The stage of the ManagedEnvironment update allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
             /**
@@ -432,6 +519,16 @@ public interface ManagedEnvironment {
              */
             Update withVnetConfiguration(VnetConfiguration vnetConfiguration);
         }
+        /** The stage of the ManagedEnvironment update allowing to specify daprResiliencyDefaults. */
+        interface WithDaprResiliencyDefaults {
+            /**
+             * Specifies the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+             *
+             * @param daprResiliencyDefaults Dapr Resiliency Default Policies.
+             * @return the next definition stage.
+             */
+            Update withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults);
+        }
         /** The stage of the ManagedEnvironment update allowing to specify appLogsConfiguration. */
         interface WithAppLogsConfiguration {
             /**
@@ -463,6 +560,26 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withWorkloadProfiles(List<WorkloadProfile> workloadProfiles);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify kedaConfiguration. */
+        interface WithKedaConfiguration {
+            /**
+             * Specifies the kedaConfiguration property: The configuration of Keda component..
+             *
+             * @param kedaConfiguration The configuration of Keda component.
+             * @return the next definition stage.
+             */
+            Update withKedaConfiguration(KedaConfiguration kedaConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify daprConfiguration. */
+        interface WithDaprConfiguration {
+            /**
+             * Specifies the daprConfiguration property: The configuration of Dapr component..
+             *
+             * @param daprConfiguration The configuration of Dapr component.
+             * @return the next definition stage.
+             */
+            Update withDaprConfiguration(DaprConfiguration daprConfiguration);
         }
     }
     /**

@@ -9,8 +9,10 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentSkuProperties;
+import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,10 +29,16 @@ public final class ManagedEnvironmentInner extends Resource {
     private EnvironmentSkuProperties sku;
 
     /*
+     * Kind of the Environment.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
+    /*
      * Managed environment resource specific properties
      */
     @JsonProperty(value = "properties")
-    private ManagedEnvironmentProperties innerProperties;
+    private ManagedEnvironmentPropertiesInner innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -63,11 +71,31 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
+     * Get the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Kind of the Environment.
+     *
+     * @param kind the kind value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withKind(String kind) {
+        this.kind = kind;
+        return this;
+    }
+
+    /**
      * Get the innerProperties property: Managed environment resource specific properties.
      *
      * @return the innerProperties value.
      */
-    private ManagedEnvironmentProperties innerProperties() {
+    private ManagedEnvironmentPropertiesInner innerProperties() {
         return this.innerProperties;
     }
 
@@ -122,7 +150,7 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withDaprAIInstrumentationKey(String daprAIInstrumentationKey) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withDaprAIInstrumentationKey(daprAIInstrumentationKey);
         return this;
@@ -147,7 +175,7 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withDaprAIConnectionString(String daprAIConnectionString) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withDaprAIConnectionString(daprAIConnectionString);
         return this;
@@ -170,9 +198,32 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withVnetConfiguration(VnetConfiguration vnetConfiguration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withVnetConfiguration(vnetConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+     *
+     * @return the daprResiliencyDefaults value.
+     */
+    public DaprResiliencyDefaultsInner daprResiliencyDefaults() {
+        return this.innerProperties() == null ? null : this.innerProperties().daprResiliencyDefaults();
+    }
+
+    /**
+     * Set the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+     *
+     * @param daprResiliencyDefaults the daprResiliencyDefaults value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
+        }
+        this.innerProperties().withDaprResiliencyDefaults(daprResiliencyDefaults);
         return this;
     }
 
@@ -222,7 +273,7 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withAppLogsConfiguration(appLogsConfiguration);
         return this;
@@ -245,7 +296,7 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withZoneRedundant(Boolean zoneRedundant) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withZoneRedundant(zoneRedundant);
         return this;
@@ -268,7 +319,7 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withCustomDomainConfiguration(customDomainConfiguration);
         return this;
@@ -300,9 +351,55 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withWorkloadProfiles(List<WorkloadProfile> workloadProfiles) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ManagedEnvironmentProperties();
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
         }
         this.innerProperties().withWorkloadProfiles(workloadProfiles);
+        return this;
+    }
+
+    /**
+     * Get the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @return the kedaConfiguration value.
+     */
+    public KedaConfiguration kedaConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().kedaConfiguration();
+    }
+
+    /**
+     * Set the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @param kedaConfiguration the kedaConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withKedaConfiguration(KedaConfiguration kedaConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
+        }
+        this.innerProperties().withKedaConfiguration(kedaConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @return the daprConfiguration value.
+     */
+    public DaprConfiguration daprConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().daprConfiguration();
+    }
+
+    /**
+     * Set the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @param daprConfiguration the daprConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withDaprConfiguration(DaprConfiguration daprConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentPropertiesInner();
+        }
+        this.innerProperties().withDaprConfiguration(daprConfiguration);
         return this;
     }
 

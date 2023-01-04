@@ -37,6 +37,10 @@ import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionRepli
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsSourceControlsClient;
 import com.azure.resourcemanager.appcontainers.fluent.DaprComponentsClient;
+import com.azure.resourcemanager.appcontainers.fluent.DaprResiliencyCircuitBreakerPoliciesClient;
+import com.azure.resourcemanager.appcontainers.fluent.DaprResiliencyRetryPoliciesClient;
+import com.azure.resourcemanager.appcontainers.fluent.DaprResiliencyTimeoutPoliciesClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedCertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
@@ -139,6 +143,78 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.containerAppsAuthConfigs;
     }
 
+    /** The AvailableWorkloadProfilesClient object to access its operations. */
+    private final AvailableWorkloadProfilesClient availableWorkloadProfiles;
+
+    /**
+     * Gets the AvailableWorkloadProfilesClient object to access its operations.
+     *
+     * @return the AvailableWorkloadProfilesClient object.
+     */
+    public AvailableWorkloadProfilesClient getAvailableWorkloadProfiles() {
+        return this.availableWorkloadProfiles;
+    }
+
+    /** The BillingMetersClient object to access its operations. */
+    private final BillingMetersClient billingMeters;
+
+    /**
+     * Gets the BillingMetersClient object to access its operations.
+     *
+     * @return the BillingMetersClient object.
+     */
+    public BillingMetersClient getBillingMeters() {
+        return this.billingMeters;
+    }
+
+    /** The ConnectedEnvironmentsClient object to access its operations. */
+    private final ConnectedEnvironmentsClient connectedEnvironments;
+
+    /**
+     * Gets the ConnectedEnvironmentsClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsClient object.
+     */
+    public ConnectedEnvironmentsClient getConnectedEnvironments() {
+        return this.connectedEnvironments;
+    }
+
+    /** The ConnectedEnvironmentsCertificatesClient object to access its operations. */
+    private final ConnectedEnvironmentsCertificatesClient connectedEnvironmentsCertificates;
+
+    /**
+     * Gets the ConnectedEnvironmentsCertificatesClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsCertificatesClient object.
+     */
+    public ConnectedEnvironmentsCertificatesClient getConnectedEnvironmentsCertificates() {
+        return this.connectedEnvironmentsCertificates;
+    }
+
+    /** The ConnectedEnvironmentsDaprComponentsClient object to access its operations. */
+    private final ConnectedEnvironmentsDaprComponentsClient connectedEnvironmentsDaprComponents;
+
+    /**
+     * Gets the ConnectedEnvironmentsDaprComponentsClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsDaprComponentsClient object.
+     */
+    public ConnectedEnvironmentsDaprComponentsClient getConnectedEnvironmentsDaprComponents() {
+        return this.connectedEnvironmentsDaprComponents;
+    }
+
+    /** The ConnectedEnvironmentsStoragesClient object to access its operations. */
+    private final ConnectedEnvironmentsStoragesClient connectedEnvironmentsStorages;
+
+    /**
+     * Gets the ConnectedEnvironmentsStoragesClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsStoragesClient object.
+     */
+    public ConnectedEnvironmentsStoragesClient getConnectedEnvironmentsStorages() {
+        return this.connectedEnvironmentsStorages;
+    }
+
     /** The ContainerAppsClient object to access its operations. */
     private final ContainerAppsClient containerApps;
 
@@ -173,18 +249,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
      */
     public ContainerAppsRevisionReplicasClient getContainerAppsRevisionReplicas() {
         return this.containerAppsRevisionReplicas;
-    }
-
-    /** The DaprComponentsClient object to access its operations. */
-    private final DaprComponentsClient daprComponents;
-
-    /**
-     * Gets the DaprComponentsClient object to access its operations.
-     *
-     * @return the DaprComponentsClient object.
-     */
-    public DaprComponentsClient getDaprComponents() {
-        return this.daprComponents;
     }
 
     /** The ContainerAppsDiagnosticsClient object to access its operations. */
@@ -259,6 +323,18 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.certificates;
     }
 
+    /** The ManagedCertificatesClient object to access its operations. */
+    private final ManagedCertificatesClient managedCertificates;
+
+    /**
+     * Gets the ManagedCertificatesClient object to access its operations.
+     *
+     * @return the ManagedCertificatesClient object.
+     */
+    public ManagedCertificatesClient getManagedCertificates() {
+        return this.managedCertificates;
+    }
+
     /** The NamespacesClient object to access its operations. */
     private final NamespacesClient namespaces;
 
@@ -269,6 +345,54 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
      */
     public NamespacesClient getNamespaces() {
         return this.namespaces;
+    }
+
+    /** The DaprResiliencyCircuitBreakerPoliciesClient object to access its operations. */
+    private final DaprResiliencyCircuitBreakerPoliciesClient daprResiliencyCircuitBreakerPolicies;
+
+    /**
+     * Gets the DaprResiliencyCircuitBreakerPoliciesClient object to access its operations.
+     *
+     * @return the DaprResiliencyCircuitBreakerPoliciesClient object.
+     */
+    public DaprResiliencyCircuitBreakerPoliciesClient getDaprResiliencyCircuitBreakerPolicies() {
+        return this.daprResiliencyCircuitBreakerPolicies;
+    }
+
+    /** The DaprResiliencyTimeoutPoliciesClient object to access its operations. */
+    private final DaprResiliencyTimeoutPoliciesClient daprResiliencyTimeoutPolicies;
+
+    /**
+     * Gets the DaprResiliencyTimeoutPoliciesClient object to access its operations.
+     *
+     * @return the DaprResiliencyTimeoutPoliciesClient object.
+     */
+    public DaprResiliencyTimeoutPoliciesClient getDaprResiliencyTimeoutPolicies() {
+        return this.daprResiliencyTimeoutPolicies;
+    }
+
+    /** The DaprResiliencyRetryPoliciesClient object to access its operations. */
+    private final DaprResiliencyRetryPoliciesClient daprResiliencyRetryPolicies;
+
+    /**
+     * Gets the DaprResiliencyRetryPoliciesClient object to access its operations.
+     *
+     * @return the DaprResiliencyRetryPoliciesClient object.
+     */
+    public DaprResiliencyRetryPoliciesClient getDaprResiliencyRetryPolicies() {
+        return this.daprResiliencyRetryPolicies;
+    }
+
+    /** The DaprComponentsClient object to access its operations. */
+    private final DaprComponentsClient daprComponents;
+
+    /**
+     * Gets the DaprComponentsClient object to access its operations.
+     *
+     * @return the DaprComponentsClient object.
+     */
+    public DaprComponentsClient getDaprComponents() {
+        return this.daprComponents;
     }
 
     /** The ManagedEnvironmentsStoragesClient object to access its operations. */
@@ -295,78 +419,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.containerAppsSourceControls;
     }
 
-    /** The ConnectedEnvironmentsClient object to access its operations. */
-    private final ConnectedEnvironmentsClient connectedEnvironments;
-
-    /**
-     * Gets the ConnectedEnvironmentsClient object to access its operations.
-     *
-     * @return the ConnectedEnvironmentsClient object.
-     */
-    public ConnectedEnvironmentsClient getConnectedEnvironments() {
-        return this.connectedEnvironments;
-    }
-
-    /** The ConnectedEnvironmentsCertificatesClient object to access its operations. */
-    private final ConnectedEnvironmentsCertificatesClient connectedEnvironmentsCertificates;
-
-    /**
-     * Gets the ConnectedEnvironmentsCertificatesClient object to access its operations.
-     *
-     * @return the ConnectedEnvironmentsCertificatesClient object.
-     */
-    public ConnectedEnvironmentsCertificatesClient getConnectedEnvironmentsCertificates() {
-        return this.connectedEnvironmentsCertificates;
-    }
-
-    /** The ConnectedEnvironmentsDaprComponentsClient object to access its operations. */
-    private final ConnectedEnvironmentsDaprComponentsClient connectedEnvironmentsDaprComponents;
-
-    /**
-     * Gets the ConnectedEnvironmentsDaprComponentsClient object to access its operations.
-     *
-     * @return the ConnectedEnvironmentsDaprComponentsClient object.
-     */
-    public ConnectedEnvironmentsDaprComponentsClient getConnectedEnvironmentsDaprComponents() {
-        return this.connectedEnvironmentsDaprComponents;
-    }
-
-    /** The ConnectedEnvironmentsStoragesClient object to access its operations. */
-    private final ConnectedEnvironmentsStoragesClient connectedEnvironmentsStorages;
-
-    /**
-     * Gets the ConnectedEnvironmentsStoragesClient object to access its operations.
-     *
-     * @return the ConnectedEnvironmentsStoragesClient object.
-     */
-    public ConnectedEnvironmentsStoragesClient getConnectedEnvironmentsStorages() {
-        return this.connectedEnvironmentsStorages;
-    }
-
-    /** The AvailableWorkloadProfilesClient object to access its operations. */
-    private final AvailableWorkloadProfilesClient availableWorkloadProfiles;
-
-    /**
-     * Gets the AvailableWorkloadProfilesClient object to access its operations.
-     *
-     * @return the AvailableWorkloadProfilesClient object.
-     */
-    public AvailableWorkloadProfilesClient getAvailableWorkloadProfiles() {
-        return this.availableWorkloadProfiles;
-    }
-
-    /** The BillingMetersClient object to access its operations. */
-    private final BillingMetersClient billingMeters;
-
-    /**
-     * Gets the BillingMetersClient object to access its operations.
-     *
-     * @return the BillingMetersClient object.
-     */
-    public BillingMetersClient getBillingMeters() {
-        return this.billingMeters;
-    }
-
     /**
      * Initializes an instance of ContainerAppsApiClient client.
      *
@@ -389,27 +441,31 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-06-01-preview";
+        this.apiVersion = "2022-11-01-preview";
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
+        this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
+        this.billingMeters = new BillingMetersClientImpl(this);
+        this.connectedEnvironments = new ConnectedEnvironmentsClientImpl(this);
+        this.connectedEnvironmentsCertificates = new ConnectedEnvironmentsCertificatesClientImpl(this);
+        this.connectedEnvironmentsDaprComponents = new ConnectedEnvironmentsDaprComponentsClientImpl(this);
+        this.connectedEnvironmentsStorages = new ConnectedEnvironmentsStoragesClientImpl(this);
         this.containerApps = new ContainerAppsClientImpl(this);
         this.containerAppsRevisions = new ContainerAppsRevisionsClientImpl(this);
         this.containerAppsRevisionReplicas = new ContainerAppsRevisionReplicasClientImpl(this);
-        this.daprComponents = new DaprComponentsClientImpl(this);
         this.containerAppsDiagnostics = new ContainerAppsDiagnosticsClientImpl(this);
         this.managedEnvironmentDiagnostics = new ManagedEnvironmentDiagnosticsClientImpl(this);
         this.managedEnvironmentsDiagnostics = new ManagedEnvironmentsDiagnosticsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.managedEnvironments = new ManagedEnvironmentsClientImpl(this);
         this.certificates = new CertificatesClientImpl(this);
+        this.managedCertificates = new ManagedCertificatesClientImpl(this);
         this.namespaces = new NamespacesClientImpl(this);
+        this.daprResiliencyCircuitBreakerPolicies = new DaprResiliencyCircuitBreakerPoliciesClientImpl(this);
+        this.daprResiliencyTimeoutPolicies = new DaprResiliencyTimeoutPoliciesClientImpl(this);
+        this.daprResiliencyRetryPolicies = new DaprResiliencyRetryPoliciesClientImpl(this);
+        this.daprComponents = new DaprComponentsClientImpl(this);
         this.managedEnvironmentsStorages = new ManagedEnvironmentsStoragesClientImpl(this);
         this.containerAppsSourceControls = new ContainerAppsSourceControlsClientImpl(this);
-        this.connectedEnvironments = new ConnectedEnvironmentsClientImpl(this);
-        this.connectedEnvironmentsCertificates = new ConnectedEnvironmentsCertificatesClientImpl(this);
-        this.connectedEnvironmentsDaprComponents = new ConnectedEnvironmentsDaprComponentsClientImpl(this);
-        this.connectedEnvironmentsStorages = new ConnectedEnvironmentsStoragesClientImpl(this);
-        this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
-        this.billingMeters = new BillingMetersClientImpl(this);
     }
 
     /**
