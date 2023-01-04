@@ -45,12 +45,12 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.Rep
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionIntentsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationRecoveryPlansImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationRecoveryServicesProvidersImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationStorageClassificationMappingsImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationStorageClassificationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationVaultHealthsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationVaultSettingsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationvCentersImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.SiteRecoveryManagementClientBuilder;
-import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.StorageClassificationMappingsImpl;
-import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.StorageClassificationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.SupportedOperatingSystemsOperationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.TargetComputeSizesImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.MigrationRecoveryPoints;
@@ -74,11 +74,11 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.Replication
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionIntents;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationRecoveryPlans;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationRecoveryServicesProviders;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationStorageClassificationMappings;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationStorageClassifications;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationVaultHealths;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationVaultSettings;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationvCenters;
-import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassificationMappings;
-import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassifications;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.SupportedOperatingSystemsOperations;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.TargetComputeSizes;
 import java.time.Duration;
@@ -126,9 +126,9 @@ public final class SiteRecoveryManager {
 
     private ReplicationRecoveryServicesProviders replicationRecoveryServicesProviders;
 
-    private StorageClassifications storageClassifications;
+    private ReplicationStorageClassifications replicationStorageClassifications;
 
-    private StorageClassificationMappings storageClassificationMappings;
+    private ReplicationStorageClassificationMappings replicationStorageClassificationMappings;
 
     private ReplicationvCenters replicationvCenters;
 
@@ -600,29 +600,31 @@ public final class SiteRecoveryManager {
     }
 
     /**
-     * Gets the resource collection API of StorageClassifications.
+     * Gets the resource collection API of ReplicationStorageClassifications.
      *
-     * @return Resource collection API of StorageClassifications.
+     * @return Resource collection API of ReplicationStorageClassifications.
      */
-    public StorageClassifications storageClassifications() {
-        if (this.storageClassifications == null) {
-            this.storageClassifications =
-                new StorageClassificationsImpl(clientObject.getStorageClassifications(), this);
+    public ReplicationStorageClassifications replicationStorageClassifications() {
+        if (this.replicationStorageClassifications == null) {
+            this.replicationStorageClassifications =
+                new ReplicationStorageClassificationsImpl(clientObject.getReplicationStorageClassifications(), this);
         }
-        return storageClassifications;
+        return replicationStorageClassifications;
     }
 
     /**
-     * Gets the resource collection API of StorageClassificationMappings. It manages StorageClassificationMapping.
+     * Gets the resource collection API of ReplicationStorageClassificationMappings. It manages
+     * StorageClassificationMapping.
      *
-     * @return Resource collection API of StorageClassificationMappings.
+     * @return Resource collection API of ReplicationStorageClassificationMappings.
      */
-    public StorageClassificationMappings storageClassificationMappings() {
-        if (this.storageClassificationMappings == null) {
-            this.storageClassificationMappings =
-                new StorageClassificationMappingsImpl(clientObject.getStorageClassificationMappings(), this);
+    public ReplicationStorageClassificationMappings replicationStorageClassificationMappings() {
+        if (this.replicationStorageClassificationMappings == null) {
+            this.replicationStorageClassificationMappings =
+                new ReplicationStorageClassificationMappingsImpl(
+                    clientObject.getReplicationStorageClassificationMappings(), this);
         }
-        return storageClassificationMappings;
+        return replicationStorageClassificationMappings;
     }
 
     /**

@@ -6,8 +6,8 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for StorageClassificationMappings ListByReplicationStorageClassifications. */
-public final class StorageClassificationMappingsListByReplicationS {
+/** Samples for ReplicationStorageClassificationMappings ListByReplicationStorageClassifications. */
+public final class ReplicationStorageClassificationMappingsListByR {
     /*
      * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_ListByReplicationStorageClassifications.json
      */
@@ -19,7 +19,7 @@ public final class StorageClassificationMappingsListByReplicationS {
     public static void getsTheListOfStorageClassificationMappingsObjectsUnderAStorage(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         manager
-            .storageClassificationMappings()
+            .replicationStorageClassificationMappings()
             .listByReplicationStorageClassifications(
                 "vault1",
                 "resourceGroupPS1",

@@ -6,25 +6,26 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for StorageClassifications Get. */
-public final class StorageClassificationsGetSamples {
+/** Samples for ReplicationStorageClassificationMappings Delete. */
+public final class ReplicationStorageClassificationMappingsDeleteS {
     /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_Get.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Delete.json
      */
     /**
-     * Sample code: Gets the details of a storage classification.
+     * Sample code: Delete a storage classification mapping.
      *
      * @param manager Entry point to SiteRecoveryManager.
      */
-    public static void getsTheDetailsOfAStorageClassification(
+    public static void deleteAStorageClassificationMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         manager
-            .storageClassifications()
-            .getWithResponse(
+            .replicationStorageClassificationMappings()
+            .delete(
                 "vault1",
                 "resourceGroupPS1",
                 "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
                 "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
+                "testStorageMapping",
                 Context.NONE);
     }
 }

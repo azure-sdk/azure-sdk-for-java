@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.StorageClassificationMappingsClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationStorageClassificationMappingsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.StorageClassificationMappingInner;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassificationMappingCollection;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassificationMappingInput;
@@ -39,36 +39,40 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in StorageClassificationMappingsClient. */
-public final class StorageClassificationMappingsClientImpl implements StorageClassificationMappingsClient {
+/**
+ * An instance of this class provides access to all the operations defined in
+ * ReplicationStorageClassificationMappingsClient.
+ */
+public final class ReplicationStorageClassificationMappingsClientImpl
+    implements ReplicationStorageClassificationMappingsClient {
     /** The proxy service used to perform REST calls. */
-    private final StorageClassificationMappingsService service;
+    private final ReplicationStorageClassificationMappingsService service;
 
     /** The service client containing this operation class. */
     private final SiteRecoveryManagementClientImpl client;
 
     /**
-     * Initializes an instance of StorageClassificationMappingsClientImpl.
+     * Initializes an instance of ReplicationStorageClassificationMappingsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    StorageClassificationMappingsClientImpl(SiteRecoveryManagementClientImpl client) {
+    ReplicationStorageClassificationMappingsClientImpl(SiteRecoveryManagementClientImpl client) {
         this.service =
             RestProxy
                 .create(
-                    StorageClassificationMappingsService.class,
+                    ReplicationStorageClassificationMappingsService.class,
                     client.getHttpPipeline(),
                     client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for SiteRecoveryManagementClientStorageClassificationMappings to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for SiteRecoveryManagementClientReplicationStorageClassificationMappings
+     * to be used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "SiteRecoveryManageme")
-    public interface StorageClassificationMappingsService {
+    public interface ReplicationStorageClassificationMappingsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"

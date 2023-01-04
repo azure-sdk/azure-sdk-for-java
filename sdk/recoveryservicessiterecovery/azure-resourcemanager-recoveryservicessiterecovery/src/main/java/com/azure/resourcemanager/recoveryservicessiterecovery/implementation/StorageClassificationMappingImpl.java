@@ -86,7 +86,7 @@ public final class StorageClassificationMappingImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getStorageClassificationMappings()
+                .getReplicationStorageClassificationMappings()
                 .create(
                     resourceName,
                     resourceGroupName,
@@ -102,7 +102,7 @@ public final class StorageClassificationMappingImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getStorageClassificationMappings()
+                .getReplicationStorageClassificationMappings()
                 .create(
                     resourceName,
                     resourceGroupName,
@@ -126,7 +126,7 @@ public final class StorageClassificationMappingImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getStorageClassificationMappings()
+                .getReplicationStorageClassificationMappings()
                 .getWithResponse(
                     resourceName,
                     resourceGroupName,
@@ -142,7 +142,7 @@ public final class StorageClassificationMappingImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getStorageClassificationMappings()
+                .getReplicationStorageClassificationMappings()
                 .getWithResponse(
                     resourceName,
                     resourceGroupName,

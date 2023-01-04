@@ -180,6 +180,20 @@
 - [Purge](#replicationrecoveryservicesproviders_purge)
 - [RefreshProvider](#replicationrecoveryservicesproviders_refreshprovider)
 
+## ReplicationStorageClassificationMappings
+
+- [Create](#replicationstorageclassificationmappings_create)
+- [Delete](#replicationstorageclassificationmappings_delete)
+- [Get](#replicationstorageclassificationmappings_get)
+- [List](#replicationstorageclassificationmappings_list)
+- [ListByReplicationStorageClassifications](#replicationstorageclassificationmappings_listbyreplicationstorageclassifications)
+
+## ReplicationStorageClassifications
+
+- [Get](#replicationstorageclassifications_get)
+- [List](#replicationstorageclassifications_list)
+- [ListByReplicationFabrics](#replicationstorageclassifications_listbyreplicationfabrics)
+
 ## ReplicationVaultHealth
 
 - [Get](#replicationvaulthealth_get)
@@ -199,20 +213,6 @@
 - [List](#replicationvcenters_list)
 - [ListByReplicationFabrics](#replicationvcenters_listbyreplicationfabrics)
 - [Update](#replicationvcenters_update)
-
-## StorageClassificationMappings
-
-- [Create](#storageclassificationmappings_create)
-- [Delete](#storageclassificationmappings_delete)
-- [Get](#storageclassificationmappings_get)
-- [List](#storageclassificationmappings_list)
-- [ListByReplicationStorageClassifications](#storageclassificationmappings_listbyreplicationstorageclassifications)
-
-## StorageClassifications
-
-- [Get](#storageclassifications_get)
-- [List](#storageclassifications_list)
-- [ListByReplicationFabrics](#storageclassifications_listbyreplicationfabrics)
 
 ## SupportedOperatingSystemsOperation
 
@@ -3804,6 +3804,230 @@ public final class ReplicationRecoveryServicesProvidersRefreshProv {
 }
 ```
 
+### ReplicationStorageClassificationMappings_Create
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageMappingInputProperties;
+
+/** Samples for ReplicationStorageClassificationMappings Create. */
+public final class ReplicationStorageClassificationMappingsCreateS {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Create.json
+     */
+    /**
+     * Sample code: Create storage classification mapping.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void createStorageClassificationMapping(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager
+            .replicationStorageClassificationMappings()
+            .define("testStorageMapping")
+            .withExistingReplicationStorageClassification(
+                "vault1",
+                "resourceGroupPS1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09")
+            .withProperties(
+                new StorageMappingInputProperties()
+                    .withTargetStorageClassificationId(
+                        "/Subscriptions/9112a37f-0f3e-46ec-9c00-060c6edca071/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0/replicationStorageClassifications/8891569e-aaef-4a46-a4a0-78c14f2d7b09"))
+            .create();
+    }
+}
+```
+
+### ReplicationStorageClassificationMappings_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassificationMappings Delete. */
+public final class ReplicationStorageClassificationMappingsDeleteS {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Delete.json
+     */
+    /**
+     * Sample code: Delete a storage classification mapping.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void deleteAStorageClassificationMapping(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager
+            .replicationStorageClassificationMappings()
+            .delete(
+                "vault1",
+                "resourceGroupPS1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
+                "testStorageMapping",
+                Context.NONE);
+    }
+}
+```
+
+### ReplicationStorageClassificationMappings_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassificationMappings Get. */
+public final class ReplicationStorageClassificationMappingsGetSamp {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Get.json
+     */
+    /**
+     * Sample code: Gets the details of a storage classification mapping.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheDetailsOfAStorageClassificationMapping(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager
+            .replicationStorageClassificationMappings()
+            .getWithResponse(
+                "vault1",
+                "resourceGroupPS1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
+                "testStorageMapping",
+                Context.NONE);
+    }
+}
+```
+
+### ReplicationStorageClassificationMappings_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassificationMappings List. */
+public final class ReplicationStorageClassificationMappingsListSam {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_List.json
+     */
+    /**
+     * Sample code: Gets the list of storage classification mappings objects under a vault.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfStorageClassificationMappingsObjectsUnderAVault(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationStorageClassificationMappings().list("vault1", "resourceGroupPS1", Context.NONE);
+    }
+}
+```
+
+### ReplicationStorageClassificationMappings_ListByReplicationStorageClassifications
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassificationMappings ListByReplicationStorageClassifications. */
+public final class ReplicationStorageClassificationMappingsListByR {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_ListByReplicationStorageClassifications.json
+     */
+    /**
+     * Sample code: Gets the list of storage classification mappings objects under a storage.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfStorageClassificationMappingsObjectsUnderAStorage(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager
+            .replicationStorageClassificationMappings()
+            .listByReplicationStorageClassifications(
+                "vault1",
+                "resourceGroupPS1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
+                Context.NONE);
+    }
+}
+```
+
+### ReplicationStorageClassifications_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassifications Get. */
+public final class ReplicationStorageClassificationsGetSamples {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_Get.json
+     */
+    /**
+     * Sample code: Gets the details of a storage classification.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheDetailsOfAStorageClassification(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager
+            .replicationStorageClassifications()
+            .getWithResponse(
+                "vault1",
+                "resourceGroupPS1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
+                Context.NONE);
+    }
+}
+```
+
+### ReplicationStorageClassifications_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassifications List. */
+public final class ReplicationStorageClassificationsListSamples {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_List.json
+     */
+    /**
+     * Sample code: Gets the list of storage classification objects under a vault.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfStorageClassificationObjectsUnderAVault(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationStorageClassifications().list("vault1", "resourceGroupPS1", Context.NONE);
+    }
+}
+```
+
+### ReplicationStorageClassifications_ListByReplicationFabrics
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ReplicationStorageClassifications ListByReplicationFabrics. */
+public final class ReplicationStorageClassificationsListByReplicat {
+    /*
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_ListByReplicationFabrics.json
+     */
+    /**
+     * Sample code: Gets the list of storage classification objects under a fabric.
+     *
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfStorageClassificationObjectsUnderAFabric(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager
+            .replicationStorageClassifications()
+            .listByReplicationFabrics(
+                "vault1",
+                "resourceGroupPS1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                Context.NONE);
+    }
+}
+```
+
 ### ReplicationVaultHealth_Get
 
 ```java
@@ -4072,230 +4296,6 @@ public final class ReplicationvCentersUpdateSamples {
                 .getWithResponse("MadhaviVault", "MadhaviVRG", "MadhaviFabric", "esx-78", Context.NONE)
                 .getValue();
         resource.update().withProperties(new UpdateVCenterRequestProperties().withIpAddress("10.150.109.25")).apply();
-    }
-}
-```
-
-### StorageClassificationMappings_Create
-
-```java
-import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageMappingInputProperties;
-
-/** Samples for StorageClassificationMappings Create. */
-public final class StorageClassificationMappingsCreateSamples {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Create.json
-     */
-    /**
-     * Sample code: Create storage classification mapping.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void createStorageClassificationMapping(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager
-            .storageClassificationMappings()
-            .define("testStorageMapping")
-            .withExistingReplicationStorageClassification(
-                "vault1",
-                "resourceGroupPS1",
-                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
-                "8891569e-aaef-4a46-a4a0-78c14f2d7b09")
-            .withProperties(
-                new StorageMappingInputProperties()
-                    .withTargetStorageClassificationId(
-                        "/Subscriptions/9112a37f-0f3e-46ec-9c00-060c6edca071/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0/replicationStorageClassifications/8891569e-aaef-4a46-a4a0-78c14f2d7b09"))
-            .create();
-    }
-}
-```
-
-### StorageClassificationMappings_Delete
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassificationMappings Delete. */
-public final class StorageClassificationMappingsDeleteSamples {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Delete.json
-     */
-    /**
-     * Sample code: Delete a storage classification mapping.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void deleteAStorageClassificationMapping(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager
-            .storageClassificationMappings()
-            .delete(
-                "vault1",
-                "resourceGroupPS1",
-                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
-                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-                "testStorageMapping",
-                Context.NONE);
-    }
-}
-```
-
-### StorageClassificationMappings_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassificationMappings Get. */
-public final class StorageClassificationMappingsGetSamples {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Get.json
-     */
-    /**
-     * Sample code: Gets the details of a storage classification mapping.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void getsTheDetailsOfAStorageClassificationMapping(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager
-            .storageClassificationMappings()
-            .getWithResponse(
-                "vault1",
-                "resourceGroupPS1",
-                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
-                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-                "testStorageMapping",
-                Context.NONE);
-    }
-}
-```
-
-### StorageClassificationMappings_List
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassificationMappings List. */
-public final class StorageClassificationMappingsListSamples {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_List.json
-     */
-    /**
-     * Sample code: Gets the list of storage classification mappings objects under a vault.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void getsTheListOfStorageClassificationMappingsObjectsUnderAVault(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassificationMappings().list("vault1", "resourceGroupPS1", Context.NONE);
-    }
-}
-```
-
-### StorageClassificationMappings_ListByReplicationStorageClassifications
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassificationMappings ListByReplicationStorageClassifications. */
-public final class StorageClassificationMappingsListByReplicationS {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_ListByReplicationStorageClassifications.json
-     */
-    /**
-     * Sample code: Gets the list of storage classification mappings objects under a storage.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void getsTheListOfStorageClassificationMappingsObjectsUnderAStorage(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager
-            .storageClassificationMappings()
-            .listByReplicationStorageClassifications(
-                "vault1",
-                "resourceGroupPS1",
-                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
-                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-                Context.NONE);
-    }
-}
-```
-
-### StorageClassifications_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassifications Get. */
-public final class StorageClassificationsGetSamples {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_Get.json
-     */
-    /**
-     * Sample code: Gets the details of a storage classification.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void getsTheDetailsOfAStorageClassification(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager
-            .storageClassifications()
-            .getWithResponse(
-                "vault1",
-                "resourceGroupPS1",
-                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
-                "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-                Context.NONE);
-    }
-}
-```
-
-### StorageClassifications_List
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassifications List. */
-public final class StorageClassificationsListSamples {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_List.json
-     */
-    /**
-     * Sample code: Gets the list of storage classification objects under a vault.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void getsTheListOfStorageClassificationObjectsUnderAVault(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassifications().list("vault1", "resourceGroupPS1", Context.NONE);
-    }
-}
-```
-
-### StorageClassifications_ListByReplicationFabrics
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for StorageClassifications ListByReplicationFabrics. */
-public final class StorageClassificationsListByReplicationFabricsS {
-    /*
-     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassifications_ListByReplicationFabrics.json
-     */
-    /**
-     * Sample code: Gets the list of storage classification objects under a fabric.
-     *
-     * @param manager Entry point to SiteRecoveryManager.
-     */
-    public static void getsTheListOfStorageClassificationObjectsUnderAFabric(
-        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager
-            .storageClassifications()
-            .listByReplicationFabrics(
-                "vault1",
-                "resourceGroupPS1",
-                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
-                Context.NONE);
     }
 }
 ```

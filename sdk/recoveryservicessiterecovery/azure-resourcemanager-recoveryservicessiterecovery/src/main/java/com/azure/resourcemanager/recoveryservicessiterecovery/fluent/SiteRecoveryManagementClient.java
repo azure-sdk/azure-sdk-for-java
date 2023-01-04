@@ -171,18 +171,18 @@ public interface SiteRecoveryManagementClient {
     ReplicationRecoveryServicesProvidersClient getReplicationRecoveryServicesProviders();
 
     /**
-     * Gets the StorageClassificationsClient object to access its operations.
+     * Gets the ReplicationStorageClassificationsClient object to access its operations.
      *
-     * @return the StorageClassificationsClient object.
+     * @return the ReplicationStorageClassificationsClient object.
      */
-    StorageClassificationsClient getStorageClassifications();
+    ReplicationStorageClassificationsClient getReplicationStorageClassifications();
 
     /**
-     * Gets the StorageClassificationMappingsClient object to access its operations.
+     * Gets the ReplicationStorageClassificationMappingsClient object to access its operations.
      *
-     * @return the StorageClassificationMappingsClient object.
+     * @return the ReplicationStorageClassificationMappingsClient object.
      */
-    StorageClassificationMappingsClient getStorageClassificationMappings();
+    ReplicationStorageClassificationMappingsClient getReplicationStorageClassificationMappings();
 
     /**
      * Gets the ReplicationvCentersClient object to access its operations.

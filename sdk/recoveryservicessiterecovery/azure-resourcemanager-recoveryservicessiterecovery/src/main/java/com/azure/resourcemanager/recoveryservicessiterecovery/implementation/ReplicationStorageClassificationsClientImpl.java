@@ -25,38 +25,43 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.StorageClassificationsClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationStorageClassificationsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.StorageClassificationInner;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassificationCollection;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in StorageClassificationsClient. */
-public final class StorageClassificationsClientImpl implements StorageClassificationsClient {
+/**
+ * An instance of this class provides access to all the operations defined in ReplicationStorageClassificationsClient.
+ */
+public final class ReplicationStorageClassificationsClientImpl implements ReplicationStorageClassificationsClient {
     /** The proxy service used to perform REST calls. */
-    private final StorageClassificationsService service;
+    private final ReplicationStorageClassificationsService service;
 
     /** The service client containing this operation class. */
     private final SiteRecoveryManagementClientImpl client;
 
     /**
-     * Initializes an instance of StorageClassificationsClientImpl.
+     * Initializes an instance of ReplicationStorageClassificationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    StorageClassificationsClientImpl(SiteRecoveryManagementClientImpl client) {
+    ReplicationStorageClassificationsClientImpl(SiteRecoveryManagementClientImpl client) {
         this.service =
             RestProxy
-                .create(StorageClassificationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+                .create(
+                    ReplicationStorageClassificationsService.class,
+                    client.getHttpPipeline(),
+                    client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for SiteRecoveryManagementClientStorageClassifications to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for SiteRecoveryManagementClientReplicationStorageClassifications to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "SiteRecoveryManageme")
-    public interface StorageClassificationsService {
+    public interface ReplicationStorageClassificationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"

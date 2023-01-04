@@ -43,12 +43,12 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.Replication
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationProtectionIntentsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationRecoveryPlansClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationRecoveryServicesProvidersClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationStorageClassificationMappingsClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationStorageClassificationsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationVaultHealthsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationVaultSettingsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationvCentersClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.SiteRecoveryManagementClient;
-import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.StorageClassificationMappingsClient;
-import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.StorageClassificationsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.SupportedOperatingSystemsOperationsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.TargetComputeSizesClient;
 import java.io.IOException;
@@ -351,28 +351,28 @@ public final class SiteRecoveryManagementClientImpl implements SiteRecoveryManag
         return this.replicationRecoveryServicesProviders;
     }
 
-    /** The StorageClassificationsClient object to access its operations. */
-    private final StorageClassificationsClient storageClassifications;
+    /** The ReplicationStorageClassificationsClient object to access its operations. */
+    private final ReplicationStorageClassificationsClient replicationStorageClassifications;
 
     /**
-     * Gets the StorageClassificationsClient object to access its operations.
+     * Gets the ReplicationStorageClassificationsClient object to access its operations.
      *
-     * @return the StorageClassificationsClient object.
+     * @return the ReplicationStorageClassificationsClient object.
      */
-    public StorageClassificationsClient getStorageClassifications() {
-        return this.storageClassifications;
+    public ReplicationStorageClassificationsClient getReplicationStorageClassifications() {
+        return this.replicationStorageClassifications;
     }
 
-    /** The StorageClassificationMappingsClient object to access its operations. */
-    private final StorageClassificationMappingsClient storageClassificationMappings;
+    /** The ReplicationStorageClassificationMappingsClient object to access its operations. */
+    private final ReplicationStorageClassificationMappingsClient replicationStorageClassificationMappings;
 
     /**
-     * Gets the StorageClassificationMappingsClient object to access its operations.
+     * Gets the ReplicationStorageClassificationMappingsClient object to access its operations.
      *
-     * @return the StorageClassificationMappingsClient object.
+     * @return the ReplicationStorageClassificationMappingsClient object.
      */
-    public StorageClassificationMappingsClient getStorageClassificationMappings() {
-        return this.storageClassificationMappings;
+    public ReplicationStorageClassificationMappingsClient getReplicationStorageClassificationMappings() {
+        return this.replicationStorageClassificationMappings;
     }
 
     /** The ReplicationvCentersClient object to access its operations. */
@@ -512,8 +512,8 @@ public final class SiteRecoveryManagementClientImpl implements SiteRecoveryManag
         this.targetComputeSizes = new TargetComputeSizesClientImpl(this);
         this.replicationProtectionContainerMappings = new ReplicationProtectionContainerMappingsClientImpl(this);
         this.replicationRecoveryServicesProviders = new ReplicationRecoveryServicesProvidersClientImpl(this);
-        this.storageClassifications = new StorageClassificationsClientImpl(this);
-        this.storageClassificationMappings = new StorageClassificationMappingsClientImpl(this);
+        this.replicationStorageClassifications = new ReplicationStorageClassificationsClientImpl(this);
+        this.replicationStorageClassificationMappings = new ReplicationStorageClassificationMappingsClientImpl(this);
         this.replicationvCenters = new ReplicationvCentersClientImpl(this);
         this.replicationJobs = new ReplicationJobsClientImpl(this);
         this.replicationPolicies = new ReplicationPoliciesClientImpl(this);

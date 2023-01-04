@@ -6,8 +6,8 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageMappingInputProperties;
 
-/** Samples for StorageClassificationMappings Create. */
-public final class StorageClassificationMappingsCreateSamples {
+/** Samples for ReplicationStorageClassificationMappings Create. */
+public final class ReplicationStorageClassificationMappingsCreateS {
     /*
      * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Create.json
      */
@@ -19,7 +19,7 @@ public final class StorageClassificationMappingsCreateSamples {
     public static void createStorageClassificationMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         manager
-            .storageClassificationMappings()
+            .replicationStorageClassificationMappings()
             .define("testStorageMapping")
             .withExistingReplicationStorageClassification(
                 "vault1",
