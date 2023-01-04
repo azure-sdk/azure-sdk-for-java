@@ -5,56 +5,49 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.DataPolicy;
 import com.azure.resourcemanager.databoxedge.models.StorageAccountStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Represents a Storage Account on the Data Box Edge/Gateway device. */
-@JsonFlatten
 @Fluent
-public class StorageAccountInner extends ArmBaseModel {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(StorageAccountInner.class);
+public final class StorageAccountInner extends ArmBaseModel {
+    /*
+     * The Storage Account properties.
+     */
+    @JsonProperty(value = "properties", required = true)
+    private StorageAccountProperties innerProperties = new StorageAccountProperties();
 
     /*
-     * Description for the storage Account.
+     * Metadata pertaining to creation and last modification of StorageAccount
      */
-    @JsonProperty(value = "properties.description")
-    private String description;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
-    /*
-     * Current status of the storage account
-     */
-    @JsonProperty(value = "properties.storageAccountStatus")
-    private StorageAccountStatus storageAccountStatus;
+    /** Creates an instance of StorageAccountInner class. */
+    public StorageAccountInner() {
+    }
 
-    /*
-     * Data policy of the storage Account.
+    /**
+     * Get the innerProperties property: The Storage Account properties.
+     *
+     * @return the innerProperties value.
      */
-    @JsonProperty(value = "properties.dataPolicy")
-    private DataPolicy dataPolicy;
+    private StorageAccountProperties innerProperties() {
+        return this.innerProperties;
+    }
 
-    /*
-     * Storage Account Credential Id
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of StorageAccount.
+     *
+     * @return the systemData value.
      */
-    @JsonProperty(value = "properties.storageAccountCredentialId")
-    private String storageAccountCredentialId;
-
-    /*
-     * BlobEndpoint of Storage Account
-     */
-    @JsonProperty(value = "properties.blobEndpoint", access = JsonProperty.Access.WRITE_ONLY)
-    private String blobEndpoint;
-
-    /*
-     * The Container Count. Present only for Storage Accounts with DataPolicy
-     * set to Cloud.
-     */
-    @JsonProperty(value = "properties.containerCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer containerCount;
+    public SystemData systemData() {
+        return this.systemData;
+    }
 
     /**
      * Get the description property: Description for the storage Account.
@@ -62,7 +55,7 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the description value.
      */
     public String description() {
-        return this.description;
+        return this.innerProperties() == null ? null : this.innerProperties().description();
     }
 
     /**
@@ -72,7 +65,10 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the StorageAccountInner object itself.
      */
     public StorageAccountInner withDescription(String description) {
-        this.description = description;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StorageAccountProperties();
+        }
+        this.innerProperties().withDescription(description);
         return this;
     }
 
@@ -82,7 +78,7 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the storageAccountStatus value.
      */
     public StorageAccountStatus storageAccountStatus() {
-        return this.storageAccountStatus;
+        return this.innerProperties() == null ? null : this.innerProperties().storageAccountStatus();
     }
 
     /**
@@ -92,7 +88,10 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the StorageAccountInner object itself.
      */
     public StorageAccountInner withStorageAccountStatus(StorageAccountStatus storageAccountStatus) {
-        this.storageAccountStatus = storageAccountStatus;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StorageAccountProperties();
+        }
+        this.innerProperties().withStorageAccountStatus(storageAccountStatus);
         return this;
     }
 
@@ -102,7 +101,7 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the dataPolicy value.
      */
     public DataPolicy dataPolicy() {
-        return this.dataPolicy;
+        return this.innerProperties() == null ? null : this.innerProperties().dataPolicy();
     }
 
     /**
@@ -112,7 +111,10 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the StorageAccountInner object itself.
      */
     public StorageAccountInner withDataPolicy(DataPolicy dataPolicy) {
-        this.dataPolicy = dataPolicy;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StorageAccountProperties();
+        }
+        this.innerProperties().withDataPolicy(dataPolicy);
         return this;
     }
 
@@ -122,7 +124,7 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the storageAccountCredentialId value.
      */
     public String storageAccountCredentialId() {
-        return this.storageAccountCredentialId;
+        return this.innerProperties() == null ? null : this.innerProperties().storageAccountCredentialId();
     }
 
     /**
@@ -132,7 +134,10 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the StorageAccountInner object itself.
      */
     public StorageAccountInner withStorageAccountCredentialId(String storageAccountCredentialId) {
-        this.storageAccountCredentialId = storageAccountCredentialId;
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StorageAccountProperties();
+        }
+        this.innerProperties().withStorageAccountCredentialId(storageAccountCredentialId);
         return this;
     }
 
@@ -142,7 +147,7 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the blobEndpoint value.
      */
     public String blobEndpoint() {
-        return this.blobEndpoint;
+        return this.innerProperties() == null ? null : this.innerProperties().blobEndpoint();
     }
 
     /**
@@ -152,7 +157,7 @@ public class StorageAccountInner extends ArmBaseModel {
      * @return the containerCount value.
      */
     public Integer containerCount() {
-        return this.containerCount;
+        return this.innerProperties() == null ? null : this.innerProperties().containerCount();
     }
 
     /**
@@ -163,5 +168,15 @@ public class StorageAccountInner extends ArmBaseModel {
     @Override
     public void validate() {
         super.validate();
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property innerProperties in model StorageAccountInner"));
+        } else {
+            innerProperties().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(StorageAccountInner.class);
 }
