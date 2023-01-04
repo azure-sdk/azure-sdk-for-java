@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** OfficeATP (Office 365 Advanced Threat Protection) requirements check properties. */
 @Fluent
 public final class OfficeAtpCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of OfficeAtpCheckRequirementsProperties class. */
+    public OfficeAtpCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public OfficeAtpCheckRequirementsProperties withTenantId(String tenantId) {

@@ -183,6 +183,10 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "isScanner", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isScanner;
 
+    /** Creates an instance of IoTDeviceEntityProperties class. */
+    public IoTDeviceEntityProperties() {
+    }
+
     /**
      * Get the deviceId property: The ID of the IoT Device in the IoT Hub.
      *

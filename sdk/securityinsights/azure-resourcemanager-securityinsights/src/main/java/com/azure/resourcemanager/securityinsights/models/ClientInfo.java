@@ -35,6 +35,10 @@ public final class ClientInfo {
     @JsonProperty(value = "userPrincipalName")
     private String userPrincipalName;
 
+    /** Creates an instance of ClientInfo class. */
+    public ClientInfo() {
+    }
+
     /**
      * Get the email property: The email of the client.
      *

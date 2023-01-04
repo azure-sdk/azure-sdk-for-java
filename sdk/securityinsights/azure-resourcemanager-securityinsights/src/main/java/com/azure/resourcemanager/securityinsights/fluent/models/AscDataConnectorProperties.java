@@ -18,6 +18,10 @@ public final class AscDataConnectorProperties extends DataConnectorWithAlertsPro
     @JsonProperty(value = "subscriptionId")
     private String subscriptionId;
 
+    /** Creates an instance of AscDataConnectorProperties class. */
+    public AscDataConnectorProperties() {
+    }
+
     /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
      *

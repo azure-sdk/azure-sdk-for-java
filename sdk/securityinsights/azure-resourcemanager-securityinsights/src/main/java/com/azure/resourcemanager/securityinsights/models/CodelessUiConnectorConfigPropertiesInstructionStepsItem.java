@@ -10,6 +10,10 @@ import java.util.List;
 /** The CodelessUiConnectorConfigPropertiesInstructionStepsItem model. */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesInstructionStepsItem extends InstructionSteps {
+    /** Creates an instance of CodelessUiConnectorConfigPropertiesInstructionStepsItem class. */
+    public CodelessUiConnectorConfigPropertiesInstructionStepsItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public CodelessUiConnectorConfigPropertiesInstructionStepsItem withTitle(String title) {

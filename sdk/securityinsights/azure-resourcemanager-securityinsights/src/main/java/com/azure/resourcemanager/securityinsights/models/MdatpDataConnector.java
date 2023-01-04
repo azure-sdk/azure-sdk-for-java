@@ -22,6 +22,10 @@ public final class MdatpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private MdatpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of MdatpDataConnector class. */
+    public MdatpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: MDATP (Microsoft Defender Advanced Threat Protection) data connector
      * properties.

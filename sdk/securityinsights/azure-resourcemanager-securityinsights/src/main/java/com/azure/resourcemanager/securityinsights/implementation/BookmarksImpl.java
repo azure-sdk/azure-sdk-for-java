@@ -38,15 +38,6 @@ public final class BookmarksImpl implements Bookmarks {
         return Utils.mapPage(inner, inner1 -> new BookmarkImpl(inner1, this.manager()));
     }
 
-    public Bookmark get(String resourceGroupName, String workspaceName, String bookmarkId) {
-        BookmarkInner inner = this.serviceClient().get(resourceGroupName, workspaceName, bookmarkId);
-        if (inner != null) {
-            return new BookmarkImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Bookmark> getWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, Context context) {
         Response<BookmarkInner> inner =
@@ -62,13 +53,22 @@ public final class BookmarksImpl implements Bookmarks {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String bookmarkId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, bookmarkId);
+    public Bookmark get(String resourceGroupName, String workspaceName, String bookmarkId) {
+        BookmarkInner inner = this.serviceClient().get(resourceGroupName, workspaceName, bookmarkId);
+        if (inner != null) {
+            return new BookmarkImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String bookmarkId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, bookmarkId);
     }
 
     public Bookmark getById(String id) {

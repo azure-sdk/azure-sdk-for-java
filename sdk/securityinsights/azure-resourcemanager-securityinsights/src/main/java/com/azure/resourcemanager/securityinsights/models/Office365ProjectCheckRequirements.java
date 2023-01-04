@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.Office365ProjectCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents Office365 Project requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Office365Project")
-@Fluent
+@Immutable
 public final class Office365ProjectCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * Office365 Project requirements check properties.
      */
     @JsonProperty(value = "properties")
     private Office365ProjectCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of Office365ProjectCheckRequirements class. */
+    public Office365ProjectCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: Office365 Project requirements check properties.

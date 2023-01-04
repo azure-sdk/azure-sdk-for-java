@@ -56,6 +56,10 @@ public final class GeoLocation {
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private String state;
 
+    /** Creates an instance of GeoLocation class. */
+    public GeoLocation() {
+    }
+
     /**
      * Get the asn property: Autonomous System Number.
      *

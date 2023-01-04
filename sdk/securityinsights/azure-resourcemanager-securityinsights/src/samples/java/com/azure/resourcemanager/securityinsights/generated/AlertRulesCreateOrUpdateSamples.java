@@ -7,6 +7,8 @@ package com.azure.resourcemanager.securityinsights.generated;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.AlertDetail;
 import com.azure.resourcemanager.securityinsights.models.AlertDetailsOverride;
+import com.azure.resourcemanager.securityinsights.models.AlertProperty;
+import com.azure.resourcemanager.securityinsights.models.AlertPropertyMapping;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
@@ -26,6 +28,7 @@ import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityIncide
 import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityProductName;
 import com.azure.resourcemanager.securityinsights.models.NrtAlertRule;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRule;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import java.time.Duration;
 import java.util.Arrays;
@@ -35,7 +38,7 @@ import java.util.Map;
 /** Samples for AlertRules CreateOrUpdate. */
 public final class AlertRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/CreateFusionAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/alertRules/CreateFusionAlertRule.json
      */
     /**
      * Sample code: Creates or updates a Fusion alert rule.
@@ -258,7 +261,7 @@ public final class AlertRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/CreateMicrosoftSecurityIncidentCreationAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/alertRules/CreateMicrosoftSecurityIncidentCreationAlertRule.json
      */
     /**
      * Sample code: Creates or updates a MicrosoftSecurityIncidentCreation rule.
@@ -282,7 +285,7 @@ public final class AlertRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/CreateScheduledAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/alertRules/CreateScheduledAlertRule.json
      */
     /**
      * Sample code: Creates or updates a Scheduled alert rule.
@@ -350,12 +353,26 @@ public final class AlertRulesCreateOrUpdateSamples {
                     .withAlertDetailsOverride(
                         new AlertDetailsOverride()
                             .withAlertDisplayNameFormat("Alert from {{Computer}}")
-                            .withAlertDescriptionFormat("Suspicious activity was made by {{ComputerIP}}")),
+                            .withAlertDescriptionFormat("Suspicious activity was made by {{ComputerIP}}")
+                            .withAlertDynamicProperties(
+                                Arrays
+                                    .asList(
+                                        new AlertPropertyMapping()
+                                            .withAlertProperty(AlertProperty.PRODUCT_COMPONENT_NAME)
+                                            .withValue("ProductComponentNameCustomColumn"),
+                                        new AlertPropertyMapping()
+                                            .withAlertProperty(AlertProperty.PRODUCT_NAME)
+                                            .withValue("ProductNameCustomColumn"),
+                                        new AlertPropertyMapping()
+                                            .withAlertProperty(AlertProperty.ALERT_LINK)
+                                            .withValue("Link"))))
+                    .withSentinelEntitiesMappings(
+                        Arrays.asList(new SentinelEntityMapping().withColumnName("Entities"))),
                 Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/CreateFusionAlertRuleWithFusionScenarioExclusion.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/alertRules/CreateFusionAlertRuleWithFusionScenarioExclusion.json
      */
     /**
      * Sample code: Creates or updates a Fusion alert rule with scenario exclusion pattern.
@@ -578,7 +595,7 @@ public final class AlertRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/CreateNrtAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/alertRules/CreateNrtAlertRule.json
      */
     /**
      * Sample code: Creates or updates a Nrt alert rule.

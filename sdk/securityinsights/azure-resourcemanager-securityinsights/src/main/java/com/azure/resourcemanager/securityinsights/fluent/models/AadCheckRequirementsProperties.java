@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** AAD (Azure Active Directory) requirements check properties. */
 @Fluent
 public final class AadCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of AadCheckRequirementsProperties class. */
+    public AadCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public AadCheckRequirementsProperties withTenantId(String tenantId) {

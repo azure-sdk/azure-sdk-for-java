@@ -89,6 +89,10 @@ public final class CodelessConnectorPollingAuthProperties {
     @JsonProperty(value = "scope")
     private String scope;
 
+    /** Creates an instance of CodelessConnectorPollingAuthProperties class. */
+    public CodelessConnectorPollingAuthProperties() {
+    }
+
     /**
      * Get the authType property: The authentication type.
      *
