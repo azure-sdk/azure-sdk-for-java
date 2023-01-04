@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StorageTargetType. */
+/** Type of the Storage Target. */
 public final class StorageTargetType extends ExpandableStringEnum<StorageTargetType> {
     /** Static value nfs3 for StorageTargetType. */
     public static final StorageTargetType NFS3 = fromString("nfs3");

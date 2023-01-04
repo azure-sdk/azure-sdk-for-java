@@ -50,6 +50,7 @@
 - [DnsRefresh](#storagetargets_dnsrefresh)
 - [Get](#storagetargets_get)
 - [ListByCache](#storagetargets_listbycache)
+- [RestoreDefaults](#storagetargets_restoredefaults)
 
 ## UsageModels
 
@@ -62,7 +63,7 @@ import com.azure.core.util.Context;
 /** Samples for AscOperations Get. */
 public final class AscOperationsGetSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/AscOperations_Get.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/AscOperations_Get.json
      */
     /**
      * Sample code: AscOperations_Get.
@@ -83,7 +84,7 @@ import com.azure.core.util.Context;
 /** Samples for AscUsages List. */
 public final class AscUsagesListSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/AscResourceUsages_Get.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/AscResourceUsages_Get.json
      */
     /**
      * Sample code: AscUsages_List.
@@ -126,7 +127,7 @@ import java.util.Map;
 /** Samples for Caches CreateOrUpdate. */
 public final class CachesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_CreateOrUpdate_ldap_only.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_CreateOrUpdate_ldap_only.json
      */
     /**
      * Sample code: Caches_CreateOrUpdate_ldap_only.
@@ -153,7 +154,7 @@ public final class CachesCreateOrUpdateSamples {
                 new CacheEncryptionSettings()
                     .withKeyEncryptionKey(
                         new KeyVaultKeyReference()
-                            .withKeyUrl("https://keyvault-cmk.vault.azure.net/keys/key2048/test")
+                            .withKeyUrl("fakeTokenPlaceholder")
                             .withSourceVault(
                                 new KeyVaultKeyReferenceSourceVault()
                                     .withId(
@@ -185,12 +186,12 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_CreateOrUpdate.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_CreateOrUpdate.json
      */
     /**
      * Sample code: Caches_CreateOrUpdate.
@@ -223,7 +224,7 @@ public final class CachesCreateOrUpdateSamples {
                 new CacheEncryptionSettings()
                     .withKeyEncryptionKey(
                         new KeyVaultKeyReference()
-                            .withKeyUrl("https://keyvault-cmk.vault.azure.net/keys/key2047/test")
+                            .withKeyUrl("fakeTokenPlaceholder")
                             .withSourceVault(
                                 new KeyVaultKeyReferenceSourceVault()
                                     .withId(
@@ -256,7 +257,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheActiveDirectorySettingsCredentials()
                                     .withUsername("consotoAdmin")
-                                    .withPassword("<password>")))
+                                    .withPassword("fakeTokenPlaceholder")))
                     .withUsernameDownload(
                         new CacheUsernameDownloadSettings()
                             .withExtendedGroups(true)
@@ -266,7 +267,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .create();
     }
 
@@ -291,7 +292,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches DebugInfo. */
 public final class CachesDebugInfoSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_DebugInfo.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_DebugInfo.json
      */
     /**
      * Sample code: Caches_DebugInfo.
@@ -312,7 +313,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches Delete. */
 public final class CachesDeleteSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Delete.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Delete.json
      */
     /**
      * Sample code: Caches_Delete.
@@ -333,7 +334,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches Flush. */
 public final class CachesFlushSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Flush.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Flush.json
      */
     /**
      * Sample code: Caches_Flush.
@@ -354,7 +355,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches GetByResourceGroup. */
 public final class CachesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Get.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Get.json
      */
     /**
      * Sample code: Caches_Get.
@@ -375,7 +376,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches List. */
 public final class CachesListSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_List.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_List.json
      */
     /**
      * Sample code: Caches_List.
@@ -396,7 +397,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches ListByResourceGroup. */
 public final class CachesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_ListByResourceGroup.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_ListByResourceGroup.json
      */
     /**
      * Sample code: Caches_ListByResourceGroup.
@@ -418,7 +419,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 /** Samples for Caches PausePrimingJob. */
 public final class CachesPausePrimingJobSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/PausePrimingJob.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/PausePrimingJob.json
      */
     /**
      * Sample code: PausePrimingJob.
@@ -443,7 +444,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 /** Samples for Caches ResumePrimingJob. */
 public final class CachesResumePrimingJobSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/ResumePrimingJob.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/ResumePrimingJob.json
      */
     /**
      * Sample code: ResumePrimingJob.
@@ -469,7 +470,7 @@ import java.util.Arrays;
 /** Samples for Caches SpaceAllocation. */
 public final class CachesSpaceAllocationSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/SpaceAllocation_Post.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/SpaceAllocation_Post.json
      */
     /**
      * Sample code: SpaceAllocation_Post.
@@ -500,7 +501,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches Start. */
 public final class CachesStartSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Start.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Start.json
      */
     /**
      * Sample code: Caches_Start.
@@ -522,7 +523,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJob;
 /** Samples for Caches StartPrimingJob. */
 public final class CachesStartPrimingJobSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StartPrimingJob.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StartPrimingJob.json
      */
     /**
      * Sample code: StartPrimingJob.
@@ -552,7 +553,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches Stop. */
 public final class CachesStopSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Stop.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Stop.json
      */
     /**
      * Sample code: Caches_Stop.
@@ -574,7 +575,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 /** Samples for Caches StopPrimingJob. */
 public final class CachesStopPrimingJobSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StopPrimingJob.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StopPrimingJob.json
      */
     /**
      * Sample code: StopPrimingJob.
@@ -615,7 +616,7 @@ import java.util.Map;
 /** Samples for Caches Update. */
 public final class CachesUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Update_ldap_only.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Update_ldap_only.json
      */
     /**
      * Sample code: Caches_Update_ldap_only.
@@ -691,12 +692,12 @@ public final class CachesUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .apply();
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Update.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Update.json
      */
     /**
      * Sample code: Caches_Update.
@@ -798,7 +799,7 @@ import com.azure.core.util.Context;
 /** Samples for Caches UpgradeFirmware. */
 public final class CachesUpgradeFirmwareSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_UpgradeFirmware.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_UpgradeFirmware.json
      */
     /**
      * Sample code: Caches_UpgradeFirmware.
@@ -819,7 +820,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Operations_List.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -840,7 +841,7 @@ import com.azure.core.util.Context;
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Skus_List.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Skus_List.json
      */
     /**
      * Sample code: Skus_List.
@@ -861,7 +862,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargetOperation Flush. */
 public final class StorageTargetOperationFlushSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_Flush.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_Flush.json
      */
     /**
      * Sample code: StorageTargets_Flush.
@@ -882,7 +883,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargetOperation Invalidate. */
 public final class StorageTargetOperationInvalidateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_Invalidate.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_Invalidate.json
      */
     /**
      * Sample code: StorageTargets_Invalidate.
@@ -903,7 +904,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargetOperation Resume. */
 public final class StorageTargetOperationResumeSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_Resume.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_Resume.json
      */
     /**
      * Sample code: StorageTargets_Resume.
@@ -924,7 +925,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargetOperation Suspend. */
 public final class StorageTargetOperationSuspendSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_Suspend.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_Suspend.json
      */
     /**
      * Sample code: StorageTargets_Suspend.
@@ -949,7 +950,7 @@ import java.util.Arrays;
 /** Samples for StorageTargets CreateOrUpdate. */
 public final class StorageTargetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_CreateOrUpdate.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_CreateOrUpdate.json
      */
     /**
      * Sample code: StorageTargets_CreateOrUpdate.
@@ -976,12 +977,12 @@ public final class StorageTargetsCreateOrUpdateSamples {
                             .withNfsExport("exp2")
                             .withNfsAccessPolicy("rootSquash")))
             .withTargetType(StorageTargetType.NFS3)
-            .withNfs3(new Nfs3Target().withTarget("10.0.44.44").withUsageModel("READ_HEAVY_INFREQ"))
+            .withNfs3(new Nfs3Target().withTarget("10.0.44.44").withUsageModel("READ_ONLY").withVerificationTimer(30))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_CreateOrUpdate_BlobNfs.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_CreateOrUpdate_BlobNfs.json
      */
     /**
      * Sample code: StorageTargets_CreateOrUpdate_BlobNfs.
@@ -1000,12 +1001,14 @@ public final class StorageTargetsCreateOrUpdateSamples {
                 new BlobNfsTarget()
                     .withTarget(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/blofnfs/blobServices/default/containers/blobnfs")
-                    .withUsageModel("WRITE_WORKLOAD_15"))
+                    .withUsageModel("READ_WRITE")
+                    .withVerificationTimer(28800)
+                    .withWriteBackTimer(3600))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_CreateOrUpdate_NoJunctions.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_CreateOrUpdate_NoJunctions.json
      */
     /**
      * Sample code: StorageTargets_CreateOrUpdate_NoJunctions.
@@ -1019,7 +1022,7 @@ public final class StorageTargetsCreateOrUpdateSamples {
             .define("st1")
             .withExistingCache("scgroup", "sc1")
             .withTargetType(StorageTargetType.NFS3)
-            .withNfs3(new Nfs3Target().withTarget("10.0.44.44").withUsageModel("READ_HEAVY_INFREQ"))
+            .withNfs3(new Nfs3Target().withTarget("10.0.44.44").withUsageModel("READ_ONLY").withVerificationTimer(30))
             .create();
     }
 }
@@ -1033,7 +1036,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargets Delete. */
 public final class StorageTargetsDeleteSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_Delete.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_Delete.json
      */
     /**
      * Sample code: StorageTargets_Delete.
@@ -1054,7 +1057,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargets DnsRefresh. */
 public final class StorageTargetsDnsRefreshSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_DnsRefresh.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_DnsRefresh.json
      */
     /**
      * Sample code: Caches_DnsRefresh.
@@ -1075,7 +1078,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargets Get. */
 public final class StorageTargetsGetSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_Get.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_Get.json
      */
     /**
      * Sample code: StorageTargets_Get.
@@ -1096,7 +1099,7 @@ import com.azure.core.util.Context;
 /** Samples for StorageTargets ListByCache. */
 public final class StorageTargetsListByCacheSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/StorageTargets_ListByCache.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_ListByCache.json
      */
     /**
      * Sample code: StorageTargets_List.
@@ -1109,6 +1112,28 @@ public final class StorageTargetsListByCacheSamples {
 }
 ```
 
+### StorageTargets_RestoreDefaults
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for StorageTargets RestoreDefaults. */
+public final class StorageTargetsRestoreDefaultsSamples {
+    /*
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/StorageTargets_RestoreDefaults.json
+     */
+    /**
+     * Sample code: StorageTargets_RestoreDefaults.
+     *
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsRestoreDefaults(
+        com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargets().restoreDefaults("scgroup", "sc", "st1", Context.NONE);
+    }
+}
+```
+
 ### UsageModels_List
 
 ```java
@@ -1117,7 +1142,7 @@ import com.azure.core.util.Context;
 /** Samples for UsageModels List. */
 public final class UsageModelsListSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/UsageModels_List.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/UsageModels_List.json
      */
     /**
      * Sample code: UsageModels_List.

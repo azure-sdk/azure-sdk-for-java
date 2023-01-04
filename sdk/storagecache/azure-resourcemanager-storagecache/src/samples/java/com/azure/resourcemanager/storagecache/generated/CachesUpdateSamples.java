@@ -26,7 +26,7 @@ import java.util.Map;
 /** Samples for Caches Update. */
 public final class CachesUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Update_ldap_only.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Update_ldap_only.json
      */
     /**
      * Sample code: Caches_Update_ldap_only.
@@ -102,12 +102,12 @@ public final class CachesUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .apply();
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/Caches_Update.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-01-01/examples/Caches_Update.json
      */
     /**
      * Sample code: Caches_Update.
