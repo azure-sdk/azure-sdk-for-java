@@ -103,6 +103,10 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "clusterGroup", access = JsonProperty.Access.WRITE_ONLY)
     private String clusterGroup;
 
+    /** Creates an instance of MailClusterEntityProperties class. */
+    public MailClusterEntityProperties() {
+    }
+
     /**
      * Get the networkMessageIds property: The mail message IDs that are part of the mail cluster.
      *

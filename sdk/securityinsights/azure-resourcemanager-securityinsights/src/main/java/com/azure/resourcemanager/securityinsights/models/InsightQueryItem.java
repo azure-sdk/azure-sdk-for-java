@@ -20,6 +20,10 @@ public final class InsightQueryItem extends EntityQueryItem {
     @JsonProperty(value = "properties")
     private InsightQueryItemProperties properties;
 
+    /** Creates an instance of InsightQueryItem class. */
+    public InsightQueryItem() {
+    }
+
     /**
      * Get the properties property: Properties bag for InsightQueryItem.
      *

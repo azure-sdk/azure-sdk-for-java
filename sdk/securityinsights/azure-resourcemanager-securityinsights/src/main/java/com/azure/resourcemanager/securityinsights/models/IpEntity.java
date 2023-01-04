@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IpEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,13 +16,17 @@ import java.util.Map;
 /** Represents an ip entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Ip")
-@Fluent
+@Immutable
 public final class IpEntity extends EntityInner {
     /*
      * Ip entity properties
      */
     @JsonProperty(value = "properties")
     private IpEntityProperties innerProperties;
+
+    /** Creates an instance of IpEntity class. */
+    public IpEntity() {
+    }
 
     /**
      * Get the innerProperties property: Ip entity properties.

@@ -13,7 +13,7 @@ import java.util.Arrays;
 /** Samples for ThreatIntelligenceIndicator QueryIndicators. */
 public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/threatintelligence/QueryThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/threatintelligence/QueryThreatIntelligence.json
      */
     /**
      * Sample code: Query threat intelligence indicators as per filtering criteria.
@@ -37,7 +37,7 @@ public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
                         Arrays
                             .asList(
                                 new ThreatIntelligenceSortingCriteria()
-                                    .withItemKey("lastUpdatedTimeUtc")
+                                    .withItemKey("fakeTokenPlaceholder")
                                     .withSortOrder(ThreatIntelligenceSortingCriteriaEnum.DESCENDING)))
                     .withSources(Arrays.asList("Azure Sentinel")),
                 Context.NONE);

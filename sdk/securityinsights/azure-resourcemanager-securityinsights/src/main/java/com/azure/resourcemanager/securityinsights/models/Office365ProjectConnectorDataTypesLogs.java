@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Logs data type. */
 @Fluent
 public final class Office365ProjectConnectorDataTypesLogs extends DataConnectorDataTypeCommon {
+    /** Creates an instance of Office365ProjectConnectorDataTypesLogs class. */
+    public Office365ProjectConnectorDataTypesLogs() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public Office365ProjectConnectorDataTypesLogs withState(DataTypeState state) {

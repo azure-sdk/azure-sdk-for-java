@@ -63,6 +63,10 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /** Creates an instance of MLBehaviorAnalyticsAlertRuleProperties class. */
+    public MLBehaviorAnalyticsAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
      *
