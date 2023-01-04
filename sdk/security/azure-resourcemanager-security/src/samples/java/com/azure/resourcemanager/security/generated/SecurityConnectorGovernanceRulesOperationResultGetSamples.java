@@ -6,21 +6,21 @@ package com.azure.resourcemanager.security.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for SecurityConnectorGovernanceRulesExecuteStatus Get. */
-public final class SecurityConnectorGovernanceRulesExecuteStatusGetSamples {
+/** Samples for SecurityConnectorGovernanceRulesOperationResult Get. */
+public final class SecurityConnectorGovernanceRulesOperationResultGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRuleExecuteStatus_example.json
      */
     /**
-     * Sample code: Get security governanceRules execution status by specific governanceRuleId.
+     * Sample code: Get governance rules long run operation result by specific governance rule ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
+    public static void getGovernanceRulesLongRunOperationResultBySpecificGovernanceRuleID(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .securityConnectorGovernanceRulesExecuteStatus()
-            .get(
+            .securityConnectorGovernanceRulesOperationResults()
+            .getWithResponse(
                 "gcpResourceGroup",
                 "gcpconnector",
                 "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",

@@ -58,6 +58,9 @@ import com.azure.resourcemanager.security.implementation.IotSecuritySolutionsAna
 import com.azure.resourcemanager.security.implementation.IotSecuritySolutionsImpl;
 import com.azure.resourcemanager.security.implementation.JitNetworkAccessPoliciesImpl;
 import com.azure.resourcemanager.security.implementation.LocationsImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesOperationResultsImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesOperationsImpl;
 import com.azure.resourcemanager.security.implementation.MdeOnboardingsImpl;
 import com.azure.resourcemanager.security.implementation.OperationsImpl;
 import com.azure.resourcemanager.security.implementation.PricingsImpl;
@@ -70,8 +73,8 @@ import com.azure.resourcemanager.security.implementation.SecureScoresImpl;
 import com.azure.resourcemanager.security.implementation.SecurityCenterBuilder;
 import com.azure.resourcemanager.security.implementation.SecurityConnectorApplicationOperationsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityConnectorApplicationsImpl;
-import com.azure.resourcemanager.security.implementation.SecurityConnectorGovernanceRulesExecuteStatusImpl;
 import com.azure.resourcemanager.security.implementation.SecurityConnectorGovernanceRulesImpl;
+import com.azure.resourcemanager.security.implementation.SecurityConnectorGovernanceRulesOperationResultsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityConnectorGovernanceRulesOperationsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityConnectorsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityContactsImpl;
@@ -84,7 +87,7 @@ import com.azure.resourcemanager.security.implementation.SqlVulnerabilityAssessm
 import com.azure.resourcemanager.security.implementation.SqlVulnerabilityAssessmentScanResultsImpl;
 import com.azure.resourcemanager.security.implementation.SqlVulnerabilityAssessmentScansImpl;
 import com.azure.resourcemanager.security.implementation.SubAssessmentsImpl;
-import com.azure.resourcemanager.security.implementation.SubscriptionGovernanceRulesExecuteStatusImpl;
+import com.azure.resourcemanager.security.implementation.SubscriptionGovernanceRulesOperationResultsImpl;
 import com.azure.resourcemanager.security.implementation.TasksImpl;
 import com.azure.resourcemanager.security.implementation.TopologiesImpl;
 import com.azure.resourcemanager.security.implementation.WorkspaceSettingsImpl;
@@ -122,6 +125,9 @@ import com.azure.resourcemanager.security.models.IotSecuritySolutionsAnalyticsAg
 import com.azure.resourcemanager.security.models.IotSecuritySolutionsAnalyticsRecommendations;
 import com.azure.resourcemanager.security.models.JitNetworkAccessPolicies;
 import com.azure.resourcemanager.security.models.Locations;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRules;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRulesOperationResults;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRulesOperations;
 import com.azure.resourcemanager.security.models.MdeOnboardings;
 import com.azure.resourcemanager.security.models.Operations;
 import com.azure.resourcemanager.security.models.Pricings;
@@ -134,7 +140,7 @@ import com.azure.resourcemanager.security.models.SecureScores;
 import com.azure.resourcemanager.security.models.SecurityConnectorApplicationOperations;
 import com.azure.resourcemanager.security.models.SecurityConnectorApplications;
 import com.azure.resourcemanager.security.models.SecurityConnectorGovernanceRules;
-import com.azure.resourcemanager.security.models.SecurityConnectorGovernanceRulesExecuteStatus;
+import com.azure.resourcemanager.security.models.SecurityConnectorGovernanceRulesOperationResults;
 import com.azure.resourcemanager.security.models.SecurityConnectorGovernanceRulesOperations;
 import com.azure.resourcemanager.security.models.SecurityConnectors;
 import com.azure.resourcemanager.security.models.SecurityContacts;
@@ -147,7 +153,7 @@ import com.azure.resourcemanager.security.models.SqlVulnerabilityAssessmentBasel
 import com.azure.resourcemanager.security.models.SqlVulnerabilityAssessmentScanResults;
 import com.azure.resourcemanager.security.models.SqlVulnerabilityAssessmentScans;
 import com.azure.resourcemanager.security.models.SubAssessments;
-import com.azure.resourcemanager.security.models.SubscriptionGovernanceRulesExecuteStatus;
+import com.azure.resourcemanager.security.models.SubscriptionGovernanceRulesOperationResults;
 import com.azure.resourcemanager.security.models.Tasks;
 import com.azure.resourcemanager.security.models.Topologies;
 import com.azure.resourcemanager.security.models.WorkspaceSettings;
@@ -266,9 +272,15 @@ public final class SecurityManager {
 
     private SecurityConnectorGovernanceRulesOperations securityConnectorGovernanceRulesOperations;
 
-    private SubscriptionGovernanceRulesExecuteStatus subscriptionGovernanceRulesExecuteStatus;
+    private ManagementGroupGovernanceRules managementGroupGovernanceRules;
 
-    private SecurityConnectorGovernanceRulesExecuteStatus securityConnectorGovernanceRulesExecuteStatus;
+    private ManagementGroupGovernanceRulesOperations managementGroupGovernanceRulesOperations;
+
+    private SubscriptionGovernanceRulesOperationResults subscriptionGovernanceRulesOperationResults;
+
+    private SecurityConnectorGovernanceRulesOperationResults securityConnectorGovernanceRulesOperationResults;
+
+    private ManagementGroupGovernanceRulesOperationResults managementGroupGovernanceRulesOperationResults;
 
     private GovernanceAssignments governanceAssignments;
 
@@ -451,7 +463,7 @@ public final class SecurityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.security")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1176,31 +1188,72 @@ public final class SecurityManager {
     }
 
     /**
-     * Gets the resource collection API of SubscriptionGovernanceRulesExecuteStatus.
+     * Gets the resource collection API of ManagementGroupGovernanceRules.
      *
-     * @return Resource collection API of SubscriptionGovernanceRulesExecuteStatus.
+     * @return Resource collection API of ManagementGroupGovernanceRules.
      */
-    public SubscriptionGovernanceRulesExecuteStatus subscriptionGovernanceRulesExecuteStatus() {
-        if (this.subscriptionGovernanceRulesExecuteStatus == null) {
-            this.subscriptionGovernanceRulesExecuteStatus =
-                new SubscriptionGovernanceRulesExecuteStatusImpl(
-                    clientObject.getSubscriptionGovernanceRulesExecuteStatus(), this);
+    public ManagementGroupGovernanceRules managementGroupGovernanceRules() {
+        if (this.managementGroupGovernanceRules == null) {
+            this.managementGroupGovernanceRules =
+                new ManagementGroupGovernanceRulesImpl(clientObject.getManagementGroupGovernanceRules(), this);
         }
-        return subscriptionGovernanceRulesExecuteStatus;
+        return managementGroupGovernanceRules;
     }
 
     /**
-     * Gets the resource collection API of SecurityConnectorGovernanceRulesExecuteStatus.
+     * Gets the resource collection API of ManagementGroupGovernanceRulesOperations.
      *
-     * @return Resource collection API of SecurityConnectorGovernanceRulesExecuteStatus.
+     * @return Resource collection API of ManagementGroupGovernanceRulesOperations.
      */
-    public SecurityConnectorGovernanceRulesExecuteStatus securityConnectorGovernanceRulesExecuteStatus() {
-        if (this.securityConnectorGovernanceRulesExecuteStatus == null) {
-            this.securityConnectorGovernanceRulesExecuteStatus =
-                new SecurityConnectorGovernanceRulesExecuteStatusImpl(
-                    clientObject.getSecurityConnectorGovernanceRulesExecuteStatus(), this);
+    public ManagementGroupGovernanceRulesOperations managementGroupGovernanceRulesOperations() {
+        if (this.managementGroupGovernanceRulesOperations == null) {
+            this.managementGroupGovernanceRulesOperations =
+                new ManagementGroupGovernanceRulesOperationsImpl(
+                    clientObject.getManagementGroupGovernanceRulesOperations(), this);
         }
-        return securityConnectorGovernanceRulesExecuteStatus;
+        return managementGroupGovernanceRulesOperations;
+    }
+
+    /**
+     * Gets the resource collection API of SubscriptionGovernanceRulesOperationResults.
+     *
+     * @return Resource collection API of SubscriptionGovernanceRulesOperationResults.
+     */
+    public SubscriptionGovernanceRulesOperationResults subscriptionGovernanceRulesOperationResults() {
+        if (this.subscriptionGovernanceRulesOperationResults == null) {
+            this.subscriptionGovernanceRulesOperationResults =
+                new SubscriptionGovernanceRulesOperationResultsImpl(
+                    clientObject.getSubscriptionGovernanceRulesOperationResults(), this);
+        }
+        return subscriptionGovernanceRulesOperationResults;
+    }
+
+    /**
+     * Gets the resource collection API of SecurityConnectorGovernanceRulesOperationResults.
+     *
+     * @return Resource collection API of SecurityConnectorGovernanceRulesOperationResults.
+     */
+    public SecurityConnectorGovernanceRulesOperationResults securityConnectorGovernanceRulesOperationResults() {
+        if (this.securityConnectorGovernanceRulesOperationResults == null) {
+            this.securityConnectorGovernanceRulesOperationResults =
+                new SecurityConnectorGovernanceRulesOperationResultsImpl(
+                    clientObject.getSecurityConnectorGovernanceRulesOperationResults(), this);
+        }
+        return securityConnectorGovernanceRulesOperationResults;
+    }
+
+    /**
+     * Gets the resource collection API of ManagementGroupGovernanceRulesOperationResults.
+     *
+     * @return Resource collection API of ManagementGroupGovernanceRulesOperationResults.
+     */
+    public ManagementGroupGovernanceRulesOperationResults managementGroupGovernanceRulesOperationResults() {
+        if (this.managementGroupGovernanceRulesOperationResults == null) {
+            this.managementGroupGovernanceRulesOperationResults =
+                new ManagementGroupGovernanceRulesOperationResultsImpl(
+                    clientObject.getManagementGroupGovernanceRulesOperationResults(), this);
+        }
+        return managementGroupGovernanceRulesOperationResults;
     }
 
     /**
