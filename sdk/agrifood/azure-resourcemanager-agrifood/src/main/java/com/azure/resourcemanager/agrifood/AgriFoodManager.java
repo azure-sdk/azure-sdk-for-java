@@ -32,6 +32,8 @@ import com.azure.resourcemanager.agrifood.implementation.LocationsImpl;
 import com.azure.resourcemanager.agrifood.implementation.OperationsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateLinkResourcesImpl;
+import com.azure.resourcemanager.agrifood.implementation.SolutionsDiscoverabilitiesImpl;
+import com.azure.resourcemanager.agrifood.implementation.SolutionsImpl;
 import com.azure.resourcemanager.agrifood.models.Extensions;
 import com.azure.resourcemanager.agrifood.models.FarmBeatsExtensions;
 import com.azure.resourcemanager.agrifood.models.FarmBeatsModels;
@@ -39,14 +41,17 @@ import com.azure.resourcemanager.agrifood.models.Locations;
 import com.azure.resourcemanager.agrifood.models.Operations;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkResources;
+import com.azure.resourcemanager.agrifood.models.Solutions;
+import com.azure.resourcemanager.agrifood.models.SolutionsDiscoverabilities;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-/** Entry point to AgriFoodManager. APIs documentation for Azure AgFoodPlatform Resource Provider Service. */
+/** Entry point to AgriFoodManager. APIs documentation fosr Azure AgFoodPlatform Resource Provider Service. */
 public final class AgriFoodManager {
     private Extensions extensions;
 
@@ -62,6 +67,10 @@ public final class AgriFoodManager {
 
     private PrivateLinkResources privateLinkResources;
 
+    private Solutions solutions;
+
+    private SolutionsDiscoverabilities solutionsDiscoverabilities;
+
     private final AgriFoodManagementClient clientObject;
 
     private AgriFoodManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
@@ -71,7 +80,7 @@ public final class AgriFoodManager {
             new AgriFoodManagementClientBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
+                .subscriptionId(UUID.fromString(profile.getSubscriptionId()))
                 .defaultPollInterval(defaultPollInterval)
                 .buildClient();
     }
@@ -285,7 +294,7 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Extensions.
+     * Gets the resource collection API of Extensions. It manages Extension.
      *
      * @return Resource collection API of Extensions.
      */
@@ -367,6 +376,31 @@ public final class AgriFoodManager {
             this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
         }
         return privateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of Solutions. It manages Solution.
+     *
+     * @return Resource collection API of Solutions.
+     */
+    public Solutions solutions() {
+        if (this.solutions == null) {
+            this.solutions = new SolutionsImpl(clientObject.getSolutions(), this);
+        }
+        return solutions;
+    }
+
+    /**
+     * Gets the resource collection API of SolutionsDiscoverabilities.
+     *
+     * @return Resource collection API of SolutionsDiscoverabilities.
+     */
+    public SolutionsDiscoverabilities solutionsDiscoverabilities() {
+        if (this.solutionsDiscoverabilities == null) {
+            this.solutionsDiscoverabilities =
+                new SolutionsDiscoverabilitiesImpl(clientObject.getSolutionsDiscoverabilities(), this);
+        }
+        return solutionsDiscoverabilities;
     }
 
     /**
