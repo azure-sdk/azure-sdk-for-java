@@ -6,6 +6,7 @@ package com.azure.resourcemanager.orbital.models;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.fluent.models.SpacecraftInner;
 import java.util.List;
@@ -54,6 +55,13 @@ public interface Spacecraft {
      * @return the etag value.
      */
     String etag();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: The current state of the resource's creation, deletion, or modification.

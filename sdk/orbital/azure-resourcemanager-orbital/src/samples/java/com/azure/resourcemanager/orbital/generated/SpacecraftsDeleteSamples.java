@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Spacecrafts Delete. */
 public final class SpacecraftsDeleteSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftDelete.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftDelete.json
      */
     /**
      * Sample code: Delete Spacecraft.

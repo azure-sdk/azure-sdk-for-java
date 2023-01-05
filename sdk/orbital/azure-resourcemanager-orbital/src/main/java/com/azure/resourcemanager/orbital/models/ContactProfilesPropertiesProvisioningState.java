@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ContactProfilesPropertiesProvisioningState. */
+/** The current state of the resource's creation, deletion, or modification. */
 public final class ContactProfilesPropertiesProvisioningState
     extends ExpandableStringEnum<ContactProfilesPropertiesProvisioningState> {
     /** Static value Creating for ContactProfilesPropertiesProvisioningState. */

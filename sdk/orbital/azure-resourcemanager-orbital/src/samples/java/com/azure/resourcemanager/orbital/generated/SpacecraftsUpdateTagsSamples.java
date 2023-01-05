@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Spacecrafts UpdateTags. */
 public final class SpacecraftsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftUpdateTags.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftUpdateTags.json
      */
     /**
      * Sample code: Update Spacecraft tags.

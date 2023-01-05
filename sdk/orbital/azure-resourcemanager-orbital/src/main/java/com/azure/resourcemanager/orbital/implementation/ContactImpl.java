@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.orbital.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.fluent.models.ContactInner;
 import com.azure.resourcemanager.orbital.models.Contact;
@@ -37,6 +38,10 @@ public final class ContactImpl implements Contact, Contact.Definition {
 
     public String etag() {
         return this.innerModel().etag();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public ContactsPropertiesProvisioningState provisioningState() {

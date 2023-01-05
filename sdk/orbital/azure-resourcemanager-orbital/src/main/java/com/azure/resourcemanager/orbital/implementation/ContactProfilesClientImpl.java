@@ -65,7 +65,7 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureOrbitalContactP")
-    private interface ContactProfilesService {
+    public interface ContactProfilesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital"
@@ -295,21 +295,6 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param contactProfileName Contact Profile name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified contact Profile in a specified resource group.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ContactProfileInner getByResourceGroup(String resourceGroupName, String contactProfileName) {
-        return getByResourceGroupAsync(resourceGroupName, contactProfileName).block();
-    }
-
-    /**
-     * Gets the specified contact Profile in a specified resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -320,6 +305,21 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     public Response<ContactProfileInner> getByResourceGroupWithResponse(
         String resourceGroupName, String contactProfileName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, contactProfileName, context).block();
+    }
+
+    /**
+     * Gets the specified contact Profile in a specified resource group.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param contactProfileName Contact Profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified contact Profile in a specified resource group.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ContactProfileInner getByResourceGroup(String resourceGroupName, String contactProfileName) {
+        return getByResourceGroupWithResponse(resourceGroupName, contactProfileName, Context.NONE).getValue();
     }
 
     /**
@@ -1505,7 +1505,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1542,7 +1543,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1580,7 +1582,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1616,7 +1619,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

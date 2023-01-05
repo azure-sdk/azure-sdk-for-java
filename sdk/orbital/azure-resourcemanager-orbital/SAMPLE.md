@@ -47,7 +47,7 @@ import com.azure.core.util.Context;
 /** Samples for AvailableGroundStations Get. */
 public final class AvailableGroundStationsGetSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/AvailableGroundStationGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/AvailableGroundStationGet.json
      */
     /**
      * Sample code: Get GroundStation.
@@ -69,7 +69,7 @@ import com.azure.resourcemanager.orbital.models.CapabilityParameter;
 /** Samples for AvailableGroundStations List. */
 public final class AvailableGroundStationsListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/AvailableGroundStationsByCapabilityList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/AvailableGroundStationsByCapabilityList.json
      */
     /**
      * Sample code: List of Ground Stations by Capability.
@@ -88,7 +88,7 @@ public final class AvailableGroundStationsListSamples {
 /** Samples for ContactProfiles CreateOrUpdate. */
 public final class ContactProfilesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileCreate.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileCreate.json
      */
     /**
      * Sample code: Create a contact profile.
@@ -114,7 +114,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles Delete. */
 public final class ContactProfilesDeleteSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileDelete.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileDelete.json
      */
     /**
      * Sample code: Delete Contact Profile.
@@ -135,7 +135,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles GetByResourceGroup. */
 public final class ContactProfilesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileGet.json
      */
     /**
      * Sample code: Get a contact profile.
@@ -156,7 +156,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles List. */
 public final class ContactProfilesListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfilesBySubscriptionList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfilesBySubscriptionList.json
      */
     /**
      * Sample code: List of Contact Profiles.
@@ -177,7 +177,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles ListByResourceGroup. */
 public final class ContactProfilesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfilesByResourceGroupList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfilesByResourceGroupList.json
      */
     /**
      * Sample code: List of Contact Profiles by Resource Group.
@@ -201,7 +201,7 @@ import java.util.Map;
 /** Samples for ContactProfiles UpdateTags. */
 public final class ContactProfilesUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileUpdateTag.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileUpdateTag.json
      */
     /**
      * Sample code: Update Contact Profile tags.
@@ -239,7 +239,7 @@ import java.time.OffsetDateTime;
 /** Samples for Contacts Create. */
 public final class ContactsCreateSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactCreate.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactCreate.json
      */
     /**
      * Sample code: Create a contact.
@@ -271,7 +271,7 @@ import com.azure.core.util.Context;
 /** Samples for Contacts Delete. */
 public final class ContactsDeleteSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactDelete.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactDelete.json
      */
     /**
      * Sample code: Delete Contact.
@@ -292,7 +292,7 @@ import com.azure.core.util.Context;
 /** Samples for Contacts Get. */
 public final class ContactsGetSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactGet.json
      */
     /**
      * Sample code: Get Contact.
@@ -313,7 +313,7 @@ import com.azure.core.util.Context;
 /** Samples for Contacts List. */
 public final class ContactsListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactsBySpacecraftNameList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactsBySpacecraftNameList.json
      */
     /**
      * Sample code: List of Spacecraft.
@@ -334,7 +334,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/OperationsList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/OperationsList.json
      */
     /**
      * Sample code: OperationsList.
@@ -355,7 +355,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationsResults Get. */
 public final class OperationsResultsGetSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/OperationResultsGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/OperationResultsGet.json
      */
     /**
      * Sample code: KustoOperationResultsGet.
@@ -379,7 +379,7 @@ import java.util.Arrays;
 /** Samples for Spacecrafts CreateOrUpdate. */
 public final class SpacecraftsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftCreate.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftCreate.json
      */
     /**
      * Sample code: Create a spacecraft.
@@ -424,7 +424,7 @@ import com.azure.core.util.Context;
 /** Samples for Spacecrafts Delete. */
 public final class SpacecraftsDeleteSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftDelete.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftDelete.json
      */
     /**
      * Sample code: Delete Spacecraft.
@@ -445,7 +445,7 @@ import com.azure.core.util.Context;
 /** Samples for Spacecrafts GetByResourceGroup. */
 public final class SpacecraftsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftGet.json
      */
     /**
      * Sample code: Get Spacecraft.
@@ -466,7 +466,7 @@ import com.azure.core.util.Context;
 /** Samples for Spacecrafts List. */
 public final class SpacecraftsListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftsBySubscriptionList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftsBySubscriptionList.json
      */
     /**
      * Sample code: List of Spacecraft by Subscription.
@@ -490,7 +490,7 @@ import java.time.OffsetDateTime;
 /** Samples for Spacecrafts ListAvailableContacts. */
 public final class SpacecraftsListAvailableContactsSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/AvailableContactsList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/AvailableContactsList.json
      */
     /**
      * Sample code: List of Contact.
@@ -509,7 +509,7 @@ public final class SpacecraftsListAvailableContactsSamples {
                             .withId(
                                 "/subscriptions/c1be1141-a7c9-4aac-9608-3c2e2f1152c3/resourceGroups/contoso-Rgp/providers/Microsoft.Orbital/contactProfiles/CONTOSO-CP"))
                     .withGroundStationName("EASTUS2_0")
-                    .withStartTime(OffsetDateTime.parse("2022-03-01T11:30:00Z"))
+                    .withStartTime(OffsetDateTime.parse("2022-11-01T11:30:00Z"))
                     .withEndTime(OffsetDateTime.parse("2022-03-02T11:30:00Z")),
                 Context.NONE);
     }
@@ -524,7 +524,7 @@ import com.azure.core.util.Context;
 /** Samples for Spacecrafts ListByResourceGroup. */
 public final class SpacecraftsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftsByResourceGroupList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftsByResourceGroupList.json
      */
     /**
      * Sample code: List of Spacecraft by Resource Group.
@@ -548,7 +548,7 @@ import java.util.Map;
 /** Samples for Spacecrafts UpdateTags. */
 public final class SpacecraftsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftUpdateTags.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftUpdateTags.json
      */
     /**
      * Sample code: Update Spacecraft tags.

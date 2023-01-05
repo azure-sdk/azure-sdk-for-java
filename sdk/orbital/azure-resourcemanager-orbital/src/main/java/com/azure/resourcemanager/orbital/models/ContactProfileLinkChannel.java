@@ -36,19 +36,16 @@ public final class ContactProfileLinkChannel {
     private EndPoint endPoint;
 
     /*
-     * Copy of the modem configuration file such as Kratos QRadio. Only valid
-     * for uplink directions. If provided, the modem connects to the customer
-     * endpoint and accepts commands from the customer instead of a VITA.49
-     * stream.
+     * Copy of the modem configuration file such as Kratos QRadio. Only valid for uplink directions. If provided, the
+     * modem connects to the customer endpoint and accepts commands from the customer instead of a VITA.49 stream.
      */
     @JsonProperty(value = "modulationConfiguration")
     private String modulationConfiguration;
 
     /*
-     * Copy of the modem configuration file such as Kratos QRadio or Kratos
-     * QuantumRx. Only valid for downlink directions. If provided, the modem
-     * connects to the customer endpoint and sends demodulated data instead of
-     * a VITA.49 stream.
+     * Copy of the modem configuration file such as Kratos QRadio or Kratos QuantumRx. Only valid for downlink
+     * directions. If provided, the modem connects to the customer endpoint and sends demodulated data instead of a
+     * VITA.49 stream.
      */
     @JsonProperty(value = "demodulationConfiguration")
     private String demodulationConfiguration;
@@ -64,6 +61,10 @@ public final class ContactProfileLinkChannel {
      */
     @JsonProperty(value = "decodingConfiguration")
     private String decodingConfiguration;
+
+    /** Creates an instance of ContactProfileLinkChannel class. */
+    public ContactProfileLinkChannel() {
+    }
 
     /**
      * Get the name property: Channel name.

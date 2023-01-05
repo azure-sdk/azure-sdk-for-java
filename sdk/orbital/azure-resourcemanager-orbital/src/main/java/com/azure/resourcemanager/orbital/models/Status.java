@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Status. */
+/** The status of operation. */
 public final class Status extends ExpandableStringEnum<Status> {
     /** Static value Succeeded for Status. */
     public static final Status SUCCEEDED = fromString("Succeeded");

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Contacts List. */
 public final class ContactsListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactsBySpacecraftNameList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactsBySpacecraftNameList.json
      */
     /**
      * Sample code: List of Spacecraft.

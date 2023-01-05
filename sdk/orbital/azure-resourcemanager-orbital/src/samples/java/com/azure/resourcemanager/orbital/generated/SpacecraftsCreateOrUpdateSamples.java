@@ -12,7 +12,7 @@ import java.util.Arrays;
 /** Samples for Spacecrafts CreateOrUpdate. */
 public final class SpacecraftsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/SpacecraftCreate.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/SpacecraftCreate.json
      */
     /**
      * Sample code: Create a spacecraft.

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for AvailableGroundStations Get. */
 public final class AvailableGroundStationsGetSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/AvailableGroundStationGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/AvailableGroundStationGet.json
      */
     /**
      * Sample code: Get GroundStation.

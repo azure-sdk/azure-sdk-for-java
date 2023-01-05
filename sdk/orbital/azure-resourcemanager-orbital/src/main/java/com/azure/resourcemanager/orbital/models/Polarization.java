@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Polarization. */
+/** Polarization. e.g. (RHCP, LHCP). */
 public final class Polarization extends ExpandableStringEnum<Polarization> {
     /** Static value RHCP for Polarization. */
     public static final Polarization RHCP = fromString("RHCP");

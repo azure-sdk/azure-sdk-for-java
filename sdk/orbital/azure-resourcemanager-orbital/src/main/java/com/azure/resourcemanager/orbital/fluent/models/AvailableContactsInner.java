@@ -32,6 +32,10 @@ public final class AvailableContactsInner {
     @JsonProperty(value = "properties")
     private AvailableContactsProperties innerProperties;
 
+    /** Creates an instance of AvailableContactsInner class. */
+    public AvailableContactsInner() {
+    }
+
     /**
      * Get the spacecraft property: The reference to the spacecraft resource.
      *

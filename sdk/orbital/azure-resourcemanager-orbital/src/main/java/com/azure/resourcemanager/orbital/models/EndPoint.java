@@ -35,6 +35,10 @@ public final class EndPoint {
     @JsonProperty(value = "protocol", required = true)
     private Protocol protocol;
 
+    /** Creates an instance of EndPoint class. */
+    public EndPoint() {
+    }
+
     /**
      * Get the ipAddress property: IP Address.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ReleaseMode. */
+/** Release Status of a ground station. */
 public final class ReleaseMode extends ExpandableStringEnum<ReleaseMode> {
     /** Static value Preview for ReleaseMode. */
     public static final ReleaseMode PREVIEW = fromString("Preview");

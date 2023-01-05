@@ -7,7 +7,7 @@ package com.azure.resourcemanager.orbital.generated;
 /** Samples for ContactProfiles CreateOrUpdate. */
 public final class ContactProfilesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileCreate.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileCreate.json
      */
     /**
      * Sample code: Create a contact profile.

@@ -55,7 +55,7 @@ public final class OperationsResultsClientImpl implements OperationsResultsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureOrbitalOperatio")
-    private interface OperationsResultsService {
+    public interface OperationsResultsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/locations/{location}/operationResults"

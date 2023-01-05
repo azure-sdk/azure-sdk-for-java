@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for ContactProfiles UpdateTags. */
 public final class ContactProfilesUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileUpdateTag.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileUpdateTag.json
      */
     /**
      * Sample code: Update Contact Profile tags.

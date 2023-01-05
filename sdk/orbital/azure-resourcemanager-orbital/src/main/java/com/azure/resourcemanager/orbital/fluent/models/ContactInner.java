@@ -6,6 +6,7 @@ package com.azure.resourcemanager.orbital.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.orbital.models.ContactsPropertiesAntennaConfiguration;
 import com.azure.resourcemanager.orbital.models.ContactsPropertiesContactProfile;
 import com.azure.resourcemanager.orbital.models.ContactsPropertiesProvisioningState;
@@ -28,6 +29,16 @@ public final class ContactInner extends ProxyResource {
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ContactInner class. */
+    public ContactInner() {
+    }
+
     /**
      * Get the innerProperties property: Properties of the Contact Resource.
      *
@@ -44,6 +55,15 @@ public final class ContactInner extends ProxyResource {
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

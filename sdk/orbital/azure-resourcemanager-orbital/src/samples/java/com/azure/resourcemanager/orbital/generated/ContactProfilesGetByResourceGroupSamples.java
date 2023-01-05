@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles GetByResourceGroup. */
 public final class ContactProfilesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileGet.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileGet.json
      */
     /**
      * Sample code: Get a contact profile.

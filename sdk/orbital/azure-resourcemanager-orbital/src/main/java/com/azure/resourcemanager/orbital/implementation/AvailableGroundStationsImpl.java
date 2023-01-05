@@ -38,15 +38,6 @@ public final class AvailableGroundStationsImpl implements AvailableGroundStation
         return Utils.mapPage(inner, inner1 -> new AvailableGroundStationImpl(inner1, this.manager()));
     }
 
-    public AvailableGroundStation get(String groundStationName) {
-        AvailableGroundStationInner inner = this.serviceClient().get(groundStationName);
-        if (inner != null) {
-            return new AvailableGroundStationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AvailableGroundStation> getWithResponse(String groundStationName, Context context) {
         Response<AvailableGroundStationInner> inner = this.serviceClient().getWithResponse(groundStationName, context);
         if (inner != null) {
@@ -55,6 +46,15 @@ public final class AvailableGroundStationsImpl implements AvailableGroundStation
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new AvailableGroundStationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AvailableGroundStation get(String groundStationName) {
+        AvailableGroundStationInner inner = this.serviceClient().get(groundStationName);
+        if (inner != null) {
+            return new AvailableGroundStationImpl(inner, this.manager());
         } else {
             return null;
         }

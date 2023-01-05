@@ -48,6 +48,10 @@ public final class SpacecraftLink {
     @JsonProperty(value = "authorizations", access = JsonProperty.Access.WRITE_ONLY)
     private List<AuthorizedGroundstation> authorizations;
 
+    /** Creates an instance of SpacecraftLink class. */
+    public SpacecraftLink() {
+    }
+
     /**
      * Get the name property: Link name.
      *

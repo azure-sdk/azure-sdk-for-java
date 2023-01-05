@@ -10,7 +10,7 @@ import com.azure.resourcemanager.orbital.models.CapabilityParameter;
 /** Samples for AvailableGroundStations List. */
 public final class AvailableGroundStationsListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/AvailableGroundStationsByCapabilityList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/AvailableGroundStationsByCapabilityList.json
      */
     /**
      * Sample code: List of Ground Stations by Capability.

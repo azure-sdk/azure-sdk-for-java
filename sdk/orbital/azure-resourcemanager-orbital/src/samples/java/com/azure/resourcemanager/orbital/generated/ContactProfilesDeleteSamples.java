@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles Delete. */
 public final class ContactProfilesDeleteSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfileDelete.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfileDelete.json
      */
     /**
      * Sample code: Delete Contact Profile.

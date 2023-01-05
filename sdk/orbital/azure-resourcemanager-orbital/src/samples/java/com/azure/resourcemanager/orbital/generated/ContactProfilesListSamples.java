@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ContactProfiles List. */
 public final class ContactProfilesListSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactProfilesBySubscriptionList.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactProfilesBySubscriptionList.json
      */
     /**
      * Sample code: List of Contact Profiles.

@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 /** Samples for Contacts Create. */
 public final class ContactsCreateSamples {
     /*
-     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-03-01/examples/ContactCreate.json
+     * x-ms-original-file: specification/orbital/resource-manager/Microsoft.Orbital/stable/2022-11-01/examples/ContactCreate.json
      */
     /**
      * Sample code: Create a contact.

@@ -40,6 +40,10 @@ public final class AvailableGroundStationInner {
     @JsonProperty(value = "properties")
     private AvailableGroundStationProperties innerProperties;
 
+    /** Creates an instance of AvailableGroundStationInner class. */
+    public AvailableGroundStationInner() {
+    }
+
     /**
      * Get the id property: ID of groundStation.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ContactsStatus. */
+/** Status of a contact. */
 public final class ContactsStatus extends ExpandableStringEnum<ContactsStatus> {
     /** Static value scheduled for ContactsStatus. */
     public static final ContactsStatus SCHEDULED = fromString("scheduled");
