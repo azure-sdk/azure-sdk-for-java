@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.consumption.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultInner;
 import com.azure.resourcemanager.consumption.models.MeterDetails;
 import com.azure.resourcemanager.consumption.models.PriceSheetProperties;
 import com.azure.resourcemanager.consumption.models.PriceSheetResult;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public final class PriceSheetResultImpl implements PriceSheetResult {
     private PriceSheetResultInner innerObject;
@@ -35,17 +35,8 @@ public final class PriceSheetResultImpl implements PriceSheetResult {
         return this.innerModel().type();
     }
 
-    public String etag() {
-        return this.innerModel().etag();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public List<PriceSheetProperties> pricesheets() {

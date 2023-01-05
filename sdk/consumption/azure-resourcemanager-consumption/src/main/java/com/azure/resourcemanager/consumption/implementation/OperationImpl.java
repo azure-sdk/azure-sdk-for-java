@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.consumption.implementation;
 
 import com.azure.resourcemanager.consumption.fluent.models.OperationInner;
+import com.azure.resourcemanager.consumption.models.ActionType;
 import com.azure.resourcemanager.consumption.models.Operation;
 import com.azure.resourcemanager.consumption.models.OperationDisplay;
+import com.azure.resourcemanager.consumption.models.Origin;
 
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
@@ -18,16 +20,24 @@ public final class OperationImpl implements Operation {
         this.serviceManager = serviceManager;
     }
 
-    public String id() {
-        return this.innerModel().id();
-    }
-
     public String name() {
         return this.innerModel().name();
     }
 
+    public Boolean isDataAction() {
+        return this.innerModel().isDataAction();
+    }
+
     public OperationDisplay display() {
         return this.innerModel().display();
+    }
+
+    public Origin origin() {
+        return this.innerModel().origin();
+    }
+
+    public ActionType actionType() {
+        return this.innerModel().actionType();
     }
 
     public OperationInner innerModel() {

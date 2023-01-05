@@ -4,9 +4,9 @@
 
 package com.azure.resourcemanager.consumption.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultInner;
 import java.util.List;
-import java.util.Map;
 
 /** An immutable client-side representation of PriceSheetResult. */
 public interface PriceSheetResult {
@@ -32,18 +32,11 @@ public interface PriceSheetResult {
     String type();
 
     /**
-     * Gets the etag property: The etag for the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the etag value.
+     * @return the systemData value.
      */
-    String etag();
-
-    /**
-     * Gets the tags property: Resource tags.
-     *
-     * @return the tags value.
-     */
-    Map<String, String> tags();
+    SystemData systemData();
 
     /**
      * Gets the pricesheets property: Price sheet.

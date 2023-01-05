@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The Dimensions or Tags to filter a budget by. */
 @Fluent
 public final class BudgetFilterProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BudgetFilterProperties.class);
-
     /*
      * Has comparison expression for a dimension
      */
@@ -25,6 +21,10 @@ public final class BudgetFilterProperties {
      */
     @JsonProperty(value = "tags")
     private BudgetComparisonExpression tags;
+
+    /** Creates an instance of BudgetFilterProperties class. */
+    public BudgetFilterProperties() {
+    }
 
     /**
      * Get the dimensions property: Has comparison expression for a dimension.

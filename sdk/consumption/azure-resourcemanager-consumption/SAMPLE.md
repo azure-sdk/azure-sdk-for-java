@@ -35,10 +35,15 @@
 
 - [ListByBillingAccount](#lotsoperation_listbybillingaccount)
 - [ListByBillingProfile](#lotsoperation_listbybillingprofile)
+- [ListByCustomer](#lotsoperation_listbycustomer)
 
 ## Marketplaces
 
 - [List](#marketplaces_list)
+
+## Operations
+
+- [List](#operations_list)
 
 ## PriceSheet
 
@@ -302,7 +307,8 @@ public final class BudgetsDeleteSamples {
     public static void deleteBudget(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .budgets()
-            .deleteWithResponse("subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", Context.NONE);
     }
 }
 ```
@@ -768,6 +774,42 @@ public final class LotsOperationListByBillingProfileSamples {
 }
 ```
 
+### LotsOperation_ListByCustomer
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LotsOperation ListByCustomer. */
+public final class LotsOperationListByCustomerSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByCustomer.json
+     */
+    /**
+     * Sample code: LotsListByCustomer.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void lotsListByCustomer(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.lotsOperations().listByCustomer("1234:5678", "1234:5678", null, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByCustomerWithFilters.json
+     */
+    /**
+     * Sample code: LotsListByCustomerWithFilter.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void lotsListByCustomerWithFilter(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager
+            .lotsOperations()
+            .listByCustomer(
+                "1234:5678", "1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'", Context.NONE);
+    }
+}
+```
+
 ### Marketplaces_List
 
 ```java
@@ -921,6 +963,27 @@ public final class MarketplacesListSamples {
 }
 ```
 
+### Operations_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/OperationList.json
+     */
+    /**
+     * Sample code: OperationList.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void operationList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.operations().list(Context.NONE);
+    }
+}
+```
+
 ### PriceSheet_Get
 
 ```java
@@ -928,6 +991,18 @@ import com.azure.core.util.Context;
 
 /** Samples for PriceSheet Get. */
 public final class PriceSheetGetSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/PriceSheet.json
+     */
+    /**
+     * Sample code: PriceSheet.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void priceSheet(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.priceSheets().getWithResponse(null, null, null, Context.NONE);
+    }
+
     /*
      * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheet.json
      */
@@ -949,6 +1024,30 @@ import com.azure.core.util.Context;
 
 /** Samples for PriceSheet GetByBillingPeriod. */
 public final class PriceSheetGetByBillingPeriodSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/PriceSheetForBillingPeriod.json
+     */
+    /**
+     * Sample code: PriceSheetForBillingPeriod.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void priceSheetForBillingPeriod(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.priceSheets().getByBillingPeriodWithResponse("201801", null, null, null, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/PriceSheetExpand.json
+     */
+    /**
+     * Sample code: PriceSheetExpand.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void priceSheetExpand(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.priceSheets().getByBillingPeriodWithResponse("201801", "meterDetails", null, null, Context.NONE);
+    }
+
     /*
      * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheetForBillingPeriod.json
      */
@@ -980,6 +1079,7 @@ public final class PriceSheetGetByBillingPeriodSamples {
 ```java
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.LookBackPeriod;
+import com.azure.resourcemanager.consumption.models.Scope;
 import com.azure.resourcemanager.consumption.models.Term;
 
 /** Samples for ReservationRecommendationDetails Get. */
@@ -996,7 +1096,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Single", "westus", Term.P3Y, LookBackPeriod.LAST30DAYS, "Standard_DS13_v2", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-00000000",
+                Scope.SINGLE,
+                "westus",
+                Term.P3Y,
+                LookBackPeriod.LAST30DAYS,
+                "Standard_DS13_v2",
+                Context.NONE);
     }
 
     /*
@@ -1012,7 +1119,13 @@ public final class ReservationRecommendationDetailsGetSamples {
         manager
             .reservationRecommendationDetails()
             .getWithResponse(
-                "Shared", "australiaeast", Term.P1Y, LookBackPeriod.LAST7DAYS, "Standard_B2s", Context.NONE);
+                "providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-00000000:00000000-0000-0000-0000-00000000/billingProfiles/00000000-0000-0000-0000-00000000",
+                Scope.SHARED,
+                "australiaeast",
+                Term.P1Y,
+                LookBackPeriod.LAST7DAYS,
+                "Standard_B2s",
+                Context.NONE);
     }
 
     /*
@@ -1027,7 +1140,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Single", "westus", Term.P3Y, LookBackPeriod.LAST30DAYS, "Standard_DS13_v2", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/testGroup",
+                Scope.SINGLE,
+                "westus",
+                Term.P3Y,
+                LookBackPeriod.LAST30DAYS,
+                "Standard_DS13_v2",
+                Context.NONE);
     }
 
     /*
@@ -1042,7 +1162,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Shared", "eastus", Term.P1Y, LookBackPeriod.LAST60DAYS, "Standard_DS14_v2", Context.NONE);
+            .getWithResponse(
+                "providers/Microsoft.Billing/billingAccounts/000000",
+                Scope.SHARED,
+                "eastus",
+                Term.P1Y,
+                LookBackPeriod.LAST60DAYS,
+                "Standard_DS14_v2",
+                Context.NONE);
     }
 }
 ```
