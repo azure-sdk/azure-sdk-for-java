@@ -4,6 +4,6 @@
 
 /**
  * Package containing the implementations for AgriFoodManagementClient. APIs documentation for Azure AgFoodPlatform
- * Resource Provider Service.
+ * Resource Provider Services.
  */
 package com.azure.resourcemanager.agrifood.implementation;

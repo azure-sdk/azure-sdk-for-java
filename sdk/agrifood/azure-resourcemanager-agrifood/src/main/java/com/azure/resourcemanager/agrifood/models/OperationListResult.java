@@ -7,6 +7,7 @@ package com.azure.resourcemanager.agrifood.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.agrifood.fluent.models.OperationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -25,7 +26,11 @@ public final class OperationListResult {
      * URL to get the next set of operation list results (if there are any).
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
+    private URL nextLink;
+
+    /** Creates an instance of OperationListResult class. */
+    public OperationListResult() {
+    }
 
     /**
      * Get the value property: List of operations supported by the resource provider.
@@ -41,7 +46,7 @@ public final class OperationListResult {
      *
      * @return the nextLink value.
      */
-    public String nextLink() {
+    public URL nextLink() {
         return this.nextLink;
     }
 
