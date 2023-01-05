@@ -65,6 +65,13 @@ public interface ContainerApp {
     ManagedServiceIdentity identity();
 
     /**
+     * Gets the managedBy property: resourceId or fully qualified resourceId of the resource that manages this resource.
+     *
+     * @return the managedBy value.
+     */
+    String managedBy();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.

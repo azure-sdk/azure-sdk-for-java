@@ -33,6 +33,12 @@ public final class ContainerAppInner extends Resource {
     private ManagedServiceIdentity identity;
 
     /*
+     * resourceId or fully qualified resourceId of the resource that manages this resource
+     */
+    @JsonProperty(value = "managedBy", access = JsonProperty.Access.WRITE_ONLY)
+    private String managedBy;
+
+    /*
      * ContainerApp resource specific properties
      */
     @JsonProperty(value = "properties")
@@ -88,6 +94,15 @@ public final class ContainerAppInner extends Resource {
     public ContainerAppInner withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the managedBy property: resourceId or fully qualified resourceId of the resource that manages this resource.
+     *
+     * @return the managedBy value.
+     */
+    public String managedBy() {
+        return this.managedBy;
     }
 
     /**

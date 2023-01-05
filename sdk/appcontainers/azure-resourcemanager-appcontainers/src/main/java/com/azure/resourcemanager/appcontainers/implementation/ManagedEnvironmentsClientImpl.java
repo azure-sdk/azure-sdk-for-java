@@ -68,7 +68,7 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ManagedEnvironmentsService {
+    public interface ManagedEnvironmentsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.App/managedEnvironments")
         @ExpectedResponses({200})
@@ -144,7 +144,7 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
                 + "/managedEnvironments/{environmentName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -1281,7 +1281,8 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return an environment for hosting container apps along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1341,7 +1342,8 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return an environment for hosting container apps along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1400,17 +1402,21 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link PollerFlux} for polling of an environment for hosting container apps.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginUpdateAsync(
+    private PollerFlux<PollResult<ManagedEnvironmentInner>, ManagedEnvironmentInner> beginUpdateAsync(
         String resourceGroupName, String environmentName, ManagedEnvironmentInner environmentEnvelope) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             updateWithResponseAsync(resourceGroupName, environmentName, environmentEnvelope);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<ManagedEnvironmentInner, ManagedEnvironmentInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                ManagedEnvironmentInner.class,
+                ManagedEnvironmentInner.class,
+                this.client.getContext());
     }
 
     /**
@@ -1425,10 +1431,10 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link PollerFlux} for polling of an environment for hosting container apps.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginUpdateAsync(
+    private PollerFlux<PollResult<ManagedEnvironmentInner>, ManagedEnvironmentInner> beginUpdateAsync(
         String resourceGroupName,
         String environmentName,
         ManagedEnvironmentInner environmentEnvelope,
@@ -1438,7 +1444,12 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
             updateWithResponseAsync(resourceGroupName, environmentName, environmentEnvelope, context);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+            .<ManagedEnvironmentInner, ManagedEnvironmentInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                ManagedEnvironmentInner.class,
+                ManagedEnvironmentInner.class,
+                context);
     }
 
     /**
@@ -1452,10 +1463,10 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of an environment for hosting container apps.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginUpdate(
+    public SyncPoller<PollResult<ManagedEnvironmentInner>, ManagedEnvironmentInner> beginUpdate(
         String resourceGroupName, String environmentName, ManagedEnvironmentInner environmentEnvelope) {
         return beginUpdateAsync(resourceGroupName, environmentName, environmentEnvelope).getSyncPoller();
     }
@@ -1472,10 +1483,10 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of an environment for hosting container apps.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginUpdate(
+    public SyncPoller<PollResult<ManagedEnvironmentInner>, ManagedEnvironmentInner> beginUpdate(
         String resourceGroupName,
         String environmentName,
         ManagedEnvironmentInner environmentEnvelope,
@@ -1494,10 +1505,10 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return an environment for hosting container apps on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> updateAsync(
+    private Mono<ManagedEnvironmentInner> updateAsync(
         String resourceGroupName, String environmentName, ManagedEnvironmentInner environmentEnvelope) {
         return beginUpdateAsync(resourceGroupName, environmentName, environmentEnvelope)
             .last()
@@ -1516,10 +1527,10 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return an environment for hosting container apps on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> updateAsync(
+    private Mono<ManagedEnvironmentInner> updateAsync(
         String resourceGroupName,
         String environmentName,
         ManagedEnvironmentInner environmentEnvelope,
@@ -1540,10 +1551,12 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an environment for hosting container apps.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String resourceGroupName, String environmentName, ManagedEnvironmentInner environmentEnvelope) {
-        updateAsync(resourceGroupName, environmentName, environmentEnvelope).block();
+    public ManagedEnvironmentInner update(
+        String resourceGroupName, String environmentName, ManagedEnvironmentInner environmentEnvelope) {
+        return updateAsync(resourceGroupName, environmentName, environmentEnvelope).block();
     }
 
     /**
@@ -1558,14 +1571,15 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an environment for hosting container apps.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(
+    public ManagedEnvironmentInner update(
         String resourceGroupName,
         String environmentName,
         ManagedEnvironmentInner environmentEnvelope,
         Context context) {
-        updateAsync(resourceGroupName, environmentName, environmentEnvelope, context).block();
+        return updateAsync(resourceGroupName, environmentName, environmentEnvelope, context).block();
     }
 
     /**
