@@ -65,6 +65,15 @@ public interface ContainerApp {
     ManagedServiceIdentity identity();
 
     /**
+     * Gets the managedBy property: The fully qualified resource ID of the resource that manages this resource.
+     * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
+     * will not delete the resource if it is removed from the template since it is managed by another resource.
+     *
+     * @return the managedBy value.
+     */
+    String managedBy();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -105,6 +114,13 @@ public interface ContainerApp {
      * @return the latestRevisionName value.
      */
     String latestRevisionName();
+
+    /**
+     * Gets the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    String latestReadyRevisionName();
 
     /**
      * Gets the latestRevisionFqdn property: Fully Qualified Domain Name of the latest revision of the Container App.
@@ -224,6 +240,7 @@ public interface ContainerApp {
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithExtendedLocation,
                 DefinitionStages.WithIdentity,
+                DefinitionStages.WithManagedBy,
                 DefinitionStages.WithManagedEnvironmentId,
                 DefinitionStages.WithEnvironmentId,
                 DefinitionStages.WithWorkloadProfileType,
@@ -275,6 +292,21 @@ public interface ContainerApp {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+        /** The stage of the ContainerApp definition allowing to specify managedBy. */
+        interface WithManagedBy {
+            /**
+             * Specifies the managedBy property: The fully qualified resource ID of the resource that manages this
+             * resource. Indicates if this resource is managed by another Azure resource. If this is present, complete
+             * mode deployment will not delete the resource if it is removed from the template since it is managed by
+             * another resource..
+             *
+             * @param managedBy The fully qualified resource ID of the resource that manages this resource. Indicates if
+             *     this resource is managed by another Azure resource. If this is present, complete mode deployment will
+             *     not delete the resource if it is removed from the template since it is managed by another resource.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedBy(String managedBy);
         }
         /** The stage of the ContainerApp definition allowing to specify managedEnvironmentId. */
         interface WithManagedEnvironmentId {
@@ -339,6 +371,7 @@ public interface ContainerApp {
         extends UpdateStages.WithTags,
             UpdateStages.WithExtendedLocation,
             UpdateStages.WithIdentity,
+            UpdateStages.WithManagedBy,
             UpdateStages.WithWorkloadProfileType,
             UpdateStages.WithConfiguration,
             UpdateStages.WithTemplate {
@@ -390,6 +423,21 @@ public interface ContainerApp {
              * @return the next definition stage.
              */
             Update withIdentity(ManagedServiceIdentity identity);
+        }
+        /** The stage of the ContainerApp update allowing to specify managedBy. */
+        interface WithManagedBy {
+            /**
+             * Specifies the managedBy property: The fully qualified resource ID of the resource that manages this
+             * resource. Indicates if this resource is managed by another Azure resource. If this is present, complete
+             * mode deployment will not delete the resource if it is removed from the template since it is managed by
+             * another resource..
+             *
+             * @param managedBy The fully qualified resource ID of the resource that manages this resource. Indicates if
+             *     this resource is managed by another Azure resource. If this is present, complete mode deployment will
+             *     not delete the resource if it is removed from the template since it is managed by another resource.
+             * @return the next definition stage.
+             */
+            Update withManagedBy(String managedBy);
         }
         /** The stage of the ContainerApp update allowing to specify workloadProfileType. */
         interface WithWorkloadProfileType {
