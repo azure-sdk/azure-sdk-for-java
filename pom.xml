@@ -98,6 +98,7 @@
     <module>sdk/kubernetesconfiguration</module>
     <module>sdk/kusto</module>
     <module>sdk/labservices</module>
+    <module>sdk/liftrqumulo</module>
     <module>sdk/loadtesting</module>
     <module>sdk/loganalytics</module>
     <module>sdk/logic</module>
