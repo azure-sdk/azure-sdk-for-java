@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.McasCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents MCAS (Microsoft Cloud App Security) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MicrosoftCloudAppSecurity")
-@Fluent
+@Immutable
 public final class McasCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * MCAS (Microsoft Cloud App Security) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private McasCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of McasCheckRequirements class. */
+    public McasCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: MCAS (Microsoft Cloud App Security) requirements check properties.

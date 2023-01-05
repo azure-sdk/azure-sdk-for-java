@@ -19,7 +19,7 @@ import java.util.UUID;
 /** Samples for SecurityMLAnalyticsSettings CreateOrUpdate. */
 public final class SecurityMLAnalyticsSettingsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/securityMLAnalyticsSettings/CreateAnomalySecurityMLAnalyticsSetting.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/securityMLAnalyticsSettings/CreateAnomalySecurityMLAnalyticsSetting.json
      */
     /**
      * Sample code: Creates or updates a Anomaly Security ML Analytics Settings.

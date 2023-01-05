@@ -6,7 +6,6 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /** metadata of a repository. */
 @Fluent
@@ -23,23 +22,9 @@ public final class Repository {
     @JsonProperty(value = "branch")
     private String branch;
 
-    /*
-     * Display url of repository.
-     */
-    @JsonProperty(value = "displayUrl")
-    private String displayUrl;
-
-    /*
-     * Url to access repository action logs.
-     */
-    @JsonProperty(value = "deploymentLogsUrl")
-    private String deploymentLogsUrl;
-
-    /*
-     * Dictionary of source control content type and path mapping.
-     */
-    @JsonProperty(value = "pathMapping")
-    private List<ContentPathMap> pathMapping;
+    /** Creates an instance of Repository class. */
+    public Repository() {
+    }
 
     /**
      * Get the url property: Url of repository.
@@ -82,73 +67,10 @@ public final class Repository {
     }
 
     /**
-     * Get the displayUrl property: Display url of repository.
-     *
-     * @return the displayUrl value.
-     */
-    public String displayUrl() {
-        return this.displayUrl;
-    }
-
-    /**
-     * Set the displayUrl property: Display url of repository.
-     *
-     * @param displayUrl the displayUrl value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withDisplayUrl(String displayUrl) {
-        this.displayUrl = displayUrl;
-        return this;
-    }
-
-    /**
-     * Get the deploymentLogsUrl property: Url to access repository action logs.
-     *
-     * @return the deploymentLogsUrl value.
-     */
-    public String deploymentLogsUrl() {
-        return this.deploymentLogsUrl;
-    }
-
-    /**
-     * Set the deploymentLogsUrl property: Url to access repository action logs.
-     *
-     * @param deploymentLogsUrl the deploymentLogsUrl value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withDeploymentLogsUrl(String deploymentLogsUrl) {
-        this.deploymentLogsUrl = deploymentLogsUrl;
-        return this;
-    }
-
-    /**
-     * Get the pathMapping property: Dictionary of source control content type and path mapping.
-     *
-     * @return the pathMapping value.
-     */
-    public List<ContentPathMap> pathMapping() {
-        return this.pathMapping;
-    }
-
-    /**
-     * Set the pathMapping property: Dictionary of source control content type and path mapping.
-     *
-     * @param pathMapping the pathMapping value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withPathMapping(List<ContentPathMap> pathMapping) {
-        this.pathMapping = pathMapping;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (pathMapping() != null) {
-            pathMapping().forEach(e -> e.validate());
-        }
     }
 }

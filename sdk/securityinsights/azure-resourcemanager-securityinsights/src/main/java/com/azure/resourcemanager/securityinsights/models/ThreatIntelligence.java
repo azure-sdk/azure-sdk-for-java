@@ -46,6 +46,10 @@ public final class ThreatIntelligence {
     @JsonProperty(value = "threatType", access = JsonProperty.Access.WRITE_ONLY)
     private String threatType;
 
+    /** Creates an instance of ThreatIntelligence class. */
+    public ThreatIntelligence() {
+    }
+
     /**
      * Get the confidence property: Confidence (must be between 0 and 1).
      *

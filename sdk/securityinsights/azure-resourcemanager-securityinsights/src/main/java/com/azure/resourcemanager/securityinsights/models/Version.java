@@ -8,13 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The version of the source control. */
+/** The version of the export connection. */
 public final class Version extends ExpandableStringEnum<Version> {
     /** Static value V1 for Version. */
     public static final Version V1 = fromString("V1");
-
-    /** Static value V2 for Version. */
-    public static final Version V2 = fromString("V2");
 
     /**
      * Creates or finds a Version from its string representation.

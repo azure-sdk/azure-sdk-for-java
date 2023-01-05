@@ -22,6 +22,10 @@ public final class WatchlistInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private WatchlistProperties innerProperties;
 
+    /** Creates an instance of WatchlistInner class. */
+    public WatchlistInner() {
+    }
+
     /**
      * Get the innerProperties property: Watchlist properties.
      *

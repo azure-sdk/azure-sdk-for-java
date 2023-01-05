@@ -22,6 +22,10 @@ public final class InsightQueryItemPropertiesAdditionalQuery {
     @JsonProperty(value = "text")
     private String text;
 
+    /** Creates an instance of InsightQueryItemPropertiesAdditionalQuery class. */
+    public InsightQueryItemPropertiesAdditionalQuery() {
+    }
+
     /**
      * Get the query property: The insight query.
      *
