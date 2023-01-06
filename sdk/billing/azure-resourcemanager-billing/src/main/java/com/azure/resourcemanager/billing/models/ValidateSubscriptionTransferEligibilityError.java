@@ -5,16 +5,11 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Error details of the transfer eligibility validation. */
 @Fluent
 public final class ValidateSubscriptionTransferEligibilityError {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ValidateSubscriptionTransferEligibilityError.class);
-
     /*
      * Error code for the product transfer validation.
      */
@@ -22,16 +17,20 @@ public final class ValidateSubscriptionTransferEligibilityError {
     private SubscriptionTransferValidationErrorCode code;
 
     /*
+     * Detailed error message explaining the error.
+     */
+    @JsonProperty(value = "details")
+    private String details;
+
+    /*
      * The error message.
      */
     @JsonProperty(value = "message")
     private String message;
 
-    /*
-     * Detailed error message explaining the error.
-     */
-    @JsonProperty(value = "details")
-    private String details;
+    /** Creates an instance of ValidateSubscriptionTransferEligibilityError class. */
+    public ValidateSubscriptionTransferEligibilityError() {
+    }
 
     /**
      * Get the code property: Error code for the product transfer validation.
@@ -54,26 +53,6 @@ public final class ValidateSubscriptionTransferEligibilityError {
     }
 
     /**
-     * Get the message property: The error message.
-     *
-     * @return the message value.
-     */
-    public String message() {
-        return this.message;
-    }
-
-    /**
-     * Set the message property: The error message.
-     *
-     * @param message the message value to set.
-     * @return the ValidateSubscriptionTransferEligibilityError object itself.
-     */
-    public ValidateSubscriptionTransferEligibilityError withMessage(String message) {
-        this.message = message;
-        return this;
-    }
-
-    /**
      * Get the details property: Detailed error message explaining the error.
      *
      * @return the details value.
@@ -90,6 +69,26 @@ public final class ValidateSubscriptionTransferEligibilityError {
      */
     public ValidateSubscriptionTransferEligibilityError withDetails(String details) {
         this.details = details;
+        return this;
+    }
+
+    /**
+     * Get the message property: The error message.
+     *
+     * @return the message value.
+     */
+    public String message() {
+        return this.message;
+    }
+
+    /**
+     * Set the message property: The error message.
+     *
+     * @param message the message value to set.
+     * @return the ValidateSubscriptionTransferEligibilityError object itself.
+     */
+    public ValidateSubscriptionTransferEligibilityError withMessage(String message) {
+        this.message = message;
         return this;
     }
 

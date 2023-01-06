@@ -5,16 +5,18 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.AgreementInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Result of listing agreements. */
 @Immutable
 public final class AgreementListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AgreementListResult.class);
+    /*
+     * The link (url) to the next page of results.
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * The list of agreements.
@@ -22,19 +24,8 @@ public final class AgreementListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<AgreementInner> value;
 
-    /*
-     * The link (url) to the next page of results.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /**
-     * Get the value property: The list of agreements.
-     *
-     * @return the value value.
-     */
-    public List<AgreementInner> value() {
-        return this.value;
+    /** Creates an instance of AgreementListResult class. */
+    public AgreementListResult() {
     }
 
     /**
@@ -44,6 +35,15 @@ public final class AgreementListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of agreements.
+     *
+     * @return the value value.
+     */
+    public List<AgreementInner> value() {
+        return this.value;
     }
 
     /**

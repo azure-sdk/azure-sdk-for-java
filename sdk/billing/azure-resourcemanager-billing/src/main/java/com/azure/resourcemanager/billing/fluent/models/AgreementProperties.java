@@ -5,11 +5,10 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AcceptanceMode;
+import com.azure.resourcemanager.billing.models.BillingProfileInfo;
 import com.azure.resourcemanager.billing.models.Category;
 import com.azure.resourcemanager.billing.models.Participants;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -17,7 +16,11 @@ import java.util.List;
 /** The properties of an agreement. */
 @Fluent
 public final class AgreementProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AgreementProperties.class);
+    /*
+     * The mode of acceptance for an agreement.
+     */
+    @JsonProperty(value = "acceptanceMode", access = JsonProperty.Access.WRITE_ONLY)
+    private AcceptanceMode acceptanceMode;
 
     /*
      * The URL to download the agreement.
@@ -26,16 +29,16 @@ public final class AgreementProperties {
     private String agreementLink;
 
     /*
+     * The list of billing profiles associated with agreement and present only for specific agreements.
+     */
+    @JsonProperty(value = "billingProfileInfo", access = JsonProperty.Access.WRITE_ONLY)
+    private BillingProfileInfo billingProfileInfo;
+
+    /*
      * The category of the agreement signed by a customer.
      */
     @JsonProperty(value = "category", access = JsonProperty.Access.WRITE_ONLY)
     private Category category;
-
-    /*
-     * The mode of acceptance for an agreement.
-     */
-    @JsonProperty(value = "acceptanceMode", access = JsonProperty.Access.WRITE_ONLY)
-    private AcceptanceMode acceptanceMode;
 
     /*
      * The date from which the agreement is effective.
@@ -50,8 +53,7 @@ public final class AgreementProperties {
     private OffsetDateTime expirationDate;
 
     /*
-     * The list of participants that participates in acceptance of an
-     * agreement.
+     * The list of participants that participates in acceptance of an agreement.
      */
     @JsonProperty(value = "participants")
     private List<Participants> participants;
@@ -61,6 +63,19 @@ public final class AgreementProperties {
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
+
+    /** Creates an instance of AgreementProperties class. */
+    public AgreementProperties() {
+    }
+
+    /**
+     * Get the acceptanceMode property: The mode of acceptance for an agreement.
+     *
+     * @return the acceptanceMode value.
+     */
+    public AcceptanceMode acceptanceMode() {
+        return this.acceptanceMode;
+    }
 
     /**
      * Get the agreementLink property: The URL to download the agreement.
@@ -72,21 +87,22 @@ public final class AgreementProperties {
     }
 
     /**
+     * Get the billingProfileInfo property: The list of billing profiles associated with agreement and present only for
+     * specific agreements.
+     *
+     * @return the billingProfileInfo value.
+     */
+    public BillingProfileInfo billingProfileInfo() {
+        return this.billingProfileInfo;
+    }
+
+    /**
      * Get the category property: The category of the agreement signed by a customer.
      *
      * @return the category value.
      */
     public Category category() {
         return this.category;
-    }
-
-    /**
-     * Get the acceptanceMode property: The mode of acceptance for an agreement.
-     *
-     * @return the acceptanceMode value.
-     */
-    public AcceptanceMode acceptanceMode() {
-        return this.acceptanceMode;
     }
 
     /**
@@ -142,6 +158,9 @@ public final class AgreementProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (billingProfileInfo() != null) {
+            billingProfileInfo().validate();
+        }
         if (participants() != null) {
             participants().forEach(e -> e.validate());
         }

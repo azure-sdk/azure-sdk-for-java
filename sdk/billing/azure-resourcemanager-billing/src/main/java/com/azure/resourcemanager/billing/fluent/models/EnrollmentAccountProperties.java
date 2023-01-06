@@ -5,28 +5,18 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.Department;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The properties of an enrollment account. */
 @Fluent
 public final class EnrollmentAccountProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnrollmentAccountProperties.class);
-
     /*
      * The name of the enrollment account.
      */
     @JsonProperty(value = "accountName")
     private String accountName;
-
-    /*
-     * The cost center associated with the enrollment account.
-     */
-    @JsonProperty(value = "costCenter")
-    private String costCenter;
 
     /*
      * The owner of the enrollment account.
@@ -41,16 +31,16 @@ public final class EnrollmentAccountProperties {
     private String accountOwnerEmail;
 
     /*
-     * The status of the enrollment account.
+     * The cost center associated with the enrollment account.
      */
-    @JsonProperty(value = "status")
-    private String status;
+    @JsonProperty(value = "costCenter")
+    private String costCenter;
 
     /*
-     * The start date of the enrollment account.
+     * Associated department. By default this is not populated, unless it's specified in $expand.
      */
-    @JsonProperty(value = "startDate")
-    private OffsetDateTime startDate;
+    @JsonProperty(value = "department")
+    private Department department;
 
     /*
      * The end date of the enrollment account.
@@ -59,11 +49,20 @@ public final class EnrollmentAccountProperties {
     private OffsetDateTime endDate;
 
     /*
-     * Associated department. By default this is not populated, unless it's
-     * specified in $expand.
+     * The start date of the enrollment account.
      */
-    @JsonProperty(value = "department")
-    private Department department;
+    @JsonProperty(value = "startDate")
+    private OffsetDateTime startDate;
+
+    /*
+     * The status of the enrollment account.
+     */
+    @JsonProperty(value = "status")
+    private String status;
+
+    /** Creates an instance of EnrollmentAccountProperties class. */
+    public EnrollmentAccountProperties() {
+    }
 
     /**
      * Get the accountName property: The name of the enrollment account.
@@ -82,26 +81,6 @@ public final class EnrollmentAccountProperties {
      */
     public EnrollmentAccountProperties withAccountName(String accountName) {
         this.accountName = accountName;
-        return this;
-    }
-
-    /**
-     * Get the costCenter property: The cost center associated with the enrollment account.
-     *
-     * @return the costCenter value.
-     */
-    public String costCenter() {
-        return this.costCenter;
-    }
-
-    /**
-     * Set the costCenter property: The cost center associated with the enrollment account.
-     *
-     * @param costCenter the costCenter value to set.
-     * @return the EnrollmentAccountProperties object itself.
-     */
-    public EnrollmentAccountProperties withCostCenter(String costCenter) {
-        this.costCenter = costCenter;
         return this;
     }
 
@@ -146,42 +125,44 @@ public final class EnrollmentAccountProperties {
     }
 
     /**
-     * Get the status property: The status of the enrollment account.
+     * Get the costCenter property: The cost center associated with the enrollment account.
      *
-     * @return the status value.
+     * @return the costCenter value.
      */
-    public String status() {
-        return this.status;
+    public String costCenter() {
+        return this.costCenter;
     }
 
     /**
-     * Set the status property: The status of the enrollment account.
+     * Set the costCenter property: The cost center associated with the enrollment account.
      *
-     * @param status the status value to set.
+     * @param costCenter the costCenter value to set.
      * @return the EnrollmentAccountProperties object itself.
      */
-    public EnrollmentAccountProperties withStatus(String status) {
-        this.status = status;
+    public EnrollmentAccountProperties withCostCenter(String costCenter) {
+        this.costCenter = costCenter;
         return this;
     }
 
     /**
-     * Get the startDate property: The start date of the enrollment account.
+     * Get the department property: Associated department. By default this is not populated, unless it's specified in
+     * $expand.
      *
-     * @return the startDate value.
+     * @return the department value.
      */
-    public OffsetDateTime startDate() {
-        return this.startDate;
+    public Department department() {
+        return this.department;
     }
 
     /**
-     * Set the startDate property: The start date of the enrollment account.
+     * Set the department property: Associated department. By default this is not populated, unless it's specified in
+     * $expand.
      *
-     * @param startDate the startDate value to set.
+     * @param department the department value to set.
      * @return the EnrollmentAccountProperties object itself.
      */
-    public EnrollmentAccountProperties withStartDate(OffsetDateTime startDate) {
-        this.startDate = startDate;
+    public EnrollmentAccountProperties withDepartment(Department department) {
+        this.department = department;
         return this;
     }
 
@@ -206,24 +187,42 @@ public final class EnrollmentAccountProperties {
     }
 
     /**
-     * Get the department property: Associated department. By default this is not populated, unless it's specified in
-     * $expand.
+     * Get the startDate property: The start date of the enrollment account.
      *
-     * @return the department value.
+     * @return the startDate value.
      */
-    public Department department() {
-        return this.department;
+    public OffsetDateTime startDate() {
+        return this.startDate;
     }
 
     /**
-     * Set the department property: Associated department. By default this is not populated, unless it's specified in
-     * $expand.
+     * Set the startDate property: The start date of the enrollment account.
      *
-     * @param department the department value to set.
+     * @param startDate the startDate value to set.
      * @return the EnrollmentAccountProperties object itself.
      */
-    public EnrollmentAccountProperties withDepartment(Department department) {
-        this.department = department;
+    public EnrollmentAccountProperties withStartDate(OffsetDateTime startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    /**
+     * Get the status property: The status of the enrollment account.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: The status of the enrollment account.
+     *
+     * @param status the status value to set.
+     * @return the EnrollmentAccountProperties object itself.
+     */
+    public EnrollmentAccountProperties withStatus(String status) {
+        this.status = status;
         return this;
     }
 

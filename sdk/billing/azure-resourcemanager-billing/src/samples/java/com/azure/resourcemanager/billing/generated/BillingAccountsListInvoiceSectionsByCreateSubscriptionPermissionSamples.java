@@ -9,10 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingAccounts ListInvoiceSectionsByCreateSubscriptionPermission. */
 public final class BillingAccountsListInvoiceSectionsByCreateSubscriptionPermissionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionsListWithCreateSubPermission.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsListWithCreateSubPermission.json
      */
     /**
-     * Sample code: InvoiceSectionsListWithCreateSubPermission.
+     * Sample code: invoiceSectionsListWithCreateSubPermission.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -20,6 +20,7 @@ public final class BillingAccountsListInvoiceSectionsByCreateSubscriptionPermiss
         com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingAccounts()
-            .listInvoiceSectionsByCreateSubscriptionPermission("{billingAccountName}", Context.NONE);
+            .listInvoiceSectionsByCreateSubscriptionPermission(
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31", Context.NONE);
     }
 }

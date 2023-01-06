@@ -9,29 +9,36 @@ import com.azure.core.util.Context;
 /** Samples for BillingAccounts Get. */
 public final class BillingAccountsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsGet.json
      */
     /**
-     * Sample code: BillingAccountWithExpand.
+     * Sample code: billingAccountsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingAccountsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingAccounts()
             .getWithResponse(
-                "{billingAccountName}", "soldTo,billingProfiles,billingProfiles/invoiceSections", Context.NONE);
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31",
+                null,
+                Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsGetWithExpand.json
      */
     /**
-     * Sample code: BillingAccounts.
+     * Sample code: billingAccountsGetWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccounts(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingAccounts().getWithResponse("{billingAccountName}", null, Context.NONE);
+    public static void billingAccountsGetWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager
+            .billingAccounts()
+            .getWithResponse(
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31",
+                "soldTo,billingProfiles,billingProfiles/invoiceSections",
+                Context.NONE);
     }
 }

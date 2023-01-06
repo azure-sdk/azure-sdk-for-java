@@ -5,33 +5,17 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The properties of an enrollment. */
 @Fluent
 public final class Enrollment {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Enrollment.class);
-
     /*
-     * The start date of the enrollment.
+     * The billing cycle for the enrollment.
      */
-    @JsonProperty(value = "startDate")
-    private OffsetDateTime startDate;
-
-    /*
-     * The end date of the enrollment.
-     */
-    @JsonProperty(value = "endDate")
-    private OffsetDateTime endDate;
-
-    /*
-     * The billing currency for the enrollment.
-     */
-    @JsonProperty(value = "currency", access = JsonProperty.Access.WRITE_ONLY)
-    private String currency;
+    @JsonProperty(value = "billingCycle", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingCycle;
 
     /*
      * The channel type of the enrollment.
@@ -40,10 +24,22 @@ public final class Enrollment {
     private String channel;
 
     /*
-     * The policies for Enterprise Agreement enrollments.
+     * The country code of the enrollment.
      */
-    @JsonProperty(value = "policies", access = JsonProperty.Access.WRITE_ONLY)
-    private EnrollmentPolicies policies;
+    @JsonProperty(value = "countryCode", access = JsonProperty.Access.WRITE_ONLY)
+    private String countryCode;
+
+    /*
+     * The billing currency for the enrollment.
+     */
+    @JsonProperty(value = "currency", access = JsonProperty.Access.WRITE_ONLY)
+    private String currency;
+
+    /*
+     * The end date of the enrollment.
+     */
+    @JsonProperty(value = "endDate")
+    private OffsetDateTime endDate;
 
     /*
      * The language for the enrollment.
@@ -52,10 +48,16 @@ public final class Enrollment {
     private String language;
 
     /*
-     * The country code of the enrollment.
+     * The policies for Enterprise Agreement enrollments.
      */
-    @JsonProperty(value = "countryCode", access = JsonProperty.Access.WRITE_ONLY)
-    private String countryCode;
+    @JsonProperty(value = "policies", access = JsonProperty.Access.WRITE_ONLY)
+    private EnrollmentPolicies policies;
+
+    /*
+     * The start date of the enrollment.
+     */
+    @JsonProperty(value = "startDate")
+    private OffsetDateTime startDate;
 
     /*
      * The current status of the enrollment.
@@ -63,30 +65,44 @@ public final class Enrollment {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
 
-    /*
-     * The billing cycle for the enrollment.
-     */
-    @JsonProperty(value = "billingCycle", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingCycle;
-
-    /**
-     * Get the startDate property: The start date of the enrollment.
-     *
-     * @return the startDate value.
-     */
-    public OffsetDateTime startDate() {
-        return this.startDate;
+    /** Creates an instance of Enrollment class. */
+    public Enrollment() {
     }
 
     /**
-     * Set the startDate property: The start date of the enrollment.
+     * Get the billingCycle property: The billing cycle for the enrollment.
      *
-     * @param startDate the startDate value to set.
-     * @return the Enrollment object itself.
+     * @return the billingCycle value.
      */
-    public Enrollment withStartDate(OffsetDateTime startDate) {
-        this.startDate = startDate;
-        return this;
+    public String billingCycle() {
+        return this.billingCycle;
+    }
+
+    /**
+     * Get the channel property: The channel type of the enrollment.
+     *
+     * @return the channel value.
+     */
+    public String channel() {
+        return this.channel;
+    }
+
+    /**
+     * Get the countryCode property: The country code of the enrollment.
+     *
+     * @return the countryCode value.
+     */
+    public String countryCode() {
+        return this.countryCode;
+    }
+
+    /**
+     * Get the currency property: The billing currency for the enrollment.
+     *
+     * @return the currency value.
+     */
+    public String currency() {
+        return this.currency;
     }
 
     /**
@@ -110,21 +126,12 @@ public final class Enrollment {
     }
 
     /**
-     * Get the currency property: The billing currency for the enrollment.
+     * Get the language property: The language for the enrollment.
      *
-     * @return the currency value.
+     * @return the language value.
      */
-    public String currency() {
-        return this.currency;
-    }
-
-    /**
-     * Get the channel property: The channel type of the enrollment.
-     *
-     * @return the channel value.
-     */
-    public String channel() {
-        return this.channel;
+    public String language() {
+        return this.language;
     }
 
     /**
@@ -137,21 +144,23 @@ public final class Enrollment {
     }
 
     /**
-     * Get the language property: The language for the enrollment.
+     * Get the startDate property: The start date of the enrollment.
      *
-     * @return the language value.
+     * @return the startDate value.
      */
-    public String language() {
-        return this.language;
+    public OffsetDateTime startDate() {
+        return this.startDate;
     }
 
     /**
-     * Get the countryCode property: The country code of the enrollment.
+     * Set the startDate property: The start date of the enrollment.
      *
-     * @return the countryCode value.
+     * @param startDate the startDate value to set.
+     * @return the Enrollment object itself.
      */
-    public String countryCode() {
-        return this.countryCode;
+    public Enrollment withStartDate(OffsetDateTime startDate) {
+        this.startDate = startDate;
+        return this;
     }
 
     /**
@@ -161,15 +170,6 @@ public final class Enrollment {
      */
     public String status() {
         return this.status;
-    }
-
-    /**
-     * Get the billingCycle property: The billing cycle for the enrollment.
-     *
-     * @return the billingCycle value.
-     */
-    public String billingCycle() {
-        return this.billingCycle;
     }
 
     /**

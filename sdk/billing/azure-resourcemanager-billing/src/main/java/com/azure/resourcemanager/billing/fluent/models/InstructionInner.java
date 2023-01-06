@@ -5,22 +5,22 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** An instruction. */
 @Fluent
-public final class InstructionInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(InstructionInner.class);
-
+public final class InstructionInner extends ArmResource {
     /*
      * A billing instruction used during invoice generation.
      */
     @JsonProperty(value = "properties")
     private InstructionProperties innerProperties;
+
+    /** Creates an instance of InstructionInner class. */
+    public InstructionInner() {
+    }
 
     /**
      * Get the innerProperties property: A billing instruction used during invoice generation.
@@ -55,25 +55,25 @@ public final class InstructionInner extends ProxyResource {
     }
 
     /**
-     * Get the startDate property: The date this billing instruction goes into effect.
+     * Get the creationDate property: The date this billing instruction was created.
      *
-     * @return the startDate value.
+     * @return the creationDate value.
      */
-    public OffsetDateTime startDate() {
-        return this.innerProperties() == null ? null : this.innerProperties().startDate();
+    public OffsetDateTime creationDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().creationDate();
     }
 
     /**
-     * Set the startDate property: The date this billing instruction goes into effect.
+     * Set the creationDate property: The date this billing instruction was created.
      *
-     * @param startDate the startDate value to set.
+     * @param creationDate the creationDate value to set.
      * @return the InstructionInner object itself.
      */
-    public InstructionInner withStartDate(OffsetDateTime startDate) {
+    public InstructionInner withCreationDate(OffsetDateTime creationDate) {
         if (this.innerProperties() == null) {
             this.innerProperties = new InstructionProperties();
         }
-        this.innerProperties().withStartDate(startDate);
+        this.innerProperties().withCreationDate(creationDate);
         return this;
     }
 
@@ -101,25 +101,25 @@ public final class InstructionInner extends ProxyResource {
     }
 
     /**
-     * Get the creationDate property: The date this billing instruction was created.
+     * Get the startDate property: The date this billing instruction goes into effect.
      *
-     * @return the creationDate value.
+     * @return the startDate value.
      */
-    public OffsetDateTime creationDate() {
-        return this.innerProperties() == null ? null : this.innerProperties().creationDate();
+    public OffsetDateTime startDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().startDate();
     }
 
     /**
-     * Set the creationDate property: The date this billing instruction was created.
+     * Set the startDate property: The date this billing instruction goes into effect.
      *
-     * @param creationDate the creationDate value to set.
+     * @param startDate the startDate value to set.
      * @return the InstructionInner object itself.
      */
-    public InstructionInner withCreationDate(OffsetDateTime creationDate) {
+    public InstructionInner withStartDate(OffsetDateTime startDate) {
         if (this.innerProperties() == null) {
             this.innerProperties = new InstructionProperties();
         }
-        this.innerProperties().withCreationDate(creationDate);
+        this.innerProperties().withStartDate(startDate);
         return this;
     }
 
@@ -128,7 +128,9 @@ public final class InstructionInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

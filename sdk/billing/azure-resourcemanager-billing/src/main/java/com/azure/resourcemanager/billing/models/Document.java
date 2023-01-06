@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of a document. */
 @Immutable
 public final class Document {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Document.class);
-
     /*
      * The type of the document.
      */
@@ -21,17 +17,20 @@ public final class Document {
     private DocumentType kind;
 
     /*
+     * The source of the document. ENF for Brazil and DRS for rest of the world.
+     */
+    @JsonProperty(value = "source", access = JsonProperty.Access.WRITE_ONLY)
+    private DocumentSource source;
+
+    /*
      * Document URL.
      */
     @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
     private String url;
 
-    /*
-     * The source of the document. ENF for Brazil and DRS for rest of the
-     * world.
-     */
-    @JsonProperty(value = "source", access = JsonProperty.Access.WRITE_ONLY)
-    private DocumentSource source;
+    /** Creates an instance of Document class. */
+    public Document() {
+    }
 
     /**
      * Get the kind property: The type of the document.
@@ -43,21 +42,21 @@ public final class Document {
     }
 
     /**
-     * Get the url property: Document URL.
-     *
-     * @return the url value.
-     */
-    public String url() {
-        return this.url;
-    }
-
-    /**
      * Get the source property: The source of the document. ENF for Brazil and DRS for rest of the world.
      *
      * @return the source value.
      */
     public DocumentSource source() {
         return this.source;
+    }
+
+    /**
+     * Get the url property: Document URL.
+     *
+     * @return the url value.
+     */
+    public String url() {
+        return this.url;
     }
 
     /**

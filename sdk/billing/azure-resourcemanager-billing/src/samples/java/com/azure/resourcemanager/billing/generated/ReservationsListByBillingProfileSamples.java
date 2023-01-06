@@ -9,10 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for Reservations ListByBillingProfile. */
 public final class ReservationsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ReservationsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/reservationsListByBillingProfile.json
      */
     /**
-     * Sample code: ReservationsListByBillingProfile.
+     * Sample code: reservationsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */

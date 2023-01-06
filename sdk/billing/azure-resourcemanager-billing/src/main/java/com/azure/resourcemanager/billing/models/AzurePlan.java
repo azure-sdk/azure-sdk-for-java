@@ -5,14 +5,16 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Details of the Azure plan. */
 @Fluent
 public final class AzurePlan {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzurePlan.class);
+    /*
+     * The sku description.
+     */
+    @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
+    private String skuDescription;
 
     /*
      * The sku id.
@@ -20,11 +22,18 @@ public final class AzurePlan {
     @JsonProperty(value = "skuId")
     private String skuId;
 
-    /*
-     * The sku description.
+    /** Creates an instance of AzurePlan class. */
+    public AzurePlan() {
+    }
+
+    /**
+     * Get the skuDescription property: The sku description.
+     *
+     * @return the skuDescription value.
      */
-    @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
-    private String skuDescription;
+    public String skuDescription() {
+        return this.skuDescription;
+    }
 
     /**
      * Get the skuId property: The sku id.
@@ -44,15 +53,6 @@ public final class AzurePlan {
     public AzurePlan withSkuId(String skuId) {
         this.skuId = skuId;
         return this;
-    }
-
-    /**
-     * Get the skuDescription property: The sku description.
-     *
-     * @return the skuDescription value.
-     */
-    public String skuDescription() {
-        return this.skuDescription;
     }
 
     /**

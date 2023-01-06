@@ -13,14 +13,14 @@ import com.azure.resourcemanager.billing.models.ViewChargesPolicy;
 /** Samples for Policies Update. */
 public final class PoliciesUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdatePolicy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesPutByBillingProfile.json
      */
     /**
-     * Sample code: UpdatePolicy.
+     * Sample code: policiesPutByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updatePolicy(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesPutByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .policies()
             .updateWithResponse(

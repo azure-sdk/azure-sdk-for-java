@@ -11,14 +11,14 @@ import com.azure.resourcemanager.billing.models.AutoRenew;
 /** Samples for Products Update. */
 public final class ProductsUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateProduct.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsPatch.json
      */
     /**
-     * Sample code: UpdateBillingProperty.
+     * Sample code: productsPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .updateWithResponse(

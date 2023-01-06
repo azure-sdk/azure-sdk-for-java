@@ -5,23 +5,13 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.ReservationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of reservations and summary of roll out count of reservations in each state. */
 @Fluent
 public final class ReservationsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationsListResult.class);
-
-    /*
-     * The list of reservations.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ReservationInner> value;
-
     /*
      * The link (url) to the next page of results.
      */
@@ -34,13 +24,14 @@ public final class ReservationsListResult {
     @JsonProperty(value = "summary")
     private ReservationSummary summary;
 
-    /**
-     * Get the value property: The list of reservations.
-     *
-     * @return the value value.
+    /*
+     * The list of reservations.
      */
-    public List<ReservationInner> value() {
-        return this.value;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ReservationInner> value;
+
+    /** Creates an instance of ReservationsListResult class. */
+    public ReservationsListResult() {
     }
 
     /**
@@ -73,16 +64,25 @@ public final class ReservationsListResult {
     }
 
     /**
+     * Get the value property: The list of reservations.
+     *
+     * @return the value value.
+     */
+    public List<ReservationInner> value() {
+        return this.value;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
         if (summary() != null) {
             summary().validate();
+        }
+        if (value() != null) {
+            value().forEach(e -> e.validate());
         }
     }
 }

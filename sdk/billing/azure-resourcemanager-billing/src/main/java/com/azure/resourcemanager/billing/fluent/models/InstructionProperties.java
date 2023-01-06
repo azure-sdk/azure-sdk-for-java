@@ -6,15 +6,12 @@ package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** A billing instruction used during invoice generation. */
 @Fluent
 public final class InstructionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(InstructionProperties.class);
-
     /*
      * The amount budgeted for this billing instruction.
      */
@@ -22,10 +19,10 @@ public final class InstructionProperties {
     private float amount;
 
     /*
-     * The date this billing instruction goes into effect.
+     * The date this billing instruction was created.
      */
-    @JsonProperty(value = "startDate", required = true)
-    private OffsetDateTime startDate;
+    @JsonProperty(value = "creationDate")
+    private OffsetDateTime creationDate;
 
     /*
      * The date this billing instruction is no longer in effect.
@@ -34,10 +31,14 @@ public final class InstructionProperties {
     private OffsetDateTime endDate;
 
     /*
-     * The date this billing instruction was created.
+     * The date this billing instruction goes into effect.
      */
-    @JsonProperty(value = "creationDate")
-    private OffsetDateTime creationDate;
+    @JsonProperty(value = "startDate", required = true)
+    private OffsetDateTime startDate;
+
+    /** Creates an instance of InstructionProperties class. */
+    public InstructionProperties() {
+    }
 
     /**
      * Get the amount property: The amount budgeted for this billing instruction.
@@ -56,46 +57,6 @@ public final class InstructionProperties {
      */
     public InstructionProperties withAmount(float amount) {
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * Get the startDate property: The date this billing instruction goes into effect.
-     *
-     * @return the startDate value.
-     */
-    public OffsetDateTime startDate() {
-        return this.startDate;
-    }
-
-    /**
-     * Set the startDate property: The date this billing instruction goes into effect.
-     *
-     * @param startDate the startDate value to set.
-     * @return the InstructionProperties object itself.
-     */
-    public InstructionProperties withStartDate(OffsetDateTime startDate) {
-        this.startDate = startDate;
-        return this;
-    }
-
-    /**
-     * Get the endDate property: The date this billing instruction is no longer in effect.
-     *
-     * @return the endDate value.
-     */
-    public OffsetDateTime endDate() {
-        return this.endDate;
-    }
-
-    /**
-     * Set the endDate property: The date this billing instruction is no longer in effect.
-     *
-     * @param endDate the endDate value to set.
-     * @return the InstructionProperties object itself.
-     */
-    public InstructionProperties withEndDate(OffsetDateTime endDate) {
-        this.endDate = endDate;
         return this;
     }
 
@@ -120,20 +81,62 @@ public final class InstructionProperties {
     }
 
     /**
+     * Get the endDate property: The date this billing instruction is no longer in effect.
+     *
+     * @return the endDate value.
+     */
+    public OffsetDateTime endDate() {
+        return this.endDate;
+    }
+
+    /**
+     * Set the endDate property: The date this billing instruction is no longer in effect.
+     *
+     * @param endDate the endDate value to set.
+     * @return the InstructionProperties object itself.
+     */
+    public InstructionProperties withEndDate(OffsetDateTime endDate) {
+        this.endDate = endDate;
+        return this;
+    }
+
+    /**
+     * Get the startDate property: The date this billing instruction goes into effect.
+     *
+     * @return the startDate value.
+     */
+    public OffsetDateTime startDate() {
+        return this.startDate;
+    }
+
+    /**
+     * Set the startDate property: The date this billing instruction goes into effect.
+     *
+     * @param startDate the startDate value to set.
+     * @return the InstructionProperties object itself.
+     */
+    public InstructionProperties withStartDate(OffsetDateTime startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (startDate() == null) {
-            throw logger
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startDate in model InstructionProperties"));
-        }
         if (endDate() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property endDate in model InstructionProperties"));
         }
+        if (startDate() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property startDate in model InstructionProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(InstructionProperties.class);
 }

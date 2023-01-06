@@ -5,23 +5,22 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.EnrollmentAccountProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** An enrollment account. */
 @Fluent
-public final class EnrollmentAccount extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnrollmentAccount.class);
-
+public final class EnrollmentAccount extends ArmResource {
     /*
      * The properties of an enrollment account.
      */
     @JsonProperty(value = "properties")
     private EnrollmentAccountProperties innerProperties;
+
+    /** Creates an instance of EnrollmentAccount class. */
+    public EnrollmentAccount() {
+    }
 
     /**
      * Get the innerProperties property: The properties of an enrollment account.
@@ -52,29 +51,6 @@ public final class EnrollmentAccount extends ProxyResource {
             this.innerProperties = new EnrollmentAccountProperties();
         }
         this.innerProperties().withAccountName(accountName);
-        return this;
-    }
-
-    /**
-     * Get the costCenter property: The cost center associated with the enrollment account.
-     *
-     * @return the costCenter value.
-     */
-    public String costCenter() {
-        return this.innerProperties() == null ? null : this.innerProperties().costCenter();
-    }
-
-    /**
-     * Set the costCenter property: The cost center associated with the enrollment account.
-     *
-     * @param costCenter the costCenter value to set.
-     * @return the EnrollmentAccount object itself.
-     */
-    public EnrollmentAccount withCostCenter(String costCenter) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EnrollmentAccountProperties();
-        }
-        this.innerProperties().withCostCenter(costCenter);
         return this;
     }
 
@@ -125,71 +101,25 @@ public final class EnrollmentAccount extends ProxyResource {
     }
 
     /**
-     * Get the status property: The status of the enrollment account.
+     * Get the costCenter property: The cost center associated with the enrollment account.
      *
-     * @return the status value.
+     * @return the costCenter value.
      */
-    public String status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
+    public String costCenter() {
+        return this.innerProperties() == null ? null : this.innerProperties().costCenter();
     }
 
     /**
-     * Set the status property: The status of the enrollment account.
+     * Set the costCenter property: The cost center associated with the enrollment account.
      *
-     * @param status the status value to set.
+     * @param costCenter the costCenter value to set.
      * @return the EnrollmentAccount object itself.
      */
-    public EnrollmentAccount withStatus(String status) {
+    public EnrollmentAccount withCostCenter(String costCenter) {
         if (this.innerProperties() == null) {
             this.innerProperties = new EnrollmentAccountProperties();
         }
-        this.innerProperties().withStatus(status);
-        return this;
-    }
-
-    /**
-     * Get the startDate property: The start date of the enrollment account.
-     *
-     * @return the startDate value.
-     */
-    public OffsetDateTime startDate() {
-        return this.innerProperties() == null ? null : this.innerProperties().startDate();
-    }
-
-    /**
-     * Set the startDate property: The start date of the enrollment account.
-     *
-     * @param startDate the startDate value to set.
-     * @return the EnrollmentAccount object itself.
-     */
-    public EnrollmentAccount withStartDate(OffsetDateTime startDate) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EnrollmentAccountProperties();
-        }
-        this.innerProperties().withStartDate(startDate);
-        return this;
-    }
-
-    /**
-     * Get the endDate property: The end date of the enrollment account.
-     *
-     * @return the endDate value.
-     */
-    public OffsetDateTime endDate() {
-        return this.innerProperties() == null ? null : this.innerProperties().endDate();
-    }
-
-    /**
-     * Set the endDate property: The end date of the enrollment account.
-     *
-     * @param endDate the endDate value to set.
-     * @return the EnrollmentAccount object itself.
-     */
-    public EnrollmentAccount withEndDate(OffsetDateTime endDate) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EnrollmentAccountProperties();
-        }
-        this.innerProperties().withEndDate(endDate);
+        this.innerProperties().withCostCenter(costCenter);
         return this;
     }
 
@@ -219,11 +149,82 @@ public final class EnrollmentAccount extends ProxyResource {
     }
 
     /**
+     * Get the endDate property: The end date of the enrollment account.
+     *
+     * @return the endDate value.
+     */
+    public OffsetDateTime endDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().endDate();
+    }
+
+    /**
+     * Set the endDate property: The end date of the enrollment account.
+     *
+     * @param endDate the endDate value to set.
+     * @return the EnrollmentAccount object itself.
+     */
+    public EnrollmentAccount withEndDate(OffsetDateTime endDate) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnrollmentAccountProperties();
+        }
+        this.innerProperties().withEndDate(endDate);
+        return this;
+    }
+
+    /**
+     * Get the startDate property: The start date of the enrollment account.
+     *
+     * @return the startDate value.
+     */
+    public OffsetDateTime startDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().startDate();
+    }
+
+    /**
+     * Set the startDate property: The start date of the enrollment account.
+     *
+     * @param startDate the startDate value to set.
+     * @return the EnrollmentAccount object itself.
+     */
+    public EnrollmentAccount withStartDate(OffsetDateTime startDate) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnrollmentAccountProperties();
+        }
+        this.innerProperties().withStartDate(startDate);
+        return this;
+    }
+
+    /**
+     * Get the status property: The status of the enrollment account.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Set the status property: The status of the enrollment account.
+     *
+     * @param status the status value to set.
+     * @return the EnrollmentAccount object itself.
+     */
+    public EnrollmentAccount withStatus(String status) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnrollmentAccountProperties();
+        }
+        this.innerProperties().withStatus(status);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

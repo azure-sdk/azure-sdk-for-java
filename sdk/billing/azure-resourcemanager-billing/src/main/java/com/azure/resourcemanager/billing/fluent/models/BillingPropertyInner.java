@@ -5,24 +5,24 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.BillingProfileSpendingLimit;
 import com.azure.resourcemanager.billing.models.BillingProfileStatus;
 import com.azure.resourcemanager.billing.models.BillingProfileStatusReasonCode;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A billing property. */
 @Fluent
-public final class BillingPropertyInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingPropertyInner.class);
-
+public final class BillingPropertyInner extends ArmResource {
     /*
      * A billing property.
      */
     @JsonProperty(value = "properties")
     private BillingPropertyProperties innerProperties;
+
+    /** Creates an instance of BillingPropertyInner class. */
+    public BillingPropertyInner() {
+    }
 
     /**
      * Get the innerProperties property: A billing property.
@@ -44,12 +44,12 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
-     * Get the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
+     * Get the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
      *
-     * @return the billingTenantId value.
+     * @return the billingAccountDisplayName value.
      */
-    public String billingTenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingTenantId();
+    public String billingAccountDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountDisplayName();
     }
 
     /**
@@ -62,12 +62,12 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
-     * Get the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
+     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
      *
-     * @return the billingAccountDisplayName value.
+     * @return the billingProfileDisplayName value.
      */
-    public String billingAccountDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingAccountDisplayName();
+    public String billingProfileDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
     }
 
     /**
@@ -80,12 +80,12 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
-     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
+     * Get the billingProfileSpendingLimit property: The billing profile spending limit.
      *
-     * @return the billingProfileDisplayName value.
+     * @return the billingProfileSpendingLimit value.
      */
-    public String billingProfileDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
+    public BillingProfileSpendingLimit billingProfileSpendingLimit() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileSpendingLimit();
     }
 
     /**
@@ -107,12 +107,12 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
-     * Get the billingProfileSpendingLimit property: The billing profile spending limit.
+     * Get the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
      *
-     * @return the billingProfileSpendingLimit value.
+     * @return the billingTenantId value.
      */
-    public BillingProfileSpendingLimit billingProfileSpendingLimit() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileSpendingLimit();
+    public String billingTenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingTenantId();
     }
 
     /**
@@ -139,21 +139,21 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
-     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    public String invoiceSectionId() {
-        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
-    }
-
-    /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
      *
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
         return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionDisplayName();
+    }
+
+    /**
+     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
     }
 
     /**
@@ -184,15 +184,6 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
-     * Get the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @return the skuId value.
-     */
-    public String skuId() {
-        return this.innerProperties() == null ? null : this.innerProperties().skuId();
-    }
-
-    /**
      * Get the skuDescription property: The sku description of the Azure plan for the subscription.
      *
      * @return the skuDescription value.
@@ -202,11 +193,22 @@ public final class BillingPropertyInner extends ProxyResource {
     }
 
     /**
+     * Get the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @return the skuId value.
+     */
+    public String skuId() {
+        return this.innerProperties() == null ? null : this.innerProperties().skuId();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

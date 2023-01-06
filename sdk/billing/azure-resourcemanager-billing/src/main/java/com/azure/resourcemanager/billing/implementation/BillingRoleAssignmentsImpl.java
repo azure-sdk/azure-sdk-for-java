@@ -13,10 +13,9 @@ import com.azure.resourcemanager.billing.fluent.BillingRoleAssignmentsClient;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner;
 import com.azure.resourcemanager.billing.models.BillingRoleAssignment;
 import com.azure.resourcemanager.billing.models.BillingRoleAssignments;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingRoleAssignmentsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(BillingRoleAssignmentsImpl.class);
 
     private final BillingRoleAssignmentsClient innerClient;
 
@@ -28,22 +27,27 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         this.serviceManager = serviceManager;
     }
 
-    public BillingRoleAssignment getByBillingAccount(String billingAccountName, String billingRoleAssignmentName) {
-        BillingRoleAssignmentInner inner =
-            this.serviceClient().getByBillingAccount(billingAccountName, billingRoleAssignmentName);
-        if (inner != null) {
-            return new BillingRoleAssignmentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<BillingRoleAssignment> listByBillingProfile(
+        String billingAccountName, String billingProfileName) {
+        PagedIterable<BillingRoleAssignmentInner> inner =
+            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
     }
 
-    public Response<BillingRoleAssignment> getByBillingAccountWithResponse(
-        String billingAccountName, String billingRoleAssignmentName, Context context) {
+    public PagedIterable<BillingRoleAssignment> listByBillingProfile(
+        String billingAccountName, String billingProfileName, Context context) {
+        PagedIterable<BillingRoleAssignmentInner> inner =
+            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
+    }
+
+    public Response<BillingRoleAssignment> deleteByBillingProfileWithResponse(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
         Response<BillingRoleAssignmentInner> inner =
             this
                 .serviceClient()
-                .getByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, context);
+                .deleteByBillingProfileWithResponse(
+                    billingAccountName, billingProfileName, billingRoleAssignmentName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -55,9 +59,12 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         }
     }
 
-    public BillingRoleAssignment deleteByBillingAccount(String billingAccountName, String billingRoleAssignmentName) {
+    public BillingRoleAssignment deleteByBillingProfile(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
         BillingRoleAssignmentInner inner =
-            this.serviceClient().deleteByBillingAccount(billingAccountName, billingRoleAssignmentName);
+            this
+                .serviceClient()
+                .deleteByBillingProfile(billingAccountName, billingProfileName, billingRoleAssignmentName);
         if (inner != null) {
             return new BillingRoleAssignmentImpl(inner, this.manager());
         } else {
@@ -65,12 +72,13 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         }
     }
 
-    public Response<BillingRoleAssignment> deleteByBillingAccountWithResponse(
-        String billingAccountName, String billingRoleAssignmentName, Context context) {
+    public Response<BillingRoleAssignment> getByBillingProfileWithResponse(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
         Response<BillingRoleAssignmentInner> inner =
             this
                 .serviceClient()
-                .deleteByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, context);
+                .getByBillingProfileWithResponse(
+                    billingAccountName, billingProfileName, billingRoleAssignmentName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -82,7 +90,56 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         }
     }
 
-    public BillingRoleAssignment getByInvoiceSection(
+    public BillingRoleAssignment getByBillingProfile(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
+        BillingRoleAssignmentInner inner =
+            this.serviceClient().getByBillingProfile(billingAccountName, billingProfileName, billingRoleAssignmentName);
+        if (inner != null) {
+            return new BillingRoleAssignmentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<BillingRoleAssignment> listByInvoiceSection(
+        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+        PagedIterable<BillingRoleAssignmentInner> inner =
+            this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
+        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingRoleAssignment> listByInvoiceSection(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+        PagedIterable<BillingRoleAssignmentInner> inner =
+            this
+                .serviceClient()
+                .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
+    }
+
+    public Response<BillingRoleAssignment> deleteByInvoiceSectionWithResponse(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName,
+        Context context) {
+        Response<BillingRoleAssignmentInner> inner =
+            this
+                .serviceClient()
+                .deleteByInvoiceSectionWithResponse(
+                    billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new BillingRoleAssignmentImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public BillingRoleAssignment deleteByInvoiceSection(
         String billingAccountName,
         String billingProfileName,
         String invoiceSectionName,
@@ -90,7 +147,7 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         BillingRoleAssignmentInner inner =
             this
                 .serviceClient()
-                .getByInvoiceSection(
+                .deleteByInvoiceSection(
                     billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName);
         if (inner != null) {
             return new BillingRoleAssignmentImpl(inner, this.manager());
@@ -121,7 +178,7 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         }
     }
 
-    public BillingRoleAssignment deleteByInvoiceSection(
+    public BillingRoleAssignment getByInvoiceSection(
         String billingAccountName,
         String billingProfileName,
         String invoiceSectionName,
@@ -129,92 +186,10 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         BillingRoleAssignmentInner inner =
             this
                 .serviceClient()
-                .deleteByInvoiceSection(
+                .getByInvoiceSection(
                     billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName);
         if (inner != null) {
             return new BillingRoleAssignmentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<BillingRoleAssignment> deleteByInvoiceSectionWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName,
-        Context context) {
-        Response<BillingRoleAssignmentInner> inner =
-            this
-                .serviceClient()
-                .deleteByInvoiceSectionWithResponse(
-                    billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new BillingRoleAssignmentImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public BillingRoleAssignment getByBillingProfile(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
-        BillingRoleAssignmentInner inner =
-            this.serviceClient().getByBillingProfile(billingAccountName, billingProfileName, billingRoleAssignmentName);
-        if (inner != null) {
-            return new BillingRoleAssignmentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<BillingRoleAssignment> getByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
-        Response<BillingRoleAssignmentInner> inner =
-            this
-                .serviceClient()
-                .getByBillingProfileWithResponse(
-                    billingAccountName, billingProfileName, billingRoleAssignmentName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new BillingRoleAssignmentImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public BillingRoleAssignment deleteByBillingProfile(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
-        BillingRoleAssignmentInner inner =
-            this
-                .serviceClient()
-                .deleteByBillingProfile(billingAccountName, billingProfileName, billingRoleAssignmentName);
-        if (inner != null) {
-            return new BillingRoleAssignmentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<BillingRoleAssignment> deleteByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
-        Response<BillingRoleAssignmentInner> inner =
-            this
-                .serviceClient()
-                .deleteByBillingProfileWithResponse(
-                    billingAccountName, billingProfileName, billingRoleAssignmentName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new BillingRoleAssignmentImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
@@ -231,34 +206,58 @@ public final class BillingRoleAssignmentsImpl implements BillingRoleAssignments 
         return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingRoleAssignment> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        PagedIterable<BillingRoleAssignmentInner> inner =
-            this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingRoleAssignment> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
-        PagedIterable<BillingRoleAssignmentInner> inner =
+    public Response<BillingRoleAssignment> deleteByBillingAccountWithResponse(
+        String billingAccountName, String billingRoleAssignmentName, Context context) {
+        Response<BillingRoleAssignmentInner> inner =
             this
                 .serviceClient()
-                .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
+                .deleteByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new BillingRoleAssignmentImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<BillingRoleAssignment> listByBillingProfile(
-        String billingAccountName, String billingProfileName) {
-        PagedIterable<BillingRoleAssignmentInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
+    public BillingRoleAssignment deleteByBillingAccount(String billingAccountName, String billingRoleAssignmentName) {
+        BillingRoleAssignmentInner inner =
+            this.serviceClient().deleteByBillingAccount(billingAccountName, billingRoleAssignmentName);
+        if (inner != null) {
+            return new BillingRoleAssignmentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<BillingRoleAssignment> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
-        PagedIterable<BillingRoleAssignmentInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleAssignmentImpl(inner1, this.manager()));
+    public Response<BillingRoleAssignment> getByBillingAccountWithResponse(
+        String billingAccountName, String billingRoleAssignmentName, Context context) {
+        Response<BillingRoleAssignmentInner> inner =
+            this
+                .serviceClient()
+                .getByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new BillingRoleAssignmentImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public BillingRoleAssignment getByBillingAccount(String billingAccountName, String billingRoleAssignmentName) {
+        BillingRoleAssignmentInner inner =
+            this.serviceClient().getByBillingAccount(billingAccountName, billingRoleAssignmentName);
+        if (inner != null) {
+            return new BillingRoleAssignmentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     private BillingRoleAssignmentsClient serviceClient() {

@@ -9,10 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for Products ListByInvoiceSection. */
 public final class ProductsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByInvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsListByInvoiceSection.json
      */
     /**
-     * Sample code: ProductsListByInvoiceSection.
+     * Sample code: productsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */

@@ -5,20 +5,16 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of the role assignment. */
 @Fluent
 public final class BillingRoleAssignmentProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingRoleAssignmentProperties.class);
-
     /*
-     * The date the role assignment was created.
+     * The principal Id of the user who created the role assignment.
      */
-    @JsonProperty(value = "createdOn", access = JsonProperty.Access.WRITE_ONLY)
-    private String createdOn;
+    @JsonProperty(value = "createdByPrincipalId", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdByPrincipalId;
 
     /*
      * The tenant Id of the user who created the role assignment.
@@ -27,16 +23,16 @@ public final class BillingRoleAssignmentProperties {
     private String createdByPrincipalTenantId;
 
     /*
-     * The principal Id of the user who created the role assignment.
-     */
-    @JsonProperty(value = "createdByPrincipalId", access = JsonProperty.Access.WRITE_ONLY)
-    private String createdByPrincipalId;
-
-    /*
      * The email address of the user who created the role assignment.
      */
     @JsonProperty(value = "createdByUserEmailAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String createdByUserEmailAddress;
+
+    /*
+     * The date the role assignment was created.
+     */
+    @JsonProperty(value = "createdOn", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdOn;
 
     /*
      * The principal id of the user to whom the role was assigned.
@@ -74,22 +70,8 @@ public final class BillingRoleAssignmentProperties {
     @JsonProperty(value = "userEmailAddress")
     private String userEmailAddress;
 
-    /**
-     * Get the createdOn property: The date the role assignment was created.
-     *
-     * @return the createdOn value.
-     */
-    public String createdOn() {
-        return this.createdOn;
-    }
-
-    /**
-     * Get the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
-     *
-     * @return the createdByPrincipalTenantId value.
-     */
-    public String createdByPrincipalTenantId() {
-        return this.createdByPrincipalTenantId;
+    /** Creates an instance of BillingRoleAssignmentProperties class. */
+    public BillingRoleAssignmentProperties() {
     }
 
     /**
@@ -102,12 +84,30 @@ public final class BillingRoleAssignmentProperties {
     }
 
     /**
+     * Get the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
+     *
+     * @return the createdByPrincipalTenantId value.
+     */
+    public String createdByPrincipalTenantId() {
+        return this.createdByPrincipalTenantId;
+    }
+
+    /**
      * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment.
      *
      * @return the createdByUserEmailAddress value.
      */
     public String createdByUserEmailAddress() {
         return this.createdByUserEmailAddress;
+    }
+
+    /**
+     * Get the createdOn property: The date the role assignment was created.
+     *
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.createdOn;
     }
 
     /**

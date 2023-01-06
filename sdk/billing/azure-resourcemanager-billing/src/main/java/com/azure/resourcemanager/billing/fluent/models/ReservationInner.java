@@ -5,35 +5,19 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.ReservationPropertyUtilization;
 import com.azure.resourcemanager.billing.models.ReservationSkuProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The definition of the reservation. */
 @Fluent
 public final class ReservationInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationInner.class);
-
     /*
      * The id of the reservation.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
-
-    /*
-     * The name of the reservation.
-     */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
-
-    /*
-     * The type of the reservation.
-     */
-    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
-    private String type;
 
     /*
      * The location of the reservation.
@@ -42,16 +26,32 @@ public final class ReservationInner {
     private String location;
 
     /*
-     * The sku information associated to this reservation
+     * The name of the reservation.
      */
-    @JsonProperty(value = "sku")
-    private ReservationSkuProperty sku;
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
 
     /*
      * The properties associated to this reservation
      */
     @JsonProperty(value = "properties")
     private ReservationProperty innerProperties;
+
+    /*
+     * The sku information associated to this reservation
+     */
+    @JsonProperty(value = "sku")
+    private ReservationSkuProperty sku;
+
+    /*
+     * The type of the reservation.
+     */
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
+    private String type;
+
+    /** Creates an instance of ReservationInner class. */
+    public ReservationInner() {
+    }
 
     /**
      * Get the id property: The id of the reservation.
@@ -60,6 +60,15 @@ public final class ReservationInner {
      */
     public String id() {
         return this.id;
+    }
+
+    /**
+     * Get the location property: The location of the reservation.
+     *
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
     }
 
     /**
@@ -72,21 +81,12 @@ public final class ReservationInner {
     }
 
     /**
-     * Get the type property: The type of the reservation.
+     * Get the innerProperties property: The properties associated to this reservation.
      *
-     * @return the type value.
+     * @return the innerProperties value.
      */
-    public String type() {
-        return this.type;
-    }
-
-    /**
-     * Get the location property: The location of the reservation.
-     *
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
+    private ReservationProperty innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -110,12 +110,12 @@ public final class ReservationInner {
     }
 
     /**
-     * Get the innerProperties property: The properties associated to this reservation.
+     * Get the type property: The type of the reservation.
      *
-     * @return the innerProperties value.
+     * @return the type value.
      */
-    private ReservationProperty innerProperties() {
-        return this.innerProperties;
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -153,51 +153,6 @@ public final class ReservationInner {
     }
 
     /**
-     * Get the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
-     *
-     * @return the reservedResourceType value.
-     */
-    public String reservedResourceType() {
-        return this.innerProperties() == null ? null : this.innerProperties().reservedResourceType();
-    }
-
-    /**
-     * Get the quantity property: The number of the reservation.
-     *
-     * @return the quantity value.
-     */
-    public Float quantity() {
-        return this.innerProperties() == null ? null : this.innerProperties().quantity();
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the expiryDate property: The expiry date of the reservation.
-     *
-     * @return the expiryDate value.
-     */
-    public String expiryDate() {
-        return this.innerProperties() == null ? null : this.innerProperties().expiryDate();
-    }
-
-    /**
-     * Get the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
-     * @return the provisioningSubState value.
-     */
-    public String provisioningSubState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningSubState();
-    }
-
-    /**
      * Get the displayName property: The display name of the reservation.
      *
      * @return the displayName value.
@@ -216,25 +171,6 @@ public final class ReservationInner {
     }
 
     /**
-     * Get the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
-     *
-     * @return the userFriendlyRenewState value.
-     */
-    public String userFriendlyRenewState() {
-        return this.innerProperties() == null ? null : this.innerProperties().userFriendlyRenewState();
-    }
-
-    /**
-     * Get the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
-     * Shared.
-     *
-     * @return the userFriendlyAppliedScopeType value.
-     */
-    public String userFriendlyAppliedScopeType() {
-        return this.innerProperties() == null ? null : this.innerProperties().userFriendlyAppliedScopeType();
-    }
-
-    /**
      * Get the effectiveDateTime property: The effective date time of the reservation.
      *
      * @return the effectiveDateTime value.
@@ -244,21 +180,39 @@ public final class ReservationInner {
     }
 
     /**
-     * Get the skuDescription property: The sku description of the reservation.
+     * Get the expiryDate property: The expiry date of the reservation.
      *
-     * @return the skuDescription value.
+     * @return the expiryDate value.
      */
-    public String skuDescription() {
-        return this.innerProperties() == null ? null : this.innerProperties().skuDescription();
+    public String expiryDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().expiryDate();
     }
 
     /**
-     * Get the term property: The term of the reservation, e.g. P1Y.
+     * Get the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
      *
-     * @return the term value.
+     * @return the provisioningState value.
      */
-    public String term() {
-        return this.innerProperties() == null ? null : this.innerProperties().term();
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
+     *
+     * @return the provisioningSubState value.
+     */
+    public String provisioningSubState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningSubState();
+    }
+
+    /**
+     * Get the quantity property: The number of the reservation.
+     *
+     * @return the quantity value.
+     */
+    public Float quantity() {
+        return this.innerProperties() == null ? null : this.innerProperties().quantity();
     }
 
     /**
@@ -280,6 +234,52 @@ public final class ReservationInner {
     }
 
     /**
+     * Get the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
+     *
+     * @return the reservedResourceType value.
+     */
+    public String reservedResourceType() {
+        return this.innerProperties() == null ? null : this.innerProperties().reservedResourceType();
+    }
+
+    /**
+     * Get the skuDescription property: The sku description of the reservation.
+     *
+     * @return the skuDescription value.
+     */
+    public String skuDescription() {
+        return this.innerProperties() == null ? null : this.innerProperties().skuDescription();
+    }
+
+    /**
+     * Get the term property: The term of the reservation, e.g. P1Y.
+     *
+     * @return the term value.
+     */
+    public String term() {
+        return this.innerProperties() == null ? null : this.innerProperties().term();
+    }
+
+    /**
+     * Get the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
+     * Shared.
+     *
+     * @return the userFriendlyAppliedScopeType value.
+     */
+    public String userFriendlyAppliedScopeType() {
+        return this.innerProperties() == null ? null : this.innerProperties().userFriendlyAppliedScopeType();
+    }
+
+    /**
+     * Get the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
+     *
+     * @return the userFriendlyRenewState value.
+     */
+    public String userFriendlyRenewState() {
+        return this.innerProperties() == null ? null : this.innerProperties().userFriendlyRenewState();
+    }
+
+    /**
      * Get the utilization property: Reservation utilization.
      *
      * @return the utilization value.
@@ -294,11 +294,11 @@ public final class ReservationInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sku() != null) {
-            sku().validate();
-        }
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 }

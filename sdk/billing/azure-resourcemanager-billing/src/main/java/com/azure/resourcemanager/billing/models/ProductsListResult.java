@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.ProductInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,13 +15,11 @@ import java.util.List;
  */
 @Immutable
 public final class ProductsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ProductsListResult.class);
-
     /*
-     * The list of products.
+     * The link (url) to the next page of results.
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ProductInner> value;
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * Total number of records.
@@ -32,18 +28,22 @@ public final class ProductsListResult {
     private Integer totalCount;
 
     /*
-     * The link (url) to the next page of results.
+     * The list of products.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ProductInner> value;
+
+    /** Creates an instance of ProductsListResult class. */
+    public ProductsListResult() {
+    }
 
     /**
-     * Get the value property: The list of products.
+     * Get the nextLink property: The link (url) to the next page of results.
      *
-     * @return the value value.
+     * @return the nextLink value.
      */
-    public List<ProductInner> value() {
-        return this.value;
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -56,12 +56,12 @@ public final class ProductsListResult {
     }
 
     /**
-     * Get the nextLink property: The link (url) to the next page of results.
+     * Get the value property: The list of products.
      *
-     * @return the nextLink value.
+     * @return the value value.
      */
-    public String nextLink() {
-        return this.nextLink;
+    public List<ProductInner> value() {
+        return this.value;
     }
 
     /**

@@ -15,6 +15,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
@@ -26,7 +27,6 @@ import com.azure.resourcemanager.billing.fluent.AgreementsClient;
 import com.azure.resourcemanager.billing.fluent.AvailableBalancesClient;
 import com.azure.resourcemanager.billing.fluent.BillingAccountsClient;
 import com.azure.resourcemanager.billing.fluent.BillingManagementClient;
-import com.azure.resourcemanager.billing.fluent.BillingPeriodsClient;
 import com.azure.resourcemanager.billing.fluent.BillingPermissionsClient;
 import com.azure.resourcemanager.billing.fluent.BillingProfilesClient;
 import com.azure.resourcemanager.billing.fluent.BillingPropertiesClient;
@@ -34,7 +34,6 @@ import com.azure.resourcemanager.billing.fluent.BillingRoleAssignmentsClient;
 import com.azure.resourcemanager.billing.fluent.BillingRoleDefinitionsClient;
 import com.azure.resourcemanager.billing.fluent.BillingSubscriptionsClient;
 import com.azure.resourcemanager.billing.fluent.CustomersClient;
-import com.azure.resourcemanager.billing.fluent.EnrollmentAccountsClient;
 import com.azure.resourcemanager.billing.fluent.InstructionsClient;
 import com.azure.resourcemanager.billing.fluent.InvoiceSectionsClient;
 import com.azure.resourcemanager.billing.fluent.InvoicesClient;
@@ -49,15 +48,12 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the BillingManagementClientImpl type. */
 @ServiceClient(builder = BillingManagementClientBuilder.class)
 public final class BillingManagementClientImpl implements BillingManagementClient {
-    private final ClientLogger logger = new ClientLogger(BillingManagementClientImpl.class);
-
     /** The ID that uniquely identifies an Azure subscription. */
     private final String subscriptionId;
 
@@ -80,6 +76,18 @@ public final class BillingManagementClientImpl implements BillingManagementClien
      */
     public String getEndpoint() {
         return this.endpoint;
+    }
+
+    /** Api Version. */
+    private final String apiVersion;
+
+    /**
+     * Gets Api Version.
+     *
+     * @return the apiVersion value.
+     */
+    public String getApiVersion() {
+        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -118,6 +126,30 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         return this.defaultPollInterval;
     }
 
+    /** The AgreementsClient object to access its operations. */
+    private final AgreementsClient agreements;
+
+    /**
+     * Gets the AgreementsClient object to access its operations.
+     *
+     * @return the AgreementsClient object.
+     */
+    public AgreementsClient getAgreements() {
+        return this.agreements;
+    }
+
+    /** The AvailableBalancesClient object to access its operations. */
+    private final AvailableBalancesClient availableBalances;
+
+    /**
+     * Gets the AvailableBalancesClient object to access its operations.
+     *
+     * @return the AvailableBalancesClient object.
+     */
+    public AvailableBalancesClient getAvailableBalances() {
+        return this.availableBalances;
+    }
+
     /** The BillingAccountsClient object to access its operations. */
     private final BillingAccountsClient billingAccounts;
 
@@ -142,28 +174,16 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         return this.address;
     }
 
-    /** The AvailableBalancesClient object to access its operations. */
-    private final AvailableBalancesClient availableBalances;
+    /** The BillingPermissionsClient object to access its operations. */
+    private final BillingPermissionsClient billingPermissions;
 
     /**
-     * Gets the AvailableBalancesClient object to access its operations.
+     * Gets the BillingPermissionsClient object to access its operations.
      *
-     * @return the AvailableBalancesClient object.
+     * @return the BillingPermissionsClient object.
      */
-    public AvailableBalancesClient getAvailableBalances() {
-        return this.availableBalances;
-    }
-
-    /** The InstructionsClient object to access its operations. */
-    private final InstructionsClient instructions;
-
-    /**
-     * Gets the InstructionsClient object to access its operations.
-     *
-     * @return the InstructionsClient object.
-     */
-    public InstructionsClient getInstructions() {
-        return this.instructions;
+    public BillingPermissionsClient getBillingPermissions() {
+        return this.billingPermissions;
     }
 
     /** The BillingProfilesClient object to access its operations. */
@@ -178,102 +198,6 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         return this.billingProfiles;
     }
 
-    /** The CustomersClient object to access its operations. */
-    private final CustomersClient customers;
-
-    /**
-     * Gets the CustomersClient object to access its operations.
-     *
-     * @return the CustomersClient object.
-     */
-    public CustomersClient getCustomers() {
-        return this.customers;
-    }
-
-    /** The InvoiceSectionsClient object to access its operations. */
-    private final InvoiceSectionsClient invoiceSections;
-
-    /**
-     * Gets the InvoiceSectionsClient object to access its operations.
-     *
-     * @return the InvoiceSectionsClient object.
-     */
-    public InvoiceSectionsClient getInvoiceSections() {
-        return this.invoiceSections;
-    }
-
-    /** The BillingPermissionsClient object to access its operations. */
-    private final BillingPermissionsClient billingPermissions;
-
-    /**
-     * Gets the BillingPermissionsClient object to access its operations.
-     *
-     * @return the BillingPermissionsClient object.
-     */
-    public BillingPermissionsClient getBillingPermissions() {
-        return this.billingPermissions;
-    }
-
-    /** The BillingSubscriptionsClient object to access its operations. */
-    private final BillingSubscriptionsClient billingSubscriptions;
-
-    /**
-     * Gets the BillingSubscriptionsClient object to access its operations.
-     *
-     * @return the BillingSubscriptionsClient object.
-     */
-    public BillingSubscriptionsClient getBillingSubscriptions() {
-        return this.billingSubscriptions;
-    }
-
-    /** The ProductsClient object to access its operations. */
-    private final ProductsClient products;
-
-    /**
-     * Gets the ProductsClient object to access its operations.
-     *
-     * @return the ProductsClient object.
-     */
-    public ProductsClient getProducts() {
-        return this.products;
-    }
-
-    /** The InvoicesClient object to access its operations. */
-    private final InvoicesClient invoices;
-
-    /**
-     * Gets the InvoicesClient object to access its operations.
-     *
-     * @return the InvoicesClient object.
-     */
-    public InvoicesClient getInvoices() {
-        return this.invoices;
-    }
-
-    /** The TransactionsClient object to access its operations. */
-    private final TransactionsClient transactions;
-
-    /**
-     * Gets the TransactionsClient object to access its operations.
-     *
-     * @return the TransactionsClient object.
-     */
-    public TransactionsClient getTransactions() {
-        return this.transactions;
-    }
-
-    /** The PoliciesClient object to access its operations. */
-    private final PoliciesClient policies;
-
-    /**
-     * Gets the PoliciesClient object to access its operations.
-     *
-     * @return the PoliciesClient object.
-     */
-    public PoliciesClient getPolicies() {
-        return this.policies;
-    }
-
     /** The BillingPropertiesClient object to access its operations. */
     private final BillingPropertiesClient billingProperties;
 
@@ -284,30 +208,6 @@ public final class BillingManagementClientImpl implements BillingManagementClien
      */
     public BillingPropertiesClient getBillingProperties() {
         return this.billingProperties;
-    }
-
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /** The BillingRoleDefinitionsClient object to access its operations. */
-    private final BillingRoleDefinitionsClient billingRoleDefinitions;
-
-    /**
-     * Gets the BillingRoleDefinitionsClient object to access its operations.
-     *
-     * @return the BillingRoleDefinitionsClient object.
-     */
-    public BillingRoleDefinitionsClient getBillingRoleDefinitions() {
-        return this.billingRoleDefinitions;
     }
 
     /** The BillingRoleAssignmentsClient object to access its operations. */
@@ -322,16 +222,112 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         return this.billingRoleAssignments;
     }
 
-    /** The AgreementsClient object to access its operations. */
-    private final AgreementsClient agreements;
+    /** The BillingRoleDefinitionsClient object to access its operations. */
+    private final BillingRoleDefinitionsClient billingRoleDefinitions;
 
     /**
-     * Gets the AgreementsClient object to access its operations.
+     * Gets the BillingRoleDefinitionsClient object to access its operations.
      *
-     * @return the AgreementsClient object.
+     * @return the BillingRoleDefinitionsClient object.
      */
-    public AgreementsClient getAgreements() {
-        return this.agreements;
+    public BillingRoleDefinitionsClient getBillingRoleDefinitions() {
+        return this.billingRoleDefinitions;
+    }
+
+    /** The BillingSubscriptionsClient object to access its operations. */
+    private final BillingSubscriptionsClient billingSubscriptions;
+
+    /**
+     * Gets the BillingSubscriptionsClient object to access its operations.
+     *
+     * @return the BillingSubscriptionsClient object.
+     */
+    public BillingSubscriptionsClient getBillingSubscriptions() {
+        return this.billingSubscriptions;
+    }
+
+    /** The CustomersClient object to access its operations. */
+    private final CustomersClient customers;
+
+    /**
+     * Gets the CustomersClient object to access its operations.
+     *
+     * @return the CustomersClient object.
+     */
+    public CustomersClient getCustomers() {
+        return this.customers;
+    }
+
+    /** The InstructionsClient object to access its operations. */
+    private final InstructionsClient instructions;
+
+    /**
+     * Gets the InstructionsClient object to access its operations.
+     *
+     * @return the InstructionsClient object.
+     */
+    public InstructionsClient getInstructions() {
+        return this.instructions;
+    }
+
+    /** The InvoicesClient object to access its operations. */
+    private final InvoicesClient invoices;
+
+    /**
+     * Gets the InvoicesClient object to access its operations.
+     *
+     * @return the InvoicesClient object.
+     */
+    public InvoicesClient getInvoices() {
+        return this.invoices;
+    }
+
+    /** The InvoiceSectionsClient object to access its operations. */
+    private final InvoiceSectionsClient invoiceSections;
+
+    /**
+     * Gets the InvoiceSectionsClient object to access its operations.
+     *
+     * @return the InvoiceSectionsClient object.
+     */
+    public InvoiceSectionsClient getInvoiceSections() {
+        return this.invoiceSections;
+    }
+
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /** The PoliciesClient object to access its operations. */
+    private final PoliciesClient policies;
+
+    /**
+     * Gets the PoliciesClient object to access its operations.
+     *
+     * @return the PoliciesClient object.
+     */
+    public PoliciesClient getPolicies() {
+        return this.policies;
+    }
+
+    /** The ProductsClient object to access its operations. */
+    private final ProductsClient products;
+
+    /**
+     * Gets the ProductsClient object to access its operations.
+     *
+     * @return the ProductsClient object.
+     */
+    public ProductsClient getProducts() {
+        return this.products;
     }
 
     /** The ReservationsClient object to access its operations. */
@@ -346,28 +342,16 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         return this.reservations;
     }
 
-    /** The EnrollmentAccountsClient object to access its operations. */
-    private final EnrollmentAccountsClient enrollmentAccounts;
+    /** The TransactionsClient object to access its operations. */
+    private final TransactionsClient transactions;
 
     /**
-     * Gets the EnrollmentAccountsClient object to access its operations.
+     * Gets the TransactionsClient object to access its operations.
      *
-     * @return the EnrollmentAccountsClient object.
+     * @return the TransactionsClient object.
      */
-    public EnrollmentAccountsClient getEnrollmentAccounts() {
-        return this.enrollmentAccounts;
-    }
-
-    /** The BillingPeriodsClient object to access its operations. */
-    private final BillingPeriodsClient billingPeriods;
-
-    /**
-     * Gets the BillingPeriodsClient object to access its operations.
-     *
-     * @return the BillingPeriodsClient object.
-     */
-    public BillingPeriodsClient getBillingPeriods() {
-        return this.billingPeriods;
+    public TransactionsClient getTransactions() {
+        return this.transactions;
     }
 
     /**
@@ -392,27 +376,26 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
+        this.apiVersion = "2023-04-01";
+        this.agreements = new AgreementsClientImpl(this);
+        this.availableBalances = new AvailableBalancesClientImpl(this);
         this.billingAccounts = new BillingAccountsClientImpl(this);
         this.address = new AddressClientImpl(this);
-        this.availableBalances = new AvailableBalancesClientImpl(this);
-        this.instructions = new InstructionsClientImpl(this);
-        this.billingProfiles = new BillingProfilesClientImpl(this);
-        this.customers = new CustomersClientImpl(this);
-        this.invoiceSections = new InvoiceSectionsClientImpl(this);
         this.billingPermissions = new BillingPermissionsClientImpl(this);
-        this.billingSubscriptions = new BillingSubscriptionsClientImpl(this);
-        this.products = new ProductsClientImpl(this);
-        this.invoices = new InvoicesClientImpl(this);
-        this.transactions = new TransactionsClientImpl(this);
-        this.policies = new PoliciesClientImpl(this);
+        this.billingProfiles = new BillingProfilesClientImpl(this);
         this.billingProperties = new BillingPropertiesClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
-        this.billingRoleDefinitions = new BillingRoleDefinitionsClientImpl(this);
         this.billingRoleAssignments = new BillingRoleAssignmentsClientImpl(this);
-        this.agreements = new AgreementsClientImpl(this);
+        this.billingRoleDefinitions = new BillingRoleDefinitionsClientImpl(this);
+        this.billingSubscriptions = new BillingSubscriptionsClientImpl(this);
+        this.customers = new CustomersClientImpl(this);
+        this.instructions = new InstructionsClientImpl(this);
+        this.invoices = new InvoicesClientImpl(this);
+        this.invoiceSections = new InvoiceSectionsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.policies = new PoliciesClientImpl(this);
+        this.products = new ProductsClientImpl(this);
         this.reservations = new ReservationsClientImpl(this);
-        this.enrollmentAccounts = new EnrollmentAccountsClientImpl(this);
-        this.billingPeriods = new BillingPeriodsClientImpl(this);
+        this.transactions = new TransactionsClientImpl(this);
     }
 
     /**
@@ -431,10 +414,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -498,7 +478,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -557,4 +537,6 @@ public final class BillingManagementClientImpl implements BillingManagementClien
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BillingManagementClientImpl.class);
 }

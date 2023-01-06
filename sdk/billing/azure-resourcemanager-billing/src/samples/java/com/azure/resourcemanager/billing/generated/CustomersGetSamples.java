@@ -9,28 +9,28 @@ import com.azure.core.util.Context;
 /** Samples for Customers Get. */
 public final class CustomersGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomerWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/customersGetWithExpand.json
      */
     /**
-     * Sample code: CustomerWithExpand.
+     * Sample code: customersGetWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void customerWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void customersGetWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .customers()
             .getWithResponse("{billingAccountName}", "{customerName}", "enabledAzurePlans,resellers", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Customer.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/customersGet.json
      */
     /**
-     * Sample code: Customer.
+     * Sample code: customersGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void customer(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void customersGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.customers().getWithResponse("{billingAccountName}", "{customerName}", null, Context.NONE);
     }
 }

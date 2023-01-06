@@ -10,14 +10,14 @@ import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
 /** Samples for BillingProperty Update. */
 public final class BillingPropertyUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingProperty.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPropertiesPatch.json
      */
     /**
-     * Sample code: UpdateBillingProperty.
+     * Sample code: billingPropertiesPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPropertiesPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingProperties().updateWithResponse(new BillingPropertyInner().withCostCenter("1010"), Context.NONE);
     }
 }

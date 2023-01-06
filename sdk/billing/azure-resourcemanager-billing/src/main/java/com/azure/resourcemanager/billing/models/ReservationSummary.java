@@ -5,32 +5,16 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The roll up count summary of reservations in each state. */
 @Immutable
 public final class ReservationSummary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationSummary.class);
-
     /*
-     * The number of reservation in Succeeded state
+     * The number of reservation in Cancelled state
      */
-    @JsonProperty(value = "succeededCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Float succeededCount;
-
-    /*
-     * The number of reservation in Failed state
-     */
-    @JsonProperty(value = "failedCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Float failedCount;
-
-    /*
-     * The number of reservation in Expiring state
-     */
-    @JsonProperty(value = "expiringCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Float expiringCount;
+    @JsonProperty(value = "cancelledCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Float cancelledCount;
 
     /*
      * The number of reservation in Expired state
@@ -39,42 +23,40 @@ public final class ReservationSummary {
     private Float expiredCount;
 
     /*
+     * The number of reservation in Expiring state
+     */
+    @JsonProperty(value = "expiringCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Float expiringCount;
+
+    /*
+     * The number of reservation in Failed state
+     */
+    @JsonProperty(value = "failedCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Float failedCount;
+
+    /*
      * The number of reservation in Pending state
      */
     @JsonProperty(value = "pendingCount", access = JsonProperty.Access.WRITE_ONLY)
     private Float pendingCount;
 
     /*
-     * The number of reservation in Cancelled state
+     * The number of reservation in Succeeded state
      */
-    @JsonProperty(value = "cancelledCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Float cancelledCount;
+    @JsonProperty(value = "succeededCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Float succeededCount;
 
-    /**
-     * Get the succeededCount property: The number of reservation in Succeeded state.
-     *
-     * @return the succeededCount value.
-     */
-    public Float succeededCount() {
-        return this.succeededCount;
+    /** Creates an instance of ReservationSummary class. */
+    public ReservationSummary() {
     }
 
     /**
-     * Get the failedCount property: The number of reservation in Failed state.
+     * Get the cancelledCount property: The number of reservation in Cancelled state.
      *
-     * @return the failedCount value.
+     * @return the cancelledCount value.
      */
-    public Float failedCount() {
-        return this.failedCount;
-    }
-
-    /**
-     * Get the expiringCount property: The number of reservation in Expiring state.
-     *
-     * @return the expiringCount value.
-     */
-    public Float expiringCount() {
-        return this.expiringCount;
+    public Float cancelledCount() {
+        return this.cancelledCount;
     }
 
     /**
@@ -87,6 +69,24 @@ public final class ReservationSummary {
     }
 
     /**
+     * Get the expiringCount property: The number of reservation in Expiring state.
+     *
+     * @return the expiringCount value.
+     */
+    public Float expiringCount() {
+        return this.expiringCount;
+    }
+
+    /**
+     * Get the failedCount property: The number of reservation in Failed state.
+     *
+     * @return the failedCount value.
+     */
+    public Float failedCount() {
+        return this.failedCount;
+    }
+
+    /**
      * Get the pendingCount property: The number of reservation in Pending state.
      *
      * @return the pendingCount value.
@@ -96,12 +96,12 @@ public final class ReservationSummary {
     }
 
     /**
-     * Get the cancelledCount property: The number of reservation in Cancelled state.
+     * Get the succeededCount property: The number of reservation in Succeeded state.
      *
-     * @return the cancelledCount value.
+     * @return the succeededCount value.
      */
-    public Float cancelledCount() {
-        return this.cancelledCount;
+    public Float succeededCount() {
+        return this.succeededCount;
     }
 
     /**

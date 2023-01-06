@@ -9,22 +9,23 @@ import com.azure.core.util.Context;
 /** Samples for BillingProfiles ListByBillingAccount. */
 public final class BillingProfilesListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfilesListWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesListByBillingAccountWithExpand.json
      */
     /**
-     * Sample code: BillingProfilesListWithExpand.
+     * Sample code: billingProfilesListByBillingAccountWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfilesListWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingProfilesListByBillingAccountWithExpand(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingProfiles().listByBillingAccount("{billingAccountName}", "invoiceSections", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfilesListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesListByBillingAccount.json
      */
     /**
-     * Sample code: BillingProfilesListByBillingAccount.
+     * Sample code: billingProfilesListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */

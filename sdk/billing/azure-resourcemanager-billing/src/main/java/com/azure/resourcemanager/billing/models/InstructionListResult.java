@@ -5,16 +5,18 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.InstructionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of billing instructions used during invoice generation. */
 @Immutable
 public final class InstructionListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(InstructionListResult.class);
+    /*
+     * The link (url) to the next page of results.
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * The list of billing instructions used during invoice generation.
@@ -22,19 +24,8 @@ public final class InstructionListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<InstructionInner> value;
 
-    /*
-     * The link (url) to the next page of results.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /**
-     * Get the value property: The list of billing instructions used during invoice generation.
-     *
-     * @return the value value.
-     */
-    public List<InstructionInner> value() {
-        return this.value;
+    /** Creates an instance of InstructionListResult class. */
+    public InstructionListResult() {
     }
 
     /**
@@ -44,6 +35,15 @@ public final class InstructionListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of billing instructions used during invoice generation.
+     *
+     * @return the value value.
+     */
+    public List<InstructionInner> value() {
+        return this.value;
     }
 
     /**

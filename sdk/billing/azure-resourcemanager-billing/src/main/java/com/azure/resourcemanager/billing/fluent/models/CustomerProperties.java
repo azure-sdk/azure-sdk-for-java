@@ -5,29 +5,25 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AzurePlan;
 import com.azure.resourcemanager.billing.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of a customer. */
 @Fluent
 public final class CustomerProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CustomerProperties.class);
+    /*
+     * The name of the billing profile for the invoice section.
+     */
+    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileDisplayName;
 
     /*
      * The ID of the billing profile for the invoice section.
      */
     @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingProfileId;
-
-    /*
-     * The name of the billing profile for the invoice section.
-     */
-    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileDisplayName;
 
     /*
      * The name of the customer.
@@ -42,19 +38,13 @@ public final class CustomerProperties {
     private List<AzurePlan> enabledAzurePlans;
 
     /*
-     * The list of resellers for which an Azure plan is enabled for the
-     * customer.
+     * The list of resellers for which an Azure plan is enabled for the customer.
      */
     @JsonProperty(value = "resellers")
     private List<Reseller> resellers;
 
-    /**
-     * Get the billingProfileId property: The ID of the billing profile for the invoice section.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.billingProfileId;
+    /** Creates an instance of CustomerProperties class. */
+    public CustomerProperties() {
     }
 
     /**
@@ -64,6 +54,15 @@ public final class CustomerProperties {
      */
     public String billingProfileDisplayName() {
         return this.billingProfileDisplayName;
+    }
+
+    /**
+     * Get the billingProfileId property: The ID of the billing profile for the invoice section.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.billingProfileId;
     }
 
     /**

@@ -5,16 +5,17 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.ValidateSubscriptionTransferEligibilityError;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Result of the transfer eligibility validation. */
 @Fluent
 public final class ValidateSubscriptionTransferEligibilityResultInner {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ValidateSubscriptionTransferEligibilityResultInner.class);
+    /*
+     * Validation error details.
+     */
+    @JsonProperty(value = "errorDetails")
+    private ValidateSubscriptionTransferEligibilityError errorDetails;
 
     /*
      * Specifies whether the subscription is eligible to be transferred.
@@ -22,19 +23,8 @@ public final class ValidateSubscriptionTransferEligibilityResultInner {
     @JsonProperty(value = "isMoveEligible", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isMoveEligible;
 
-    /*
-     * Validation error details.
-     */
-    @JsonProperty(value = "errorDetails")
-    private ValidateSubscriptionTransferEligibilityError errorDetails;
-
-    /**
-     * Get the isMoveEligible property: Specifies whether the subscription is eligible to be transferred.
-     *
-     * @return the isMoveEligible value.
-     */
-    public Boolean isMoveEligible() {
-        return this.isMoveEligible;
+    /** Creates an instance of ValidateSubscriptionTransferEligibilityResultInner class. */
+    public ValidateSubscriptionTransferEligibilityResultInner() {
     }
 
     /**
@@ -56,6 +46,15 @@ public final class ValidateSubscriptionTransferEligibilityResultInner {
         ValidateSubscriptionTransferEligibilityError errorDetails) {
         this.errorDetails = errorDetails;
         return this;
+    }
+
+    /**
+     * Get the isMoveEligible property: Specifies whether the subscription is eligible to be transferred.
+     *
+     * @return the isMoveEligible value.
+     */
+    public Boolean isMoveEligible() {
+        return this.isMoveEligible;
     }
 
     /**

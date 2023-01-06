@@ -11,7 +11,8 @@ import java.util.List;
 /** An immutable client-side representation of Agreement. */
 public interface Agreement {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -25,11 +26,18 @@ public interface Agreement {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: Resource type.
      *
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the acceptanceMode property: The mode of acceptance for an agreement.
+     *
+     * @return the acceptanceMode value.
+     */
+    AcceptanceMode acceptanceMode();
 
     /**
      * Gets the agreementLink property: The URL to download the agreement.
@@ -39,18 +47,19 @@ public interface Agreement {
     String agreementLink();
 
     /**
+     * Gets the billingProfileInfo property: The list of billing profiles associated with agreement and present only for
+     * specific agreements.
+     *
+     * @return the billingProfileInfo value.
+     */
+    BillingProfileInfo billingProfileInfo();
+
+    /**
      * Gets the category property: The category of the agreement signed by a customer.
      *
      * @return the category value.
      */
     Category category();
-
-    /**
-     * Gets the acceptanceMode property: The mode of acceptance for an agreement.
-     *
-     * @return the acceptanceMode value.
-     */
-    AcceptanceMode acceptanceMode();
 
     /**
      * Gets the effectiveDate property: The date from which the agreement is effective.

@@ -5,24 +5,24 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.InvoiceSectionState;
 import com.azure.resourcemanager.billing.models.TargetCloud;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** An invoice section. */
 @Fluent
-public final class InvoiceSectionInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(InvoiceSectionInner.class);
-
+public final class InvoiceSectionInner extends ArmResource {
     /*
      * The properties of an invoice section.
      */
     @JsonProperty(value = "properties")
     private InvoiceSectionProperties innerProperties;
+
+    /** Creates an instance of InvoiceSectionInner class. */
+    public InvoiceSectionInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of an invoice section.
@@ -140,7 +140,9 @@ public final class InvoiceSectionInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

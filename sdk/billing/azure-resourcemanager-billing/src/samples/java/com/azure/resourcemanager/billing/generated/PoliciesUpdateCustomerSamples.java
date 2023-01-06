@@ -11,14 +11,14 @@ import com.azure.resourcemanager.billing.models.ViewCharges;
 /** Samples for Policies UpdateCustomer. */
 public final class PoliciesUpdateCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateCustomerPolicy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesPutByCustomer.json
      */
     /**
-     * Sample code: UpdateCustomer.
+     * Sample code: policiesPutByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesPutByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .policies()
             .updateCustomerWithResponse(

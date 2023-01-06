@@ -10,7 +10,8 @@ import java.time.OffsetDateTime;
 /** An immutable client-side representation of Product. */
 public interface Product {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,7 +25,7 @@ public interface Product {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: Resource type.
      *
      * @return the type value.
      */
@@ -38,39 +39,55 @@ public interface Product {
     AutoRenew autoRenew();
 
     /**
+     * Gets the availabilityId property: The availability of the product.
+     *
+     * @return the availabilityId value.
+     */
+    String availabilityId();
+
+    /**
+     * Gets the billingFrequency property: The frequency at which the product will be billed.
+     *
+     * @return the billingFrequency value.
+     */
+    BillingFrequency billingFrequency();
+
+    /**
+     * Gets the billingProfileDisplayName property: The name of the billing profile to which the product is billed.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    String billingProfileDisplayName();
+
+    /**
+     * Gets the billingProfileId property: The ID of the billing profile to which the product is billed.
+     *
+     * @return the billingProfileId value.
+     */
+    String billingProfileId();
+
+    /**
+     * Gets the customerDisplayName property: The name of the customer for whom the product was purchased. The field is
+     * applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerDisplayName value.
+     */
+    String customerDisplayName();
+
+    /**
+     * Gets the customerId property: The ID of the customer for whom the product was purchased. The field is applicable
+     * only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerId value.
+     */
+    String customerId();
+
+    /**
      * Gets the displayName property: The display name of the product.
      *
      * @return the displayName value.
      */
     String displayName();
-
-    /**
-     * Gets the purchaseDate property: The date when the product was purchased.
-     *
-     * @return the purchaseDate value.
-     */
-    OffsetDateTime purchaseDate();
-
-    /**
-     * Gets the productTypeId property: The ID of the type of product.
-     *
-     * @return the productTypeId value.
-     */
-    String productTypeId();
-
-    /**
-     * Gets the productType property: The description of the type of product.
-     *
-     * @return the productType value.
-     */
-    String productType();
-
-    /**
-     * Gets the status property: The current status of the product.
-     *
-     * @return the status value.
-     */
-    ProductStatusType status();
 
     /**
      * Gets the endDate property: The date when the product will be renewed or canceled.
@@ -80,11 +97,18 @@ public interface Product {
     OffsetDateTime endDate();
 
     /**
-     * Gets the billingFrequency property: The frequency at which the product will be billed.
+     * Gets the invoiceSectionDisplayName property: The name of the invoice section to which the product is billed.
      *
-     * @return the billingFrequency value.
+     * @return the invoiceSectionDisplayName value.
      */
-    BillingFrequency billingFrequency();
+    String invoiceSectionDisplayName();
+
+    /**
+     * Gets the invoiceSectionId property: The ID of the invoice section to which the product is billed.
+     *
+     * @return the invoiceSectionId value.
+     */
+    String invoiceSectionId();
 
     /**
      * Gets the lastCharge property: The last month charges.
@@ -101,6 +125,27 @@ public interface Product {
     OffsetDateTime lastChargeDate();
 
     /**
+     * Gets the productType property: The description of the type of product.
+     *
+     * @return the productType value.
+     */
+    String productType();
+
+    /**
+     * Gets the productTypeId property: The ID of the type of product.
+     *
+     * @return the productTypeId value.
+     */
+    String productTypeId();
+
+    /**
+     * Gets the purchaseDate property: The date when the product was purchased.
+     *
+     * @return the purchaseDate value.
+     */
+    OffsetDateTime purchaseDate();
+
+    /**
      * Gets the quantity property: The quantity purchased for the product.
      *
      * @return the quantity value.
@@ -108,11 +153,11 @@ public interface Product {
     Float quantity();
 
     /**
-     * Gets the skuId property: The sku ID of the product.
+     * Gets the reseller property: Reseller for this product.
      *
-     * @return the skuId value.
+     * @return the reseller value.
      */
-    String skuId();
+    Reseller reseller();
 
     /**
      * Gets the skuDescription property: The sku description of the product.
@@ -122,69 +167,25 @@ public interface Product {
     String skuDescription();
 
     /**
+     * Gets the skuId property: The sku ID of the product.
+     *
+     * @return the skuId value.
+     */
+    String skuId();
+
+    /**
+     * Gets the status property: The current status of the product.
+     *
+     * @return the status value.
+     */
+    ProductStatusType status();
+
+    /**
      * Gets the tenantId property: The id of the tenant in which the product is used.
      *
      * @return the tenantId value.
      */
     String tenantId();
-
-    /**
-     * Gets the availabilityId property: The availability of the product.
-     *
-     * @return the availabilityId value.
-     */
-    String availabilityId();
-
-    /**
-     * Gets the invoiceSectionId property: The ID of the invoice section to which the product is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    String invoiceSectionId();
-
-    /**
-     * Gets the invoiceSectionDisplayName property: The name of the invoice section to which the product is billed.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    String invoiceSectionDisplayName();
-
-    /**
-     * Gets the billingProfileId property: The ID of the billing profile to which the product is billed.
-     *
-     * @return the billingProfileId value.
-     */
-    String billingProfileId();
-
-    /**
-     * Gets the billingProfileDisplayName property: The name of the billing profile to which the product is billed.
-     *
-     * @return the billingProfileDisplayName value.
-     */
-    String billingProfileDisplayName();
-
-    /**
-     * Gets the customerId property: The ID of the customer for whom the product was purchased. The field is applicable
-     * only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerId value.
-     */
-    String customerId();
-
-    /**
-     * Gets the customerDisplayName property: The name of the customer for whom the product was purchased. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerDisplayName value.
-     */
-    String customerDisplayName();
-
-    /**
-     * Gets the reseller property: Reseller for this product.
-     *
-     * @return the reseller value.
-     */
-    Reseller reseller();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.ProductInner object.

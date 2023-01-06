@@ -13,7 +13,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for Billing Management</name>
-  <description>This package contains Microsoft Azure SDK for Billing Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Billing client provides access to billing resources for Azure subscriptions. Package tag package-2020-05.</description>
+  <description>This package contains Microsoft Azure SDK for Billing Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Billing Client. Package tag package-2023-04.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>

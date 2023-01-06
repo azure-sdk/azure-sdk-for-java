@@ -8,12 +8,15 @@ import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
+import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
+import com.azure.core.http.policy.AddHeadersFromContextPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
+import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
@@ -26,7 +29,6 @@ import com.azure.resourcemanager.billing.implementation.AgreementsImpl;
 import com.azure.resourcemanager.billing.implementation.AvailableBalancesImpl;
 import com.azure.resourcemanager.billing.implementation.BillingAccountsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingManagementClientBuilder;
-import com.azure.resourcemanager.billing.implementation.BillingPeriodsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingPermissionsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingProfilesImpl;
 import com.azure.resourcemanager.billing.implementation.BillingPropertiesImpl;
@@ -34,7 +36,6 @@ import com.azure.resourcemanager.billing.implementation.BillingRoleAssignmentsIm
 import com.azure.resourcemanager.billing.implementation.BillingRoleDefinitionsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingSubscriptionsImpl;
 import com.azure.resourcemanager.billing.implementation.CustomersImpl;
-import com.azure.resourcemanager.billing.implementation.EnrollmentAccountsImpl;
 import com.azure.resourcemanager.billing.implementation.InstructionsImpl;
 import com.azure.resourcemanager.billing.implementation.InvoiceSectionsImpl;
 import com.azure.resourcemanager.billing.implementation.InvoicesImpl;
@@ -47,7 +48,6 @@ import com.azure.resourcemanager.billing.models.Address;
 import com.azure.resourcemanager.billing.models.Agreements;
 import com.azure.resourcemanager.billing.models.AvailableBalances;
 import com.azure.resourcemanager.billing.models.BillingAccounts;
-import com.azure.resourcemanager.billing.models.BillingPeriods;
 import com.azure.resourcemanager.billing.models.BillingPermissions;
 import com.azure.resourcemanager.billing.models.BillingProfiles;
 import com.azure.resourcemanager.billing.models.BillingProperties;
@@ -55,7 +55,6 @@ import com.azure.resourcemanager.billing.models.BillingRoleAssignments;
 import com.azure.resourcemanager.billing.models.BillingRoleDefinitions;
 import com.azure.resourcemanager.billing.models.BillingSubscriptions;
 import com.azure.resourcemanager.billing.models.Customers;
-import com.azure.resourcemanager.billing.models.EnrollmentAccounts;
 import com.azure.resourcemanager.billing.models.Instructions;
 import com.azure.resourcemanager.billing.models.InvoiceSections;
 import com.azure.resourcemanager.billing.models.Invoices;
@@ -69,50 +68,47 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-/** Entry point to BillingManager. Billing client provides access to billing resources for Azure subscriptions. */
+/** Entry point to BillingManager. Billing Client. */
 public final class BillingManager {
+    private Agreements agreements;
+
+    private AvailableBalances availableBalances;
+
     private BillingAccounts billingAccounts;
 
     private Address address;
 
-    private AvailableBalances availableBalances;
-
-    private Instructions instructions;
+    private BillingPermissions billingPermissions;
 
     private BillingProfiles billingProfiles;
 
-    private Customers customers;
-
-    private InvoiceSections invoiceSections;
-
-    private BillingPermissions billingPermissions;
-
-    private BillingSubscriptions billingSubscriptions;
-
-    private Products products;
-
-    private Invoices invoices;
-
-    private Transactions transactions;
-
-    private Policies policies;
-
     private BillingProperties billingProperties;
-
-    private Operations operations;
-
-    private BillingRoleDefinitions billingRoleDefinitions;
 
     private BillingRoleAssignments billingRoleAssignments;
 
-    private Agreements agreements;
+    private BillingRoleDefinitions billingRoleDefinitions;
+
+    private BillingSubscriptions billingSubscriptions;
+
+    private Customers customers;
+
+    private Instructions instructions;
+
+    private Invoices invoices;
+
+    private InvoiceSections invoiceSections;
+
+    private Operations operations;
+
+    private Policies policies;
+
+    private Products products;
 
     private Reservations reservations;
 
-    private EnrollmentAccounts enrollmentAccounts;
-
-    private BillingPeriods billingPeriods;
+    private Transactions transactions;
 
     private final BillingManagementClient clientObject;
 
@@ -142,6 +138,19 @@ public final class BillingManager {
     }
 
     /**
+     * Creates an instance of Billing service API entry point.
+     *
+     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param profile the Azure profile for client.
+     * @return the Billing service API instance.
+     */
+    public static BillingManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
+        Objects.requireNonNull(profile, "'profile' cannot be null.");
+        return new BillingManager(httpPipeline, profile, null);
+    }
+
+    /**
      * Gets a Configurable instance that can be used to create BillingManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
@@ -152,13 +161,14 @@ public final class BillingManager {
 
     /** The Configurable allowing configurations to be set. */
     public static final class Configurable {
-        private final ClientLogger logger = new ClientLogger(Configurable.class);
+        private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
         private final List<HttpPipelinePolicy> policies = new ArrayList<>();
         private final List<String> scopes = new ArrayList<>();
         private RetryPolicy retryPolicy;
+        private RetryOptions retryOptions;
         private Duration defaultPollInterval;
 
         private Configurable() {
@@ -220,15 +230,30 @@ public final class BillingManager {
         }
 
         /**
+         * Sets the retry options for the HTTP pipeline retry policy.
+         *
+         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         *
+         * @param retryOptions the retry options for the HTTP pipeline retry policy.
+         * @return the configurable object itself.
+         */
+        public Configurable withRetryOptions(RetryOptions retryOptions) {
+            this.retryOptions = Objects.requireNonNull(retryOptions, "'retryOptions' cannot be null.");
+            return this;
+        }
+
+        /**
          * Sets the default poll interval, used when service does not provide "Retry-After" header.
          *
          * @param defaultPollInterval the default poll interval.
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval = Objects.requireNonNull(defaultPollInterval, "'retryPolicy' cannot be null.");
+            this.defaultPollInterval =
+                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
-                throw logger.logExceptionAsError(new IllegalArgumentException("'httpPipeline' cannot be negative"));
+                throw LOGGER
+                    .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
             }
             return this;
         }
@@ -250,7 +275,7 @@ public final class BillingManager {
                 .append("-")
                 .append("com.azure.resourcemanager.billing")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -268,16 +293,34 @@ public final class BillingManager {
                 scopes.add(profile.getEnvironment().getManagementEndpoint() + "/.default");
             }
             if (retryPolicy == null) {
-                retryPolicy = new RetryPolicy("Retry-After", ChronoUnit.SECONDS);
+                if (retryOptions != null) {
+                    retryPolicy = new RetryPolicy(retryOptions);
+                } else {
+                    retryPolicy = new RetryPolicy("Retry-After", ChronoUnit.SECONDS);
+                }
             }
             List<HttpPipelinePolicy> policies = new ArrayList<>();
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
+            policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
+            policies
+                .addAll(
+                    this
+                        .policies
+                        .stream()
+                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                        .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies.addAll(this.policies);
+            policies
+                .addAll(
+                    this
+                        .policies
+                        .stream()
+                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                        .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline =
@@ -289,23 +332,23 @@ public final class BillingManager {
         }
     }
 
-    /** @return Resource collection API of BillingAccounts. */
-    public BillingAccounts billingAccounts() {
-        if (this.billingAccounts == null) {
-            this.billingAccounts = new BillingAccountsImpl(clientObject.getBillingAccounts(), this);
+    /**
+     * Gets the resource collection API of Agreements.
+     *
+     * @return Resource collection API of Agreements.
+     */
+    public Agreements agreements() {
+        if (this.agreements == null) {
+            this.agreements = new AgreementsImpl(clientObject.getAgreements(), this);
         }
-        return billingAccounts;
+        return agreements;
     }
 
-    /** @return Resource collection API of Address. */
-    public Address address() {
-        if (this.address == null) {
-            this.address = new AddressImpl(clientObject.getAddress(), this);
-        }
-        return address;
-    }
-
-    /** @return Resource collection API of AvailableBalances. */
+    /**
+     * Gets the resource collection API of AvailableBalances.
+     *
+     * @return Resource collection API of AvailableBalances.
+     */
     public AvailableBalances availableBalances() {
         if (this.availableBalances == null) {
             this.availableBalances = new AvailableBalancesImpl(clientObject.getAvailableBalances(), this);
@@ -313,39 +356,35 @@ public final class BillingManager {
         return availableBalances;
     }
 
-    /** @return Resource collection API of Instructions. */
-    public Instructions instructions() {
-        if (this.instructions == null) {
-            this.instructions = new InstructionsImpl(clientObject.getInstructions(), this);
+    /**
+     * Gets the resource collection API of BillingAccounts.
+     *
+     * @return Resource collection API of BillingAccounts.
+     */
+    public BillingAccounts billingAccounts() {
+        if (this.billingAccounts == null) {
+            this.billingAccounts = new BillingAccountsImpl(clientObject.getBillingAccounts(), this);
         }
-        return instructions;
+        return billingAccounts;
     }
 
-    /** @return Resource collection API of BillingProfiles. */
-    public BillingProfiles billingProfiles() {
-        if (this.billingProfiles == null) {
-            this.billingProfiles = new BillingProfilesImpl(clientObject.getBillingProfiles(), this);
+    /**
+     * Gets the resource collection API of Address.
+     *
+     * @return Resource collection API of Address.
+     */
+    public Address address() {
+        if (this.address == null) {
+            this.address = new AddressImpl(clientObject.getAddress(), this);
         }
-        return billingProfiles;
+        return address;
     }
 
-    /** @return Resource collection API of Customers. */
-    public Customers customers() {
-        if (this.customers == null) {
-            this.customers = new CustomersImpl(clientObject.getCustomers(), this);
-        }
-        return customers;
-    }
-
-    /** @return Resource collection API of InvoiceSections. */
-    public InvoiceSections invoiceSections() {
-        if (this.invoiceSections == null) {
-            this.invoiceSections = new InvoiceSectionsImpl(clientObject.getInvoiceSections(), this);
-        }
-        return invoiceSections;
-    }
-
-    /** @return Resource collection API of BillingPermissions. */
+    /**
+     * Gets the resource collection API of BillingPermissions.
+     *
+     * @return Resource collection API of BillingPermissions.
+     */
     public BillingPermissions billingPermissions() {
         if (this.billingPermissions == null) {
             this.billingPermissions = new BillingPermissionsImpl(clientObject.getBillingPermissions(), this);
@@ -353,47 +392,23 @@ public final class BillingManager {
         return billingPermissions;
     }
 
-    /** @return Resource collection API of BillingSubscriptions. */
-    public BillingSubscriptions billingSubscriptions() {
-        if (this.billingSubscriptions == null) {
-            this.billingSubscriptions = new BillingSubscriptionsImpl(clientObject.getBillingSubscriptions(), this);
+    /**
+     * Gets the resource collection API of BillingProfiles.
+     *
+     * @return Resource collection API of BillingProfiles.
+     */
+    public BillingProfiles billingProfiles() {
+        if (this.billingProfiles == null) {
+            this.billingProfiles = new BillingProfilesImpl(clientObject.getBillingProfiles(), this);
         }
-        return billingSubscriptions;
+        return billingProfiles;
     }
 
-    /** @return Resource collection API of Products. */
-    public Products products() {
-        if (this.products == null) {
-            this.products = new ProductsImpl(clientObject.getProducts(), this);
-        }
-        return products;
-    }
-
-    /** @return Resource collection API of Invoices. */
-    public Invoices invoices() {
-        if (this.invoices == null) {
-            this.invoices = new InvoicesImpl(clientObject.getInvoices(), this);
-        }
-        return invoices;
-    }
-
-    /** @return Resource collection API of Transactions. */
-    public Transactions transactions() {
-        if (this.transactions == null) {
-            this.transactions = new TransactionsImpl(clientObject.getTransactions(), this);
-        }
-        return transactions;
-    }
-
-    /** @return Resource collection API of Policies. */
-    public Policies policies() {
-        if (this.policies == null) {
-            this.policies = new PoliciesImpl(clientObject.getPolicies(), this);
-        }
-        return policies;
-    }
-
-    /** @return Resource collection API of BillingProperties. */
+    /**
+     * Gets the resource collection API of BillingProperties.
+     *
+     * @return Resource collection API of BillingProperties.
+     */
     public BillingProperties billingProperties() {
         if (this.billingProperties == null) {
             this.billingProperties = new BillingPropertiesImpl(clientObject.getBillingProperties(), this);
@@ -401,24 +416,11 @@ public final class BillingManager {
         return billingProperties;
     }
 
-    /** @return Resource collection API of Operations. */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /** @return Resource collection API of BillingRoleDefinitions. */
-    public BillingRoleDefinitions billingRoleDefinitions() {
-        if (this.billingRoleDefinitions == null) {
-            this.billingRoleDefinitions =
-                new BillingRoleDefinitionsImpl(clientObject.getBillingRoleDefinitions(), this);
-        }
-        return billingRoleDefinitions;
-    }
-
-    /** @return Resource collection API of BillingRoleAssignments. */
+    /**
+     * Gets the resource collection API of BillingRoleAssignments.
+     *
+     * @return Resource collection API of BillingRoleAssignments.
+     */
     public BillingRoleAssignments billingRoleAssignments() {
         if (this.billingRoleAssignments == null) {
             this.billingRoleAssignments =
@@ -427,15 +429,120 @@ public final class BillingManager {
         return billingRoleAssignments;
     }
 
-    /** @return Resource collection API of Agreements. */
-    public Agreements agreements() {
-        if (this.agreements == null) {
-            this.agreements = new AgreementsImpl(clientObject.getAgreements(), this);
+    /**
+     * Gets the resource collection API of BillingRoleDefinitions.
+     *
+     * @return Resource collection API of BillingRoleDefinitions.
+     */
+    public BillingRoleDefinitions billingRoleDefinitions() {
+        if (this.billingRoleDefinitions == null) {
+            this.billingRoleDefinitions =
+                new BillingRoleDefinitionsImpl(clientObject.getBillingRoleDefinitions(), this);
         }
-        return agreements;
+        return billingRoleDefinitions;
     }
 
-    /** @return Resource collection API of Reservations. */
+    /**
+     * Gets the resource collection API of BillingSubscriptions.
+     *
+     * @return Resource collection API of BillingSubscriptions.
+     */
+    public BillingSubscriptions billingSubscriptions() {
+        if (this.billingSubscriptions == null) {
+            this.billingSubscriptions = new BillingSubscriptionsImpl(clientObject.getBillingSubscriptions(), this);
+        }
+        return billingSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of Customers.
+     *
+     * @return Resource collection API of Customers.
+     */
+    public Customers customers() {
+        if (this.customers == null) {
+            this.customers = new CustomersImpl(clientObject.getCustomers(), this);
+        }
+        return customers;
+    }
+
+    /**
+     * Gets the resource collection API of Instructions.
+     *
+     * @return Resource collection API of Instructions.
+     */
+    public Instructions instructions() {
+        if (this.instructions == null) {
+            this.instructions = new InstructionsImpl(clientObject.getInstructions(), this);
+        }
+        return instructions;
+    }
+
+    /**
+     * Gets the resource collection API of Invoices.
+     *
+     * @return Resource collection API of Invoices.
+     */
+    public Invoices invoices() {
+        if (this.invoices == null) {
+            this.invoices = new InvoicesImpl(clientObject.getInvoices(), this);
+        }
+        return invoices;
+    }
+
+    /**
+     * Gets the resource collection API of InvoiceSections.
+     *
+     * @return Resource collection API of InvoiceSections.
+     */
+    public InvoiceSections invoiceSections() {
+        if (this.invoiceSections == null) {
+            this.invoiceSections = new InvoiceSectionsImpl(clientObject.getInvoiceSections(), this);
+        }
+        return invoiceSections;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Policies.
+     *
+     * @return Resource collection API of Policies.
+     */
+    public Policies policies() {
+        if (this.policies == null) {
+            this.policies = new PoliciesImpl(clientObject.getPolicies(), this);
+        }
+        return policies;
+    }
+
+    /**
+     * Gets the resource collection API of Products.
+     *
+     * @return Resource collection API of Products.
+     */
+    public Products products() {
+        if (this.products == null) {
+            this.products = new ProductsImpl(clientObject.getProducts(), this);
+        }
+        return products;
+    }
+
+    /**
+     * Gets the resource collection API of Reservations.
+     *
+     * @return Resource collection API of Reservations.
+     */
     public Reservations reservations() {
         if (this.reservations == null) {
             this.reservations = new ReservationsImpl(clientObject.getReservations(), this);
@@ -443,20 +550,16 @@ public final class BillingManager {
         return reservations;
     }
 
-    /** @return Resource collection API of EnrollmentAccounts. */
-    public EnrollmentAccounts enrollmentAccounts() {
-        if (this.enrollmentAccounts == null) {
-            this.enrollmentAccounts = new EnrollmentAccountsImpl(clientObject.getEnrollmentAccounts(), this);
+    /**
+     * Gets the resource collection API of Transactions.
+     *
+     * @return Resource collection API of Transactions.
+     */
+    public Transactions transactions() {
+        if (this.transactions == null) {
+            this.transactions = new TransactionsImpl(clientObject.getTransactions(), this);
         }
-        return enrollmentAccounts;
-    }
-
-    /** @return Resource collection API of BillingPeriods. */
-    public BillingPeriods billingPeriods() {
-        if (this.billingPeriods == null) {
-            this.billingPeriods = new BillingPeriodsImpl(clientObject.getBillingPeriods(), this);
-        }
-        return billingPeriods;
+        return transactions;
     }
 
     /**

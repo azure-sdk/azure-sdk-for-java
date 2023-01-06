@@ -9,22 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingAccounts List. */
 public final class BillingAccountsListSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsListWithExpandForEnrollmentDetails.json
      */
     /**
-     * Sample code: BillingAccountsList.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void billingAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingAccounts().list(null, Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpandForEnrollmentDetails.json
-     */
-    /**
-     * Sample code: BillingAccountsListWithExpandForEnrollmentDetails.
+     * Sample code: billingAccountsListWithExpandForEnrollmentDetails.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -34,10 +22,22 @@ public final class BillingAccountsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsList.json
      */
     /**
-     * Sample code: BillingAccountsListWithExpand.
+     * Sample code: billingAccountsList.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void billingAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.billingAccounts().list(null, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsListWithExpand.json
+     */
+    /**
+     * Sample code: billingAccountsListWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */

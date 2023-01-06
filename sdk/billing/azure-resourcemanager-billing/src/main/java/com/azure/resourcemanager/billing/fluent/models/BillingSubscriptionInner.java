@@ -5,26 +5,26 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.Amount;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.BillingSubscriptionStatusType;
 import com.azure.resourcemanager.billing.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.UUID;
 
 /** A billing subscription. */
 @Fluent
-public final class BillingSubscriptionInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingSubscriptionInner.class);
-
+public final class BillingSubscriptionInner extends ArmResource {
     /*
      * The billing properties of a subscription.
      */
     @JsonProperty(value = "properties")
     private BillingSubscriptionProperties innerProperties;
+
+    /** Creates an instance of BillingSubscriptionInner class. */
+    public BillingSubscriptionInner() {
+    }
 
     /**
      * Get the innerProperties property: The billing properties of a subscription.
@@ -33,6 +33,67 @@ public final class BillingSubscriptionInner extends ProxyResource {
      */
     private BillingSubscriptionProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    public String billingProfileDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
+    }
+
+    /**
+     * Get the billingProfileId property: The ID of the billing profile to which the subscription is billed.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
+    }
+
+    /**
+     * Get the costCenter property: The cost center applied to the subscription.
+     *
+     * @return the costCenter value.
+     */
+    public String costCenter() {
+        return this.innerProperties() == null ? null : this.innerProperties().costCenter();
+    }
+
+    /**
+     * Set the costCenter property: The cost center applied to the subscription.
+     *
+     * @param costCenter the costCenter value to set.
+     * @return the BillingSubscriptionInner object itself.
+     */
+    public BillingSubscriptionInner withCostCenter(String costCenter) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingSubscriptionProperties();
+        }
+        this.innerProperties().withCostCenter(costCenter);
+        return this;
+    }
+
+    /**
+     * Get the customerDisplayName property: The name of the customer for whom the subscription was created. The field
+     * is applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerDisplayName value.
+     */
+    public String customerDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDisplayName();
+    }
+
+    /**
+     * Get the customerId property: The ID of the customer for whom the subscription was created. The field is
+     * applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerId value.
+     */
+    public String customerId() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerId();
     }
 
     /**
@@ -45,12 +106,80 @@ public final class BillingSubscriptionInner extends ProxyResource {
     }
 
     /**
-     * Get the subscriptionId property: The ID of the subscription.
+     * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
      *
-     * @return the subscriptionId value.
+     * @return the invoiceSectionDisplayName value.
      */
-    public UUID subscriptionId() {
-        return this.innerProperties() == null ? null : this.innerProperties().subscriptionId();
+    public String invoiceSectionDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionDisplayName();
+    }
+
+    /**
+     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
+    }
+
+    /**
+     * Get the lastMonthCharges property: The last month charges.
+     *
+     * @return the lastMonthCharges value.
+     */
+    public Amount lastMonthCharges() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastMonthCharges();
+    }
+
+    /**
+     * Get the monthToDateCharges property: The current month to date charges.
+     *
+     * @return the monthToDateCharges value.
+     */
+    public Amount monthToDateCharges() {
+        return this.innerProperties() == null ? null : this.innerProperties().monthToDateCharges();
+    }
+
+    /**
+     * Get the reseller property: Reseller for this subscription.
+     *
+     * @return the reseller value.
+     */
+    public Reseller reseller() {
+        return this.innerProperties() == null ? null : this.innerProperties().reseller();
+    }
+
+    /**
+     * Get the skuDescription property: The sku description of the Azure plan for the subscription.
+     *
+     * @return the skuDescription value.
+     */
+    public String skuDescription() {
+        return this.innerProperties() == null ? null : this.innerProperties().skuDescription();
+    }
+
+    /**
+     * Get the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @return the skuId value.
+     */
+    public String skuId() {
+        return this.innerProperties() == null ? null : this.innerProperties().skuId();
+    }
+
+    /**
+     * Set the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @param skuId the skuId value to set.
+     * @return the BillingSubscriptionInner object itself.
+     */
+    public BillingSubscriptionInner withSkuId(String skuId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingSubscriptionProperties();
+        }
+        this.innerProperties().withSkuId(skuId);
+        return this;
     }
 
     /**
@@ -78,141 +207,12 @@ public final class BillingSubscriptionInner extends ProxyResource {
     }
 
     /**
-     * Get the lastMonthCharges property: The last month charges.
+     * Get the subscriptionId property: The ID of the subscription.
      *
-     * @return the lastMonthCharges value.
+     * @return the subscriptionId value.
      */
-    public Amount lastMonthCharges() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastMonthCharges();
-    }
-
-    /**
-     * Get the monthToDateCharges property: The current month to date charges.
-     *
-     * @return the monthToDateCharges value.
-     */
-    public Amount monthToDateCharges() {
-        return this.innerProperties() == null ? null : this.innerProperties().monthToDateCharges();
-    }
-
-    /**
-     * Get the billingProfileId property: The ID of the billing profile to which the subscription is billed.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
-    }
-
-    /**
-     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
-     *
-     * @return the billingProfileDisplayName value.
-     */
-    public String billingProfileDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
-    }
-
-    /**
-     * Get the costCenter property: The cost center applied to the subscription.
-     *
-     * @return the costCenter value.
-     */
-    public String costCenter() {
-        return this.innerProperties() == null ? null : this.innerProperties().costCenter();
-    }
-
-    /**
-     * Set the costCenter property: The cost center applied to the subscription.
-     *
-     * @param costCenter the costCenter value to set.
-     * @return the BillingSubscriptionInner object itself.
-     */
-    public BillingSubscriptionInner withCostCenter(String costCenter) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingSubscriptionProperties();
-        }
-        this.innerProperties().withCostCenter(costCenter);
-        return this;
-    }
-
-    /**
-     * Get the customerId property: The ID of the customer for whom the subscription was created. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerId value.
-     */
-    public String customerId() {
-        return this.innerProperties() == null ? null : this.innerProperties().customerId();
-    }
-
-    /**
-     * Get the customerDisplayName property: The name of the customer for whom the subscription was created. The field
-     * is applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerDisplayName value.
-     */
-    public String customerDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().customerDisplayName();
-    }
-
-    /**
-     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    public String invoiceSectionId() {
-        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
-    }
-
-    /**
-     * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    public String invoiceSectionDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionDisplayName();
-    }
-
-    /**
-     * Get the reseller property: Reseller for this subscription.
-     *
-     * @return the reseller value.
-     */
-    public Reseller reseller() {
-        return this.innerProperties() == null ? null : this.innerProperties().reseller();
-    }
-
-    /**
-     * Get the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @return the skuId value.
-     */
-    public String skuId() {
-        return this.innerProperties() == null ? null : this.innerProperties().skuId();
-    }
-
-    /**
-     * Set the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @param skuId the skuId value to set.
-     * @return the BillingSubscriptionInner object itself.
-     */
-    public BillingSubscriptionInner withSkuId(String skuId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingSubscriptionProperties();
-        }
-        this.innerProperties().withSkuId(skuId);
-        return this;
-    }
-
-    /**
-     * Get the skuDescription property: The sku description of the Azure plan for the subscription.
-     *
-     * @return the skuDescription value.
-     */
-    public String skuDescription() {
-        return this.innerProperties() == null ? null : this.innerProperties().skuDescription();
+    public UUID subscriptionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().subscriptionId();
     }
 
     /**
@@ -230,7 +230,9 @@ public final class BillingSubscriptionInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

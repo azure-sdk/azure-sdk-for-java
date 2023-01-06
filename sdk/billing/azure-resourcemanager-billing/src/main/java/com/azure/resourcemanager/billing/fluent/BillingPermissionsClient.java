@@ -13,41 +13,14 @@ import com.azure.resourcemanager.billing.fluent.models.BillingPermissionsPropert
 /** An instance of this class provides access to all the operations defined in BillingPermissionsClient. */
 public interface BillingPermissionsClient {
     /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingPermissionsPropertiesInner> listByCustomer(String billingAccountName, String customerName);
-
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingPermissionsPropertiesInner> listByCustomer(
-        String billingAccountName, String customerName, Context context);
-
-    /**
      * Lists the billing permissions the caller has on a billing account.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BillingPermissionsPropertiesInner> listByBillingAccount(String billingAccountName);
@@ -60,10 +33,42 @@ public interface BillingPermissionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BillingPermissionsPropertiesInner> listByBillingAccount(String billingAccountName, Context context);
+
+    /**
+     * Lists the billing permissions the caller has on a billing profile.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BillingPermissionsPropertiesInner> listByBillingProfile(
+        String billingAccountName, String billingProfileName);
+
+    /**
+     * Lists the billing permissions the caller has on a billing profile.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BillingPermissionsPropertiesInner> listByBillingProfile(
+        String billingAccountName, String billingProfileName, Context context);
 
     /**
      * Lists the billing permissions the caller has on an invoice section.
@@ -74,7 +79,8 @@ public interface BillingPermissionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BillingPermissionsPropertiesInner> listByInvoiceSections(
@@ -90,38 +96,40 @@ public interface BillingPermissionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BillingPermissionsPropertiesInner> listByInvoiceSections(
         String billingAccountName, String billingProfileName, String invoiceSectionName, Context context);
 
     /**
-     * Lists the billing permissions the caller has on a billing profile.
+     * Lists the billing permissions the caller has for a customer.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingPermissionsPropertiesInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName);
+    PagedIterable<BillingPermissionsPropertiesInner> listByCustomer(String billingAccountName, String customerName);
 
     /**
-     * Lists the billing permissions the caller has on a billing profile.
+     * Lists the billing permissions the caller has for a customer.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account.
+     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingPermissionsPropertiesInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context);
+    PagedIterable<BillingPermissionsPropertiesInner> listByCustomer(
+        String billingAccountName, String customerName, Context context);
 }

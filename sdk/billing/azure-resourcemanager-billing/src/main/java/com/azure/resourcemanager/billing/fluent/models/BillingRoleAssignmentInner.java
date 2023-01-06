@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The role assignment. */
 @Fluent
-public final class BillingRoleAssignmentInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingRoleAssignmentInner.class);
-
+public final class BillingRoleAssignmentInner extends ArmResource {
     /*
      * The properties of the role assignment.
      */
     @JsonProperty(value = "properties")
     private BillingRoleAssignmentProperties innerProperties;
+
+    /** Creates an instance of BillingRoleAssignmentInner class. */
+    public BillingRoleAssignmentInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of the role assignment.
@@ -28,24 +28,6 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
      */
     private BillingRoleAssignmentProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the createdOn property: The date the role assignment was created.
-     *
-     * @return the createdOn value.
-     */
-    public String createdOn() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdOn();
-    }
-
-    /**
-     * Get the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
-     *
-     * @return the createdByPrincipalTenantId value.
-     */
-    public String createdByPrincipalTenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdByPrincipalTenantId();
     }
 
     /**
@@ -58,12 +40,30 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
+     * Get the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
+     *
+     * @return the createdByPrincipalTenantId value.
+     */
+    public String createdByPrincipalTenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdByPrincipalTenantId();
+    }
+
+    /**
      * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment.
      *
      * @return the createdByUserEmailAddress value.
      */
     public String createdByUserEmailAddress() {
         return this.innerProperties() == null ? null : this.innerProperties().createdByUserEmailAddress();
+    }
+
+    /**
+     * Get the createdOn property: The date the role assignment was created.
+     *
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdOn();
     }
 
     /**
@@ -195,7 +195,9 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

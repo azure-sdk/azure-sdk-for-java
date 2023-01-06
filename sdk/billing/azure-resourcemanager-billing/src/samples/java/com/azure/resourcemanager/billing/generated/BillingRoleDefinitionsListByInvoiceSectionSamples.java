@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions ListByInvoiceSection. */
 public final class BillingRoleDefinitionsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleDefinitionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsListByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleDefinitionsList.
+     * Sample code: billingRoleDefinitionsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleDefinitionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsListByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .listByInvoiceSection("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", Context.NONE);

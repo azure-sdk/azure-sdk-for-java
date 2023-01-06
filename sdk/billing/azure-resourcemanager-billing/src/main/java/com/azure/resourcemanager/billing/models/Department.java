@@ -5,23 +5,22 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.DepartmentProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A department. */
 @Fluent
-public final class Department extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Department.class);
-
+public final class Department extends ArmResource {
     /*
      * A department.
      */
     @JsonProperty(value = "properties")
     private DepartmentProperties innerProperties;
+
+    /** Creates an instance of Department class. */
+    public Department() {
+    }
 
     /**
      * Get the innerProperties property: A department.
@@ -30,29 +29,6 @@ public final class Department extends ProxyResource {
      */
     private DepartmentProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the departmentName property: The name of the department.
-     *
-     * @return the departmentName value.
-     */
-    public String departmentName() {
-        return this.innerProperties() == null ? null : this.innerProperties().departmentName();
-    }
-
-    /**
-     * Set the departmentName property: The name of the department.
-     *
-     * @param departmentName the departmentName value to set.
-     * @return the Department object itself.
-     */
-    public Department withDepartmentName(String departmentName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DepartmentProperties();
-        }
-        this.innerProperties().withDepartmentName(departmentName);
-        return this;
     }
 
     /**
@@ -79,25 +55,25 @@ public final class Department extends ProxyResource {
     }
 
     /**
-     * Get the status property: The status of the department.
+     * Get the departmentName property: The name of the department.
      *
-     * @return the status value.
+     * @return the departmentName value.
      */
-    public String status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
+    public String departmentName() {
+        return this.innerProperties() == null ? null : this.innerProperties().departmentName();
     }
 
     /**
-     * Set the status property: The status of the department.
+     * Set the departmentName property: The name of the department.
      *
-     * @param status the status value to set.
+     * @param departmentName the departmentName value to set.
      * @return the Department object itself.
      */
-    public Department withStatus(String status) {
+    public Department withDepartmentName(String departmentName) {
         if (this.innerProperties() == null) {
             this.innerProperties = new DepartmentProperties();
         }
-        this.innerProperties().withStatus(status);
+        this.innerProperties().withDepartmentName(departmentName);
         return this;
     }
 
@@ -127,11 +103,36 @@ public final class Department extends ProxyResource {
     }
 
     /**
+     * Get the status property: The status of the department.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Set the status property: The status of the department.
+     *
+     * @param status the status value to set.
+     * @return the Department object itself.
+     */
+    public Department withStatus(String status) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DepartmentProperties();
+        }
+        this.innerProperties().withStatus(status);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

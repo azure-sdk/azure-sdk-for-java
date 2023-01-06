@@ -5,16 +5,18 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of role assignments. */
 @Immutable
 public final class BillingRoleAssignmentListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingRoleAssignmentListResult.class);
+    /*
+     * The link (url) to the next page of results.
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * The list of role assignments.
@@ -22,19 +24,8 @@ public final class BillingRoleAssignmentListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<BillingRoleAssignmentInner> value;
 
-    /*
-     * The link (url) to the next page of results.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /**
-     * Get the value property: The list of role assignments.
-     *
-     * @return the value value.
-     */
-    public List<BillingRoleAssignmentInner> value() {
-        return this.value;
+    /** Creates an instance of BillingRoleAssignmentListResult class. */
+    public BillingRoleAssignmentListResult() {
     }
 
     /**
@@ -44,6 +35,15 @@ public final class BillingRoleAssignmentListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of role assignments.
+     *
+     * @return the value value.
+     */
+    public List<BillingRoleAssignmentInner> value() {
+        return this.value;
     }
 
     /**

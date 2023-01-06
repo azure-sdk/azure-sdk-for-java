@@ -5,30 +5,30 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AccountStatus;
 import com.azure.resourcemanager.billing.models.AccountType;
 import com.azure.resourcemanager.billing.models.AddressDetails;
 import com.azure.resourcemanager.billing.models.AgreementType;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.BillingProfilesOnExpand;
 import com.azure.resourcemanager.billing.models.Department;
 import com.azure.resourcemanager.billing.models.Enrollment;
 import com.azure.resourcemanager.billing.models.EnrollmentAccount;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A billing account. */
 @Fluent
-public final class BillingAccountInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingAccountInner.class);
-
+public final class BillingAccountInner extends ArmResource {
     /*
      * The properties of the billing account.
      */
     @JsonProperty(value = "properties")
     private BillingAccountProperties innerProperties;
+
+    /** Creates an instance of BillingAccountInner class. */
+    public BillingAccountInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of the billing account.
@@ -40,60 +40,12 @@ public final class BillingAccountInner extends ProxyResource {
     }
 
     /**
-     * Get the displayName property: The billing account name.
+     * Get the accountStatus property: The current status of the billing account.
      *
-     * @return the displayName value.
+     * @return the accountStatus value.
      */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
-    }
-
-    /**
-     * Set the displayName property: The billing account name.
-     *
-     * @param displayName the displayName value to set.
-     * @return the BillingAccountInner object itself.
-     */
-    public BillingAccountInner withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingAccountProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
-    }
-
-    /**
-     * Get the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
-     *
-     * @return the soldTo value.
-     */
-    public AddressDetails soldTo() {
-        return this.innerProperties() == null ? null : this.innerProperties().soldTo();
-    }
-
-    /**
-     * Set the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
-     *
-     * @param soldTo the soldTo value to set.
-     * @return the BillingAccountInner object itself.
-     */
-    public BillingAccountInner withSoldTo(AddressDetails soldTo) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingAccountProperties();
-        }
-        this.innerProperties().withSoldTo(soldTo);
-        return this;
-    }
-
-    /**
-     * Get the agreementType property: The type of agreement.
-     *
-     * @return the agreementType value.
-     */
-    public AgreementType agreementType() {
-        return this.innerProperties() == null ? null : this.innerProperties().agreementType();
+    public AccountStatus accountStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().accountStatus();
     }
 
     /**
@@ -106,12 +58,12 @@ public final class BillingAccountInner extends ProxyResource {
     }
 
     /**
-     * Get the accountStatus property: The current status of the billing account.
+     * Get the agreementType property: The type of agreement.
      *
-     * @return the accountStatus value.
+     * @return the agreementType value.
      */
-    public AccountStatus accountStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().accountStatus();
+    public AgreementType agreementType() {
+        return this.innerProperties() == null ? null : this.innerProperties().agreementType();
     }
 
     /**
@@ -140,16 +92,6 @@ public final class BillingAccountInner extends ProxyResource {
     }
 
     /**
-     * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
-     * populated, unless it's specified in $expand.
-     *
-     * @return the enrollmentDetails value.
-     */
-    public Enrollment enrollmentDetails() {
-        return this.innerProperties() == null ? null : this.innerProperties().enrollmentDetails();
-    }
-
-    /**
      * Get the departments property: The departments associated to the enrollment.
      *
      * @return the departments value.
@@ -169,6 +111,29 @@ public final class BillingAccountInner extends ProxyResource {
             this.innerProperties = new BillingAccountProperties();
         }
         this.innerProperties().withDepartments(departments);
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The billing account name.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    }
+
+    /**
+     * Set the displayName property: The billing account name.
+     *
+     * @param displayName the displayName value to set.
+     * @return the BillingAccountInner object itself.
+     */
+    public BillingAccountInner withDisplayName(String displayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingAccountProperties();
+        }
+        this.innerProperties().withDisplayName(displayName);
         return this;
     }
 
@@ -193,6 +158,16 @@ public final class BillingAccountInner extends ProxyResource {
         }
         this.innerProperties().withEnrollmentAccounts(enrollmentAccounts);
         return this;
+    }
+
+    /**
+     * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
+     * populated, unless it's specified in $expand.
+     *
+     * @return the enrollmentDetails value.
+     */
+    public Enrollment enrollmentDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().enrollmentDetails();
     }
 
     /**
@@ -228,11 +203,38 @@ public final class BillingAccountInner extends ProxyResource {
     }
 
     /**
+     * Get the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @return the soldTo value.
+     */
+    public AddressDetails soldTo() {
+        return this.innerProperties() == null ? null : this.innerProperties().soldTo();
+    }
+
+    /**
+     * Set the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @param soldTo the soldTo value to set.
+     * @return the BillingAccountInner object itself.
+     */
+    public BillingAccountInner withSoldTo(AddressDetails soldTo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingAccountProperties();
+        }
+        this.innerProperties().withSoldTo(soldTo);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

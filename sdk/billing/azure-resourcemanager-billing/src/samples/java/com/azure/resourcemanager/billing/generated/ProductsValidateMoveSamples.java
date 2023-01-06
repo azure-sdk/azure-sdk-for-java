@@ -10,14 +10,14 @@ import com.azure.resourcemanager.billing.models.TransferProductRequestProperties
 /** Samples for Products ValidateMove. */
 public final class ProductsValidateMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateProductMoveFailure.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsValidateMoveFailure.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateFailure.
+     * Sample code: productsValidateMoveFailure.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateFailure(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsValidateMoveFailure(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .validateMoveWithResponse(
@@ -30,14 +30,14 @@ public final class ProductsValidateMoveSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateProductMoveSuccess.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsValidateMoveSuccess.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateSuccess.
+     * Sample code: productsValidateMoveSuccess.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateSuccess(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsValidateMoveSuccess(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .validateMoveWithResponse(

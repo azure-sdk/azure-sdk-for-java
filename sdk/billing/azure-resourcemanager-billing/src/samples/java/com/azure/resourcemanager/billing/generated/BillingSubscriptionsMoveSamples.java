@@ -10,14 +10,14 @@ import com.azure.resourcemanager.billing.models.TransferBillingSubscriptionReque
 /** Samples for BillingSubscriptions Move. */
 public final class BillingSubscriptionsMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MoveBillingSubscription.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsMove.json
      */
     /**
-     * Sample code: MoveBillingSubscription.
+     * Sample code: billingSubscriptionsMove.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void moveBillingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsMove(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .move(

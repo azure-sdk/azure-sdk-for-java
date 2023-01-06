@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments DeleteByInvoiceSection. */
 public final class BillingRoleAssignmentsDeleteByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignmentDelete.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsDeleteByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleAssignmentDelete.
+     * Sample code: billingRoleAssignmentsDeleteByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleAssignmentDelete(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsDeleteByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .deleteByInvoiceSectionWithResponse(

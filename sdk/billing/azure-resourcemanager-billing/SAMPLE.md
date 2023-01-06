@@ -21,11 +21,6 @@
 - [ListInvoiceSectionsByCreateSubscriptionPermission](#billingaccounts_listinvoicesectionsbycreatesubscriptionpermission)
 - [Update](#billingaccounts_update)
 
-## BillingPeriods
-
-- [Get](#billingperiods_get)
-- [List](#billingperiods_list)
-
 ## BillingPermissions
 
 - [ListByBillingAccount](#billingpermissions_listbybillingaccount)
@@ -82,11 +77,6 @@
 - [ListByBillingAccount](#customers_listbybillingaccount)
 - [ListByBillingProfile](#customers_listbybillingprofile)
 
-## EnrollmentAccounts
-
-- [Get](#enrollmentaccounts_get)
-- [List](#enrollmentaccounts_list)
-
 ## Instructions
 
 - [Get](#instructions_get)
@@ -111,6 +101,10 @@
 - [ListByBillingAccount](#invoices_listbybillingaccount)
 - [ListByBillingProfile](#invoices_listbybillingprofile)
 - [ListByBillingSubscription](#invoices_listbybillingsubscription)
+
+## Operations
+
+- [List](#operations_list)
 
 ## Policies
 
@@ -147,44 +141,44 @@ import com.azure.resourcemanager.billing.models.AddressDetails;
 /** Samples for Address Validate. */
 public final class AddressValidateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AddressInvalid.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/addressValidateValid.json
      */
     /**
-     * Sample code: AddressInvalid.
+     * Sample code: addressValidateValid.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void addressInvalid(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .address()
-            .validateWithResponse(
-                new AddressDetails()
-                    .withAddressLine1("1 Test")
-                    .withCity("bellevue")
-                    .withRegion("wa")
-                    .withCountry("us")
-                    .withPostalCode("12345"),
-                Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AddressValid.json
-     */
-    /**
-     * Sample code: AddressValid.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void addressValid(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void addressValidateValid(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .address()
             .validateWithResponse(
                 new AddressDetails()
                     .withAddressLine1("1 Test Address")
                     .withCity("bellevue")
-                    .withRegion("wa")
                     .withCountry("us")
-                    .withPostalCode("12345"),
+                    .withPostalCode("fakeTokenPlaceholder")
+                    .withRegion("wa"),
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/addressValidateInvalid.json
+     */
+    /**
+     * Sample code: addressValidateInvalid.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void addressValidateInvalid(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager
+            .address()
+            .validateWithResponse(
+                new AddressDetails()
+                    .withAddressLine1("1 Test")
+                    .withCity("bellevue")
+                    .withCountry("us")
+                    .withPostalCode("fakeTokenPlaceholder")
+                    .withRegion("wa"),
                 Context.NONE);
     }
 }
@@ -198,14 +192,14 @@ import com.azure.core.util.Context;
 /** Samples for Agreements Get. */
 public final class AgreementsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AgreementByName.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/agreementsGet.json
      */
     /**
-     * Sample code: AgreementByName.
+     * Sample code: agreementsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void agreementByName(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void agreementsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.agreements().getWithResponse("{billingAccountName}", "{agreementName}", null, Context.NONE);
     }
 }
@@ -219,10 +213,10 @@ import com.azure.core.util.Context;
 /** Samples for Agreements ListByBillingAccount. */
 public final class AgreementsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AgreementsListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/agreementsListByBillingAccount.json
      */
     /**
-     * Sample code: AgreementsListByBillingAccount.
+     * Sample code: agreementsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -240,14 +234,14 @@ import com.azure.core.util.Context;
 /** Samples for AvailableBalances Get. */
 public final class AvailableBalancesGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AvailableBalanceByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/availableBalancesGetByBillingProfile.json
      */
     /**
-     * Sample code: AvailableBalanceByBillingProfile.
+     * Sample code: availableBalancesGetByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void availableBalanceByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void availableBalancesGetByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.availableBalances().getWithResponse("{billingAccountName}", "{billingProfileName}", Context.NONE);
     }
 }
@@ -261,30 +255,37 @@ import com.azure.core.util.Context;
 /** Samples for BillingAccounts Get. */
 public final class BillingAccountsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsGet.json
      */
     /**
-     * Sample code: BillingAccountWithExpand.
+     * Sample code: billingAccountsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingAccountsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingAccounts()
             .getWithResponse(
-                "{billingAccountName}", "soldTo,billingProfiles,billingProfiles/invoiceSections", Context.NONE);
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31",
+                null,
+                Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsGetWithExpand.json
      */
     /**
-     * Sample code: BillingAccounts.
+     * Sample code: billingAccountsGetWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccounts(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingAccounts().getWithResponse("{billingAccountName}", null, Context.NONE);
+    public static void billingAccountsGetWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager
+            .billingAccounts()
+            .getWithResponse(
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31",
+                "soldTo,billingProfiles,billingProfiles/invoiceSections",
+                Context.NONE);
     }
 }
 ```
@@ -297,22 +298,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingAccounts List. */
 public final class BillingAccountsListSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsListWithExpandForEnrollmentDetails.json
      */
     /**
-     * Sample code: BillingAccountsList.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void billingAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingAccounts().list(null, Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpandForEnrollmentDetails.json
-     */
-    /**
-     * Sample code: BillingAccountsListWithExpandForEnrollmentDetails.
+     * Sample code: billingAccountsListWithExpandForEnrollmentDetails.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -322,10 +311,22 @@ public final class BillingAccountsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsList.json
      */
     /**
-     * Sample code: BillingAccountsListWithExpand.
+     * Sample code: billingAccountsList.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void billingAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.billingAccounts().list(null, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsListWithExpand.json
+     */
+    /**
+     * Sample code: billingAccountsListWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -343,10 +344,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingAccounts ListInvoiceSectionsByCreateSubscriptionPermission. */
 public final class BillingAccountsListInvoiceSectionsByCreateSubscriptionPermissionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionsListWithCreateSubPermission.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsListWithCreateSubPermission.json
      */
     /**
-     * Sample code: InvoiceSectionsListWithCreateSubPermission.
+     * Sample code: invoiceSectionsListWithCreateSubPermission.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -354,7 +355,8 @@ public final class BillingAccountsListInvoiceSectionsByCreateSubscriptionPermiss
         com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingAccounts()
-            .listInvoiceSectionsByCreateSubscriptionPermission("{billingAccountName}", Context.NONE);
+            .listInvoiceSectionsByCreateSubscriptionPermission(
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31", Context.NONE);
     }
 }
 ```
@@ -369,73 +371,31 @@ import com.azure.resourcemanager.billing.models.BillingAccountUpdateRequest;
 /** Samples for BillingAccounts Update. */
 public final class BillingAccountsUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsPatch.json
      */
     /**
-     * Sample code: UpdateBillingAccount.
+     * Sample code: billingAccountsPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingAccountsPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingAccounts()
             .update(
-                "{billingAccountName}",
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31",
                 new BillingAccountUpdateRequest()
                     .withDisplayName("Test Account")
                     .withSoldTo(
                         new AddressDetails()
-                            .withFirstName("Test")
-                            .withLastName("User")
-                            .withCompanyName("Contoso")
                             .withAddressLine1("Test Address 1")
                             .withCity("Redmond")
-                            .withRegion("WA")
+                            .withCompanyName("Contoso")
                             .withCountry("US")
-                            .withPostalCode("12345")),
+                            .withFirstName("Test")
+                            .withLastName("User")
+                            .withPostalCode("fakeTokenPlaceholder")
+                            .withRegion("WA")),
                 Context.NONE);
-    }
-}
-```
-
-### BillingPeriods_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for BillingPeriods Get. */
-public final class BillingPeriodsGetSamples {
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/BillingPeriodsGet.json
-     */
-    /**
-     * Sample code: BillingPeriodsGet.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void billingPeriodsGet(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingPeriods().getWithResponse("201702-1", Context.NONE);
-    }
-}
-```
-
-### BillingPeriods_List
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for BillingPeriods List. */
-public final class BillingPeriodsListSamples {
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/BillingPeriodsList.json
-     */
-    /**
-     * Sample code: BillingPeriodsList.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void billingPeriodsList(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingPeriods().list(null, null, null, Context.NONE);
     }
 }
 ```
@@ -448,14 +408,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingPermissions ListByBillingAccount. */
 public final class BillingPermissionsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountPermissionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPermissionsListByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountPermissionsList.
+     * Sample code: billingPermissionsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountPermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPermissionsListByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingPermissions().listByBillingAccount("{billingAccountName}", Context.NONE);
     }
 }
@@ -469,14 +430,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingPermissions ListByBillingProfile. */
 public final class BillingPermissionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfilePermissionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPermissionsListByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfilePermissionsList.
+     * Sample code: billingPermissionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfilePermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPermissionsListByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingPermissions().listByBillingProfile("{billingAccountName}", "{billingProfileName}", Context.NONE);
     }
 }
@@ -490,14 +452,14 @@ import com.azure.core.util.Context;
 /** Samples for BillingPermissions ListByCustomer. */
 public final class BillingPermissionsListByCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomerPermissionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPermissionsListByCustomer.json
      */
     /**
-     * Sample code: BillingProfilePermissionsList.
+     * Sample code: billingPermissionsListByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfilePermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPermissionsListByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingPermissions().listByCustomer("{billingAccountName}", "{customerName}", Context.NONE);
     }
 }
@@ -511,14 +473,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingPermissions ListByInvoiceSections. */
 public final class BillingPermissionsListByInvoiceSectionsSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionPermissionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPermissionsListByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionPermissionsList.
+     * Sample code: billingPermissionsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionPermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPermissionsListByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingPermissions()
             .listByInvoiceSections(
@@ -531,7 +494,7 @@ public final class BillingPermissionsListByInvoiceSectionsSamples {
 
 ```java
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.billing.fluent.models.BillingProfileInner;
+import com.azure.resourcemanager.billing.fluent.models.BillingProfileAutoGeneratedInner;
 import com.azure.resourcemanager.billing.models.AddressDetails;
 import com.azure.resourcemanager.billing.models.AzurePlan;
 import java.util.Arrays;
@@ -539,34 +502,34 @@ import java.util.Arrays;
 /** Samples for BillingProfiles CreateOrUpdate. */
 public final class BillingProfilesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/PutBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesPut.json
      */
     /**
-     * Sample code: CreateBillingProfile.
+     * Sample code: billingProfilesPut.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void createBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingProfilesPut(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingProfiles()
             .createOrUpdate(
                 "{billingAccountName}",
                 "{billingProfileName}",
-                new BillingProfileInner()
-                    .withDisplayName("Finance")
-                    .withPoNumber("ABC12345")
+                new BillingProfileAutoGeneratedInner()
                     .withBillTo(
                         new AddressDetails()
-                            .withFirstName("Test")
-                            .withLastName("User")
                             .withAddressLine1("Test Address 1")
                             .withCity("Redmond")
-                            .withRegion("WA")
                             .withCountry("US")
-                            .withPostalCode("12345"))
-                    .withInvoiceEmailOptIn(true)
+                            .withFirstName("Test")
+                            .withLastName("User")
+                            .withPostalCode("fakeTokenPlaceholder")
+                            .withRegion("WA"))
+                    .withDisplayName("Finance")
                     .withEnabledAzurePlans(
-                        Arrays.asList(new AzurePlan().withSkuId("0001"), new AzurePlan().withSkuId("0002"))),
+                        Arrays.asList(new AzurePlan().withSkuId("0001"), new AzurePlan().withSkuId("0002")))
+                    .withInvoiceEmailOptIn(true)
+                    .withPoNumber("ABC12345"),
                 Context.NONE);
     }
 }
@@ -580,29 +543,29 @@ import com.azure.core.util.Context;
 /** Samples for BillingProfiles Get. */
 public final class BillingProfilesGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesGet.json
      */
     /**
-     * Sample code: BillingProfileWithExpand.
+     * Sample code: billingProfilesGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingProfiles()
-            .getWithResponse("{billingAccountName}", "{billingProfileName}", "invoiceSections", Context.NONE);
+    public static void billingProfilesGet(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.billingProfiles().getWithResponse("{billingAccountName}", "{billingProfileName}", null, Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesGetWithExpand.json
      */
     /**
-     * Sample code: BillingProfile.
+     * Sample code: billingProfilesGetWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingProfiles().getWithResponse("{billingAccountName}", "{billingProfileName}", null, Context.NONE);
+    public static void billingProfilesGetWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager
+            .billingProfiles()
+            .getWithResponse("{billingAccountName}", "{billingProfileName}", "invoiceSections", Context.NONE);
     }
 }
 ```
@@ -615,22 +578,23 @@ import com.azure.core.util.Context;
 /** Samples for BillingProfiles ListByBillingAccount. */
 public final class BillingProfilesListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfilesListWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesListByBillingAccountWithExpand.json
      */
     /**
-     * Sample code: BillingProfilesListWithExpand.
+     * Sample code: billingProfilesListByBillingAccountWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfilesListWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingProfilesListByBillingAccountWithExpand(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingProfiles().listByBillingAccount("{billingAccountName}", "invoiceSections", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfilesListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesListByBillingAccount.json
      */
     /**
-     * Sample code: BillingProfilesListByBillingAccount.
+     * Sample code: billingProfilesListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -648,14 +612,14 @@ import com.azure.core.util.Context;
 /** Samples for BillingProperty Get. */
 public final class BillingPropertyGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProperty.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPropertiesGet.json
      */
     /**
-     * Sample code: BillingProperty.
+     * Sample code: billingPropertiesGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPropertiesGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingProperties().getWithResponse(Context.NONE);
     }
 }
@@ -670,14 +634,14 @@ import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
 /** Samples for BillingProperty Update. */
 public final class BillingPropertyUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingProperty.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPropertiesPatch.json
      */
     /**
-     * Sample code: UpdateBillingProperty.
+     * Sample code: billingPropertiesPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPropertiesPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingProperties().updateWithResponse(new BillingPropertyInner().withCostCenter("1010"), Context.NONE);
     }
 }
@@ -691,14 +655,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments DeleteByBillingAccount. */
 public final class BillingRoleAssignmentsDeleteByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleAssignmentDelete.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsDeleteByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleAssignmentDelete.
+     * Sample code: billingRoleAssignmentsDeleteByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleAssignmentDelete(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsDeleteByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .deleteByBillingAccountWithResponse("{billingAccountName}", "{billingRoleAssignmentName}", Context.NONE);
@@ -714,14 +679,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments DeleteByBillingProfile. */
 public final class BillingRoleAssignmentsDeleteByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleAssignmentDelete.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsDeleteByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfileRoleAssignmentDelete.
+     * Sample code: billingRoleAssignmentsDeleteByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileRoleAssignmentDelete(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsDeleteByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .deleteByBillingProfileWithResponse(
@@ -738,14 +704,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments DeleteByInvoiceSection. */
 public final class BillingRoleAssignmentsDeleteByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignmentDelete.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsDeleteByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleAssignmentDelete.
+     * Sample code: billingRoleAssignmentsDeleteByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleAssignmentDelete(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsDeleteByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .deleteByInvoiceSectionWithResponse(
@@ -766,14 +733,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments GetByBillingAccount. */
 public final class BillingRoleAssignmentsGetByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleAssignment.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsGetByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleAssignment.
+     * Sample code: billingRoleAssignmentsGetByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsGetByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .getByBillingAccountWithResponse("{billingAccountName}", "{billingRoleAssignmentId}", Context.NONE);
@@ -789,14 +757,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments GetByBillingProfile. */
 public final class BillingRoleAssignmentsGetByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleAssignment.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsGetByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfileRoleAssignment.
+     * Sample code: billingRoleAssignmentsGetByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsGetByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .getByBillingProfileWithResponse(
@@ -813,14 +782,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments GetByInvoiceSection. */
 public final class BillingRoleAssignmentsGetByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignment.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsGetByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleAssignment.
+     * Sample code: billingRoleAssignmentsGetByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsGetByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .getByInvoiceSectionWithResponse(
@@ -841,14 +811,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments ListByBillingAccount. */
 public final class BillingRoleAssignmentsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleAssignmentList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsListByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleAssignmentList.
+     * Sample code: billingRoleAssignmentsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleAssignmentList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsListByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingRoleAssignments().listByBillingAccount("{billingAccountName}", Context.NONE);
     }
 }
@@ -862,14 +833,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments ListByBillingProfile. */
 public final class BillingRoleAssignmentsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleAssignmentList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsListByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfileRoleAssignmentList.
+     * Sample code: billingRoleAssignmentsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileRoleAssignmentList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsListByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .listByBillingProfile("{billingAccountName}", "{billingProfileName}", Context.NONE);
@@ -885,14 +857,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments ListByInvoiceSection. */
 public final class BillingRoleAssignmentsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignmentList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsListByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleAssignmentList.
+     * Sample code: billingRoleAssignmentsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleAssignmentList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsListByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .listByInvoiceSection("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", Context.NONE);
@@ -908,14 +881,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions GetByBillingAccount. */
 public final class BillingRoleDefinitionsGetByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleDefinition.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsGetByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleDefinition.
+     * Sample code: billingRoleDefinitionsGetByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleDefinition(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsGetByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .getByBillingAccountWithResponse("{billingAccountName}", "{billingRoleDefinitionName}", Context.NONE);
@@ -931,14 +905,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions GetByBillingProfile. */
 public final class BillingRoleDefinitionsGetByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleDefinition.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsGetByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfileRoleDefinition.
+     * Sample code: billingRoleDefinitionsGetByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileRoleDefinition(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsGetByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .getByBillingProfileWithResponse(
@@ -955,14 +930,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions GetByInvoiceSection. */
 public final class BillingRoleDefinitionsGetByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleDefinition.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsGetByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleDefinition.
+     * Sample code: billingRoleDefinitionsGetByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleDefinition(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsGetByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .getByInvoiceSectionWithResponse(
@@ -983,14 +959,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions ListByBillingAccount. */
 public final class BillingRoleDefinitionsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleDefinitionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsListByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleDefinitionsList.
+     * Sample code: billingRoleDefinitionsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleDefinitionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsListByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingRoleDefinitions().listByBillingAccount("{billingAccountName}", Context.NONE);
     }
 }
@@ -1004,14 +981,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions ListByBillingProfile. */
 public final class BillingRoleDefinitionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleDefinitionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsListByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfileRoleDefinitionsList.
+     * Sample code: billingRoleDefinitionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileRoleDefinitionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsListByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .listByBillingProfile("{billingAccountName}", "{billingProfileName}", Context.NONE);
@@ -1027,14 +1005,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions ListByInvoiceSection. */
 public final class BillingRoleDefinitionsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleDefinitionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsListByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleDefinitionsList.
+     * Sample code: billingRoleDefinitionsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleDefinitionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsListByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .listByInvoiceSection("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", Context.NONE);
@@ -1050,14 +1029,14 @@ import com.azure.core.util.Context;
 /** Samples for BillingSubscriptions Get. */
 public final class BillingSubscriptionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscription.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsGet.json
      */
     /**
-     * Sample code: BillingSubscription.
+     * Sample code: billingSubscriptionsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingSubscriptions().getWithResponse("{billingAccountName}", Context.NONE);
     }
 }
@@ -1071,10 +1050,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingSubscriptions ListByBillingAccount. */
 public final class BillingSubscriptionsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionsListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsListByBillingAccount.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByBillingAccount.
+     * Sample code: billingSubscriptionsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1093,10 +1072,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingSubscriptions ListByBillingProfile. */
 public final class BillingSubscriptionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsListByBillingProfile.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByBillingProfile.
+     * Sample code: billingSubscriptionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1117,10 +1096,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingSubscriptions ListByCustomer. */
 public final class BillingSubscriptionsListByCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionsListByCustomer.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsListByCustomer.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByCustomer.
+     * Sample code: billingSubscriptionsListByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1138,10 +1117,10 @@ import com.azure.core.util.Context;
 /** Samples for BillingSubscriptions ListByInvoiceSection. */
 public final class BillingSubscriptionsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionsListByInvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsListByInvoiceSection.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByInvoiceSection.
+     * Sample code: billingSubscriptionsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1163,14 +1142,14 @@ import com.azure.resourcemanager.billing.models.TransferBillingSubscriptionReque
 /** Samples for BillingSubscriptions Move. */
 public final class BillingSubscriptionsMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MoveBillingSubscription.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsMove.json
      */
     /**
-     * Sample code: MoveBillingSubscription.
+     * Sample code: billingSubscriptionsMove.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void moveBillingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsMove(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .move(
@@ -1192,14 +1171,14 @@ import com.azure.resourcemanager.billing.fluent.models.BillingSubscriptionInner;
 /** Samples for BillingSubscriptions Update. */
 public final class BillingSubscriptionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingSubscription.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsPatch.json
      */
     /**
-     * Sample code: UpdateBillingProperty.
+     * Sample code: billingSubscriptionsPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .updateWithResponse(
@@ -1217,14 +1196,15 @@ import com.azure.resourcemanager.billing.models.TransferBillingSubscriptionReque
 /** Samples for BillingSubscriptions ValidateMove. */
 public final class BillingSubscriptionsValidateMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateSubscriptionMoveFailure.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsValidateMoveFailure.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateFailure.
+     * Sample code: billingSubscriptionsValidateMoveFailure.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateFailure(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsValidateMoveFailure(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .validateMoveWithResponse(
@@ -1236,14 +1216,15 @@ public final class BillingSubscriptionsValidateMoveSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateSubscriptionMoveSuccess.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsValidateMoveSuccess.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateSuccess.
+     * Sample code: billingSubscriptionsValidateMoveSuccess.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateSuccess(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsValidateMoveSuccess(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .validateMoveWithResponse(
@@ -1264,28 +1245,28 @@ import com.azure.core.util.Context;
 /** Samples for Customers Get. */
 public final class CustomersGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomerWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/customersGetWithExpand.json
      */
     /**
-     * Sample code: CustomerWithExpand.
+     * Sample code: customersGetWithExpand.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void customerWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void customersGetWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .customers()
             .getWithResponse("{billingAccountName}", "{customerName}", "enabledAzurePlans,resellers", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Customer.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/customersGet.json
      */
     /**
-     * Sample code: Customer.
+     * Sample code: customersGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void customer(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void customersGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.customers().getWithResponse("{billingAccountName}", "{customerName}", null, Context.NONE);
     }
 }
@@ -1299,10 +1280,10 @@ import com.azure.core.util.Context;
 /** Samples for Customers ListByBillingAccount. */
 public final class CustomersListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomersListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/customersListByBillingAccount.json
      */
     /**
-     * Sample code: CustomersListByBillingAccount.
+     * Sample code: customersListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1320,10 +1301,10 @@ import com.azure.core.util.Context;
 /** Samples for Customers ListByBillingProfile. */
 public final class CustomersListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomersListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/customersListByBillingProfile.json
      */
     /**
-     * Sample code: CustomersListByBillingProfile.
+     * Sample code: customersListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1331,48 +1312,6 @@ public final class CustomersListByBillingProfileSamples {
         manager
             .customers()
             .listByBillingProfile("{billingAccountName}", "{billingProfileName}", null, null, Context.NONE);
-    }
-}
-```
-
-### EnrollmentAccounts_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for EnrollmentAccounts Get. */
-public final class EnrollmentAccountsGetSamples {
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/EnrollmentAccountsGet.json
-     */
-    /**
-     * Sample code: EnrollmentAccountsGet.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void enrollmentAccountsGet(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.enrollmentAccounts().getWithResponse("e1bf1c8c-5ac6-44a0-bdcd-aa7c1cf60556", Context.NONE);
-    }
-}
-```
-
-### EnrollmentAccounts_List
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for EnrollmentAccounts List. */
-public final class EnrollmentAccountsListSamples {
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/EnrollmentAccountsList.json
-     */
-    /**
-     * Sample code: EnrollmentAccountsList.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void enrollmentAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.enrollmentAccounts().list(Context.NONE);
     }
 }
 ```
@@ -1385,14 +1324,14 @@ import com.azure.core.util.Context;
 /** Samples for Instructions Get. */
 public final class InstructionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Instruction.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/instructionsGet.json
      */
     /**
-     * Sample code: Instruction.
+     * Sample code: instructionsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void instruction(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void instructionsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .instructions()
             .getWithResponse("{billingAccountName}", "{billingProfileName}", "{instructionName}", Context.NONE);
@@ -1408,10 +1347,10 @@ import com.azure.core.util.Context;
 /** Samples for Instructions ListByBillingProfile. */
 public final class InstructionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InstructionsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/instructionsListByBillingProfile.json
      */
     /**
-     * Sample code: InstructionsListByBillingProfile.
+     * Sample code: instructionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1431,14 +1370,14 @@ import java.time.OffsetDateTime;
 /** Samples for Instructions Put. */
 public final class InstructionsPutSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/PutInstruction.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/instructionsPut.json
      */
     /**
-     * Sample code: PutInstruction.
+     * Sample code: instructionsPut.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void putInstruction(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void instructionsPut(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .instructions()
             .putWithResponse(
@@ -1447,8 +1386,8 @@ public final class InstructionsPutSamples {
                 "{instructionName}",
                 new InstructionInner()
                     .withAmount(5000f)
-                    .withStartDate(OffsetDateTime.parse("2019-12-30T21:26:47.997Z"))
-                    .withEndDate(OffsetDateTime.parse("2020-12-30T21:26:47.997Z")),
+                    .withEndDate(OffsetDateTime.parse("2020-12-30T21:26:47.997Z"))
+                    .withStartDate(OffsetDateTime.parse("2019-12-30T21:26:47.997Z")),
                 Context.NONE);
     }
 }
@@ -1465,14 +1404,14 @@ import java.util.Map;
 /** Samples for InvoiceSections CreateOrUpdate. */
 public final class InvoiceSectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/PutInvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsPut.json
      */
     /**
-     * Sample code: PutInvoiceSection.
+     * Sample code: invoiceSectionsPut.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void putInvoiceSection(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoiceSectionsPut(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .invoiceSections()
             .createOrUpdate(
@@ -1506,14 +1445,14 @@ import com.azure.core.util.Context;
 /** Samples for InvoiceSections Get. */
 public final class InvoiceSectionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsGet.json
      */
     /**
-     * Sample code: InvoiceSection.
+     * Sample code: invoiceSectionsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSection(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoiceSectionsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .invoiceSections()
             .getWithResponse("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", Context.NONE);
@@ -1529,10 +1468,10 @@ import com.azure.core.util.Context;
 /** Samples for InvoiceSections ListByBillingProfile. */
 public final class InvoiceSectionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsListByBillingProfile.json
      */
     /**
-     * Sample code: InvoiceSectionsListByBillingProfile.
+     * Sample code: invoiceSectionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1550,14 +1489,14 @@ import com.azure.core.util.Context;
 /** Samples for Invoices DownloadBillingSubscriptionInvoice. */
 public final class InvoicesDownloadBillingSubscriptionInvoiceSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionInvoiceDownload.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesDownloadByBillingSubscription.json
      */
     /**
-     * Sample code: BillingSubscriptionInvoiceDownload.
+     * Sample code: invoicesDownloadByBillingSubscription.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscriptionInvoiceDownload(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesDownloadByBillingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().downloadBillingSubscriptionInvoice("{invoiceName}", "DRS_12345", Context.NONE);
     }
 }
@@ -1571,14 +1510,14 @@ import com.azure.core.util.Context;
 /** Samples for Invoices DownloadInvoice. */
 public final class InvoicesDownloadInvoiceSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ModernInvoiceDownload.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesDownloadByBillingAccount.json
      */
     /**
-     * Sample code: InvoiceDownload.
+     * Sample code: invoicesDownloadByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceDownload(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesDownloadByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().downloadInvoice("{billingAccountName}", "{invoiceName}", "DRS_12345", Context.NONE);
     }
 }
@@ -1593,23 +1532,23 @@ import java.util.Arrays;
 /** Samples for Invoices DownloadMultipleBillingProfileInvoices. */
 public final class InvoicesDownloadMultipleBillingProfileInvoicesSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MultipleModernInvoiceDownload.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesDownloadBatchByBillingAccount.json
      */
     /**
-     * Sample code: BillingProfileInvoiceDownload.
+     * Sample code: invoicesDownloadBatchByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileInvoiceDownload(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesDownloadBatchByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .invoices()
             .downloadMultipleBillingProfileInvoices(
                 "{billingAccountName}",
                 Arrays
                     .asList(
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01",
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01",
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01"),
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01",
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01",
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01"),
                 Context.NONE);
     }
 }
@@ -1624,22 +1563,23 @@ import java.util.Arrays;
 /** Samples for Invoices DownloadMultipleBillingSubscriptionInvoices. */
 public final class InvoicesDownloadMultipleBillingSubscriptionInvoicesSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MultipleBillingSubscriptionInvoiceDownload.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesDownloadBatchByBillingSubscription.json
      */
     /**
-     * Sample code: BillingSubscriptionInvoiceDownload.
+     * Sample code: invoicesDownloadBatchByBillingSubscription.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscriptionInvoiceDownload(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesDownloadBatchByBillingSubscription(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .invoices()
             .downloadMultipleBillingSubscriptionInvoices(
                 Arrays
                     .asList(
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01",
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01",
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01"),
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01",
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01",
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01"),
                 Context.NONE);
     }
 }
@@ -1653,50 +1593,50 @@ import com.azure.core.util.Context;
 /** Samples for Invoices Get. */
 public final class InvoicesGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Invoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetByBillingAccount.json
      */
     /**
-     * Sample code: Invoice.
+     * Sample code: invoicesGetByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoice(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CreditNote.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetVoid.json
      */
     /**
-     * Sample code: CreditNote.
+     * Sample code: invoicesGetVoid.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void creditNote(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetVoid(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/VoidInvoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetCreditNote.json
      */
     /**
-     * Sample code: VoidInvoice.
+     * Sample code: invoicesGetCreditNote.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void voidInvoice(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetCreditNote(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceWithRebillDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetWithRebillDetails.json
      */
     /**
-     * Sample code: InvoiceWithRebillDetails.
+     * Sample code: invoicesGetWithRebillDetails.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceWithRebillDetails(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetWithRebillDetails(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 }
@@ -1710,14 +1650,14 @@ import com.azure.core.util.Context;
 /** Samples for Invoices GetById. */
 public final class InvoicesGetByIdSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceById.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGet.json
      */
     /**
-     * Sample code: Invoice.
+     * Sample code: invoicesGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoice(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getByIdWithResponse("{invoiceName}", Context.NONE);
     }
 }
@@ -1731,15 +1671,14 @@ import com.azure.core.util.Context;
 /** Samples for Invoices GetBySubscriptionAndInvoiceId. */
 public final class InvoicesGetBySubscriptionAndInvoiceIdSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionInvoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetByBillingSubscription.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByBillingAccount.
+     * Sample code: invoicesGetByBillingSubscription.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscriptionsListByBillingAccount(
-        com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetByBillingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getBySubscriptionAndInvoiceIdWithResponse("{invoiceName}", Context.NONE);
     }
 }
@@ -1753,26 +1692,26 @@ import com.azure.core.util.Context;
 /** Samples for Invoices ListByBillingAccount. */
 public final class InvoicesListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountInvoicesList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountInvoicesList.
+     * Sample code: invoicesListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountInvoicesList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesListByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().listByBillingAccount("{billingAccountName}", "2018-01-01", "2018-06-30", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountInvoicesListWithRebillDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingAccountWithRebillDetails.json
      */
     /**
-     * Sample code: BillingAccountInvoicesListWithRebillDetails.
+     * Sample code: invoicesListByBillingAccountWithRebillDetails.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountInvoicesListWithRebillDetails(
+    public static void invoicesListByBillingAccountWithRebillDetails(
         com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().listByBillingAccount("{billingAccountName}", "2018-01-01", "2018-06-30", Context.NONE);
     }
@@ -1787,10 +1726,10 @@ import com.azure.core.util.Context;
 /** Samples for Invoices ListByBillingProfile. */
 public final class InvoicesListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoicesListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingProfile.json
      */
     /**
-     * Sample code: InvoicesListByBillingProfile.
+     * Sample code: invoicesListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1802,10 +1741,10 @@ public final class InvoicesListByBillingProfileSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoicesListByBillingProfileWithRebillDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingProfileWithRebillDetails.json
      */
     /**
-     * Sample code: InvoicesListByBillingProfileWithRebillDetails.
+     * Sample code: invoicesListByBillingProfileWithRebillDetails.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1827,16 +1766,36 @@ import com.azure.core.util.Context;
 /** Samples for Invoices ListByBillingSubscription. */
 public final class InvoicesListByBillingSubscriptionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionInvoicesList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingSubscription.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByBillingAccount.
+     * Sample code: invoicesListByBillingSubscription.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscriptionsListByBillingAccount(
-        com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.invoices().listByBillingSubscription("2018-01-01", "2018-06-30", Context.NONE);
+    public static void invoicesListByBillingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.invoices().listByBillingSubscription("2022-01-01", "2022-06-30", Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/operationsGet.json
+     */
+    /**
+     * Sample code: operationsGet.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void operationsGet(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.operations().list(Context.NONE);
     }
 }
 ```
@@ -1849,14 +1808,14 @@ import com.azure.core.util.Context;
 /** Samples for Policies GetByBillingProfile. */
 public final class PoliciesGetByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Policy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesGetByBillingProfile.json
      */
     /**
-     * Sample code: PolicyByBillingProfile.
+     * Sample code: policiesGetByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void policyByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesGetByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .policies()
             .getByBillingProfileWithResponse("{billingAccountName}", "{billingProfileName}", Context.NONE);
@@ -1872,14 +1831,14 @@ import com.azure.core.util.Context;
 /** Samples for Policies GetByCustomer. */
 public final class PoliciesGetByCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomerPolicy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesGetByCustomer.json
      */
     /**
-     * Sample code: PolicyByCustomer.
+     * Sample code: policiesGetByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void policyByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesGetByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.policies().getByCustomerWithResponse("{billingAccountName}", "{customerName}", Context.NONE);
     }
 }
@@ -1897,14 +1856,14 @@ import com.azure.resourcemanager.billing.models.ViewChargesPolicy;
 /** Samples for Policies Update. */
 public final class PoliciesUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdatePolicy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesPutByBillingProfile.json
      */
     /**
-     * Sample code: UpdatePolicy.
+     * Sample code: policiesPutByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updatePolicy(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesPutByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .policies()
             .updateWithResponse(
@@ -1929,14 +1888,14 @@ import com.azure.resourcemanager.billing.models.ViewCharges;
 /** Samples for Policies UpdateCustomer. */
 public final class PoliciesUpdateCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateCustomerPolicy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesPutByCustomer.json
      */
     /**
-     * Sample code: UpdateCustomer.
+     * Sample code: policiesPutByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesPutByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .policies()
             .updateCustomerWithResponse(
@@ -1956,14 +1915,14 @@ import com.azure.core.util.Context;
 /** Samples for Products Get. */
 public final class ProductsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Product.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsGet.json
      */
     /**
-     * Sample code: Product.
+     * Sample code: productsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void product(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.products().getWithResponse("{billingAccountName}", "{productName}", Context.NONE);
     }
 }
@@ -1977,10 +1936,10 @@ import com.azure.core.util.Context;
 /** Samples for Products ListByBillingAccount. */
 public final class ProductsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsListByBillingAccount.json
      */
     /**
-     * Sample code: ProductsListByBillingAccount.
+     * Sample code: productsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -1998,10 +1957,10 @@ import com.azure.core.util.Context;
 /** Samples for Products ListByBillingProfile. */
 public final class ProductsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsListByBillingProfile.json
      */
     /**
-     * Sample code: ProductsListByBillingProfile.
+     * Sample code: productsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -2019,14 +1978,14 @@ import com.azure.core.util.Context;
 /** Samples for Products ListByCustomer. */
 public final class ProductsListByCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByCustomer.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsListByCustomer.json
      */
     /**
-     * Sample code: ProductsListByInvoiceSection.
+     * Sample code: productsListByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void productsListByInvoiceSection(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsListByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.products().listByCustomer("{billingAccountName}", "{customerName}", Context.NONE);
     }
 }
@@ -2040,10 +1999,10 @@ import com.azure.core.util.Context;
 /** Samples for Products ListByInvoiceSection. */
 public final class ProductsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByInvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsListByInvoiceSection.json
      */
     /**
-     * Sample code: ProductsListByInvoiceSection.
+     * Sample code: productsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -2065,14 +2024,14 @@ import com.azure.resourcemanager.billing.models.TransferProductRequestProperties
 /** Samples for Products Move. */
 public final class ProductsMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MoveProduct.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsMove.json
      */
     /**
-     * Sample code: MoveProduct.
+     * Sample code: productsMove.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void moveProduct(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsMove(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .moveWithResponse(
@@ -2096,14 +2055,14 @@ import com.azure.resourcemanager.billing.models.AutoRenew;
 /** Samples for Products Update. */
 public final class ProductsUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateProduct.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsPatch.json
      */
     /**
-     * Sample code: UpdateBillingProperty.
+     * Sample code: productsPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .updateWithResponse(
@@ -2121,14 +2080,14 @@ import com.azure.resourcemanager.billing.models.TransferProductRequestProperties
 /** Samples for Products ValidateMove. */
 public final class ProductsValidateMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateProductMoveFailure.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsValidateMoveFailure.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateFailure.
+     * Sample code: productsValidateMoveFailure.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateFailure(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsValidateMoveFailure(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .validateMoveWithResponse(
@@ -2141,14 +2100,14 @@ public final class ProductsValidateMoveSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateProductMoveSuccess.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsValidateMoveSuccess.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateSuccess.
+     * Sample code: productsValidateMoveSuccess.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateSuccess(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsValidateMoveSuccess(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .validateMoveWithResponse(
@@ -2170,10 +2129,10 @@ import com.azure.core.util.Context;
 /** Samples for Reservations ListByBillingAccount. */
 public final class ReservationsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ReservationsListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/reservationsListByBillingAccount.json
      */
     /**
-     * Sample code: ReservationsListByBillingAccount.
+     * Sample code: reservationsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -2199,10 +2158,10 @@ import com.azure.core.util.Context;
 /** Samples for Reservations ListByBillingProfile. */
 public final class ReservationsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ReservationsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/reservationsListByBillingProfile.json
      */
     /**
-     * Sample code: ReservationsListByBillingProfile.
+     * Sample code: reservationsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -2229,10 +2188,10 @@ import com.azure.core.util.Context;
 /** Samples for Transactions ListByInvoice. */
 public final class TransactionsListByInvoiceSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/TransactionsListByInvoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/transactionsListByInvoice.json
      */
     /**
-     * Sample code: TransactionsListByInvoice.
+     * Sample code: transactionsListByInvoice.
      *
      * @param manager Entry point to BillingManager.
      */

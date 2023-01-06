@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Invoices DownloadInvoice. */
 public final class InvoicesDownloadInvoiceSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ModernInvoiceDownload.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesDownloadByBillingAccount.json
      */
     /**
-     * Sample code: InvoiceDownload.
+     * Sample code: invoicesDownloadByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceDownload(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesDownloadByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().downloadInvoice("{billingAccountName}", "{invoiceName}", "DRS_12345", Context.NONE);
     }
 }

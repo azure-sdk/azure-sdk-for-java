@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for BillingPermissions ListByCustomer. */
 public final class BillingPermissionsListByCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomerPermissionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPermissionsListByCustomer.json
      */
     /**
-     * Sample code: BillingProfilePermissionsList.
+     * Sample code: billingPermissionsListByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfilePermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPermissionsListByCustomer(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingPermissions().listByCustomer("{billingAccountName}", "{customerName}", Context.NONE);
     }
 }

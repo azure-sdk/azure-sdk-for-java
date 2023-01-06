@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AccountStatus;
 import com.azure.resourcemanager.billing.models.AccountType;
 import com.azure.resourcemanager.billing.models.AddressDetails;
@@ -14,33 +13,17 @@ import com.azure.resourcemanager.billing.models.BillingProfilesOnExpand;
 import com.azure.resourcemanager.billing.models.Department;
 import com.azure.resourcemanager.billing.models.Enrollment;
 import com.azure.resourcemanager.billing.models.EnrollmentAccount;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of the billing account. */
 @Fluent
 public final class BillingAccountProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingAccountProperties.class);
-
     /*
-     * The billing account name.
+     * The current status of the billing account.
      */
-    @JsonProperty(value = "displayName")
-    private String displayName;
-
-    /*
-     * The address of the individual or organization that is responsible for
-     * the billing account.
-     */
-    @JsonProperty(value = "soldTo")
-    private AddressDetails soldTo;
-
-    /*
-     * The type of agreement.
-     */
-    @JsonProperty(value = "agreementType", access = JsonProperty.Access.WRITE_ONLY)
-    private AgreementType agreementType;
+    @JsonProperty(value = "accountStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private AccountStatus accountStatus;
 
     /*
      * The type of customer.
@@ -49,24 +32,17 @@ public final class BillingAccountProperties {
     private AccountType accountType;
 
     /*
-     * The current status of the billing account.
+     * The type of agreement.
      */
-    @JsonProperty(value = "accountStatus", access = JsonProperty.Access.WRITE_ONLY)
-    private AccountStatus accountStatus;
+    @JsonProperty(value = "agreementType", access = JsonProperty.Access.WRITE_ONLY)
+    private AgreementType agreementType;
 
     /*
-     * The billing profiles associated with the billing account. By default
-     * this is not populated, unless it's specified in $expand.
+     * The billing profiles associated with the billing account. By default this is not populated, unless it's
+     * specified in $expand.
      */
     @JsonProperty(value = "billingProfiles")
     private BillingProfilesOnExpand billingProfiles;
-
-    /*
-     * The details about the associated legacy enrollment. By default this is
-     * not populated, unless it's specified in $expand.
-     */
-    @JsonProperty(value = "enrollmentDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private Enrollment enrollmentDetails;
 
     /*
      * The departments associated to the enrollment.
@@ -75,10 +51,23 @@ public final class BillingAccountProperties {
     private List<Department> departments;
 
     /*
+     * The billing account name.
+     */
+    @JsonProperty(value = "displayName")
+    private String displayName;
+
+    /*
      * The accounts associated to the enrollment.
      */
     @JsonProperty(value = "enrollmentAccounts")
     private List<EnrollmentAccount> enrollmentAccounts;
+
+    /*
+     * The details about the associated legacy enrollment. By default this is not populated, unless it's specified in
+     * $expand.
+     */
+    @JsonProperty(value = "enrollmentDetails", access = JsonProperty.Access.WRITE_ONLY)
+    private Enrollment enrollmentDetails;
 
     /*
      * Indicates whether user has read access to the billing account.
@@ -92,55 +81,23 @@ public final class BillingAccountProperties {
     @JsonProperty(value = "notificationEmailAddress")
     private String notificationEmailAddress;
 
-    /**
-     * Get the displayName property: The billing account name.
-     *
-     * @return the displayName value.
+    /*
+     * The address of the individual or organization that is responsible for the billing account.
      */
-    public String displayName() {
-        return this.displayName;
+    @JsonProperty(value = "soldTo")
+    private AddressDetails soldTo;
+
+    /** Creates an instance of BillingAccountProperties class. */
+    public BillingAccountProperties() {
     }
 
     /**
-     * Set the displayName property: The billing account name.
+     * Get the accountStatus property: The current status of the billing account.
      *
-     * @param displayName the displayName value to set.
-     * @return the BillingAccountProperties object itself.
+     * @return the accountStatus value.
      */
-    public BillingAccountProperties withDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
-    }
-
-    /**
-     * Get the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
-     *
-     * @return the soldTo value.
-     */
-    public AddressDetails soldTo() {
-        return this.soldTo;
-    }
-
-    /**
-     * Set the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
-     *
-     * @param soldTo the soldTo value to set.
-     * @return the BillingAccountProperties object itself.
-     */
-    public BillingAccountProperties withSoldTo(AddressDetails soldTo) {
-        this.soldTo = soldTo;
-        return this;
-    }
-
-    /**
-     * Get the agreementType property: The type of agreement.
-     *
-     * @return the agreementType value.
-     */
-    public AgreementType agreementType() {
-        return this.agreementType;
+    public AccountStatus accountStatus() {
+        return this.accountStatus;
     }
 
     /**
@@ -153,12 +110,12 @@ public final class BillingAccountProperties {
     }
 
     /**
-     * Get the accountStatus property: The current status of the billing account.
+     * Get the agreementType property: The type of agreement.
      *
-     * @return the accountStatus value.
+     * @return the agreementType value.
      */
-    public AccountStatus accountStatus() {
-        return this.accountStatus;
+    public AgreementType agreementType() {
+        return this.agreementType;
     }
 
     /**
@@ -184,16 +141,6 @@ public final class BillingAccountProperties {
     }
 
     /**
-     * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
-     * populated, unless it's specified in $expand.
-     *
-     * @return the enrollmentDetails value.
-     */
-    public Enrollment enrollmentDetails() {
-        return this.enrollmentDetails;
-    }
-
-    /**
      * Get the departments property: The departments associated to the enrollment.
      *
      * @return the departments value.
@@ -210,6 +157,26 @@ public final class BillingAccountProperties {
      */
     public BillingAccountProperties withDepartments(List<Department> departments) {
         this.departments = departments;
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The billing account name.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.displayName;
+    }
+
+    /**
+     * Set the displayName property: The billing account name.
+     *
+     * @param displayName the displayName value to set.
+     * @return the BillingAccountProperties object itself.
+     */
+    public BillingAccountProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
         return this;
     }
 
@@ -231,6 +198,16 @@ public final class BillingAccountProperties {
     public BillingAccountProperties withEnrollmentAccounts(List<EnrollmentAccount> enrollmentAccounts) {
         this.enrollmentAccounts = enrollmentAccounts;
         return this;
+    }
+
+    /**
+     * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
+     * populated, unless it's specified in $expand.
+     *
+     * @return the enrollmentDetails value.
+     */
+    public Enrollment enrollmentDetails() {
+        return this.enrollmentDetails;
     }
 
     /**
@@ -263,25 +240,47 @@ public final class BillingAccountProperties {
     }
 
     /**
+     * Get the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @return the soldTo value.
+     */
+    public AddressDetails soldTo() {
+        return this.soldTo;
+    }
+
+    /**
+     * Set the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @param soldTo the soldTo value to set.
+     * @return the BillingAccountProperties object itself.
+     */
+    public BillingAccountProperties withSoldTo(AddressDetails soldTo) {
+        this.soldTo = soldTo;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (soldTo() != null) {
-            soldTo().validate();
-        }
         if (billingProfiles() != null) {
             billingProfiles().validate();
-        }
-        if (enrollmentDetails() != null) {
-            enrollmentDetails().validate();
         }
         if (departments() != null) {
             departments().forEach(e -> e.validate());
         }
         if (enrollmentAccounts() != null) {
             enrollmentAccounts().forEach(e -> e.validate());
+        }
+        if (enrollmentDetails() != null) {
+            enrollmentDetails().validate();
+        }
+        if (soldTo() != null) {
+            soldTo().validate();
         }
     }
 }

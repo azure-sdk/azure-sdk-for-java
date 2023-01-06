@@ -17,20 +17,6 @@ public interface Reservation {
     String id();
 
     /**
-     * Gets the name property: The name of the reservation.
-     *
-     * @return the name value.
-     */
-    String name();
-
-    /**
-     * Gets the type property: The type of the reservation.
-     *
-     * @return the type value.
-     */
-    String type();
-
-    /**
      * Gets the location property: The location of the reservation.
      *
      * @return the location value.
@@ -38,11 +24,25 @@ public interface Reservation {
     String location();
 
     /**
+     * Gets the name property: The name of the reservation.
+     *
+     * @return the name value.
+     */
+    String name();
+
+    /**
      * Gets the sku property: The sku information associated to this reservation.
      *
      * @return the sku value.
      */
     ReservationSkuProperty sku();
+
+    /**
+     * Gets the type property: The type of the reservation.
+     *
+     * @return the type value.
+     */
+    String type();
 
     /**
      * Gets the appliedScopes property: The array of applied scopes of a reservation. Will be null if the reservation is
@@ -60,41 +60,6 @@ public interface Reservation {
     String appliedScopeType();
 
     /**
-     * Gets the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
-     *
-     * @return the reservedResourceType value.
-     */
-    String reservedResourceType();
-
-    /**
-     * Gets the quantity property: The number of the reservation.
-     *
-     * @return the quantity value.
-     */
-    Float quantity();
-
-    /**
-     * Gets the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
-     * @return the provisioningState value.
-     */
-    String provisioningState();
-
-    /**
-     * Gets the expiryDate property: The expiry date of the reservation.
-     *
-     * @return the expiryDate value.
-     */
-    String expiryDate();
-
-    /**
-     * Gets the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
-     * @return the provisioningSubState value.
-     */
-    String provisioningSubState();
-
-    /**
      * Gets the displayName property: The display name of the reservation.
      *
      * @return the displayName value.
@@ -110,26 +75,60 @@ public interface Reservation {
     String displayProvisioningState();
 
     /**
-     * Gets the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
-     *
-     * @return the userFriendlyRenewState value.
-     */
-    String userFriendlyRenewState();
-
-    /**
-     * Gets the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
-     * Shared.
-     *
-     * @return the userFriendlyAppliedScopeType value.
-     */
-    String userFriendlyAppliedScopeType();
-
-    /**
      * Gets the effectiveDateTime property: The effective date time of the reservation.
      *
      * @return the effectiveDateTime value.
      */
     String effectiveDateTime();
+
+    /**
+     * Gets the expiryDate property: The expiry date of the reservation.
+     *
+     * @return the expiryDate value.
+     */
+    String expiryDate();
+
+    /**
+     * Gets the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
+     *
+     * @return the provisioningState value.
+     */
+    String provisioningState();
+
+    /**
+     * Gets the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
+     *
+     * @return the provisioningSubState value.
+     */
+    String provisioningSubState();
+
+    /**
+     * Gets the quantity property: The number of the reservation.
+     *
+     * @return the quantity value.
+     */
+    Float quantity();
+
+    /**
+     * Gets the renew property: The renew state of the reservation.
+     *
+     * @return the renew value.
+     */
+    Boolean renew();
+
+    /**
+     * Gets the renewSource property: The renew source of the reservation.
+     *
+     * @return the renewSource value.
+     */
+    String renewSource();
+
+    /**
+     * Gets the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
+     *
+     * @return the reservedResourceType value.
+     */
+    String reservedResourceType();
 
     /**
      * Gets the skuDescription property: The sku description of the reservation.
@@ -146,18 +145,19 @@ public interface Reservation {
     String term();
 
     /**
-     * Gets the renew property: The renew state of the reservation.
+     * Gets the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
+     * Shared.
      *
-     * @return the renew value.
+     * @return the userFriendlyAppliedScopeType value.
      */
-    Boolean renew();
+    String userFriendlyAppliedScopeType();
 
     /**
-     * Gets the renewSource property: The renew source of the reservation.
+     * Gets the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
      *
-     * @return the renewSource value.
+     * @return the userFriendlyRenewState value.
      */
-    String renewSource();
+    String userFriendlyRenewState();
 
     /**
      * Gets the utilization property: Reservation utilization.

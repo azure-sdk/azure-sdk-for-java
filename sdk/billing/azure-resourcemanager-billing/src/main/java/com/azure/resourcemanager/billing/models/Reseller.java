@@ -5,14 +5,16 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Details of the reseller. */
 @Immutable
 public final class Reseller {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Reseller.class);
+    /*
+     * The name of the reseller.
+     */
+    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
+    private String description;
 
     /*
      * The MPN ID of the reseller.
@@ -20,19 +22,8 @@ public final class Reseller {
     @JsonProperty(value = "resellerId", access = JsonProperty.Access.WRITE_ONLY)
     private String resellerId;
 
-    /*
-     * The name of the reseller.
-     */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
-    private String description;
-
-    /**
-     * Get the resellerId property: The MPN ID of the reseller.
-     *
-     * @return the resellerId value.
-     */
-    public String resellerId() {
-        return this.resellerId;
+    /** Creates an instance of Reseller class. */
+    public Reseller() {
     }
 
     /**
@@ -42,6 +33,15 @@ public final class Reseller {
      */
     public String description() {
         return this.description;
+    }
+
+    /**
+     * Get the resellerId property: The MPN ID of the reseller.
+     *
+     * @return the resellerId value.
+     */
+    public String resellerId() {
+        return this.resellerId;
     }
 
     /**

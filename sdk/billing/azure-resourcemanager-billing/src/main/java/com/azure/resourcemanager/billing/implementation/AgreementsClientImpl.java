@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.AgreementsClient;
 import com.azure.resourcemanager.billing.fluent.models.AgreementInner;
 import com.azure.resourcemanager.billing.models.AgreementListResult;
@@ -33,8 +32,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AgreementsClient. */
 public final class AgreementsClientImpl implements AgreementsClient {
-    private final ClientLogger logger = new ClientLogger(AgreementsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final AgreementsService service;
 
@@ -58,7 +55,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "BillingManagementCli")
-    private interface AgreementsService {
+    public interface AgreementsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/agreements")
         @ExpectedResponses({200})
@@ -103,7 +100,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AgreementInner>> listByBillingAccountSinglePageAsync(
@@ -118,14 +115,18 @@ public final class AgreementsClientImpl implements AgreementsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByBillingAccount(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, expand, accept, context))
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            expand,
+                            accept,
+                            context))
             .<PagedResponse<AgreementInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -147,7 +148,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AgreementInner>> listByBillingAccountSinglePageAsync(
@@ -162,11 +163,11 @@ public final class AgreementsClientImpl implements AgreementsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingAccount(this.client.getEndpoint(), apiVersion, billingAccountName, expand, accept, context)
+            .listByBillingAccount(
+                this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName, expand, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -186,7 +187,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AgreementInner> listByBillingAccountAsync(String billingAccountName, String expand) {
@@ -202,7 +203,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AgreementInner> listByBillingAccountAsync(String billingAccountName) {
@@ -221,7 +222,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AgreementInner> listByBillingAccountAsync(
@@ -238,7 +239,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AgreementInner> listByBillingAccount(String billingAccountName) {
@@ -255,7 +256,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AgreementInner> listByBillingAccount(
@@ -272,7 +273,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an agreement by ID.
+     * @return an agreement by ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementInner>> getWithResponseAsync(
@@ -290,7 +291,6 @@ public final class AgreementsClientImpl implements AgreementsClient {
         if (agreementName == null) {
             return Mono.error(new IllegalArgumentException("Parameter agreementName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -298,7 +298,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             agreementName,
                             expand,
@@ -317,7 +317,7 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an agreement by ID.
+     * @return an agreement by ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementInner>> getWithResponseAsync(
@@ -335,11 +335,34 @@ public final class AgreementsClientImpl implements AgreementsClient {
         if (agreementName == null) {
             return Mono.error(new IllegalArgumentException("Parameter agreementName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .get(this.client.getEndpoint(), apiVersion, billingAccountName, agreementName, expand, accept, context);
+            .get(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                agreementName,
+                expand,
+                accept,
+                context);
+    }
+
+    /**
+     * Gets an agreement by ID.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param agreementName The ID that uniquely identifies an agreement.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an agreement by ID on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AgreementInner> getAsync(String billingAccountName, String agreementName) {
+        final String expand = null;
+        return getWithResponseAsync(billingAccountName, agreementName, expand)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -348,46 +371,16 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param agreementName The ID that uniquely identifies an agreement.
      * @param expand May be used to expand the participants.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an agreement by ID.
+     * @return an agreement by ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgreementInner> getAsync(String billingAccountName, String agreementName, String expand) {
-        return getWithResponseAsync(billingAccountName, agreementName, expand)
-            .flatMap(
-                (Response<AgreementInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets an agreement by ID.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param agreementName The ID that uniquely identifies an agreement.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an agreement by ID.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgreementInner> getAsync(String billingAccountName, String agreementName) {
-        final String expand = null;
-        return getWithResponseAsync(billingAccountName, agreementName, expand)
-            .flatMap(
-                (Response<AgreementInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+    public Response<AgreementInner> getWithResponse(
+        String billingAccountName, String agreementName, String expand, Context context) {
+        return getWithResponseAsync(billingAccountName, agreementName, expand, context).block();
     }
 
     /**
@@ -403,35 +396,18 @@ public final class AgreementsClientImpl implements AgreementsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AgreementInner get(String billingAccountName, String agreementName) {
         final String expand = null;
-        return getAsync(billingAccountName, agreementName, expand).block();
-    }
-
-    /**
-     * Gets an agreement by ID.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param agreementName The ID that uniquely identifies an agreement.
-     * @param expand May be used to expand the participants.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an agreement by ID.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AgreementInner> getWithResponse(
-        String billingAccountName, String agreementName, String expand, Context context) {
-        return getWithResponseAsync(billingAccountName, agreementName, expand, context).block();
+        return getWithResponse(billingAccountName, agreementName, expand, Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AgreementInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
@@ -463,12 +439,13 @@ public final class AgreementsClientImpl implements AgreementsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing agreements.
+     * @return result of listing agreements along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AgreementInner>> listByBillingAccountNextSinglePageAsync(

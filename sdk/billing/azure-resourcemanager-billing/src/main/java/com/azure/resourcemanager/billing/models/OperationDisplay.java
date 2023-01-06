@@ -5,27 +5,16 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The object that represents the operation. */
 @Immutable
 public final class OperationDisplay {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationDisplay.class);
-
     /*
-     * Service provider: Microsoft.Billing.
+     * Description of operation.
      */
-    @JsonProperty(value = "provider", access = JsonProperty.Access.WRITE_ONLY)
-    private String provider;
-
-    /*
-     * Resource on which the operation is performed such as invoice and billing
-     * subscription.
-     */
-    @JsonProperty(value = "resource", access = JsonProperty.Access.WRITE_ONLY)
-    private String resource;
+    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
+    private String description;
 
     /*
      * Operation type such as read, write and delete.
@@ -34,10 +23,38 @@ public final class OperationDisplay {
     private String operation;
 
     /*
-     * Description of operation.
+     * Service provider: Microsoft.Billing.
      */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
-    private String description;
+    @JsonProperty(value = "provider", access = JsonProperty.Access.WRITE_ONLY)
+    private String provider;
+
+    /*
+     * Resource on which the operation is performed such as invoice and billing subscription.
+     */
+    @JsonProperty(value = "resource", access = JsonProperty.Access.WRITE_ONLY)
+    private String resource;
+
+    /** Creates an instance of OperationDisplay class. */
+    public OperationDisplay() {
+    }
+
+    /**
+     * Get the description property: Description of operation.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Get the operation property: Operation type such as read, write and delete.
+     *
+     * @return the operation value.
+     */
+    public String operation() {
+        return this.operation;
+    }
 
     /**
      * Get the provider property: Service provider: Microsoft.Billing.
@@ -55,24 +72,6 @@ public final class OperationDisplay {
      */
     public String resource() {
         return this.resource;
-    }
-
-    /**
-     * Get the operation property: Operation type such as read, write and delete.
-     *
-     * @return the operation value.
-     */
-    public String operation() {
-        return this.operation;
-    }
-
-    /**
-     * Get the description property: Description of operation.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.description;
     }
 
     /**

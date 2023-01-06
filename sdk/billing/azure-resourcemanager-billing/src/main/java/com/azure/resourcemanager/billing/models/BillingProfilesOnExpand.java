@@ -5,9 +5,6 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.billing.fluent.models.BillingProfileInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,13 +14,9 @@ import java.util.List;
  */
 @Fluent
 public final class BillingProfilesOnExpand {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingProfilesOnExpand.class);
-
     /*
-     * Indicates whether there are more billing profiles than the ones listed
-     * in this collection. The collection lists a maximum of 50 billing
-     * profiles. To get all billing profiles, use the list billing profiles
-     * API.
+     * Indicates whether there are more billing profiles than the ones listed in this collection. The collection lists
+     * a maximum of 50 billing profiles. To get all billing profiles, use the list billing profiles API.
      */
     @JsonProperty(value = "hasMoreResults", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean hasMoreResults;
@@ -32,7 +25,11 @@ public final class BillingProfilesOnExpand {
      * The billing profiles associated with the billing account.
      */
     @JsonProperty(value = "value")
-    private List<BillingProfileInner> value;
+    private List<BillingProfile> value;
+
+    /** Creates an instance of BillingProfilesOnExpand class. */
+    public BillingProfilesOnExpand() {
+    }
 
     /**
      * Get the hasMoreResults property: Indicates whether there are more billing profiles than the ones listed in this
@@ -50,7 +47,7 @@ public final class BillingProfilesOnExpand {
      *
      * @return the value value.
      */
-    public List<BillingProfileInner> value() {
+    public List<BillingProfile> value() {
         return this.value;
     }
 
@@ -60,7 +57,7 @@ public final class BillingProfilesOnExpand {
      * @param value the value value to set.
      * @return the BillingProfilesOnExpand object itself.
      */
-    public BillingProfilesOnExpand withValue(List<BillingProfileInner> value) {
+    public BillingProfilesOnExpand withValue(List<BillingProfile> value) {
         this.value = value;
         return this;
     }

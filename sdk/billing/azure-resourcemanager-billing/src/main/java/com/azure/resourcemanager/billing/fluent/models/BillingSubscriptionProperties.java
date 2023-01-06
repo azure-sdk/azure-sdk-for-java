@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.Amount;
 import com.azure.resourcemanager.billing.models.BillingSubscriptionStatusType;
 import com.azure.resourcemanager.billing.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +15,37 @@ import java.util.UUID;
 /** The billing properties of a subscription. */
 @Fluent
 public final class BillingSubscriptionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingSubscriptionProperties.class);
+    /*
+     * The name of the billing profile to which the subscription is billed.
+     */
+    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileDisplayName;
+
+    /*
+     * The ID of the billing profile to which the subscription is billed.
+     */
+    @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileId;
+
+    /*
+     * The cost center applied to the subscription.
+     */
+    @JsonProperty(value = "costCenter")
+    private String costCenter;
+
+    /*
+     * The name of the customer for whom the subscription was created. The field is applicable only for Microsoft
+     * Partner Agreement billing account.
+     */
+    @JsonProperty(value = "customerDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String customerDisplayName;
+
+    /*
+     * The ID of the customer for whom the subscription was created. The field is applicable only for Microsoft Partner
+     * Agreement billing account.
+     */
+    @JsonProperty(value = "customerId", access = JsonProperty.Access.WRITE_ONLY)
+    private String customerId;
 
     /*
      * The name of the subscription.
@@ -26,16 +54,16 @@ public final class BillingSubscriptionProperties {
     private String displayName;
 
     /*
-     * The ID of the subscription.
+     * The name of the invoice section to which the subscription is billed.
      */
-    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
-    private UUID subscriptionId;
+    @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionDisplayName;
 
     /*
-     * The current billing status of the subscription.
+     * The ID of the invoice section to which the subscription is billed.
      */
-    @JsonProperty(value = "subscriptionBillingStatus")
-    private BillingSubscriptionStatusType subscriptionBillingStatus;
+    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionId;
 
     /*
      * The last month charges.
@@ -50,61 +78,10 @@ public final class BillingSubscriptionProperties {
     private Amount monthToDateCharges;
 
     /*
-     * The ID of the billing profile to which the subscription is billed.
-     */
-    @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileId;
-
-    /*
-     * The name of the billing profile to which the subscription is billed.
-     */
-    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileDisplayName;
-
-    /*
-     * The cost center applied to the subscription.
-     */
-    @JsonProperty(value = "costCenter")
-    private String costCenter;
-
-    /*
-     * The ID of the customer for whom the subscription was created. The field
-     * is applicable only for Microsoft Partner Agreement billing account.
-     */
-    @JsonProperty(value = "customerId", access = JsonProperty.Access.WRITE_ONLY)
-    private String customerId;
-
-    /*
-     * The name of the customer for whom the subscription was created. The
-     * field is applicable only for Microsoft Partner Agreement billing
-     * account.
-     */
-    @JsonProperty(value = "customerDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String customerDisplayName;
-
-    /*
-     * The ID of the invoice section to which the subscription is billed.
-     */
-    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionId;
-
-    /*
-     * The name of the invoice section to which the subscription is billed.
-     */
-    @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionDisplayName;
-
-    /*
      * Reseller for this subscription.
      */
     @JsonProperty(value = "reseller", access = JsonProperty.Access.WRITE_ONLY)
     private Reseller reseller;
-
-    /*
-     * The sku ID of the Azure plan for the subscription.
-     */
-    @JsonProperty(value = "skuId")
-    private String skuId;
 
     /*
      * The sku description of the Azure plan for the subscription.
@@ -113,11 +90,91 @@ public final class BillingSubscriptionProperties {
     private String skuDescription;
 
     /*
-     * The suspension reason for a subscription. Applies only to subscriptions
-     * in Microsoft Online Services Program billing accounts.
+     * The sku ID of the Azure plan for the subscription.
+     */
+    @JsonProperty(value = "skuId")
+    private String skuId;
+
+    /*
+     * The current billing status of the subscription.
+     */
+    @JsonProperty(value = "subscriptionBillingStatus")
+    private BillingSubscriptionStatusType subscriptionBillingStatus;
+
+    /*
+     * The ID of the subscription.
+     */
+    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
+    private UUID subscriptionId;
+
+    /*
+     * The suspension reason for a subscription. Applies only to subscriptions in Microsoft Online Services Program
+     * billing accounts.
      */
     @JsonProperty(value = "suspensionReasons", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> suspensionReasons;
+
+    /** Creates an instance of BillingSubscriptionProperties class. */
+    public BillingSubscriptionProperties() {
+    }
+
+    /**
+     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    public String billingProfileDisplayName() {
+        return this.billingProfileDisplayName;
+    }
+
+    /**
+     * Get the billingProfileId property: The ID of the billing profile to which the subscription is billed.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.billingProfileId;
+    }
+
+    /**
+     * Get the costCenter property: The cost center applied to the subscription.
+     *
+     * @return the costCenter value.
+     */
+    public String costCenter() {
+        return this.costCenter;
+    }
+
+    /**
+     * Set the costCenter property: The cost center applied to the subscription.
+     *
+     * @param costCenter the costCenter value to set.
+     * @return the BillingSubscriptionProperties object itself.
+     */
+    public BillingSubscriptionProperties withCostCenter(String costCenter) {
+        this.costCenter = costCenter;
+        return this;
+    }
+
+    /**
+     * Get the customerDisplayName property: The name of the customer for whom the subscription was created. The field
+     * is applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerDisplayName value.
+     */
+    public String customerDisplayName() {
+        return this.customerDisplayName;
+    }
+
+    /**
+     * Get the customerId property: The ID of the customer for whom the subscription was created. The field is
+     * applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerId value.
+     */
+    public String customerId() {
+        return this.customerId;
+    }
 
     /**
      * Get the displayName property: The name of the subscription.
@@ -129,12 +186,77 @@ public final class BillingSubscriptionProperties {
     }
 
     /**
-     * Get the subscriptionId property: The ID of the subscription.
+     * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
      *
-     * @return the subscriptionId value.
+     * @return the invoiceSectionDisplayName value.
      */
-    public UUID subscriptionId() {
-        return this.subscriptionId;
+    public String invoiceSectionDisplayName() {
+        return this.invoiceSectionDisplayName;
+    }
+
+    /**
+     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.invoiceSectionId;
+    }
+
+    /**
+     * Get the lastMonthCharges property: The last month charges.
+     *
+     * @return the lastMonthCharges value.
+     */
+    public Amount lastMonthCharges() {
+        return this.lastMonthCharges;
+    }
+
+    /**
+     * Get the monthToDateCharges property: The current month to date charges.
+     *
+     * @return the monthToDateCharges value.
+     */
+    public Amount monthToDateCharges() {
+        return this.monthToDateCharges;
+    }
+
+    /**
+     * Get the reseller property: Reseller for this subscription.
+     *
+     * @return the reseller value.
+     */
+    public Reseller reseller() {
+        return this.reseller;
+    }
+
+    /**
+     * Get the skuDescription property: The sku description of the Azure plan for the subscription.
+     *
+     * @return the skuDescription value.
+     */
+    public String skuDescription() {
+        return this.skuDescription;
+    }
+
+    /**
+     * Get the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @return the skuId value.
+     */
+    public String skuId() {
+        return this.skuId;
+    }
+
+    /**
+     * Set the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @param skuId the skuId value to set.
+     * @return the BillingSubscriptionProperties object itself.
+     */
+    public BillingSubscriptionProperties withSkuId(String skuId) {
+        this.skuId = skuId;
+        return this;
     }
 
     /**
@@ -159,135 +281,12 @@ public final class BillingSubscriptionProperties {
     }
 
     /**
-     * Get the lastMonthCharges property: The last month charges.
+     * Get the subscriptionId property: The ID of the subscription.
      *
-     * @return the lastMonthCharges value.
+     * @return the subscriptionId value.
      */
-    public Amount lastMonthCharges() {
-        return this.lastMonthCharges;
-    }
-
-    /**
-     * Get the monthToDateCharges property: The current month to date charges.
-     *
-     * @return the monthToDateCharges value.
-     */
-    public Amount monthToDateCharges() {
-        return this.monthToDateCharges;
-    }
-
-    /**
-     * Get the billingProfileId property: The ID of the billing profile to which the subscription is billed.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.billingProfileId;
-    }
-
-    /**
-     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
-     *
-     * @return the billingProfileDisplayName value.
-     */
-    public String billingProfileDisplayName() {
-        return this.billingProfileDisplayName;
-    }
-
-    /**
-     * Get the costCenter property: The cost center applied to the subscription.
-     *
-     * @return the costCenter value.
-     */
-    public String costCenter() {
-        return this.costCenter;
-    }
-
-    /**
-     * Set the costCenter property: The cost center applied to the subscription.
-     *
-     * @param costCenter the costCenter value to set.
-     * @return the BillingSubscriptionProperties object itself.
-     */
-    public BillingSubscriptionProperties withCostCenter(String costCenter) {
-        this.costCenter = costCenter;
-        return this;
-    }
-
-    /**
-     * Get the customerId property: The ID of the customer for whom the subscription was created. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerId value.
-     */
-    public String customerId() {
-        return this.customerId;
-    }
-
-    /**
-     * Get the customerDisplayName property: The name of the customer for whom the subscription was created. The field
-     * is applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerDisplayName value.
-     */
-    public String customerDisplayName() {
-        return this.customerDisplayName;
-    }
-
-    /**
-     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    public String invoiceSectionId() {
-        return this.invoiceSectionId;
-    }
-
-    /**
-     * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    public String invoiceSectionDisplayName() {
-        return this.invoiceSectionDisplayName;
-    }
-
-    /**
-     * Get the reseller property: Reseller for this subscription.
-     *
-     * @return the reseller value.
-     */
-    public Reseller reseller() {
-        return this.reseller;
-    }
-
-    /**
-     * Get the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @return the skuId value.
-     */
-    public String skuId() {
-        return this.skuId;
-    }
-
-    /**
-     * Set the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @param skuId the skuId value to set.
-     * @return the BillingSubscriptionProperties object itself.
-     */
-    public BillingSubscriptionProperties withSkuId(String skuId) {
-        this.skuId = skuId;
-        return this;
-    }
-
-    /**
-     * Get the skuDescription property: The sku description of the Azure plan for the subscription.
-     *
-     * @return the skuDescription value.
-     */
-    public String skuDescription() {
-        return this.skuDescription;
+    public UUID subscriptionId() {
+        return this.subscriptionId;
     }
 
     /**

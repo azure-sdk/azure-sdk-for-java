@@ -5,21 +5,17 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.OperationDisplay;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A Billing REST API operation. */
 @Fluent
 public final class OperationInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationInner.class);
-
     /*
-     * Operation name: {provider}/{resource}/{operation}.
+     * The object that represents the operation.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
+    @JsonProperty(value = "display")
+    private OperationDisplay display;
 
     /*
      * Identifies if the operation is a data operation.
@@ -28,27 +24,13 @@ public final class OperationInner {
     private Boolean isDataAction;
 
     /*
-     * The object that represents the operation.
+     * Operation name: {provider}/{resource}/{operation}.
      */
-    @JsonProperty(value = "display")
-    private OperationDisplay display;
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
 
-    /**
-     * Get the name property: Operation name: {provider}/{resource}/{operation}.
-     *
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the isDataAction property: Identifies if the operation is a data operation.
-     *
-     * @return the isDataAction value.
-     */
-    public Boolean isDataAction() {
-        return this.isDataAction;
+    /** Creates an instance of OperationInner class. */
+    public OperationInner() {
     }
 
     /**
@@ -69,6 +51,24 @@ public final class OperationInner {
     public OperationInner withDisplay(OperationDisplay display) {
         this.display = display;
         return this;
+    }
+
+    /**
+     * Get the isDataAction property: Identifies if the operation is a data operation.
+     *
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
+     * Get the name property: Operation name: {provider}/{resource}/{operation}.
+     *
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
     }
 
     /**

@@ -4,23 +4,23 @@
 
 package com.azure.resourcemanager.billing.fluent.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.billing.models.Amount;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The latest Azure credit balance. This is the balance available for pay now. */
-@Fluent
-public final class AvailableBalanceInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AvailableBalanceInner.class);
-
+@Immutable
+public final class AvailableBalanceInner extends ArmResource {
     /*
      * The properties of available balance.
      */
     @JsonProperty(value = "properties")
     private AvailableBalanceProperties innerProperties;
+
+    /** Creates an instance of AvailableBalanceInner class. */
+    public AvailableBalanceInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of available balance.
@@ -45,7 +45,9 @@ public final class AvailableBalanceInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

@@ -5,37 +5,21 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AzurePlan;
 import com.azure.resourcemanager.billing.models.BillingProfileStatus;
 import com.azure.resourcemanager.billing.models.SpendingLimitForBillingProfile;
 import com.azure.resourcemanager.billing.models.StatusReasonCodeForBillingProfile;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Invoice section properties with create subscription permission. */
 @Fluent
 public final class InvoiceSectionWithCreateSubPermissionInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(InvoiceSectionWithCreateSubPermissionInner.class);
-
     /*
-     * The ID of the invoice section.
+     * The name of the billing profile for the invoice section.
      */
-    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionId;
-
-    /*
-     * The name of the invoice section.
-     */
-    @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionDisplayName;
-
-    /*
-     * The system generated unique identifier for an invoice section.
-     */
-    @JsonProperty(value = "invoiceSectionSystemId", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionSystemId;
+    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileDisplayName;
 
     /*
      * The ID of the billing profile for the invoice section.
@@ -44,10 +28,10 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
     private String billingProfileId;
 
     /*
-     * The name of the billing profile for the invoice section.
+     * The billing profile spending limit.
      */
-    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileDisplayName;
+    @JsonProperty(value = "billingProfileSpendingLimit", access = JsonProperty.Access.WRITE_ONLY)
+    private SpendingLimitForBillingProfile billingProfileSpendingLimit;
 
     /*
      * The status of the billing profile.
@@ -62,12 +46,6 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
     private StatusReasonCodeForBillingProfile billingProfileStatusReasonCode;
 
     /*
-     * The billing profile spending limit.
-     */
-    @JsonProperty(value = "billingProfileSpendingLimit", access = JsonProperty.Access.WRITE_ONLY)
-    private SpendingLimitForBillingProfile billingProfileSpendingLimit;
-
-    /*
      * The system generated unique identifier for a billing profile.
      */
     @JsonProperty(value = "billingProfileSystemId", access = JsonProperty.Access.WRITE_ONLY)
@@ -79,31 +57,35 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
     @JsonProperty(value = "enabledAzurePlans")
     private List<AzurePlan> enabledAzurePlans;
 
-    /**
-     * Get the invoiceSectionId property: The ID of the invoice section.
-     *
-     * @return the invoiceSectionId value.
+    /*
+     * The name of the invoice section.
      */
-    public String invoiceSectionId() {
-        return this.invoiceSectionId;
+    @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionDisplayName;
+
+    /*
+     * The ID of the invoice section.
+     */
+    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionId;
+
+    /*
+     * The system generated unique identifier for an invoice section.
+     */
+    @JsonProperty(value = "invoiceSectionSystemId", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionSystemId;
+
+    /** Creates an instance of InvoiceSectionWithCreateSubPermissionInner class. */
+    public InvoiceSectionWithCreateSubPermissionInner() {
     }
 
     /**
-     * Get the invoiceSectionDisplayName property: The name of the invoice section.
+     * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
      *
-     * @return the invoiceSectionDisplayName value.
+     * @return the billingProfileDisplayName value.
      */
-    public String invoiceSectionDisplayName() {
-        return this.invoiceSectionDisplayName;
-    }
-
-    /**
-     * Get the invoiceSectionSystemId property: The system generated unique identifier for an invoice section.
-     *
-     * @return the invoiceSectionSystemId value.
-     */
-    public String invoiceSectionSystemId() {
-        return this.invoiceSectionSystemId;
+    public String billingProfileDisplayName() {
+        return this.billingProfileDisplayName;
     }
 
     /**
@@ -116,12 +98,12 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
     }
 
     /**
-     * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
+     * Get the billingProfileSpendingLimit property: The billing profile spending limit.
      *
-     * @return the billingProfileDisplayName value.
+     * @return the billingProfileSpendingLimit value.
      */
-    public String billingProfileDisplayName() {
-        return this.billingProfileDisplayName;
+    public SpendingLimitForBillingProfile billingProfileSpendingLimit() {
+        return this.billingProfileSpendingLimit;
     }
 
     /**
@@ -140,15 +122,6 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
      */
     public StatusReasonCodeForBillingProfile billingProfileStatusReasonCode() {
         return this.billingProfileStatusReasonCode;
-    }
-
-    /**
-     * Get the billingProfileSpendingLimit property: The billing profile spending limit.
-     *
-     * @return the billingProfileSpendingLimit value.
-     */
-    public SpendingLimitForBillingProfile billingProfileSpendingLimit() {
-        return this.billingProfileSpendingLimit;
     }
 
     /**
@@ -178,6 +151,33 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
     public InvoiceSectionWithCreateSubPermissionInner withEnabledAzurePlans(List<AzurePlan> enabledAzurePlans) {
         this.enabledAzurePlans = enabledAzurePlans;
         return this;
+    }
+
+    /**
+     * Get the invoiceSectionDisplayName property: The name of the invoice section.
+     *
+     * @return the invoiceSectionDisplayName value.
+     */
+    public String invoiceSectionDisplayName() {
+        return this.invoiceSectionDisplayName;
+    }
+
+    /**
+     * Get the invoiceSectionId property: The ID of the invoice section.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.invoiceSectionId;
+    }
+
+    /**
+     * Get the invoiceSectionSystemId property: The system generated unique identifier for an invoice section.
+     *
+     * @return the invoiceSectionSystemId value.
+     */
+    public String invoiceSectionSystemId() {
+        return this.invoiceSectionSystemId;
     }
 
     /**

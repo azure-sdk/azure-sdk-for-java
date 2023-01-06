@@ -5,16 +5,24 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of invoices. */
 @Immutable
 public final class InvoiceListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(InvoiceListResult.class);
+    /*
+     * The link (url) to the next page of results.
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
+
+    /*
+     * Total number of records.
+     */
+    @JsonProperty(value = "totalCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer totalCount;
 
     /*
      * The list of invoices.
@@ -22,19 +30,8 @@ public final class InvoiceListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<InvoiceInner> value;
 
-    /*
-     * The link (url) to the next page of results.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /**
-     * Get the value property: The list of invoices.
-     *
-     * @return the value value.
-     */
-    public List<InvoiceInner> value() {
-        return this.value;
+    /** Creates an instance of InvoiceListResult class. */
+    public InvoiceListResult() {
     }
 
     /**
@@ -44,6 +41,24 @@ public final class InvoiceListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the totalCount property: Total number of records.
+     *
+     * @return the totalCount value.
+     */
+    public Integer totalCount() {
+        return this.totalCount;
+    }
+
+    /**
+     * Get the value property: The list of invoices.
+     *
+     * @return the value value.
+     */
+    public List<InvoiceInner> value() {
+        return this.value;
     }
 
     /**

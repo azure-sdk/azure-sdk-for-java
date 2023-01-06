@@ -10,14 +10,15 @@ import com.azure.resourcemanager.billing.models.TransferBillingSubscriptionReque
 /** Samples for BillingSubscriptions ValidateMove. */
 public final class BillingSubscriptionsValidateMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateSubscriptionMoveFailure.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsValidateMoveFailure.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateFailure.
+     * Sample code: billingSubscriptionsValidateMoveFailure.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateFailure(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsValidateMoveFailure(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .validateMoveWithResponse(
@@ -29,14 +30,15 @@ public final class BillingSubscriptionsValidateMoveSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ValidateSubscriptionMoveSuccess.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsValidateMoveSuccess.json
      */
     /**
-     * Sample code: SubscriptionMoveValidateSuccess.
+     * Sample code: billingSubscriptionsValidateMoveSuccess.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void subscriptionMoveValidateSuccess(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsValidateMoveSuccess(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingSubscriptions()
             .validateMoveWithResponse(

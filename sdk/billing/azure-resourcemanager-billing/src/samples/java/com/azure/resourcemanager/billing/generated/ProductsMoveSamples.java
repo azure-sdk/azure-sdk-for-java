@@ -10,14 +10,14 @@ import com.azure.resourcemanager.billing.models.TransferProductRequestProperties
 /** Samples for Products Move. */
 public final class ProductsMoveSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MoveProduct.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsMove.json
      */
     /**
-     * Sample code: MoveProduct.
+     * Sample code: productsMove.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void moveProduct(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsMove(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .products()
             .moveWithResponse(

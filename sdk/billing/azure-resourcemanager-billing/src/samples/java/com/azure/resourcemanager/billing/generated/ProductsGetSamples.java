@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Products Get. */
 public final class ProductsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Product.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/productsGet.json
      */
     /**
-     * Sample code: Product.
+     * Sample code: productsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void product(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void productsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.products().getWithResponse("{billingAccountName}", "{productName}", Context.NONE);
     }
 }

@@ -5,22 +5,18 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.TransactionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of transactions. */
 @Immutable
 public final class TransactionListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(TransactionListResult.class);
-
     /*
-     * The list of transactions.
+     * The link (url) to the next page of results.
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<TransactionInner> value;
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * Total number of records.
@@ -29,18 +25,22 @@ public final class TransactionListResult {
     private Integer totalCount;
 
     /*
-     * The link (url) to the next page of results.
+     * The list of transactions.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<TransactionInner> value;
+
+    /** Creates an instance of TransactionListResult class. */
+    public TransactionListResult() {
+    }
 
     /**
-     * Get the value property: The list of transactions.
+     * Get the nextLink property: The link (url) to the next page of results.
      *
-     * @return the value value.
+     * @return the nextLink value.
      */
-    public List<TransactionInner> value() {
-        return this.value;
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -53,12 +53,12 @@ public final class TransactionListResult {
     }
 
     /**
-     * Get the nextLink property: The link (url) to the next page of results.
+     * Get the value property: The list of transactions.
      *
-     * @return the nextLink value.
+     * @return the value value.
      */
-    public String nextLink() {
-        return this.nextLink;
+    public List<TransactionInner> value() {
+        return this.value;
     }
 
     /**

@@ -9,50 +9,50 @@ import com.azure.core.util.Context;
 /** Samples for Invoices Get. */
 public final class InvoicesGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Invoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetByBillingAccount.json
      */
     /**
-     * Sample code: Invoice.
+     * Sample code: invoicesGetByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoice(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CreditNote.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetVoid.json
      */
     /**
-     * Sample code: CreditNote.
+     * Sample code: invoicesGetVoid.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void creditNote(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetVoid(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/VoidInvoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetCreditNote.json
      */
     /**
-     * Sample code: VoidInvoice.
+     * Sample code: invoicesGetCreditNote.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void voidInvoice(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetCreditNote(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceWithRebillDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesGetWithRebillDetails.json
      */
     /**
-     * Sample code: InvoiceWithRebillDetails.
+     * Sample code: invoicesGetWithRebillDetails.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceWithRebillDetails(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesGetWithRebillDetails(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getWithResponse("{billingAccountName}", "{invoiceName}", Context.NONE);
     }
 }

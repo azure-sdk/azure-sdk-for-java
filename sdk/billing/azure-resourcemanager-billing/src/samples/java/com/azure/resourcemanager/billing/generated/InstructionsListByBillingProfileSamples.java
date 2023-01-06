@@ -9,10 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for Instructions ListByBillingProfile. */
 public final class InstructionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InstructionsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/instructionsListByBillingProfile.json
      */
     /**
-     * Sample code: InstructionsListByBillingProfile.
+     * Sample code: instructionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */

@@ -12,14 +12,14 @@ import java.util.Map;
 /** Samples for InvoiceSections CreateOrUpdate. */
 public final class InvoiceSectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/PutInvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsPut.json
      */
     /**
-     * Sample code: PutInvoiceSection.
+     * Sample code: invoiceSectionsPut.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void putInvoiceSection(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoiceSectionsPut(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .invoiceSections()
             .createOrUpdate(

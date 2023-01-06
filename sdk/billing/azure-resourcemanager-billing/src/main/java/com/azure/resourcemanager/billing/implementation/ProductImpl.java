@@ -39,32 +39,44 @@ public final class ProductImpl implements Product {
         return this.innerModel().autoRenew();
     }
 
+    public String availabilityId() {
+        return this.innerModel().availabilityId();
+    }
+
+    public BillingFrequency billingFrequency() {
+        return this.innerModel().billingFrequency();
+    }
+
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
+    public String customerDisplayName() {
+        return this.innerModel().customerDisplayName();
+    }
+
+    public String customerId() {
+        return this.innerModel().customerId();
+    }
+
     public String displayName() {
         return this.innerModel().displayName();
-    }
-
-    public OffsetDateTime purchaseDate() {
-        return this.innerModel().purchaseDate();
-    }
-
-    public String productTypeId() {
-        return this.innerModel().productTypeId();
-    }
-
-    public String productType() {
-        return this.innerModel().productType();
-    }
-
-    public ProductStatusType status() {
-        return this.innerModel().status();
     }
 
     public OffsetDateTime endDate() {
         return this.innerModel().endDate();
     }
 
-    public BillingFrequency billingFrequency() {
-        return this.innerModel().billingFrequency();
+    public String invoiceSectionDisplayName() {
+        return this.innerModel().invoiceSectionDisplayName();
+    }
+
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
     }
 
     public Amount lastCharge() {
@@ -75,52 +87,40 @@ public final class ProductImpl implements Product {
         return this.innerModel().lastChargeDate();
     }
 
+    public String productType() {
+        return this.innerModel().productType();
+    }
+
+    public String productTypeId() {
+        return this.innerModel().productTypeId();
+    }
+
+    public OffsetDateTime purchaseDate() {
+        return this.innerModel().purchaseDate();
+    }
+
     public Float quantity() {
         return this.innerModel().quantity();
     }
 
-    public String skuId() {
-        return this.innerModel().skuId();
+    public Reseller reseller() {
+        return this.innerModel().reseller();
     }
 
     public String skuDescription() {
         return this.innerModel().skuDescription();
     }
 
+    public String skuId() {
+        return this.innerModel().skuId();
+    }
+
+    public ProductStatusType status() {
+        return this.innerModel().status();
+    }
+
     public String tenantId() {
         return this.innerModel().tenantId();
-    }
-
-    public String availabilityId() {
-        return this.innerModel().availabilityId();
-    }
-
-    public String invoiceSectionId() {
-        return this.innerModel().invoiceSectionId();
-    }
-
-    public String invoiceSectionDisplayName() {
-        return this.innerModel().invoiceSectionDisplayName();
-    }
-
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
-    }
-
-    public String customerId() {
-        return this.innerModel().customerId();
-    }
-
-    public String customerDisplayName() {
-        return this.innerModel().customerDisplayName();
-    }
-
-    public Reseller reseller() {
-        return this.innerModel().reseller();
     }
 
     public ProductInner innerModel() {

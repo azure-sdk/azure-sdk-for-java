@@ -5,24 +5,24 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.MarketplacePurchasesPolicy;
 import com.azure.resourcemanager.billing.models.ReservationPurchasesPolicy;
 import com.azure.resourcemanager.billing.models.ViewChargesPolicy;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A policy. */
 @Fluent
-public final class PolicyInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyInner.class);
-
+public final class PolicyInner extends ArmResource {
     /*
      * The properties of a policy.
      */
     @JsonProperty(value = "properties")
     private PolicyProperties innerProperties;
+
+    /** Creates an instance of PolicyInner class. */
+    public PolicyInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of a policy.
@@ -113,7 +113,9 @@ public final class PolicyInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

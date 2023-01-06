@@ -11,30 +11,30 @@ import com.azure.resourcemanager.billing.models.BillingAccountUpdateRequest;
 /** Samples for BillingAccounts Update. */
 public final class BillingAccountsUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingAccountsPatch.json
      */
     /**
-     * Sample code: UpdateBillingAccount.
+     * Sample code: billingAccountsPatch.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void updateBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingAccountsPatch(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingAccounts()
             .update(
-                "{billingAccountName}",
+                "00000000-0000-0000-0000-000000000000:11111111-1111-1111-1111-111111111111_2019-05-31",
                 new BillingAccountUpdateRequest()
                     .withDisplayName("Test Account")
                     .withSoldTo(
                         new AddressDetails()
-                            .withFirstName("Test")
-                            .withLastName("User")
-                            .withCompanyName("Contoso")
                             .withAddressLine1("Test Address 1")
                             .withCity("Redmond")
-                            .withRegion("WA")
+                            .withCompanyName("Contoso")
                             .withCountry("US")
-                            .withPostalCode("12345")),
+                            .withFirstName("Test")
+                            .withLastName("User")
+                            .withPostalCode("fakeTokenPlaceholder")
+                            .withRegion("WA")),
                 Context.NONE);
     }
 }

@@ -9,10 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for Agreements ListByBillingAccount. */
 public final class AgreementsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AgreementsListByBillingAccount.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/agreementsListByBillingAccount.json
      */
     /**
-     * Sample code: AgreementsListByBillingAccount.
+     * Sample code: agreementsListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */

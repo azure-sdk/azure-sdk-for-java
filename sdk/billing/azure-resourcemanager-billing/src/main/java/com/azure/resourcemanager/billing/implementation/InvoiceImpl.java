@@ -40,18 +40,6 @@ public final class InvoiceImpl implements Invoice {
         return this.innerModel().type();
     }
 
-    public OffsetDateTime dueDate() {
-        return this.innerModel().dueDate();
-    }
-
-    public OffsetDateTime invoiceDate() {
-        return this.innerModel().invoiceDate();
-    }
-
-    public InvoiceStatus status() {
-        return this.innerModel().status();
-    }
-
     public Amount amountDue() {
         return this.innerModel().amountDue();
     }
@@ -64,12 +52,95 @@ public final class InvoiceImpl implements Invoice {
         return this.innerModel().billedAmount();
     }
 
+    public String billedDocumentId() {
+        return this.innerModel().billedDocumentId();
+    }
+
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
     public Amount creditAmount() {
         return this.innerModel().creditAmount();
     }
 
+    public String creditForDocumentId() {
+        return this.innerModel().creditForDocumentId();
+    }
+
+    public List<Document> documents() {
+        List<Document> inner = this.innerModel().documents();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public InvoiceDocumentType documentType() {
+        return this.innerModel().documentType();
+    }
+
+    public OffsetDateTime dueDate() {
+        return this.innerModel().dueDate();
+    }
+
     public Amount freeAzureCreditApplied() {
         return this.innerModel().freeAzureCreditApplied();
+    }
+
+    public OffsetDateTime invoiceDate() {
+        return this.innerModel().invoiceDate();
+    }
+
+    public OffsetDateTime invoicePeriodEndDate() {
+        return this.innerModel().invoicePeriodEndDate();
+    }
+
+    public OffsetDateTime invoicePeriodStartDate() {
+        return this.innerModel().invoicePeriodStartDate();
+    }
+
+    public InvoiceType invoiceType() {
+        return this.innerModel().invoiceType();
+    }
+
+    public Boolean isMonthlyInvoice() {
+        return this.innerModel().isMonthlyInvoice();
+    }
+
+    public List<PaymentProperties> payments() {
+        List<PaymentProperties> inner = this.innerModel().payments();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String purchaseOrderNumber() {
+        return this.innerModel().purchaseOrderNumber();
+    }
+
+    public Map<String, RebillDetails> rebillDetails() {
+        Map<String, RebillDetails> inner = this.innerModel().rebillDetails();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public InvoiceStatus status() {
+        return this.innerModel().status();
+    }
+
+    public String subscriptionId() {
+        return this.innerModel().subscriptionId();
     }
 
     public Amount subTotal() {
@@ -82,77 +153,6 @@ public final class InvoiceImpl implements Invoice {
 
     public Amount totalAmount() {
         return this.innerModel().totalAmount();
-    }
-
-    public OffsetDateTime invoicePeriodStartDate() {
-        return this.innerModel().invoicePeriodStartDate();
-    }
-
-    public OffsetDateTime invoicePeriodEndDate() {
-        return this.innerModel().invoicePeriodEndDate();
-    }
-
-    public InvoiceType invoiceType() {
-        return this.innerModel().invoiceType();
-    }
-
-    public Boolean isMonthlyInvoice() {
-        return this.innerModel().isMonthlyInvoice();
-    }
-
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
-    }
-
-    public String purchaseOrderNumber() {
-        return this.innerModel().purchaseOrderNumber();
-    }
-
-    public List<Document> documents() {
-        List<Document> inner = this.innerModel().documents();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public List<PaymentProperties> payments() {
-        List<PaymentProperties> inner = this.innerModel().payments();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public Map<String, RebillDetails> rebillDetails() {
-        Map<String, RebillDetails> inner = this.innerModel().rebillDetails();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public InvoiceDocumentType documentType() {
-        return this.innerModel().documentType();
-    }
-
-    public String billedDocumentId() {
-        return this.innerModel().billedDocumentId();
-    }
-
-    public String creditForDocumentId() {
-        return this.innerModel().creditForDocumentId();
-    }
-
-    public String subscriptionId() {
-        return this.innerModel().subscriptionId();
     }
 
     public InvoiceInner innerModel() {

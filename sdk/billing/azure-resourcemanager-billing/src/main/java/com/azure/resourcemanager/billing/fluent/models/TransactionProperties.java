@@ -5,113 +5,38 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.Amount;
 import com.azure.resourcemanager.billing.models.ReservationType;
 import com.azure.resourcemanager.billing.models.TransactionTypeKind;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The properties of a transaction. */
 @Fluent
 public final class TransactionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(TransactionProperties.class);
+    /*
+     * The amount of any Azure credits automatically applied to this transaction.
+     */
+    @JsonProperty(value = "azureCreditApplied", access = JsonProperty.Access.WRITE_ONLY)
+    private Amount azureCreditApplied;
 
     /*
-     * The kind of transaction. Options are all or reservation.
+     * The type of azure plan of the subscription that was used for the transaction.
      */
-    @JsonProperty(value = "kind")
-    private TransactionTypeKind kind;
+    @JsonProperty(value = "azurePlan", access = JsonProperty.Access.WRITE_ONLY)
+    private String azurePlan;
 
     /*
-     * The date of transaction.
+     * The ISO 4217 code for the currency in which this transaction is billed.
      */
-    @JsonProperty(value = "date", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime date;
+    @JsonProperty(value = "billingCurrency", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingCurrency;
 
     /*
-     * Invoice on which the transaction was billed or 'pending' if the
-     * transaction is not billed.
+     * The name of the billing profile which will be billed for the transaction.
      */
-    @JsonProperty(value = "invoice", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoice;
-
-    /*
-     * The ID of the invoice on which the transaction was billed. This field is
-     * only applicable for transactions which are billed.
-     */
-    @JsonProperty(value = "invoiceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceId;
-
-    /*
-     * The order ID of the reservation. The field is only applicable for
-     * transaction of kind reservation.
-     */
-    @JsonProperty(value = "orderId", access = JsonProperty.Access.WRITE_ONLY)
-    private String orderId;
-
-    /*
-     * The name of the reservation order. The field is only applicable for
-     * transactions of kind reservation.
-     */
-    @JsonProperty(value = "orderName", access = JsonProperty.Access.WRITE_ONLY)
-    private String orderName;
-
-    /*
-     * The family of the product for which the transaction took place.
-     */
-    @JsonProperty(value = "productFamily", access = JsonProperty.Access.WRITE_ONLY)
-    private String productFamily;
-
-    /*
-     * The ID of the product type for which the transaction took place.
-     */
-    @JsonProperty(value = "productTypeId", access = JsonProperty.Access.WRITE_ONLY)
-    private String productTypeId;
-
-    /*
-     * The type of the product for which the transaction took place.
-     */
-    @JsonProperty(value = "productType", access = JsonProperty.Access.WRITE_ONLY)
-    private String productType;
-
-    /*
-     * The description of the product for which the transaction took place.
-     */
-    @JsonProperty(value = "productDescription", access = JsonProperty.Access.WRITE_ONLY)
-    private String productDescription;
-
-    /*
-     * The type of transaction.
-     */
-    @JsonProperty(value = "transactionType")
-    private ReservationType transactionType;
-
-    /*
-     * The charge associated with the transaction.
-     */
-    @JsonProperty(value = "transactionAmount", access = JsonProperty.Access.WRITE_ONLY)
-    private Amount transactionAmount;
-
-    /*
-     * The quantity purchased in the transaction.
-     */
-    @JsonProperty(value = "quantity", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer quantity;
-
-    /*
-     * The ID of the invoice section which will be billed for the transaction.
-     */
-    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionId;
-
-    /*
-     * The name of the invoice section which will be billed for the
-     * transaction.
-     */
-    @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionDisplayName;
+    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileDisplayName;
 
     /*
      * The ID of the billing profile which will be billed for the transaction.
@@ -120,59 +45,24 @@ public final class TransactionProperties {
     private String billingProfileId;
 
     /*
-     * The name of the billing profile which will be billed for the
-     * transaction.
-     */
-    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileDisplayName;
-
-    /*
-     * The ID of the customer for which the transaction took place. The field
-     * is applicable only for Microsoft Partner Agreement billing account.
-     */
-    @JsonProperty(value = "customerId", access = JsonProperty.Access.WRITE_ONLY)
-    private String customerId;
-
-    /*
-     * The name of the customer for which the transaction took place. The field
-     * is applicable only for Microsoft Partner Agreement billing account.
+     * The name of the customer for which the transaction took place. The field is applicable only for Microsoft
+     * Partner Agreement billing account.
      */
     @JsonProperty(value = "customerDisplayName", access = JsonProperty.Access.WRITE_ONLY)
     private String customerDisplayName;
 
     /*
-     * The ID of the subscription that was used for the transaction. The field
-     * is only applicable for transaction of kind reservation.
+     * The ID of the customer for which the transaction took place. The field is applicable only for Microsoft Partner
+     * Agreement billing account.
      */
-    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
-    private String subscriptionId;
+    @JsonProperty(value = "customerId", access = JsonProperty.Access.WRITE_ONLY)
+    private String customerId;
 
     /*
-     * The name of the subscription that was used for the transaction. The
-     * field is only applicable for transaction of kind reservation.
+     * The date of transaction.
      */
-    @JsonProperty(value = "subscriptionName", access = JsonProperty.Access.WRITE_ONLY)
-    private String subscriptionName;
-
-    /*
-     * The type of azure plan of the subscription that was used for the
-     * transaction.
-     */
-    @JsonProperty(value = "azurePlan", access = JsonProperty.Access.WRITE_ONLY)
-    private String azurePlan;
-
-    /*
-     * The amount of any Azure credits automatically applied to this
-     * transaction.
-     */
-    @JsonProperty(value = "azureCreditApplied", access = JsonProperty.Access.WRITE_ONLY)
-    private Amount azureCreditApplied;
-
-    /*
-     * The ISO 4217 code for the currency in which this transaction is billed.
-     */
-    @JsonProperty(value = "billingCurrency", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingCurrency;
+    @JsonProperty(value = "date", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime date;
 
     /*
      * The percentage discount, if any, applied to this transaction.
@@ -187,11 +77,41 @@ public final class TransactionProperties {
     private Amount effectivePrice;
 
     /*
-     * The exchange rate used to convert charged amount to billing currency, if
-     * applicable.
+     * The exchange rate used to convert charged amount to billing currency, if applicable.
      */
     @JsonProperty(value = "exchangeRate", access = JsonProperty.Access.WRITE_ONLY)
     private Float exchangeRate;
+
+    /*
+     * Invoice on which the transaction was billed or 'pending' if the transaction is not billed.
+     */
+    @JsonProperty(value = "invoice", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoice;
+
+    /*
+     * The ID of the invoice on which the transaction was billed. This field is only applicable for transactions which
+     * are billed.
+     */
+    @JsonProperty(value = "invoiceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceId;
+
+    /*
+     * The name of the invoice section which will be billed for the transaction.
+     */
+    @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionDisplayName;
+
+    /*
+     * The ID of the invoice section which will be billed for the transaction.
+     */
+    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionId;
+
+    /*
+     * The kind of transaction. Options are all or reservation.
+     */
+    @JsonProperty(value = "kind")
+    private TransactionTypeKind kind;
 
     /*
      * The retail price of the product.
@@ -200,24 +120,78 @@ public final class TransactionProperties {
     private Amount marketPrice;
 
     /*
+     * The order ID of the reservation. The field is only applicable for transaction of kind reservation.
+     */
+    @JsonProperty(value = "orderId", access = JsonProperty.Access.WRITE_ONLY)
+    private String orderId;
+
+    /*
+     * The name of the reservation order. The field is only applicable for transactions of kind reservation.
+     */
+    @JsonProperty(value = "orderName", access = JsonProperty.Access.WRITE_ONLY)
+    private String orderName;
+
+    /*
      * The ISO 4217 code for the currency in which the product is priced.
      */
     @JsonProperty(value = "pricingCurrency", access = JsonProperty.Access.WRITE_ONLY)
     private String pricingCurrency;
 
     /*
-     * The date of the purchase of the product, or the start date of the month
-     * in which usage started.
+     * The description of the product for which the transaction took place.
+     */
+    @JsonProperty(value = "productDescription", access = JsonProperty.Access.WRITE_ONLY)
+    private String productDescription;
+
+    /*
+     * The family of the product for which the transaction took place.
+     */
+    @JsonProperty(value = "productFamily", access = JsonProperty.Access.WRITE_ONLY)
+    private String productFamily;
+
+    /*
+     * The type of the product for which the transaction took place.
+     */
+    @JsonProperty(value = "productType", access = JsonProperty.Access.WRITE_ONLY)
+    private String productType;
+
+    /*
+     * The ID of the product type for which the transaction took place.
+     */
+    @JsonProperty(value = "productTypeId", access = JsonProperty.Access.WRITE_ONLY)
+    private String productTypeId;
+
+    /*
+     * The quantity purchased in the transaction.
+     */
+    @JsonProperty(value = "quantity", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer quantity;
+
+    /*
+     * The end date of the product term, or the end date of the month in which usage ended.
+     */
+    @JsonProperty(value = "servicePeriodEndDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime servicePeriodEndDate;
+
+    /*
+     * The date of the purchase of the product, or the start date of the month in which usage started.
      */
     @JsonProperty(value = "servicePeriodStartDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime servicePeriodStartDate;
 
     /*
-     * The end date of the product term, or the end date of the month in which
-     * usage ended.
+     * The ID of the subscription that was used for the transaction. The field is only applicable for transaction of
+     * kind reservation.
      */
-    @JsonProperty(value = "servicePeriodEndDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime servicePeriodEndDate;
+    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String subscriptionId;
+
+    /*
+     * The name of the subscription that was used for the transaction. The field is only applicable for transaction of
+     * kind reservation.
+     */
+    @JsonProperty(value = "subscriptionName", access = JsonProperty.Access.WRITE_ONLY)
+    private String subscriptionName;
 
     /*
      * The pre-tax charged amount for the transaction.
@@ -232,8 +206,19 @@ public final class TransactionProperties {
     private Amount tax;
 
     /*
-     * The unit of measure used to bill for the product. For example, compute
-     * services are billed per hour.
+     * The charge associated with the transaction.
+     */
+    @JsonProperty(value = "transactionAmount", access = JsonProperty.Access.WRITE_ONLY)
+    private Amount transactionAmount;
+
+    /*
+     * The type of transaction.
+     */
+    @JsonProperty(value = "transactionType")
+    private ReservationType transactionType;
+
+    /*
+     * The unit of measure used to bill for the product. For example, compute services are billed per hour.
      */
     @JsonProperty(value = "unitOfMeasure", access = JsonProperty.Access.WRITE_ONLY)
     private String unitOfMeasure;
@@ -250,175 +235,35 @@ public final class TransactionProperties {
     @JsonProperty(value = "unitType", access = JsonProperty.Access.WRITE_ONLY)
     private String unitType;
 
-    /**
-     * Get the kind property: The kind of transaction. Options are all or reservation.
-     *
-     * @return the kind value.
-     */
-    public TransactionTypeKind kind() {
-        return this.kind;
+    /** Creates an instance of TransactionProperties class. */
+    public TransactionProperties() {
     }
 
     /**
-     * Set the kind property: The kind of transaction. Options are all or reservation.
+     * Get the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
      *
-     * @param kind the kind value to set.
-     * @return the TransactionProperties object itself.
+     * @return the azureCreditApplied value.
      */
-    public TransactionProperties withKind(TransactionTypeKind kind) {
-        this.kind = kind;
-        return this;
+    public Amount azureCreditApplied() {
+        return this.azureCreditApplied;
     }
 
     /**
-     * Get the date property: The date of transaction.
+     * Get the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
      *
-     * @return the date value.
+     * @return the azurePlan value.
      */
-    public OffsetDateTime date() {
-        return this.date;
+    public String azurePlan() {
+        return this.azurePlan;
     }
 
     /**
-     * Get the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
-     * billed.
+     * Get the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
      *
-     * @return the invoice value.
+     * @return the billingCurrency value.
      */
-    public String invoice() {
-        return this.invoice;
-    }
-
-    /**
-     * Get the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
-     * applicable for transactions which are billed.
-     *
-     * @return the invoiceId value.
-     */
-    public String invoiceId() {
-        return this.invoiceId;
-    }
-
-    /**
-     * Get the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
-     * reservation.
-     *
-     * @return the orderId value.
-     */
-    public String orderId() {
-        return this.orderId;
-    }
-
-    /**
-     * Get the orderName property: The name of the reservation order. The field is only applicable for transactions of
-     * kind reservation.
-     *
-     * @return the orderName value.
-     */
-    public String orderName() {
-        return this.orderName;
-    }
-
-    /**
-     * Get the productFamily property: The family of the product for which the transaction took place.
-     *
-     * @return the productFamily value.
-     */
-    public String productFamily() {
-        return this.productFamily;
-    }
-
-    /**
-     * Get the productTypeId property: The ID of the product type for which the transaction took place.
-     *
-     * @return the productTypeId value.
-     */
-    public String productTypeId() {
-        return this.productTypeId;
-    }
-
-    /**
-     * Get the productType property: The type of the product for which the transaction took place.
-     *
-     * @return the productType value.
-     */
-    public String productType() {
-        return this.productType;
-    }
-
-    /**
-     * Get the productDescription property: The description of the product for which the transaction took place.
-     *
-     * @return the productDescription value.
-     */
-    public String productDescription() {
-        return this.productDescription;
-    }
-
-    /**
-     * Get the transactionType property: The type of transaction.
-     *
-     * @return the transactionType value.
-     */
-    public ReservationType transactionType() {
-        return this.transactionType;
-    }
-
-    /**
-     * Set the transactionType property: The type of transaction.
-     *
-     * @param transactionType the transactionType value to set.
-     * @return the TransactionProperties object itself.
-     */
-    public TransactionProperties withTransactionType(ReservationType transactionType) {
-        this.transactionType = transactionType;
-        return this;
-    }
-
-    /**
-     * Get the transactionAmount property: The charge associated with the transaction.
-     *
-     * @return the transactionAmount value.
-     */
-    public Amount transactionAmount() {
-        return this.transactionAmount;
-    }
-
-    /**
-     * Get the quantity property: The quantity purchased in the transaction.
-     *
-     * @return the quantity value.
-     */
-    public Integer quantity() {
-        return this.quantity;
-    }
-
-    /**
-     * Get the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
-     *
-     * @return the invoiceSectionId value.
-     */
-    public String invoiceSectionId() {
-        return this.invoiceSectionId;
-    }
-
-    /**
-     * Get the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
-     * transaction.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    public String invoiceSectionDisplayName() {
-        return this.invoiceSectionDisplayName;
-    }
-
-    /**
-     * Get the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.billingProfileId;
+    public String billingCurrency() {
+        return this.billingCurrency;
     }
 
     /**
@@ -432,13 +277,12 @@ public final class TransactionProperties {
     }
 
     /**
-     * Get the customerId property: The ID of the customer for which the transaction took place. The field is applicable
-     * only for Microsoft Partner Agreement billing account.
+     * Get the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
      *
-     * @return the customerId value.
+     * @return the billingProfileId value.
      */
-    public String customerId() {
-        return this.customerId;
+    public String billingProfileId() {
+        return this.billingProfileId;
     }
 
     /**
@@ -452,50 +296,22 @@ public final class TransactionProperties {
     }
 
     /**
-     * Get the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
-     * applicable for transaction of kind reservation.
+     * Get the customerId property: The ID of the customer for which the transaction took place. The field is applicable
+     * only for Microsoft Partner Agreement billing account.
      *
-     * @return the subscriptionId value.
+     * @return the customerId value.
      */
-    public String subscriptionId() {
-        return this.subscriptionId;
+    public String customerId() {
+        return this.customerId;
     }
 
     /**
-     * Get the subscriptionName property: The name of the subscription that was used for the transaction. The field is
-     * only applicable for transaction of kind reservation.
+     * Get the date property: The date of transaction.
      *
-     * @return the subscriptionName value.
+     * @return the date value.
      */
-    public String subscriptionName() {
-        return this.subscriptionName;
-    }
-
-    /**
-     * Get the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
-     *
-     * @return the azurePlan value.
-     */
-    public String azurePlan() {
-        return this.azurePlan;
-    }
-
-    /**
-     * Get the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
-     *
-     * @return the azureCreditApplied value.
-     */
-    public Amount azureCreditApplied() {
-        return this.azureCreditApplied;
-    }
-
-    /**
-     * Get the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
-     *
-     * @return the billingCurrency value.
-     */
-    public String billingCurrency() {
-        return this.billingCurrency;
+    public OffsetDateTime date() {
+        return this.date;
     }
 
     /**
@@ -527,6 +343,65 @@ public final class TransactionProperties {
     }
 
     /**
+     * Get the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
+     * billed.
+     *
+     * @return the invoice value.
+     */
+    public String invoice() {
+        return this.invoice;
+    }
+
+    /**
+     * Get the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
+     * applicable for transactions which are billed.
+     *
+     * @return the invoiceId value.
+     */
+    public String invoiceId() {
+        return this.invoiceId;
+    }
+
+    /**
+     * Get the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
+     * transaction.
+     *
+     * @return the invoiceSectionDisplayName value.
+     */
+    public String invoiceSectionDisplayName() {
+        return this.invoiceSectionDisplayName;
+    }
+
+    /**
+     * Get the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.invoiceSectionId;
+    }
+
+    /**
+     * Get the kind property: The kind of transaction. Options are all or reservation.
+     *
+     * @return the kind value.
+     */
+    public TransactionTypeKind kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: The kind of transaction. Options are all or reservation.
+     *
+     * @param kind the kind value to set.
+     * @return the TransactionProperties object itself.
+     */
+    public TransactionProperties withKind(TransactionTypeKind kind) {
+        this.kind = kind;
+        return this;
+    }
+
+    /**
      * Get the marketPrice property: The retail price of the product.
      *
      * @return the marketPrice value.
@@ -536,12 +411,87 @@ public final class TransactionProperties {
     }
 
     /**
+     * Get the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
+     * reservation.
+     *
+     * @return the orderId value.
+     */
+    public String orderId() {
+        return this.orderId;
+    }
+
+    /**
+     * Get the orderName property: The name of the reservation order. The field is only applicable for transactions of
+     * kind reservation.
+     *
+     * @return the orderName value.
+     */
+    public String orderName() {
+        return this.orderName;
+    }
+
+    /**
      * Get the pricingCurrency property: The ISO 4217 code for the currency in which the product is priced.
      *
      * @return the pricingCurrency value.
      */
     public String pricingCurrency() {
         return this.pricingCurrency;
+    }
+
+    /**
+     * Get the productDescription property: The description of the product for which the transaction took place.
+     *
+     * @return the productDescription value.
+     */
+    public String productDescription() {
+        return this.productDescription;
+    }
+
+    /**
+     * Get the productFamily property: The family of the product for which the transaction took place.
+     *
+     * @return the productFamily value.
+     */
+    public String productFamily() {
+        return this.productFamily;
+    }
+
+    /**
+     * Get the productType property: The type of the product for which the transaction took place.
+     *
+     * @return the productType value.
+     */
+    public String productType() {
+        return this.productType;
+    }
+
+    /**
+     * Get the productTypeId property: The ID of the product type for which the transaction took place.
+     *
+     * @return the productTypeId value.
+     */
+    public String productTypeId() {
+        return this.productTypeId;
+    }
+
+    /**
+     * Get the quantity property: The quantity purchased in the transaction.
+     *
+     * @return the quantity value.
+     */
+    public Integer quantity() {
+        return this.quantity;
+    }
+
+    /**
+     * Get the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
+     * usage ended.
+     *
+     * @return the servicePeriodEndDate value.
+     */
+    public OffsetDateTime servicePeriodEndDate() {
+        return this.servicePeriodEndDate;
     }
 
     /**
@@ -555,13 +505,23 @@ public final class TransactionProperties {
     }
 
     /**
-     * Get the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
-     * usage ended.
+     * Get the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
+     * applicable for transaction of kind reservation.
      *
-     * @return the servicePeriodEndDate value.
+     * @return the subscriptionId value.
      */
-    public OffsetDateTime servicePeriodEndDate() {
-        return this.servicePeriodEndDate;
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Get the subscriptionName property: The name of the subscription that was used for the transaction. The field is
+     * only applicable for transaction of kind reservation.
+     *
+     * @return the subscriptionName value.
+     */
+    public String subscriptionName() {
+        return this.subscriptionName;
     }
 
     /**
@@ -580,6 +540,35 @@ public final class TransactionProperties {
      */
     public Amount tax() {
         return this.tax;
+    }
+
+    /**
+     * Get the transactionAmount property: The charge associated with the transaction.
+     *
+     * @return the transactionAmount value.
+     */
+    public Amount transactionAmount() {
+        return this.transactionAmount;
+    }
+
+    /**
+     * Get the transactionType property: The type of transaction.
+     *
+     * @return the transactionType value.
+     */
+    public ReservationType transactionType() {
+        return this.transactionType;
+    }
+
+    /**
+     * Set the transactionType property: The type of transaction.
+     *
+     * @param transactionType the transactionType value to set.
+     * @return the TransactionProperties object itself.
+     */
+    public TransactionProperties withTransactionType(ReservationType transactionType) {
+        this.transactionType = transactionType;
+        return this;
     }
 
     /**
@@ -616,9 +605,6 @@ public final class TransactionProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (transactionAmount() != null) {
-            transactionAmount().validate();
-        }
         if (azureCreditApplied() != null) {
             azureCreditApplied().validate();
         }
@@ -633,6 +619,9 @@ public final class TransactionProperties {
         }
         if (tax() != null) {
             tax().validate();
+        }
+        if (transactionAmount() != null) {
+            transactionAmount().validate();
         }
     }
 }

@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Agreements Get. */
 public final class AgreementsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/AgreementByName.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/agreementsGet.json
      */
     /**
-     * Sample code: AgreementByName.
+     * Sample code: agreementsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void agreementByName(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void agreementsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.agreements().getWithResponse("{billingAccountName}", "{agreementName}", null, Context.NONE);
     }
 }

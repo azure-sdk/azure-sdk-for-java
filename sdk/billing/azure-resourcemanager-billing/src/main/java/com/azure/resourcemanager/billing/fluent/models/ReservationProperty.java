@@ -5,20 +5,15 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.ReservationPropertyUtilization;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The property of reservation object. */
 @Fluent
 public final class ReservationProperty {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationProperty.class);
-
     /*
-     * The array of applied scopes of a reservation. Will be null if the
-     * reservation is in Shared scope
+     * The array of applied scopes of a reservation. Will be null if the reservation is in Shared scope
      */
     @JsonProperty(value = "appliedScopes")
     private List<String> appliedScopes;
@@ -28,36 +23,6 @@ public final class ReservationProperty {
      */
     @JsonProperty(value = "appliedScopeType", access = JsonProperty.Access.WRITE_ONLY)
     private String appliedScopeType;
-
-    /*
-     * The reserved source type of the reservation, e.g. virtual machine.
-     */
-    @JsonProperty(value = "reservedResourceType", access = JsonProperty.Access.WRITE_ONLY)
-    private String reservedResourceType;
-
-    /*
-     * The number of the reservation.
-     */
-    @JsonProperty(value = "quantity", access = JsonProperty.Access.WRITE_ONLY)
-    private Float quantity;
-
-    /*
-     * The provisioning state of the reservation, e.g. Succeeded
-     */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
-
-    /*
-     * The expiry date of the reservation
-     */
-    @JsonProperty(value = "expiryDate", access = JsonProperty.Access.WRITE_ONLY)
-    private String expiryDate;
-
-    /*
-     * The provisioning state of the reservation, e.g. Succeeded
-     */
-    @JsonProperty(value = "provisioningSubState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningSubState;
 
     /*
      * The display name of the reservation
@@ -72,34 +37,34 @@ public final class ReservationProperty {
     private String displayProvisioningState;
 
     /*
-     * The renew state of the reservation for display, e.g. On
-     */
-    @JsonProperty(value = "userFriendlyRenewState", access = JsonProperty.Access.WRITE_ONLY)
-    private String userFriendlyRenewState;
-
-    /*
-     * The applied scope type of the reservation for display, e.g. Shared
-     */
-    @JsonProperty(value = "userFriendlyAppliedScopeType", access = JsonProperty.Access.WRITE_ONLY)
-    private String userFriendlyAppliedScopeType;
-
-    /*
      * The effective date time of the reservation
      */
     @JsonProperty(value = "effectiveDateTime", access = JsonProperty.Access.WRITE_ONLY)
     private String effectiveDateTime;
 
     /*
-     * The sku description of the reservation
+     * The expiry date of the reservation
      */
-    @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
-    private String skuDescription;
+    @JsonProperty(value = "expiryDate", access = JsonProperty.Access.WRITE_ONLY)
+    private String expiryDate;
 
     /*
-     * The term of the reservation, e.g. P1Y
+     * The provisioning state of the reservation, e.g. Succeeded
      */
-    @JsonProperty(value = "term", access = JsonProperty.Access.WRITE_ONLY)
-    private String term;
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private String provisioningState;
+
+    /*
+     * The provisioning state of the reservation, e.g. Succeeded
+     */
+    @JsonProperty(value = "provisioningSubState", access = JsonProperty.Access.WRITE_ONLY)
+    private String provisioningSubState;
+
+    /*
+     * The number of the reservation.
+     */
+    @JsonProperty(value = "quantity", access = JsonProperty.Access.WRITE_ONLY)
+    private Float quantity;
 
     /*
      * The renew state of the reservation
@@ -114,10 +79,44 @@ public final class ReservationProperty {
     private String renewSource;
 
     /*
+     * The reserved source type of the reservation, e.g. virtual machine.
+     */
+    @JsonProperty(value = "reservedResourceType", access = JsonProperty.Access.WRITE_ONLY)
+    private String reservedResourceType;
+
+    /*
+     * The sku description of the reservation
+     */
+    @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
+    private String skuDescription;
+
+    /*
+     * The term of the reservation, e.g. P1Y
+     */
+    @JsonProperty(value = "term", access = JsonProperty.Access.WRITE_ONLY)
+    private String term;
+
+    /*
+     * The applied scope type of the reservation for display, e.g. Shared
+     */
+    @JsonProperty(value = "userFriendlyAppliedScopeType", access = JsonProperty.Access.WRITE_ONLY)
+    private String userFriendlyAppliedScopeType;
+
+    /*
+     * The renew state of the reservation for display, e.g. On
+     */
+    @JsonProperty(value = "userFriendlyRenewState", access = JsonProperty.Access.WRITE_ONLY)
+    private String userFriendlyRenewState;
+
+    /*
      * Reservation utilization
      */
     @JsonProperty(value = "utilization", access = JsonProperty.Access.WRITE_ONLY)
     private ReservationPropertyUtilization utilization;
+
+    /** Creates an instance of ReservationProperty class. */
+    public ReservationProperty() {
+    }
 
     /**
      * Get the appliedScopes property: The array of applied scopes of a reservation. Will be null if the reservation is
@@ -151,51 +150,6 @@ public final class ReservationProperty {
     }
 
     /**
-     * Get the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
-     *
-     * @return the reservedResourceType value.
-     */
-    public String reservedResourceType() {
-        return this.reservedResourceType;
-    }
-
-    /**
-     * Get the quantity property: The number of the reservation.
-     *
-     * @return the quantity value.
-     */
-    public Float quantity() {
-        return this.quantity;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the expiryDate property: The expiry date of the reservation.
-     *
-     * @return the expiryDate value.
-     */
-    public String expiryDate() {
-        return this.expiryDate;
-    }
-
-    /**
-     * Get the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
-     * @return the provisioningSubState value.
-     */
-    public String provisioningSubState() {
-        return this.provisioningSubState;
-    }
-
-    /**
      * Get the displayName property: The display name of the reservation.
      *
      * @return the displayName value.
@@ -214,31 +168,75 @@ public final class ReservationProperty {
     }
 
     /**
-     * Get the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
-     *
-     * @return the userFriendlyRenewState value.
-     */
-    public String userFriendlyRenewState() {
-        return this.userFriendlyRenewState;
-    }
-
-    /**
-     * Get the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
-     * Shared.
-     *
-     * @return the userFriendlyAppliedScopeType value.
-     */
-    public String userFriendlyAppliedScopeType() {
-        return this.userFriendlyAppliedScopeType;
-    }
-
-    /**
      * Get the effectiveDateTime property: The effective date time of the reservation.
      *
      * @return the effectiveDateTime value.
      */
     public String effectiveDateTime() {
         return this.effectiveDateTime;
+    }
+
+    /**
+     * Get the expiryDate property: The expiry date of the reservation.
+     *
+     * @return the expiryDate value.
+     */
+    public String expiryDate() {
+        return this.expiryDate;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
+     *
+     * @return the provisioningSubState value.
+     */
+    public String provisioningSubState() {
+        return this.provisioningSubState;
+    }
+
+    /**
+     * Get the quantity property: The number of the reservation.
+     *
+     * @return the quantity value.
+     */
+    public Float quantity() {
+        return this.quantity;
+    }
+
+    /**
+     * Get the renew property: The renew state of the reservation.
+     *
+     * @return the renew value.
+     */
+    public Boolean renew() {
+        return this.renew;
+    }
+
+    /**
+     * Get the renewSource property: The renew source of the reservation.
+     *
+     * @return the renewSource value.
+     */
+    public String renewSource() {
+        return this.renewSource;
+    }
+
+    /**
+     * Get the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
+     *
+     * @return the reservedResourceType value.
+     */
+    public String reservedResourceType() {
+        return this.reservedResourceType;
     }
 
     /**
@@ -260,21 +258,22 @@ public final class ReservationProperty {
     }
 
     /**
-     * Get the renew property: The renew state of the reservation.
+     * Get the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
+     * Shared.
      *
-     * @return the renew value.
+     * @return the userFriendlyAppliedScopeType value.
      */
-    public Boolean renew() {
-        return this.renew;
+    public String userFriendlyAppliedScopeType() {
+        return this.userFriendlyAppliedScopeType;
     }
 
     /**
-     * Get the renewSource property: The renew source of the reservation.
+     * Get the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
      *
-     * @return the renewSource value.
+     * @return the userFriendlyRenewState value.
      */
-    public String renewSource() {
-        return this.renewSource;
+    public String userFriendlyRenewState() {
+        return this.userFriendlyRenewState;
     }
 
     /**

@@ -10,23 +10,23 @@ import java.util.Arrays;
 /** Samples for Invoices DownloadMultipleBillingProfileInvoices. */
 public final class InvoicesDownloadMultipleBillingProfileInvoicesSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/MultipleModernInvoiceDownload.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesDownloadBatchByBillingAccount.json
      */
     /**
-     * Sample code: BillingProfileInvoiceDownload.
+     * Sample code: invoicesDownloadBatchByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileInvoiceDownload(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesDownloadBatchByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .invoices()
             .downloadMultipleBillingProfileInvoices(
                 "{billingAccountName}",
                 Arrays
                     .asList(
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01",
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01",
-                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2020-05-01"),
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01",
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01",
+                        "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download?downloadToken={downloadToken}&useCache=True&api-version=2023-04-01"),
                 Context.NONE);
     }
 }

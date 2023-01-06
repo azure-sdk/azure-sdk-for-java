@@ -9,26 +9,26 @@ import com.azure.core.util.Context;
 /** Samples for Invoices ListByBillingAccount. */
 public final class InvoicesListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountInvoicesList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountInvoicesList.
+     * Sample code: invoicesListByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountInvoicesList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void invoicesListByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().listByBillingAccount("{billingAccountName}", "2018-01-01", "2018-06-30", Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountInvoicesListWithRebillDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingAccountWithRebillDetails.json
      */
     /**
-     * Sample code: BillingAccountInvoicesListWithRebillDetails.
+     * Sample code: invoicesListByBillingAccountWithRebillDetails.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountInvoicesListWithRebillDetails(
+    public static void invoicesListByBillingAccountWithRebillDetails(
         com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().listByBillingAccount("{billingAccountName}", "2018-01-01", "2018-06-30", Context.NONE);
     }

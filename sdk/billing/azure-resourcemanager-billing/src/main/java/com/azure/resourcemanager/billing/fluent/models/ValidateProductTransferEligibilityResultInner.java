@@ -5,16 +5,17 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.ValidateProductTransferEligibilityError;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Result of the product transfer eligibility validation. */
 @Fluent
 public final class ValidateProductTransferEligibilityResultInner {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ValidateProductTransferEligibilityResultInner.class);
+    /*
+     * Validation error details.
+     */
+    @JsonProperty(value = "errorDetails")
+    private ValidateProductTransferEligibilityError errorDetails;
 
     /*
      * Specifies whether the transfer is eligible or not.
@@ -22,19 +23,8 @@ public final class ValidateProductTransferEligibilityResultInner {
     @JsonProperty(value = "isMoveEligible", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isMoveEligible;
 
-    /*
-     * Validation error details.
-     */
-    @JsonProperty(value = "errorDetails")
-    private ValidateProductTransferEligibilityError errorDetails;
-
-    /**
-     * Get the isMoveEligible property: Specifies whether the transfer is eligible or not.
-     *
-     * @return the isMoveEligible value.
-     */
-    public Boolean isMoveEligible() {
-        return this.isMoveEligible;
+    /** Creates an instance of ValidateProductTransferEligibilityResultInner class. */
+    public ValidateProductTransferEligibilityResultInner() {
     }
 
     /**
@@ -56,6 +46,15 @@ public final class ValidateProductTransferEligibilityResultInner {
         ValidateProductTransferEligibilityError errorDetails) {
         this.errorDetails = errorDetails;
         return this;
+    }
+
+    /**
+     * Get the isMoveEligible property: Specifies whether the transfer is eligible or not.
+     *
+     * @return the isMoveEligible value.
+     */
+    public Boolean isMoveEligible() {
+        return this.isMoveEligible;
     }
 
     /**

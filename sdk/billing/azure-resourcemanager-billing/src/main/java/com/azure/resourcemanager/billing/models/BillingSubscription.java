@@ -11,7 +11,8 @@ import java.util.UUID;
 /** An immutable client-side representation of BillingSubscription. */
 public interface BillingSubscription {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -25,11 +26,48 @@ public interface BillingSubscription {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: Resource type.
      *
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    String billingProfileDisplayName();
+
+    /**
+     * Gets the billingProfileId property: The ID of the billing profile to which the subscription is billed.
+     *
+     * @return the billingProfileId value.
+     */
+    String billingProfileId();
+
+    /**
+     * Gets the costCenter property: The cost center applied to the subscription.
+     *
+     * @return the costCenter value.
+     */
+    String costCenter();
+
+    /**
+     * Gets the customerDisplayName property: The name of the customer for whom the subscription was created. The field
+     * is applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerDisplayName value.
+     */
+    String customerDisplayName();
+
+    /**
+     * Gets the customerId property: The ID of the customer for whom the subscription was created. The field is
+     * applicable only for Microsoft Partner Agreement billing account.
+     *
+     * @return the customerId value.
+     */
+    String customerId();
 
     /**
      * Gets the displayName property: The name of the subscription.
@@ -39,18 +77,18 @@ public interface BillingSubscription {
     String displayName();
 
     /**
-     * Gets the subscriptionId property: The ID of the subscription.
+     * Gets the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
      *
-     * @return the subscriptionId value.
+     * @return the invoiceSectionDisplayName value.
      */
-    UUID subscriptionId();
+    String invoiceSectionDisplayName();
 
     /**
-     * Gets the subscriptionBillingStatus property: The current billing status of the subscription.
+     * Gets the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
      *
-     * @return the subscriptionBillingStatus value.
+     * @return the invoiceSectionId value.
      */
-    BillingSubscriptionStatusType subscriptionBillingStatus();
+    String invoiceSectionId();
 
     /**
      * Gets the lastMonthCharges property: The last month charges.
@@ -67,62 +105,18 @@ public interface BillingSubscription {
     Amount monthToDateCharges();
 
     /**
-     * Gets the billingProfileId property: The ID of the billing profile to which the subscription is billed.
-     *
-     * @return the billingProfileId value.
-     */
-    String billingProfileId();
-
-    /**
-     * Gets the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
-     *
-     * @return the billingProfileDisplayName value.
-     */
-    String billingProfileDisplayName();
-
-    /**
-     * Gets the costCenter property: The cost center applied to the subscription.
-     *
-     * @return the costCenter value.
-     */
-    String costCenter();
-
-    /**
-     * Gets the customerId property: The ID of the customer for whom the subscription was created. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerId value.
-     */
-    String customerId();
-
-    /**
-     * Gets the customerDisplayName property: The name of the customer for whom the subscription was created. The field
-     * is applicable only for Microsoft Partner Agreement billing account.
-     *
-     * @return the customerDisplayName value.
-     */
-    String customerDisplayName();
-
-    /**
-     * Gets the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    String invoiceSectionId();
-
-    /**
-     * Gets the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    String invoiceSectionDisplayName();
-
-    /**
      * Gets the reseller property: Reseller for this subscription.
      *
      * @return the reseller value.
      */
     Reseller reseller();
+
+    /**
+     * Gets the skuDescription property: The sku description of the Azure plan for the subscription.
+     *
+     * @return the skuDescription value.
+     */
+    String skuDescription();
 
     /**
      * Gets the skuId property: The sku ID of the Azure plan for the subscription.
@@ -132,11 +126,18 @@ public interface BillingSubscription {
     String skuId();
 
     /**
-     * Gets the skuDescription property: The sku description of the Azure plan for the subscription.
+     * Gets the subscriptionBillingStatus property: The current billing status of the subscription.
      *
-     * @return the skuDescription value.
+     * @return the subscriptionBillingStatus value.
      */
-    String skuDescription();
+    BillingSubscriptionStatusType subscriptionBillingStatus();
+
+    /**
+     * Gets the subscriptionId property: The ID of the subscription.
+     *
+     * @return the subscriptionId value.
+     */
+    UUID subscriptionId();
 
     /**
      * Gets the suspensionReasons property: The suspension reason for a subscription. Applies only to subscriptions in

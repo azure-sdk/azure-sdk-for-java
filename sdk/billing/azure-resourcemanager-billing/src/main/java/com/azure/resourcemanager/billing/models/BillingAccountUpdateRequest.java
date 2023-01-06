@@ -5,22 +5,22 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.BillingAccountProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The request properties of the billing account that can be updated. */
 @Fluent
 public final class BillingAccountUpdateRequest {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingAccountUpdateRequest.class);
-
     /*
      * A billing property.
      */
     @JsonProperty(value = "properties")
     private BillingAccountProperties innerProperties;
+
+    /** Creates an instance of BillingAccountUpdateRequest class. */
+    public BillingAccountUpdateRequest() {
+    }
 
     /**
      * Get the innerProperties property: A billing property.
@@ -32,60 +32,12 @@ public final class BillingAccountUpdateRequest {
     }
 
     /**
-     * Get the displayName property: The billing account name.
+     * Get the accountStatus property: The current status of the billing account.
      *
-     * @return the displayName value.
+     * @return the accountStatus value.
      */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
-    }
-
-    /**
-     * Set the displayName property: The billing account name.
-     *
-     * @param displayName the displayName value to set.
-     * @return the BillingAccountUpdateRequest object itself.
-     */
-    public BillingAccountUpdateRequest withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingAccountProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
-    }
-
-    /**
-     * Get the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
-     *
-     * @return the soldTo value.
-     */
-    public AddressDetails soldTo() {
-        return this.innerProperties() == null ? null : this.innerProperties().soldTo();
-    }
-
-    /**
-     * Set the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
-     *
-     * @param soldTo the soldTo value to set.
-     * @return the BillingAccountUpdateRequest object itself.
-     */
-    public BillingAccountUpdateRequest withSoldTo(AddressDetails soldTo) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingAccountProperties();
-        }
-        this.innerProperties().withSoldTo(soldTo);
-        return this;
-    }
-
-    /**
-     * Get the agreementType property: The type of agreement.
-     *
-     * @return the agreementType value.
-     */
-    public AgreementType agreementType() {
-        return this.innerProperties() == null ? null : this.innerProperties().agreementType();
+    public AccountStatus accountStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().accountStatus();
     }
 
     /**
@@ -98,12 +50,12 @@ public final class BillingAccountUpdateRequest {
     }
 
     /**
-     * Get the accountStatus property: The current status of the billing account.
+     * Get the agreementType property: The type of agreement.
      *
-     * @return the accountStatus value.
+     * @return the agreementType value.
      */
-    public AccountStatus accountStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().accountStatus();
+    public AgreementType agreementType() {
+        return this.innerProperties() == null ? null : this.innerProperties().agreementType();
     }
 
     /**
@@ -132,16 +84,6 @@ public final class BillingAccountUpdateRequest {
     }
 
     /**
-     * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
-     * populated, unless it's specified in $expand.
-     *
-     * @return the enrollmentDetails value.
-     */
-    public Enrollment enrollmentDetails() {
-        return this.innerProperties() == null ? null : this.innerProperties().enrollmentDetails();
-    }
-
-    /**
      * Get the departments property: The departments associated to the enrollment.
      *
      * @return the departments value.
@@ -161,6 +103,29 @@ public final class BillingAccountUpdateRequest {
             this.innerProperties = new BillingAccountProperties();
         }
         this.innerProperties().withDepartments(departments);
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The billing account name.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    }
+
+    /**
+     * Set the displayName property: The billing account name.
+     *
+     * @param displayName the displayName value to set.
+     * @return the BillingAccountUpdateRequest object itself.
+     */
+    public BillingAccountUpdateRequest withDisplayName(String displayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingAccountProperties();
+        }
+        this.innerProperties().withDisplayName(displayName);
         return this;
     }
 
@@ -185,6 +150,16 @@ public final class BillingAccountUpdateRequest {
         }
         this.innerProperties().withEnrollmentAccounts(enrollmentAccounts);
         return this;
+    }
+
+    /**
+     * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
+     * populated, unless it's specified in $expand.
+     *
+     * @return the enrollmentDetails value.
+     */
+    public Enrollment enrollmentDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().enrollmentDetails();
     }
 
     /**
@@ -216,6 +191,31 @@ public final class BillingAccountUpdateRequest {
             this.innerProperties = new BillingAccountProperties();
         }
         this.innerProperties().withNotificationEmailAddress(notificationEmailAddress);
+        return this;
+    }
+
+    /**
+     * Get the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @return the soldTo value.
+     */
+    public AddressDetails soldTo() {
+        return this.innerProperties() == null ? null : this.innerProperties().soldTo();
+    }
+
+    /**
+     * Set the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @param soldTo the soldTo value to set.
+     * @return the BillingAccountUpdateRequest object itself.
+     */
+    public BillingAccountUpdateRequest withSoldTo(AddressDetails soldTo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingAccountProperties();
+        }
+        this.innerProperties().withSoldTo(soldTo);
         return this;
     }
 

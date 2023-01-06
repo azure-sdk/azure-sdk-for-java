@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleDefinitions GetByBillingAccount. */
 public final class BillingRoleDefinitionsGetByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleDefinition.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsGetByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleDefinition.
+     * Sample code: billingRoleDefinitionsGetByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleDefinition(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsGetByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .getByBillingAccountWithResponse("{billingAccountName}", "{billingRoleDefinitionName}", Context.NONE);

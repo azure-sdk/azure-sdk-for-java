@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for BillingProperty Get. */
 public final class BillingPropertyGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProperty.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPropertiesGet.json
      */
     /**
-     * Sample code: BillingProperty.
+     * Sample code: billingPropertiesGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPropertiesGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingProperties().getWithResponse(Context.NONE);
     }
 }

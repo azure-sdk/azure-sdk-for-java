@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for BillingRoleAssignments GetByInvoiceSection. */
 public final class BillingRoleAssignmentsGetByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignment.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsGetByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionRoleAssignment.
+     * Sample code: billingRoleAssignmentsGetByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsGetByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .getByInvoiceSectionWithResponse(

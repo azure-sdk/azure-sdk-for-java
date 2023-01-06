@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for BillingSubscriptions Get. */
 public final class BillingSubscriptionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscription.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsGet.json
      */
     /**
-     * Sample code: BillingSubscription.
+     * Sample code: billingSubscriptionsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingSubscriptionsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.billingSubscriptions().getWithResponse("{billingAccountName}", Context.NONE);
     }
 }

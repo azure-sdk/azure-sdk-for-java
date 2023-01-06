@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Instructions Get. */
 public final class InstructionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Instruction.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/instructionsGet.json
      */
     /**
-     * Sample code: Instruction.
+     * Sample code: instructionsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void instruction(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void instructionsGet(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .instructions()
             .getWithResponse("{billingAccountName}", "{billingProfileName}", "{instructionName}", Context.NONE);
