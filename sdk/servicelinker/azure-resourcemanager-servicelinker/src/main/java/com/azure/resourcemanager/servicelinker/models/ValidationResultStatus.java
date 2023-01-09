@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ValidationResultStatus. */
+/** The result of validation. */
 public final class ValidationResultStatus extends ExpandableStringEnum<ValidationResultStatus> {
     /** Static value success for ValidationResultStatus. */
     public static final ValidationResultStatus SUCCESS = fromString("success");

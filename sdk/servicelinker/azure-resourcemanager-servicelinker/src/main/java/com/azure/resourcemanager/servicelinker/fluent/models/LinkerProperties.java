@@ -7,14 +7,16 @@ package com.azure.resourcemanager.servicelinker.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.servicelinker.models.AuthInfoBase;
 import com.azure.resourcemanager.servicelinker.models.ClientType;
+import com.azure.resourcemanager.servicelinker.models.ConfigurationInfo;
+import com.azure.resourcemanager.servicelinker.models.PublicNetworkSolution;
 import com.azure.resourcemanager.servicelinker.models.SecretStore;
 import com.azure.resourcemanager.servicelinker.models.TargetServiceBase;
 import com.azure.resourcemanager.servicelinker.models.VNetSolution;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the linker. */
+/** The properties of the Linker. */
 @Fluent
-public final class LinkerProperties {
+public class LinkerProperties {
     /*
      * The target service properties
      */
@@ -56,6 +58,22 @@ public final class LinkerProperties {
      */
     @JsonProperty(value = "scope")
     private String scope;
+
+    /*
+     * The network solution.
+     */
+    @JsonProperty(value = "publicNetworkSolution")
+    private PublicNetworkSolution publicNetworkSolution;
+
+    /*
+     * The connection information consumed by applications, including secrets, connection strings.
+     */
+    @JsonProperty(value = "configurationInfo")
+    private ConfigurationInfo configurationInfo;
+
+    /** Creates an instance of LinkerProperties class. */
+    public LinkerProperties() {
+    }
 
     /**
      * Get the targetService property: The target service properties.
@@ -187,6 +205,48 @@ public final class LinkerProperties {
     }
 
     /**
+     * Get the publicNetworkSolution property: The network solution.
+     *
+     * @return the publicNetworkSolution value.
+     */
+    public PublicNetworkSolution publicNetworkSolution() {
+        return this.publicNetworkSolution;
+    }
+
+    /**
+     * Set the publicNetworkSolution property: The network solution.
+     *
+     * @param publicNetworkSolution the publicNetworkSolution value to set.
+     * @return the LinkerProperties object itself.
+     */
+    public LinkerProperties withPublicNetworkSolution(PublicNetworkSolution publicNetworkSolution) {
+        this.publicNetworkSolution = publicNetworkSolution;
+        return this;
+    }
+
+    /**
+     * Get the configurationInfo property: The connection information consumed by applications, including secrets,
+     * connection strings.
+     *
+     * @return the configurationInfo value.
+     */
+    public ConfigurationInfo configurationInfo() {
+        return this.configurationInfo;
+    }
+
+    /**
+     * Set the configurationInfo property: The connection information consumed by applications, including secrets,
+     * connection strings.
+     *
+     * @param configurationInfo the configurationInfo value to set.
+     * @return the LinkerProperties object itself.
+     */
+    public LinkerProperties withConfigurationInfo(ConfigurationInfo configurationInfo) {
+        this.configurationInfo = configurationInfo;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -203,6 +263,12 @@ public final class LinkerProperties {
         }
         if (secretStore() != null) {
             secretStore().validate();
+        }
+        if (publicNetworkSolution() != null) {
+            publicNetworkSolution().validate();
+        }
+        if (configurationInfo() != null) {
+            configurationInfo().validate();
         }
     }
 }

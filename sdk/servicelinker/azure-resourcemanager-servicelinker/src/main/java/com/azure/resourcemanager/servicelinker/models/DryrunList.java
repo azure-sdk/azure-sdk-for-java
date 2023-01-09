@@ -5,27 +5,31 @@
 package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner;
+import com.azure.resourcemanager.servicelinker.fluent.models.DryrunResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of Linker. */
+/** The list of dryrun. */
 @Fluent
-public final class LinkerList {
+public final class DryrunList {
     /*
-     * The link used to get the next page of Linker list.
+     * The link used to get the next page of dryrun list.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /*
-     * The list of Linkers.
+     * The list of dryrun.
      */
     @JsonProperty(value = "value")
-    private List<LinkerResourceInner> value;
+    private List<DryrunResourceInner> value;
+
+    /** Creates an instance of DryrunList class. */
+    public DryrunList() {
+    }
 
     /**
-     * Get the nextLink property: The link used to get the next page of Linker list.
+     * Get the nextLink property: The link used to get the next page of dryrun list.
      *
      * @return the nextLink value.
      */
@@ -34,32 +38,32 @@ public final class LinkerList {
     }
 
     /**
-     * Set the nextLink property: The link used to get the next page of Linker list.
+     * Set the nextLink property: The link used to get the next page of dryrun list.
      *
      * @param nextLink the nextLink value to set.
-     * @return the LinkerList object itself.
+     * @return the DryrunList object itself.
      */
-    public LinkerList withNextLink(String nextLink) {
+    public DryrunList withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
 
     /**
-     * Get the value property: The list of Linkers.
+     * Get the value property: The list of dryrun.
      *
      * @return the value value.
      */
-    public List<LinkerResourceInner> value() {
+    public List<DryrunResourceInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The list of Linkers.
+     * Set the value property: The list of dryrun.
      *
      * @param value the value value to set.
-     * @return the LinkerList object itself.
+     * @return the DryrunList object itself.
      */
-    public LinkerList withValue(List<LinkerResourceInner> value) {
+    public DryrunList withValue(List<DryrunResourceInner> value) {
         this.value = value;
         return this;
     }

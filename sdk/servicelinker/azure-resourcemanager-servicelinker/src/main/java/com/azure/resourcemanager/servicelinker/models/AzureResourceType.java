@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AzureResourceType. */
+/** The azure resource type. */
 public final class AzureResourceType extends ExpandableStringEnum<AzureResourceType> {
     /** Static value KeyVault for AzureResourceType. */
     public static final AzureResourceType KEY_VAULT = fromString("KeyVault");
