@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs Delete. */
 public final class JobsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-delete.json
      */
     /**
      * Sample code: Delete a Job.

@@ -17,6 +17,7 @@ import com.azure.resourcemanager.mediaservices.models.ListEdgePoliciesInput;
 import com.azure.resourcemanager.mediaservices.models.MediaService;
 import com.azure.resourcemanager.mediaservices.models.MediaServiceIdentity;
 import com.azure.resourcemanager.mediaservices.models.MediaServiceUpdate;
+import com.azure.resourcemanager.mediaservices.models.MinimumTlsVersion;
 import com.azure.resourcemanager.mediaservices.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.mediaservices.models.ProvisioningState;
 import com.azure.resourcemanager.mediaservices.models.PublicNetworkAccess;
@@ -114,6 +115,10 @@ public final class MediaServiceImpl implements MediaService, MediaService.Defini
         }
     }
 
+    public MinimumTlsVersion minimumTlsVersion() {
+        return this.innerModel().minimumTlsVersion();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -205,7 +210,7 @@ public final class MediaServiceImpl implements MediaService, MediaService.Defini
             serviceManager
                 .serviceClient()
                 .getMediaservices()
-                .getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE)
+                .getWithResponse(resourceGroupName, accountName, Context.NONE)
                 .getValue();
         return this;
     }
@@ -215,13 +220,9 @@ public final class MediaServiceImpl implements MediaService, MediaService.Defini
             serviceManager
                 .serviceClient()
                 .getMediaservices()
-                .getByResourceGroupWithResponse(resourceGroupName, accountName, context)
+                .getWithResponse(resourceGroupName, accountName, context)
                 .getValue();
         return this;
-    }
-
-    public void syncStorageKeys(SyncStorageKeysInput parameters) {
-        serviceManager.mediaservices().syncStorageKeys(resourceGroupName, accountName, parameters);
     }
 
     public Response<Void> syncStorageKeysWithResponse(SyncStorageKeysInput parameters, Context context) {
@@ -230,14 +231,38 @@ public final class MediaServiceImpl implements MediaService, MediaService.Defini
             .syncStorageKeysWithResponse(resourceGroupName, accountName, parameters, context);
     }
 
-    public EdgePolicies listEdgePolicies(ListEdgePoliciesInput parameters) {
-        return serviceManager.mediaservices().listEdgePolicies(resourceGroupName, accountName, parameters);
+    public void syncStorageKeys(SyncStorageKeysInput parameters) {
+        serviceManager.mediaservices().syncStorageKeys(resourceGroupName, accountName, parameters);
     }
 
     public Response<EdgePolicies> listEdgePoliciesWithResponse(ListEdgePoliciesInput parameters, Context context) {
         return serviceManager
             .mediaservices()
             .listEdgePoliciesWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public EdgePolicies listEdgePolicies(ListEdgePoliciesInput parameters) {
+        return serviceManager.mediaservices().listEdgePolicies(resourceGroupName, accountName, parameters);
+    }
+
+    public Response<Void> syncStorageKeysWithResponse(SyncStorageKeysInput parameters, Context context) {
+        return serviceManager
+            .mediaservices()
+            .syncStorageKeysWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public void syncStorageKeys(SyncStorageKeysInput parameters) {
+        serviceManager.mediaservices().syncStorageKeys(resourceGroupName, accountName, parameters);
+    }
+
+    public Response<EdgePolicies> listEdgePoliciesWithResponse(ListEdgePoliciesInput parameters, Context context) {
+        return serviceManager
+            .mediaservices()
+            .listEdgePoliciesWithResponse(resourceGroupName, accountName, parameters, context);
+    }
+
+    public EdgePolicies listEdgePolicies(ListEdgePoliciesInput parameters) {
+        return serviceManager.mediaservices().listEdgePolicies(resourceGroupName, accountName, parameters);
     }
 
     public MediaServiceImpl withRegion(Region location) {
@@ -316,6 +341,16 @@ public final class MediaServiceImpl implements MediaService, MediaService.Defini
             return this;
         } else {
             this.updateParameters.withPublicNetworkAccess(publicNetworkAccess);
+            return this;
+        }
+    }
+
+    public MediaServiceImpl withMinimumTlsVersion(MinimumTlsVersion minimumTlsVersion) {
+        if (isInCreateMode()) {
+            this.innerModel().withMinimumTlsVersion(minimumTlsVersion);
+            return this;
+        } else {
+            this.updateParameters.withMinimumTlsVersion(minimumTlsVersion);
             return this;
         }
     }

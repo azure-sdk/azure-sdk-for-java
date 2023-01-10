@@ -21,7 +21,7 @@ public interface Mediaservices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MediaService> listByResourceGroup(String resourceGroupName);
+    PagedIterable<MediaService> list(String resourceGroupName);
 
     /**
      * List Media Services accounts
@@ -35,21 +35,7 @@ public interface Mediaservices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MediaService> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * Get a Media Services account
-     *
-     * <p>Get the details of a Media Services account.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a Media Services account.
-     */
-    MediaService getByResourceGroup(String resourceGroupName, String accountName);
+    PagedIterable<MediaService> list(String resourceGroupName, Context context);
 
     /**
      * Get a Media Services account
@@ -64,21 +50,21 @@ public interface Mediaservices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of a Media Services account along with {@link Response}.
      */
-    Response<MediaService> getByResourceGroupWithResponse(
-        String resourceGroupName, String accountName, Context context);
+    Response<MediaService> getWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
-     * Delete a Media Services account.
+     * Get a Media Services account
      *
-     * <p>Deletes a Media Services account.
+     * <p>Get the details of a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of a Media Services account.
      */
-    void deleteByResourceGroup(String resourceGroupName, String accountName);
+    MediaService get(String resourceGroupName, String accountName);
 
     /**
      * Delete a Media Services account.
@@ -93,21 +79,20 @@ public interface Mediaservices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> deleteWithResponse(String resourceGroupName, String accountName, Context context);
+    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
-     * Synchronizes Storage Account Keys
+     * Delete a Media Services account.
      *
-     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
+     * <p>Deletes a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void syncStorageKeys(String resourceGroupName, String accountName, SyncStorageKeysInput parameters);
+    void deleteByResourceGroup(String resourceGroupName, String accountName);
 
     /**
      * Synchronizes Storage Account Keys
@@ -127,9 +112,9 @@ public interface Mediaservices {
         String resourceGroupName, String accountName, SyncStorageKeysInput parameters, Context context);
 
     /**
-     * List the media edge policies associated with the Media Services account.
+     * Synchronizes Storage Account Keys
      *
-     * <p>List all the media edge policies associated with the Media Services account.
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -137,9 +122,8 @@ public interface Mediaservices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
      */
-    EdgePolicies listEdgePolicies(String resourceGroupName, String accountName, ListEdgePoliciesInput parameters);
+    void syncStorageKeys(String resourceGroupName, String accountName, SyncStorageKeysInput parameters);
 
     /**
      * List the media edge policies associated with the Media Services account.
@@ -159,6 +143,21 @@ public interface Mediaservices {
         String resourceGroupName, String accountName, ListEdgePoliciesInput parameters, Context context);
 
     /**
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    EdgePolicies listEdgePolicies(String resourceGroupName, String accountName, ListEdgePoliciesInput parameters);
+
+    /**
      * List Media Services accounts
      *
      * <p>List Media Services accounts in the subscription.
@@ -167,7 +166,7 @@ public interface Mediaservices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MediaService> list();
+    PagedIterable<MediaService> listBySubscription();
 
     /**
      * List Media Services accounts
@@ -180,7 +179,205 @@ public interface Mediaservices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MediaService> list(Context context);
+    PagedIterable<MediaService> listBySubscription(Context context);
+
+    /**
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MediaServiceAutoGenerated> list(String resourceGroupName);
+
+    /**
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MediaServiceAutoGenerated> list(String resourceGroupName, Context context);
+
+    /**
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of a Media Services account along with {@link Response}.
+     */
+    Response<MediaServiceAutoGenerated> getWithResponse(String resourceGroupName, String accountName, Context context);
+
+    /**
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of a Media Services account.
+     */
+    MediaServiceAutoGenerated get(String resourceGroupName, String accountName);
+
+    /**
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteWithResponse(String resourceGroupName, String accountName, Context context);
+
+    /**
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String accountName);
+
+    /**
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param parameters The request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> syncStorageKeysWithResponse(
+        String resourceGroupName, String accountName, SyncStorageKeysInput parameters, Context context);
+
+    /**
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void syncStorageKeys(String resourceGroupName, String accountName, SyncStorageKeysInput parameters);
+
+    /**
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param parameters The request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<EdgePolicies> listEdgePoliciesWithResponse(
+        String resourceGroupName, String accountName, ListEdgePoliciesInput parameters, Context context);
+
+    /**
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the Azure subscription.
+     * @param accountName The Media Services account name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    EdgePolicies listEdgePolicies(String resourceGroupName, String accountName, ListEdgePoliciesInput parameters);
+
+    /**
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MediaServiceAutoGenerated> listBySubscription();
+
+    /**
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of MediaService items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MediaServiceAutoGenerated> listBySubscription(Context context);
+
+    /**
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of a Media Services account along with {@link Response}.
+     */
+    MediaService getById(String id);
+
+    /**
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of a Media Services account along with {@link Response}.
+     */
+    Response<MediaService> getByIdWithResponse(String id, Context context);
 
     /**
      * Get a Media Services account
@@ -236,10 +433,44 @@ public interface Mediaservices {
     Response<Void> deleteByIdWithResponse(String id, Context context);
 
     /**
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByIdWithResponse(String id, Context context);
+
+    /**
      * Begins definition for a new MediaService resource.
      *
      * @param name resource name.
      * @return the first stage of the new MediaService definition.
      */
     MediaService.DefinitionStages.Blank define(String name);
+
+    /**
+     * Begins definition for a new MediaServiceAutoGenerated resource.
+     *
+     * @param name resource name.
+     * @return the first stage of the new MediaServiceAutoGenerated definition.
+     */
+    MediaServiceAutoGenerated.DefinitionStages.Blank define(String name);
 }
