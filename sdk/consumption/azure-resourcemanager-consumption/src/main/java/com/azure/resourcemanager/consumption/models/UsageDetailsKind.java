@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UsageDetailsKind. */
+/** Specifies the kind of usage details. */
 public final class UsageDetailsKind extends ExpandableStringEnum<UsageDetailsKind> {
     /** Static value legacy for UsageDetailsKind. */
     public static final UsageDetailsKind LEGACY = fromString("legacy");
@@ -27,7 +27,11 @@ public final class UsageDetailsKind extends ExpandableStringEnum<UsageDetailsKin
         return fromString(name, UsageDetailsKind.class);
     }
 
-    /** @return known UsageDetailsKind values. */
+    /**
+     * Gets known UsageDetailsKind values.
+     *
+     * @return known UsageDetailsKind values.
+     */
     public static Collection<UsageDetailsKind> values() {
         return values(UsageDetailsKind.class);
     }
