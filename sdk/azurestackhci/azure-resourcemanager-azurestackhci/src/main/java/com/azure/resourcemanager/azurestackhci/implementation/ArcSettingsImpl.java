@@ -42,15 +42,6 @@ public final class ArcSettingsImpl implements ArcSettings {
         return Utils.mapPage(inner, inner1 -> new ArcSettingImpl(inner1, this.manager()));
     }
 
-    public ArcSetting get(String resourceGroupName, String clusterName, String arcSettingName) {
-        ArcSettingInner inner = this.serviceClient().get(resourceGroupName, clusterName, arcSettingName);
-        if (inner != null) {
-            return new ArcSettingImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ArcSetting> getWithResponse(
         String resourceGroupName, String clusterName, String arcSettingName, Context context) {
         Response<ArcSettingInner> inner =
@@ -66,22 +57,21 @@ public final class ArcSettingsImpl implements ArcSettings {
         }
     }
 
+    public ArcSetting get(String resourceGroupName, String clusterName, String arcSettingName) {
+        ArcSettingInner inner = this.serviceClient().get(resourceGroupName, clusterName, arcSettingName);
+        if (inner != null) {
+            return new ArcSettingImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String resourceGroupName, String clusterName, String arcSettingName) {
         this.serviceClient().delete(resourceGroupName, clusterName, arcSettingName);
     }
 
     public void delete(String resourceGroupName, String clusterName, String arcSettingName, Context context) {
         this.serviceClient().delete(resourceGroupName, clusterName, arcSettingName, context);
-    }
-
-    public PasswordCredential generatePassword(String resourceGroupName, String clusterName, String arcSettingName) {
-        PasswordCredentialInner inner =
-            this.serviceClient().generatePassword(resourceGroupName, clusterName, arcSettingName);
-        if (inner != null) {
-            return new PasswordCredentialImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<PasswordCredential> generatePasswordWithResponse(
@@ -94,6 +84,16 @@ public final class ArcSettingsImpl implements ArcSettings {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PasswordCredentialImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PasswordCredential generatePassword(String resourceGroupName, String clusterName, String arcSettingName) {
+        PasswordCredentialInner inner =
+            this.serviceClient().generatePassword(resourceGroupName, clusterName, arcSettingName);
+        if (inner != null) {
+            return new PasswordCredentialImpl(inner, this.manager());
         } else {
             return null;
         }
