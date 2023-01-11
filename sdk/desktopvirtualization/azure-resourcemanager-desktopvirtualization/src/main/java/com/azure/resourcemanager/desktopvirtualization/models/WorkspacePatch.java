@@ -27,6 +27,10 @@ public final class WorkspacePatch {
     @JsonProperty(value = "properties")
     private WorkspacePatchProperties innerProperties;
 
+    /** Creates an instance of WorkspacePatch class. */
+    public WorkspacePatch() {
+    }
+
     /**
      * Get the tags property: tags to be updated.
      *
