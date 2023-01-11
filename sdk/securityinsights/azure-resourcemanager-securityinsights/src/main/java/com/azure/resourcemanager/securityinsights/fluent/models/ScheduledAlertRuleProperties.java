@@ -90,6 +90,10 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     @JsonProperty(value = "incidentConfiguration")
     private IncidentConfiguration incidentConfiguration;
 
+    /** Creates an instance of ScheduledAlertRuleProperties class. */
+    public ScheduledAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
      *

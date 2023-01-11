@@ -7,7 +7,6 @@ package com.azure.resourcemanager.securityinsights.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.MetadataModelInner;
-import com.azure.resourcemanager.securityinsights.models.Kind;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataCategories;
 import com.azure.resourcemanager.securityinsights.models.MetadataDependencies;
@@ -56,7 +55,7 @@ public final class MetadataModelImpl implements MetadataModel, MetadataModel.Def
         return this.innerModel().version();
     }
 
-    public Kind kind() {
+    public String kind() {
         return this.innerModel().kind();
     }
 
@@ -292,7 +291,7 @@ public final class MetadataModelImpl implements MetadataModel, MetadataModel.Def
         }
     }
 
-    public MetadataModelImpl withKind(Kind kind) {
+    public MetadataModelImpl withKind(String kind) {
         if (isInCreateMode()) {
             this.innerModel().withKind(kind);
             return this;

@@ -58,7 +58,7 @@ public final class ActionsClientImpl implements ActionsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsActi")
-    private interface ActionsService {
+    public interface ActionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -177,6 +177,7 @@ public final class ActionsClientImpl implements ActionsClient {
         if (ruleId == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -184,7 +185,7 @@ public final class ActionsClientImpl implements ActionsClient {
                     service
                         .listByAlertRule(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -240,12 +241,13 @@ public final class ActionsClientImpl implements ActionsClient {
         if (ruleId == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByAlertRule(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -377,6 +379,7 @@ public final class ActionsClientImpl implements ActionsClient {
         if (actionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter actionId is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -384,7 +387,7 @@ public final class ActionsClientImpl implements ActionsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -436,12 +439,13 @@ public final class ActionsClientImpl implements ActionsClient {
         if (actionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter actionId is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -477,23 +481,6 @@ public final class ActionsClientImpl implements ActionsClient {
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
      * @param actionId Action ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the action of alert rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ActionResponseInner get(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
-        return getAsync(resourceGroupName, workspaceName, ruleId, actionId).block();
-    }
-
-    /**
-     * Gets the action of alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
-     * @param actionId Action ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -504,6 +491,23 @@ public final class ActionsClientImpl implements ActionsClient {
     public Response<ActionResponseInner> getWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, String actionId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, ruleId, actionId, context).block();
+    }
+
+    /**
+     * Gets the action of alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @param actionId Action ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the action of alert rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ActionResponseInner get(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
+        return getWithResponse(resourceGroupName, workspaceName, ruleId, actionId, Context.NONE).getValue();
     }
 
     /**
@@ -552,6 +556,7 @@ public final class ActionsClientImpl implements ActionsClient {
         } else {
             action.validate();
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -559,7 +564,7 @@ public final class ActionsClientImpl implements ActionsClient {
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -623,12 +628,13 @@ public final class ActionsClientImpl implements ActionsClient {
         } else {
             action.validate();
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -667,25 +673,6 @@ public final class ActionsClientImpl implements ActionsClient {
      * @param ruleId Alert rule ID.
      * @param actionId Action ID.
      * @param action The action.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return action for alert rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ActionResponseInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String ruleId, String actionId, ActionRequest action) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, ruleId, actionId, action).block();
-    }
-
-    /**
-     * Creates or updates the action of alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
-     * @param actionId Action ID.
-     * @param action The action.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -702,6 +689,26 @@ public final class ActionsClientImpl implements ActionsClient {
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, ruleId, actionId, action, context)
             .block();
+    }
+
+    /**
+     * Creates or updates the action of alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @param actionId Action ID.
+     * @param action The action.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return action for alert rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ActionResponseInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String ruleId, String actionId, ActionRequest action) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, action, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -744,6 +751,7 @@ public final class ActionsClientImpl implements ActionsClient {
         if (actionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter actionId is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -751,7 +759,7 @@ public final class ActionsClientImpl implements ActionsClient {
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -803,12 +811,13 @@ public final class ActionsClientImpl implements ActionsClient {
         if (actionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter actionId is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -843,22 +852,6 @@ public final class ActionsClientImpl implements ActionsClient {
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
      * @param actionId Action ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
-        deleteAsync(resourceGroupName, workspaceName, ruleId, actionId).block();
-    }
-
-    /**
-     * Delete the action of alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
-     * @param actionId Action ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -869,6 +862,22 @@ public final class ActionsClientImpl implements ActionsClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, String actionId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, ruleId, actionId, context).block();
+    }
+
+    /**
+     * Delete the action of alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @param actionId Action ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
+        deleteWithResponse(resourceGroupName, workspaceName, ruleId, actionId, Context.NONE);
     }
 
     /**

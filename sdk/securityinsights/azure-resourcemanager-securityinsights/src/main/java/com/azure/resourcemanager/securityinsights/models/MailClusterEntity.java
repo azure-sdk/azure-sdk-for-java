@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailClusterEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -17,13 +16,17 @@ import java.util.Map;
 /** Represents a mail cluster entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MailCluster")
-@Fluent
-public final class MailClusterEntity extends EntityInner {
+@Immutable
+public final class MailClusterEntity extends Entity {
     /*
      * Mail cluster entity properties
      */
     @JsonProperty(value = "properties")
     private MailClusterEntityProperties innerProperties;
+
+    /** Creates an instance of MailClusterEntity class. */
+    public MailClusterEntity() {
+    }
 
     /**
      * Get the innerProperties property: Mail cluster entity properties.
