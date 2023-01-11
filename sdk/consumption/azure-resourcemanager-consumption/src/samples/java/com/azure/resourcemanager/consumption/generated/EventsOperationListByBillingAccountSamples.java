@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventsOperation ListByBillingAccount. */
 public final class EventsOperationListByBillingAccountSamples {
     /*
@@ -17,7 +15,7 @@ public final class EventsOperationListByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void eventsGetByBillingAccount(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.eventsOperations().listByBillingAccount("1234:5678", null, Context.NONE);
+        manager.eventsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -33,6 +31,8 @@ public final class EventsOperationListByBillingAccountSamples {
         manager
             .eventsOperations()
             .listByBillingAccount(
-                "1234:5678", "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'", Context.NONE);
+                "1234:5678",
+                "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
     }
 }

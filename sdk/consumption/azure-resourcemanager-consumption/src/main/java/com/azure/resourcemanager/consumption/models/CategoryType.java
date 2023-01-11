@@ -8,10 +8,19 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CategoryType. */
+/** The category of the budget, whether the budget tracks cost or usage. */
 public final class CategoryType extends ExpandableStringEnum<CategoryType> {
     /** Static value Cost for CategoryType. */
     public static final CategoryType COST = fromString("Cost");
+
+    /**
+     * Creates a new instance of CategoryType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public CategoryType() {
+    }
 
     /**
      * Creates or finds a CategoryType from its string representation.
@@ -24,7 +33,11 @@ public final class CategoryType extends ExpandableStringEnum<CategoryType> {
         return fromString(name, CategoryType.class);
     }
 
-    /** @return known CategoryType values. */
+    /**
+     * Gets known CategoryType values.
+     *
+     * @return known CategoryType values.
+     */
     public static Collection<CategoryType> values() {
         return values(CategoryType.class);
     }

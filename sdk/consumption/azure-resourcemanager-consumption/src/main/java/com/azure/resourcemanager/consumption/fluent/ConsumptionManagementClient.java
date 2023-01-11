@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for ConsumptionManagementClient class. */
 public interface ConsumptionManagementClient {
     /**
-     * Gets Azure Subscription ID.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -22,13 +22,6 @@ public interface ConsumptionManagementClient {
      * @return the endpoint value.
      */
     String getEndpoint();
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -43,6 +36,20 @@ public interface ConsumptionManagementClient {
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
+
+    /**
+     * Gets the PriceSheetsClient object to access its operations.
+     *
+     * @return the PriceSheetsClient object.
+     */
+    PriceSheetsClient getPriceSheets();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 
     /**
      * Gets the UsageDetailsClient object to access its operations.
@@ -120,20 +127,6 @@ public interface ConsumptionManagementClient {
      * @return the ReservationTransactionsClient object.
      */
     ReservationTransactionsClient getReservationTransactions();
-
-    /**
-     * Gets the PriceSheetsClient object to access its operations.
-     *
-     * @return the PriceSheetsClient object.
-     */
-    PriceSheetsClient getPriceSheets();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
 
     /**
      * Gets the AggregatedCostsClient object to access its operations.

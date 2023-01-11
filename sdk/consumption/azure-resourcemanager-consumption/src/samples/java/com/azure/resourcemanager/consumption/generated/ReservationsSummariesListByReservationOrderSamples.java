@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Datagrain;
 
 /** Samples for ReservationsSummaries ListByReservationOrder. */
@@ -20,7 +19,8 @@ public final class ReservationsSummariesListByReservationOrderSamples {
     public static void reservationSummariesMonthly(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationsSummaries()
-            .listByReservationOrder("00000000-0000-0000-0000-000000000000", Datagrain.MONTHLY, null, Context.NONE);
+            .listByReservationOrder(
+                "00000000-0000-0000-0000-000000000000", Datagrain.MONTHLY, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -38,6 +38,6 @@ public final class ReservationsSummariesListByReservationOrderSamples {
                 "00000000-0000-0000-0000-000000000000",
                 Datagrain.DAILY,
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-11-20",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

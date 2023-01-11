@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.LotsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
 import com.azure.resourcemanager.consumption.models.Lots;
@@ -33,8 +32,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LotsOperationsClient. */
 public final class LotsOperationsClientImpl implements LotsOperationsClient {
-    private final ClientLogger logger = new ClientLogger(LotsOperationsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final LotsOperationsService service;
 
@@ -58,7 +55,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConsumptionManagemen")
-    private interface LotsOperationsService {
+    public interface LotsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}"
@@ -86,6 +83,21 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}/providers"
+                + "/Microsoft.Consumption/lots")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Lots>> listByCustomer(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountId") String billingAccountId,
+            @PathParam("customerId") String customerId,
+            @QueryParam("api-version") String apiVersion,
+            @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -104,18 +116,28 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Lots>> listByCustomerNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileSinglePageAsync(
@@ -134,18 +156,14 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileId is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByBillingProfile(
-                            this.client.getEndpoint(),
-                            billingAccountId,
-                            billingProfileId,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                            this.client.getEndpoint(), billingAccountId, billingProfileId, apiVersion, accept, context))
             .<PagedResponse<LotSummaryInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -159,8 +177,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
@@ -168,7 +186,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileSinglePageAsync(
@@ -187,16 +205,12 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileId is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfile(
-                this.client.getEndpoint(),
-                billingAccountId,
-                billingProfileId,
-                this.client.getApiVersion(),
-                accept,
-                context)
+                this.client.getEndpoint(), billingAccountId, billingProfileId, apiVersion, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -209,15 +223,15 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingProfileAsync(String billingAccountId, String billingProfileId) {
@@ -227,8 +241,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
@@ -236,7 +250,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingProfileAsync(
@@ -247,15 +261,15 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingProfile(String billingAccountId, String billingProfileId) {
@@ -263,8 +277,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
@@ -272,7 +286,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingProfile(
@@ -281,8 +295,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
      *
      * @param billingAccountId BillingAccount ID.
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
@@ -291,7 +305,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountSinglePageAsync(
@@ -306,15 +320,205 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByBillingAccount(
+                            this.client.getEndpoint(), billingAccountId, apiVersion, filter, accept, context))
+            .<PagedResponse<LotSummaryInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
+     *     where key and value is separated by a colon (:).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountId, String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        final String apiVersion = "2021-10-01";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByBillingAccount(this.client.getEndpoint(), billingAccountId, apiVersion, filter, accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
+     *     where key and value is separated by a colon (:).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId, String filter) {
+        return new PagedFlux<>(
+            () -> listByBillingAccountSinglePageAsync(billingAccountId, filter),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId) {
+        final String filter = null;
+        return new PagedFlux<>(
+            () -> listByBillingAccountSinglePageAsync(billingAccountId, filter),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
+     *     where key and value is separated by a colon (:).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(
+        String billingAccountId, String filter, Context context) {
+        return new PagedFlux<>(
+            () -> listByBillingAccountSinglePageAsync(billingAccountId, filter, context),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<LotSummaryInner> listByBillingAccount(String billingAccountId) {
+        final String filter = null;
+        return new PagedIterable<>(listByBillingAccountAsync(billingAccountId, filter));
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
+     *     where key and value is separated by a colon (:).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<LotSummaryInner> listByBillingAccount(
+        String billingAccountId, String filter, Context context) {
+        return new PagedIterable<>(listByBillingAccountAsync(billingAccountId, filter, context));
+    }
+
+    /**
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     *     'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<LotSummaryInner>> listByCustomerSinglePageAsync(
+        String billingAccountId, String customerId, String filter) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        if (customerId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter customerId is required and cannot be null."));
+        }
+        final String apiVersion = "2021-10-01";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByCustomer(
                             this.client.getEndpoint(),
                             billingAccountId,
-                            this.client.getApiVersion(),
+                            customerId,
+                            apiVersion,
                             filter,
                             accept,
                             context))
@@ -331,22 +535,22 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
      *
      * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
-     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
-     *     where key and value is separated by a colon (:).
+     *     'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountId, String filter, Context context) {
+    private Mono<PagedResponse<LotSummaryInner>> listByCustomerSinglePageAsync(
+        String billingAccountId, String customerId, String filter, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -357,11 +561,15 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
         }
+        if (customerId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter customerId is required and cannot be null."));
+        }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingAccount(
-                this.client.getEndpoint(), billingAccountId, this.client.getApiVersion(), filter, accept, context)
+            .listByCustomer(
+                this.client.getEndpoint(), billingAccountId, customerId, apiVersion, filter, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -374,109 +582,112 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
      *
      * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
-     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
-     *     where key and value is separated by a colon (:).
+     *     'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId, String filter) {
+    private PagedFlux<LotSummaryInner> listByCustomerAsync(String billingAccountId, String customerId, String filter) {
         return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountId, filter),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+            () -> listByCustomerSinglePageAsync(billingAccountId, customerId, filter),
+            nextLink -> listByCustomerNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
      *
      * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId) {
+    private PagedFlux<LotSummaryInner> listByCustomerAsync(String billingAccountId, String customerId) {
         final String filter = null;
         return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountId, filter),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+            () -> listByCustomerSinglePageAsync(billingAccountId, customerId, filter),
+            nextLink -> listByCustomerNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
      *
      * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
-     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
-     *     where key and value is separated by a colon (:).
+     *     'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(
-        String billingAccountId, String filter, Context context) {
+    private PagedFlux<LotSummaryInner> listByCustomerAsync(
+        String billingAccountId, String customerId, String filter, Context context) {
         return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountId, filter, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+            () -> listByCustomerSinglePageAsync(billingAccountId, customerId, filter, context),
+            nextLink -> listByCustomerNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
      *
      * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LotSummaryInner> listByBillingAccount(String billingAccountId) {
+    public PagedIterable<LotSummaryInner> listByCustomer(String billingAccountId, String customerId) {
         final String filter = null;
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountId, filter));
+        return new PagedIterable<>(listByCustomerAsync(billingAccountId, customerId, filter));
     }
 
     /**
-     * Lists all Azure credits and Microsoft Azure consumption commitments for a billing account or a billing profile.
-     * Microsoft Azure consumption commitments are only supported for the billing account scope.
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
      *
      * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
-     *     'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string
-     *     where key and value is separated by a colon (:).
+     *     'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LotSummaryInner> listByBillingAccount(
-        String billingAccountId, String filter, Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountId, filter, context));
+    public PagedIterable<LotSummaryInner> listByCustomer(
+        String billingAccountId, String customerId, String filter, Context context) {
+        return new PagedIterable<>(listByCustomerAsync(billingAccountId, customerId, filter, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
@@ -508,12 +719,13 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileNextSinglePageAsync(
@@ -545,11 +757,12 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
@@ -581,12 +794,13 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountNextSinglePageAsync(
@@ -604,6 +818,79 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
         context = this.client.mergeContext(context);
         return service
             .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<LotSummaryInner>> listByCustomerNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<LotSummaryInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<LotSummaryInner>> listByCustomerNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

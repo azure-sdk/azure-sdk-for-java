@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationRecommendations List. */
 public final class ReservationRecommendationsListSamples {
     /*
@@ -20,7 +18,7 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, Context.NONE);
+            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -35,7 +33,10 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("providers/Microsoft.Billing/billingAccounts/123456/billingProfiles/6420", null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456/billingProfiles/6420",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -50,7 +51,10 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup", null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -68,7 +72,7 @@ public final class ReservationRecommendationsListSamples {
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000",
                 "properties/scope eq 'Single' AND properties/lookBackPeriod eq 'Last7Days'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -83,6 +87,6 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, Context.NONE);
+            .list("providers/Microsoft.Billing/billingAccounts/123456", null, com.azure.core.util.Context.NONE);
     }
 }

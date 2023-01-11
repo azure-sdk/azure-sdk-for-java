@@ -5,35 +5,34 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.OperationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Result of listing consumption operations. It contains a list of operations and a URL link to get the next set of
+ * A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of
  * results.
  */
 @Immutable
 public final class OperationListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationListResult.class);
-
     /*
-     * List of consumption operations supported by the Microsoft.Consumption
-     * resource provider.
+     * List of operations supported by the resource provider
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationInner> value;
 
     /*
-     * URL to get the next set of operation list results if there are any.
+     * URL to get the next set of operation list results (if there are any).
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of OperationListResult class. */
+    public OperationListResult() {
+    }
+
     /**
-     * Get the value property: List of consumption operations supported by the Microsoft.Consumption resource provider.
+     * Get the value property: List of operations supported by the resource provider.
      *
      * @return the value value.
      */
@@ -42,7 +41,7 @@ public final class OperationListResult {
     }
 
     /**
-     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * Get the nextLink property: URL to get the next set of operation list results (if there are any).
      *
      * @return the nextLink value.
      */

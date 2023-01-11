@@ -15,6 +15,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
@@ -45,20 +46,17 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the ConsumptionManagementClientImpl type. */
 @ServiceClient(builder = ConsumptionManagementClientBuilder.class)
 public final class ConsumptionManagementClientImpl implements ConsumptionManagementClient {
-    private final ClientLogger logger = new ClientLogger(ConsumptionManagementClientImpl.class);
-
-    /** Azure Subscription ID. */
+    /** The ID of the target subscription. */
     private final String subscriptionId;
 
     /**
-     * Gets Azure Subscription ID.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -76,18 +74,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -124,6 +110,30 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
+    }
+
+    /** The PriceSheetsClient object to access its operations. */
+    private final PriceSheetsClient priceSheets;
+
+    /**
+     * Gets the PriceSheetsClient object to access its operations.
+     *
+     * @return the PriceSheetsClient object.
+     */
+    public PriceSheetsClient getPriceSheets() {
+        return this.priceSheets;
+    }
+
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /** The UsageDetailsClient object to access its operations. */
@@ -258,30 +268,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         return this.reservationTransactions;
     }
 
-    /** The PriceSheetsClient object to access its operations. */
-    private final PriceSheetsClient priceSheets;
-
-    /**
-     * Gets the PriceSheetsClient object to access its operations.
-     *
-     * @return the PriceSheetsClient object.
-     */
-    public PriceSheetsClient getPriceSheets() {
-        return this.priceSheets;
-    }
-
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
     /** The AggregatedCostsClient object to access its operations. */
     private final AggregatedCostsClient aggregatedCosts;
 
@@ -337,7 +323,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Azure Subscription ID.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     ConsumptionManagementClientImpl(
@@ -352,7 +338,8 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-10-01";
+        this.priceSheets = new PriceSheetsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.usageDetails = new UsageDetailsClientImpl(this);
         this.marketplaces = new MarketplacesClientImpl(this);
         this.budgets = new BudgetsClientImpl(this);
@@ -364,8 +351,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.reservationRecommendations = new ReservationRecommendationsClientImpl(this);
         this.reservationRecommendationDetails = new ReservationRecommendationDetailsClientImpl(this);
         this.reservationTransactions = new ReservationTransactionsClientImpl(this);
-        this.priceSheets = new PriceSheetsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
         this.aggregatedCosts = new AggregatedCostsClientImpl(this);
         this.eventsOperations = new EventsOperationsClientImpl(this);
         this.lotsOperations = new LotsOperationsClientImpl(this);
@@ -388,10 +373,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -455,7 +437,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -514,4 +496,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConsumptionManagementClientImpl.class);
 }

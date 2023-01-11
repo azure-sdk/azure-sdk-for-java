@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails ListByReservationOrder. */
 public final class ReservationsDetailsListByReservationOrderSamples {
     /*
@@ -22,6 +20,6 @@ public final class ReservationsDetailsListByReservationOrderSamples {
             .listByReservationOrder(
                 "00000000-0000-0000-0000-000000000000",
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
