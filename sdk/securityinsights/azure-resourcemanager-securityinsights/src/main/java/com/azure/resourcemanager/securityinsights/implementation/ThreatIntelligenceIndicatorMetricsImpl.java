@@ -27,15 +27,6 @@ public final class ThreatIntelligenceIndicatorMetricsImpl implements ThreatIntel
         this.serviceManager = serviceManager;
     }
 
-    public ThreatIntelligenceMetricsList list(String resourceGroupName, String workspaceName) {
-        ThreatIntelligenceMetricsListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new ThreatIntelligenceMetricsListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ThreatIntelligenceMetricsList> listWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         Response<ThreatIntelligenceMetricsListInner> inner =
@@ -46,6 +37,15 @@ public final class ThreatIntelligenceIndicatorMetricsImpl implements ThreatIntel
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ThreatIntelligenceMetricsListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ThreatIntelligenceMetricsList list(String resourceGroupName, String workspaceName) {
+        ThreatIntelligenceMetricsListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new ThreatIntelligenceMetricsListImpl(inner, this.manager());
         } else {
             return null;
         }

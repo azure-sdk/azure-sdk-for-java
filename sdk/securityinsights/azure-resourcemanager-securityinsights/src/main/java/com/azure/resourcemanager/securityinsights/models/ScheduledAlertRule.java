@@ -26,6 +26,10 @@ public final class ScheduledAlertRule extends AlertRuleInner {
     @JsonProperty(value = "properties")
     private ScheduledAlertRuleProperties innerProperties;
 
+    /** Creates an instance of ScheduledAlertRule class. */
+    public ScheduledAlertRule() {
+    }
+
     /**
      * Get the innerProperties property: Scheduled alert rule properties.
      *

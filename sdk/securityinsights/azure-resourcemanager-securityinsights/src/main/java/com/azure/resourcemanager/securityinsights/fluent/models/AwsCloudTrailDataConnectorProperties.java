@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.AwsCloudTrailDataConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -21,8 +20,12 @@ public final class AwsCloudTrailDataConnectorProperties {
     /*
      * The available data types for the connector.
      */
-    @JsonProperty(value = "dataTypes", required = true)
+    @JsonProperty(value = "dataTypes")
     private AwsCloudTrailDataConnectorDataTypes dataTypes;
+
+    /** Creates an instance of AwsCloudTrailDataConnectorProperties class. */
+    public AwsCloudTrailDataConnectorProperties() {
+    }
 
     /**
      * Get the awsRoleArn property: The Aws Role Arn (with CloudTrailReadOnly policy) that is used to access the Aws
@@ -72,15 +75,8 @@ public final class AwsCloudTrailDataConnectorProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model AwsCloudTrailDataConnectorProperties"));
-        } else {
+        if (dataTypes() != null) {
             dataTypes().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AwsCloudTrailDataConnectorProperties.class);
 }

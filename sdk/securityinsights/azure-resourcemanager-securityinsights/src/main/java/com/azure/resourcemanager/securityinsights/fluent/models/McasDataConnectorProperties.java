@@ -5,19 +5,47 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.McasDataConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** MCAS (Microsoft Cloud App Security) data connector properties. */
 @Fluent
-public final class McasDataConnectorProperties extends DataConnectorTenantId {
+public final class McasDataConnectorProperties {
+    /*
+     * The tenant id to connect to, and get the data from.
+     */
+    @JsonProperty(value = "tenantId")
+    private String tenantId;
+
     /*
      * The available data types for the connector.
      */
-    @JsonProperty(value = "dataTypes", required = true)
+    @JsonProperty(value = "dataTypes")
     private McasDataConnectorDataTypes dataTypes;
+
+    /** Creates an instance of McasDataConnectorProperties class. */
+    public McasDataConnectorProperties() {
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.tenantId;
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the McasDataConnectorProperties object itself.
+     */
+    public McasDataConnectorProperties withTenantId(String tenantId) {
+        this.tenantId = tenantId;
+        return this;
+    }
 
     /**
      * Get the dataTypes property: The available data types for the connector.
@@ -39,30 +67,14 @@ public final class McasDataConnectorProperties extends DataConnectorTenantId {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public McasDataConnectorProperties withTenantId(String tenantId) {
-        super.withTenantId(tenantId);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
-        if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model McasDataConnectorProperties"));
-        } else {
+        if (dataTypes() != null) {
             dataTypes().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(McasDataConnectorProperties.class);
 }

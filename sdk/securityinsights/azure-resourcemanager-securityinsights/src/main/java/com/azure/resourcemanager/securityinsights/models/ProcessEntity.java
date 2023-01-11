@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.ProcessEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -17,12 +16,16 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Process")
 @Fluent
-public final class ProcessEntity extends EntityInner {
+public final class ProcessEntity extends Entity {
     /*
      * Process entity properties
      */
     @JsonProperty(value = "properties")
     private ProcessEntityProperties innerProperties;
+
+    /** Creates an instance of ProcessEntity class. */
+    public ProcessEntity() {
+    }
 
     /**
      * Get the innerProperties property: Process entity properties.

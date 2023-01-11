@@ -22,6 +22,10 @@ public final class MdatpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private MdatpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of MdatpDataConnector class. */
+    public MdatpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: MDATP (Microsoft Defender Advanced Threat Protection) data connector
      * properties.
@@ -36,29 +40,6 @@ public final class MdatpDataConnector extends DataConnectorInner {
     @Override
     public MdatpDataConnector withEtag(String etag) {
         super.withEtag(etag);
-        return this;
-    }
-
-    /**
-     * Get the dataTypes property: The available data types for the connector.
-     *
-     * @return the dataTypes value.
-     */
-    public AlertsDataTypeOfDataConnector dataTypes() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
-    }
-
-    /**
-     * Set the dataTypes property: The available data types for the connector.
-     *
-     * @param dataTypes the dataTypes value to set.
-     * @return the MdatpDataConnector object itself.
-     */
-    public MdatpDataConnector withDataTypes(AlertsDataTypeOfDataConnector dataTypes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MdatpDataConnectorProperties();
-        }
-        this.innerProperties().withDataTypes(dataTypes);
         return this;
     }
 
@@ -82,6 +63,29 @@ public final class MdatpDataConnector extends DataConnectorInner {
             this.innerProperties = new MdatpDataConnectorProperties();
         }
         this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the dataTypes property: The available data types for the connector.
+     *
+     * @return the dataTypes value.
+     */
+    public AlertsDataTypeOfDataConnector dataTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
+    }
+
+    /**
+     * Set the dataTypes property: The available data types for the connector.
+     *
+     * @param dataTypes the dataTypes value to set.
+     * @return the MdatpDataConnector object itself.
+     */
+    public MdatpDataConnector withDataTypes(AlertsDataTypeOfDataConnector dataTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MdatpDataConnectorProperties();
+        }
+        this.innerProperties().withDataTypes(dataTypes);
         return this;
     }
 

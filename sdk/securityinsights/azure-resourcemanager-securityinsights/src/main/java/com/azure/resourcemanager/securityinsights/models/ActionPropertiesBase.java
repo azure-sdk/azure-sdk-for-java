@@ -18,6 +18,10 @@ public class ActionPropertiesBase {
     @JsonProperty(value = "logicAppResourceId", required = true)
     private String logicAppResourceId;
 
+    /** Creates an instance of ActionPropertiesBase class. */
+    public ActionPropertiesBase() {
+    }
+
     /**
      * Get the logicAppResourceId property: Logic App Resource Id,
      * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-workflow-id}.

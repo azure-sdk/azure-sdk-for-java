@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for SecurityMLAnalyticsSettings Delete. */
 public final class SecurityMLAnalyticsSettingsDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/securityMLAnalyticsSettings/DeleteSecurityMLAnalyticsSetting.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/securityMLAnalyticsSettings/DeleteSecurityMLAnalyticsSetting.json
      */
     /**
      * Sample code: Delete a Security ML Analytics Settings.

@@ -9,10 +9,10 @@ import com.azure.core.util.Context;
 /** Samples for WatchlistItems Delete. */
 public final class WatchlistItemsDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/watchlists/DeleteWatchlistItem.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/watchlists/DeleteWatchlistItem.json
      */
     /**
-     * Sample code: Delete a watchlist Item.
+     * Sample code: Delete a watchlist item.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */

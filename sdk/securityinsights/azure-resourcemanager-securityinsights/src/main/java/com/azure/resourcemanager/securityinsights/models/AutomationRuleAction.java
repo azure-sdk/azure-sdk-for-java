@@ -29,6 +29,10 @@ public class AutomationRuleAction {
     @JsonProperty(value = "order", required = true)
     private int order;
 
+    /** Creates an instance of AutomationRuleAction class. */
+    public AutomationRuleAction() {
+    }
+
     /**
      * Get the order property: The order property.
      *
