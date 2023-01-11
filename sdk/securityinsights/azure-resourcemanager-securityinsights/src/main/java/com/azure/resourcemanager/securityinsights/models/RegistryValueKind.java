@@ -38,6 +38,15 @@ public final class RegistryValueKind extends ExpandableStringEnum<RegistryValueK
     public static final RegistryValueKind QWORD = fromString("QWord");
 
     /**
+     * Creates a new instance of RegistryValueKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RegistryValueKind() {
+    }
+
+    /**
      * Creates or finds a RegistryValueKind from its string representation.
      *
      * @param name a name to look for.

@@ -22,6 +22,10 @@ public final class OfficeIrmDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private OfficeIrmDataConnectorProperties innerProperties;
 
+    /** Creates an instance of OfficeIrmDataConnector class. */
+    public OfficeIrmDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: OfficeIRM (Microsoft Insider Risk Management) data connector properties.
      *

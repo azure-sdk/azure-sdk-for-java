@@ -73,6 +73,10 @@ public class EntityInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of EntityInner class. */
+    public EntityInner() {
+    }
+
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *

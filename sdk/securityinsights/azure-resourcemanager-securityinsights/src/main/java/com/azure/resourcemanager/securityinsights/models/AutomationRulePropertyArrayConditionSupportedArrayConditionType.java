@@ -16,6 +16,15 @@ public final class AutomationRulePropertyArrayConditionSupportedArrayConditionTy
         fromString("AnyItem");
 
     /**
+     * Creates a new instance of AutomationRulePropertyArrayConditionSupportedArrayConditionType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyArrayConditionSupportedArrayConditionType() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyArrayConditionSupportedArrayConditionType from its string
      * representation.
      *

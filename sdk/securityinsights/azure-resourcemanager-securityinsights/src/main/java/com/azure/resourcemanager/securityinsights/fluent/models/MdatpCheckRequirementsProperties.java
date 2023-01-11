@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** MDATP (Microsoft Defender Advanced Threat Protection) requirements check properties. */
 @Fluent
 public final class MdatpCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of MdatpCheckRequirementsProperties class. */
+    public MdatpCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public MdatpCheckRequirementsProperties withTenantId(String tenantId) {

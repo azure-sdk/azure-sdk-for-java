@@ -29,15 +29,6 @@ public final class ProductSettingsImpl implements ProductSettings {
         this.serviceManager = serviceManager;
     }
 
-    public SettingList list(String resourceGroupName, String workspaceName) {
-        SettingListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new SettingListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SettingList> listWithResponse(String resourceGroupName, String workspaceName, Context context) {
         Response<SettingListInner> inner =
             this.serviceClient().listWithResponse(resourceGroupName, workspaceName, context);
@@ -52,10 +43,10 @@ public final class ProductSettingsImpl implements ProductSettings {
         }
     }
 
-    public Settings get(String resourceGroupName, String workspaceName, String settingsName) {
-        SettingsInner inner = this.serviceClient().get(resourceGroupName, workspaceName, settingsName);
+    public SettingList list(String resourceGroupName, String workspaceName) {
+        SettingListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
         if (inner != null) {
-            return new SettingsImpl(inner, this.manager());
+            return new SettingListImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -76,8 +67,13 @@ public final class ProductSettingsImpl implements ProductSettings {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String settingsName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, settingsName);
+    public Settings get(String resourceGroupName, String workspaceName, String settingsName) {
+        SettingsInner inner = this.serviceClient().get(resourceGroupName, workspaceName, settingsName);
+        if (inner != null) {
+            return new SettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -85,14 +81,8 @@ public final class ProductSettingsImpl implements ProductSettings {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, settingsName, context);
     }
 
-    public Settings update(
-        String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings) {
-        SettingsInner inner = this.serviceClient().update(resourceGroupName, workspaceName, settingsName, settings);
-        if (inner != null) {
-            return new SettingsImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String settingsName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, settingsName);
     }
 
     public Response<Settings> updateWithResponse(
@@ -105,6 +95,16 @@ public final class ProductSettingsImpl implements ProductSettings {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SettingsImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Settings update(
+        String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings) {
+        SettingsInner inner = this.serviceClient().update(resourceGroupName, workspaceName, settingsName, settings);
+        if (inner != null) {
+            return new SettingsImpl(inner, this.manager());
         } else {
             return null;
         }

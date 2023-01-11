@@ -112,6 +112,10 @@ public final class EnrichmentIpGeodataInner {
     @JsonProperty(value = "stateCode")
     private String stateCode;
 
+    /** Creates an instance of EnrichmentIpGeodataInner class. */
+    public EnrichmentIpGeodataInner() {
+    }
+
     /**
      * Get the asn property: The autonomous system number associated with this IP address.
      *

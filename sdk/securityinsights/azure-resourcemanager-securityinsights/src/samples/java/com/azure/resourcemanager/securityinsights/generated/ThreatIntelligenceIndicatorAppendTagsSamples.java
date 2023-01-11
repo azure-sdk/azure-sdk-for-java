@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAppendTags;
 import java.util.Arrays;
 
 /** Samples for ThreatIntelligenceIndicator AppendTags. */
 public final class ThreatIntelligenceIndicatorAppendTagsSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/threatintelligence/AppendTagsThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/threatintelligence/AppendTagsThreatIntelligence.json
      */
     /**
      * Sample code: Append tags to a threat intelligence indicator.
@@ -27,6 +26,6 @@ public final class ThreatIntelligenceIndicatorAppendTagsSamples {
                 "myWorkspace",
                 "d9cd6f0b-96b9-3984-17cd-a779d1e15a93",
                 new ThreatIntelligenceAppendTags().withThreatIntelligenceTags(Arrays.asList("tag1", "tag2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

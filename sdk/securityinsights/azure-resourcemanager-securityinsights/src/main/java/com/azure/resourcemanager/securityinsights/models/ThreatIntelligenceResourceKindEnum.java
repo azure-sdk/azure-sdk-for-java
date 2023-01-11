@@ -14,6 +14,15 @@ public final class ThreatIntelligenceResourceKindEnum extends ExpandableStringEn
     public static final ThreatIntelligenceResourceKindEnum INDICATOR = fromString("indicator");
 
     /**
+     * Creates a new instance of ThreatIntelligenceResourceKindEnum value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ThreatIntelligenceResourceKindEnum() {
+    }
+
+    /**
      * Creates or finds a ThreatIntelligenceResourceKindEnum from its string representation.
      *
      * @param name a name to look for.
