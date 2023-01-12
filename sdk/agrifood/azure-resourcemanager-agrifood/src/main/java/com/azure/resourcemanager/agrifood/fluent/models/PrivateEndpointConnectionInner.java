@@ -11,8 +11,9 @@ import com.azure.resourcemanager.agrifood.models.PrivateEndpoint;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkServiceConnectionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** The Private Endpoint Connection resource. */
+/** The private endpoint connection resource. */
 @Fluent
 public final class PrivateEndpointConnectionInner extends ProxyResource {
     /*
@@ -26,6 +27,10 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of PrivateEndpointConnectionInner class. */
+    public PrivateEndpointConnectionInner() {
+    }
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -46,7 +51,16 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
+     * Get the groupIds property: The group ids for the private endpoint resource.
+     *
+     * @return the groupIds value.
+     */
+    public List<String> groupIds() {
+        return this.innerProperties() == null ? null : this.innerProperties().groupIds();
+    }
+
+    /**
+     * Get the privateEndpoint property: The private endpoint resource.
      *
      * @return the privateEndpoint value.
      */
@@ -55,7 +69,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
+     * Set the privateEndpoint property: The private endpoint resource.
      *
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionInner object itself.

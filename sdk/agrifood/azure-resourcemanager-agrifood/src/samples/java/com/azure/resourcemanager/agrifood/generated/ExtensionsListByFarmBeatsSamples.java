@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions ListByFarmBeats. */
 public final class ExtensionsListByFarmBeatsSamples {
     /*
@@ -19,6 +17,13 @@ public final class ExtensionsListByFarmBeatsSamples {
     public static void extensionsListByFarmBeats(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .extensions()
-            .listByFarmBeats("examples-rg", "examples-farmbeatsResourceName", null, null, null, null, Context.NONE);
+            .listByFarmBeats(
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }

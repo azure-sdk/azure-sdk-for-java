@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FarmBeatsModels GetOperationResult. */
 public final class FarmBeatsModelsGetOperationResultSamples {
     /*
@@ -23,6 +21,6 @@ public final class FarmBeatsModelsGetOperationResultSamples {
                 "examples-rg",
                 "examples-farmBeatsResourceName",
                 "resource-provisioning-id-farmBeatsResourceName",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

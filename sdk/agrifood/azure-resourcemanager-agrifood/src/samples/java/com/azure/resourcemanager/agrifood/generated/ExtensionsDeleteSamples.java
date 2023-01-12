@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
@@ -19,6 +17,10 @@ public final class ExtensionsDeleteSamples {
     public static void extensionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .extensions()
-            .deleteWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
+            .deleteWithResponse(
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                "provider.extension",
+                com.azure.core.util.Context.NONE);
     }
 }
