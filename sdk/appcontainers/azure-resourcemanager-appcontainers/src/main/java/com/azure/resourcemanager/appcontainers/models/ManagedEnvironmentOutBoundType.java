@@ -17,6 +17,15 @@ public final class ManagedEnvironmentOutBoundType extends ExpandableStringEnum<M
     public static final ManagedEnvironmentOutBoundType USER_DEFINED_ROUTING = fromString("UserDefinedRouting");
 
     /**
+     * Creates a new instance of ManagedEnvironmentOutBoundType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ManagedEnvironmentOutBoundType() {
+    }
+
+    /**
      * Creates or finds a ManagedEnvironmentOutBoundType from its string representation.
      *
      * @param name a name to look for.
