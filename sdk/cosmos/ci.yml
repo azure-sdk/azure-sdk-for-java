@@ -71,33 +71,37 @@ pr:
       - sdk/cosmos/azure-spring-data-cosmos-test/pom.xml
 
 parameters:
-- name: release_azurecosmos
-  displayName: 'azure-cosmos'
-  type: boolean
-  default: true
-- name: release_azurespringdatacosmos
-  displayName: 'azure-spring-data-cosmos'
-  type: boolean
-  default: true
-- name: release_azurecosmosencryption
-  displayName: 'azure-cosmos-encryption'
-  type: boolean
-  default: true
-- name: release_azurecosmosspark31
-  displayName: 'azure-cosmos-spark_3-1_2-12'
-  type: boolean
-  default: true
-- name: release_azurecosmosspark32
-  displayName: 'azure-cosmos-spark_3-2_2-12'
-  type: boolean
-  default: true
-- name: release_azurecosmosspark33
-  displayName: 'azure-cosmos-spark_3-3_2-12'
-  type: boolean
-  default: true
+  - name: release_azurecosmos
+    displayName: azure-cosmos
+    type: boolean
+    default: true
+  - name: release_azurespringdatacosmos
+    displayName: azure-spring-data-cosmos
+    type: boolean
+    default: true
+  - name: release_azurecosmosencryption
+    displayName: azure-cosmos-encryption
+    type: boolean
+    default: true
+  - name: release_azurecosmosspark31
+    displayName: azure-cosmos-spark_3-1_2-12
+    type: boolean
+    default: true
+  - name: release_azurecosmosspark32
+    displayName: azure-cosmos-spark_3-2_2-12
+    type: boolean
+    default: true
+  - name: release_azurecosmosspark33
+    displayName: azure-cosmos-spark_3-3_2-12
+    type: boolean
+    default: true
+  - name: release_azureresourcemanagercosmosgenerated
+    displayName: azure-resourcemanager-cosmos-generated
+    type: boolean
+    default: false
 
 extends:
-  template: ../../eng/pipelines/templates/stages/cosmos-sdk-client.yml #NOTE: Non-standard template.
+  template: ../../eng/pipelines/templates/stages/cosmos-sdk-client.yml
   parameters:
     ServiceDirectory: cosmos
     EnableBatchRelease: true
@@ -136,6 +140,10 @@ extends:
         skipPublishDocGithubIo: true
         skipPublishDocMs: true
         releaseInBatch: ${{ parameters.release_azurecosmosspark33 }}
+      - name: azure-resourcemanager-cosmos-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercosmosgenerated
+        releaseInBatch: ${{ parameters.release_azureresourcemanagercosmosgenerated }}
     AdditionalModules:
       - name: azure-cosmos-benchmark
         groupId: com.azure
