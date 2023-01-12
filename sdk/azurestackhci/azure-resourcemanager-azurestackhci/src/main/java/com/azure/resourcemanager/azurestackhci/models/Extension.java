@@ -33,7 +33,7 @@ public interface Extension {
     String type();
 
     /**
-     * Gets the systemData property: System data of Extension resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -113,6 +113,14 @@ public interface Extension {
     Object protectedSettings();
 
     /**
+     * Gets the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @return the enableAutomaticUpgrade value.
+     */
+    Boolean enableAutomaticUpgrade();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -158,7 +166,8 @@ public interface Extension {
                 DefinitionStages.WithTypeHandlerVersion,
                 DefinitionStages.WithAutoUpgradeMinorVersion,
                 DefinitionStages.WithSettings,
-                DefinitionStages.WithProtectedSettings {
+                DefinitionStages.WithProtectedSettings,
+                DefinitionStages.WithEnableAutomaticUpgrade {
             /**
              * Executes the create request.
              *
@@ -251,6 +260,18 @@ public interface Extension {
              */
             WithCreate withProtectedSettings(Object protectedSettings);
         }
+        /** The stage of the Extension definition allowing to specify enableAutomaticUpgrade. */
+        interface WithEnableAutomaticUpgrade {
+            /**
+             * Specifies the enableAutomaticUpgrade property: Indicates whether the extension should be automatically
+             * upgraded by the platform if there is a newer version available..
+             *
+             * @param enableAutomaticUpgrade Indicates whether the extension should be automatically upgraded by the
+             *     platform if there is a newer version available.
+             * @return the next definition stage.
+             */
+            WithCreate withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
+        }
     }
     /**
      * Begins update for the Extension resource.
@@ -267,7 +288,8 @@ public interface Extension {
             UpdateStages.WithTypeHandlerVersion,
             UpdateStages.WithAutoUpgradeMinorVersion,
             UpdateStages.WithSettings,
-            UpdateStages.WithProtectedSettings {
+            UpdateStages.WithProtectedSettings,
+            UpdateStages.WithEnableAutomaticUpgrade {
         /**
          * Executes the update request.
          *
@@ -361,6 +383,18 @@ public interface Extension {
              * @return the next definition stage.
              */
             Update withProtectedSettings(Object protectedSettings);
+        }
+        /** The stage of the Extension update allowing to specify enableAutomaticUpgrade. */
+        interface WithEnableAutomaticUpgrade {
+            /**
+             * Specifies the enableAutomaticUpgrade property: Indicates whether the extension should be automatically
+             * upgraded by the platform if there is a newer version available..
+             *
+             * @param enableAutomaticUpgrade Indicates whether the extension should be automatically upgraded by the
+             *     platform if there is a newer version available.
+             * @return the next definition stage.
+             */
+            Update withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
         }
     }
     /**

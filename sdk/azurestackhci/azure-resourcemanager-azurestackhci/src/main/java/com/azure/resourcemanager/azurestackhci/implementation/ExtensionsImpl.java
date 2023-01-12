@@ -41,15 +41,6 @@ public final class ExtensionsImpl implements Extensions {
         return Utils.mapPage(inner, inner1 -> new ExtensionImpl(inner1, this.manager()));
     }
 
-    public Extension get(String resourceGroupName, String clusterName, String arcSettingName, String extensionName) {
-        ExtensionInner inner = this.serviceClient().get(resourceGroupName, clusterName, arcSettingName, extensionName);
-        if (inner != null) {
-            return new ExtensionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Extension> getWithResponse(
         String resourceGroupName, String clusterName, String arcSettingName, String extensionName, Context context) {
         Response<ExtensionInner> inner =
@@ -62,6 +53,15 @@ public final class ExtensionsImpl implements Extensions {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ExtensionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Extension get(String resourceGroupName, String clusterName, String arcSettingName, String extensionName) {
+        ExtensionInner inner = this.serviceClient().get(resourceGroupName, clusterName, arcSettingName, extensionName);
+        if (inner != null) {
+            return new ExtensionImpl(inner, this.manager());
         } else {
             return null;
         }
