@@ -22,7 +22,6 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.mediaservices.fluent.AccountFiltersClient;
 import com.azure.resourcemanager.mediaservices.fluent.AssetFiltersClient;
 import com.azure.resourcemanager.mediaservices.fluent.AssetsClient;
 import com.azure.resourcemanager.mediaservices.fluent.AzureMediaServices;
@@ -114,18 +113,6 @@ public final class AzureMediaServicesImpl implements AzureMediaServices {
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
-    }
-
-    /** The AccountFiltersClient object to access its operations. */
-    private final AccountFiltersClient accountFilters;
-
-    /**
-     * Gets the AccountFiltersClient object to access its operations.
-     *
-     * @return the AccountFiltersClient object.
-     */
-    public AccountFiltersClient getAccountFilters() {
-        return this.accountFilters;
     }
 
     /** The OperationsClient object to access its operations. */
@@ -390,7 +377,6 @@ public final class AzureMediaServicesImpl implements AzureMediaServices {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.accountFilters = new AccountFiltersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.mediaservices = new MediaservicesClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);

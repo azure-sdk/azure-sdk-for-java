@@ -38,6 +38,15 @@ public final class JobErrorCode extends ExpandableStringEnum<JobErrorCode> {
     public static final JobErrorCode CONTENT_UNSUPPORTED = fromString("ContentUnsupported");
 
     /**
+     * Creates a new instance of JobErrorCode value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public JobErrorCode() {
+    }
+
+    /**
      * Creates or finds a JobErrorCode from its string representation.
      *
      * @param name a name to look for.

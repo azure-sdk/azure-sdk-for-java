@@ -20,6 +20,23 @@ public interface LocationsClient {
      *
      * @param locationName Location name.
      * @param parameters The request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from the check name availability request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<EntityNameAvailabilityCheckOutputInner> checkNameAvailabilityWithResponse(
+        String locationName, CheckNameAvailabilityInput parameters, Context context);
+
+    /**
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
+     *
+     * @param locationName Location name.
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -45,4 +62,20 @@ public interface LocationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<EntityNameAvailabilityCheckOutputInner> checkNameAvailabilityWithResponse(
         String locationName, CheckNameAvailabilityInput parameters, Context context);
+
+    /**
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
+     *
+     * @param locationName Location name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from the check name availability request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    EntityNameAvailabilityCheckOutputInner checkNameAvailability(
+        String locationName, CheckNameAvailabilityInput parameters);
 }

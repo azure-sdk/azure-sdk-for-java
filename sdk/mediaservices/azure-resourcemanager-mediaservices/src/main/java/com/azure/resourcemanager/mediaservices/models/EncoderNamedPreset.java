@@ -61,6 +61,15 @@ public final class EncoderNamedPreset extends ExpandableStringEnum<EncoderNamedP
     public static final EncoderNamedPreset H265SINGLE_BITRATE4K = fromString("H265SingleBitrate4K");
 
     /**
+     * Creates a new instance of EncoderNamedPreset value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EncoderNamedPreset() {
+    }
+
+    /**
      * Creates or finds a EncoderNamedPreset from its string representation.
      *
      * @param name a name to look for.

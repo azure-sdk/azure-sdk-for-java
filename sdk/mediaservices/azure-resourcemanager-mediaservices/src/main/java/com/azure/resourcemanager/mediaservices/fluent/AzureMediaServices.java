@@ -38,13 +38,6 @@ public interface AzureMediaServices {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the AccountFiltersClient object to access its operations.
-     *
-     * @return the AccountFiltersClient object.
-     */
-    AccountFiltersClient getAccountFilters();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.

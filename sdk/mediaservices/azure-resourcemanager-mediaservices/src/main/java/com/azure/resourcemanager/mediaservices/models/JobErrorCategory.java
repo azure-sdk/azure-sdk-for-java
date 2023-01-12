@@ -26,6 +26,15 @@ public final class JobErrorCategory extends ExpandableStringEnum<JobErrorCategor
     public static final JobErrorCategory CONTENT = fromString("Content");
 
     /**
+     * Creates a new instance of JobErrorCategory value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public JobErrorCategory() {
+    }
+
+    /**
      * Creates or finds a JobErrorCategory from its string representation.
      *
      * @param name a name to look for.

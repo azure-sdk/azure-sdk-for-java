@@ -123,6 +123,13 @@ public interface MediaService {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the minimumTlsVersion property: The minimum TLS version allowed for this account's requests.
+     *
+     * @return the minimumTlsVersion value.
+     */
+    MinimumTlsVersion minimumTlsVersion();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -201,7 +208,8 @@ public interface MediaService {
                 DefinitionStages.WithStorageAuthentication,
                 DefinitionStages.WithEncryption,
                 DefinitionStages.WithKeyDelivery,
-                DefinitionStages.WithPublicNetworkAccess {
+                DefinitionStages.WithPublicNetworkAccess,
+                DefinitionStages.WithMinimumTlsVersion {
             /**
              * Executes the create request.
              *
@@ -289,6 +297,16 @@ public interface MediaService {
              */
             WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
+        /** The stage of the MediaService definition allowing to specify minimumTlsVersion. */
+        interface WithMinimumTlsVersion {
+            /**
+             * Specifies the minimumTlsVersion property: The minimum TLS version allowed for this account's requests..
+             *
+             * @param minimumTlsVersion The minimum TLS version allowed for this account's requests.
+             * @return the next definition stage.
+             */
+            WithCreate withMinimumTlsVersion(MinimumTlsVersion minimumTlsVersion);
+        }
     }
     /**
      * Begins update for the MediaService resource.
@@ -305,7 +323,8 @@ public interface MediaService {
             UpdateStages.WithStorageAuthentication,
             UpdateStages.WithEncryption,
             UpdateStages.WithKeyDelivery,
-            UpdateStages.WithPublicNetworkAccess {
+            UpdateStages.WithPublicNetworkAccess,
+            UpdateStages.WithMinimumTlsVersion {
         /**
          * Executes the update request.
          *
@@ -395,6 +414,16 @@ public interface MediaService {
              */
             Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
+        /** The stage of the MediaService update allowing to specify minimumTlsVersion. */
+        interface WithMinimumTlsVersion {
+            /**
+             * Specifies the minimumTlsVersion property: The minimum TLS version allowed for this account's requests..
+             *
+             * @param minimumTlsVersion The minimum TLS version allowed for this account's requests.
+             * @return the next definition stage.
+             */
+            Update withMinimumTlsVersion(MinimumTlsVersion minimumTlsVersion);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -417,11 +446,52 @@ public interface MediaService {
      * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param parameters The request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> syncStorageKeysWithResponse(SyncStorageKeysInput parameters, Context context);
+
+    /**
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
+     *
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void syncStorageKeys(SyncStorageKeysInput parameters);
+
+    /**
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
+     *
+     * @param parameters The request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<EdgePolicies> listEdgePoliciesWithResponse(ListEdgePoliciesInput parameters, Context context);
+
+    /**
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
+     *
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    EdgePolicies listEdgePolicies(ListEdgePoliciesInput parameters);
 
     /**
      * Synchronizes Storage Account Keys
@@ -438,17 +508,16 @@ public interface MediaService {
     Response<Void> syncStorageKeysWithResponse(SyncStorageKeysInput parameters, Context context);
 
     /**
-     * List the media edge policies associated with the Media Services account.
+     * Synchronizes Storage Account Keys
      *
-     * <p>List all the media edge policies associated with the Media Services account.
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
      */
-    EdgePolicies listEdgePolicies(ListEdgePoliciesInput parameters);
+    void syncStorageKeys(SyncStorageKeysInput parameters);
 
     /**
      * List the media edge policies associated with the Media Services account.
@@ -463,4 +532,17 @@ public interface MediaService {
      * @return the response body along with {@link Response}.
      */
     Response<EdgePolicies> listEdgePoliciesWithResponse(ListEdgePoliciesInput parameters, Context context);
+
+    /**
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
+     *
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    EdgePolicies listEdgePolicies(ListEdgePoliciesInput parameters);
 }
