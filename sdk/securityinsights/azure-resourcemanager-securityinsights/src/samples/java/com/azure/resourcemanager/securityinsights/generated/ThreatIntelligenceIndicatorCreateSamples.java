@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
 import java.util.Arrays;
 
 /** Samples for ThreatIntelligenceIndicator Create. */
 public final class ThreatIntelligenceIndicatorCreateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/threatintelligence/UpdateThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/threatintelligence/UpdateThreatIntelligence.json
      */
     /**
      * Sample code: Update a threat Intelligence indicator.
@@ -44,6 +43,6 @@ public final class ThreatIntelligenceIndicatorCreateSamples {
                     .withValidFrom("2020-04-15T17:44:00.114052Z")
                     .withValidUntil("")
                     .withModified(""),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Incidents ListAlerts. */
 public final class IncidentsListAlertsSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/incidents/GetAllIncidentAlerts.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/incidents/GetAllIncidentAlerts.json
      */
     /**
      * Sample code: Get all incident alerts.
@@ -20,6 +18,7 @@ public final class IncidentsListAlertsSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .incidents()
-            .listAlertsWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812", Context.NONE);
+            .listAlertsWithResponse(
+                "myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812", com.azure.core.util.Context.NONE);
     }
 }

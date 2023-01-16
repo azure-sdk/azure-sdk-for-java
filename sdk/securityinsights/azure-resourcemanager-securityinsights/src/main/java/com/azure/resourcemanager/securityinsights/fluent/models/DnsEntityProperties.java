@@ -36,6 +36,10 @@ public final class DnsEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "ipAddressEntityIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> ipAddressEntityIds;
 
+    /** Creates an instance of DnsEntityProperties class. */
+    public DnsEntityProperties() {
+    }
+
     /**
      * Get the dnsServerIpEntityId property: An ip entity id for the dns server resolving the request.
      *

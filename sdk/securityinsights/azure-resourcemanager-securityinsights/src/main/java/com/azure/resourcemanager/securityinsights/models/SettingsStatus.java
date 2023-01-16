@@ -17,6 +17,15 @@ public final class SettingsStatus extends ExpandableStringEnum<SettingsStatus> {
     public static final SettingsStatus FLIGHTING = fromString("Flighting");
 
     /**
+     * Creates a new instance of SettingsStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SettingsStatus() {
+    }
+
+    /**
      * Creates or finds a SettingsStatus from its string representation.
      *
      * @param name a name to look for.

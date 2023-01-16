@@ -23,6 +23,10 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     @JsonProperty(value = "properties", required = true)
     private AutomationRuleProperties innerProperties = new AutomationRuleProperties();
 
+    /** Creates an instance of AutomationRuleInner class. */
+    public AutomationRuleInner() {
+    }
+
     /**
      * Get the innerProperties property: Automation rule properties.
      *

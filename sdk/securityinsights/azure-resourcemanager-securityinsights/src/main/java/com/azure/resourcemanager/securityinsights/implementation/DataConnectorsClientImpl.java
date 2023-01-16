@@ -13,7 +13,6 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
-import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -31,7 +30,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
-import com.azure.resourcemanager.securityinsights.models.DataConnectorConnectBody;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorList;
 import reactor.core.publisher.Mono;
 
@@ -60,7 +58,7 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsData")
-    private interface DataConnectorsService {
+    public interface DataConnectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -116,41 +114,6 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("dataConnectorId") String dataConnectorId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}"
-                + "/connect")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> connect(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("dataConnectorId") String dataConnectorId,
-            @BodyParam("application/json") DataConnectorConnectBody connectBody,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}"
-                + "/disconnect")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> disconnect(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -477,22 +440,6 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataConnectorId Connector ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a data connector.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataConnectorInner get(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        return getAsync(resourceGroupName, workspaceName, dataConnectorId).block();
-    }
-
-    /**
-     * Gets a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -503,6 +450,22 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
     public Response<DataConnectorInner> getWithResponse(
         String resourceGroupName, String workspaceName, String dataConnectorId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, dataConnectorId, context).block();
+    }
+
+    /**
+     * Gets a data connector.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataConnectorId Connector ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a data connector.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataConnectorInner get(String resourceGroupName, String workspaceName, String dataConnectorId) {
+        return getWithResponse(resourceGroupName, workspaceName, dataConnectorId, Context.NONE).getValue();
     }
 
     /**
@@ -655,24 +618,6 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
      * @param workspaceName The name of the workspace.
      * @param dataConnectorId Connector ID.
      * @param dataConnector The data connector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data connector.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataConnectorInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorInner dataConnector) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, dataConnectorId, dataConnector).block();
-    }
-
-    /**
-     * Creates or updates the data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param dataConnector The data connector.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -689,6 +634,26 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, dataConnectorId, dataConnector, context)
             .block();
+    }
+
+    /**
+     * Creates or updates the data connector.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataConnectorId Connector ID.
+     * @param dataConnector The data connector.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data connector.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataConnectorInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorInner dataConnector) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, workspaceName, dataConnectorId, dataConnector, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -820,21 +785,6 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataConnectorId Connector ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        deleteAsync(resourceGroupName, workspaceName, dataConnectorId).block();
-    }
-
-    /**
-     * Delete the data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -848,314 +798,7 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
     }
 
     /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> connectWithResponseAsync(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorConnectBody connectBody) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (dataConnectorId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataConnectorId is required and cannot be null."));
-        }
-        if (connectBody == null) {
-            return Mono.error(new IllegalArgumentException("Parameter connectBody is required and cannot be null."));
-        } else {
-            connectBody.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .connect(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            dataConnectorId,
-                            connectBody,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> connectWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String dataConnectorId,
-        DataConnectorConnectBody connectBody,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (dataConnectorId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataConnectorId is required and cannot be null."));
-        }
-        if (connectBody == null) {
-            return Mono.error(new IllegalArgumentException("Parameter connectBody is required and cannot be null."));
-        } else {
-            connectBody.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .connect(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                dataConnectorId,
-                connectBody,
-                accept,
-                context);
-    }
-
-    /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> connectAsync(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorConnectBody connectBody) {
-        return connectWithResponseAsync(resourceGroupName, workspaceName, dataConnectorId, connectBody)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void connect(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorConnectBody connectBody) {
-        connectAsync(resourceGroupName, workspaceName, dataConnectorId, connectBody).block();
-    }
-
-    /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> connectWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String dataConnectorId,
-        DataConnectorConnectBody connectBody,
-        Context context) {
-        return connectWithResponseAsync(resourceGroupName, workspaceName, dataConnectorId, connectBody, context)
-            .block();
-    }
-
-    /**
-     * Disconnect a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> disconnectWithResponseAsync(
-        String resourceGroupName, String workspaceName, String dataConnectorId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (dataConnectorId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataConnectorId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .disconnect(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            dataConnectorId,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Disconnect a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> disconnectWithResponseAsync(
-        String resourceGroupName, String workspaceName, String dataConnectorId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (dataConnectorId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataConnectorId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .disconnect(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                dataConnectorId,
-                accept,
-                context);
-    }
-
-    /**
-     * Disconnect a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> disconnectAsync(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        return disconnectWithResponseAsync(resourceGroupName, workspaceName, dataConnectorId)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Disconnect a data connector.
+     * Delete the data connector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1165,26 +808,8 @@ public final class DataConnectorsClientImpl implements DataConnectorsClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disconnect(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        disconnectAsync(resourceGroupName, workspaceName, dataConnectorId).block();
-    }
-
-    /**
-     * Disconnect a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> disconnectWithResponse(
-        String resourceGroupName, String workspaceName, String dataConnectorId, Context context) {
-        return disconnectWithResponseAsync(resourceGroupName, workspaceName, dataConnectorId, context).block();
+    public void delete(String resourceGroupName, String workspaceName, String dataConnectorId) {
+        deleteWithResponse(resourceGroupName, workspaceName, dataConnectorId, Context.NONE);
     }
 
     /**
