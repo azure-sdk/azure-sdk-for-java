@@ -75,6 +75,10 @@ public class ScheduledAlertRuleCommonProperties {
     @JsonProperty(value = "alertDetailsOverride")
     private AlertDetailsOverride alertDetailsOverride;
 
+    /** Creates an instance of ScheduledAlertRuleCommonProperties class. */
+    public ScheduledAlertRuleCommonProperties() {
+    }
+
     /**
      * Get the query property: The query that creates alerts for this rule.
      *

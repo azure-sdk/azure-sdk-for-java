@@ -25,6 +25,10 @@ public final class ThreatIntelligenceInformationList {
     @JsonProperty(value = "value", required = true)
     private List<ThreatIntelligenceInformationInner> value;
 
+    /** Creates an instance of ThreatIntelligenceInformationList class. */
+    public ThreatIntelligenceInformationList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of information objects.
      *

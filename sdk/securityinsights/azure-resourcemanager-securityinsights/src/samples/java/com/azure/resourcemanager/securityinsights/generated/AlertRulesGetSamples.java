@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AlertRules Get. */
 public final class AlertRulesGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/GetScheduledAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/alertRules/GetScheduledAlertRule.json
      */
     /**
      * Sample code: Get a Scheduled alert rule.
@@ -20,25 +18,12 @@ public final class AlertRulesGetSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .alertRules()
-            .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", Context.NONE);
+            .getWithResponse(
+                "myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/GetNrtAlertRule.json
-     */
-    /**
-     * Sample code: Get an Nrt alert rule.
-     *
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void getAnNrtAlertRule(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager
-            .alertRules()
-            .getWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/GetFusionAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/alertRules/GetFusionAlertRule.json
      */
     /**
      * Sample code: Get a Fusion alert rule.
@@ -46,11 +31,13 @@ public final class AlertRulesGetSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void getAFusionAlertRule(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.alertRules().getWithResponse("myRg", "myWorkspace", "myFirstFusionRule", Context.NONE);
+        manager
+            .alertRules()
+            .getWithResponse("myRg", "myWorkspace", "myFirstFusionRule", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/alertRules/GetMicrosoftSecurityIncidentCreationAlertRule.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/alertRules/GetMicrosoftSecurityIncidentCreationAlertRule.json
      */
     /**
      * Sample code: Get a MicrosoftSecurityIncidentCreation rule.
@@ -61,6 +48,10 @@ public final class AlertRulesGetSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .alertRules()
-            .getWithResponse("myRg", "myWorkspace", "microsoftSecurityIncidentCreationRuleExample", Context.NONE);
+            .getWithResponse(
+                "myRg",
+                "myWorkspace",
+                "microsoftSecurityIncidentCreationRuleExample",
+                com.azure.core.util.Context.NONE);
     }
 }

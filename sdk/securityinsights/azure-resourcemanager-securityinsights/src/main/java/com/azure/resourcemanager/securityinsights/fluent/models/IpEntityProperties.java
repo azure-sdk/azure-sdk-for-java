@@ -32,6 +32,10 @@ public final class IpEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "threatIntelligence", access = JsonProperty.Access.WRITE_ONLY)
     private List<ThreatIntelligence> threatIntelligence;
 
+    /** Creates an instance of IpEntityProperties class. */
+    public IpEntityProperties() {
+    }
+
     /**
      * Get the address property: The IP address as string, e.g. 127.0.0.1 (either in Ipv4 or Ipv6).
      *

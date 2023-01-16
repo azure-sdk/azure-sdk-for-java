@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.securityinsights.models.Entity;
 import com.azure.resourcemanager.securityinsights.models.IncidentEntitiesResultsMetadata;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -16,7 +17,7 @@ public final class IncidentEntitiesResponseInner {
      * Array of the incident related entities.
      */
     @JsonProperty(value = "entities")
-    private List<EntityInner> entities;
+    private List<Entity> entities;
 
     /*
      * The metadata from the incident related entities results.
@@ -24,12 +25,16 @@ public final class IncidentEntitiesResponseInner {
     @JsonProperty(value = "metaData")
     private List<IncidentEntitiesResultsMetadata> metadata;
 
+    /** Creates an instance of IncidentEntitiesResponseInner class. */
+    public IncidentEntitiesResponseInner() {
+    }
+
     /**
      * Get the entities property: Array of the incident related entities.
      *
      * @return the entities value.
      */
-    public List<EntityInner> entities() {
+    public List<Entity> entities() {
         return this.entities;
     }
 
@@ -39,7 +44,7 @@ public final class IncidentEntitiesResponseInner {
      * @param entities the entities value to set.
      * @return the IncidentEntitiesResponseInner object itself.
      */
-    public IncidentEntitiesResponseInner withEntities(List<EntityInner> entities) {
+    public IncidentEntitiesResponseInner withEntities(List<Entity> entities) {
         this.entities = entities;
         return this;
     }

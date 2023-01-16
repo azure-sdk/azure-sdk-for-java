@@ -36,22 +36,14 @@ public final class IncidentAdditionalData {
     private List<String> alertProductNames;
 
     /*
-     * The provider incident url to the incident in Microsoft 365 Defender portal
-     */
-    @JsonProperty(value = "providerIncidentUrl", access = JsonProperty.Access.WRITE_ONLY)
-    private String providerIncidentUrl;
-
-    /*
      * The tactics associated with incident
      */
     @JsonProperty(value = "tactics", access = JsonProperty.Access.WRITE_ONLY)
     private List<AttackTactic> tactics;
 
-    /*
-     * The techniques associated with incident's tactics'
-     */
-    @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> techniques;
+    /** Creates an instance of IncidentAdditionalData class. */
+    public IncidentAdditionalData() {
+    }
 
     /**
      * Get the alertsCount property: The number of alerts in the incident.
@@ -90,30 +82,12 @@ public final class IncidentAdditionalData {
     }
 
     /**
-     * Get the providerIncidentUrl property: The provider incident url to the incident in Microsoft 365 Defender portal.
-     *
-     * @return the providerIncidentUrl value.
-     */
-    public String providerIncidentUrl() {
-        return this.providerIncidentUrl;
-    }
-
-    /**
      * Get the tactics property: The tactics associated with incident.
      *
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
         return this.tactics;
-    }
-
-    /**
-     * Get the techniques property: The techniques associated with incident's tactics'.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.techniques;
     }
 
     /**
