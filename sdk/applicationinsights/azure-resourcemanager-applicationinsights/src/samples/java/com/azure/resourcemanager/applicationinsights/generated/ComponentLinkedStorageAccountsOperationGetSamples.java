@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.applicationinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.applicationinsights.models.StorageType;
 
 /** Samples for ComponentLinkedStorageAccountsOperation Get. */
@@ -21,6 +20,7 @@ public final class ComponentLinkedStorageAccountsOperationGetSamples {
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .componentLinkedStorageAccountsOperations()
-            .getWithResponse("someResourceGroupName", "myComponent", StorageType.SERVICE_PROFILER, Context.NONE);
+            .getWithResponse(
+                "someResourceGroupName", "myComponent", StorageType.SERVICE_PROFILER, com.azure.core.util.Context.NONE);
     }
 }

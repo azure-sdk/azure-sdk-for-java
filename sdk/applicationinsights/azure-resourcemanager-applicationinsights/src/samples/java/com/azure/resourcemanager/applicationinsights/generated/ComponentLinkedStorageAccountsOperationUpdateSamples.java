@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.applicationinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.applicationinsights.models.ComponentLinkedStorageAccounts;
 import com.azure.resourcemanager.applicationinsights.models.StorageType;
 
@@ -23,7 +22,11 @@ public final class ComponentLinkedStorageAccountsOperationUpdateSamples {
         ComponentLinkedStorageAccounts resource =
             manager
                 .componentLinkedStorageAccountsOperations()
-                .getWithResponse("someResourceGroupName", "myComponent", StorageType.SERVICE_PROFILER, Context.NONE)
+                .getWithResponse(
+                    "someResourceGroupName",
+                    "myComponent",
+                    StorageType.SERVICE_PROFILER,
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
