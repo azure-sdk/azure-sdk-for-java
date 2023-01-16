@@ -8,13 +8,31 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProjectSourcePlatform. */
+/** Source platform of the project. */
 public final class ProjectSourcePlatform extends ExpandableStringEnum<ProjectSourcePlatform> {
     /** Static value SQL for ProjectSourcePlatform. */
     public static final ProjectSourcePlatform SQL = fromString("SQL");
 
+    /** Static value MySQL for ProjectSourcePlatform. */
+    public static final ProjectSourcePlatform MY_SQL = fromString("MySQL");
+
+    /** Static value PostgreSql for ProjectSourcePlatform. */
+    public static final ProjectSourcePlatform POSTGRE_SQL = fromString("PostgreSql");
+
+    /** Static value MongoDb for ProjectSourcePlatform. */
+    public static final ProjectSourcePlatform MONGO_DB = fromString("MongoDb");
+
     /** Static value Unknown for ProjectSourcePlatform. */
     public static final ProjectSourcePlatform UNKNOWN = fromString("Unknown");
+
+    /**
+     * Creates a new instance of ProjectSourcePlatform value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ProjectSourcePlatform() {
+    }
 
     /**
      * Creates or finds a ProjectSourcePlatform from its string representation.
@@ -27,7 +45,11 @@ public final class ProjectSourcePlatform extends ExpandableStringEnum<ProjectSou
         return fromString(name, ProjectSourcePlatform.class);
     }
 
-    /** @return known ProjectSourcePlatform values. */
+    /**
+     * Gets known ProjectSourcePlatform values.
+     *
+     * @return known ProjectSourcePlatform values.
+     */
     public static Collection<ProjectSourcePlatform> values() {
         return values(ProjectSourcePlatform.class);
     }
