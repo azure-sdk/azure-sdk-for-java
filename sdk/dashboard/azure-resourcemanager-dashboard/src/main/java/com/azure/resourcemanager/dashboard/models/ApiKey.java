@@ -17,6 +17,15 @@ public final class ApiKey extends ExpandableStringEnum<ApiKey> {
     public static final ApiKey ENABLED = fromString("Enabled");
 
     /**
+     * Creates a new instance of ApiKey value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ApiKey() {
+    }
+
+    /**
      * Creates or finds a ApiKey from its string representation.
      *
      * @param name a name to look for.

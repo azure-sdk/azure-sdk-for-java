@@ -79,6 +79,22 @@ public final class ManagedGrafanaProperties {
     @JsonProperty(value = "grafanaIntegrations")
     private GrafanaIntegrations grafanaIntegrations;
 
+    /*
+     * Enterprise settings of a Grafana instance
+     */
+    @JsonProperty(value = "enterpriseConfigurations")
+    private EnterpriseConfigurations enterpriseConfigurations;
+
+    /*
+     * Server configurations of a Grafana instance
+     */
+    @JsonProperty(value = "grafanaConfigurations")
+    private GrafanaConfigurations grafanaConfigurations;
+
+    /** Creates an instance of ManagedGrafanaProperties class. */
+    public ManagedGrafanaProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the resource.
      *
@@ -248,6 +264,46 @@ public final class ManagedGrafanaProperties {
     }
 
     /**
+     * Get the enterpriseConfigurations property: Enterprise settings of a Grafana instance.
+     *
+     * @return the enterpriseConfigurations value.
+     */
+    public EnterpriseConfigurations enterpriseConfigurations() {
+        return this.enterpriseConfigurations;
+    }
+
+    /**
+     * Set the enterpriseConfigurations property: Enterprise settings of a Grafana instance.
+     *
+     * @param enterpriseConfigurations the enterpriseConfigurations value to set.
+     * @return the ManagedGrafanaProperties object itself.
+     */
+    public ManagedGrafanaProperties withEnterpriseConfigurations(EnterpriseConfigurations enterpriseConfigurations) {
+        this.enterpriseConfigurations = enterpriseConfigurations;
+        return this;
+    }
+
+    /**
+     * Get the grafanaConfigurations property: Server configurations of a Grafana instance.
+     *
+     * @return the grafanaConfigurations value.
+     */
+    public GrafanaConfigurations grafanaConfigurations() {
+        return this.grafanaConfigurations;
+    }
+
+    /**
+     * Set the grafanaConfigurations property: Server configurations of a Grafana instance.
+     *
+     * @param grafanaConfigurations the grafanaConfigurations value to set.
+     * @return the ManagedGrafanaProperties object itself.
+     */
+    public ManagedGrafanaProperties withGrafanaConfigurations(GrafanaConfigurations grafanaConfigurations) {
+        this.grafanaConfigurations = grafanaConfigurations;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -258,6 +314,12 @@ public final class ManagedGrafanaProperties {
         }
         if (grafanaIntegrations() != null) {
             grafanaIntegrations().validate();
+        }
+        if (enterpriseConfigurations() != null) {
+            enterpriseConfigurations().validate();
+        }
+        if (grafanaConfigurations() != null) {
+            grafanaConfigurations().validate();
         }
     }
 }

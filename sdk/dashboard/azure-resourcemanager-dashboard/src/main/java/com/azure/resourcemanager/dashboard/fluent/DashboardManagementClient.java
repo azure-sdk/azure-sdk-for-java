@@ -71,4 +71,11 @@ public interface DashboardManagementClient {
      * @return the PrivateLinkResourcesClient object.
      */
     PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the EnterpriseDetailsOperationsClient object to access its operations.
+     *
+     * @return the EnterpriseDetailsOperationsClient object.
+     */
+    EnterpriseDetailsOperationsClient getEnterpriseDetailsOperations();
 }

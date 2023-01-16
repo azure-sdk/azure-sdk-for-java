@@ -41,6 +41,22 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     @JsonProperty(value = "grafanaIntegrations")
     private GrafanaIntegrations grafanaIntegrations;
 
+    /*
+     * Enterprise settings of a Grafana instance
+     */
+    @JsonProperty(value = "enterpriseConfigurations")
+    private EnterpriseConfigurations enterpriseConfigurations;
+
+    /*
+     * Server configurations of a Grafana instance
+     */
+    @JsonProperty(value = "grafanaConfigurations")
+    private GrafanaConfigurations grafanaConfigurations;
+
+    /** Creates an instance of ManagedGrafanaPropertiesUpdateParameters class. */
+    public ManagedGrafanaPropertiesUpdateParameters() {
+    }
+
     /**
      * Get the zoneRedundancy property: The zone redundancy setting of the Grafana instance.
      *
@@ -145,6 +161,48 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     }
 
     /**
+     * Get the enterpriseConfigurations property: Enterprise settings of a Grafana instance.
+     *
+     * @return the enterpriseConfigurations value.
+     */
+    public EnterpriseConfigurations enterpriseConfigurations() {
+        return this.enterpriseConfigurations;
+    }
+
+    /**
+     * Set the enterpriseConfigurations property: Enterprise settings of a Grafana instance.
+     *
+     * @param enterpriseConfigurations the enterpriseConfigurations value to set.
+     * @return the ManagedGrafanaPropertiesUpdateParameters object itself.
+     */
+    public ManagedGrafanaPropertiesUpdateParameters withEnterpriseConfigurations(
+        EnterpriseConfigurations enterpriseConfigurations) {
+        this.enterpriseConfigurations = enterpriseConfigurations;
+        return this;
+    }
+
+    /**
+     * Get the grafanaConfigurations property: Server configurations of a Grafana instance.
+     *
+     * @return the grafanaConfigurations value.
+     */
+    public GrafanaConfigurations grafanaConfigurations() {
+        return this.grafanaConfigurations;
+    }
+
+    /**
+     * Set the grafanaConfigurations property: Server configurations of a Grafana instance.
+     *
+     * @param grafanaConfigurations the grafanaConfigurations value to set.
+     * @return the ManagedGrafanaPropertiesUpdateParameters object itself.
+     */
+    public ManagedGrafanaPropertiesUpdateParameters withGrafanaConfigurations(
+        GrafanaConfigurations grafanaConfigurations) {
+        this.grafanaConfigurations = grafanaConfigurations;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -152,6 +210,12 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     public void validate() {
         if (grafanaIntegrations() != null) {
             grafanaIntegrations().validate();
+        }
+        if (enterpriseConfigurations() != null) {
+            enterpriseConfigurations().validate();
+        }
+        if (grafanaConfigurations() != null) {
+            grafanaConfigurations().validate();
         }
     }
 }
