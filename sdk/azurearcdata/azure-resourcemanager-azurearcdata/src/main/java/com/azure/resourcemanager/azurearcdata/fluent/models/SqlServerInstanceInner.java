@@ -21,7 +21,7 @@ public final class SqlServerInstanceInner extends Resource {
     private SqlServerInstanceProperties properties;
 
     /*
-     * Read only system data
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -51,7 +51,7 @@ public final class SqlServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Read only system data.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */

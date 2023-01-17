@@ -7,7 +7,7 @@ package com.azure.resourcemanager.azurearcdata.generated;
 /** Samples for SqlManagedInstances List. */
 public final class SqlManagedInstancesListSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListSubscriptionSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2022-06-15-preview/examples/ListSubscriptionSqlManagedInstance.json
      */
     /**
      * Sample code: Gets all SQL Instance in a subscription.

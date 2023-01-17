@@ -7,7 +7,7 @@ package com.azure.resourcemanager.azurearcdata.generated;
 /** Samples for SqlServerInstances ListByResourceGroup. */
 public final class SqlServerInstancesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListByResourceGroupSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2022-06-15-preview/examples/ListByResourceGroupSqlServerInstance.json
      */
     /**
      * Sample code: Gets all SQL Server Instance in a resource group.

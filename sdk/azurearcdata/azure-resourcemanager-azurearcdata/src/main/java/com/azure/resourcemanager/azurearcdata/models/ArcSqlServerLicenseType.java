@@ -10,8 +10,8 @@ import java.util.Collection;
 
 /** SQL Server license type. */
 public final class ArcSqlServerLicenseType extends ExpandableStringEnum<ArcSqlServerLicenseType> {
-    /** Static value Paid for ArcSqlServerLicenseType. */
-    public static final ArcSqlServerLicenseType PAID = fromString("Paid");
+    /** Static value Undefined for ArcSqlServerLicenseType. */
+    public static final ArcSqlServerLicenseType UNDEFINED = fromString("Undefined");
 
     /** Static value Free for ArcSqlServerLicenseType. */
     public static final ArcSqlServerLicenseType FREE = fromString("Free");
@@ -19,8 +19,17 @@ public final class ArcSqlServerLicenseType extends ExpandableStringEnum<ArcSqlSe
     /** Static value HADR for ArcSqlServerLicenseType. */
     public static final ArcSqlServerLicenseType HADR = fromString("HADR");
 
-    /** Static value Undefined for ArcSqlServerLicenseType. */
-    public static final ArcSqlServerLicenseType UNDEFINED = fromString("Undefined");
+    /** Static value ServerCAL for ArcSqlServerLicenseType. */
+    public static final ArcSqlServerLicenseType SERVER_CAL = fromString("ServerCAL");
+
+    /** Static value LicenseOnly for ArcSqlServerLicenseType. */
+    public static final ArcSqlServerLicenseType LICENSE_ONLY = fromString("LicenseOnly");
+
+    /** Static value PAYG for ArcSqlServerLicenseType. */
+    public static final ArcSqlServerLicenseType PAYG = fromString("PAYG");
+
+    /** Static value Paid for ArcSqlServerLicenseType. */
+    public static final ArcSqlServerLicenseType PAID = fromString("Paid");
 
     /**
      * Creates a new instance of ArcSqlServerLicenseType value.

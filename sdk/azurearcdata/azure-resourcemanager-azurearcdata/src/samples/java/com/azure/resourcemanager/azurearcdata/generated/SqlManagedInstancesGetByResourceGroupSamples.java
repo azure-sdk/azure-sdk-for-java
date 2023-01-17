@@ -7,7 +7,7 @@ package com.azure.resourcemanager.azurearcdata.generated;
 /** Samples for SqlManagedInstances GetByResourceGroup. */
 public final class SqlManagedInstancesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/GetSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2022-06-15-preview/examples/GetSqlManagedInstance.json
      */
     /**
      * Sample code: Updates a SQL Instance tags.
