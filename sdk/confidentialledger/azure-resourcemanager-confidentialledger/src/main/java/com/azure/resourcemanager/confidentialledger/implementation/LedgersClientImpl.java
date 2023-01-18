@@ -63,7 +63,7 @@ public final class LedgersClientImpl implements LedgersClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConfidentialLedgerMa")
-    private interface LedgersService {
+    public interface LedgersService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger"
@@ -175,7 +175,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of a Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
+     *
+     * <p>Retrieves the properties of a Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -223,7 +225,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of a Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
+     *
+     * <p>Retrieves the properties of a Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -269,7 +273,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of a Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
+     *
+     * <p>Retrieves the properties of a Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -285,22 +291,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of a Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConfidentialLedgerInner getByResourceGroup(String resourceGroupName, String ledgerName) {
-        return getByResourceGroupAsync(resourceGroupName, ledgerName).block();
-    }
-
-    /**
-     * Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -317,7 +310,26 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
+     *
+     * <p>Retrieves the properties of a Confidential Ledger.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param ledgerName Name of the Confidential Ledger.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return confidential Ledger.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ConfidentialLedgerInner getByResourceGroup(String resourceGroupName, String ledgerName) {
+        return getByResourceGroupWithResponse(resourceGroupName, ledgerName, Context.NONE).getValue();
+    }
+
+    /**
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -364,7 +376,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -410,7 +424,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -429,7 +445,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -450,7 +468,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -461,11 +481,13 @@ public final class LedgersClientImpl implements LedgersClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String ledgerName) {
-        return beginDeleteAsync(resourceGroupName, ledgerName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, ledgerName).getSyncPoller();
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -478,11 +500,13 @@ public final class LedgersClientImpl implements LedgersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String ledgerName, Context context) {
-        return beginDeleteAsync(resourceGroupName, ledgerName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, ledgerName, context).getSyncPoller();
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -497,7 +521,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -515,7 +541,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -529,7 +557,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -544,7 +574,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -600,7 +632,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -654,7 +688,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -680,7 +716,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -708,7 +746,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -721,11 +761,13 @@ public final class LedgersClientImpl implements LedgersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginCreate(
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger).getSyncPoller();
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -739,11 +781,13 @@ public final class LedgersClientImpl implements LedgersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginCreate(
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger, context).getSyncPoller();
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -762,7 +806,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -782,7 +828,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -799,7 +847,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -817,7 +867,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -873,7 +925,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -927,7 +981,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -953,7 +1009,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -981,7 +1039,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -994,11 +1054,13 @@ public final class LedgersClientImpl implements LedgersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginUpdate(
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger).getSyncPoller();
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -1012,11 +1074,13 @@ public final class LedgersClientImpl implements LedgersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginUpdate(
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger, context).getSyncPoller();
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -1035,7 +1099,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -1055,7 +1121,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -1072,7 +1140,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -1090,7 +1160,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1145,7 +1217,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1198,7 +1272,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1216,7 +1292,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1234,7 +1312,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1254,7 +1334,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1270,7 +1352,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1288,7 +1372,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1336,7 +1422,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
@@ -1382,7 +1470,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1398,7 +1488,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1413,7 +1505,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
@@ -1431,7 +1525,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1445,7 +1541,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
@@ -1463,7 +1561,8 @@ public final class LedgersClientImpl implements LedgersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1500,7 +1599,8 @@ public final class LedgersClientImpl implements LedgersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1538,7 +1638,8 @@ public final class LedgersClientImpl implements LedgersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1575,7 +1676,8 @@ public final class LedgersClientImpl implements LedgersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
