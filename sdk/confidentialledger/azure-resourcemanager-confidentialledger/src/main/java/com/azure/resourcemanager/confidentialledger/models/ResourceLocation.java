@@ -16,6 +16,10 @@ public class ResourceLocation {
     @JsonProperty(value = "location")
     private String location;
 
+    /** Creates an instance of ResourceLocation class. */
+    public ResourceLocation() {
+    }
+
     /**
      * Get the location property: The Azure location where the Confidential Ledger is running.
      *

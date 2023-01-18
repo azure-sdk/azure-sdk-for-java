@@ -32,7 +32,7 @@ import java.util.Map;
 /** Samples for Ledger Create. */
 public final class LedgerCreateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Create.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_Create.json
      */
     /**
      * Sample code: ConfidentialLedgerCreate.
@@ -85,12 +85,10 @@ public final class LedgerCreateSamples {
 ### Ledger_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Ledger Delete. */
 public final class LedgerDeleteSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Delete.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_Delete.json
      */
     /**
      * Sample code: ConfidentialLedgerDelete.
@@ -99,7 +97,7 @@ public final class LedgerDeleteSamples {
      */
     public static void confidentialLedgerDelete(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().delete("DummyResourceGroupName", "DummyLedgerName", Context.NONE);
+        manager.ledgers().delete("DummyResourceGroupName", "DummyLedgerName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -107,12 +105,10 @@ public final class LedgerDeleteSamples {
 ### Ledger_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Ledger GetByResourceGroup. */
 public final class LedgerGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Get.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_Get.json
      */
     /**
      * Sample code: ConfidentialLedgerGet.
@@ -121,7 +117,10 @@ public final class LedgerGetByResourceGroupSamples {
      */
     public static void confidentialLedgerGet(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().getByResourceGroupWithResponse("DummyResourceGroupName", "DummyLedgerName", Context.NONE);
+        manager
+            .ledgers()
+            .getByResourceGroupWithResponse(
+                "DummyResourceGroupName", "DummyLedgerName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -129,12 +128,10 @@ public final class LedgerGetByResourceGroupSamples {
 ### Ledger_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Ledger List. */
 public final class LedgerListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_ListBySub.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_ListBySub.json
      */
     /**
      * Sample code: ConfidentialLedgerListBySub.
@@ -143,7 +140,7 @@ public final class LedgerListSamples {
      */
     public static void confidentialLedgerListBySub(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().list(null, Context.NONE);
+        manager.ledgers().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -151,12 +148,10 @@ public final class LedgerListSamples {
 ### Ledger_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Ledger ListByResourceGroup. */
 public final class LedgerListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_List.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_List.json
      */
     /**
      * Sample code: ConfidentialLedgerList.
@@ -165,7 +160,7 @@ public final class LedgerListByResourceGroupSamples {
      */
     public static void confidentialLedgerList(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().listByResourceGroup("DummyResourceGroupName", null, Context.NONE);
+        manager.ledgers().listByResourceGroup("DummyResourceGroupName", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -173,7 +168,6 @@ public final class LedgerListByResourceGroupSamples {
 ### Ledger_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.confidentialledger.models.AadBasedSecurityPrincipal;
 import com.azure.resourcemanager.confidentialledger.models.CertBasedSecurityPrincipal;
 import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedger;
@@ -187,7 +181,7 @@ import java.util.Map;
 /** Samples for Ledger Update. */
 public final class LedgerUpdateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Update.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_Update.json
      */
     /**
      * Sample code: ConfidentialLedgerUpdate.
@@ -199,7 +193,8 @@ public final class LedgerUpdateSamples {
         ConfidentialLedger resource =
             manager
                 .ledgers()
-                .getByResourceGroupWithResponse("DummyResourceGroupName", "DummyLedgerName", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "DummyResourceGroupName", "DummyLedgerName", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -242,12 +237,10 @@ public final class LedgerUpdateSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/Operations_Get.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/Operations_Get.json
      */
     /**
      * Sample code: OperationsGet.
@@ -255,7 +248,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to ConfidentialLedgerManager.
      */
     public static void operationsGet(com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -263,13 +256,12 @@ public final class OperationsListSamples {
 ### ResourceProvider_CheckNameAvailability
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.confidentialledger.models.CheckNameAvailabilityRequest;
 
 /** Samples for ResourceProvider CheckNameAvailability. */
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/CheckNameAvailability.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/CheckNameAvailability.json
      */
     /**
      * Sample code: CheckNameAvailability.
@@ -284,7 +276,7 @@ public final class ResourceProviderCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityRequest()
                     .withName("sample-name")
                     .withType("Microsoft.ConfidentialLedger/ledgers"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

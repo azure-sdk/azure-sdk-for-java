@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to ConfidentialLedgerManager. Microsoft Azure Confidential Compute Ledger Control Plane REST API version
- * 2020-12-01-preview.
+ * 2023-18-01.
  */
 public final class ConfidentialLedgerManager {
     private Operations operations;

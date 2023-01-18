@@ -8,7 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** LedgerProperties Additional Confidential Ledger properties. */
+/**
+ * LedgerProperties
+ *
+ * <p>Additional Confidential Ledger properties.
+ */
 @Fluent
 public final class LedgerProperties {
     /*
@@ -28,12 +32,6 @@ public final class LedgerProperties {
      */
     @JsonProperty(value = "identityServiceUri", access = JsonProperty.Access.WRITE_ONLY)
     private String identityServiceUri;
-
-    /*
-     * Internal namespace for the Ledger
-     */
-    @JsonProperty(value = "ledgerInternalNamespace", access = JsonProperty.Access.WRITE_ONLY)
-    private String ledgerInternalNamespace;
 
     /*
      * Type of Confidential Ledger
@@ -58,6 +56,10 @@ public final class LedgerProperties {
      */
     @JsonProperty(value = "certBasedSecurityPrincipals")
     private List<CertBasedSecurityPrincipal> certBasedSecurityPrincipals;
+
+    /** Creates an instance of LedgerProperties class. */
+    public LedgerProperties() {
+    }
 
     /**
      * Get the ledgerName property: Unique name for the Confidential Ledger.
@@ -84,15 +86,6 @@ public final class LedgerProperties {
      */
     public String identityServiceUri() {
         return this.identityServiceUri;
-    }
-
-    /**
-     * Get the ledgerInternalNamespace property: Internal namespace for the Ledger.
-     *
-     * @return the ledgerInternalNamespace value.
-     */
-    public String ledgerInternalNamespace() {
-        return this.ledgerInternalNamespace;
     }
 
     /**

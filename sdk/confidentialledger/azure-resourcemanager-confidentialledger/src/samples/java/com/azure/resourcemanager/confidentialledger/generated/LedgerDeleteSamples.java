@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.confidentialledger.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Ledger Delete. */
 public final class LedgerDeleteSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Delete.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-18-01/examples/ConfidentialLedger_Delete.json
      */
     /**
      * Sample code: ConfidentialLedgerDelete.
@@ -18,6 +16,6 @@ public final class LedgerDeleteSamples {
      */
     public static void confidentialLedgerDelete(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().delete("DummyResourceGroupName", "DummyLedgerName", Context.NONE);
+        manager.ledgers().delete("DummyResourceGroupName", "DummyLedgerName", com.azure.core.util.Context.NONE);
     }
 }

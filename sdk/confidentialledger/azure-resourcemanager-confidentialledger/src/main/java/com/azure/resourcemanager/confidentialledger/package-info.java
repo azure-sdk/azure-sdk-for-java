@@ -4,6 +4,6 @@
 
 /**
  * Package containing the classes for ConfidentialLedgerManagementClient. Microsoft Azure Confidential Compute Ledger
- * Control Plane REST API version 2020-12-01-preview.
+ * Control Plane REST API version 2023-18-01.
  */
 package com.azure.resourcemanager.confidentialledger;
