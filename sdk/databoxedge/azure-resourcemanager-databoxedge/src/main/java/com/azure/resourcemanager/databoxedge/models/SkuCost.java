@@ -23,7 +23,7 @@ public final class SkuCost {
     private Long quantity;
 
     /*
-     * Restriction of the SKU for the location/zone
+     * The extended unit.
      */
     @JsonProperty(value = "extendedUnit", access = JsonProperty.Access.WRITE_ONLY)
     private String extendedUnit;
@@ -51,7 +51,7 @@ public final class SkuCost {
     }
 
     /**
-     * Get the extendedUnit property: Restriction of the SKU for the location/zone.
+     * Get the extendedUnit property: The extended unit.
      *
      * @return the extendedUnit value.
      */

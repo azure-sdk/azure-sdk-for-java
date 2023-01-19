@@ -11,7 +11,7 @@ import com.azure.resourcemanager.databoxedge.models.RoleSinkInfo;
 /** Samples for Triggers CreateOrUpdate. */
 public final class TriggersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/TriggerPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/TriggerPut.json
      */
     /**
      * Sample code: TriggerPut.
