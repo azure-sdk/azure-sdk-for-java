@@ -39,21 +39,21 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
     private final CodeVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of CodeVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    CodeVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    CodeVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(CodeVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesCodeVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesCodeVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")

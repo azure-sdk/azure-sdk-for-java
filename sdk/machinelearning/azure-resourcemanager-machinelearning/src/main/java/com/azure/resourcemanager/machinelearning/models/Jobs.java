@@ -31,6 +31,8 @@ public interface Jobs {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -44,6 +46,8 @@ public interface Jobs {
         String jobType,
         String tag,
         ListViewType listViewType,
+        Boolean scheduled,
+        String scheduleId,
         Context context);
 
     /**

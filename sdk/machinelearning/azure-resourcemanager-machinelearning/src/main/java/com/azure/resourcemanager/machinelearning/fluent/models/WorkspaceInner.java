@@ -630,6 +630,49 @@ public final class WorkspaceInner extends ProxyResource {
     }
 
     /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().softDeletedAt();
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().scheduledPurgeDate();
+    }
+
+    /**
+     * Get the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    public String systemDatastoresAuthMode() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemDatastoresAuthMode();
+    }
+
+    /**
+     * Set the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @param systemDatastoresAuthMode the systemDatastoresAuthMode value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withSystemDatastoresAuthMode(systemDatastoresAuthMode);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

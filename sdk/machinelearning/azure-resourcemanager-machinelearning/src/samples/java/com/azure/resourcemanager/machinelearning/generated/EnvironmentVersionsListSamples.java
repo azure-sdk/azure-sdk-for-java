@@ -7,14 +7,14 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for EnvironmentVersions List. */
 public final class EnvironmentVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentVersion/list.json
      */
     /**
-     * Sample code: List Environment Version.
+     * Sample code: List Workspace Environment Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listEnvironmentVersion(
+    public static void listWorkspaceEnvironmentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentVersions()
