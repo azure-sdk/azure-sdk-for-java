@@ -4,18 +4,18 @@
 
 package com.azure.resourcemanager.confidentialledger.generated;
 
-/** Samples for Ledger List. */
-public final class LedgerListSamples {
+/** Samples for ManagedCcf List. */
+public final class ManagedCcfListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-01-18/examples/ConfidentialLedger_ListBySub.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2023-01-18/examples/ManagedCCF_ListBySub.json
      */
     /**
-     * Sample code: ConfidentialLedgerListBySub.
+     * Sample code: ManagedCCFListBySub.
      *
      * @param manager Entry point to ConfidentialLedgerManager.
      */
-    public static void confidentialLedgerListBySub(
+    public static void managedCCFListBySub(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().list(null, com.azure.core.util.Context.NONE);
+        manager.managedCcfs().list(null, com.azure.core.util.Context.NONE);
     }
 }
