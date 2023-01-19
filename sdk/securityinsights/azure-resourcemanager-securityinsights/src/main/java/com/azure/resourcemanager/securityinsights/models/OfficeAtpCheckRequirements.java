@@ -21,6 +21,10 @@ public final class OfficeAtpCheckRequirements extends DataConnectorsCheckRequire
     @JsonProperty(value = "properties")
     private OfficeAtpCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of OfficeAtpCheckRequirements class. */
+    public OfficeAtpCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: OfficeATP (Office 365 Advanced Threat Protection) requirements check
      * properties.
@@ -29,6 +33,29 @@ public final class OfficeAtpCheckRequirements extends DataConnectorsCheckRequire
      */
     private OfficeAtpCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the OfficeAtpCheckRequirements object itself.
+     */
+    public OfficeAtpCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OfficeAtpCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

@@ -23,6 +23,15 @@ public final class IncidentSeverity extends ExpandableStringEnum<IncidentSeverit
     public static final IncidentSeverity INFORMATIONAL = fromString("Informational");
 
     /**
+     * Creates a new instance of IncidentSeverity value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IncidentSeverity() {
+    }
+
+    /**
      * Creates or finds a IncidentSeverity from its string representation.
      *
      * @param name a name to look for.

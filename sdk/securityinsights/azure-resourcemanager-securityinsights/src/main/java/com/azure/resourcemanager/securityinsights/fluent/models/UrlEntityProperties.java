@@ -17,6 +17,10 @@ public final class UrlEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
     private String url;
 
+    /** Creates an instance of UrlEntityProperties class. */
+    public UrlEntityProperties() {
+    }
+
     /**
      * Get the url property: A full URL the entity points to.
      *

@@ -21,6 +21,15 @@ public final class ThreatIntelligenceSortingCriteriaEnum
     public static final ThreatIntelligenceSortingCriteriaEnum DESCENDING = fromString("descending");
 
     /**
+     * Creates a new instance of ThreatIntelligenceSortingCriteriaEnum value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ThreatIntelligenceSortingCriteriaEnum() {
+    }
+
+    /**
      * Creates or finds a ThreatIntelligenceSortingCriteriaEnum from its string representation.
      *
      * @param name a name to look for.

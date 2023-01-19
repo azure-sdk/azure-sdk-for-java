@@ -17,6 +17,15 @@ public final class IncidentLabelType extends ExpandableStringEnum<IncidentLabelT
     public static final IncidentLabelType AUTO_ASSIGNED = fromString("AutoAssigned");
 
     /**
+     * Creates a new instance of IncidentLabelType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IncidentLabelType() {
+    }
+
+    /**
      * Creates or finds a IncidentLabelType from its string representation.
      *
      * @param name a name to look for.

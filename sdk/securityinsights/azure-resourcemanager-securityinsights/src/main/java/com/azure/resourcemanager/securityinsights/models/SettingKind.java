@@ -23,6 +23,15 @@ public final class SettingKind extends ExpandableStringEnum<SettingKind> {
     public static final SettingKind UEBA = fromString("Ueba");
 
     /**
+     * Creates a new instance of SettingKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SettingKind() {
+    }
+
+    /**
      * Creates or finds a SettingKind from its string representation.
      *
      * @param name a name to look for.

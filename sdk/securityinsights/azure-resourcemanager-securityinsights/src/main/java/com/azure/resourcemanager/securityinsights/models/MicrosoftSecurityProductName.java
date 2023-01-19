@@ -38,6 +38,15 @@ public final class MicrosoftSecurityProductName extends ExpandableStringEnum<Mic
         fromString("Microsoft Defender Advanced Threat Protection");
 
     /**
+     * Creates a new instance of MicrosoftSecurityProductName value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public MicrosoftSecurityProductName() {
+    }
+
+    /**
      * Creates or finds a MicrosoftSecurityProductName from its string representation.
      *
      * @param name a name to look for.

@@ -20,6 +20,15 @@ public final class FileImportContentType extends ExpandableStringEnum<FileImport
     public static final FileImportContentType UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of FileImportContentType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public FileImportContentType() {
+    }
+
+    /**
      * Creates or finds a FileImportContentType from its string representation.
      *
      * @param name a name to look for.

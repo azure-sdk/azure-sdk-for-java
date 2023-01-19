@@ -17,6 +17,15 @@ public final class RepoType extends ExpandableStringEnum<RepoType> {
     public static final RepoType DEV_OPS = fromString("DevOps");
 
     /**
+     * Creates a new instance of RepoType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RepoType() {
+    }
+
+    /**
      * Creates or finds a RepoType from its string representation.
      *
      * @param name a name to look for.

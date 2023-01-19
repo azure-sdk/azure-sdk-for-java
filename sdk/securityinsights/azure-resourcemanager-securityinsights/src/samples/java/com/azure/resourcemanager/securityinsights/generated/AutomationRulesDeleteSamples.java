@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AutomationRules Delete. */
 public final class AutomationRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/automationRules/AutomationRules_Delete.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/automationRules/AutomationRules_Delete.json
      */
     /**
      * Sample code: AutomationRules_Delete.
@@ -20,6 +18,7 @@ public final class AutomationRulesDeleteSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .automationRules()
-            .deleteWithResponse("myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", Context.NONE);
+            .deleteWithResponse(
+                "myRg", "myWorkspace", "73e01a99-5cd7-4139-a149-9f2736ff2ab5", com.azure.core.util.Context.NONE);
     }
 }

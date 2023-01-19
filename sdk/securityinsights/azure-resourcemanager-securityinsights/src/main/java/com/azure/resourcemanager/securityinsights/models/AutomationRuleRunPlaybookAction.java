@@ -20,6 +20,10 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
     @JsonProperty(value = "actionConfiguration")
     private PlaybookActionProperties actionConfiguration;
 
+    /** Creates an instance of AutomationRuleRunPlaybookAction class. */
+    public AutomationRuleRunPlaybookAction() {
+    }
+
     /**
      * Get the actionConfiguration property: The actionConfiguration property.
      *

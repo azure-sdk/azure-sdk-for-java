@@ -73,6 +73,10 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
     @JsonProperty(value = "reportType", access = JsonProperty.Access.WRITE_ONLY)
     private String reportType;
 
+    /** Creates an instance of SubmissionMailEntityProperties class. */
+    public SubmissionMailEntityProperties() {
+    }
+
     /**
      * Get the networkMessageId property: The network message id of email to which submission belongs.
      *

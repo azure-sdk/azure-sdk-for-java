@@ -20,6 +20,15 @@ public final class DeploymentResult extends ExpandableStringEnum<DeploymentResul
     public static final DeploymentResult FAILED = fromString("Failed");
 
     /**
+     * Creates a new instance of DeploymentResult value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeploymentResult() {
+    }
+
+    /**
      * Creates or finds a DeploymentResult from its string representation.
      *
      * @param name a name to look for.

@@ -21,6 +21,10 @@ public final class TICheckRequirements extends DataConnectorsCheckRequirements {
     @JsonProperty(value = "properties")
     private TICheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of TICheckRequirements class. */
+    public TICheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: Threat Intelligence Platforms data connector check required properties.
      *
@@ -28,6 +32,29 @@ public final class TICheckRequirements extends DataConnectorsCheckRequirements {
      */
     private TICheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the TICheckRequirements object itself.
+     */
+    public TICheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TICheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

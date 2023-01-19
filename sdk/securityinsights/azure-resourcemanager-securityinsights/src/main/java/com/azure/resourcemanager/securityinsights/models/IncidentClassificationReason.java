@@ -23,6 +23,15 @@ public final class IncidentClassificationReason extends ExpandableStringEnum<Inc
     public static final IncidentClassificationReason INACCURATE_DATA = fromString("InaccurateData");
 
     /**
+     * Creates a new instance of IncidentClassificationReason value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IncidentClassificationReason() {
+    }
+
+    /**
      * Creates or finds a IncidentClassificationReason from its string representation.
      *
      * @param name a name to look for.

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = AutomationRuleAction.class)
 @JsonTypeName("AutomationRuleAction")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "AddIncidentTask", value = AutomationRuleAddIncidentTaskAction.class),
     @JsonSubTypes.Type(name = "ModifyProperties", value = AutomationRuleModifyPropertiesAction.class),
     @JsonSubTypes.Type(name = "RunPlaybook", value = AutomationRuleRunPlaybookAction.class)
 })
@@ -28,6 +29,10 @@ public class AutomationRuleAction {
      */
     @JsonProperty(value = "order", required = true)
     private int order;
+
+    /** Creates an instance of AutomationRuleAction class. */
+    public AutomationRuleAction() {
+    }
 
     /**
      * Get the order property: The order property.

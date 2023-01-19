@@ -54,6 +54,10 @@ public class AlertRuleTemplatePropertiesBase {
     @JsonProperty(value = "status")
     private TemplateStatus status;
 
+    /** Creates an instance of AlertRuleTemplatePropertiesBase class. */
+    public AlertRuleTemplatePropertiesBase() {
+    }
+
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
      *
