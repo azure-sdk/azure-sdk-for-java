@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails List. */
 public final class ReservationsDetailsListSamples {
     /*
@@ -27,7 +25,7 @@ public final class ReservationsDetailsListSamples {
                 null,
                 "1c6b6358-709f-484c-85f1-72e862a0cf3b",
                 "9f39ba10-794f-4dcb-8f4b-8d0cb47c27dc",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -49,7 +47,7 @@ public final class ReservationsDetailsListSamples {
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -71,6 +69,6 @@ public final class ReservationsDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
