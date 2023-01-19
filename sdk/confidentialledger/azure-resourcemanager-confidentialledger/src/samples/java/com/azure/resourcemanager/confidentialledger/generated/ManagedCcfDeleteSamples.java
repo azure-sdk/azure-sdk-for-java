@@ -4,10 +4,10 @@
 
 package com.azure.resourcemanager.confidentialledger.generated;
 
-/** Samples for Ledger Delete. */
-public final class LedgerDeleteSamples {
+/** Samples for ManagedCcf Delete. */
+public final class ManagedCcfDeleteSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-01-18-preview/examples/ConfidentialLedger_Delete.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-01-18-preview/examples/ManagedCCF_Delete.json
      */
     /**
      * Sample code: ConfidentialLedgerDelete.
@@ -16,6 +16,6 @@ public final class LedgerDeleteSamples {
      */
     public static void confidentialLedgerDelete(
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
-        manager.ledgers().delete("DummyResourceGroupName", "DummyLedgerName", com.azure.core.util.Context.NONE);
+        manager.managedCcfs().delete("DummyResourceGroupName", "DummyMccfAppName", com.azure.core.util.Context.NONE);
     }
 }
