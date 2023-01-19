@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Watchlists List. */
 public final class WatchlistsListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/watchlists/GetWatchlists.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/watchlists/GetWatchlists.json
      */
     /**
      * Sample code: Get all watchlists.
@@ -17,6 +15,6 @@ public final class WatchlistsListSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void getAllWatchlists(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.watchlists().list("myRg", "myWorkspace", null, Context.NONE);
+        manager.watchlists().list("myRg", "myWorkspace", null, com.azure.core.util.Context.NONE);
     }
 }

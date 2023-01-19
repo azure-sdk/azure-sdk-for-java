@@ -20,14 +20,14 @@ public final class AlertRuleKind extends ExpandableStringEnum<AlertRuleKind> {
     /** Static value Fusion for AlertRuleKind. */
     public static final AlertRuleKind FUSION = fromString("Fusion");
 
-    /** Static value MLBehaviorAnalytics for AlertRuleKind. */
-    public static final AlertRuleKind MLBEHAVIOR_ANALYTICS = fromString("MLBehaviorAnalytics");
-
-    /** Static value ThreatIntelligence for AlertRuleKind. */
-    public static final AlertRuleKind THREAT_INTELLIGENCE = fromString("ThreatIntelligence");
-
-    /** Static value NRT for AlertRuleKind. */
-    public static final AlertRuleKind NRT = fromString("NRT");
+    /**
+     * Creates a new instance of AlertRuleKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AlertRuleKind() {
+    }
 
     /**
      * Creates or finds a AlertRuleKind from its string representation.

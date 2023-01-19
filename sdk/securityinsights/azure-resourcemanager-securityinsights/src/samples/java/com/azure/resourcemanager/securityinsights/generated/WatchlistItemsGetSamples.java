@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for WatchlistItems Get. */
 public final class WatchlistItemsGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/watchlists/GetWatchlistItemById.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/watchlists/GetWatchlistItemById.json
      */
     /**
      * Sample code: Get a watchlist item.
@@ -20,6 +18,10 @@ public final class WatchlistItemsGetSamples {
         manager
             .watchlistItems()
             .getWithResponse(
-                "myRg", "myWorkspace", "highValueAsset", "3f8901fe-63d9-4875-9ad5-9fb3b8105797", Context.NONE);
+                "myRg",
+                "myWorkspace",
+                "highValueAsset",
+                "3f8901fe-63d9-4875-9ad5-9fb3b8105797",
+                com.azure.core.util.Context.NONE);
     }
 }

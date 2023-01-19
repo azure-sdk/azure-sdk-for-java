@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.RegistryKeyEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -15,13 +14,17 @@ import java.util.Map;
 /** Represents a registry key entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("RegistryKey")
-@Fluent
-public final class RegistryKeyEntity extends EntityInner {
+@Immutable
+public final class RegistryKeyEntity extends Entity {
     /*
      * RegistryKey entity properties
      */
     @JsonProperty(value = "properties")
     private RegistryKeyEntityProperties innerProperties;
+
+    /** Creates an instance of RegistryKeyEntity class. */
+    public RegistryKeyEntity() {
+    }
 
     /**
      * Get the innerProperties property: RegistryKey entity properties.

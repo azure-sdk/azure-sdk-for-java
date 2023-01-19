@@ -20,6 +20,15 @@ public final class TemplateStatus extends ExpandableStringEnum<TemplateStatus> {
     public static final TemplateStatus NOT_AVAILABLE = fromString("NotAvailable");
 
     /**
+     * Creates a new instance of TemplateStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public TemplateStatus() {
+    }
+
+    /**
      * Creates or finds a TemplateStatus from its string representation.
      *
      * @param name a name to look for.

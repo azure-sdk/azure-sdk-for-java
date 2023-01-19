@@ -23,6 +23,10 @@ public final class TIDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private TIDataConnectorProperties innerProperties;
 
+    /** Creates an instance of TIDataConnector class. */
+    public TIDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: TI (Threat Intelligence) data connector properties.
      *
@@ -36,6 +40,29 @@ public final class TIDataConnector extends DataConnectorInner {
     @Override
     public TIDataConnector withEtag(String etag) {
         super.withEtag(etag);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the TIDataConnector object itself.
+     */
+    public TIDataConnector withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TIDataConnectorProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
         return this;
     }
 
@@ -82,29 +109,6 @@ public final class TIDataConnector extends DataConnectorInner {
             this.innerProperties = new TIDataConnectorProperties();
         }
         this.innerProperties().withDataTypes(dataTypes);
-        return this;
-    }
-
-    /**
-     * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
-     * @return the tenantId value.
-     */
-    public String tenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
-    }
-
-    /**
-     * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
-     * @param tenantId the tenantId value to set.
-     * @return the TIDataConnector object itself.
-     */
-    public TIDataConnector withTenantId(String tenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new TIDataConnectorProperties();
-        }
-        this.innerProperties().withTenantId(tenantId);
         return this;
     }
 

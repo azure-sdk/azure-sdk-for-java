@@ -43,6 +43,10 @@ public final class AutomationRuleTriggeringLogic {
     @JsonProperty(value = "conditions")
     private List<AutomationRuleCondition> conditions;
 
+    /** Creates an instance of AutomationRuleTriggeringLogic class. */
+    public AutomationRuleTriggeringLogic() {
+    }
+
     /**
      * Get the isEnabled property: Determines whether the automation rule is enabled or disabled.
      *

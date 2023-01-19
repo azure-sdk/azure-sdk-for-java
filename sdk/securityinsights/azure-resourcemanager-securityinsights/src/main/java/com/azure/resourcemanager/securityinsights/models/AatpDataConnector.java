@@ -22,6 +22,10 @@ public final class AatpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private AatpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of AatpDataConnector class. */
+    public AatpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: AATP (Azure Advanced Threat Protection) data connector properties.
      *
@@ -35,29 +39,6 @@ public final class AatpDataConnector extends DataConnectorInner {
     @Override
     public AatpDataConnector withEtag(String etag) {
         super.withEtag(etag);
-        return this;
-    }
-
-    /**
-     * Get the dataTypes property: The available data types for the connector.
-     *
-     * @return the dataTypes value.
-     */
-    public AlertsDataTypeOfDataConnector dataTypes() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
-    }
-
-    /**
-     * Set the dataTypes property: The available data types for the connector.
-     *
-     * @param dataTypes the dataTypes value to set.
-     * @return the AatpDataConnector object itself.
-     */
-    public AatpDataConnector withDataTypes(AlertsDataTypeOfDataConnector dataTypes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AatpDataConnectorProperties();
-        }
-        this.innerProperties().withDataTypes(dataTypes);
         return this;
     }
 
@@ -81,6 +62,29 @@ public final class AatpDataConnector extends DataConnectorInner {
             this.innerProperties = new AatpDataConnectorProperties();
         }
         this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the dataTypes property: The available data types for the connector.
+     *
+     * @return the dataTypes value.
+     */
+    public AlertsDataTypeOfDataConnector dataTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
+    }
+
+    /**
+     * Set the dataTypes property: The available data types for the connector.
+     *
+     * @param dataTypes the dataTypes value to set.
+     * @return the AatpDataConnector object itself.
+     */
+    public AatpDataConnector withDataTypes(AlertsDataTypeOfDataConnector dataTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AatpDataConnectorProperties();
+        }
+        this.innerProperties().withDataTypes(dataTypes);
         return this;
     }
 
