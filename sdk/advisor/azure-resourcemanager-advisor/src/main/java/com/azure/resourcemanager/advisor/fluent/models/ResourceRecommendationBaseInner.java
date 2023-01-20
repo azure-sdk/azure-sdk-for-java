@@ -9,6 +9,7 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -196,6 +197,29 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
             this.innerProperties = new RecommendationProperties();
         }
         this.innerProperties().withRecommendationTypeId(recommendationTypeId);
+        return this;
+    }
+
+    /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     *
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.innerProperties() == null ? null : this.innerProperties().risk();
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     *
+     * @param risk the risk value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withRisk(Risk risk) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withRisk(risk);
         return this;
     }
 

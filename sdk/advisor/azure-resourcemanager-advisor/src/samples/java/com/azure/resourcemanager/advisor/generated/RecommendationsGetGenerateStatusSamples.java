@@ -9,7 +9,7 @@ import java.util.UUID;
 /** Samples for Recommendations GetGenerateStatus. */
 public final class RecommendationsGetGenerateStatusSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/EmptyResponse.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2022-09-01/examples/EmptyResponse.json
      */
     /**
      * Sample code: GetGenerateStatus.
@@ -20,6 +20,6 @@ public final class RecommendationsGetGenerateStatusSamples {
         manager
             .recommendations()
             .getGenerateStatusWithResponse(
-                UUID.fromString("00000000-0000-0000-0000-000000000000"), com.azure.core.util.Context.NONE);
+                UUID.fromString("123e4567-e89b-12d3-a456-426614174000"), com.azure.core.util.Context.NONE);
     }
 }

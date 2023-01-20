@@ -23,10 +23,12 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.advisor.fluent.AdvisorManagementClient;
+import com.azure.resourcemanager.advisor.fluent.AdvisorScoresClient;
 import com.azure.resourcemanager.advisor.fluent.ConfigurationsClient;
 import com.azure.resourcemanager.advisor.fluent.OperationsClient;
 import com.azure.resourcemanager.advisor.fluent.RecommendationMetadatasClient;
 import com.azure.resourcemanager.advisor.fluent.RecommendationsClient;
+import com.azure.resourcemanager.advisor.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.advisor.fluent.SuppressionsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -172,6 +174,30 @@ public final class AdvisorManagementClientImpl implements AdvisorManagementClien
         return this.suppressions;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /** The AdvisorScoresClient object to access its operations. */
+    private final AdvisorScoresClient advisorScores;
+
+    /**
+     * Gets the AdvisorScoresClient object to access its operations.
+     *
+     * @return the AdvisorScoresClient object.
+     */
+    public AdvisorScoresClient getAdvisorScores() {
+        return this.advisorScores;
+    }
+
     /**
      * Initializes an instance of AdvisorManagementClient client.
      *
@@ -194,12 +220,14 @@ public final class AdvisorManagementClientImpl implements AdvisorManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-01-01";
+        this.apiVersion = "2022-09-01";
         this.recommendationMetadatas = new RecommendationMetadatasClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);
         this.recommendations = new RecommendationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.suppressions = new SuppressionsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.advisorScores = new AdvisorScoresClientImpl(this);
     }
 
     /**

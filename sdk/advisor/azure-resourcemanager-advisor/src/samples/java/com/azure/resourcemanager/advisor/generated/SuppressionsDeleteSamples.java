@@ -7,7 +7,7 @@ package com.azure.resourcemanager.advisor.generated;
 /** Samples for Suppressions Delete. */
 public final class SuppressionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/DeleteSuppression.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2022-09-01/examples/DeleteSuppression.json
      */
     /**
      * Sample code: DeleteSuppression.
