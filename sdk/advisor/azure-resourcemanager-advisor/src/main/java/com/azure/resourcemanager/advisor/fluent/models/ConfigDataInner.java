@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -78,6 +79,31 @@ public final class ConfigDataInner extends ProxyResource {
             this.innerProperties = new ConfigDataProperties();
         }
         this.innerProperties().withLowCpuThreshold(lowCpuThreshold);
+        return this;
+    }
+
+    /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.innerProperties() == null ? null : this.innerProperties().duration();
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @param duration the duration value to set.
+     * @return the ConfigDataInner object itself.
+     */
+    public ConfigDataInner withDuration(DurationModel duration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigDataProperties();
+        }
+        this.innerProperties().withDuration(duration);
         return this;
     }
 

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.advisor.generated;
 /** Samples for Configurations List. */
 public final class ConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListConfigurations.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2022-09-01/examples/ListConfigurations.json
      */
     /**
      * Sample code: GetConfigurations.

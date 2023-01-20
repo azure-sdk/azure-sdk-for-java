@@ -7,14 +7,14 @@ package com.azure.resourcemanager.advisor.generated;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListOperations.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2022-09-01/examples/OperationsList.json
      */
     /**
-     * Sample code: ListRecommendations.
+     * Sample code: OperationsList.
      *
      * @param manager Entry point to AdvisorManager.
      */
-    public static void listRecommendations(com.azure.resourcemanager.advisor.AdvisorManager manager) {
+    public static void operationsList(com.azure.resourcemanager.advisor.AdvisorManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
