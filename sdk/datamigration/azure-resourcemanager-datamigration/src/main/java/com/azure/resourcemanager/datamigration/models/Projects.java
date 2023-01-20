@@ -23,7 +23,7 @@ public interface Projects {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Project> listByResourceGroup(String groupName, String serviceName);
+    PagedIterable<Project> list(String groupName, String serviceName);
 
     /**
      * Get projects in a service
@@ -39,7 +39,7 @@ public interface Projects {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Project> listByResourceGroup(String groupName, String serviceName, Context context);
+    PagedIterable<Project> list(String groupName, String serviceName, Context context);
 
     /**
      * Get project information

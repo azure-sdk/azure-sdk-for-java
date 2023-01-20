@@ -8,7 +8,7 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for connect to Oracle, MySQL type source. */
+/** Output for connect to MySQL type source. */
 @Immutable
 public final class ConnectToSourceNonSqlTaskOutput {
     /*

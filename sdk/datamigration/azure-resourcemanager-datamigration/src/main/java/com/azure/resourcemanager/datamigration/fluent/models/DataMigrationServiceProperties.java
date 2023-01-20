@@ -5,11 +5,10 @@
 package com.azure.resourcemanager.datamigration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datamigration.models.ServiceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the Data Migration service instance. */
+/** Properties of the Database Migration Service instance. */
 @Fluent
 public final class DataMigrationServiceProperties {
     /*
@@ -27,8 +26,26 @@ public final class DataMigrationServiceProperties {
     /*
      * The ID of the Microsoft.Network/virtualNetworks/subnets resource to which the service should be joined
      */
-    @JsonProperty(value = "virtualSubnetId", required = true)
+    @JsonProperty(value = "virtualSubnetId")
     private String virtualSubnetId;
+
+    /*
+     * The ID of the Microsoft.Network/networkInterfaces resource which the service have
+     */
+    @JsonProperty(value = "virtualNicId")
+    private String virtualNicId;
+
+    /*
+     * The time delay before the service is auto-stopped when idle.
+     */
+    @JsonProperty(value = "autoStopDelay")
+    private String autoStopDelay;
+
+    /*
+     * Whether service resources should be deleted when stopped. (Turned on by default)
+     */
+    @JsonProperty(value = "deleteResourcesOnStop")
+    private Boolean deleteResourcesOnStop;
 
     /** Creates an instance of DataMigrationServiceProperties class. */
     public DataMigrationServiceProperties() {
@@ -86,18 +103,72 @@ public final class DataMigrationServiceProperties {
     }
 
     /**
+     * Get the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+     *
+     * @return the virtualNicId value.
+     */
+    public String virtualNicId() {
+        return this.virtualNicId;
+    }
+
+    /**
+     * Set the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+     *
+     * @param virtualNicId the virtualNicId value to set.
+     * @return the DataMigrationServiceProperties object itself.
+     */
+    public DataMigrationServiceProperties withVirtualNicId(String virtualNicId) {
+        this.virtualNicId = virtualNicId;
+        return this;
+    }
+
+    /**
+     * Get the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     *
+     * @return the autoStopDelay value.
+     */
+    public String autoStopDelay() {
+        return this.autoStopDelay;
+    }
+
+    /**
+     * Set the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     *
+     * @param autoStopDelay the autoStopDelay value to set.
+     * @return the DataMigrationServiceProperties object itself.
+     */
+    public DataMigrationServiceProperties withAutoStopDelay(String autoStopDelay) {
+        this.autoStopDelay = autoStopDelay;
+        return this;
+    }
+
+    /**
+     * Get the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     *
+     * @return the deleteResourcesOnStop value.
+     */
+    public Boolean deleteResourcesOnStop() {
+        return this.deleteResourcesOnStop;
+    }
+
+    /**
+     * Set the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     *
+     * @param deleteResourcesOnStop the deleteResourcesOnStop value to set.
+     * @return the DataMigrationServiceProperties object itself.
+     */
+    public DataMigrationServiceProperties withDeleteResourcesOnStop(Boolean deleteResourcesOnStop) {
+        this.deleteResourcesOnStop = deleteResourcesOnStop;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (virtualSubnetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property virtualSubnetId in model DataMigrationServiceProperties"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataMigrationServiceProperties.class);
 }

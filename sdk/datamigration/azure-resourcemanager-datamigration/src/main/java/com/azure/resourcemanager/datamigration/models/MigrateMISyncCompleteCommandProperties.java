@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "commandType")
 @JsonTypeName("Migrate.SqlServer.AzureDbSqlMi.Complete")
 @Fluent
-public final class MigrateMISyncCompleteCommandProperties extends CommandProperties {
+public final class MigrateMISyncCompleteCommandProperties extends CommandPropertiesInner {
     /*
      * Command input
      */

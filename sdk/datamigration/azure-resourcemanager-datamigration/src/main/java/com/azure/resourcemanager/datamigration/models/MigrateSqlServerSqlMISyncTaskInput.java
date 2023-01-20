@@ -5,13 +5,41 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario. */
 @Fluent
 public final class MigrateSqlServerSqlMISyncTaskInput extends SqlServerSqlMISyncTaskInput {
+    /*
+     * Number of database migrations to start in parallel
+     */
+    @JsonProperty(value = "numberOfParallelDatabaseMigrations")
+    private Float numberOfParallelDatabaseMigrations;
+
     /** Creates an instance of MigrateSqlServerSqlMISyncTaskInput class. */
     public MigrateSqlServerSqlMISyncTaskInput() {
+    }
+
+    /**
+     * Get the numberOfParallelDatabaseMigrations property: Number of database migrations to start in parallel.
+     *
+     * @return the numberOfParallelDatabaseMigrations value.
+     */
+    public Float numberOfParallelDatabaseMigrations() {
+        return this.numberOfParallelDatabaseMigrations;
+    }
+
+    /**
+     * Set the numberOfParallelDatabaseMigrations property: Number of database migrations to start in parallel.
+     *
+     * @param numberOfParallelDatabaseMigrations the numberOfParallelDatabaseMigrations value to set.
+     * @return the MigrateSqlServerSqlMISyncTaskInput object itself.
+     */
+    public MigrateSqlServerSqlMISyncTaskInput withNumberOfParallelDatabaseMigrations(
+        Float numberOfParallelDatabaseMigrations) {
+        this.numberOfParallelDatabaseMigrations = numberOfParallelDatabaseMigrations;
+        return this;
     }
 
     /** {@inheritDoc} */
