@@ -169,7 +169,7 @@ public final class ConfidentialLedgerManagementClientImpl implements Confidentia
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-13";
+        this.apiVersion = "2023-01-20";
         this.operations = new OperationsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.ledgers = new LedgersClientImpl(this);
