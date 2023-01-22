@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 
 /** Samples for ConfigurationStores RegenerateKey. */
@@ -22,6 +21,9 @@ public final class ConfigurationStoresRegenerateKeySamples {
         manager
             .configurationStores()
             .regenerateKeyWithResponse(
-                "myResourceGroup", "contoso", new RegenerateKeyParameters().withId("439AD01B4BE67DB1"), Context.NONE);
+                "myResourceGroup",
+                "contoso",
+                new RegenerateKeyParameters().withId("439AD01B4BE67DB1"),
+                com.azure.core.util.Context.NONE);
     }
 }

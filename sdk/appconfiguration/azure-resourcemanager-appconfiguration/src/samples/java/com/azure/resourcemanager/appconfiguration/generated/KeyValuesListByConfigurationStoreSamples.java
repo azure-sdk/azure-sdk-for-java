@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for KeyValues ListByConfigurationStore. */
 public final class KeyValuesListByConfigurationStoreSamples {
     /*
@@ -18,6 +16,8 @@ public final class KeyValuesListByConfigurationStoreSamples {
      */
     public static void keyValuesListByConfigurationStore(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().listByConfigurationStore("myResourceGroup", "contoso", null, Context.NONE);
+        manager
+            .keyValues()
+            .listByConfigurationStore("myResourceGroup", "contoso", null, com.azure.core.util.Context.NONE);
     }
 }
