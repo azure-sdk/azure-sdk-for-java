@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Credits Get. */
 public final class CreditsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class CreditsGetSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void creditSummaryByBillingProfile(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.credits().getWithResponse("1234:5678", "2468", Context.NONE);
+        manager.credits().getWithResponse("1234:5678", "2468", com.azure.core.util.Context.NONE);
     }
 }
