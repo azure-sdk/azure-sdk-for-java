@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.applicationinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.applicationinsights.models.StorageType;
 
 /** Samples for ComponentLinkedStorageAccountsOperation Delete. */
@@ -21,6 +20,7 @@ public final class ComponentLinkedStorageAccountsOperationDeleteSamples {
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .componentLinkedStorageAccountsOperations()
-            .deleteWithResponse("someResourceGroupName", "myComponent", StorageType.SERVICE_PROFILER, Context.NONE);
+            .deleteWithResponse(
+                "someResourceGroupName", "myComponent", StorageType.SERVICE_PROFILER, com.azure.core.util.Context.NONE);
     }
 }
