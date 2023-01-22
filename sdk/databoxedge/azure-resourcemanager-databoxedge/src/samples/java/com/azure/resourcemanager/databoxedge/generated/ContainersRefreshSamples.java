@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 /** Samples for Containers Refresh. */
 public final class ContainersRefreshSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerRefresh.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerRefresh.json
      */
     /**
      * Sample code: ContainerRefresh.

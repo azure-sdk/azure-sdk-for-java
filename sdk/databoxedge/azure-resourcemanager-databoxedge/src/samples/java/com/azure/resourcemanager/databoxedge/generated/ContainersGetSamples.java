@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 /** Samples for Containers Get. */
 public final class ContainersGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerGet.json
      */
     /**
      * Sample code: ContainerGet.

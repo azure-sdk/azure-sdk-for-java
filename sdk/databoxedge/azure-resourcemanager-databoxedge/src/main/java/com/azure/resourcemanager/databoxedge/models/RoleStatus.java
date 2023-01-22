@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Role status. */
+/** Local Edge Management Status. */
 public final class RoleStatus extends ExpandableStringEnum<RoleStatus> {
     /** Static value Enabled for RoleStatus. */
     public static final RoleStatus ENABLED = fromString("Enabled");

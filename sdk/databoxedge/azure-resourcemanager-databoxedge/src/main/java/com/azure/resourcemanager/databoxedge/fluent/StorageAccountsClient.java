@@ -16,7 +16,7 @@ import com.azure.resourcemanager.databoxedge.fluent.models.StorageAccountInner;
 /** An instance of this class provides access to all the operations defined in StorageAccountsClient. */
 public interface StorageAccountsClient {
     /**
-     * Lists all the storage accounts in a Data Box Edge/Data Box Gateway device.
+     * Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device.
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
@@ -30,7 +30,7 @@ public interface StorageAccountsClient {
     PagedIterable<StorageAccountInner> listByDataBoxEdgeDevice(String deviceName, String resourceGroupName);
 
     /**
-     * Lists all the storage accounts in a Data Box Edge/Data Box Gateway device.
+     * Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device.
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.

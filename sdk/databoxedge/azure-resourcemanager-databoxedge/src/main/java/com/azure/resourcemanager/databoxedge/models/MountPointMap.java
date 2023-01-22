@@ -30,6 +30,12 @@ public final class MountPointMap {
     private String mountPoint;
 
     /*
+     * Mounting type.
+     */
+    @JsonProperty(value = "mountType", access = JsonProperty.Access.WRITE_ONLY)
+    private MountType mountType;
+
+    /*
      * Role type.
      */
     @JsonProperty(value = "roleType", access = JsonProperty.Access.WRITE_ONLY)
@@ -75,6 +81,15 @@ public final class MountPointMap {
      */
     public String mountPoint() {
         return this.mountPoint;
+    }
+
+    /**
+     * Get the mountType property: Mounting type.
+     *
+     * @return the mountType value.
+     */
+    public MountType mountType() {
+        return this.mountType;
     }
 
     /**

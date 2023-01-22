@@ -1,10 +1,21 @@
 # Code snippets and samples
 
 
+## Addons
+
+- [CreateOrUpdate](#addons_createorupdate)
+- [Delete](#addons_delete)
+- [Get](#addons_get)
+- [ListByRole](#addons_listbyrole)
+
 ## Alerts
 
 - [Get](#alerts_get)
 - [ListByDataBoxEdgeDevice](#alerts_listbydataboxedgedevice)
+
+## AvailableSkus
+
+- [List](#availableskus_list)
 
 ## BandwidthSchedules
 
@@ -21,12 +32,21 @@
 - [ListByStorageAccount](#containers_listbystorageaccount)
 - [Refresh](#containers_refresh)
 
+## DeviceCapacityCheck
+
+- [CheckResourceCreationFeasibility](#devicecapacitycheck_checkresourcecreationfeasibility)
+
+## DeviceCapacityInfo
+
+- [GetDeviceCapacityInfo](#devicecapacityinfo_getdevicecapacityinfo)
+
 ## Devices
 
 - [CreateOrUpdate](#devices_createorupdate)
 - [CreateOrUpdateSecuritySettings](#devices_createorupdatesecuritysettings)
 - [Delete](#devices_delete)
 - [DownloadUpdates](#devices_downloadupdates)
+- [GenerateCertificate](#devices_generatecertificate)
 - [GetByResourceGroup](#devices_getbyresourcegroup)
 - [GetExtendedInformation](#devices_getextendedinformation)
 - [GetNetworkSettings](#devices_getnetworksettings)
@@ -36,11 +56,26 @@
 - [ListByResourceGroup](#devices_listbyresourcegroup)
 - [ScanForUpdates](#devices_scanforupdates)
 - [Update](#devices_update)
+- [UpdateExtendedInformation](#devices_updateextendedinformation)
 - [UploadCertificate](#devices_uploadcertificate)
+
+## DiagnosticSettings
+
+- [GetDiagnosticProactiveLogCollectionSettings](#diagnosticsettings_getdiagnosticproactivelogcollectionsettings)
+- [GetDiagnosticRemoteSupportSettings](#diagnosticsettings_getdiagnosticremotesupportsettings)
+- [UpdateDiagnosticProactiveLogCollectionSettings](#diagnosticsettings_updatediagnosticproactivelogcollectionsettings)
+- [UpdateDiagnosticRemoteSupportSettings](#diagnosticsettings_updatediagnosticremotesupportsettings)
 
 ## Jobs
 
 - [Get](#jobs_get)
+
+## MonitoringConfig
+
+- [CreateOrUpdate](#monitoringconfig_createorupdate)
+- [Delete](#monitoringconfig_delete)
+- [Get](#monitoringconfig_get)
+- [List](#monitoringconfig_list)
 
 ## Nodes
 
@@ -60,6 +95,7 @@
 - [Delete](#orders_delete)
 - [Get](#orders_get)
 - [ListByDataBoxEdgeDevice](#orders_listbydataboxedgedevice)
+- [ListDCAccessCode](#orders_listdcaccesscode)
 
 ## Roles
 
@@ -76,10 +112,6 @@
 - [ListByDataBoxEdgeDevice](#shares_listbydataboxedgedevice)
 - [Refresh](#shares_refresh)
 
-## Skus
-
-- [List](#skus_list)
-
 ## StorageAccountCredentials
 
 - [CreateOrUpdate](#storageaccountcredentials_createorupdate)
@@ -94,6 +126,10 @@
 - [Get](#storageaccounts_get)
 - [ListByDataBoxEdgeDevice](#storageaccounts_listbydataboxedgedevice)
 
+## SupportPackages
+
+- [TriggerSupportPackage](#supportpackages_triggersupportpackage)
+
 ## Triggers
 
 - [CreateOrUpdate](#triggers_createorupdate)
@@ -107,13 +143,119 @@
 - [Delete](#users_delete)
 - [Get](#users_get)
 - [ListByDataBoxEdgeDevice](#users_listbydataboxedgedevice)
+### Addons_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.databoxedge.models.ArcAddon;
+
+/** Samples for Addons CreateOrUpdate. */
+public final class AddonsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/PutAddons.json
+     */
+    /**
+     * Sample code: PutAddOns.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void putAddOns(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .addons()
+            .createOrUpdate(
+                "testedgedevice",
+                "KubernetesRole",
+                "arcName",
+                "GroupForEdgeAutomation",
+                new ArcAddon()
+                    .withSubscriptionId("4385cf00-2d3a-425a-832f-f4285b1c9dce")
+                    .withResourceGroupName("GroupForEdgeAutomation")
+                    .withResourceName("testedgedevice")
+                    .withResourceLocation("EastUS"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Addons_Delete
+
+```java
+/** Samples for Addons Delete. */
+public final class AddonsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DeleteAddons.json
+     */
+    /**
+     * Sample code: DeleteAddOns.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void deleteAddOns(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .addons()
+            .delete(
+                "testedgedevice",
+                "KubernetesRole",
+                "arcName",
+                "GroupForEdgeAutomation",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Addons_Get
+
+```java
+/** Samples for Addons Get. */
+public final class AddonsGetSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GetAddons.json
+     */
+    /**
+     * Sample code: GetAddOns.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void getAddOns(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .addons()
+            .getWithResponse(
+                "testedgedevice",
+                "KubernetesRole",
+                "arcName",
+                "GroupForEdgeAutomation",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Addons_ListByRole
+
+```java
+/** Samples for Addons ListByRole. */
+public final class AddonsListByRoleSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/RoleListAddOns.json
+     */
+    /**
+     * Sample code: RoleListAddOns.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void roleListAddOns(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .addons()
+            .listByRole("testedgedevice", "IoTRole1", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Alerts_Get
 
 ```java
 /** Samples for Alerts Get. */
 public final class AlertsGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/AlertGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/AlertGet.json
      */
     /**
      * Sample code: AlertGet.
@@ -138,7 +280,7 @@ public final class AlertsGetSamples {
 /** Samples for Alerts ListByDataBoxEdgeDevice. */
 public final class AlertsListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/AlertGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/AlertGetAllInDevice.json
      */
     /**
      * Sample code: AlertGetAllInDevice.
@@ -153,6 +295,25 @@ public final class AlertsListByDataBoxEdgeDeviceSamples {
 }
 ```
 
+### AvailableSkus_List
+
+```java
+/** Samples for AvailableSkus List. */
+public final class AvailableSkusListSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/AvailableSkusList.json
+     */
+    /**
+     * Sample code: AvailableSkus.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void availableSkus(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager.availableSkus().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### BandwidthSchedules_CreateOrUpdate
 
 ```java
@@ -162,7 +323,7 @@ import java.util.Arrays;
 /** Samples for BandwidthSchedules CreateOrUpdate. */
 public final class BandwidthSchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/BandwidthSchedulePut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/BandwidthSchedulePut.json
      */
     /**
      * Sample code: BandwidthSchedulePut.
@@ -189,7 +350,7 @@ public final class BandwidthSchedulesCreateOrUpdateSamples {
 /** Samples for BandwidthSchedules Delete. */
 public final class BandwidthSchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/BandwidthScheduleDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/BandwidthScheduleDelete.json
      */
     /**
      * Sample code: BandwidthScheduleDelete.
@@ -210,7 +371,7 @@ public final class BandwidthSchedulesDeleteSamples {
 /** Samples for BandwidthSchedules Get. */
 public final class BandwidthSchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/BandwidthScheduleGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/BandwidthScheduleGet.json
      */
     /**
      * Sample code: BandwidthScheduleGet.
@@ -232,7 +393,7 @@ public final class BandwidthSchedulesGetSamples {
 /** Samples for BandwidthSchedules ListByDataBoxEdgeDevice. */
 public final class BandwidthSchedulesListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/BandwidthScheduleGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/BandwidthScheduleGetAllInDevice.json
      */
     /**
      * Sample code: BandwidthScheduleGetAllInDevice.
@@ -256,7 +417,7 @@ import com.azure.resourcemanager.databoxedge.models.AzureContainerDataFormat;
 /** Samples for Containers CreateOrUpdate. */
 public final class ContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerPut.json
      */
     /**
      * Sample code: ContainerPut.
@@ -280,7 +441,7 @@ public final class ContainersCreateOrUpdateSamples {
 /** Samples for Containers Delete. */
 public final class ContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerDelete.json
      */
     /**
      * Sample code: ContainerDelete.
@@ -306,7 +467,7 @@ public final class ContainersDeleteSamples {
 /** Samples for Containers Get. */
 public final class ContainersGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerGet.json
      */
     /**
      * Sample code: ContainerGet.
@@ -332,7 +493,7 @@ public final class ContainersGetSamples {
 /** Samples for Containers ListByStorageAccount. */
 public final class ContainersListByStorageAccountSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerListAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerListAllInDevice.json
      */
     /**
      * Sample code: ContainerListAllInDevice.
@@ -354,7 +515,7 @@ public final class ContainersListByStorageAccountSamples {
 /** Samples for Containers Refresh. */
 public final class ContainersRefreshSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerRefresh.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerRefresh.json
      */
     /**
      * Sample code: ContainerRefresh.
@@ -374,9 +535,62 @@ public final class ContainersRefreshSamples {
 }
 ```
 
+### DeviceCapacityCheck_CheckResourceCreationFeasibility
+
+```java
+import com.azure.resourcemanager.databoxedge.models.DeviceCapacityRequestInfo;
+import java.util.Arrays;
+
+/** Samples for DeviceCapacityCheck CheckResourceCreationFeasibility. */
+public final class DeviceCapacityCheckCheckResourceCreationFeasibilitySamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DeviceCapacityRequestPost.json
+     */
+    /**
+     * Sample code: DeviceCapacityRequestPost.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void deviceCapacityRequestPost(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .deviceCapacityChecks()
+            .checkResourceCreationFeasibility(
+                "GroupForEdgeAutomation",
+                "testedgedevice",
+                new DeviceCapacityRequestInfo().withVmPlacementQuery(Arrays.asList(Arrays.asList("Standard_D2_v2"))),
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DeviceCapacityInfo_GetDeviceCapacityInfo
+
+```java
+/** Samples for DeviceCapacityInfo GetDeviceCapacityInfo. */
+public final class DeviceCapacityInfoGetDeviceCapacityInfoSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DeviceCapacityGet.json
+     */
+    /**
+     * Sample code: DeviceCapacityGet.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void deviceCapacityGet(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .deviceCapacityInfoes()
+            .getDeviceCapacityInfoWithResponse(
+                "GroupForEdgeAutomation", "testedgedevice", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Devices_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.databoxedge.models.DataResidency;
+import com.azure.resourcemanager.databoxedge.models.DataResidencyType;
 import com.azure.resourcemanager.databoxedge.models.Sku;
 import com.azure.resourcemanager.databoxedge.models.SkuName;
 import com.azure.resourcemanager.databoxedge.models.SkuTier;
@@ -386,7 +600,28 @@ import java.util.Map;
 /** Samples for Devices CreateOrUpdate. */
 public final class DevicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDevicePut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDevicePutWithDataResidency.json
+     */
+    /**
+     * Sample code: DataBoxEdgeDevicePutWithDataResidency.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void dataBoxEdgeDevicePutWithDataResidency(
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .devices()
+            .define("testedgedevice")
+            .withRegion("WUS")
+            .withExistingResourceGroup("GroupForEdgeAutomation")
+            .withTags(mapOf())
+            .withSku(new Sku().withName(SkuName.EDGE).withTier(SkuTier.STANDARD))
+            .withDataResidency(new DataResidency().withType(DataResidencyType.ZONE_REPLICATION))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDevicePut.json
      */
     /**
      * Sample code: DataBoxEdgeDevicePut.
@@ -397,7 +632,7 @@ public final class DevicesCreateOrUpdateSamples {
         manager
             .devices()
             .define("testedgedevice")
-            .withRegion("eastus")
+            .withRegion("WUS")
             .withExistingResourceGroup("GroupForEdgeAutomation")
             .withTags(mapOf())
             .withSku(new Sku().withName(SkuName.EDGE).withTier(SkuTier.STANDARD))
@@ -427,7 +662,7 @@ import com.azure.resourcemanager.databoxedge.models.SecuritySettings;
 /** Samples for Devices CreateOrUpdateSecuritySettings. */
 public final class DevicesCreateOrUpdateSecuritySettingsSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SecuritySettingsUpdatePost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SecuritySettingsUpdatePost.json
      */
     /**
      * Sample code: CreateOrUpdateSecuritySettings.
@@ -444,8 +679,8 @@ public final class DevicesCreateOrUpdateSecuritySettingsSamples {
                 new SecuritySettings()
                     .withDeviceAdminPassword(
                         new AsymmetricEncryptedSecret()
-                            .withValue("<value>")
-                            .withEncryptionCertThumbprint("7DCBDFC44ED968D232C9A998FC105B5C70E84BE0")
+                            .withValue("<deviceAdminPassword>")
+                            .withEncryptionCertThumbprint("<encryptionThumprint>")
                             .withEncryptionAlgorithm(EncryptionAlgorithm.AES256)),
                 com.azure.core.util.Context.NONE);
     }
@@ -458,7 +693,7 @@ public final class DevicesCreateOrUpdateSecuritySettingsSamples {
 /** Samples for Devices Delete. */
 public final class DevicesDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDeviceDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDeviceDelete.json
      */
     /**
      * Sample code: DataBoxEdgeDeviceDelete.
@@ -477,7 +712,7 @@ public final class DevicesDeleteSamples {
 /** Samples for Devices DownloadUpdates. */
 public final class DevicesDownloadUpdatesSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DownloadUpdatesPost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DownloadUpdatesPost.json
      */
     /**
      * Sample code: DownloadUpdatesPost.
@@ -490,13 +725,35 @@ public final class DevicesDownloadUpdatesSamples {
 }
 ```
 
+### Devices_GenerateCertificate
+
+```java
+/** Samples for Devices GenerateCertificate. */
+public final class DevicesGenerateCertificateSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GenerateCertificate.json
+     */
+    /**
+     * Sample code: GenerateCertificate.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void generateCertificate(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .devices()
+            .generateCertificateWithResponse(
+                "testedgedevice", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Devices_GetByResourceGroup
 
 ```java
 /** Samples for Devices GetByResourceGroup. */
 public final class DevicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDeviceGetByName.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDeviceGetByName.json
      */
     /**
      * Sample code: DataBoxEdgeDeviceGetByName.
@@ -504,6 +761,22 @@ public final class DevicesGetByResourceGroupSamples {
      * @param manager Entry point to DataBoxEdgeManager.
      */
     public static void dataBoxEdgeDeviceGetByName(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .devices()
+            .getByResourceGroupWithResponse(
+                "GroupForEdgeAutomation", "testedgedevice", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDeviceGetByNameWithDataResidency.json
+     */
+    /**
+     * Sample code: DataBoxEdgeDeviceGetByNameWithDataResidency.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void dataBoxEdgeDeviceGetByNameWithDataResidency(
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
         manager
             .devices()
             .getByResourceGroupWithResponse(
@@ -518,7 +791,7 @@ public final class DevicesGetByResourceGroupSamples {
 /** Samples for Devices GetExtendedInformation. */
 public final class DevicesGetExtendedInformationSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ExtendedInfoPost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ExtendedInfoPost.json
      */
     /**
      * Sample code: ExtendedInfoPost.
@@ -540,7 +813,7 @@ public final class DevicesGetExtendedInformationSamples {
 /** Samples for Devices GetNetworkSettings. */
 public final class DevicesGetNetworkSettingsSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/NetworkSettingsGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/NetworkSettingsGet.json
      */
     /**
      * Sample code: NetworkSettingsGet.
@@ -562,7 +835,7 @@ public final class DevicesGetNetworkSettingsSamples {
 /** Samples for Devices GetUpdateSummary. */
 public final class DevicesGetUpdateSummarySamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UpdateSummaryGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UpdateSummaryGet.json
      */
     /**
      * Sample code: UpdateSummaryGet.
@@ -583,7 +856,7 @@ public final class DevicesGetUpdateSummarySamples {
 /** Samples for Devices InstallUpdates. */
 public final class DevicesInstallUpdatesSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/InstallUpdatesPost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/InstallUpdatesPost.json
      */
     /**
      * Sample code: InstallUpdatesPost.
@@ -602,7 +875,7 @@ public final class DevicesInstallUpdatesSamples {
 /** Samples for Devices List. */
 public final class DevicesListSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDeviceGetBySubscription.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDeviceGetBySubscription.json
      */
     /**
      * Sample code: DataBoxEdgeDeviceGetBySubscription.
@@ -622,7 +895,7 @@ public final class DevicesListSamples {
 /** Samples for Devices ListByResourceGroup. */
 public final class DevicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDeviceGetByResourceGroup.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDeviceGetByResourceGroup.json
      */
     /**
      * Sample code: DataBoxEdgeDeviceGetByResourceGroup.
@@ -642,7 +915,7 @@ public final class DevicesListByResourceGroupSamples {
 /** Samples for Devices ScanForUpdates. */
 public final class DevicesScanForUpdatesSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ScanForUpdatesPost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ScanForUpdatesPost.json
      */
     /**
      * Sample code: ScanForUpdatesPost.
@@ -659,13 +932,13 @@ public final class DevicesScanForUpdatesSamples {
 
 ```java
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDevice;
-import java.util.HashMap;
-import java.util.Map;
+import com.azure.resourcemanager.databoxedge.models.EdgeProfilePatch;
+import com.azure.resourcemanager.databoxedge.models.EdgeProfileSubscriptionPatch;
 
 /** Samples for Devices Update. */
 public final class DevicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDevicePatch.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDevicePatch.json
      */
     /**
      * Sample code: DataBoxEdgeDevicePatch.
@@ -679,18 +952,42 @@ public final class DevicesUpdateSamples {
                 .getByResourceGroupWithResponse(
                     "GroupForEdgeAutomation", "testedgedevice", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("Key1", "value1", "Key2", "value2")).apply();
+        resource
+            .update()
+            .withEdgeProfile(
+                new EdgeProfilePatch()
+                    .withSubscription(
+                        new EdgeProfileSubscriptionPatch()
+                            .withId(
+                                "/subscriptions/0d44739e-0563-474f-97e7-24a0cdb23b29/resourceGroups/rapvs-rg/providers/Microsoft.AzureStack/linkedSubscriptions/ca014ddc-5cf2-45f8-b390-e901e4a0ae87")))
+            .apply();
     }
+}
+```
 
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+### Devices_UpdateExtendedInformation
+
+```java
+import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDeviceExtendedInfoPatch;
+
+/** Samples for Devices UpdateExtendedInformation. */
+public final class DevicesUpdateExtendedInformationSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GetUpdateExtendedInfo.json
+     */
+    /**
+     * Sample code: GetUpdateExtendedInfo.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void getUpdateExtendedInfo(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .devices()
+            .updateExtendedInformationWithResponse(
+                "testedgedevice",
+                "GroupForEdgeAutomation",
+                new DataBoxEdgeDeviceExtendedInfoPatch(),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -703,7 +1000,7 @@ import com.azure.resourcemanager.databoxedge.models.UploadCertificateRequest;
 /** Samples for Devices UploadCertificate. */
 public final class DevicesUploadCertificateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UploadCertificatePost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UploadCertificatePost.json
      */
     /**
      * Sample code: UploadCertificatePost.
@@ -724,13 +1021,129 @@ public final class DevicesUploadCertificateSamples {
 }
 ```
 
+### DiagnosticSettings_GetDiagnosticProactiveLogCollectionSettings
+
+```java
+/** Samples for DiagnosticSettings GetDiagnosticProactiveLogCollectionSettings. */
+public final class DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GetDiagnosticProactiveLogCollectionSettings.json
+     */
+    /**
+     * Sample code: GetDiagnosticProactiveLogCollectionSettings.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void getDiagnosticProactiveLogCollectionSettings(
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .diagnosticSettings()
+            .getDiagnosticProactiveLogCollectionSettingsWithResponse(
+                "testedgedevice", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DiagnosticSettings_GetDiagnosticRemoteSupportSettings
+
+```java
+/** Samples for DiagnosticSettings GetDiagnosticRemoteSupportSettings. */
+public final class DiagnosticSettingsGetDiagnosticRemoteSupportSettingsSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GetDiagnosticRemoteSupportSettings.json
+     */
+    /**
+     * Sample code: GetDiagnosticRemoteSupportSettings.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void getDiagnosticRemoteSupportSettings(
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .diagnosticSettings()
+            .getDiagnosticRemoteSupportSettingsWithResponse(
+                "testedgedevice", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DiagnosticSettings_UpdateDiagnosticProactiveLogCollectionSettings
+
+```java
+import com.azure.resourcemanager.databoxedge.fluent.models.DiagnosticProactiveLogCollectionSettingsInner;
+import com.azure.resourcemanager.databoxedge.models.ProactiveDiagnosticsConsent;
+
+/** Samples for DiagnosticSettings UpdateDiagnosticProactiveLogCollectionSettings. */
+public final class DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UpdateDiagnosticProactiveLogCollectionSettings.json
+     */
+    /**
+     * Sample code: UpdateDiagnosticProactiveLogCollectionSettings.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void updateDiagnosticProactiveLogCollectionSettings(
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .diagnosticSettings()
+            .updateDiagnosticProactiveLogCollectionSettings(
+                "testedgedevice",
+                "GroupForEdgeAutomation",
+                new DiagnosticProactiveLogCollectionSettingsInner()
+                    .withUserConsent(ProactiveDiagnosticsConsent.ENABLED),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DiagnosticSettings_UpdateDiagnosticRemoteSupportSettings
+
+```java
+import com.azure.resourcemanager.databoxedge.fluent.models.DiagnosticRemoteSupportSettingsInner;
+import com.azure.resourcemanager.databoxedge.models.AccessLevel;
+import com.azure.resourcemanager.databoxedge.models.RemoteApplicationType;
+import com.azure.resourcemanager.databoxedge.models.RemoteSupportSettings;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+/** Samples for DiagnosticSettings UpdateDiagnosticRemoteSupportSettings. */
+public final class DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UpdateDiagnosticRemoteSupportSettings.json
+     */
+    /**
+     * Sample code: UpdateDiagnosticRemoteSupportSettings.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void updateDiagnosticRemoteSupportSettings(
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .diagnosticSettings()
+            .updateDiagnosticRemoteSupportSettings(
+                "testedgedevice",
+                "GroupForEdgeAutomation",
+                new DiagnosticRemoteSupportSettingsInner()
+                    .withRemoteSupportSettingsList(
+                        Arrays
+                            .asList(
+                                new RemoteSupportSettings()
+                                    .withRemoteApplicationType(RemoteApplicationType.POWERSHELL)
+                                    .withAccessLevel(AccessLevel.READ_WRITE)
+                                    .withExpirationTimestampInUtc(OffsetDateTime.parse("2021-07-07T00:00:00+00:00")))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Jobs_Get
 
 ```java
 /** Samples for Jobs Get. */
 public final class JobsGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/JobsGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/JobsGet.json
      */
     /**
      * Sample code: JobsGet.
@@ -749,13 +1162,121 @@ public final class JobsGetSamples {
 }
 ```
 
+### MonitoringConfig_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.databoxedge.fluent.models.MonitoringMetricConfigurationInner;
+import com.azure.resourcemanager.databoxedge.models.MetricConfiguration;
+import com.azure.resourcemanager.databoxedge.models.MetricCounter;
+import com.azure.resourcemanager.databoxedge.models.MetricCounterSet;
+import java.util.Arrays;
+
+/** Samples for MonitoringConfig CreateOrUpdate. */
+public final class MonitoringConfigCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/PutMonitoringConfig.json
+     */
+    /**
+     * Sample code: PutMonitoringConfig.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void putMonitoringConfig(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .monitoringConfigs()
+            .createOrUpdate(
+                "testedgedevice",
+                "testrole",
+                "GroupForEdgeAutomation",
+                new MonitoringMetricConfigurationInner()
+                    .withMetricConfigurations(
+                        Arrays
+                            .asList(
+                                new MetricConfiguration()
+                                    .withResourceId("test")
+                                    .withMdmAccount("test")
+                                    .withMetricNameSpace("test")
+                                    .withCounterSets(
+                                        Arrays
+                                            .asList(
+                                                new MetricCounterSet()
+                                                    .withCounters(
+                                                        Arrays.asList(new MetricCounter().withName("test"))))))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoringConfig_Delete
+
+```java
+/** Samples for MonitoringConfig Delete. */
+public final class MonitoringConfigDeleteSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DeleteMonitoringConfig.json
+     */
+    /**
+     * Sample code: DeleteMonitoringConfig.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void deleteMonitoringConfig(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .monitoringConfigs()
+            .delete("testedgedevice", "testrole", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoringConfig_Get
+
+```java
+/** Samples for MonitoringConfig Get. */
+public final class MonitoringConfigGetSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GetMonitoringConfig.json
+     */
+    /**
+     * Sample code: GetMonitoringConfig.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void getMonitoringConfig(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .monitoringConfigs()
+            .getWithResponse("testedgedevice", "testrole", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoringConfig_List
+
+```java
+/** Samples for MonitoringConfig List. */
+public final class MonitoringConfigListSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ListMonitoringConfig.json
+     */
+    /**
+     * Sample code: ListMonitoringConfig.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void listMonitoringConfig(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .monitoringConfigs()
+            .list("testedgedevice", "testrole", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Nodes_ListByDataBoxEdgeDevice
 
 ```java
 /** Samples for Nodes ListByDataBoxEdgeDevice. */
 public final class NodesListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/NodeGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/NodeGetAllInDevice.json
      */
     /**
      * Sample code: NodesGetAllInDevice.
@@ -776,7 +1297,7 @@ public final class NodesListByDataBoxEdgeDeviceSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OperationsGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OperationsGet.json
      */
     /**
      * Sample code: OperationsGet.
@@ -795,7 +1316,7 @@ public final class OperationsListSamples {
 /** Samples for OperationsStatus Get. */
 public final class OperationsStatusGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OperationsStatusGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OperationsStatusGet.json
      */
     /**
      * Sample code: OperationsStatusGet.
@@ -825,7 +1346,7 @@ import java.util.Arrays;
 /** Samples for Orders CreateOrUpdate. */
 public final class OrdersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OrderPut.json
      */
     /**
      * Sample code: OrderPut.
@@ -865,7 +1386,7 @@ public final class OrdersCreateOrUpdateSamples {
 /** Samples for Orders Delete. */
 public final class OrdersDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OrderDelete.json
      */
     /**
      * Sample code: OrderDelete.
@@ -884,7 +1405,7 @@ public final class OrdersDeleteSamples {
 /** Samples for Orders Get. */
 public final class OrdersGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OrderGet.json
      */
     /**
      * Sample code: OrderGet.
@@ -903,7 +1424,7 @@ public final class OrdersGetSamples {
 /** Samples for Orders ListByDataBoxEdgeDevice. */
 public final class OrdersListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OrderGetAllInDevice.json
      */
     /**
      * Sample code: OrderGetAllInDevice.
@@ -914,6 +1435,27 @@ public final class OrdersListByDataBoxEdgeDeviceSamples {
         manager
             .orders()
             .listByDataBoxEdgeDevice("testedgedevice", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Orders_ListDCAccessCode
+
+```java
+/** Samples for Orders ListDCAccessCode. */
+public final class OrdersListDCAccessCodeSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/GetDCAccessCode.json
+     */
+    /**
+     * Sample code: GetDCAccessCode.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void getDCAccessCode(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .orders()
+            .listDCAccessCodeWithResponse("testedgedevice", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -934,7 +1476,7 @@ import java.util.Arrays;
 /** Samples for Roles CreateOrUpdate. */
 public final class RolesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/RolePut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/RolePut.json
      */
     /**
      * Sample code: RolePut.
@@ -991,7 +1533,7 @@ public final class RolesCreateOrUpdateSamples {
 /** Samples for Roles Delete. */
 public final class RolesDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/RoleDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/RoleDelete.json
      */
     /**
      * Sample code: RoleDelete.
@@ -1012,7 +1554,7 @@ public final class RolesDeleteSamples {
 /** Samples for Roles Get. */
 public final class RolesGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/RoleGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/RoleGet.json
      */
     /**
      * Sample code: RoleGet.
@@ -1033,7 +1575,7 @@ public final class RolesGetSamples {
 /** Samples for Roles ListByDataBoxEdgeDevice. */
 public final class RolesListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/RoleGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/RoleGetAllInDevice.json
      */
     /**
      * Sample code: RoleGetAllInDevice.
@@ -1064,7 +1606,7 @@ import java.util.Arrays;
 /** Samples for Shares CreateOrUpdate. */
 public final class SharesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SharePut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SharePut.json
      */
     /**
      * Sample code: SharePut.
@@ -1104,7 +1646,7 @@ public final class SharesCreateOrUpdateSamples {
 /** Samples for Shares Delete. */
 public final class SharesDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ShareDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ShareDelete.json
      */
     /**
      * Sample code: ShareDelete.
@@ -1125,7 +1667,7 @@ public final class SharesDeleteSamples {
 /** Samples for Shares Get. */
 public final class SharesGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ShareGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ShareGet.json
      */
     /**
      * Sample code: ShareGet.
@@ -1146,7 +1688,7 @@ public final class SharesGetSamples {
 /** Samples for Shares ListByDataBoxEdgeDevice. */
 public final class SharesListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ShareGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ShareGetAllInDevice.json
      */
     /**
      * Sample code: ShareGetAllInDevice.
@@ -1167,7 +1709,7 @@ public final class SharesListByDataBoxEdgeDeviceSamples {
 /** Samples for Shares Refresh. */
 public final class SharesRefreshSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ShareRefreshPost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ShareRefreshPost.json
      */
     /**
      * Sample code: ShareRefreshPost.
@@ -1178,25 +1720,6 @@ public final class SharesRefreshSamples {
         manager
             .shares()
             .refresh("testedgedevice", "smbshare", "GroupForEdgeAutomation", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Skus_List
-
-```java
-/** Samples for Skus List. */
-public final class SkusListSamples {
-    /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ListSkus.json
-     */
-    /**
-     * Sample code: ListSkus.
-     *
-     * @param manager Entry point to DataBoxEdgeManager.
-     */
-    public static void listSkus(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
-        manager.skus().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1212,7 +1735,7 @@ import com.azure.resourcemanager.databoxedge.models.SslStatus;
 /** Samples for StorageAccountCredentials CreateOrUpdate. */
 public final class StorageAccountCredentialsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SACPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SACPut.json
      */
     /**
      * Sample code: SACPut.
@@ -1245,7 +1768,7 @@ public final class StorageAccountCredentialsCreateOrUpdateSamples {
 /** Samples for StorageAccountCredentials Delete. */
 public final class StorageAccountCredentialsDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SACDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SACDelete.json
      */
     /**
      * Sample code: SACDelete.
@@ -1266,7 +1789,7 @@ public final class StorageAccountCredentialsDeleteSamples {
 /** Samples for StorageAccountCredentials Get. */
 public final class StorageAccountCredentialsGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SACGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SACGet.json
      */
     /**
      * Sample code: SACGet.
@@ -1287,7 +1810,7 @@ public final class StorageAccountCredentialsGetSamples {
 /** Samples for StorageAccountCredentials ListByDataBoxEdgeDevice. */
 public final class StorageAccountCredentialsListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SACGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SACGetAllInDevice.json
      */
     /**
      * Sample code: SACGetAllInDevice.
@@ -1311,7 +1834,7 @@ import com.azure.resourcemanager.databoxedge.models.StorageAccountStatus;
 /** Samples for StorageAccounts CreateOrUpdate. */
 public final class StorageAccountsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/StorageAccountPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/StorageAccountPut.json
      */
     /**
      * Sample code: StorageAccountPut.
@@ -1323,9 +1846,9 @@ public final class StorageAccountsCreateOrUpdateSamples {
             .storageAccounts()
             .define("blobstorageaccount1")
             .withExistingDataBoxEdgeDevice("testedgedevice", "GroupForEdgeAutomation")
+            .withDataPolicy(DataPolicy.CLOUD)
             .withDescription("It's an awesome storage account")
             .withStorageAccountStatus(StorageAccountStatus.OK)
-            .withDataPolicy(DataPolicy.CLOUD)
             .withStorageAccountCredentialId(
                 "/subscriptions/4385cf00-2d3a-425a-832f-f4285b1c9dce/resourceGroups/GroupForDataBoxEdgeAutomation/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/testedgedevice/storageAccountCredentials/cisbvt")
             .create();
@@ -1339,7 +1862,7 @@ public final class StorageAccountsCreateOrUpdateSamples {
 /** Samples for StorageAccounts Delete. */
 public final class StorageAccountsDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/StorageAccountDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/StorageAccountDelete.json
      */
     /**
      * Sample code: StorageAccountDelete.
@@ -1360,7 +1883,7 @@ public final class StorageAccountsDeleteSamples {
 /** Samples for StorageAccounts Get. */
 public final class StorageAccountsGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/StorageAccountGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/StorageAccountGet.json
      */
     /**
      * Sample code: StorageAccountGet.
@@ -1382,7 +1905,7 @@ public final class StorageAccountsGetSamples {
 /** Samples for StorageAccounts ListByDataBoxEdgeDevice. */
 public final class StorageAccountsListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/StorageAccountGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/StorageAccountGetAllInDevice.json
      */
     /**
      * Sample code: StorageAccountGetAllInDevice.
@@ -1397,6 +1920,37 @@ public final class StorageAccountsListByDataBoxEdgeDeviceSamples {
 }
 ```
 
+### SupportPackages_TriggerSupportPackage
+
+```java
+import com.azure.resourcemanager.databoxedge.models.TriggerSupportPackageRequest;
+import java.time.OffsetDateTime;
+
+/** Samples for SupportPackages TriggerSupportPackage. */
+public final class SupportPackagesTriggerSupportPackageSamples {
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/TriggerSupportPackage.json
+     */
+    /**
+     * Sample code: TriggerSupportPackage.
+     *
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void triggerSupportPackage(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager
+            .supportPackages()
+            .triggerSupportPackage(
+                "testedgedevice",
+                "GroupForEdgeAutomation",
+                new TriggerSupportPackageRequest()
+                    .withMinimumTimestamp(OffsetDateTime.parse("2018-12-18T02:18:51.4270267Z"))
+                    .withMaximumTimestamp(OffsetDateTime.parse("2018-12-18T02:19:51.4270267Z"))
+                    .withInclude("DefaultWithDumps"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Triggers_CreateOrUpdate
 
 ```java
@@ -1407,7 +1961,7 @@ import com.azure.resourcemanager.databoxedge.models.RoleSinkInfo;
 /** Samples for Triggers CreateOrUpdate. */
 public final class TriggersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/TriggerPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/TriggerPut.json
      */
     /**
      * Sample code: TriggerPut.
@@ -1442,7 +1996,7 @@ public final class TriggersCreateOrUpdateSamples {
 /** Samples for Triggers Delete. */
 public final class TriggersDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/TriggerDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/TriggerDelete.json
      */
     /**
      * Sample code: TriggerDelete.
@@ -1463,7 +2017,7 @@ public final class TriggersDeleteSamples {
 /** Samples for Triggers Get. */
 public final class TriggersGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/TriggerGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/TriggerGet.json
      */
     /**
      * Sample code: TriggerGet.
@@ -1484,7 +2038,7 @@ public final class TriggersGetSamples {
 /** Samples for Triggers ListByDataBoxEdgeDevice. */
 public final class TriggersListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/TriggerGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/TriggerGetAllInDevice.json
      */
     /**
      * Sample code: TriggerGetAllInDevice.
@@ -1506,12 +2060,11 @@ public final class TriggersListByDataBoxEdgeDeviceSamples {
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
 import com.azure.resourcemanager.databoxedge.models.EncryptionAlgorithm;
 import com.azure.resourcemanager.databoxedge.models.UserType;
-import java.util.Arrays;
 
 /** Samples for Users CreateOrUpdate. */
 public final class UsersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UserPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UserPut.json
      */
     /**
      * Sample code: UserPut.
@@ -1529,7 +2082,6 @@ public final class UsersCreateOrUpdateSamples {
                     .withValue("<value>")
                     .withEncryptionCertThumbprint("blah")
                     .withEncryptionAlgorithm(EncryptionAlgorithm.NONE))
-            .withShareAccessRights(Arrays.asList())
             .create();
     }
 }
@@ -1541,7 +2093,7 @@ public final class UsersCreateOrUpdateSamples {
 /** Samples for Users Delete. */
 public final class UsersDeleteSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UserDelete.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UserDelete.json
      */
     /**
      * Sample code: UserDelete.
@@ -1560,7 +2112,7 @@ public final class UsersDeleteSamples {
 /** Samples for Users Get. */
 public final class UsersGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UserGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UserGet.json
      */
     /**
      * Sample code: UserGet.
@@ -1581,7 +2133,7 @@ public final class UsersGetSamples {
 /** Samples for Users ListByDataBoxEdgeDevice. */
 public final class UsersListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UserGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UserGetAllInDevice.json
      */
     /**
      * Sample code: UserGetAllInDevice.
