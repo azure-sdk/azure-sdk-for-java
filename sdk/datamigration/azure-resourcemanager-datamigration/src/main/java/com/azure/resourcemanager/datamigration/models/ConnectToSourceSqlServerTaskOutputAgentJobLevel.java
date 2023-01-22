@@ -9,9 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
- * AgentJob level output for the task that validates connection to SQL Server and also validates source server
+ * Agent Job level output for the task that validates connection to SQL Server and also validates source server
  * requirements.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
@@ -19,34 +20,40 @@ import java.time.OffsetDateTime;
 @Immutable
 public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends ConnectToSourceSqlServerTaskOutput {
     /*
-     * AgentJob name
+     * Agent Job name
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /*
-     * The type of AgentJob.
+     * The type of Agent Job.
      */
     @JsonProperty(value = "jobCategory", access = JsonProperty.Access.WRITE_ONLY)
     private String jobCategory;
 
     /*
-     * The state of the original AgentJob.
+     * The state of the original Agent Job.
      */
     @JsonProperty(value = "isEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isEnabled;
 
     /*
-     * The owner of the AgentJob
+     * The owner of the Agent Job
      */
     @JsonProperty(value = "jobOwner", access = JsonProperty.Access.WRITE_ONLY)
     private String jobOwner;
 
     /*
-     * UTC Date and time when the AgentJob was last executed.
+     * UTC Date and time when the Agent Job was last executed.
      */
     @JsonProperty(value = "lastExecutedOn", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastExecutedOn;
+
+    /*
+     * Validation errors
+     */
+    @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ReportableException> validationErrors;
 
     /*
      * Information about eligibility of agent job for migration.
@@ -59,7 +66,7 @@ public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends Conne
     }
 
     /**
-     * Get the name property: AgentJob name.
+     * Get the name property: Agent Job name.
      *
      * @return the name value.
      */
@@ -68,7 +75,7 @@ public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends Conne
     }
 
     /**
-     * Get the jobCategory property: The type of AgentJob.
+     * Get the jobCategory property: The type of Agent Job.
      *
      * @return the jobCategory value.
      */
@@ -77,7 +84,7 @@ public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends Conne
     }
 
     /**
-     * Get the isEnabled property: The state of the original AgentJob.
+     * Get the isEnabled property: The state of the original Agent Job.
      *
      * @return the isEnabled value.
      */
@@ -86,7 +93,7 @@ public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends Conne
     }
 
     /**
-     * Get the jobOwner property: The owner of the AgentJob.
+     * Get the jobOwner property: The owner of the Agent Job.
      *
      * @return the jobOwner value.
      */
@@ -95,12 +102,21 @@ public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends Conne
     }
 
     /**
-     * Get the lastExecutedOn property: UTC Date and time when the AgentJob was last executed.
+     * Get the lastExecutedOn property: UTC Date and time when the Agent Job was last executed.
      *
      * @return the lastExecutedOn value.
      */
     public OffsetDateTime lastExecutedOn() {
         return this.lastExecutedOn;
+    }
+
+    /**
+     * Get the validationErrors property: Validation errors.
+     *
+     * @return the validationErrors value.
+     */
+    public List<ReportableException> validationErrors() {
+        return this.validationErrors;
     }
 
     /**
@@ -120,6 +136,9 @@ public final class ConnectToSourceSqlServerTaskOutputAgentJobLevel extends Conne
     @Override
     public void validate() {
         super.validate();
+        if (validationErrors() != null) {
+            validationErrors().forEach(e -> e.validate());
+        }
         if (migrationEligibility() != null) {
             migrationEligibility().validate();
         }
