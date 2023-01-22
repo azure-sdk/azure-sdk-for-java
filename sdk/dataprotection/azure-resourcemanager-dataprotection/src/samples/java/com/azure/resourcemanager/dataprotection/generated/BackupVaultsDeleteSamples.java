@@ -7,7 +7,7 @@ package com.azure.resourcemanager.dataprotection.generated;
 /** Samples for BackupVaults Delete. */
 public final class BackupVaultsDeleteSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/preview/2022-11-01-preview/examples/VaultCRUD/DeleteBackupVault.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2022-12-01/examples/VaultCRUD/DeleteBackupVault.json
      */
     /**
      * Sample code: Delete BackupVault.

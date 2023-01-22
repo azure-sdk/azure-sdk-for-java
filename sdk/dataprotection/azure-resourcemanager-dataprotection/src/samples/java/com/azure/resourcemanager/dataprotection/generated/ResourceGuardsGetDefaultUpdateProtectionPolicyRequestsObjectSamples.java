@@ -7,7 +7,7 @@ package com.azure.resourcemanager.dataprotection.generated;
 /** Samples for ResourceGuards GetDefaultUpdateProtectionPolicyRequestsObject. */
 public final class ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObjectSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/preview/2022-11-01-preview/examples/ResourceGuardCRUD/GetDefaultUpdateProtectionPolicyRequests.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2022-12-01/examples/ResourceGuardCRUD/GetDefaultUpdateProtectionPolicyRequests.json
      */
     /**
      * Sample code: Get DefaultOperationsRequestObject.

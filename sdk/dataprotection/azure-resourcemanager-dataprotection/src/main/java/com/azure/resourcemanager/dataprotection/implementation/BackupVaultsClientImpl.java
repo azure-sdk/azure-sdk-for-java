@@ -40,6 +40,7 @@ import com.azure.resourcemanager.dataprotection.models.BackupVaultResourceList;
 import com.azure.resourcemanager.dataprotection.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.dataprotection.models.PatchResourceRequestInput;
 import java.nio.ByteBuffer;
+import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -76,7 +77,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<BackupVaultResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -90,7 +91,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -103,7 +104,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<BackupVaultResourceInner>> getByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -118,7 +119,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @BodyParam("application/json") BackupVaultResourceInner parameters,
@@ -134,7 +135,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<Void>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -149,7 +150,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @BodyParam("application/json") PatchResourceRequestInput parameters,
@@ -166,7 +167,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("location") String location,
             @BodyParam("application/json") CheckNameAvailabilityRequest parameters,
             @HeaderParam("Accept") String accept,
@@ -336,7 +337,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns resource collection belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -387,7 +388,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns resource collection belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -437,7 +438,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns resource collection belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -453,7 +454,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns resource collection belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -470,7 +471,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns resource collection belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -484,7 +485,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns resource collection belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -499,7 +500,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns a resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -547,7 +548,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns a resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -593,7 +594,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns a resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -609,7 +610,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns a resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -626,7 +627,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Returns a resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -641,7 +642,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -696,7 +697,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -749,7 +750,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -775,7 +776,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -803,7 +804,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -820,7 +821,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -838,7 +839,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -857,7 +858,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -877,7 +878,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -894,7 +895,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Creates or updates a BackupVault resource belonging to a resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -912,7 +913,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Deletes a BackupVault resource from the resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -959,7 +960,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Deletes a BackupVault resource from the resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1004,7 +1005,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Deletes a BackupVault resource from the resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1019,7 +1020,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Deletes a BackupVault resource from the resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1035,7 +1036,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Deletes a BackupVault resource from the resource group.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1049,7 +1050,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1104,7 +1105,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -1157,7 +1158,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1182,7 +1183,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -1210,7 +1211,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1227,7 +1228,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -1245,7 +1246,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1264,7 +1265,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -1284,7 +1285,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1301,7 +1302,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the backup vault.
      * @param parameters Request body for operation.
      * @param context The context to associate with this operation.
@@ -1319,7 +1320,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * API to check for resource name availability.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param location The location in which uniqueness will be verified.
      * @param parameters Check name availability request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1374,7 +1375,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * API to check for resource name availability.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param location The location in which uniqueness will be verified.
      * @param parameters Check name availability request.
      * @param context The context to associate with this operation.
@@ -1427,7 +1428,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * API to check for resource name availability.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param location The location in which uniqueness will be verified.
      * @param parameters Check name availability request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1445,7 +1446,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * API to check for resource name availability.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param location The location in which uniqueness will be verified.
      * @param parameters Check name availability request.
      * @param context The context to associate with this operation.
@@ -1463,7 +1464,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
     /**
      * API to check for resource name availability.
      *
-     * @param resourceGroupName The name of the resource group where the backup vault is present.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param location The location in which uniqueness will be verified.
      * @param parameters Check name availability request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

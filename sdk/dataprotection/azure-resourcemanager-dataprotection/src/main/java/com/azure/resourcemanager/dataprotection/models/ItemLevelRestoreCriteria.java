@@ -17,13 +17,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = ItemLevelRestoreCriteria.class)
 @JsonTypeName("ItemLevelRestoreCriteria")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "ItemPathBasedRestoreCriteria", value = ItemPathBasedRestoreCriteria.class),
     @JsonSubTypes.Type(name = "RangeBasedItemLevelRestoreCriteria", value = RangeBasedItemLevelRestoreCriteria.class),
     @JsonSubTypes.Type(
         name = "KubernetesStorageClassRestoreCriteria",
         value = KubernetesStorageClassRestoreCriteria.class),
-    @JsonSubTypes.Type(name = "KubernetesPVRestoreCriteria", value = KubernetesPVRestoreCriteria.class),
-    @JsonSubTypes.Type(name = "KubernetesClusterRestoreCriteria", value = KubernetesClusterRestoreCriteria.class)
+    @JsonSubTypes.Type(name = "KubernetesPVRestoreCriteria", value = KubernetesPVRestoreCriteria.class)
 })
 @Immutable
 public class ItemLevelRestoreCriteria {
