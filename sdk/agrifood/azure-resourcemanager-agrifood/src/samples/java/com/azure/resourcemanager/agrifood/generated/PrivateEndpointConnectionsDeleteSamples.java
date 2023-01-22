@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
@@ -19,6 +17,10 @@ public final class PrivateEndpointConnectionsDeleteSamples {
     public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .privateEndpointConnections()
-            .delete("examples-rg", "examples-farmbeatsResourceName", "privateEndpointConnectionName", Context.NONE);
+            .delete(
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                "privateEndpointConnectionName",
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FarmBeatsModels Delete. */
 public final class FarmBeatsModelsDeleteSamples {
     /*
@@ -17,6 +15,9 @@ public final class FarmBeatsModelsDeleteSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().deleteWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
+        manager
+            .farmBeatsModels()
+            .deleteByResourceGroupWithResponse(
+                "examples-rg", "examples-farmBeatsResourceName", com.azure.core.util.Context.NONE);
     }
 }

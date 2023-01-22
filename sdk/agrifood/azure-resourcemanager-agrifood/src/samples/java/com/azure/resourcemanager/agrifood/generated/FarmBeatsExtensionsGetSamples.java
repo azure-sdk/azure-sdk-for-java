@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FarmBeatsExtensions Get. */
 public final class FarmBeatsExtensionsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class FarmBeatsExtensionsGetSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void farmBeatsExtensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsExtensions().getWithResponse("DTN.ContentServices", Context.NONE);
+        manager.farmBeatsExtensions().getWithResponse("DTN.ContentServices", com.azure.core.util.Context.NONE);
     }
 }
