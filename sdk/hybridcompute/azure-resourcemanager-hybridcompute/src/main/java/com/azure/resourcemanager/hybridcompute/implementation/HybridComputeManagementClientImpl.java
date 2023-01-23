@@ -22,6 +22,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.hybridcompute.fluent.ExtensionMetadatasClient;
 import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachineExtensionsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachinesClient;
@@ -29,6 +30,7 @@ import com.azure.resourcemanager.hybridcompute.fluent.OperationsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateLinkScopesClient;
+import com.azure.resourcemanager.hybridcompute.fluent.ResourceProvidersClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -137,6 +139,30 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         return this.machineExtensions;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /** The ExtensionMetadatasClient object to access its operations. */
+    private final ExtensionMetadatasClient extensionMetadatas;
+
+    /**
+     * Gets the ExtensionMetadatasClient object to access its operations.
+     *
+     * @return the ExtensionMetadatasClient object.
+     */
+    public ExtensionMetadatasClient getExtensionMetadatas() {
+        return this.extensionMetadatas;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -207,9 +233,11 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-03-25-preview";
+        this.apiVersion = "2022-11-10";
         this.machines = new MachinesClientImpl(this);
         this.machineExtensions = new MachineExtensionsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.extensionMetadatas = new ExtensionMetadatasClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateLinkScopes = new PrivateLinkScopesClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
