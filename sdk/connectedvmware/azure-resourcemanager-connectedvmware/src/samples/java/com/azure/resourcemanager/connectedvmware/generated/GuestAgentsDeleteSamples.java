@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GuestAgents Delete. */
 public final class GuestAgentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteGuestAgent.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteGuestAgent.json
      */
     /**
      * Sample code: DeleteGuestAgent.
@@ -17,6 +15,6 @@ public final class GuestAgentsDeleteSamples {
      * @param manager Entry point to ConnectedVMwareManager.
      */
     public static void deleteGuestAgent(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.guestAgents().delete("testrg", "ContosoVm", "default", Context.NONE);
+        manager.guestAgents().delete("testrg", "ContosoVm", "default", com.azure.core.util.Context.NONE);
     }
 }

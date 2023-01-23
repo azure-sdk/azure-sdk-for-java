@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for HybridIdentityMetadata Get. */
 public final class HybridIdentityMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetHybridIdentityMetadata.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetHybridIdentityMetadata.json
      */
     /**
      * Sample code: GetHybridIdentityMetadata.
@@ -18,6 +16,8 @@ public final class HybridIdentityMetadataGetSamples {
      */
     public static void getHybridIdentityMetadata(
         com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.hybridIdentityMetadatas().getWithResponse("testrg", "ContosoVm", "default", Context.NONE);
+        manager
+            .hybridIdentityMetadatas()
+            .getWithResponse("testrg", "ContosoVm", "default", com.azure.core.util.Context.NONE);
     }
 }

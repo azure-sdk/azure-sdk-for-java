@@ -63,7 +63,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConnectedVMwareClien")
-    private interface GuestAgentsService {
+    public interface GuestAgentsService {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -119,7 +119,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
                 + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/guestAgents")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GuestAgentList>> listByVm(
+        Mono<Response<GuestAgentList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -132,7 +132,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GuestAgentList>> listByVmNext(
+        Mono<Response<GuestAgentList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -296,6 +296,35 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the guestAgents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of defines the GuestAgent.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(
+        String resourceGroupName, String virtualMachineName, String name) {
+        final GuestAgentInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createWithResponseAsync(resourceGroupName, virtualMachineName, name, body);
+        return this
+            .client
+            .<GuestAgentInner, GuestAgentInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                GuestAgentInner.class,
+                GuestAgentInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Implements GuestAgent PUT method.
+     *
+     * <p>Create Or Update GuestAgent.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param name Name of the guestAgents.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -323,7 +352,6 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the guestAgents.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -331,8 +359,9 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(
-        String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body) {
-        return beginCreateAsync(resourceGroupName, virtualMachineName, name, body).getSyncPoller();
+        String resourceGroupName, String virtualMachineName, String name) {
+        final GuestAgentInner body = null;
+        return this.beginCreateAsync(resourceGroupName, virtualMachineName, name, body).getSyncPoller();
     }
 
     /**
@@ -353,7 +382,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(
         String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, virtualMachineName, name, body, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, virtualMachineName, name, body, context).getSyncPoller();
     }
 
     /**
@@ -420,26 +449,6 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         return beginCreateAsync(resourceGroupName, virtualMachineName, name, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param name Name of the guestAgents.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GuestAgentInner create(
-        String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body) {
-        return createAsync(resourceGroupName, virtualMachineName, name, body).block();
     }
 
     /**
@@ -619,24 +628,6 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the GuestAgent.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GuestAgentInner get(String resourceGroupName, String virtualMachineName, String name) {
-        return getAsync(resourceGroupName, virtualMachineName, name).block();
-    }
-
-    /**
-     * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param name Name of the GuestAgent.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -647,6 +638,24 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     public Response<GuestAgentInner> getWithResponse(
         String resourceGroupName, String virtualMachineName, String name, Context context) {
         return getWithResponseAsync(resourceGroupName, virtualMachineName, name, context).block();
+    }
+
+    /**
+     * Gets GuestAgent.
+     *
+     * <p>Implements GuestAgent GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param name Name of the GuestAgent.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the GuestAgent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GuestAgentInner get(String resourceGroupName, String virtualMachineName, String name) {
+        return getWithResponse(resourceGroupName, virtualMachineName, name, Context.NONE).getValue();
     }
 
     /**
@@ -823,7 +832,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String virtualMachineName, String name) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, name).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineName, name).getSyncPoller();
     }
 
     /**
@@ -843,7 +852,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String virtualMachineName, String name, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, name, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineName, name, context).getSyncPoller();
     }
 
     /**
@@ -935,7 +944,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GuestAgentInner>> listByVmSinglePageAsync(
+    private Mono<PagedResponse<GuestAgentInner>> listSinglePageAsync(
         String resourceGroupName, String virtualMachineName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -962,7 +971,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
             .withContext(
                 context ->
                     service
-                        .listByVm(
+                        .list(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
@@ -996,7 +1005,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GuestAgentInner>> listByVmSinglePageAsync(
+    private Mono<PagedResponse<GuestAgentInner>> listSinglePageAsync(
         String resourceGroupName, String virtualMachineName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1021,7 +1030,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByVm(
+            .list(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
@@ -1053,10 +1062,10 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<GuestAgentInner> listByVmAsync(String resourceGroupName, String virtualMachineName) {
+    private PagedFlux<GuestAgentInner> listAsync(String resourceGroupName, String virtualMachineName) {
         return new PagedFlux<>(
-            () -> listByVmSinglePageAsync(resourceGroupName, virtualMachineName),
-            nextLink -> listByVmNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -1073,11 +1082,10 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<GuestAgentInner> listByVmAsync(
-        String resourceGroupName, String virtualMachineName, Context context) {
+    private PagedFlux<GuestAgentInner> listAsync(String resourceGroupName, String virtualMachineName, Context context) {
         return new PagedFlux<>(
-            () -> listByVmSinglePageAsync(resourceGroupName, virtualMachineName, context),
-            nextLink -> listByVmNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -1093,8 +1101,8 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<GuestAgentInner> listByVm(String resourceGroupName, String virtualMachineName) {
-        return new PagedIterable<>(listByVmAsync(resourceGroupName, virtualMachineName));
+    public PagedIterable<GuestAgentInner> list(String resourceGroupName, String virtualMachineName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, virtualMachineName));
     }
 
     /**
@@ -1111,22 +1119,22 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<GuestAgentInner> listByVm(
-        String resourceGroupName, String virtualMachineName, Context context) {
-        return new PagedIterable<>(listByVmAsync(resourceGroupName, virtualMachineName, context));
+    public PagedIterable<GuestAgentInner> list(String resourceGroupName, String virtualMachineName, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, virtualMachineName, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of GuestAgent along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GuestAgentInner>> listByVmNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<GuestAgentInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1138,7 +1146,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByVmNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<GuestAgentInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1154,7 +1162,8 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1162,7 +1171,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return list of GuestAgent along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GuestAgentInner>> listByVmNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<GuestAgentInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1175,7 +1184,7 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByVmNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

@@ -14,32 +14,33 @@ public interface VirtualMachines {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the properties of an AssessPatches result.
      */
-    VirtualMachineAssessPatchesResult assessPatches(String resourceGroupName, String name);
+    VirtualMachineAssessPatchesResult assessPatches(String resourceGroupName, String virtualMachineName);
 
     /**
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the properties of an AssessPatches result.
      */
-    VirtualMachineAssessPatchesResult assessPatches(String resourceGroupName, String name, Context context);
+    VirtualMachineAssessPatchesResult assessPatches(
+        String resourceGroupName, String virtualMachineName, Context context);
 
     /**
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -47,13 +48,15 @@ public interface VirtualMachines {
      * @return the result summary of an installation operation.
      */
     VirtualMachineInstallPatchesResult installPatches(
-        String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput);
+        String resourceGroupName,
+        String virtualMachineName,
+        VirtualMachineInstallPatchesParameters installPatchesInput);
 
     /**
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -63,23 +66,9 @@ public interface VirtualMachines {
      */
     VirtualMachineInstallPatchesResult installPatches(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         VirtualMachineInstallPatchesParameters installPatchesInput,
         Context context);
-
-    /**
-     * Gets a virtual machine.
-     *
-     * <p>Implements virtual machine GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName);
 
     /**
      * Gets a virtual machine.
@@ -98,19 +87,18 @@ public interface VirtualMachines {
         String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Deletes an virtual machine.
+     * Gets a virtual machine.
      *
-     * <p>Implements virtual machine DELETE method.
+     * <p>Implements virtual machine GET method.
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the virtualMachine.
      */
-    void delete(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain);
+    VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName);
 
     /**
      * Deletes an virtual machine.
@@ -132,28 +120,14 @@ public interface VirtualMachines {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param force Whether force delete was specified.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
+     * @param force Whether force delete was specified.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context);
-
-    /**
-     * Implements the operation to stop a virtual machine.
-     *
-     * <p>Stop virtual machine.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body);
+    void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context);
 
     /**
      * Implements the operation to stop a virtual machine.
@@ -333,14 +307,14 @@ public interface VirtualMachines {
      * <p>Implements virtual machine DELETE method.
      *
      * @param id the resource ID.
-     * @param force Whether force delete was specified.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
+     * @param force Whether force delete was specified.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByIdWithResponse(String id, Boolean force, Boolean retain, Context context);
+    void deleteByIdWithResponse(String id, Boolean retain, Boolean force, Context context);
 
     /**
      * Begins definition for a new VirtualMachine resource.

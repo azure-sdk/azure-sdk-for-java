@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachine;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for VirtualMachines Update. */
 public final class VirtualMachinesUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVirtualMachine.json
      */
     /**
      * Sample code: UpdateVirtualMachine.
@@ -21,7 +20,10 @@ public final class VirtualMachinesUpdateSamples {
      */
     public static void updateVirtualMachine(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
         VirtualMachine resource =
-            manager.virtualMachines().getByResourceGroupWithResponse("testrg", "DemoVM", Context.NONE).getValue();
+            manager
+                .virtualMachines()
+                .getByResourceGroupWithResponse("testrg", "DemoVM", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

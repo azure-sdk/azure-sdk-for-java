@@ -18,16 +18,20 @@ public final class LinuxParameters {
     private List<VMGuestPatchClassificationLinux> classificationsToInclude;
 
     /*
-     * packages to include in the patch operation. Format: packageName_packageVersion
+     * packages to include in the patch operation. Format: packageName=packageVersion
      */
     @JsonProperty(value = "packageNameMasksToInclude")
     private List<String> packageNameMasksToInclude;
 
     /*
-     * packages to exclude in the patch operation. Format: packageName_packageVersion
+     * packages to exclude in the patch operation. Format: packageName=packageVersion
      */
     @JsonProperty(value = "packageNameMasksToExclude")
     private List<String> packageNameMasksToExclude;
+
+    /** Creates an instance of LinuxParameters class. */
+    public LinuxParameters() {
+    }
 
     /**
      * Get the classificationsToInclude property: The update classifications to select when installing patches for
@@ -54,7 +58,7 @@ public final class LinuxParameters {
 
     /**
      * Get the packageNameMasksToInclude property: packages to include in the patch operation. Format:
-     * packageName_packageVersion.
+     * packageName=packageVersion.
      *
      * @return the packageNameMasksToInclude value.
      */
@@ -64,7 +68,7 @@ public final class LinuxParameters {
 
     /**
      * Set the packageNameMasksToInclude property: packages to include in the patch operation. Format:
-     * packageName_packageVersion.
+     * packageName=packageVersion.
      *
      * @param packageNameMasksToInclude the packageNameMasksToInclude value to set.
      * @return the LinuxParameters object itself.
@@ -76,7 +80,7 @@ public final class LinuxParameters {
 
     /**
      * Get the packageNameMasksToExclude property: packages to exclude in the patch operation. Format:
-     * packageName_packageVersion.
+     * packageName=packageVersion.
      *
      * @return the packageNameMasksToExclude value.
      */
@@ -86,7 +90,7 @@ public final class LinuxParameters {
 
     /**
      * Set the packageNameMasksToExclude property: packages to exclude in the patch operation. Format:
-     * packageName_packageVersion.
+     * packageName=packageVersion.
      *
      * @param packageNameMasksToExclude the packageNameMasksToExclude value to set.
      * @return the LinuxParameters object itself.

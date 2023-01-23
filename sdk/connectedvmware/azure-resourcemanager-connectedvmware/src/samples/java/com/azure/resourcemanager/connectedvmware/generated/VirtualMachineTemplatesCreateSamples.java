@@ -9,7 +9,7 @@ import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 /** Samples for VirtualMachineTemplates Create. */
 public final class VirtualMachineTemplatesCreateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateVirtualMachineTemplate.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateVirtualMachineTemplate.json
      */
     /**
      * Sample code: CreateVirtualMachineTemplate.

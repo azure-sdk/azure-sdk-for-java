@@ -4,13 +4,14 @@
 
 package com.azure.resourcemanager.connectedvmware.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Defines the resource properties. */
-@Immutable
+/** Specifies the guest agent settings for the virtual machine. */
+@Fluent
 public final class GuestAgentProfile {
     /*
      * Specifies the VM's unique SMBIOS ID.
@@ -31,6 +32,18 @@ public final class GuestAgentProfile {
     private OffsetDateTime lastStatusChange;
 
     /*
+     * Gets or sets the Public Key provided by the client for enabling guest management.
+     */
+    @JsonProperty(value = "clientPublicKey")
+    private String clientPublicKey;
+
+    /*
+     * Specifies whether any MS SQL instance is discovered on the machine.
+     */
+    @JsonProperty(value = "mssqlDiscovered", access = JsonProperty.Access.WRITE_ONLY)
+    private String mssqlDiscovered;
+
+    /*
      * The hybrid machine agent full version.
      */
     @JsonProperty(value = "agentVersion", access = JsonProperty.Access.WRITE_ONLY)
@@ -40,7 +53,11 @@ public final class GuestAgentProfile {
      * Details about the error state.
      */
     @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ErrorDetail> errorDetails;
+    private List<ManagementError> errorDetails;
+
+    /** Creates an instance of GuestAgentProfile class. */
+    public GuestAgentProfile() {
+    }
 
     /**
      * Get the vmUuid property: Specifies the VM's unique SMBIOS ID.
@@ -70,6 +87,37 @@ public final class GuestAgentProfile {
     }
 
     /**
+     * Get the clientPublicKey property: Gets or sets the Public Key provided by the client for enabling guest
+     * management.
+     *
+     * @return the clientPublicKey value.
+     */
+    public String clientPublicKey() {
+        return this.clientPublicKey;
+    }
+
+    /**
+     * Set the clientPublicKey property: Gets or sets the Public Key provided by the client for enabling guest
+     * management.
+     *
+     * @param clientPublicKey the clientPublicKey value to set.
+     * @return the GuestAgentProfile object itself.
+     */
+    public GuestAgentProfile withClientPublicKey(String clientPublicKey) {
+        this.clientPublicKey = clientPublicKey;
+        return this;
+    }
+
+    /**
+     * Get the mssqlDiscovered property: Specifies whether any MS SQL instance is discovered on the machine.
+     *
+     * @return the mssqlDiscovered value.
+     */
+    public String mssqlDiscovered() {
+        return this.mssqlDiscovered;
+    }
+
+    /**
      * Get the agentVersion property: The hybrid machine agent full version.
      *
      * @return the agentVersion value.
@@ -83,7 +131,7 @@ public final class GuestAgentProfile {
      *
      * @return the errorDetails value.
      */
-    public List<ErrorDetail> errorDetails() {
+    public List<ManagementError> errorDetails() {
         return this.errorDetails;
     }
 
@@ -93,8 +141,5 @@ public final class GuestAgentProfile {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (errorDetails() != null) {
-            errorDetails().forEach(e -> e.validate());
-        }
     }
 }

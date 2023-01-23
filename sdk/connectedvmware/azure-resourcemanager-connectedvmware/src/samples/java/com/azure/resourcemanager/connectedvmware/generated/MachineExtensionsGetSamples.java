@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for MachineExtensions Get. */
 public final class MachineExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GETExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GETExtension.json
      */
     /**
      * Sample code: Get Machine Extension.
@@ -19,6 +17,6 @@ public final class MachineExtensionsGetSamples {
     public static void getMachineExtension(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
         manager
             .machineExtensions()
-            .getWithResponse("myResourceGroup", "myMachine", "CustomScriptExtension", Context.NONE);
+            .getWithResponse("myResourceGroup", "myMachine", "CustomScriptExtension", com.azure.core.util.Context.NONE);
     }
 }

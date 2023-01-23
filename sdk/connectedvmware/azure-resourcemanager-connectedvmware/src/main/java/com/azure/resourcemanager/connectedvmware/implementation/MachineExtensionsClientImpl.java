@@ -65,11 +65,11 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConnectedVMwareClien")
-    private interface MachineExtensionsService {
+    public interface MachineExtensionsService {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/extensions/{extensionName}")
+                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/extensions/{extensionName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -77,7 +77,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @PathParam("extensionName") String extensionName,
             @BodyParam("application/json") MachineExtensionInner extensionParameters,
             @HeaderParam("Accept") String accept,
@@ -86,7 +86,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
         @Headers({"Content-Type: application/json"})
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/extensions/{extensionName}")
+                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/extensions/{extensionName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -94,7 +94,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @PathParam("extensionName") String extensionName,
             @BodyParam("application/json") MachineExtensionUpdate extensionParameters,
             @HeaderParam("Accept") String accept,
@@ -103,7 +103,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/extensions/{extensionName}")
+                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/extensions/{extensionName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -111,7 +111,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @PathParam("extensionName") String extensionName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -119,7 +119,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/extensions/{extensionName}")
+                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/extensions/{extensionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MachineExtensionInner>> get(
@@ -127,7 +127,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @PathParam("extensionName") String extensionName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -135,7 +135,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/extensions")
+                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/extensions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MachineExtensionsListResult>> list(
@@ -143,7 +143,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @QueryParam("$expand") String expand,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -163,7 +163,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -173,7 +173,10 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String name, String extensionName, MachineExtensionInner extensionParameters) {
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionInner extensionParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -190,8 +193,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -212,7 +216,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             this.client.getApiVersion(),
-                            name,
+                            virtualMachineName,
                             extensionName,
                             extensionParameters,
                             accept,
@@ -224,7 +228,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -236,7 +240,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionInner extensionParameters,
         Context context) {
@@ -256,8 +260,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -276,7 +281,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 this.client.getApiVersion(),
-                name,
+                virtualMachineName,
                 extensionName,
                 extensionParameters,
                 accept,
@@ -287,7 +292,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -297,9 +302,12 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MachineExtensionInner>, MachineExtensionInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String name, String extensionName, MachineExtensionInner extensionParameters) {
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionInner extensionParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, name, extensionName, extensionParameters);
+            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters);
         return this
             .client
             .<MachineExtensionInner, MachineExtensionInner>getLroResult(
@@ -314,7 +322,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -326,13 +334,14 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MachineExtensionInner>, MachineExtensionInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionInner extensionParameters,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, name, extensionName, extensionParameters, context);
+            createOrUpdateWithResponseAsync(
+                resourceGroupName, virtualMachineName, extensionName, extensionParameters, context);
         return this
             .client
             .<MachineExtensionInner, MachineExtensionInner>getLroResult(
@@ -343,28 +352,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes a Machine Extension.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<MachineExtensionInner>, MachineExtensionInner> beginCreateOrUpdate(
-        String resourceGroupName, String name, String extensionName, MachineExtensionInner extensionParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, name, extensionName, extensionParameters).getSyncPoller();
-    }
-
-    /**
-     * The operation to create or update the extension.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
-     * @param extensionName The name of the machine extension.
-     * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -373,11 +363,11 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MachineExtensionInner>, MachineExtensionInner> beginCreateOrUpdate(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
-        MachineExtensionInner extensionParameters,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, name, extensionName, extensionParameters, context)
+        MachineExtensionInner extensionParameters) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters)
             .getSyncPoller();
     }
 
@@ -385,7 +375,33 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
+     * @param extensionName The name of the machine extension.
+     * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a Machine Extension.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<MachineExtensionInner>, MachineExtensionInner> beginCreateOrUpdate(
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionInner extensionParameters,
+        Context context) {
+        return this
+            .beginCreateOrUpdateAsync(
+                resourceGroupName, virtualMachineName, extensionName, extensionParameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * The operation to create or update the extension.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -395,8 +411,11 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MachineExtensionInner> createOrUpdateAsync(
-        String resourceGroupName, String name, String extensionName, MachineExtensionInner extensionParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, name, extensionName, extensionParameters)
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionInner extensionParameters) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -405,7 +424,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -417,11 +436,12 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MachineExtensionInner> createOrUpdateAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionInner extensionParameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, name, extensionName, extensionParameters, context)
+        return beginCreateOrUpdateAsync(
+                resourceGroupName, virtualMachineName, extensionName, extensionParameters, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -430,7 +450,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -440,15 +460,18 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MachineExtensionInner createOrUpdate(
-        String resourceGroupName, String name, String extensionName, MachineExtensionInner extensionParameters) {
-        return createOrUpdateAsync(resourceGroupName, name, extensionName, extensionParameters).block();
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionInner extensionParameters) {
+        return createOrUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters).block();
     }
 
     /**
      * The operation to create or update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -460,18 +483,19 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MachineExtensionInner createOrUpdate(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionInner extensionParameters,
         Context context) {
-        return createOrUpdateAsync(resourceGroupName, name, extensionName, extensionParameters, context).block();
+        return createOrUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters, context)
+            .block();
     }
 
     /**
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -481,7 +505,10 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String name, String extensionName, MachineExtensionUpdate extensionParameters) {
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionUpdate extensionParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -498,8 +525,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -520,7 +548,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             this.client.getApiVersion(),
-                            name,
+                            virtualMachineName,
                             extensionName,
                             extensionParameters,
                             accept,
@@ -532,7 +560,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -544,7 +572,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionUpdate extensionParameters,
         Context context) {
@@ -564,8 +592,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -584,7 +613,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 this.client.getApiVersion(),
-                name,
+                virtualMachineName,
                 extensionName,
                 extensionParameters,
                 accept,
@@ -595,7 +624,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -605,9 +634,12 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MachineExtensionInner>, MachineExtensionInner> beginUpdateAsync(
-        String resourceGroupName, String name, String extensionName, MachineExtensionUpdate extensionParameters) {
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionUpdate extensionParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, name, extensionName, extensionParameters);
+            updateWithResponseAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters);
         return this
             .client
             .<MachineExtensionInner, MachineExtensionInner>getLroResult(
@@ -622,7 +654,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -634,13 +666,13 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MachineExtensionInner>, MachineExtensionInner> beginUpdateAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionUpdate extensionParameters,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, name, extensionName, extensionParameters, context);
+            updateWithResponseAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters, context);
         return this
             .client
             .<MachineExtensionInner, MachineExtensionInner>getLroResult(
@@ -651,7 +683,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -661,15 +693,20 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MachineExtensionInner>, MachineExtensionInner> beginUpdate(
-        String resourceGroupName, String name, String extensionName, MachineExtensionUpdate extensionParameters) {
-        return beginUpdateAsync(resourceGroupName, name, extensionName, extensionParameters).getSyncPoller();
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionUpdate extensionParameters) {
+        return this
+            .beginUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters)
+            .getSyncPoller();
     }
 
     /**
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -681,18 +718,20 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MachineExtensionInner>, MachineExtensionInner> beginUpdate(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionUpdate extensionParameters,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, name, extensionName, extensionParameters, context).getSyncPoller();
+        return this
+            .beginUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters, context)
+            .getSyncPoller();
     }
 
     /**
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -702,8 +741,11 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MachineExtensionInner> updateAsync(
-        String resourceGroupName, String name, String extensionName, MachineExtensionUpdate extensionParameters) {
-        return beginUpdateAsync(resourceGroupName, name, extensionName, extensionParameters)
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionUpdate extensionParameters) {
+        return beginUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -712,7 +754,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -724,11 +766,11 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MachineExtensionInner> updateAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionUpdate extensionParameters,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, name, extensionName, extensionParameters, context)
+        return beginUpdateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -737,7 +779,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -747,15 +789,18 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MachineExtensionInner update(
-        String resourceGroupName, String name, String extensionName, MachineExtensionUpdate extensionParameters) {
-        return updateAsync(resourceGroupName, name, extensionName, extensionParameters).block();
+        String resourceGroupName,
+        String virtualMachineName,
+        String extensionName,
+        MachineExtensionUpdate extensionParameters) {
+        return updateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters).block();
     }
 
     /**
      * The operation to update the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be created or updated.
+     * @param virtualMachineName The name of the machine where the extension should be created or updated.
      * @param extensionName The name of the machine extension.
      * @param extensionParameters Parameters supplied to the Create Machine Extension operation.
      * @param context The context to associate with this operation.
@@ -767,18 +812,18 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MachineExtensionInner update(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         String extensionName,
         MachineExtensionUpdate extensionParameters,
         Context context) {
-        return updateAsync(resourceGroupName, name, extensionName, extensionParameters, context).block();
+        return updateAsync(resourceGroupName, virtualMachineName, extensionName, extensionParameters, context).block();
     }
 
     /**
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -787,7 +832,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String name, String extensionName) {
+        String resourceGroupName, String virtualMachineName, String extensionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -804,8 +849,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -820,7 +866,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             this.client.getApiVersion(),
-                            name,
+                            virtualMachineName,
                             extensionName,
                             accept,
                             context))
@@ -831,7 +877,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -841,7 +887,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String name, String extensionName, Context context) {
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -858,8 +904,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -872,7 +919,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 this.client.getApiVersion(),
-                name,
+                virtualMachineName,
                 extensionName,
                 accept,
                 context);
@@ -882,7 +929,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -891,8 +938,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String name, String extensionName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, name, extensionName);
+        String resourceGroupName, String virtualMachineName, String extensionName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, extensionName);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -903,7 +951,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -913,10 +961,10 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String name, String extensionName, Context context) {
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, name, extensionName, context);
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, extensionName, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
@@ -926,7 +974,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -934,15 +982,16 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String name, String extensionName) {
-        return beginDeleteAsync(resourceGroupName, name, extensionName).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String virtualMachineName, String extensionName) {
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineName, extensionName).getSyncPoller();
     }
 
     /**
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -952,15 +1001,15 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String name, String extensionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, name, extensionName, context).getSyncPoller();
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineName, extensionName, context).getSyncPoller();
     }
 
     /**
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -968,8 +1017,8 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String name, String extensionName) {
-        return beginDeleteAsync(resourceGroupName, name, extensionName)
+    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName, String extensionName) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, extensionName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -978,7 +1027,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -987,8 +1036,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String name, String extensionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, name, extensionName, context)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, extensionName, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -997,22 +1047,22 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String name, String extensionName) {
-        deleteAsync(resourceGroupName, name, extensionName).block();
+    public void delete(String resourceGroupName, String virtualMachineName, String extensionName) {
+        deleteAsync(resourceGroupName, virtualMachineName, extensionName).block();
     }
 
     /**
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1020,15 +1070,15 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String name, String extensionName, Context context) {
-        deleteAsync(resourceGroupName, name, extensionName, context).block();
+    public void delete(String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
+        deleteAsync(resourceGroupName, virtualMachineName, extensionName, context).block();
     }
 
     /**
      * The operation to get the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1037,7 +1087,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MachineExtensionInner>> getWithResponseAsync(
-        String resourceGroupName, String name, String extensionName) {
+        String resourceGroupName, String virtualMachineName, String extensionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1054,8 +1104,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -1070,7 +1121,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             this.client.getApiVersion(),
-                            name,
+                            virtualMachineName,
                             extensionName,
                             accept,
                             context))
@@ -1081,7 +1132,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to get the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1091,7 +1142,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MachineExtensionInner>> getWithResponseAsync(
-        String resourceGroupName, String name, String extensionName, Context context) {
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1108,8 +1159,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (extensionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionName is required and cannot be null."));
@@ -1122,7 +1174,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 this.client.getApiVersion(),
-                name,
+                virtualMachineName,
                 extensionName,
                 accept,
                 context);
@@ -1132,7 +1184,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to get the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1140,8 +1192,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @return describes a Machine Extension on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MachineExtensionInner> getAsync(String resourceGroupName, String name, String extensionName) {
-        return getWithResponseAsync(resourceGroupName, name, extensionName)
+    private Mono<MachineExtensionInner> getAsync(
+        String resourceGroupName, String virtualMachineName, String extensionName) {
+        return getWithResponseAsync(resourceGroupName, virtualMachineName, extensionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -1149,23 +1202,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to get the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
-     * @param extensionName The name of the machine extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Machine Extension.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MachineExtensionInner get(String resourceGroupName, String name, String extensionName) {
-        return getAsync(resourceGroupName, name, extensionName).block();
-    }
-
-    /**
-     * The operation to get the extension.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1175,15 +1212,31 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MachineExtensionInner> getWithResponse(
-        String resourceGroupName, String name, String extensionName, Context context) {
-        return getWithResponseAsync(resourceGroupName, name, extensionName, context).block();
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context) {
+        return getWithResponseAsync(resourceGroupName, virtualMachineName, extensionName, context).block();
+    }
+
+    /**
+     * The operation to get the extension.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName The name of the machine containing the extension.
+     * @param extensionName The name of the machine extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Machine Extension.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MachineExtensionInner get(String resourceGroupName, String virtualMachineName, String extensionName) {
+        return getWithResponse(resourceGroupName, virtualMachineName, extensionName, Context.NONE).getValue();
     }
 
     /**
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param expand The expand expression to apply on the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1193,7 +1246,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineExtensionInner>> listSinglePageAsync(
-        String resourceGroupName, String name, String expand) {
+        String resourceGroupName, String virtualMachineName, String expand) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1210,8 +1263,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -1223,7 +1277,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             this.client.getApiVersion(),
-                            name,
+                            virtualMachineName,
                             expand,
                             accept,
                             context))
@@ -1243,7 +1297,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param expand The expand expression to apply on the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1254,7 +1308,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineExtensionInner>> listSinglePageAsync(
-        String resourceGroupName, String name, String expand, Context context) {
+        String resourceGroupName, String virtualMachineName, String expand, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1271,8 +1325,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -1282,7 +1337,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 this.client.getApiVersion(),
-                name,
+                virtualMachineName,
                 expand,
                 accept,
                 context)
@@ -1301,7 +1356,7 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param expand The expand expression to apply on the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1309,33 +1364,36 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @return describes the Machine Extensions List Result as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<MachineExtensionInner> listAsync(String resourceGroupName, String name, String expand) {
+    private PagedFlux<MachineExtensionInner> listAsync(
+        String resourceGroupName, String virtualMachineName, String expand) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, name, expand), nextLink -> listNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName, expand),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the Machine Extensions List Result as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<MachineExtensionInner> listAsync(String resourceGroupName, String name) {
+    private PagedFlux<MachineExtensionInner> listAsync(String resourceGroupName, String virtualMachineName) {
         final String expand = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, name, expand), nextLink -> listNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName, expand),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param expand The expand expression to apply on the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1345,9 +1403,9 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MachineExtensionInner> listAsync(
-        String resourceGroupName, String name, String expand, Context context) {
+        String resourceGroupName, String virtualMachineName, String expand, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, name, expand, context),
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName, expand, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -1355,23 +1413,23 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the Machine Extensions List Result as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<MachineExtensionInner> list(String resourceGroupName, String name) {
+    public PagedIterable<MachineExtensionInner> list(String resourceGroupName, String virtualMachineName) {
         final String expand = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, name, expand));
+        return new PagedIterable<>(listAsync(resourceGroupName, virtualMachineName, expand));
     }
 
     /**
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param expand The expand expression to apply on the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1381,14 +1439,15 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MachineExtensionInner> list(
-        String resourceGroupName, String name, String expand, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, name, expand, context));
+        String resourceGroupName, String virtualMachineName, String expand, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, virtualMachineName, expand, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1424,7 +1483,8 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Start. */
 public final class VirtualMachinesStartSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/StartVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/StartVirtualMachine.json
      */
     /**
      * Sample code: StartVirtualMachine.
@@ -17,6 +15,6 @@ public final class VirtualMachinesStartSamples {
      * @param manager Entry point to ConnectedVMwareManager.
      */
     public static void startVirtualMachine(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.virtualMachines().start("testrg", "DemoVM", Context.NONE);
+        manager.virtualMachines().start("testrg", "DemoVM", com.azure.core.util.Context.NONE);
     }
 }

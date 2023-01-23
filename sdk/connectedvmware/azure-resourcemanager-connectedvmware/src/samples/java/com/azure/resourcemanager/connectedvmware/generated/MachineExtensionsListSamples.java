@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for MachineExtensions List. */
 public final class MachineExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/LISTExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/LISTExtension.json
      */
     /**
      * Sample code: Get all Machine Extensions.
@@ -18,6 +16,6 @@ public final class MachineExtensionsListSamples {
      */
     public static void getAllMachineExtensions(
         com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.machineExtensions().list("myResourceGroup", "myMachine", null, Context.NONE);
+        manager.machineExtensions().list("myResourceGroup", "myMachine", null, com.azure.core.util.Context.NONE);
     }
 }

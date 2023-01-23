@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for HybridIdentityMetadata Delete. */
 public final class HybridIdentityMetadataDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteHybridIdentityMetadata.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteHybridIdentityMetadata.json
      */
     /**
      * Sample code: DeleteHybridIdentityMetadata.
@@ -18,6 +16,8 @@ public final class HybridIdentityMetadataDeleteSamples {
      */
     public static void deleteHybridIdentityMetadata(
         com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.hybridIdentityMetadatas().deleteWithResponse("testrg", "ContosoVm", "default", Context.NONE);
+        manager
+            .hybridIdentityMetadatas()
+            .deleteWithResponse("testrg", "ContosoVm", "default", com.azure.core.util.Context.NONE);
     }
 }
