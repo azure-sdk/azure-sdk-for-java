@@ -74,14 +74,15 @@ public interface EnvironmentVersion {
         /** The stage of the EnvironmentVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, environmentName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Name of EnvironmentVersion. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry.
+             * @param environmentName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingEnvironment(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingEnvironment(
+                String resourceGroupName, String registryName, String environmentName);
         }
         /** The stage of the EnvironmentVersion definition allowing to specify properties. */
         interface WithProperties {

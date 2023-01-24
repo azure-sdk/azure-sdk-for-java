@@ -7,14 +7,14 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for ComponentContainers List. */
 public final class ComponentContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/list.json
      */
     /**
-     * Sample code: List Component Container.
+     * Sample code: List Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listComponentContainer(
+    public static void listWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentContainers().list("test-rg", "my-aml-workspace", null, null, com.azure.core.util.Context.NONE);
     }
