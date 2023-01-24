@@ -867,7 +867,8 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
         String resourceName,
         String adaptiveNetworkHardeningResourceName,
         AdaptiveNetworkHardeningEnforceRequest body) {
-        return beginEnforceAsync(
+        return this
+            .beginEnforceAsync(
                 resourceGroupName,
                 resourceNamespace,
                 resourceType,
@@ -902,7 +903,8 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
         String adaptiveNetworkHardeningResourceName,
         AdaptiveNetworkHardeningEnforceRequest body,
         Context context) {
-        return beginEnforceAsync(
+        return this
+            .beginEnforceAsync(
                 resourceGroupName,
                 resourceNamespace,
                 resourceType,
