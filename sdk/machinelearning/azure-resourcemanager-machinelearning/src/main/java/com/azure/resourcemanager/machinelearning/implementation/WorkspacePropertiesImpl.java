@@ -151,6 +151,18 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         return this.innerModel().v1LegacyMode();
     }
 
+    public String softDeletedAt() {
+        return this.innerModel().softDeletedAt();
+    }
+
+    public String scheduledPurgeDate() {
+        return this.innerModel().scheduledPurgeDate();
+    }
+
+    public String systemDatastoresAuthMode() {
+        return this.innerModel().systemDatastoresAuthMode();
+    }
+
     public WorkspacePropertiesInner innerModel() {
         return this.innerObject;
     }
