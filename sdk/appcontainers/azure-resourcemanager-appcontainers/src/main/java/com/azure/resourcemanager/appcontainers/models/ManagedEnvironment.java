@@ -57,6 +57,13 @@ public interface ManagedEnvironment {
     EnvironmentSkuProperties sku();
 
     /**
+     * Gets the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -151,6 +158,27 @@ public interface ManagedEnvironment {
     List<WorkloadProfile> workloadProfiles();
 
     /**
+     * Gets the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @return the kedaConfiguration value.
+     */
+    KedaConfiguration kedaConfiguration();
+
+    /**
+     * Gets the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @return the daprConfiguration value.
+     */
+    DaprConfiguration daprConfiguration();
+
+    /**
+     * Gets the quotas property: Quota status for the environment.
+     *
+     * @return the quotas value.
+     */
+    ManagedEnvironmentQuota quotas();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -225,13 +253,17 @@ public interface ManagedEnvironment {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSku,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithDaprAIInstrumentationKey,
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
                 DefinitionStages.WithAppLogsConfiguration,
                 DefinitionStages.WithZoneRedundant,
                 DefinitionStages.WithCustomDomainConfiguration,
-                DefinitionStages.WithWorkloadProfiles {
+                DefinitionStages.WithWorkloadProfiles,
+                DefinitionStages.WithKedaConfiguration,
+                DefinitionStages.WithDaprConfiguration,
+                DefinitionStages.WithQuotas {
             /**
              * Executes the create request.
              *
@@ -266,6 +298,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withSku(EnvironmentSkuProperties sku);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
         }
         /** The stage of the ManagedEnvironment definition allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
@@ -343,6 +385,36 @@ public interface ManagedEnvironment {
              */
             WithCreate withWorkloadProfiles(List<WorkloadProfile> workloadProfiles);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify kedaConfiguration. */
+        interface WithKedaConfiguration {
+            /**
+             * Specifies the kedaConfiguration property: The configuration of Keda component..
+             *
+             * @param kedaConfiguration The configuration of Keda component.
+             * @return the next definition stage.
+             */
+            WithCreate withKedaConfiguration(KedaConfiguration kedaConfiguration);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify daprConfiguration. */
+        interface WithDaprConfiguration {
+            /**
+             * Specifies the daprConfiguration property: The configuration of Dapr component..
+             *
+             * @param daprConfiguration The configuration of Dapr component.
+             * @return the next definition stage.
+             */
+            WithCreate withDaprConfiguration(DaprConfiguration daprConfiguration);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify quotas. */
+        interface WithQuotas {
+            /**
+             * Specifies the quotas property: Quota status for the environment..
+             *
+             * @param quotas Quota status for the environment.
+             * @return the next definition stage.
+             */
+            WithCreate withQuotas(ManagedEnvironmentQuota quotas);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -355,12 +427,16 @@ public interface ManagedEnvironment {
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithSku,
+            UpdateStages.WithKind,
             UpdateStages.WithDaprAIInstrumentationKey,
             UpdateStages.WithDaprAIConnectionString,
             UpdateStages.WithVnetConfiguration,
             UpdateStages.WithAppLogsConfiguration,
             UpdateStages.WithCustomDomainConfiguration,
-            UpdateStages.WithWorkloadProfiles {
+            UpdateStages.WithWorkloadProfiles,
+            UpdateStages.WithKedaConfiguration,
+            UpdateStages.WithDaprConfiguration,
+            UpdateStages.WithQuotas {
         /**
          * Executes the update request.
          *
@@ -397,6 +473,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withSku(EnvironmentSkuProperties sku);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            Update withKind(String kind);
         }
         /** The stage of the ManagedEnvironment update allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
@@ -463,6 +549,36 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withWorkloadProfiles(List<WorkloadProfile> workloadProfiles);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify kedaConfiguration. */
+        interface WithKedaConfiguration {
+            /**
+             * Specifies the kedaConfiguration property: The configuration of Keda component..
+             *
+             * @param kedaConfiguration The configuration of Keda component.
+             * @return the next definition stage.
+             */
+            Update withKedaConfiguration(KedaConfiguration kedaConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify daprConfiguration. */
+        interface WithDaprConfiguration {
+            /**
+             * Specifies the daprConfiguration property: The configuration of Dapr component..
+             *
+             * @param daprConfiguration The configuration of Dapr component.
+             * @return the next definition stage.
+             */
+            Update withDaprConfiguration(DaprConfiguration daprConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify quotas. */
+        interface WithQuotas {
+            /**
+             * Specifies the quotas property: Quota status for the environment..
+             *
+             * @param quotas Quota status for the environment.
+             * @return the next definition stage.
+             */
+            Update withQuotas(ManagedEnvironmentQuota quotas);
         }
     }
     /**

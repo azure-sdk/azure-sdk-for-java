@@ -13,8 +13,14 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
     /** Static value Consumption for SkuName. */
     public static final SkuName CONSUMPTION = fromString("Consumption");
 
-    /** Static value Premium for SkuName. */
-    public static final SkuName PREMIUM = fromString("Premium");
+    /**
+     * Creates a new instance of SkuName value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SkuName() {
+    }
 
     /**
      * Creates or finds a SkuName from its string representation.

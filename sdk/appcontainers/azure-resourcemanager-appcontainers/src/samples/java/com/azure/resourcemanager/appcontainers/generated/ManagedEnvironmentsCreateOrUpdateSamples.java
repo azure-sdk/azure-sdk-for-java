@@ -18,7 +18,7 @@ import java.util.Arrays;
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.
@@ -31,7 +31,7 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
             .define("testcontainerenv")
             .withRegion("East US")
             .withExistingResourceGroup("examplerg")
-            .withSku(new EnvironmentSkuProperties().withName(SkuName.PREMIUM))
+            .withSku(new EnvironmentSkuProperties().withName(SkuName.CONSUMPTION))
             .withDaprAIConnectionString(
                 "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://northcentralus-0.in.applicationinsights.azure.com/")
             .withVnetConfiguration(
@@ -43,13 +43,13 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
             .withAppLogsConfiguration(
                 new AppLogsConfiguration()
                     .withLogAnalyticsConfiguration(
-                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("string")))
+                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("fakeTokenPlaceholder")))
             .withZoneRedundant(true)
             .withCustomDomainConfiguration(
                 new CustomDomainConfiguration()
                     .withDnsSuffix("www.my-name.com")
-                    .withCertificateValue("PFX-or-PEM-blob".getBytes())
-                    .withCertificatePassword("private key password".getBytes()))
+                    .withCertificateValue("Y2VydA==".getBytes())
+                    .withCertificatePassword("fakeTokenPlaceholder"))
             .withWorkloadProfiles(
                 Arrays
                     .asList(

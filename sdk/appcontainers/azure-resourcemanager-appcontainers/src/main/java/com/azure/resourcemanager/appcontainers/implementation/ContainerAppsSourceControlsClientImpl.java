@@ -65,7 +65,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ContainerAppsSourceControlsService {
+    public interface ContainerAppsSourceControlsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"
@@ -697,7 +697,8 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
         String containerAppName,
         String sourceControlName,
         SourceControlInner sourceControlEnvelope) {
-        return beginCreateOrUpdateAsync(resourceGroupName, containerAppName, sourceControlName, sourceControlEnvelope)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, containerAppName, sourceControlName, sourceControlEnvelope)
             .getSyncPoller();
     }
 
@@ -721,7 +722,8 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
         String sourceControlName,
         SourceControlInner sourceControlEnvelope,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName, containerAppName, sourceControlName, sourceControlEnvelope, context)
             .getSyncPoller();
     }
@@ -989,7 +991,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String containerAppName, String sourceControlName) {
-        return beginDeleteAsync(resourceGroupName, containerAppName, sourceControlName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, containerAppName, sourceControlName).getSyncPoller();
     }
 
     /**
@@ -1007,7 +1009,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String containerAppName, String sourceControlName, Context context) {
-        return beginDeleteAsync(resourceGroupName, containerAppName, sourceControlName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, containerAppName, sourceControlName, context).getSyncPoller();
     }
 
     /**

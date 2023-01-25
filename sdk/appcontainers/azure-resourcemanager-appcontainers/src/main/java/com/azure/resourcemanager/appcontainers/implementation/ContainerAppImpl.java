@@ -60,6 +60,10 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         return this.innerModel().identity();
     }
 
+    public String managedBy() {
+        return this.innerModel().managedBy();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
@@ -82,6 +86,10 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
 
     public String latestRevisionName() {
         return this.innerModel().latestRevisionName();
+    }
+
+    public String latestReadyRevisionName() {
+        return this.innerModel().latestReadyRevisionName();
     }
 
     public String latestRevisionFqdn() {
@@ -175,7 +183,7 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
             serviceManager
                 .serviceClient()
                 .getContainerApps()
-                .createOrUpdate(resourceGroupName, containerAppName, this.innerModel(), Context.NONE);
+                .update(resourceGroupName, containerAppName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -184,7 +192,7 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
             serviceManager
                 .serviceClient()
                 .getContainerApps()
-                .createOrUpdate(resourceGroupName, containerAppName, this.innerModel(), context);
+                .update(resourceGroupName, containerAppName, this.innerModel(), context);
         return this;
     }
 
@@ -265,6 +273,11 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
 
     public ContainerAppImpl withIdentity(ManagedServiceIdentity identity) {
         this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public ContainerAppImpl withManagedBy(String managedBy) {
+        this.innerModel().withManagedBy(managedBy);
         return this;
     }
 
