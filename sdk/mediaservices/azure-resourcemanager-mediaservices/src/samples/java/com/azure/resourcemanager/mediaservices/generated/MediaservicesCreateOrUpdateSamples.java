@@ -10,6 +10,7 @@ import com.azure.resourcemanager.mediaservices.models.AccountEncryptionKeyType;
 import com.azure.resourcemanager.mediaservices.models.DefaultAction;
 import com.azure.resourcemanager.mediaservices.models.KeyDelivery;
 import com.azure.resourcemanager.mediaservices.models.MediaServiceIdentity;
+import com.azure.resourcemanager.mediaservices.models.MinimumTlsVersion;
 import com.azure.resourcemanager.mediaservices.models.PublicNetworkAccess;
 import com.azure.resourcemanager.mediaservices.models.ResourceIdentity;
 import com.azure.resourcemanager.mediaservices.models.StorageAccount;
@@ -23,7 +24,7 @@ import java.util.Map;
 /** Samples for Mediaservices CreateOrUpdate. */
 public final class MediaservicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/async-accounts-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/async-accounts-create.json
      */
     /**
      * Sample code: Create a Media Services account.
@@ -71,6 +72,7 @@ public final class MediaservicesCreateOrUpdateSamples {
             .withKeyDelivery(
                 new KeyDelivery().withAccessControl(new AccessControl().withDefaultAction(DefaultAction.ALLOW)))
             .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+            .withMinimumTlsVersion(MinimumTlsVersion.TLS12)
             .create();
     }
 
