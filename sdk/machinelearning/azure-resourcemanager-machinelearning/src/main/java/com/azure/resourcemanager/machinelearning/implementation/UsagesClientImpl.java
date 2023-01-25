@@ -36,21 +36,21 @@ public final class UsagesClientImpl implements UsagesClient {
     private final UsagesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of UsagesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    UsagesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    UsagesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(UsagesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesUsages to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesUsages to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")

@@ -8,6 +8,7 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.machinelearning.models.AmlToken;
 import com.azure.resourcemanager.machinelearning.models.AutoMLJob;
+import com.azure.resourcemanager.machinelearning.models.AutologgerSettings;
 import com.azure.resourcemanager.machinelearning.models.CommandJob;
 import com.azure.resourcemanager.machinelearning.models.CommandJobLimits;
 import com.azure.resourcemanager.machinelearning.models.Goal;
@@ -19,6 +20,7 @@ import com.azure.resourcemanager.machinelearning.models.ImageModelSettingsClassi
 import com.azure.resourcemanager.machinelearning.models.JobResourceConfiguration;
 import com.azure.resourcemanager.machinelearning.models.JobService;
 import com.azure.resourcemanager.machinelearning.models.LiteralJobInput;
+import com.azure.resourcemanager.machinelearning.models.MLFlowAutologgerState;
 import com.azure.resourcemanager.machinelearning.models.MLTableJobInput;
 import com.azure.resourcemanager.machinelearning.models.MedianStoppingPolicy;
 import com.azure.resourcemanager.machinelearning.models.Mpi;
@@ -39,7 +41,7 @@ import java.util.Map;
 /** Samples for Jobs CreateOrUpdate. */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/AutoMLJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate AutoML Job.
@@ -107,7 +109,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/SweepJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Sweep Job.
@@ -172,7 +174,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/PipelineJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Pipeline Job.
@@ -217,7 +219,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Job/CommandJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Command Job.
@@ -247,6 +249,8 @@ public final class JobsCreateOrUpdateSamples {
                                 .withJobServiceType("string")
                                 .withPort(1)
                                 .withProperties(mapOf("string", "string"))))
+                    .withAutologgerSettings(
+                        new AutologgerSettings().withMlflowAutologger(MLFlowAutologgerState.ENABLED))
                     .withCodeId("fakeTokenPlaceholder")
                     .withCommand("string")
                     .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))

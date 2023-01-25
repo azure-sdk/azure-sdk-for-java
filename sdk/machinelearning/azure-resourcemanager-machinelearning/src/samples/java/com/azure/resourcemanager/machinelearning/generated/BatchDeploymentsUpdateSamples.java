@@ -12,14 +12,15 @@ import java.util.Map;
 /** Samples for BatchDeployments Update. */
 public final class BatchDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/update.json
      */
     /**
-     * Sample code: Update Batch Deployment.
+     * Sample code: Update Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void updateWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         BatchDeployment resource =
             manager
                 .batchDeployments()
