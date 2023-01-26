@@ -8,7 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** LedgerProperties Additional Confidential Ledger properties. */
+/**
+ * LedgerProperties
+ *
+ * <p>Additional Confidential Ledger properties.
+ */
 @Fluent
 public final class LedgerProperties {
     /*
@@ -48,6 +52,12 @@ public final class LedgerProperties {
     private ProvisioningState provisioningState;
 
     /*
+     * Running state of Ledger Resource
+     */
+    @JsonProperty(value = "runningState", access = JsonProperty.Access.WRITE_ONLY)
+    private LedgerRunningState runningState;
+
+    /*
      * Array of all AAD based Security Principals.
      */
     @JsonProperty(value = "aadBasedSecurityPrincipals")
@@ -58,6 +68,10 @@ public final class LedgerProperties {
      */
     @JsonProperty(value = "certBasedSecurityPrincipals")
     private List<CertBasedSecurityPrincipal> certBasedSecurityPrincipals;
+
+    /** Creates an instance of LedgerProperties class. */
+    public LedgerProperties() {
+    }
 
     /**
      * Get the ledgerName property: Unique name for the Confidential Ledger.
@@ -122,6 +136,15 @@ public final class LedgerProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the runningState property: Running state of Ledger Resource.
+     *
+     * @return the runningState value.
+     */
+    public LedgerRunningState runningState() {
+        return this.runningState;
     }
 
     /**
