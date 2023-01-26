@@ -17,9 +17,8 @@ import java.util.Map;
 @Fluent
 public final class ProvisioningServiceDescriptionInner extends Resource {
     /*
-     * The Etag field is *not* required. If it is provided in the response
-     * body, it must also be provided as a header per the normal ETag
-     * convention.
+     * The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header
+     * per the normal ETag convention.
      */
     @JsonProperty(value = "etag")
     private String etag;
@@ -41,6 +40,22 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /*
+     * The resource group of the resource.
+     */
+    @JsonProperty(value = "resourcegroup")
+    private String resourcegroup;
+
+    /*
+     * The subscription id of the resource.
+     */
+    @JsonProperty(value = "subscriptionid")
+    private String subscriptionid;
+
+    /** Creates an instance of ProvisioningServiceDescriptionInner class. */
+    public ProvisioningServiceDescriptionInner() {
+    }
 
     /**
      * Get the etag property: The Etag field is *not* required. If it is provided in the response body, it must also be
@@ -111,6 +126,46 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /**
+     * Get the resourcegroup property: The resource group of the resource.
+     *
+     * @return the resourcegroup value.
+     */
+    public String resourcegroup() {
+        return this.resourcegroup;
+    }
+
+    /**
+     * Set the resourcegroup property: The resource group of the resource.
+     *
+     * @param resourcegroup the resourcegroup value to set.
+     * @return the ProvisioningServiceDescriptionInner object itself.
+     */
+    public ProvisioningServiceDescriptionInner withResourcegroup(String resourcegroup) {
+        this.resourcegroup = resourcegroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionid property: The subscription id of the resource.
+     *
+     * @return the subscriptionid value.
+     */
+    public String subscriptionid() {
+        return this.subscriptionid;
+    }
+
+    /**
+     * Set the subscriptionid property: The subscription id of the resource.
+     *
+     * @param subscriptionid the subscriptionid value to set.
+     * @return the ProvisioningServiceDescriptionInner object itself.
+     */
+    public ProvisioningServiceDescriptionInner withSubscriptionid(String subscriptionid) {
+        this.subscriptionid = subscriptionid;
+        return this;
     }
 
     /** {@inheritDoc} */
