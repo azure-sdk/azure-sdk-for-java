@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for ComponentVersions List. */
 public final class ComponentVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentVersion/list.json
      */
     /**
-     * Sample code: List Component Version.
+     * Sample code: List Workspace Component Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listComponentVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceComponentVersion(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .componentVersions()
             .list("test-rg", "my-aml-workspace", "string", "string", 1, null, null, com.azure.core.util.Context.NONE);
