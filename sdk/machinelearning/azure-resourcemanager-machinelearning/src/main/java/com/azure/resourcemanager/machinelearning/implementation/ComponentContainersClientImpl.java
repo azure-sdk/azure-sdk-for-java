@@ -40,21 +40,21 @@ public final class ComponentContainersClientImpl implements ComponentContainersC
     private final ComponentContainersService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ComponentContainersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ComponentContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ComponentContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(ComponentContainersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesComponentContainers to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesComponentContainers to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")

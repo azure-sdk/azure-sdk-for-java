@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for BatchEndpoints List. */
 public final class BatchEndpointsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/list.json
      */
     /**
-     * Sample code: List Batch Endpoint.
+     * Sample code: List Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.batchEndpoints().list("test-rg", "my-aml-workspace", 1, null, com.azure.core.util.Context.NONE);
     }
 }

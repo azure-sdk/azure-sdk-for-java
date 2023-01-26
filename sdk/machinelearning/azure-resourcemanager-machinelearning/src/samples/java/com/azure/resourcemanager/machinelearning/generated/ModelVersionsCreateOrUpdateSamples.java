@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
 import com.azure.resourcemanager.machinelearning.models.FlavorData;
 import com.azure.resourcemanager.machinelearning.models.ModelVersionProperties;
 import java.util.HashMap;
@@ -12,29 +13,33 @@ import java.util.Map;
 /** Samples for ModelVersions CreateOrUpdate. */
 public final class ModelVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ModelVersion/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Model Version.
+     * Sample code: CreateOrUpdate Workspace Model Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateModelVersion(
+    public static void createOrUpdateWorkspaceModelVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .modelVersions()
-            .define("string")
-            .withExistingModel("test-rg", "my-aml-workspace", "string")
-            .withProperties(
-                new ModelVersionProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
-                    .withModelType("CustomModel")
-                    .withModelUri("string"))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                "string",
+                new ModelVersionInner()
+                    .withProperties(
+                        new ModelVersionProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))
+                            .withIsAnonymous(false)
+                            .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
+                            .withModelType("CustomModel")
+                            .withModelUri("string")),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
