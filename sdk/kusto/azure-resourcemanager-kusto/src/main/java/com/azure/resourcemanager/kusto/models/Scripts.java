@@ -45,20 +45,6 @@ public interface Scripts {
      * @param clusterName The name of the Kusto cluster.
      * @param databaseName The name of the database in the Kusto cluster.
      * @param scriptName The name of the Kusto database script.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto cluster database script.
-     */
-    Script get(String resourceGroupName, String clusterName, String databaseName, String scriptName);
-
-    /**
-     * Gets a Kusto cluster database script.
-     *
-     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
-     * @param clusterName The name of the Kusto cluster.
-     * @param databaseName The name of the database in the Kusto cluster.
-     * @param scriptName The name of the Kusto database script.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -69,7 +55,21 @@ public interface Scripts {
         String resourceGroupName, String clusterName, String databaseName, String scriptName, Context context);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Gets a Kusto cluster database script.
+     *
+     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+     * @param clusterName The name of the Kusto cluster.
+     * @param databaseName The name of the database in the Kusto cluster.
+     * @param scriptName The name of the Kusto database script.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Kusto cluster database script.
+     */
+    Script get(String resourceGroupName, String clusterName, String databaseName, String scriptName);
+
+    /**
+     * Deletes a Kusto cluster database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -82,7 +82,7 @@ public interface Scripts {
     void delete(String resourceGroupName, String clusterName, String databaseName, String scriptName);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto cluster database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -94,21 +94,6 @@ public interface Scripts {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String clusterName, String databaseName, String scriptName, Context context);
-
-    /**
-     * Checks that the script name is valid and is not already in use.
-     *
-     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
-     * @param clusterName The name of the Kusto cluster.
-     * @param databaseName The name of the database in the Kusto cluster.
-     * @param scriptName The name of the script.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request.
-     */
-    CheckNameResult checkNameAvailability(
-        String resourceGroupName, String clusterName, String databaseName, ScriptCheckNameRequest scriptName);
 
     /**
      * Checks that the script name is valid and is not already in use.
@@ -129,6 +114,21 @@ public interface Scripts {
         String databaseName,
         ScriptCheckNameRequest scriptName,
         Context context);
+
+    /**
+     * Checks that the script name is valid and is not already in use.
+     *
+     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+     * @param clusterName The name of the Kusto cluster.
+     * @param databaseName The name of the database in the Kusto cluster.
+     * @param scriptName The name of the script.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from a check name availability request.
+     */
+    CheckNameResult checkNameAvailability(
+        String resourceGroupName, String clusterName, String databaseName, ScriptCheckNameRequest scriptName);
 
     /**
      * Gets a Kusto cluster database script.
@@ -154,7 +154,7 @@ public interface Scripts {
     Response<Script> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto cluster database script.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -164,7 +164,7 @@ public interface Scripts {
     void deleteById(String id);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto cluster database script.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

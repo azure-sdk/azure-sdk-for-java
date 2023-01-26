@@ -197,6 +197,15 @@ public final class AzureSkuName extends ExpandableStringEnum<AzureSkuName> {
     public static final AzureSkuName STANDARD_E16D_V5 = fromString("Standard_E16d_v5");
 
     /**
+     * Creates a new instance of AzureSkuName value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AzureSkuName() {
+    }
+
+    /**
      * Creates or finds a AzureSkuName from its string representation.
      *
      * @param name a name to look for.
