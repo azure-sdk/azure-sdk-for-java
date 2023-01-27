@@ -6,10 +6,12 @@ package com.azure.resourcemanager.healthcareapis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.healthcareapis.models.CorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
+import com.azure.resourcemanager.healthcareapis.models.ServiceEventState;
 import com.azure.resourcemanager.healthcareapis.models.ServiceManagedIdentityIdentity;
 import com.azure.resourcemanager.healthcareapis.models.TaggedResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,11 +34,14 @@ public final class DicomServiceInner extends TaggedResource {
     private SystemData systemData;
 
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServiceManagedIdentityIdentity identity;
+
+    /** Creates an instance of DicomServiceInner class. */
+    public DicomServiceInner() {
+    }
 
     /**
      * Get the innerProperties property: Dicom Service configuration.
@@ -131,6 +136,29 @@ public final class DicomServiceInner extends TaggedResource {
     }
 
     /**
+     * Get the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @return the corsConfiguration value.
+     */
+    public CorsConfiguration corsConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().corsConfiguration();
+    }
+
+    /**
+     * Set the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @param corsConfiguration the corsConfiguration value to set.
+     * @return the DicomServiceInner object itself.
+     */
+    public DicomServiceInner withCorsConfiguration(CorsConfiguration corsConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DicomServiceProperties();
+        }
+        this.innerProperties().withCorsConfiguration(corsConfiguration);
+        return this;
+    }
+
+    /**
      * Get the serviceUrl property: The url of the Dicom Services.
      *
      * @return the serviceUrl value.
@@ -172,6 +200,15 @@ public final class DicomServiceInner extends TaggedResource {
         }
         this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
         return this;
+    }
+
+    /**
+     * Get the eventState property: DICOM Service event support status.
+     *
+     * @return the eventState value.
+     */
+    public ServiceEventState eventState() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventState();
     }
 
     /**

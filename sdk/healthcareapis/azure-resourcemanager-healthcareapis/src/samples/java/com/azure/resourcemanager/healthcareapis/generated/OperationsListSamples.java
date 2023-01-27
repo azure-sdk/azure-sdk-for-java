@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/OperationsList.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/OperationsList.json
      */
     /**
      * Sample code: List operations.
@@ -17,6 +15,6 @@ public final class OperationsListSamples {
      * @param manager Entry point to HealthcareApisManager.
      */
     public static void listOperations(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

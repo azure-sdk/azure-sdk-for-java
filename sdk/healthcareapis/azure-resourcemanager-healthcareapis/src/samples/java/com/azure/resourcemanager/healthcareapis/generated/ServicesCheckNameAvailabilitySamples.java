@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthcareapis.models.CheckNameAvailabilityParameters;
 
 /** Samples for Services CheckNameAvailability. */
 public final class ServicesCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/CheckNameAvailabilityPost.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/CheckNameAvailabilityPost.json
      */
     /**
      * Sample code: Check name availability.
@@ -24,6 +23,6 @@ public final class ServicesCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("serviceName")
                     .withType("Microsoft.HealthcareApis/services"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for OperationResults Get. */
 public final class OperationResultsGetSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/OperationResultsGet.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/OperationResultsGet.json
      */
     /**
      * Sample code: Get operation result.
@@ -17,6 +15,6 @@ public final class OperationResultsGetSamples {
      * @param manager Entry point to HealthcareApisManager.
      */
     public static void getOperationResult(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.operationResults().getWithResponse("westus", "exampleid", Context.NONE);
+        manager.operationResults().getWithResponse("westus", "exampleid", com.azure.core.util.Context.NONE);
     }
 }

@@ -149,6 +149,20 @@ public interface FhirService {
     ResourceVersionPolicyConfiguration resourceVersionPolicyConfiguration();
 
     /**
+     * Gets the importConfiguration property: Fhir Service import configuration.
+     *
+     * @return the importConfiguration value.
+     */
+    FhirServiceImportConfiguration importConfiguration();
+
+    /**
+     * Gets the implementationGuidesConfiguration property: Implementation Guides configuration.
+     *
+     * @return the implementationGuidesConfiguration value.
+     */
+    ImplementationGuidesConfiguration implementationGuidesConfiguration();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -161,6 +175,13 @@ public interface FhirService {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.FhirServiceInner object.
@@ -205,7 +226,9 @@ public interface FhirService {
                 DefinitionStages.WithCorsConfiguration,
                 DefinitionStages.WithExportConfiguration,
                 DefinitionStages.WithPublicNetworkAccess,
-                DefinitionStages.WithResourceVersionPolicyConfiguration {
+                DefinitionStages.WithResourceVersionPolicyConfiguration,
+                DefinitionStages.WithImportConfiguration,
+                DefinitionStages.WithImplementationGuidesConfiguration {
             /**
              * Executes the create request.
              *
@@ -354,6 +377,27 @@ public interface FhirService {
              */
             WithCreate withResourceVersionPolicyConfiguration(
                 ResourceVersionPolicyConfiguration resourceVersionPolicyConfiguration);
+        }
+        /** The stage of the FhirService definition allowing to specify importConfiguration. */
+        interface WithImportConfiguration {
+            /**
+             * Specifies the importConfiguration property: Fhir Service import configuration..
+             *
+             * @param importConfiguration Fhir Service import configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withImportConfiguration(FhirServiceImportConfiguration importConfiguration);
+        }
+        /** The stage of the FhirService definition allowing to specify implementationGuidesConfiguration. */
+        interface WithImplementationGuidesConfiguration {
+            /**
+             * Specifies the implementationGuidesConfiguration property: Implementation Guides configuration..
+             *
+             * @param implementationGuidesConfiguration Implementation Guides configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withImplementationGuidesConfiguration(
+                ImplementationGuidesConfiguration implementationGuidesConfiguration);
         }
     }
     /**

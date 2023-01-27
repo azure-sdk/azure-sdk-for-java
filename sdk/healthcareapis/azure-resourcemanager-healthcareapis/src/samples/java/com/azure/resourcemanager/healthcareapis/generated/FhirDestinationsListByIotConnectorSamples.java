@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FhirDestinations ListByIotConnector. */
 public final class FhirDestinationsListByIotConnectorSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/iotconnectors/iotconnector_fhirdestination_List.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/iotconnectors/iotconnector_fhirdestination_List.json
      */
     /**
      * Sample code: List IoT Connectors.
@@ -17,6 +15,6 @@ public final class FhirDestinationsListByIotConnectorSamples {
      * @param manager Entry point to HealthcareApisManager.
      */
     public static void listIoTConnectors(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.fhirDestinations().listByIotConnector("testRG", "workspace1", "blue", Context.NONE);
+        manager.fhirDestinations().listByIotConnector("testRG", "workspace1", "blue", com.azure.core.util.Context.NONE);
     }
 }

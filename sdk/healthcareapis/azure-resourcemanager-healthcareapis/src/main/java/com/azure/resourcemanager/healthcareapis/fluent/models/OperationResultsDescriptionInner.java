@@ -47,6 +47,10 @@ public final class OperationResultsDescriptionInner {
     @JsonProperty(value = "properties")
     private Object properties;
 
+    /** Creates an instance of OperationResultsDescriptionInner class. */
+    public OperationResultsDescriptionInner() {
+    }
+
     /**
      * Get the id property: The ID of the operation returned.
      *

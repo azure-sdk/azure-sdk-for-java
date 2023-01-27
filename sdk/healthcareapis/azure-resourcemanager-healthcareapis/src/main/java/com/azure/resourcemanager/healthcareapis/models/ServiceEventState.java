@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ServiceEventState. */
+/** Indicates the current status of event support for the resource. */
 public final class ServiceEventState extends ExpandableStringEnum<ServiceEventState> {
     /** Static value Disabled for ServiceEventState. */
     public static final ServiceEventState DISABLED = fromString("Disabled");
@@ -18,6 +18,15 @@ public final class ServiceEventState extends ExpandableStringEnum<ServiceEventSt
 
     /** Static value Updating for ServiceEventState. */
     public static final ServiceEventState UPDATING = fromString("Updating");
+
+    /**
+     * Creates a new instance of ServiceEventState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ServiceEventState() {
+    }
 
     /**
      * Creates or finds a ServiceEventState from its string representation.
@@ -30,7 +39,11 @@ public final class ServiceEventState extends ExpandableStringEnum<ServiceEventSt
         return fromString(name, ServiceEventState.class);
     }
 
-    /** @return known ServiceEventState values. */
+    /**
+     * Gets known ServiceEventState values.
+     *
+     * @return known ServiceEventState values.
+     */
     public static Collection<ServiceEventState> values() {
         return values(ServiceEventState.class);
     }

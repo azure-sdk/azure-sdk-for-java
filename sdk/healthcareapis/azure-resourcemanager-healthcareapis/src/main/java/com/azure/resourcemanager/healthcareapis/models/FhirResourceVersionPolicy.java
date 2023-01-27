@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FhirResourceVersionPolicy. */
+/** Controls how resources are versioned on the FHIR service. */
 public final class FhirResourceVersionPolicy extends ExpandableStringEnum<FhirResourceVersionPolicy> {
     /** Static value no-version for FhirResourceVersionPolicy. */
     public static final FhirResourceVersionPolicy NO_VERSION = fromString("no-version");
@@ -18,6 +18,15 @@ public final class FhirResourceVersionPolicy extends ExpandableStringEnum<FhirRe
 
     /** Static value versioned-update for FhirResourceVersionPolicy. */
     public static final FhirResourceVersionPolicy VERSIONED_UPDATE = fromString("versioned-update");
+
+    /**
+     * Creates a new instance of FhirResourceVersionPolicy value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public FhirResourceVersionPolicy() {
+    }
 
     /**
      * Creates or finds a FhirResourceVersionPolicy from its string representation.
@@ -30,7 +39,11 @@ public final class FhirResourceVersionPolicy extends ExpandableStringEnum<FhirRe
         return fromString(name, FhirResourceVersionPolicy.class);
     }
 
-    /** @return known FhirResourceVersionPolicy values. */
+    /**
+     * Gets known FhirResourceVersionPolicy values.
+     *
+     * @return known FhirResourceVersionPolicy values.
+     */
     public static Collection<FhirResourceVersionPolicy> values() {
         return values(FhirResourceVersionPolicy.class);
     }
