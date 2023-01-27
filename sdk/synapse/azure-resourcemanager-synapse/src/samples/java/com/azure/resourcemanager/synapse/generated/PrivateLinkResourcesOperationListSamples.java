@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.synapse.generated;
 
-import com.azure.core.util.Context;
-
-/** Samples for PrivateLinkResources Get. */
-public final class PrivateLinkResourcesGetSamples {
+/** Samples for PrivateLinkResourcesOperation List. */
+public final class PrivateLinkResourcesOperationListSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetPrivateLinkResource.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListPrivateLinkResources.json
      */
     /**
      * Sample code: Get private link resources for workspace.
@@ -17,6 +15,8 @@ public final class PrivateLinkResourcesGetSamples {
      * @param manager Entry point to SynapseManager.
      */
     public static void getPrivateLinkResourcesForWorkspace(com.azure.resourcemanager.synapse.SynapseManager manager) {
-        manager.privateLinkResources().getWithResponse("ExampleResourceGroup", "ExampleWorkspace", "sql", Context.NONE);
+        manager
+            .privateLinkResourcesOperations()
+            .list("ExampleResourceGroup", "ExampleWorkspace", com.azure.core.util.Context.NONE);
     }
 }
