@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 
 /** Samples for Caches StopPrimingJob. */
@@ -21,6 +20,9 @@ public final class CachesStopPrimingJobSamples {
         manager
             .caches()
             .stopPrimingJob(
-                "scgroup", "sc1", new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"), Context.NONE);
+                "scgroup",
+                "sc1",
+                new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"),
+                com.azure.core.util.Context.NONE);
     }
 }

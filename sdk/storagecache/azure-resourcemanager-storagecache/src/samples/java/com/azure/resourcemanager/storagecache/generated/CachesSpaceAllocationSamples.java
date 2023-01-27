@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
 import java.util.Arrays;
 
@@ -29,6 +28,6 @@ public final class CachesSpaceAllocationSamples {
                         new StorageTargetSpaceAllocation().withName("st1").withAllocationPercentage(25),
                         new StorageTargetSpaceAllocation().withName("st2").withAllocationPercentage(50),
                         new StorageTargetSpaceAllocation().withName("st3").withAllocationPercentage(25)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

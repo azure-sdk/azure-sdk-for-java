@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Resume. */
 public final class StorageTargetOperationResumeSamples {
     /*
@@ -17,6 +15,6 @@ public final class StorageTargetOperationResumeSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsResume(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().resume("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().resume("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }

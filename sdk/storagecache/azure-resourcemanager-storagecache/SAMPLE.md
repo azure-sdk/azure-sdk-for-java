@@ -57,8 +57,6 @@
 ### AscOperations_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AscOperations Get. */
 public final class AscOperationsGetSamples {
     /*
@@ -70,7 +68,7 @@ public final class AscOperationsGetSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void ascOperationsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.ascOperations().getWithResponse("westus", "testoperationid", Context.NONE);
+        manager.ascOperations().getWithResponse("westus", "testoperationid", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -78,8 +76,6 @@ public final class AscOperationsGetSamples {
 ### AscUsages_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AscUsages List. */
 public final class AscUsagesListSamples {
     /*
@@ -91,7 +87,7 @@ public final class AscUsagesListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void ascUsagesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.ascUsages().list("eastus", Context.NONE);
+        manager.ascUsages().list("eastus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -153,7 +149,7 @@ public final class CachesCreateOrUpdateSamples {
                 new CacheEncryptionSettings()
                     .withKeyEncryptionKey(
                         new KeyVaultKeyReference()
-                            .withKeyUrl("https://keyvault-cmk.vault.azure.net/keys/key2048/test")
+                            .withKeyUrl("fakeTokenPlaceholder")
                             .withSourceVault(
                                 new KeyVaultKeyReferenceSourceVault()
                                     .withId(
@@ -185,7 +181,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .create();
     }
 
@@ -223,7 +219,7 @@ public final class CachesCreateOrUpdateSamples {
                 new CacheEncryptionSettings()
                     .withKeyEncryptionKey(
                         new KeyVaultKeyReference()
-                            .withKeyUrl("https://keyvault-cmk.vault.azure.net/keys/key2047/test")
+                            .withKeyUrl("fakeTokenPlaceholder")
                             .withSourceVault(
                                 new KeyVaultKeyReferenceSourceVault()
                                     .withId(
@@ -256,7 +252,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheActiveDirectorySettingsCredentials()
                                     .withUsername("consotoAdmin")
-                                    .withPassword("<password>")))
+                                    .withPassword("fakeTokenPlaceholder")))
                     .withUsernameDownload(
                         new CacheUsernameDownloadSettings()
                             .withExtendedGroups(true)
@@ -266,7 +262,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .create();
     }
 
@@ -286,8 +282,6 @@ public final class CachesCreateOrUpdateSamples {
 ### Caches_DebugInfo
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches DebugInfo. */
 public final class CachesDebugInfoSamples {
     /*
@@ -299,7 +293,7 @@ public final class CachesDebugInfoSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesDebugInfo(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().debugInfo("scgroup", "sc", Context.NONE);
+        manager.caches().debugInfo("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -307,8 +301,6 @@ public final class CachesDebugInfoSamples {
 ### Caches_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches Delete. */
 public final class CachesDeleteSamples {
     /*
@@ -320,7 +312,7 @@ public final class CachesDeleteSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().delete("scgroup", "sc", Context.NONE);
+        manager.caches().delete("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -328,8 +320,6 @@ public final class CachesDeleteSamples {
 ### Caches_Flush
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches Flush. */
 public final class CachesFlushSamples {
     /*
@@ -341,7 +331,7 @@ public final class CachesFlushSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().flush("scgroup", "sc", Context.NONE);
+        manager.caches().flush("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -349,8 +339,6 @@ public final class CachesFlushSamples {
 ### Caches_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches GetByResourceGroup. */
 public final class CachesGetByResourceGroupSamples {
     /*
@@ -362,7 +350,7 @@ public final class CachesGetByResourceGroupSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", Context.NONE);
+        manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -370,8 +358,6 @@ public final class CachesGetByResourceGroupSamples {
 ### Caches_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches List. */
 public final class CachesListSamples {
     /*
@@ -383,7 +369,7 @@ public final class CachesListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().list(Context.NONE);
+        manager.caches().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -391,8 +377,6 @@ public final class CachesListSamples {
 ### Caches_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches ListByResourceGroup. */
 public final class CachesListByResourceGroupSamples {
     /*
@@ -404,7 +388,7 @@ public final class CachesListByResourceGroupSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesListByResourceGroup(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().listByResourceGroup("scgroup", Context.NONE);
+        manager.caches().listByResourceGroup("scgroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -412,7 +396,6 @@ public final class CachesListByResourceGroupSamples {
 ### Caches_PausePrimingJob
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 
 /** Samples for Caches PausePrimingJob. */
@@ -429,7 +412,10 @@ public final class CachesPausePrimingJobSamples {
         manager
             .caches()
             .pausePrimingJob(
-                "scgroup", "sc1", new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"), Context.NONE);
+                "scgroup",
+                "sc1",
+                new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -437,7 +423,6 @@ public final class CachesPausePrimingJobSamples {
 ### Caches_ResumePrimingJob
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 
 /** Samples for Caches ResumePrimingJob. */
@@ -454,7 +439,10 @@ public final class CachesResumePrimingJobSamples {
         manager
             .caches()
             .resumePrimingJob(
-                "scgroup", "sc1", new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"), Context.NONE);
+                "scgroup",
+                "sc1",
+                new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -462,7 +450,6 @@ public final class CachesResumePrimingJobSamples {
 ### Caches_SpaceAllocation
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
 import java.util.Arrays;
 
@@ -487,7 +474,7 @@ public final class CachesSpaceAllocationSamples {
                         new StorageTargetSpaceAllocation().withName("st1").withAllocationPercentage(25),
                         new StorageTargetSpaceAllocation().withName("st2").withAllocationPercentage(50),
                         new StorageTargetSpaceAllocation().withName("st3").withAllocationPercentage(25)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -495,8 +482,6 @@ public final class CachesSpaceAllocationSamples {
 ### Caches_Start
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches Start. */
 public final class CachesStartSamples {
     /*
@@ -508,7 +493,7 @@ public final class CachesStartSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesStart(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().start("scgroup", "sc", Context.NONE);
+        manager.caches().start("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -516,7 +501,6 @@ public final class CachesStartSamples {
 ### Caches_StartPrimingJob
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.PrimingJob;
 
 /** Samples for Caches StartPrimingJob. */
@@ -539,7 +523,7 @@ public final class CachesStartPrimingJobSamples {
                     .withPrimingJobName("contosoJob")
                     .withPrimingManifestUrl(
                         "https://contosostorage.blob.core.windows.net/contosoblob/00000000_00000000000000000000000000000000.00000000000.FFFFFFFF.00000000?sp=r&st=2021-08-11T19:33:35Z&se=2021-08-12T03:33:35Z&spr=https&sv=2020-08-04&sr=b&sig=<secret-value-from-key>"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -547,8 +531,6 @@ public final class CachesStartPrimingJobSamples {
 ### Caches_Stop
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches Stop. */
 public final class CachesStopSamples {
     /*
@@ -560,7 +542,7 @@ public final class CachesStopSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesStop(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().stop("scgroup", "sc", Context.NONE);
+        manager.caches().stop("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -568,7 +550,6 @@ public final class CachesStopSamples {
 ### Caches_StopPrimingJob
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 
 /** Samples for Caches StopPrimingJob. */
@@ -585,7 +566,10 @@ public final class CachesStopPrimingJobSamples {
         manager
             .caches()
             .stopPrimingJob(
-                "scgroup", "sc1", new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"), Context.NONE);
+                "scgroup",
+                "sc1",
+                new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -593,7 +577,6 @@ public final class CachesStopPrimingJobSamples {
 ### Caches_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.Cache;
 import com.azure.resourcemanager.storagecache.models.CacheActiveDirectorySettings;
 import com.azure.resourcemanager.storagecache.models.CacheDirectorySettings;
@@ -623,7 +606,11 @@ public final class CachesUpdateSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesUpdateLdapOnly(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        Cache resource = manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", Context.NONE).getValue();
+        Cache resource =
+            manager
+                .caches()
+                .getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("Dept", "Contoso"))
@@ -691,7 +678,7 @@ public final class CachesUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .apply();
     }
 
@@ -704,7 +691,11 @@ public final class CachesUpdateSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        Cache resource = manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", Context.NONE).getValue();
+        Cache resource =
+            manager
+                .caches()
+                .getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("Dept", "Contoso"))
@@ -793,8 +784,6 @@ public final class CachesUpdateSamples {
 ### Caches_UpgradeFirmware
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Caches UpgradeFirmware. */
 public final class CachesUpgradeFirmwareSamples {
     /*
@@ -806,7 +795,7 @@ public final class CachesUpgradeFirmwareSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesUpgradeFirmware(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().upgradeFirmware("scgroup", "sc1", Context.NONE);
+        manager.caches().upgradeFirmware("scgroup", "sc1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -814,8 +803,6 @@ public final class CachesUpgradeFirmwareSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -827,7 +814,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void operationsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -835,8 +822,6 @@ public final class OperationsListSamples {
 ### Skus_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
@@ -848,7 +833,7 @@ public final class SkusListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void skusList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.skus().list(Context.NONE);
+        manager.skus().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -856,8 +841,6 @@ public final class SkusListSamples {
 ### StorageTargetOperation_Flush
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Flush. */
 public final class StorageTargetOperationFlushSamples {
     /*
@@ -869,7 +852,7 @@ public final class StorageTargetOperationFlushSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().flush("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().flush("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -877,8 +860,6 @@ public final class StorageTargetOperationFlushSamples {
 ### StorageTargetOperation_Invalidate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Invalidate. */
 public final class StorageTargetOperationInvalidateSamples {
     /*
@@ -890,7 +871,7 @@ public final class StorageTargetOperationInvalidateSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsInvalidate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().invalidate("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().invalidate("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -898,8 +879,6 @@ public final class StorageTargetOperationInvalidateSamples {
 ### StorageTargetOperation_Resume
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Resume. */
 public final class StorageTargetOperationResumeSamples {
     /*
@@ -911,7 +890,7 @@ public final class StorageTargetOperationResumeSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsResume(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().resume("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().resume("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -919,8 +898,6 @@ public final class StorageTargetOperationResumeSamples {
 ### StorageTargetOperation_Suspend
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Suspend. */
 public final class StorageTargetOperationSuspendSamples {
     /*
@@ -932,7 +909,7 @@ public final class StorageTargetOperationSuspendSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsSuspend(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().suspend("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().suspend("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1028,8 +1005,6 @@ public final class StorageTargetsCreateOrUpdateSamples {
 ### StorageTargets_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargets Delete. */
 public final class StorageTargetsDeleteSamples {
     /*
@@ -1041,7 +1016,7 @@ public final class StorageTargetsDeleteSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().delete("scgroup", "sc1", "st1", null, Context.NONE);
+        manager.storageTargets().delete("scgroup", "sc1", "st1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1049,8 +1024,6 @@ public final class StorageTargetsDeleteSamples {
 ### StorageTargets_DnsRefresh
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargets DnsRefresh. */
 public final class StorageTargetsDnsRefreshSamples {
     /*
@@ -1062,7 +1035,7 @@ public final class StorageTargetsDnsRefreshSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesDnsRefresh(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().dnsRefresh("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargets().dnsRefresh("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1070,8 +1043,6 @@ public final class StorageTargetsDnsRefreshSamples {
 ### StorageTargets_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargets Get. */
 public final class StorageTargetsGetSamples {
     /*
@@ -1083,7 +1054,7 @@ public final class StorageTargetsGetSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().getWithResponse("scgroup", "sc1", "st1", Context.NONE);
+        manager.storageTargets().getWithResponse("scgroup", "sc1", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1091,8 +1062,6 @@ public final class StorageTargetsGetSamples {
 ### StorageTargets_ListByCache
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargets ListByCache. */
 public final class StorageTargetsListByCacheSamples {
     /*
@@ -1104,7 +1073,7 @@ public final class StorageTargetsListByCacheSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().listByCache("scgroup", "sc1", Context.NONE);
+        manager.storageTargets().listByCache("scgroup", "sc1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1112,8 +1081,6 @@ public final class StorageTargetsListByCacheSamples {
 ### UsageModels_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for UsageModels List. */
 public final class UsageModelsListSamples {
     /*
@@ -1125,7 +1092,7 @@ public final class UsageModelsListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void usageModelsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.usageModels().list(Context.NONE);
+        manager.usageModels().list(com.azure.core.util.Context.NONE);
     }
 }
 ```

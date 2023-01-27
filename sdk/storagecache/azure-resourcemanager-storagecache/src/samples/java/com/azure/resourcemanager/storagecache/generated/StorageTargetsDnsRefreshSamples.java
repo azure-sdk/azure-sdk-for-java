@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargets DnsRefresh. */
 public final class StorageTargetsDnsRefreshSamples {
     /*
@@ -17,6 +15,6 @@ public final class StorageTargetsDnsRefreshSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesDnsRefresh(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().dnsRefresh("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargets().dnsRefresh("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Suspend. */
 public final class StorageTargetOperationSuspendSamples {
     /*
@@ -17,6 +15,6 @@ public final class StorageTargetOperationSuspendSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsSuspend(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().suspend("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().suspend("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }

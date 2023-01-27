@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargets Delete. */
 public final class StorageTargetsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class StorageTargetsDeleteSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().delete("scgroup", "sc1", "st1", null, Context.NONE);
+        manager.storageTargets().delete("scgroup", "sc1", "st1", null, com.azure.core.util.Context.NONE);
     }
 }

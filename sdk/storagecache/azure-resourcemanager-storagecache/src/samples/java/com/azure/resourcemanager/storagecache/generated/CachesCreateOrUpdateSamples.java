@@ -58,7 +58,7 @@ public final class CachesCreateOrUpdateSamples {
                 new CacheEncryptionSettings()
                     .withKeyEncryptionKey(
                         new KeyVaultKeyReference()
-                            .withKeyUrl("https://keyvault-cmk.vault.azure.net/keys/key2048/test")
+                            .withKeyUrl("fakeTokenPlaceholder")
                             .withSourceVault(
                                 new KeyVaultKeyReferenceSourceVault()
                                     .withId(
@@ -90,7 +90,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .create();
     }
 
@@ -128,7 +128,7 @@ public final class CachesCreateOrUpdateSamples {
                 new CacheEncryptionSettings()
                     .withKeyEncryptionKey(
                         new KeyVaultKeyReference()
-                            .withKeyUrl("https://keyvault-cmk.vault.azure.net/keys/key2047/test")
+                            .withKeyUrl("fakeTokenPlaceholder")
                             .withSourceVault(
                                 new KeyVaultKeyReferenceSourceVault()
                                     .withId(
@@ -161,7 +161,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheActiveDirectorySettingsCredentials()
                                     .withUsername("consotoAdmin")
-                                    .withPassword("<password>")))
+                                    .withPassword("fakeTokenPlaceholder")))
                     .withUsernameDownload(
                         new CacheUsernameDownloadSettings()
                             .withExtendedGroups(true)
@@ -171,7 +171,7 @@ public final class CachesCreateOrUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .create();
     }
 

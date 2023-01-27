@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Caches List. */
 public final class CachesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class CachesListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().list(Context.NONE);
+        manager.caches().list(com.azure.core.util.Context.NONE);
     }
 }

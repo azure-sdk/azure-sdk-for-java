@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for StorageTargetOperation Invalidate. */
 public final class StorageTargetOperationInvalidateSamples {
     /*
@@ -17,6 +15,6 @@ public final class StorageTargetOperationInvalidateSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void storageTargetsInvalidate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().invalidate("scgroup", "sc", "st1", Context.NONE);
+        manager.storageTargetOperations().invalidate("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }

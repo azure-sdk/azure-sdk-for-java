@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
@@ -17,6 +15,6 @@ public final class SkusListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void skusList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.skus().list(Context.NONE);
+        manager.skus().list(com.azure.core.util.Context.NONE);
     }
 }

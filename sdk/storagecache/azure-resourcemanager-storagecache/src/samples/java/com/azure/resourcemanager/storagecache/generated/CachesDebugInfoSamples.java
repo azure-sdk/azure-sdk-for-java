@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Caches DebugInfo. */
 public final class CachesDebugInfoSamples {
     /*
@@ -17,6 +15,6 @@ public final class CachesDebugInfoSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesDebugInfo(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().debugInfo("scgroup", "sc", Context.NONE);
+        manager.caches().debugInfo("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AscUsages List. */
 public final class AscUsagesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class AscUsagesListSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void ascUsagesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.ascUsages().list("eastus", Context.NONE);
+        manager.ascUsages().list("eastus", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Caches Flush. */
 public final class CachesFlushSamples {
     /*
@@ -17,6 +15,6 @@ public final class CachesFlushSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().flush("scgroup", "sc", Context.NONE);
+        manager.caches().flush("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }

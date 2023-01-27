@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.storagecache.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.models.Cache;
 import com.azure.resourcemanager.storagecache.models.CacheActiveDirectorySettings;
 import com.azure.resourcemanager.storagecache.models.CacheDirectorySettings;
@@ -34,7 +33,11 @@ public final class CachesUpdateSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesUpdateLdapOnly(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        Cache resource = manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", Context.NONE).getValue();
+        Cache resource =
+            manager
+                .caches()
+                .getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("Dept", "Contoso"))
@@ -102,7 +105,7 @@ public final class CachesUpdateSamples {
                             .withCredentials(
                                 new CacheUsernameDownloadSettingsCredentials()
                                     .withBindDn("cn=ldapadmin,dc=contosoad,dc=contoso,dc=local")
-                                    .withBindPassword("<bindPassword>"))))
+                                    .withBindPassword("fakeTokenPlaceholder"))))
             .apply();
     }
 
@@ -115,7 +118,11 @@ public final class CachesUpdateSamples {
      * @param manager Entry point to StorageCacheManager.
      */
     public static void cachesUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        Cache resource = manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", Context.NONE).getValue();
+        Cache resource =
+            manager
+                .caches()
+                .getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("Dept", "Contoso"))
