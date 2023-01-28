@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Certificates Get. */
 public final class CertificatesGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class CertificatesGetSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void certificatesGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.certificates().getWithResponse("myResourceGroup", "testhub", "cert", Context.NONE);
+        manager.certificates().getWithResponse("myResourceGroup", "testhub", "cert", com.azure.core.util.Context.NONE);
     }
 }

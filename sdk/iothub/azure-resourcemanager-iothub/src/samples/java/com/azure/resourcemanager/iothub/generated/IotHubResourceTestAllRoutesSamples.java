@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.models.RoutingMessage;
 import com.azure.resourcemanager.iothub.models.RoutingSource;
 import com.azure.resourcemanager.iothub.models.TestAllRoutesInput;
@@ -34,7 +33,7 @@ public final class IotHubResourceTestAllRoutesSamples {
                             .withBody("Body of message")
                             .withAppProperties(mapOf("key1", "value1"))
                             .withSystemProperties(mapOf("key1", "value1"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

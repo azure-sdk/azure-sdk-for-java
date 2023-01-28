@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource GetJob. */
 public final class IotHubResourceGetJobSamples {
     /*
@@ -17,6 +15,8 @@ public final class IotHubResourceGetJobSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void iotHubResourceGetJob(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getJobWithResponse("myResourceGroup", "testHub", "test", Context.NONE);
+        manager
+            .iotHubResources()
+            .getJobWithResponse("myResourceGroup", "testHub", "test", com.azure.core.util.Context.NONE);
     }
 }

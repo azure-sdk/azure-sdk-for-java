@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource GetValidSkus. */
 public final class IotHubResourceGetValidSkusSamples {
     /*
@@ -17,6 +15,6 @@ public final class IotHubResourceGetValidSkusSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void iotHubResourceGetValidSkus(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getValidSkus("myResourceGroup", "testHub", Context.NONE);
+        manager.iotHubResources().getValidSkus("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }

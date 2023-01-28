@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.models.RouteProperties;
 import com.azure.resourcemanager.iothub.models.RoutingMessage;
 import com.azure.resourcemanager.iothub.models.RoutingSource;
@@ -41,7 +40,7 @@ public final class IotHubResourceTestRouteSamples {
                             .withSource(RoutingSource.DEVICE_MESSAGES)
                             .withEndpointNames(Arrays.asList("id1"))
                             .withIsEnabled(true)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

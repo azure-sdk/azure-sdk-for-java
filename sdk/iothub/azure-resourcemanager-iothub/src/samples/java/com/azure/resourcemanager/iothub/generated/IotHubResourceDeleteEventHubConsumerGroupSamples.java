@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource DeleteEventHubConsumerGroup. */
 public final class IotHubResourceDeleteEventHubConsumerGroupSamples {
     /*
@@ -20,6 +18,7 @@ public final class IotHubResourceDeleteEventHubConsumerGroupSamples {
         com.azure.resourcemanager.iothub.IotHubManager manager) {
         manager
             .iotHubResources()
-            .deleteEventHubConsumerGroupWithResponse("myResourceGroup", "testHub", "events", "test", Context.NONE);
+            .deleteEventHubConsumerGroupWithResponse(
+                "myResourceGroup", "testHub", "events", "test", com.azure.core.util.Context.NONE);
     }
 }

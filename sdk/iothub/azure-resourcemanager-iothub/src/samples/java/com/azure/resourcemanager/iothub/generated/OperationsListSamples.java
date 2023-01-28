@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class OperationsListSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void operationsList(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

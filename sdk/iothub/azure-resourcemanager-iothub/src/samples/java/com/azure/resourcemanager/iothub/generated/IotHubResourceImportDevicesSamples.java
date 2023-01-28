@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.models.ImportDevicesRequest;
 
 /** Samples for IotHubResource ImportDevices. */
@@ -24,6 +23,6 @@ public final class IotHubResourceImportDevicesSamples {
                 "myResourceGroup",
                 "testHub",
                 new ImportDevicesRequest().withInputBlobContainerUri("testBlob").withOutputBlobContainerUri("testBlob"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

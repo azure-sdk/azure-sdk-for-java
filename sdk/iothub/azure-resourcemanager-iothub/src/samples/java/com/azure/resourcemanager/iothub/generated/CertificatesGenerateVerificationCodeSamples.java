@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Certificates GenerateVerificationCode. */
 public final class CertificatesGenerateVerificationCodeSamples {
     /*
@@ -19,6 +17,7 @@ public final class CertificatesGenerateVerificationCodeSamples {
     public static void certificatesGenerateVerificationCode(com.azure.resourcemanager.iothub.IotHubManager manager) {
         manager
             .certificates()
-            .generateVerificationCodeWithResponse("myResourceGroup", "testHub", "cert", "AAAAAAAADGk=", Context.NONE);
+            .generateVerificationCodeWithResponse(
+                "myResourceGroup", "testHub", "cert", "AAAAAAAADGk=", com.azure.core.util.Context.NONE);
     }
 }

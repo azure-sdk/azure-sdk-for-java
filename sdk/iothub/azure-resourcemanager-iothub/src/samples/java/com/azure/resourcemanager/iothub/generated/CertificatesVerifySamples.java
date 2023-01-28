@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.models.CertificateVerificationDescription;
 
 /** Samples for Certificates Verify. */
@@ -26,6 +25,6 @@ public final class CertificatesVerifySamples {
                 "cert",
                 "AAAAAAAADGk=",
                 new CertificateVerificationDescription().withCertificate("#####################################"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

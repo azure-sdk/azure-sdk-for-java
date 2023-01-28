@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.models.AuthenticationType;
 import com.azure.resourcemanager.iothub.models.ExportDevicesRequest;
 import com.azure.resourcemanager.iothub.models.ManagedIdentity;
@@ -33,6 +32,6 @@ public final class IotHubResourceExportDevicesSamples {
                         new ManagedIdentity()
                             .withUserAssignedIdentity(
                                 "/subscriptions/91d12660-3dec-467a-be2a-213b5544ddc0/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

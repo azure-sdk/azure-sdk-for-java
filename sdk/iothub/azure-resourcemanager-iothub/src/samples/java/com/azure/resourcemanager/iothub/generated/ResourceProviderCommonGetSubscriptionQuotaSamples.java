@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ResourceProviderCommon GetSubscriptionQuota. */
 public final class ResourceProviderCommonGetSubscriptionQuotaSamples {
     /*
@@ -18,6 +16,6 @@ public final class ResourceProviderCommonGetSubscriptionQuotaSamples {
      */
     public static void resourceProviderCommonGetSubscriptionQuota(
         com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.resourceProviderCommons().getSubscriptionQuotaWithResponse(Context.NONE);
+        manager.resourceProviderCommons().getSubscriptionQuotaWithResponse(com.azure.core.util.Context.NONE);
     }
 }

@@ -55,7 +55,7 @@ public final class IotHubsClientImpl implements IotHubsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "IotHubClientIotHubs")
-    private interface IotHubsService {
+    public interface IotHubsService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs"
@@ -260,7 +260,7 @@ public final class IotHubsClientImpl implements IotHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginManualFailover(
         String iotHubName, String resourceGroupName, FailoverInput failoverInput) {
-        return beginManualFailoverAsync(iotHubName, resourceGroupName, failoverInput).getSyncPoller();
+        return this.beginManualFailoverAsync(iotHubName, resourceGroupName, failoverInput).getSyncPoller();
     }
 
     /**
@@ -282,7 +282,7 @@ public final class IotHubsClientImpl implements IotHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginManualFailover(
         String iotHubName, String resourceGroupName, FailoverInput failoverInput, Context context) {
-        return beginManualFailoverAsync(iotHubName, resourceGroupName, failoverInput, context).getSyncPoller();
+        return this.beginManualFailoverAsync(iotHubName, resourceGroupName, failoverInput, context).getSyncPoller();
     }
 
     /**
