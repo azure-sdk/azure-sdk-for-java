@@ -20,6 +20,15 @@ public final class Category extends ExpandableStringEnum<Category> {
     public static final Category PREMIUM_SKU_COMPUTE_OPTIMIZED = fromString("PremiumSkuComputeOptimized");
 
     /**
+     * Creates a new instance of Category value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Category() {
+    }
+
+    /**
      * Creates or finds a Category from its string representation.
      *
      * @param name a name to look for.
