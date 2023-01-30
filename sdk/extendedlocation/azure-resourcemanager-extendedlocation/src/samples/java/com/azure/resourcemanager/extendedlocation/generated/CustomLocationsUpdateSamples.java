@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocation;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
@@ -15,7 +14,7 @@ import java.util.Map;
 /** Samples for CustomLocations Update. */
 public final class CustomLocationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsPatch.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsPatch.json
      */
     /**
      * Sample code: Update Custom Location.
@@ -26,7 +25,8 @@ public final class CustomLocationsUpdateSamples {
         CustomLocation resource =
             manager
                 .customLocations()
-                .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

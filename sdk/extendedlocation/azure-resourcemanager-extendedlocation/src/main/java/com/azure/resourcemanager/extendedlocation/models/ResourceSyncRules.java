@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of ResourceSyncRules. */
 public interface ResourceSyncRules {
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -25,7 +27,9 @@ public interface ResourceSyncRules {
     PagedIterable<ResourceSyncRule> listByCustomLocationId(String resourceGroupName, String resourceName);
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -41,22 +45,9 @@ public interface ResourceSyncRules {
         String resourceGroupName, String resourceName, Context context);
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
-     * resource name and Resource Sync Rule name.
+     * Gets a Resource Sync Rule.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param childResourceName Resource Sync Rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
-     *     resource name and Resource Sync Rule name.
-     */
-    ResourceSyncRule get(String resourceGroupName, String resourceName, String childResourceName);
-
-    /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -73,8 +64,10 @@ public interface ResourceSyncRules {
         String resourceGroupName, String resourceName, String childResourceName, Context context);
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
-     * Resource Group, and Subscription Id.
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * resource name and Resource Sync Rule name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -82,11 +75,15 @@ public interface ResourceSyncRules {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     *     resource name and Resource Sync Rule name.
      */
-    void delete(String resourceGroupName, String resourceName, String childResourceName);
+    ResourceSyncRule get(String resourceGroupName, String resourceName, String childResourceName);
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -102,7 +99,24 @@ public interface ResourceSyncRules {
         String resourceGroupName, String resourceName, String childResourceName, Context context);
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Resource Group, and Subscription Id.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param childResourceName Resource Sync Rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String resourceName, String childResourceName);
+
+    /**
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param id the resource ID.
@@ -115,7 +129,9 @@ public interface ResourceSyncRules {
     ResourceSyncRule getById(String id);
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param id the resource ID.
@@ -129,7 +145,9 @@ public interface ResourceSyncRules {
     Response<ResourceSyncRule> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param id the resource ID.
@@ -140,7 +158,9 @@ public interface ResourceSyncRules {
     void deleteById(String id);
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param id the resource ID.

@@ -13,7 +13,7 @@ import java.util.Map;
 /** Samples for ResourceSyncRules CreateOrUpdate. */
 public final class ResourceSyncRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesCreate_Update.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesCreate_Update.json
      */
     /**
      * Sample code: Create/Update Resource Sync Rule.
@@ -34,7 +34,7 @@ public final class ResourceSyncRulesCreateOrUpdateSamples {
                         Arrays
                             .asList(
                                 new MatchExpressionsProperties()
-                                    .withKey("key4")
+                                    .withKey("fakeTokenPlaceholder")
                                     .withOperator("In")
                                     .withValues(Arrays.asList("value4"))))
                     .withMatchLabels(mapOf("key1", "value1")))

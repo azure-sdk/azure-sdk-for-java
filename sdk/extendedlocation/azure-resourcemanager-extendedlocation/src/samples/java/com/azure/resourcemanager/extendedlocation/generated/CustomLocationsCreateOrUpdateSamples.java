@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.extendedlocation.generated;
 
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationPropertiesAuthentication;
+import com.azure.resourcemanager.extendedlocation.models.HostType;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
 import java.util.Arrays;
@@ -12,14 +13,63 @@ import java.util.Arrays;
 /** Samples for CustomLocations CreateOrUpdate. */
 public final class CustomLocationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsCreate_Update.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsCreate_Update_AWS.json
      */
     /**
-     * Sample code: Create/Update Custom Location.
+     * Sample code: Create/Update Custom Location for AWS host.
      *
      * @param manager Entry point to CustomLocationsManager.
      */
-    public static void createUpdateCustomLocation(
+    public static void createUpdateCustomLocationForAWSHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .define("customLocation01")
+            .withRegion("West US")
+            .withExistingResourceGroup("testresourcegroup")
+            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withDisplayName("customLocationLocation01")
+            .withHostResourceId("")
+            .withHostType(HostType.AWS)
+            .withNamespace("")
+            .withAccountId("2271526498")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsCreate_Update_GCP.json
+     */
+    /**
+     * Sample code: Create/Update Custom Location for GCP host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void createUpdateCustomLocationForGCPHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .define("customLocation01")
+            .withRegion("West US")
+            .withExistingResourceGroup("testresourcegroup")
+            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withDisplayName("customLocationLocation01")
+            .withHostResourceId("")
+            .withHostType(HostType.GCP)
+            .withNamespace("")
+            .withProjectId("12532678")
+            .withProjectNumber("42987132")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsCreate_Update_Kubernetes.json
+     */
+    /**
+     * Sample code: Create/Update Custom Location for Kubernetes host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void createUpdateCustomLocationForKubernetesHost(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
         manager
             .customLocations()

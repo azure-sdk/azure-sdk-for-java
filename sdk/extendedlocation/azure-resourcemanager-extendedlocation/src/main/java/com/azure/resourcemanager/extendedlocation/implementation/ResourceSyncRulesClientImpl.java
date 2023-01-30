@@ -65,7 +65,7 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "CustomLocationsManag")
-    private interface ResourceSyncRulesService {
+    public interface ResourceSyncRulesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
@@ -159,7 +159,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -218,7 +220,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -275,7 +279,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -294,7 +300,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -314,7 +322,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -331,7 +341,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
+     * Lists all Resource Sync Rules in a Custom Location.
+     *
+     * <p>Gets a list of Resource Sync Rules in the specified subscription. The operation returns properties of each
      * Resource Sync Rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -350,7 +362,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -407,7 +421,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -462,7 +478,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -482,25 +500,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
-     * resource name and Resource Sync Rule name.
+     * Gets a Resource Sync Rule.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param childResourceName Resource Sync Rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
-     *     resource name and Resource Sync Rule name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResourceSyncRuleInner get(String resourceGroupName, String resourceName, String childResourceName) {
-        return getAsync(resourceGroupName, resourceName, childResourceName).block();
-    }
-
-    /**
-     * Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
      * resource name and Resource Sync Rule name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -520,7 +522,29 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Gets a Resource Sync Rule.
+     *
+     * <p>Gets the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     * resource name and Resource Sync Rule name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param childResourceName Resource Sync Rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the resourceSyncRule with a specified resource group, subscription id Custom Location
+     *     resource name and Resource Sync Rule name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResourceSyncRuleInner get(String resourceGroupName, String resourceName, String childResourceName) {
+        return getWithResponse(resourceGroupName, resourceName, childResourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -581,7 +605,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -644,7 +670,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -671,7 +699,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -700,7 +730,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -714,11 +746,15 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ResourceSyncRuleInner>, ResourceSyncRuleInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, String childResourceName, ResourceSyncRuleInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters)
+            .getSyncPoller();
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -737,12 +773,15 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
         String childResourceName,
         ResourceSyncRuleInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters, context)
             .getSyncPoller();
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -762,7 +801,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -787,7 +828,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -805,7 +848,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
+     * Creates or updates a Resource Sync Rule.
+     *
+     * <p>Creates or updates a Resource Sync Rule in the parent Custom Location, Subscription Id and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -828,7 +873,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -883,7 +930,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -936,7 +985,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -954,23 +1005,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
-     * Resource Group, and Subscription Id.
+     * Deletes a Resource Sync Rule.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param childResourceName Resource Sync Rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String resourceName, String childResourceName) {
-        deleteAsync(resourceGroupName, resourceName, childResourceName).block();
-    }
-
-    /**
-     * Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
      * Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -989,7 +1026,27 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Deletes a Resource Sync Rule.
+     *
+     * <p>Deletes the Resource Sync Rule with the specified Resource Sync Rule Name, Custom Location Resource Name,
+     * Resource Group, and Subscription Id.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param childResourceName Resource Sync Rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String resourceName, String childResourceName) {
+        deleteWithResponse(resourceGroupName, resourceName, childResourceName, Context.NONE);
+    }
+
+    /**
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1051,7 +1108,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1115,7 +1174,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1143,7 +1204,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1173,7 +1236,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1188,11 +1253,13 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ResourceSyncRuleInner>, ResourceSyncRuleInner> beginUpdate(
         String resourceGroupName, String resourceName, String childResourceName, PatchableResourceSyncRule parameters) {
-        return beginUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters).getSyncPoller();
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1212,12 +1279,15 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
         String childResourceName,
         PatchableResourceSyncRule parameters,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, resourceName, childResourceName, parameters, context)
             .getSyncPoller();
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1238,7 +1308,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1264,7 +1336,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1283,7 +1357,9 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     }
 
     /**
-     * Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
+     * Updates a Resource Sync Rule.
+     *
+     * <p>Updates a Resource Sync Rule with the specified Resource Sync Rule name in the specified Resource Group,
      * Subscription and Custom Location name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1309,7 +1385,8 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1346,7 +1423,8 @@ public final class ResourceSyncRulesClientImpl implements ResourceSyncRulesClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -4,11 +4,11 @@
 
 package com.azure.resourcemanager.extendedlocation.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Custom Locations operation. */
-@Fluent
+@Immutable
 public final class CustomLocationOperationInner {
     /*
      * Describes the properties of a Custom Locations Operation Value Display.
@@ -33,6 +33,10 @@ public final class CustomLocationOperationInner {
      */
     @JsonProperty(value = "origin", access = JsonProperty.Access.WRITE_ONLY)
     private String origin;
+
+    /** Creates an instance of CustomLocationOperationInner class. */
+    public CustomLocationOperationInner() {
+    }
 
     /**
      * Get the innerDisplay property: Describes the properties of a Custom Locations Operation Value Display.

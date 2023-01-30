@@ -19,6 +19,10 @@ public final class CustomLocationFindTargetResourceGroupProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> labels;
 
+    /** Creates an instance of CustomLocationFindTargetResourceGroupProperties class. */
+    public CustomLocationFindTargetResourceGroupProperties() {
+    }
+
     /**
      * Get the labels property: Labels of the custom resource, this is a map of {key,value} pairs.
      *

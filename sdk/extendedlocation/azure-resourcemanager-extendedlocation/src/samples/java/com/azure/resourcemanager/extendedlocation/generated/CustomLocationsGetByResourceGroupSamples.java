@@ -4,19 +4,50 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations GetByResourceGroup. */
 public final class CustomLocationsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsGet.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsGet_AWS.json
      */
     /**
-     * Sample code: Get Custom Location.
+     * Sample code: Get Custom Location for AWS host.
      *
      * @param manager Entry point to CustomLocationsManager.
      */
-    public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().getByResourceGroupWithResponse("testresourcegroup", "customLocation01", Context.NONE);
+    public static void getCustomLocationForAWSHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsGet_GCP.json
+     */
+    /**
+     * Sample code: Get Custom Location for GCP host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void getCustomLocationForGCPHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsGet_Kubernetes.json
+     */
+    /**
+     * Sample code: Get Custom Location for Kubernetes host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void getCustomLocationForKubernetesHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }

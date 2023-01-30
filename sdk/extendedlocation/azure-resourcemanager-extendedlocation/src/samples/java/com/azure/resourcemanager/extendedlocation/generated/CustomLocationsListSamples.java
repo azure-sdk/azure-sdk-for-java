@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations List. */
 public final class CustomLocationsListSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsListBySubscription.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsListBySubscription.json
      */
     /**
      * Sample code: List Custom Locations by subscription.
@@ -18,6 +16,6 @@ public final class CustomLocationsListSamples {
      */
     public static void listCustomLocationsBySubscription(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().list(Context.NONE);
+        manager.customLocations().list(com.azure.core.util.Context.NONE);
     }
 }

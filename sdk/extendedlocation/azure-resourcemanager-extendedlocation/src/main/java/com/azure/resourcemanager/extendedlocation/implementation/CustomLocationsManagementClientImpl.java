@@ -155,7 +155,7 @@ public final class CustomLocationsManagementClientImpl implements CustomLocation
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-08-31-preview";
+        this.apiVersion = "2023-04-01-preview";
         this.customLocations = new CustomLocationsClientImpl(this);
         this.resourceSyncRules = new ResourceSyncRulesClientImpl(this);
     }

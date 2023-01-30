@@ -11,22 +11,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class CustomLocationFindTargetResourceGroupResultInner {
     /*
-     * The matching resource sync rule is the particular resource sync rule
-     * that matched the match expressions and labels and had lowest priority.
-     * This is the rule responsible for mapping the target resource to the
-     * target resource group.
+     * The matching resource sync rule is the particular resource sync rule that matched the match expressions and
+     * labels and had lowest priority. This is the rule responsible for mapping the target resource to the target
+     * resource group.
      */
     @JsonProperty(value = "matchedResourceSyncRule", access = JsonProperty.Access.WRITE_ONLY)
     private String matchedResourceSyncRule;
 
     /*
-     * The target resource group of matching resource sync rule. The labels
-     * from the request will be used to find out matching resource sync rule
-     * against the selector property of the resource sync rule. The one with
-     * highest priority will be returned if there are multiple matching rules.
+     * The target resource group of matching resource sync rule. The labels from the request will be used to find out
+     * matching resource sync rule against the selector property of the resource sync rule. The one with highest
+     * priority will be returned if there are multiple matching rules.
      */
     @JsonProperty(value = "targetResourceGroup", access = JsonProperty.Access.WRITE_ONLY)
     private String targetResourceGroup;
+
+    /** Creates an instance of CustomLocationFindTargetResourceGroupResultInner class. */
+    public CustomLocationFindTargetResourceGroupResultInner() {
+    }
 
     /**
      * Get the matchedResourceSyncRule property: The matching resource sync rule is the particular resource sync rule

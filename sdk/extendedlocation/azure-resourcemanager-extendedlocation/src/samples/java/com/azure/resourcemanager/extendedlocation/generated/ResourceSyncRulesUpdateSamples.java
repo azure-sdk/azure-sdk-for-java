@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.ResourceSyncRule;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for ResourceSyncRules Update. */
 public final class ResourceSyncRulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesPatch.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesPatch.json
      */
     /**
      * Sample code: Update Resource Sync Rule.
@@ -24,7 +23,8 @@ public final class ResourceSyncRulesUpdateSamples {
         ResourceSyncRule resource =
             manager
                 .resourceSyncRules()
-                .getWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE)
+                .getWithResponse(
+                    "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

@@ -34,6 +34,10 @@ public final class CustomLocationOperationValueDisplay {
     @JsonProperty(value = "resource", access = JsonProperty.Access.WRITE_ONLY)
     private String resource;
 
+    /** Creates an instance of CustomLocationOperationValueDisplay class. */
+    public CustomLocationOperationValueDisplay() {
+    }
+
     /**
      * Get the description property: The description of the operation.
      *

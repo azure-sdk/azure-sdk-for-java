@@ -116,6 +116,55 @@ public interface CustomLocation {
     String provisioningState();
 
     /**
+     * Gets the accountId property: Account id for the AWS account.
+     *
+     * @return the accountId value.
+     */
+    String accountId();
+
+    /**
+     * Gets the excludedAccounts property: List of AWS accounts which needs to be excluded.
+     *
+     * @return the excludedAccounts value.
+     */
+    List<String> excludedAccounts();
+
+    /**
+     * Gets the excludedFolderIds property: List of folder id's that needs to be excluded.
+     *
+     * @return the excludedFolderIds value.
+     */
+    List<String> excludedFolderIds();
+
+    /**
+     * Gets the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+     *
+     * @return the excludedProjectNumbers value.
+     */
+    List<String> excludedProjectNumbers();
+
+    /**
+     * Gets the organizationId property: Organization id for the GCP organization.
+     *
+     * @return the organizationId value.
+     */
+    String organizationId();
+
+    /**
+     * Gets the projectId property: Project id for the GCP single account.
+     *
+     * @return the projectId value.
+     */
+    String projectId();
+
+    /**
+     * Gets the projectNumber property: Project number for GCP single account.
+     *
+     * @return the projectNumber value.
+     */
+    String projectNumber();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -196,7 +245,14 @@ public interface CustomLocation {
                 DefinitionStages.WithHostResourceId,
                 DefinitionStages.WithHostType,
                 DefinitionStages.WithNamespace,
-                DefinitionStages.WithProvisioningState {
+                DefinitionStages.WithProvisioningState,
+                DefinitionStages.WithAccountId,
+                DefinitionStages.WithExcludedAccounts,
+                DefinitionStages.WithExcludedFolderIds,
+                DefinitionStages.WithExcludedProjectNumbers,
+                DefinitionStages.WithOrganizationId,
+                DefinitionStages.WithProjectId,
+                DefinitionStages.WithProjectNumber {
             /**
              * Executes the create request.
              *
@@ -308,6 +364,76 @@ public interface CustomLocation {
              */
             WithCreate withProvisioningState(String provisioningState);
         }
+        /** The stage of the CustomLocation definition allowing to specify accountId. */
+        interface WithAccountId {
+            /**
+             * Specifies the accountId property: Account id for the AWS account.
+             *
+             * @param accountId Account id for the AWS account.
+             * @return the next definition stage.
+             */
+            WithCreate withAccountId(String accountId);
+        }
+        /** The stage of the CustomLocation definition allowing to specify excludedAccounts. */
+        interface WithExcludedAccounts {
+            /**
+             * Specifies the excludedAccounts property: List of AWS accounts which needs to be excluded.
+             *
+             * @param excludedAccounts List of AWS accounts which needs to be excluded.
+             * @return the next definition stage.
+             */
+            WithCreate withExcludedAccounts(List<String> excludedAccounts);
+        }
+        /** The stage of the CustomLocation definition allowing to specify excludedFolderIds. */
+        interface WithExcludedFolderIds {
+            /**
+             * Specifies the excludedFolderIds property: List of folder id's that needs to be excluded.
+             *
+             * @param excludedFolderIds List of folder id's that needs to be excluded.
+             * @return the next definition stage.
+             */
+            WithCreate withExcludedFolderIds(List<String> excludedFolderIds);
+        }
+        /** The stage of the CustomLocation definition allowing to specify excludedProjectNumbers. */
+        interface WithExcludedProjectNumbers {
+            /**
+             * Specifies the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+             *
+             * @param excludedProjectNumbers List of project numbers that needs to be excluded.
+             * @return the next definition stage.
+             */
+            WithCreate withExcludedProjectNumbers(List<String> excludedProjectNumbers);
+        }
+        /** The stage of the CustomLocation definition allowing to specify organizationId. */
+        interface WithOrganizationId {
+            /**
+             * Specifies the organizationId property: Organization id for the GCP organization.
+             *
+             * @param organizationId Organization id for the GCP organization.
+             * @return the next definition stage.
+             */
+            WithCreate withOrganizationId(String organizationId);
+        }
+        /** The stage of the CustomLocation definition allowing to specify projectId. */
+        interface WithProjectId {
+            /**
+             * Specifies the projectId property: Project id for the GCP single account.
+             *
+             * @param projectId Project id for the GCP single account.
+             * @return the next definition stage.
+             */
+            WithCreate withProjectId(String projectId);
+        }
+        /** The stage of the CustomLocation definition allowing to specify projectNumber. */
+        interface WithProjectNumber {
+            /**
+             * Specifies the projectNumber property: Project number for GCP single account.
+             *
+             * @param projectNumber Project number for GCP single account.
+             * @return the next definition stage.
+             */
+            WithCreate withProjectNumber(String projectNumber);
+        }
     }
     /**
      * Begins update for the CustomLocation resource.
@@ -326,7 +452,14 @@ public interface CustomLocation {
             UpdateStages.WithHostResourceId,
             UpdateStages.WithHostType,
             UpdateStages.WithNamespace,
-            UpdateStages.WithProvisioningState {
+            UpdateStages.WithProvisioningState,
+            UpdateStages.WithAccountId,
+            UpdateStages.WithExcludedAccounts,
+            UpdateStages.WithExcludedFolderIds,
+            UpdateStages.WithExcludedProjectNumbers,
+            UpdateStages.WithOrganizationId,
+            UpdateStages.WithProjectId,
+            UpdateStages.WithProjectNumber {
         /**
          * Executes the update request.
          *
@@ -440,6 +573,76 @@ public interface CustomLocation {
              */
             Update withProvisioningState(String provisioningState);
         }
+        /** The stage of the CustomLocation update allowing to specify accountId. */
+        interface WithAccountId {
+            /**
+             * Specifies the accountId property: Account id for the AWS account.
+             *
+             * @param accountId Account id for the AWS account.
+             * @return the next definition stage.
+             */
+            Update withAccountId(String accountId);
+        }
+        /** The stage of the CustomLocation update allowing to specify excludedAccounts. */
+        interface WithExcludedAccounts {
+            /**
+             * Specifies the excludedAccounts property: List of AWS accounts which needs to be excluded.
+             *
+             * @param excludedAccounts List of AWS accounts which needs to be excluded.
+             * @return the next definition stage.
+             */
+            Update withExcludedAccounts(List<String> excludedAccounts);
+        }
+        /** The stage of the CustomLocation update allowing to specify excludedFolderIds. */
+        interface WithExcludedFolderIds {
+            /**
+             * Specifies the excludedFolderIds property: List of folder id's that needs to be excluded.
+             *
+             * @param excludedFolderIds List of folder id's that needs to be excluded.
+             * @return the next definition stage.
+             */
+            Update withExcludedFolderIds(List<String> excludedFolderIds);
+        }
+        /** The stage of the CustomLocation update allowing to specify excludedProjectNumbers. */
+        interface WithExcludedProjectNumbers {
+            /**
+             * Specifies the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+             *
+             * @param excludedProjectNumbers List of project numbers that needs to be excluded.
+             * @return the next definition stage.
+             */
+            Update withExcludedProjectNumbers(List<String> excludedProjectNumbers);
+        }
+        /** The stage of the CustomLocation update allowing to specify organizationId. */
+        interface WithOrganizationId {
+            /**
+             * Specifies the organizationId property: Organization id for the GCP organization.
+             *
+             * @param organizationId Organization id for the GCP organization.
+             * @return the next definition stage.
+             */
+            Update withOrganizationId(String organizationId);
+        }
+        /** The stage of the CustomLocation update allowing to specify projectId. */
+        interface WithProjectId {
+            /**
+             * Specifies the projectId property: Project id for the GCP single account.
+             *
+             * @param projectId Project id for the GCP single account.
+             * @return the next definition stage.
+             */
+            Update withProjectId(String projectId);
+        }
+        /** The stage of the CustomLocation update allowing to specify projectNumber. */
+        interface WithProjectNumber {
+            /**
+             * Specifies the projectNumber property: Project number for GCP single account.
+             *
+             * @param projectNumber Project number for GCP single account.
+             * @return the next definition stage.
+             */
+            Update withProjectNumber(String projectNumber);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -457,21 +660,10 @@ public interface CustomLocation {
     CustomLocation refresh(Context context);
 
     /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * Gets matching target resource group for resource sync.
      *
-     * @param parameters Parameters of the find target resource group request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Find Target Resource Group operation response.
-     */
-    CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
-        CustomLocationFindTargetResourceGroupProperties parameters);
-
-    /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
      *
      * @param parameters Parameters of the find target resource group request.
      * @param context The context to associate with this operation.
@@ -482,4 +674,19 @@ public interface CustomLocation {
      */
     Response<CustomLocationFindTargetResourceGroupResult> findTargetResourceGroupWithResponse(
         CustomLocationFindTargetResourceGroupProperties parameters, Context context);
+
+    /**
+     * Gets matching target resource group for resource sync.
+     *
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
+     *
+     * @param parameters Parameters of the find target resource group request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response.
+     */
+    CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
+        CustomLocationFindTargetResourceGroupProperties parameters);
 }

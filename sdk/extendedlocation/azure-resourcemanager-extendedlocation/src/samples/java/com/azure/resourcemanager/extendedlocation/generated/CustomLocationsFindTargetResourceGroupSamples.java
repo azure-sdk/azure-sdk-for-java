@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for CustomLocations FindTargetResourceGroup. */
 public final class CustomLocationsFindTargetResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsFindTargetResourceGroup.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsFindTargetResourceGroup.json
      */
     /**
      * Sample code: Post Custom Location Find Target Resource Group.
@@ -28,7 +27,7 @@ public final class CustomLocationsFindTargetResourceGroupSamples {
                 "customLocation01",
                 new CustomLocationFindTargetResourceGroupProperties()
                     .withLabels(mapOf("key1", "value1", "key2", "value2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

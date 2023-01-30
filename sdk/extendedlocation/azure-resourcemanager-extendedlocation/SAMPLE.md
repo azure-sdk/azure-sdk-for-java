@@ -24,6 +24,7 @@
 
 ```java
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationPropertiesAuthentication;
+import com.azure.resourcemanager.extendedlocation.models.HostType;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
 import java.util.Arrays;
@@ -31,14 +32,63 @@ import java.util.Arrays;
 /** Samples for CustomLocations CreateOrUpdate. */
 public final class CustomLocationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsCreate_Update.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsCreate_Update_AWS.json
      */
     /**
-     * Sample code: Create/Update Custom Location.
+     * Sample code: Create/Update Custom Location for AWS host.
      *
      * @param manager Entry point to CustomLocationsManager.
      */
-    public static void createUpdateCustomLocation(
+    public static void createUpdateCustomLocationForAWSHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .define("customLocation01")
+            .withRegion("West US")
+            .withExistingResourceGroup("testresourcegroup")
+            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withDisplayName("customLocationLocation01")
+            .withHostResourceId("")
+            .withHostType(HostType.AWS)
+            .withNamespace("")
+            .withAccountId("2271526498")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsCreate_Update_GCP.json
+     */
+    /**
+     * Sample code: Create/Update Custom Location for GCP host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void createUpdateCustomLocationForGCPHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .define("customLocation01")
+            .withRegion("West US")
+            .withExistingResourceGroup("testresourcegroup")
+            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withDisplayName("customLocationLocation01")
+            .withHostResourceId("")
+            .withHostType(HostType.GCP)
+            .withNamespace("")
+            .withProjectId("12532678")
+            .withProjectNumber("42987132")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsCreate_Update_Kubernetes.json
+     */
+    /**
+     * Sample code: Create/Update Custom Location for Kubernetes host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void createUpdateCustomLocationForKubernetesHost(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
         manager
             .customLocations()
@@ -64,12 +114,10 @@ public final class CustomLocationsCreateOrUpdateSamples {
 ### CustomLocations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations Delete. */
 public final class CustomLocationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsDelete.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsDelete.json
      */
     /**
      * Sample code: Delete Custom Location.
@@ -77,7 +125,7 @@ public final class CustomLocationsDeleteSamples {
      * @param manager Entry point to CustomLocationsManager.
      */
     public static void deleteCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().delete("testresourcegroup", "customLocation01", Context.NONE);
+        manager.customLocations().delete("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -85,7 +133,6 @@ public final class CustomLocationsDeleteSamples {
 ### CustomLocations_FindTargetResourceGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,7 +140,7 @@ import java.util.Map;
 /** Samples for CustomLocations FindTargetResourceGroup. */
 public final class CustomLocationsFindTargetResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsFindTargetResourceGroup.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsFindTargetResourceGroup.json
      */
     /**
      * Sample code: Post Custom Location Find Target Resource Group.
@@ -109,7 +156,7 @@ public final class CustomLocationsFindTargetResourceGroupSamples {
                 "customLocation01",
                 new CustomLocationFindTargetResourceGroupProperties()
                     .withLabels(mapOf("key1", "value1", "key2", "value2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -128,20 +175,51 @@ public final class CustomLocationsFindTargetResourceGroupSamples {
 ### CustomLocations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations GetByResourceGroup. */
 public final class CustomLocationsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsGet.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsGet_AWS.json
      */
     /**
-     * Sample code: Get Custom Location.
+     * Sample code: Get Custom Location for AWS host.
      *
      * @param manager Entry point to CustomLocationsManager.
      */
-    public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().getByResourceGroupWithResponse("testresourcegroup", "customLocation01", Context.NONE);
+    public static void getCustomLocationForAWSHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsGet_GCP.json
+     */
+    /**
+     * Sample code: Get Custom Location for GCP host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void getCustomLocationForGCPHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsGet_Kubernetes.json
+     */
+    /**
+     * Sample code: Get Custom Location for Kubernetes host.
+     *
+     * @param manager Entry point to CustomLocationsManager.
+     */
+    public static void getCustomLocationForKubernetesHost(
+        com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager
+            .customLocations()
+            .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -149,12 +227,10 @@ public final class CustomLocationsGetByResourceGroupSamples {
 ### CustomLocations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations List. */
 public final class CustomLocationsListSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsListBySubscription.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsListBySubscription.json
      */
     /**
      * Sample code: List Custom Locations by subscription.
@@ -163,7 +239,7 @@ public final class CustomLocationsListSamples {
      */
     public static void listCustomLocationsBySubscription(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().list(Context.NONE);
+        manager.customLocations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -171,12 +247,10 @@ public final class CustomLocationsListSamples {
 ### CustomLocations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations ListByResourceGroup. */
 public final class CustomLocationsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsListByResourceGroup.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsListByResourceGroup.json
      */
     /**
      * Sample code: List Custom Locations by resource group.
@@ -185,7 +259,7 @@ public final class CustomLocationsListByResourceGroupSamples {
      */
     public static void listCustomLocationsByResourceGroup(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().listByResourceGroup("testresourcegroup", Context.NONE);
+        manager.customLocations().listByResourceGroup("testresourcegroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -193,12 +267,10 @@ public final class CustomLocationsListByResourceGroupSamples {
 ### CustomLocations_ListEnabledResourceTypes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations ListEnabledResourceTypes. */
 public final class CustomLocationsListEnabledResourceTypesSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsListEnabledResourceTypes.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsListEnabledResourceTypes.json
      */
     /**
      * Sample code: Get Custom Location.
@@ -206,7 +278,9 @@ public final class CustomLocationsListEnabledResourceTypesSamples {
      * @param manager Entry point to CustomLocationsManager.
      */
     public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().listEnabledResourceTypes("testresourcegroup", "customLocation01", Context.NONE);
+        manager
+            .customLocations()
+            .listEnabledResourceTypes("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -214,12 +288,10 @@ public final class CustomLocationsListEnabledResourceTypesSamples {
 ### CustomLocations_ListOperations
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations ListOperations. */
 public final class CustomLocationsListOperationsSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsListOperations.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsListOperations.json
      */
     /**
      * Sample code: List Custom Locations operations.
@@ -228,7 +300,7 @@ public final class CustomLocationsListOperationsSamples {
      */
     public static void listCustomLocationsOperations(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().listOperations(Context.NONE);
+        manager.customLocations().listOperations(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -236,7 +308,6 @@ public final class CustomLocationsListOperationsSamples {
 ### CustomLocations_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocation;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
@@ -247,7 +318,7 @@ import java.util.Map;
 /** Samples for CustomLocations Update. */
 public final class CustomLocationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/CustomLocationsPatch.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/CustomLocationsPatch.json
      */
     /**
      * Sample code: Update Custom Location.
@@ -258,7 +329,8 @@ public final class CustomLocationsUpdateSamples {
         CustomLocation resource =
             manager
                 .customLocations()
-                .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -297,7 +369,7 @@ import java.util.Map;
 /** Samples for ResourceSyncRules CreateOrUpdate. */
 public final class ResourceSyncRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesCreate_Update.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesCreate_Update.json
      */
     /**
      * Sample code: Create/Update Resource Sync Rule.
@@ -318,7 +390,7 @@ public final class ResourceSyncRulesCreateOrUpdateSamples {
                         Arrays
                             .asList(
                                 new MatchExpressionsProperties()
-                                    .withKey("key4")
+                                    .withKey("fakeTokenPlaceholder")
                                     .withOperator("In")
                                     .withValues(Arrays.asList("value4"))))
                     .withMatchLabels(mapOf("key1", "value1")))
@@ -343,12 +415,10 @@ public final class ResourceSyncRulesCreateOrUpdateSamples {
 ### ResourceSyncRules_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ResourceSyncRules Delete. */
 public final class ResourceSyncRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesDelete.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesDelete.json
      */
     /**
      * Sample code: Delete Resource Sync Rule.
@@ -359,7 +429,8 @@ public final class ResourceSyncRulesDeleteSamples {
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
         manager
             .resourceSyncRules()
-            .deleteWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE);
+            .deleteWithResponse(
+                "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -367,12 +438,10 @@ public final class ResourceSyncRulesDeleteSamples {
 ### ResourceSyncRules_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ResourceSyncRules Get. */
 public final class ResourceSyncRulesGetSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesGet.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesGet.json
      */
     /**
      * Sample code: Get Custom Location.
@@ -382,7 +451,8 @@ public final class ResourceSyncRulesGetSamples {
     public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
         manager
             .resourceSyncRules()
-            .getWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE);
+            .getWithResponse(
+                "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -390,12 +460,10 @@ public final class ResourceSyncRulesGetSamples {
 ### ResourceSyncRules_ListByCustomLocationId
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ResourceSyncRules ListByCustomLocationId. */
 public final class ResourceSyncRulesListByCustomLocationIdSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesListByCustomLocationID.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesListByCustomLocationID.json
      */
     /**
      * Sample code: List Resource Sync Rules by subscription.
@@ -404,7 +472,9 @@ public final class ResourceSyncRulesListByCustomLocationIdSamples {
      */
     public static void listResourceSyncRulesBySubscription(
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.resourceSyncRules().listByCustomLocationId("testresourcegroup", "customLocation01", Context.NONE);
+        manager
+            .resourceSyncRules()
+            .listByCustomLocationId("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -412,7 +482,6 @@ public final class ResourceSyncRulesListByCustomLocationIdSamples {
 ### ResourceSyncRules_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.ResourceSyncRule;
 import java.util.HashMap;
 import java.util.Map;
@@ -420,7 +489,7 @@ import java.util.Map;
 /** Samples for ResourceSyncRules Update. */
 public final class ResourceSyncRulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/ResourceSyncRulesPatch.json
+     * x-ms-original-file: specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2023-04-01-preview/examples/ResourceSyncRulesPatch.json
      */
     /**
      * Sample code: Update Resource Sync Rule.
@@ -432,7 +501,8 @@ public final class ResourceSyncRulesUpdateSamples {
         ResourceSyncRule resource =
             manager
                 .resourceSyncRules()
-                .getWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE)
+                .getWithResponse(
+                    "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

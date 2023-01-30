@@ -35,6 +35,10 @@ public final class CustomLocationInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of CustomLocationInner class. */
+    public CustomLocationInner() {
+    }
+
     /**
      * Get the identity property: Identity for the resource.
      *
@@ -251,6 +255,167 @@ public final class CustomLocationInner extends Resource {
             this.innerProperties = new CustomLocationProperties();
         }
         this.innerProperties().withProvisioningState(provisioningState);
+        return this;
+    }
+
+    /**
+     * Get the accountId property: Account id for the AWS account.
+     *
+     * @return the accountId value.
+     */
+    public String accountId() {
+        return this.innerProperties() == null ? null : this.innerProperties().accountId();
+    }
+
+    /**
+     * Set the accountId property: Account id for the AWS account.
+     *
+     * @param accountId the accountId value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withAccountId(String accountId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withAccountId(accountId);
+        return this;
+    }
+
+    /**
+     * Get the excludedAccounts property: List of AWS accounts which needs to be excluded.
+     *
+     * @return the excludedAccounts value.
+     */
+    public List<String> excludedAccounts() {
+        return this.innerProperties() == null ? null : this.innerProperties().excludedAccounts();
+    }
+
+    /**
+     * Set the excludedAccounts property: List of AWS accounts which needs to be excluded.
+     *
+     * @param excludedAccounts the excludedAccounts value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withExcludedAccounts(List<String> excludedAccounts) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withExcludedAccounts(excludedAccounts);
+        return this;
+    }
+
+    /**
+     * Get the excludedFolderIds property: List of folder id's that needs to be excluded.
+     *
+     * @return the excludedFolderIds value.
+     */
+    public List<String> excludedFolderIds() {
+        return this.innerProperties() == null ? null : this.innerProperties().excludedFolderIds();
+    }
+
+    /**
+     * Set the excludedFolderIds property: List of folder id's that needs to be excluded.
+     *
+     * @param excludedFolderIds the excludedFolderIds value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withExcludedFolderIds(List<String> excludedFolderIds) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withExcludedFolderIds(excludedFolderIds);
+        return this;
+    }
+
+    /**
+     * Get the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+     *
+     * @return the excludedProjectNumbers value.
+     */
+    public List<String> excludedProjectNumbers() {
+        return this.innerProperties() == null ? null : this.innerProperties().excludedProjectNumbers();
+    }
+
+    /**
+     * Set the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+     *
+     * @param excludedProjectNumbers the excludedProjectNumbers value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withExcludedProjectNumbers(List<String> excludedProjectNumbers) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withExcludedProjectNumbers(excludedProjectNumbers);
+        return this;
+    }
+
+    /**
+     * Get the organizationId property: Organization id for the GCP organization.
+     *
+     * @return the organizationId value.
+     */
+    public String organizationId() {
+        return this.innerProperties() == null ? null : this.innerProperties().organizationId();
+    }
+
+    /**
+     * Set the organizationId property: Organization id for the GCP organization.
+     *
+     * @param organizationId the organizationId value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withOrganizationId(String organizationId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withOrganizationId(organizationId);
+        return this;
+    }
+
+    /**
+     * Get the projectId property: Project id for the GCP single account.
+     *
+     * @return the projectId value.
+     */
+    public String projectId() {
+        return this.innerProperties() == null ? null : this.innerProperties().projectId();
+    }
+
+    /**
+     * Set the projectId property: Project id for the GCP single account.
+     *
+     * @param projectId the projectId value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withProjectId(String projectId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withProjectId(projectId);
+        return this;
+    }
+
+    /**
+     * Get the projectNumber property: Project number for GCP single account.
+     *
+     * @return the projectNumber value.
+     */
+    public String projectNumber() {
+        return this.innerProperties() == null ? null : this.innerProperties().projectNumber();
+    }
+
+    /**
+     * Set the projectNumber property: Project number for GCP single account.
+     *
+     * @param projectNumber the projectNumber value to set.
+     * @return the CustomLocationInner object itself.
+     */
+    public CustomLocationInner withProjectNumber(String projectNumber) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomLocationProperties();
+        }
+        this.innerProperties().withProjectNumber(projectNumber);
         return this;
     }
 

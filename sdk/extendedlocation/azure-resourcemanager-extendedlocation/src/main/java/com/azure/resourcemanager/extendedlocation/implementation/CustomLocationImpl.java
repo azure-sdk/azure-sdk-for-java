@@ -91,6 +91,49 @@ public final class CustomLocationImpl implements CustomLocation, CustomLocation.
         return this.innerModel().provisioningState();
     }
 
+    public String accountId() {
+        return this.innerModel().accountId();
+    }
+
+    public List<String> excludedAccounts() {
+        List<String> inner = this.innerModel().excludedAccounts();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> excludedFolderIds() {
+        List<String> inner = this.innerModel().excludedFolderIds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> excludedProjectNumbers() {
+        List<String> inner = this.innerModel().excludedProjectNumbers();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String organizationId() {
+        return this.innerModel().organizationId();
+    }
+
+    public String projectId() {
+        return this.innerModel().projectId();
+    }
+
+    public String projectNumber() {
+        return this.innerModel().projectNumber();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -200,16 +243,16 @@ public final class CustomLocationImpl implements CustomLocation, CustomLocation.
         return this;
     }
 
-    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
-        CustomLocationFindTargetResourceGroupProperties parameters) {
-        return serviceManager.customLocations().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
-    }
-
     public Response<CustomLocationFindTargetResourceGroupResult> findTargetResourceGroupWithResponse(
         CustomLocationFindTargetResourceGroupProperties parameters, Context context) {
         return serviceManager
             .customLocations()
             .findTargetResourceGroupWithResponse(resourceGroupName, resourceName, parameters, context);
+    }
+
+    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
+        CustomLocationFindTargetResourceGroupProperties parameters) {
+        return serviceManager.customLocations().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
     }
 
     public CustomLocationImpl withRegion(Region location) {
@@ -308,6 +351,76 @@ public final class CustomLocationImpl implements CustomLocation, CustomLocation.
             return this;
         } else {
             this.updateParameters.withProvisioningState(provisioningState);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withAccountId(String accountId) {
+        if (isInCreateMode()) {
+            this.innerModel().withAccountId(accountId);
+            return this;
+        } else {
+            this.updateParameters.withAccountId(accountId);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withExcludedAccounts(List<String> excludedAccounts) {
+        if (isInCreateMode()) {
+            this.innerModel().withExcludedAccounts(excludedAccounts);
+            return this;
+        } else {
+            this.updateParameters.withExcludedAccounts(excludedAccounts);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withExcludedFolderIds(List<String> excludedFolderIds) {
+        if (isInCreateMode()) {
+            this.innerModel().withExcludedFolderIds(excludedFolderIds);
+            return this;
+        } else {
+            this.updateParameters.withExcludedFolderIds(excludedFolderIds);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withExcludedProjectNumbers(List<String> excludedProjectNumbers) {
+        if (isInCreateMode()) {
+            this.innerModel().withExcludedProjectNumbers(excludedProjectNumbers);
+            return this;
+        } else {
+            this.updateParameters.withExcludedProjectNumbers(excludedProjectNumbers);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withOrganizationId(String organizationId) {
+        if (isInCreateMode()) {
+            this.innerModel().withOrganizationId(organizationId);
+            return this;
+        } else {
+            this.updateParameters.withOrganizationId(organizationId);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withProjectId(String projectId) {
+        if (isInCreateMode()) {
+            this.innerModel().withProjectId(projectId);
+            return this;
+        } else {
+            this.updateParameters.withProjectId(projectId);
+            return this;
+        }
+    }
+
+    public CustomLocationImpl withProjectNumber(String projectNumber) {
+        if (isInCreateMode()) {
+            this.innerModel().withProjectNumber(projectNumber);
+            return this;
+        } else {
+            this.updateParameters.withProjectNumber(projectNumber);
             return this;
         }
     }

@@ -14,15 +14,19 @@ import java.util.List;
 @Fluent
 public final class CustomLocationProperties {
     /*
-     * This is optional input that contains the authentication that should be
-     * used to generate the namespace.
+     * This is optional input that contains the authentication that should be used to generate the namespace.
      */
     @JsonProperty(value = "authentication")
     private CustomLocationPropertiesAuthentication authentication;
 
     /*
-     * Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * Contains the aws account details of the customer
+     */
+    @JsonProperty(value = "awsCloudProfile")
+    private AwsCloudProfile innerAwsCloudProfile;
+
+    /*
+     * Contains the reference to the add-on that contains charts to deploy CRDs and operators.
      */
     @JsonProperty(value = "clusterExtensionIds")
     private List<String> clusterExtensionIds;
@@ -34,8 +38,14 @@ public final class CustomLocationProperties {
     private String displayName;
 
     /*
-     * Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Contains the gcp account details of the customer
+     */
+    @JsonProperty(value = "gcpCloudProfile")
+    private GcpCloudProfile innerGcpCloudProfile;
+
+    /*
+     * Connected Cluster or AKS Cluster. The Custom Locations RP will perform a checkAccess API for
+     * listAdminCredentials permissions.
      */
     @JsonProperty(value = "hostResourceId")
     private String hostResourceId;
@@ -58,6 +68,10 @@ public final class CustomLocationProperties {
     @JsonProperty(value = "provisioningState")
     private String provisioningState;
 
+    /** Creates an instance of CustomLocationProperties class. */
+    public CustomLocationProperties() {
+    }
+
     /**
      * Get the authentication property: This is optional input that contains the authentication that should be used to
      * generate the namespace.
@@ -78,6 +92,15 @@ public final class CustomLocationProperties {
     public CustomLocationProperties withAuthentication(CustomLocationPropertiesAuthentication authentication) {
         this.authentication = authentication;
         return this;
+    }
+
+    /**
+     * Get the innerAwsCloudProfile property: Contains the aws account details of the customer.
+     *
+     * @return the innerAwsCloudProfile value.
+     */
+    private AwsCloudProfile innerAwsCloudProfile() {
+        return this.innerAwsCloudProfile;
     }
 
     /**
@@ -120,6 +143,15 @@ public final class CustomLocationProperties {
     public CustomLocationProperties withDisplayName(String displayName) {
         this.displayName = displayName;
         return this;
+    }
+
+    /**
+     * Get the innerGcpCloudProfile property: Contains the gcp account details of the customer.
+     *
+     * @return the innerGcpCloudProfile value.
+     */
+    private GcpCloudProfile innerGcpCloudProfile() {
+        return this.innerGcpCloudProfile;
     }
 
     /**
@@ -205,6 +237,167 @@ public final class CustomLocationProperties {
     }
 
     /**
+     * Get the accountId property: Account id for the AWS account.
+     *
+     * @return the accountId value.
+     */
+    public String accountId() {
+        return this.innerAwsCloudProfile() == null ? null : this.innerAwsCloudProfile().accountId();
+    }
+
+    /**
+     * Set the accountId property: Account id for the AWS account.
+     *
+     * @param accountId the accountId value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withAccountId(String accountId) {
+        if (this.innerAwsCloudProfile() == null) {
+            this.innerAwsCloudProfile = new AwsCloudProfile();
+        }
+        this.innerAwsCloudProfile().withAccountId(accountId);
+        return this;
+    }
+
+    /**
+     * Get the excludedAccounts property: List of AWS accounts which needs to be excluded.
+     *
+     * @return the excludedAccounts value.
+     */
+    public List<String> excludedAccounts() {
+        return this.innerAwsCloudProfile() == null ? null : this.innerAwsCloudProfile().excludedAccounts();
+    }
+
+    /**
+     * Set the excludedAccounts property: List of AWS accounts which needs to be excluded.
+     *
+     * @param excludedAccounts the excludedAccounts value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withExcludedAccounts(List<String> excludedAccounts) {
+        if (this.innerAwsCloudProfile() == null) {
+            this.innerAwsCloudProfile = new AwsCloudProfile();
+        }
+        this.innerAwsCloudProfile().withExcludedAccounts(excludedAccounts);
+        return this;
+    }
+
+    /**
+     * Get the excludedFolderIds property: List of folder id's that needs to be excluded.
+     *
+     * @return the excludedFolderIds value.
+     */
+    public List<String> excludedFolderIds() {
+        return this.innerGcpCloudProfile() == null ? null : this.innerGcpCloudProfile().excludedFolderIds();
+    }
+
+    /**
+     * Set the excludedFolderIds property: List of folder id's that needs to be excluded.
+     *
+     * @param excludedFolderIds the excludedFolderIds value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withExcludedFolderIds(List<String> excludedFolderIds) {
+        if (this.innerGcpCloudProfile() == null) {
+            this.innerGcpCloudProfile = new GcpCloudProfile();
+        }
+        this.innerGcpCloudProfile().withExcludedFolderIds(excludedFolderIds);
+        return this;
+    }
+
+    /**
+     * Get the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+     *
+     * @return the excludedProjectNumbers value.
+     */
+    public List<String> excludedProjectNumbers() {
+        return this.innerGcpCloudProfile() == null ? null : this.innerGcpCloudProfile().excludedProjectNumbers();
+    }
+
+    /**
+     * Set the excludedProjectNumbers property: List of project numbers that needs to be excluded.
+     *
+     * @param excludedProjectNumbers the excludedProjectNumbers value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withExcludedProjectNumbers(List<String> excludedProjectNumbers) {
+        if (this.innerGcpCloudProfile() == null) {
+            this.innerGcpCloudProfile = new GcpCloudProfile();
+        }
+        this.innerGcpCloudProfile().withExcludedProjectNumbers(excludedProjectNumbers);
+        return this;
+    }
+
+    /**
+     * Get the organizationId property: Organization id for the GCP organization.
+     *
+     * @return the organizationId value.
+     */
+    public String organizationId() {
+        return this.innerGcpCloudProfile() == null ? null : this.innerGcpCloudProfile().organizationId();
+    }
+
+    /**
+     * Set the organizationId property: Organization id for the GCP organization.
+     *
+     * @param organizationId the organizationId value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withOrganizationId(String organizationId) {
+        if (this.innerGcpCloudProfile() == null) {
+            this.innerGcpCloudProfile = new GcpCloudProfile();
+        }
+        this.innerGcpCloudProfile().withOrganizationId(organizationId);
+        return this;
+    }
+
+    /**
+     * Get the projectId property: Project id for the GCP single account.
+     *
+     * @return the projectId value.
+     */
+    public String projectId() {
+        return this.innerGcpCloudProfile() == null ? null : this.innerGcpCloudProfile().projectId();
+    }
+
+    /**
+     * Set the projectId property: Project id for the GCP single account.
+     *
+     * @param projectId the projectId value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withProjectId(String projectId) {
+        if (this.innerGcpCloudProfile() == null) {
+            this.innerGcpCloudProfile = new GcpCloudProfile();
+        }
+        this.innerGcpCloudProfile().withProjectId(projectId);
+        return this;
+    }
+
+    /**
+     * Get the projectNumber property: Project number for GCP single account.
+     *
+     * @return the projectNumber value.
+     */
+    public String projectNumber() {
+        return this.innerGcpCloudProfile() == null ? null : this.innerGcpCloudProfile().projectNumber();
+    }
+
+    /**
+     * Set the projectNumber property: Project number for GCP single account.
+     *
+     * @param projectNumber the projectNumber value to set.
+     * @return the CustomLocationProperties object itself.
+     */
+    public CustomLocationProperties withProjectNumber(String projectNumber) {
+        if (this.innerGcpCloudProfile() == null) {
+            this.innerGcpCloudProfile = new GcpCloudProfile();
+        }
+        this.innerGcpCloudProfile().withProjectNumber(projectNumber);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -212,6 +405,12 @@ public final class CustomLocationProperties {
     public void validate() {
         if (authentication() != null) {
             authentication().validate();
+        }
+        if (innerAwsCloudProfile() != null) {
+            innerAwsCloudProfile().validate();
+        }
+        if (innerGcpCloudProfile() != null) {
+            innerGcpCloudProfile().validate();
         }
     }
 }
