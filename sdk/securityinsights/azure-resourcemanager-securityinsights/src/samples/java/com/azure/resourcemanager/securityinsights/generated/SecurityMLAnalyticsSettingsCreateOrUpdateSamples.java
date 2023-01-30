@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.securityinsights.models.AnomalySecurityMLAnalyticsSettings;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
@@ -19,7 +18,7 @@ import java.util.UUID;
 /** Samples for SecurityMLAnalyticsSettings CreateOrUpdate. */
 public final class SecurityMLAnalyticsSettingsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/securityMLAnalyticsSettings/CreateAnomalySecurityMLAnalyticsSetting.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/securityMLAnalyticsSettings/CreateAnomalySecurityMLAnalyticsSetting.json
      */
     /**
      * Sample code: Creates or updates a Anomaly Security ML Analytics Settings.
@@ -73,6 +72,6 @@ public final class SecurityMLAnalyticsSettingsCreateOrUpdateSamples {
                     .withIsDefaultSettings(true)
                     .withAnomalySettingsVersion(0)
                     .withSettingsDefinitionId(UUID.fromString("f209187f-1d17-4431-94af-c141bf5f23db")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

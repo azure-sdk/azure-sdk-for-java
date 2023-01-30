@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataModel;
 
 /** Samples for Metadata Update. */
 public final class MetadataUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/metadata/PatchMetadata.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/metadata/PatchMetadata.json
      */
     /**
      * Sample code: Update metadata.
@@ -20,7 +19,10 @@ public final class MetadataUpdateSamples {
      */
     public static void updateMetadata(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         MetadataModel resource =
-            manager.metadatas().getWithResponse("myRg", "myWorkspace", "metadataName", Context.NONE).getValue();
+            manager
+                .metadatas()
+                .getWithResponse("myRg", "myWorkspace", "metadataName", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withAuthor(new MetadataAuthor().withName("User Name").withEmail("email@microsoft.com"))

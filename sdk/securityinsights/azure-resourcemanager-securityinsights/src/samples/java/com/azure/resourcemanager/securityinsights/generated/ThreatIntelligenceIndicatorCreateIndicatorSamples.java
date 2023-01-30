@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
 import java.util.Arrays;
 
 /** Samples for ThreatIntelligenceIndicator CreateIndicator. */
 public final class ThreatIntelligenceIndicatorCreateIndicatorSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/threatintelligence/CreateThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/threatintelligence/CreateThreatIntelligence.json
      */
     /**
      * Sample code: Create a new Threat Intelligence.
@@ -40,9 +39,9 @@ public final class ThreatIntelligenceIndicatorCreateIndicatorSamples {
                     .withRevoked(false)
                     .withConfidence(78)
                     .withThreatTypes(Arrays.asList("compromised"))
-                    .withValidFrom("2021-09-15T17:44:00.114052Z")
+                    .withValidFrom("2020-04-15T17:44:00.114052Z")
                     .withValidUntil("")
                     .withModified(""),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

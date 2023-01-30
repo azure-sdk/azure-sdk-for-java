@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Metadata Delete. */
 public final class MetadataDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/metadata/DeleteMetadata.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2023-02-01/examples/metadata/DeleteMetadata.json
      */
     /**
      * Sample code: Delete metadata.
@@ -17,6 +15,6 @@ public final class MetadataDeleteSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void deleteMetadata(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.metadatas().deleteWithResponse("myRg", "myWorkspace", "metadataName", Context.NONE);
+        manager.metadatas().deleteWithResponse("myRg", "myWorkspace", "metadataName", com.azure.core.util.Context.NONE);
     }
 }

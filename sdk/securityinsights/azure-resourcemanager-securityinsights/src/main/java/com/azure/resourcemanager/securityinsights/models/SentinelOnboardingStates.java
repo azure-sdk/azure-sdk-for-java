@@ -15,19 +15,6 @@ public interface SentinelOnboardingStates {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sentinel onboarding state.
-     */
-    SentinelOnboardingState get(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName);
-
-    /**
-     * Get Sentinel onboarding state.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -38,7 +25,7 @@ public interface SentinelOnboardingStates {
         String resourceGroupName, String workspaceName, String sentinelOnboardingStateName, Context context);
 
     /**
-     * Delete Sentinel onboarding state.
+     * Get Sentinel onboarding state.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -46,8 +33,9 @@ public interface SentinelOnboardingStates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return sentinel onboarding state.
      */
-    void delete(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName);
+    SentinelOnboardingState get(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName);
 
     /**
      * Delete Sentinel onboarding state.
@@ -65,16 +53,16 @@ public interface SentinelOnboardingStates {
         String resourceGroupName, String workspaceName, String sentinelOnboardingStateName, Context context);
 
     /**
-     * Gets all Sentinel onboarding states.
+     * Delete Sentinel onboarding state.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
+     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Sentinel onboarding states.
      */
-    SentinelOnboardingStatesList list(String resourceGroupName, String workspaceName);
+    void delete(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName);
 
     /**
      * Gets all Sentinel onboarding states.
@@ -89,6 +77,18 @@ public interface SentinelOnboardingStates {
      */
     Response<SentinelOnboardingStatesList> listWithResponse(
         String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Gets all Sentinel onboarding states.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all Sentinel onboarding states.
+     */
+    SentinelOnboardingStatesList list(String resourceGroupName, String workspaceName);
 
     /**
      * Get Sentinel onboarding state.

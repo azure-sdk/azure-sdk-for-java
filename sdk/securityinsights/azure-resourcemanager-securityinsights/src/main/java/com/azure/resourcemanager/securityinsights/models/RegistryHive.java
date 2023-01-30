@@ -41,6 +41,15 @@ public final class RegistryHive extends ExpandableStringEnum<RegistryHive> {
     public static final RegistryHive HKEY_CURRENT_USER = fromString("HKEY_CURRENT_USER");
 
     /**
+     * Creates a new instance of RegistryHive value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RegistryHive() {
+    }
+
+    /**
      * Creates or finds a RegistryHive from its string representation.
      *
      * @param name a name to look for.

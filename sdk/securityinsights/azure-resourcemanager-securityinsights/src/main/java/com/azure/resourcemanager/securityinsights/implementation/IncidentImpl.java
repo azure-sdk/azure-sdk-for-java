@@ -8,7 +8,6 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
-import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 import com.azure.resourcemanager.securityinsights.models.Incident;
 import com.azure.resourcemanager.securityinsights.models.IncidentAdditionalData;
 import com.azure.resourcemanager.securityinsights.models.IncidentAlertList;
@@ -20,8 +19,6 @@ import com.azure.resourcemanager.securityinsights.models.IncidentLabel;
 import com.azure.resourcemanager.securityinsights.models.IncidentOwnerInfo;
 import com.azure.resourcemanager.securityinsights.models.IncidentSeverity;
 import com.azure.resourcemanager.securityinsights.models.IncidentStatus;
-import com.azure.resourcemanager.securityinsights.models.TeamInformation;
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -83,6 +80,14 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this.innerModel().incidentUrl();
     }
 
+    public String providerName() {
+        return this.innerModel().providerName();
+    }
+
+    public String providerIncidentId() {
+        return this.innerModel().providerIncidentId();
+    }
+
     public Integer incidentNumber() {
         return this.innerModel().incidentNumber();
     }
@@ -94,14 +99,6 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public String providerName() {
-        return this.innerModel().providerName();
-    }
-
-    public String providerIncidentId() {
-        return this.innerModel().providerIncidentId();
     }
 
     public OffsetDateTime lastActivityTimeUtc() {
@@ -131,15 +128,6 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
 
     public IncidentStatus status() {
         return this.innerModel().status();
-    }
-
-    public TeamInformation teamInformation() {
-        TeamInformationInner inner = this.innerModel().teamInformation();
-        if (inner != null) {
-            return new TeamInformationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public String title() {
@@ -251,26 +239,12 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this;
     }
 
-    public TeamInformation createTeam(TeamProperties teamProperties) {
-        return serviceManager.incidents().createTeam(resourceGroupName, workspaceName, incidentId, teamProperties);
-    }
-
-    public Response<TeamInformation> createTeamWithResponse(TeamProperties teamProperties, Context context) {
-        return serviceManager
-            .incidents()
-            .createTeamWithResponse(resourceGroupName, workspaceName, incidentId, teamProperties, context);
-    }
-
-    public IncidentAlertList listAlerts() {
-        return serviceManager.incidents().listAlerts(resourceGroupName, workspaceName, incidentId);
-    }
-
     public Response<IncidentAlertList> listAlertsWithResponse(Context context) {
         return serviceManager.incidents().listAlertsWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
-    public IncidentBookmarkList listBookmarks() {
-        return serviceManager.incidents().listBookmarks(resourceGroupName, workspaceName, incidentId);
+    public IncidentAlertList listAlerts() {
+        return serviceManager.incidents().listAlerts(resourceGroupName, workspaceName, incidentId);
     }
 
     public Response<IncidentBookmarkList> listBookmarksWithResponse(Context context) {
@@ -279,14 +253,18 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
             .listBookmarksWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
-    public IncidentEntitiesResponse listEntities() {
-        return serviceManager.incidents().listEntities(resourceGroupName, workspaceName, incidentId);
+    public IncidentBookmarkList listBookmarks() {
+        return serviceManager.incidents().listBookmarks(resourceGroupName, workspaceName, incidentId);
     }
 
     public Response<IncidentEntitiesResponse> listEntitiesWithResponse(Context context) {
         return serviceManager
             .incidents()
             .listEntitiesWithResponse(resourceGroupName, workspaceName, incidentId, context);
+    }
+
+    public IncidentEntitiesResponse listEntities() {
+        return serviceManager.incidents().listEntities(resourceGroupName, workspaceName, incidentId);
     }
 
     public IncidentImpl withEtag(String etag) {
@@ -324,16 +302,6 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this;
     }
 
-    public IncidentImpl withProviderName(String providerName) {
-        this.innerModel().withProviderName(providerName);
-        return this;
-    }
-
-    public IncidentImpl withProviderIncidentId(String providerIncidentId) {
-        this.innerModel().withProviderIncidentId(providerIncidentId);
-        return this;
-    }
-
     public IncidentImpl withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc) {
         this.innerModel().withLastActivityTimeUtc(lastActivityTimeUtc);
         return this;
@@ -351,11 +319,6 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
 
     public IncidentImpl withStatus(IncidentStatus status) {
         this.innerModel().withStatus(status);
-        return this;
-    }
-
-    public IncidentImpl withTeamInformation(TeamInformationInner teamInformation) {
-        this.innerModel().withTeamInformation(teamInformation);
         return this;
     }
 

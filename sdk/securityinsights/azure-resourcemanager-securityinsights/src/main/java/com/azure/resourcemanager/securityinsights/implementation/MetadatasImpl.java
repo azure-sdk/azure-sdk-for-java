@@ -46,15 +46,6 @@ public final class MetadatasImpl implements Metadatas {
         return Utils.mapPage(inner, inner1 -> new MetadataModelImpl(inner1, this.manager()));
     }
 
-    public MetadataModel get(String resourceGroupName, String workspaceName, String metadataName) {
-        MetadataModelInner inner = this.serviceClient().get(resourceGroupName, workspaceName, metadataName);
-        if (inner != null) {
-            return new MetadataModelImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<MetadataModel> getWithResponse(
         String resourceGroupName, String workspaceName, String metadataName, Context context) {
         Response<MetadataModelInner> inner =
@@ -70,13 +61,22 @@ public final class MetadatasImpl implements Metadatas {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String metadataName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, metadataName);
+    public MetadataModel get(String resourceGroupName, String workspaceName, String metadataName) {
+        MetadataModelInner inner = this.serviceClient().get(resourceGroupName, workspaceName, metadataName);
+        if (inner != null) {
+            return new MetadataModelImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String metadataName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, metadataName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String metadataName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, metadataName);
     }
 
     public MetadataModel getById(String id) {

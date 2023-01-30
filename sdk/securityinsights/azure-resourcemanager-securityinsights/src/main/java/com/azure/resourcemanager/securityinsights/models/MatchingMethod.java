@@ -23,6 +23,15 @@ public final class MatchingMethod extends ExpandableStringEnum<MatchingMethod> {
     public static final MatchingMethod SELECTED = fromString("Selected");
 
     /**
+     * Creates a new instance of MatchingMethod value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public MatchingMethod() {
+    }
+
+    /**
      * Creates or finds a MatchingMethod from its string representation.
      *
      * @param name a name to look for.

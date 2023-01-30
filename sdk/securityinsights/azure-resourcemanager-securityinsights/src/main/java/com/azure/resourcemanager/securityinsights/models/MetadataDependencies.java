@@ -25,7 +25,7 @@ public final class MetadataDependencies {
      * Type of the content item we depend on
      */
     @JsonProperty(value = "kind")
-    private Kind kind;
+    private String kind;
 
     /*
      * Version of the the content item we depend on.  Can be blank, * or missing to indicate any version fulfills the
@@ -52,6 +52,10 @@ public final class MetadataDependencies {
     @JsonProperty(value = "criteria")
     private List<MetadataDependencies> criteria;
 
+    /** Creates an instance of MetadataDependencies class. */
+    public MetadataDependencies() {
+    }
+
     /**
      * Get the contentId property: Id of the content item we depend on.
      *
@@ -77,7 +81,7 @@ public final class MetadataDependencies {
      *
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.kind;
     }
 
@@ -87,7 +91,7 @@ public final class MetadataDependencies {
      * @param kind the kind value to set.
      * @return the MetadataDependencies object itself.
      */
-    public MetadataDependencies withKind(Kind kind) {
+    public MetadataDependencies withKind(String kind) {
         this.kind = kind;
         return this;
     }

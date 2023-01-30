@@ -16,6 +16,10 @@ public final class SentinelOnboardingStateProperties {
     @JsonProperty(value = "customerManagedKey")
     private Boolean customerManagedKey;
 
+    /** Creates an instance of SentinelOnboardingStateProperties class. */
+    public SentinelOnboardingStateProperties() {
+    }
+
     /**
      * Get the customerManagedKey property: Flag that indicates the status of the CMK setting.
      *

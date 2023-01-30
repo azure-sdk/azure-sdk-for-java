@@ -139,27 +139,6 @@ public interface Bookmark {
     IncidentInfo incidentInfo();
 
     /**
-     * Gets the entityMappings property: Describes the entity mappings of the bookmark.
-     *
-     * @return the entityMappings value.
-     */
-    List<BookmarkEntityMappings> entityMappings();
-
-    /**
-     * Gets the tactics property: A list of relevant mitre attacks.
-     *
-     * @return the tactics value.
-     */
-    List<AttackTactic> tactics();
-
-    /**
-     * Gets the techniques property: A list of relevant mitre techniques.
-     *
-     * @return the techniques value.
-     */
-    List<String> techniques();
-
-    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -211,10 +190,7 @@ public interface Bookmark {
                 DefinitionStages.WithEventTime,
                 DefinitionStages.WithQueryStartTime,
                 DefinitionStages.WithQueryEndTime,
-                DefinitionStages.WithIncidentInfo,
-                DefinitionStages.WithEntityMappings,
-                DefinitionStages.WithTactics,
-                DefinitionStages.WithTechniques {
+                DefinitionStages.WithIncidentInfo {
             /**
              * Executes the create request.
              *
@@ -370,36 +346,6 @@ public interface Bookmark {
              */
             WithCreate withIncidentInfo(IncidentInfo incidentInfo);
         }
-        /** The stage of the Bookmark definition allowing to specify entityMappings. */
-        interface WithEntityMappings {
-            /**
-             * Specifies the entityMappings property: Describes the entity mappings of the bookmark.
-             *
-             * @param entityMappings Describes the entity mappings of the bookmark.
-             * @return the next definition stage.
-             */
-            WithCreate withEntityMappings(List<BookmarkEntityMappings> entityMappings);
-        }
-        /** The stage of the Bookmark definition allowing to specify tactics. */
-        interface WithTactics {
-            /**
-             * Specifies the tactics property: A list of relevant mitre attacks.
-             *
-             * @param tactics A list of relevant mitre attacks.
-             * @return the next definition stage.
-             */
-            WithCreate withTactics(List<AttackTactic> tactics);
-        }
-        /** The stage of the Bookmark definition allowing to specify techniques. */
-        interface WithTechniques {
-            /**
-             * Specifies the techniques property: A list of relevant mitre techniques.
-             *
-             * @param techniques A list of relevant mitre techniques.
-             * @return the next definition stage.
-             */
-            WithCreate withTechniques(List<String> techniques);
-        }
     }
     /**
      * Begins update for the Bookmark resource.
@@ -423,10 +369,7 @@ public interface Bookmark {
             UpdateStages.WithEventTime,
             UpdateStages.WithQueryStartTime,
             UpdateStages.WithQueryEndTime,
-            UpdateStages.WithIncidentInfo,
-            UpdateStages.WithEntityMappings,
-            UpdateStages.WithTactics,
-            UpdateStages.WithTechniques {
+            UpdateStages.WithIncidentInfo {
         /**
          * Executes the update request.
          *
@@ -583,36 +526,6 @@ public interface Bookmark {
              * @return the next definition stage.
              */
             Update withIncidentInfo(IncidentInfo incidentInfo);
-        }
-        /** The stage of the Bookmark update allowing to specify entityMappings. */
-        interface WithEntityMappings {
-            /**
-             * Specifies the entityMappings property: Describes the entity mappings of the bookmark.
-             *
-             * @param entityMappings Describes the entity mappings of the bookmark.
-             * @return the next definition stage.
-             */
-            Update withEntityMappings(List<BookmarkEntityMappings> entityMappings);
-        }
-        /** The stage of the Bookmark update allowing to specify tactics. */
-        interface WithTactics {
-            /**
-             * Specifies the tactics property: A list of relevant mitre attacks.
-             *
-             * @param tactics A list of relevant mitre attacks.
-             * @return the next definition stage.
-             */
-            Update withTactics(List<AttackTactic> tactics);
-        }
-        /** The stage of the Bookmark update allowing to specify techniques. */
-        interface WithTechniques {
-            /**
-             * Specifies the techniques property: A list of relevant mitre techniques.
-             *
-             * @param techniques A list of relevant mitre techniques.
-             * @return the next definition stage.
-             */
-            Update withTechniques(List<String> techniques);
         }
     }
     /**

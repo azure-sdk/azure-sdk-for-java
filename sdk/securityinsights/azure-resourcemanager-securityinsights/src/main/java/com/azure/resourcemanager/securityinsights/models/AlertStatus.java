@@ -26,6 +26,15 @@ public final class AlertStatus extends ExpandableStringEnum<AlertStatus> {
     public static final AlertStatus IN_PROGRESS = fromString("InProgress");
 
     /**
+     * Creates a new instance of AlertStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AlertStatus() {
+    }
+
+    /**
      * Creates or finds a AlertStatus from its string representation.
      *
      * @param name a name to look for.
