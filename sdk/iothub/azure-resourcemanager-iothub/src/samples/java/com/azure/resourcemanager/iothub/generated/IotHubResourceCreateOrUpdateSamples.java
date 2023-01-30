@@ -30,7 +30,7 @@ import java.util.Map;
 /** Samples for IotHubResource CreateOrUpdate. */
 public final class IotHubResourceCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/preview/2022-04-30-preview/examples/iothub_createOrUpdate.json
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/preview/2023-01-25-preview/examples/iothub_createOrUpdate.json
      */
     /**
      * Sample code: IotHubResource_CreateOrUpdate.
