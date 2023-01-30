@@ -14,6 +14,15 @@ public final class CustomEntityQueryKind extends ExpandableStringEnum<CustomEnti
     public static final CustomEntityQueryKind ACTIVITY = fromString("Activity");
 
     /**
+     * Creates a new instance of CustomEntityQueryKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public CustomEntityQueryKind() {
+    }
+
+    /**
      * Creates or finds a CustomEntityQueryKind from its string representation.
      *
      * @param name a name to look for.

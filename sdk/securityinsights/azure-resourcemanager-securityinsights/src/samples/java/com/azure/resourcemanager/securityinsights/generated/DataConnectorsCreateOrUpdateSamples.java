@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.securityinsights.models.Availability;
 import com.azure.resourcemanager.securityinsights.models.AvailabilityStatus;
@@ -28,6 +27,9 @@ import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnecto
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypes;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypesDynamics365CdsActivities;
 import com.azure.resourcemanager.securityinsights.models.InstructionStepsInstructionsItem;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionConnectorDataTypesLogs;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionDataConnector;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypes;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypesLogs;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectDataConnector;
@@ -60,7 +62,34 @@ import java.util.Arrays;
 /** Samples for DataConnectors CreateOrUpdate. */
 public final class DataConnectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateOfficeDataConnetor.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateMicrosoftPurviewInformationProtectionDataConnetor.json
+     */
+    /**
+     * Sample code: Creates or updates an MicrosoftPurviewInformationProtection data connector.
+     *
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void createsOrUpdatesAnMicrosoftPurviewInformationProtectionDataConnector(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager
+            .dataConnectors()
+            .createOrUpdateWithResponse(
+                "myRg",
+                "myWorkspace",
+                "73e01a99-5cd7-4139-a149-9f2736ff2ab5",
+                new MicrosoftPurviewInformationProtectionDataConnector()
+                    .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+                    .withDataTypes(
+                        new MicrosoftPurviewInformationProtectionConnectorDataTypes()
+                            .withLogs(
+                                new MicrosoftPurviewInformationProtectionConnectorDataTypesLogs()
+                                    .withState(DataTypeState.ENABLED)))
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateOfficeDataConnetor.json
      */
     /**
      * Sample code: Creates or updates an Office365 data connector.
@@ -84,11 +113,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                                 new OfficeDataConnectorDataTypesSharePoint().withState(DataTypeState.ENABLED))
                             .withTeams(new OfficeDataConnectorDataTypesTeams().withState(DataTypeState.ENABLED)))
                     .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateOfficePowerBIDataConnector.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateOfficePowerBIDataConnector.json
      */
     /**
      * Sample code: Creates or updates an Office PowerBI data connector.
@@ -109,11 +138,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                         new OfficePowerBIConnectorDataTypes()
                             .withLogs(new OfficePowerBIConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
                     .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateThreatIntelligenceTaxiiDataConnector.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateThreatIntelligenceTaxiiDataConnector.json
      */
     /**
      * Sample code: Creates or updates a Threat Intelligence Taxii data connector.
@@ -135,7 +164,7 @@ public final class DataConnectorsCreateOrUpdateSamples {
                     .withTaxiiServer("https://limo.anomali.com/api/v1/taxii2/feeds")
                     .withCollectionId("135")
                     .withUsername("--")
-                    .withPassword("--")
+                    .withPassword("fakeTokenPlaceholder")
                     .withTaxiiLookbackPeriod(OffsetDateTime.parse("2020-01-01T13:00:30.123Z"))
                     .withPollingFrequency(PollingFrequency.ONCE_ADAY)
                     .withDataTypes(
@@ -143,11 +172,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                             .withTaxiiClient(
                                 new TiTaxiiDataConnectorDataTypesTaxiiClient().withState(DataTypeState.ENABLED)))
                     .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateThreatIntelligenceDataConnector.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateThreatIntelligenceDataConnector.json
      */
     /**
      * Sample code: Creates or updates an Threat Intelligence Platform data connector.
@@ -168,11 +197,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                         new TIDataConnectorDataTypes()
                             .withIndicators(new TIDataConnectorDataTypesIndicators().withState(DataTypeState.ENABLED)))
                     .withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateDynamics365DataConnetor.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateDynamics365DataConnetor.json
      */
     /**
      * Sample code: Creates or updates a Dynamics365 data connector.
@@ -195,11 +224,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                                 new Dynamics365DataConnectorDataTypesDynamics365CdsActivities()
                                     .withState(DataTypeState.ENABLED)))
                     .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateGenericUI.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateGenericUI.json
      */
     /**
      * Sample code: Creates or updates a GenericUI data connector.
@@ -515,11 +544,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                                                     + "> NOTE: If a longer timeout duration is required, consider"
                                                     + " upgrading to an [App Service"
                                                     + " Plan](https://docs.microsoft.com/azure/azure-functions/functions-scale#timeout)")))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateOffice365ProjectDataConnetor.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateOffice365ProjectDataConnetor.json
      */
     /**
      * Sample code: Creates or updates an Office365 Project data connector.
@@ -540,11 +569,11 @@ public final class DataConnectorsCreateOrUpdateSamples {
                         new Office365ProjectConnectorDataTypes()
                             .withLogs(new Office365ProjectConnectorDataTypesLogs().withState(DataTypeState.ENABLED)))
                     .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CreateAPIPolling.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/dataConnectors/CreateAPIPolling.json
      */
     /**
      * Sample code: Creates or updates a APIPolling data connector.
@@ -652,8 +681,8 @@ public final class DataConnectorsCreateOrUpdateSamples {
                             .withAuth(
                                 new CodelessConnectorPollingAuthProperties()
                                     .withAuthType("APIKey")
-                                    .withApiKeyName("Authorization")
-                                    .withApiKeyIdentifier("token"))
+                                    .withApiKeyName("fakeTokenPlaceholder")
+                                    .withApiKeyIdentifier("fakeTokenPlaceholder"))
                             .withRequest(
                                 new CodelessConnectorPollingRequestProperties()
                                     .withApiEndpoint("https://api.github.com/organizations/{{placeHolder1}}/audit-log")
@@ -684,6 +713,6 @@ public final class DataConnectorsCreateOrUpdateSamples {
                             .withResponse(
                                 new CodelessConnectorPollingResponseProperties()
                                     .withEventsJsonPaths(Arrays.asList("$")))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

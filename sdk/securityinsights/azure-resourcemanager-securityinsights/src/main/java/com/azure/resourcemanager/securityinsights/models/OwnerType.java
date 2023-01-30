@@ -20,6 +20,15 @@ public final class OwnerType extends ExpandableStringEnum<OwnerType> {
     public static final OwnerType GROUP = fromString("Group");
 
     /**
+     * Creates a new instance of OwnerType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public OwnerType() {
+    }
+
+    /**
      * Creates or finds a OwnerType from its string representation.
      *
      * @param name a name to look for.

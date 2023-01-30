@@ -22,6 +22,10 @@ public final class ThreatIntelligenceKillChainPhase {
     @JsonProperty(value = "phaseName")
     private String phaseName;
 
+    /** Creates an instance of ThreatIntelligenceKillChainPhase class. */
+    public ThreatIntelligenceKillChainPhase() {
+    }
+
     /**
      * Get the killChainName property: Kill chainName name.
      *

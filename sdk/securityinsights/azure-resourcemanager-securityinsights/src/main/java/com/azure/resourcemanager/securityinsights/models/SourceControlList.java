@@ -25,6 +25,10 @@ public final class SourceControlList {
     @JsonProperty(value = "value", required = true)
     private List<SourceControlInner> value;
 
+    /** Creates an instance of SourceControlList class. */
+    public SourceControlList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of source controls.
      *

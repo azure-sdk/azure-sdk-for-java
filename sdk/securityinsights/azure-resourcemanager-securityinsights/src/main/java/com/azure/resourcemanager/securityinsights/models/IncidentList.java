@@ -14,28 +14,23 @@ import java.util.List;
 @Fluent
 public final class IncidentList {
     /*
+     * The value property.
+     */
+    @JsonProperty(value = "value", required = true)
+    private List<IncidentInner> value;
+
+    /*
      * URL to fetch the next set of incidents.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /*
-     * Array of incidents.
-     */
-    @JsonProperty(value = "value", required = true)
-    private List<IncidentInner> value;
-
-    /**
-     * Get the nextLink property: URL to fetch the next set of incidents.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
+    /** Creates an instance of IncidentList class. */
+    public IncidentList() {
     }
 
     /**
-     * Get the value property: Array of incidents.
+     * Get the value property: The value property.
      *
      * @return the value value.
      */
@@ -44,7 +39,7 @@ public final class IncidentList {
     }
 
     /**
-     * Set the value property: Array of incidents.
+     * Set the value property: The value property.
      *
      * @param value the value value to set.
      * @return the IncidentList object itself.
@@ -52,6 +47,15 @@ public final class IncidentList {
     public IncidentList withValue(List<IncidentInner> value) {
         this.value = value;
         return this;
+    }
+
+    /**
+     * Get the nextLink property: URL to fetch the next set of incidents.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**

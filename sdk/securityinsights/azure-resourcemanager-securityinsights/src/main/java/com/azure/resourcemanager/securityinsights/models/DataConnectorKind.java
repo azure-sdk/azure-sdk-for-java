@@ -37,6 +37,10 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
     /** Static value Office365Project for DataConnectorKind. */
     public static final DataConnectorKind OFFICE365PROJECT = fromString("Office365Project");
 
+    /** Static value MicrosoftPurviewInformationProtection for DataConnectorKind. */
+    public static final DataConnectorKind MICROSOFT_PURVIEW_INFORMATION_PROTECTION =
+        fromString("MicrosoftPurviewInformationProtection");
+
     /** Static value OfficePowerBI for DataConnectorKind. */
     public static final DataConnectorKind OFFICE_POWER_BI = fromString("OfficePowerBI");
 
@@ -71,6 +75,15 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
 
     /** Static value IOT for DataConnectorKind. */
     public static final DataConnectorKind IOT = fromString("IOT");
+
+    /**
+     * Creates a new instance of DataConnectorKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DataConnectorKind() {
+    }
 
     /**
      * Creates or finds a DataConnectorKind from its string representation.

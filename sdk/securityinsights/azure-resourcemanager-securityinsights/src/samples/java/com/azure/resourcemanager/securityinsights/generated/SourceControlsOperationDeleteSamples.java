@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SourceControlsOperation Delete. */
 public final class SourceControlsOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/sourcecontrols/DeleteSourceControl.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/sourcecontrols/DeleteSourceControl.json
      */
     /**
      * Sample code: Delete a source control.
@@ -20,6 +18,7 @@ public final class SourceControlsOperationDeleteSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .sourceControlsOperations()
-            .deleteWithResponse("myRg", "myWorkspace", "789e0c1f-4a3d-43ad-809c-e713b677b04a", Context.NONE);
+            .deleteWithResponse(
+                "myRg", "myWorkspace", "789e0c1f-4a3d-43ad-809c-e713b677b04a", com.azure.core.util.Context.NONE);
     }
 }

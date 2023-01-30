@@ -66,6 +66,27 @@ public interface SecurityInsights {
     AlertRuleTemplatesClient getAlertRuleTemplates();
 
     /**
+     * Gets the TriggeredAnalyticsRuleRunOperationsClient object to access its operations.
+     *
+     * @return the TriggeredAnalyticsRuleRunOperationsClient object.
+     */
+    TriggeredAnalyticsRuleRunOperationsClient getTriggeredAnalyticsRuleRunOperations();
+
+    /**
+     * Gets the GetTriggeredAnalyticsRuleRunsClient object to access its operations.
+     *
+     * @return the GetTriggeredAnalyticsRuleRunsClient object.
+     */
+    GetTriggeredAnalyticsRuleRunsClient getGetTriggeredAnalyticsRuleRuns();
+
+    /**
+     * Gets the AlertRuleOperationsClient object to access its operations.
+     *
+     * @return the AlertRuleOperationsClient object.
+     */
+    AlertRuleOperationsClient getAlertRuleOperations();
+
+    /**
      * Gets the AutomationRulesClient object to access its operations.
      *
      * @return the AutomationRulesClient object.
@@ -178,6 +199,13 @@ public interface SecurityInsights {
     IncidentRelationsClient getIncidentRelations();
 
     /**
+     * Gets the IncidentTasksClient object to access its operations.
+     *
+     * @return the IncidentTasksClient object.
+     */
+    IncidentTasksClient getIncidentTasks();
+
+    /**
      * Gets the MetadatasClient object to access its operations.
      *
      * @return the MetadatasClient object.
@@ -197,6 +225,27 @@ public interface SecurityInsights {
      * @return the SentinelOnboardingStatesClient object.
      */
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    GetRecommendationsClient getGetRecommendations();
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
 
     /**
      * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
