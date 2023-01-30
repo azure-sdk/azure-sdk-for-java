@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.servicelinker.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Linker ListConfigurations. */
 public final class LinkerListConfigurationsSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/GetConfigurations.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2022-11-01-preview/examples/GetConfigurations.json
      */
     /**
      * Sample code: GetConfiguration.
@@ -22,6 +20,6 @@ public final class LinkerListConfigurationsSamples {
             .listConfigurationsWithResponse(
                 "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app",
                 "linkName",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,24 +4,22 @@
 
 package com.azure.resourcemanager.servicelinker.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Linker Get. */
 public final class LinkerGetSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/Link.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2022-11-01-preview/examples/Linker.json
      */
     /**
-     * Sample code: Link.
+     * Sample code: Linker.
      *
      * @param manager Entry point to ServiceLinkerManager.
      */
-    public static void link(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void linker(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
         manager
             .linkers()
             .getWithResponse(
                 "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app",
                 "linkName",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

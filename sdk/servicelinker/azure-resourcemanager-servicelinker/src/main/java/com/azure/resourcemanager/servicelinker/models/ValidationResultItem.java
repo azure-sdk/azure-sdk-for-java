@@ -7,7 +7,7 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The validation item for a linker. */
+/** The validation item for a Linker. */
 @Fluent
 public final class ValidationResultItem {
     /*
@@ -39,6 +39,10 @@ public final class ValidationResultItem {
      */
     @JsonProperty(value = "errorCode")
     private String errorCode;
+
+    /** Creates an instance of ValidationResultItem class. */
+    public ValidationResultItem() {
+    }
 
     /**
      * Get the name property: The validation item name.

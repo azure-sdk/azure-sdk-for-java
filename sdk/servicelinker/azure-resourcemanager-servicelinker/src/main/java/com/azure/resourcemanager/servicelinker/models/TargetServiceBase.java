@@ -19,10 +19,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureResource", value = AzureResource.class),
     @JsonSubTypes.Type(name = "ConfluentBootstrapServer", value = ConfluentBootstrapServer.class),
+    @JsonSubTypes.Type(name = "SelfHostedServer", value = SelfHostedServer.class),
     @JsonSubTypes.Type(name = "ConfluentSchemaRegistry", value = ConfluentSchemaRegistry.class)
 })
 @Immutable
 public class TargetServiceBase {
+    /** Creates an instance of TargetServiceBase class. */
+    public TargetServiceBase() {
+    }
+
     /**
      * Validates the instance.
      *
