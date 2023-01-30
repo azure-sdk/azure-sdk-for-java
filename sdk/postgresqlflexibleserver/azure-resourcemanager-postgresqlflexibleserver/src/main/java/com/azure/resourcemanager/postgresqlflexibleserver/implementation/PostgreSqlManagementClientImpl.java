@@ -22,20 +22,25 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.AdministratorsClient;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.BackupsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.CheckNameAvailabilitiesClient;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.CheckNameAvailabilityWithLocationsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ConfigurationsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.DatabasesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.FirewallRulesClient;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.GetPrivateDnsZoneSuffixesClient;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.LocationBasedCapabilitiesClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.LocationBasedPerformanceTiersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.LogFilesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.OperationsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.PostgreSqlManagementClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.RecoverableServersClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ReplicasClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerAdministratorsClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerBasedPerformanceTiersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerKeysClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerParametersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerSecurityAlertPoliciesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServersClient;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualNetworkSubnetUsagesClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualNetworkRulesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -70,18 +75,6 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -120,102 +113,6 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         return this.defaultPollInterval;
     }
 
-    /** The AdministratorsClient object to access its operations. */
-    private final AdministratorsClient administrators;
-
-    /**
-     * Gets the AdministratorsClient object to access its operations.
-     *
-     * @return the AdministratorsClient object.
-     */
-    public AdministratorsClient getAdministrators() {
-        return this.administrators;
-    }
-
-    /** The BackupsClient object to access its operations. */
-    private final BackupsClient backups;
-
-    /**
-     * Gets the BackupsClient object to access its operations.
-     *
-     * @return the BackupsClient object.
-     */
-    public BackupsClient getBackups() {
-        return this.backups;
-    }
-
-    /** The LocationBasedCapabilitiesClient object to access its operations. */
-    private final LocationBasedCapabilitiesClient locationBasedCapabilities;
-
-    /**
-     * Gets the LocationBasedCapabilitiesClient object to access its operations.
-     *
-     * @return the LocationBasedCapabilitiesClient object.
-     */
-    public LocationBasedCapabilitiesClient getLocationBasedCapabilities() {
-        return this.locationBasedCapabilities;
-    }
-
-    /** The CheckNameAvailabilitiesClient object to access its operations. */
-    private final CheckNameAvailabilitiesClient checkNameAvailabilities;
-
-    /**
-     * Gets the CheckNameAvailabilitiesClient object to access its operations.
-     *
-     * @return the CheckNameAvailabilitiesClient object.
-     */
-    public CheckNameAvailabilitiesClient getCheckNameAvailabilities() {
-        return this.checkNameAvailabilities;
-    }
-
-    /** The CheckNameAvailabilityWithLocationsClient object to access its operations. */
-    private final CheckNameAvailabilityWithLocationsClient checkNameAvailabilityWithLocations;
-
-    /**
-     * Gets the CheckNameAvailabilityWithLocationsClient object to access its operations.
-     *
-     * @return the CheckNameAvailabilityWithLocationsClient object.
-     */
-    public CheckNameAvailabilityWithLocationsClient getCheckNameAvailabilityWithLocations() {
-        return this.checkNameAvailabilityWithLocations;
-    }
-
-    /** The ConfigurationsClient object to access its operations. */
-    private final ConfigurationsClient configurations;
-
-    /**
-     * Gets the ConfigurationsClient object to access its operations.
-     *
-     * @return the ConfigurationsClient object.
-     */
-    public ConfigurationsClient getConfigurations() {
-        return this.configurations;
-    }
-
-    /** The DatabasesClient object to access its operations. */
-    private final DatabasesClient databases;
-
-    /**
-     * Gets the DatabasesClient object to access its operations.
-     *
-     * @return the DatabasesClient object.
-     */
-    public DatabasesClient getDatabases() {
-        return this.databases;
-    }
-
-    /** The FirewallRulesClient object to access its operations. */
-    private final FirewallRulesClient firewallRules;
-
-    /**
-     * Gets the FirewallRulesClient object to access its operations.
-     *
-     * @return the FirewallRulesClient object.
-     */
-    public FirewallRulesClient getFirewallRules() {
-        return this.firewallRules;
-    }
-
     /** The ServersClient object to access its operations. */
     private final ServersClient servers;
 
@@ -226,30 +123,6 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
      */
     public ServersClient getServers() {
         return this.servers;
-    }
-
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /** The GetPrivateDnsZoneSuffixesClient object to access its operations. */
-    private final GetPrivateDnsZoneSuffixesClient getPrivateDnsZoneSuffixes;
-
-    /**
-     * Gets the GetPrivateDnsZoneSuffixesClient object to access its operations.
-     *
-     * @return the GetPrivateDnsZoneSuffixesClient object.
-     */
-    public GetPrivateDnsZoneSuffixesClient getGetPrivateDnsZoneSuffixes() {
-        return this.getPrivateDnsZoneSuffixes;
     }
 
     /** The ReplicasClient object to access its operations. */
@@ -264,16 +137,196 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         return this.replicas;
     }
 
-    /** The VirtualNetworkSubnetUsagesClient object to access its operations. */
-    private final VirtualNetworkSubnetUsagesClient virtualNetworkSubnetUsages;
+    /** The FirewallRulesClient object to access its operations. */
+    private final FirewallRulesClient firewallRules;
 
     /**
-     * Gets the VirtualNetworkSubnetUsagesClient object to access its operations.
+     * Gets the FirewallRulesClient object to access its operations.
      *
-     * @return the VirtualNetworkSubnetUsagesClient object.
+     * @return the FirewallRulesClient object.
      */
-    public VirtualNetworkSubnetUsagesClient getVirtualNetworkSubnetUsages() {
-        return this.virtualNetworkSubnetUsages;
+    public FirewallRulesClient getFirewallRules() {
+        return this.firewallRules;
+    }
+
+    /** The VirtualNetworkRulesClient object to access its operations. */
+    private final VirtualNetworkRulesClient virtualNetworkRules;
+
+    /**
+     * Gets the VirtualNetworkRulesClient object to access its operations.
+     *
+     * @return the VirtualNetworkRulesClient object.
+     */
+    public VirtualNetworkRulesClient getVirtualNetworkRules() {
+        return this.virtualNetworkRules;
+    }
+
+    /** The DatabasesClient object to access its operations. */
+    private final DatabasesClient databases;
+
+    /**
+     * Gets the DatabasesClient object to access its operations.
+     *
+     * @return the DatabasesClient object.
+     */
+    public DatabasesClient getDatabases() {
+        return this.databases;
+    }
+
+    /** The ConfigurationsClient object to access its operations. */
+    private final ConfigurationsClient configurations;
+
+    /**
+     * Gets the ConfigurationsClient object to access its operations.
+     *
+     * @return the ConfigurationsClient object.
+     */
+    public ConfigurationsClient getConfigurations() {
+        return this.configurations;
+    }
+
+    /** The ServerParametersClient object to access its operations. */
+    private final ServerParametersClient serverParameters;
+
+    /**
+     * Gets the ServerParametersClient object to access its operations.
+     *
+     * @return the ServerParametersClient object.
+     */
+    public ServerParametersClient getServerParameters() {
+        return this.serverParameters;
+    }
+
+    /** The LogFilesClient object to access its operations. */
+    private final LogFilesClient logFiles;
+
+    /**
+     * Gets the LogFilesClient object to access its operations.
+     *
+     * @return the LogFilesClient object.
+     */
+    public LogFilesClient getLogFiles() {
+        return this.logFiles;
+    }
+
+    /** The ServerAdministratorsClient object to access its operations. */
+    private final ServerAdministratorsClient serverAdministrators;
+
+    /**
+     * Gets the ServerAdministratorsClient object to access its operations.
+     *
+     * @return the ServerAdministratorsClient object.
+     */
+    public ServerAdministratorsClient getServerAdministrators() {
+        return this.serverAdministrators;
+    }
+
+    /** The RecoverableServersClient object to access its operations. */
+    private final RecoverableServersClient recoverableServers;
+
+    /**
+     * Gets the RecoverableServersClient object to access its operations.
+     *
+     * @return the RecoverableServersClient object.
+     */
+    public RecoverableServersClient getRecoverableServers() {
+        return this.recoverableServers;
+    }
+
+    /** The ServerBasedPerformanceTiersClient object to access its operations. */
+    private final ServerBasedPerformanceTiersClient serverBasedPerformanceTiers;
+
+    /**
+     * Gets the ServerBasedPerformanceTiersClient object to access its operations.
+     *
+     * @return the ServerBasedPerformanceTiersClient object.
+     */
+    public ServerBasedPerformanceTiersClient getServerBasedPerformanceTiers() {
+        return this.serverBasedPerformanceTiers;
+    }
+
+    /** The LocationBasedPerformanceTiersClient object to access its operations. */
+    private final LocationBasedPerformanceTiersClient locationBasedPerformanceTiers;
+
+    /**
+     * Gets the LocationBasedPerformanceTiersClient object to access its operations.
+     *
+     * @return the LocationBasedPerformanceTiersClient object.
+     */
+    public LocationBasedPerformanceTiersClient getLocationBasedPerformanceTiers() {
+        return this.locationBasedPerformanceTiers;
+    }
+
+    /** The CheckNameAvailabilitiesClient object to access its operations. */
+    private final CheckNameAvailabilitiesClient checkNameAvailabilities;
+
+    /**
+     * Gets the CheckNameAvailabilitiesClient object to access its operations.
+     *
+     * @return the CheckNameAvailabilitiesClient object.
+     */
+    public CheckNameAvailabilitiesClient getCheckNameAvailabilities() {
+        return this.checkNameAvailabilities;
+    }
+
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /** The ServerSecurityAlertPoliciesClient object to access its operations. */
+    private final ServerSecurityAlertPoliciesClient serverSecurityAlertPolicies;
+
+    /**
+     * Gets the ServerSecurityAlertPoliciesClient object to access its operations.
+     *
+     * @return the ServerSecurityAlertPoliciesClient object.
+     */
+    public ServerSecurityAlertPoliciesClient getServerSecurityAlertPolicies() {
+        return this.serverSecurityAlertPolicies;
+    }
+
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
+    /** The ServerKeysClient object to access its operations. */
+    private final ServerKeysClient serverKeys;
+
+    /**
+     * Gets the ServerKeysClient object to access its operations.
+     *
+     * @return the ServerKeysClient object.
+     */
+    public ServerKeysClient getServerKeys() {
+        return this.serverKeys;
     }
 
     /**
@@ -298,20 +351,24 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-12-01";
-        this.administrators = new AdministratorsClientImpl(this);
-        this.backups = new BackupsClientImpl(this);
-        this.locationBasedCapabilities = new LocationBasedCapabilitiesClientImpl(this);
-        this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
-        this.checkNameAvailabilityWithLocations = new CheckNameAvailabilityWithLocationsClientImpl(this);
-        this.configurations = new ConfigurationsClientImpl(this);
-        this.databases = new DatabasesClientImpl(this);
-        this.firewallRules = new FirewallRulesClientImpl(this);
         this.servers = new ServersClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
-        this.getPrivateDnsZoneSuffixes = new GetPrivateDnsZoneSuffixesClientImpl(this);
         this.replicas = new ReplicasClientImpl(this);
-        this.virtualNetworkSubnetUsages = new VirtualNetworkSubnetUsagesClientImpl(this);
+        this.firewallRules = new FirewallRulesClientImpl(this);
+        this.virtualNetworkRules = new VirtualNetworkRulesClientImpl(this);
+        this.databases = new DatabasesClientImpl(this);
+        this.configurations = new ConfigurationsClientImpl(this);
+        this.serverParameters = new ServerParametersClientImpl(this);
+        this.logFiles = new LogFilesClientImpl(this);
+        this.serverAdministrators = new ServerAdministratorsClientImpl(this);
+        this.recoverableServers = new RecoverableServersClientImpl(this);
+        this.serverBasedPerformanceTiers = new ServerBasedPerformanceTiersClientImpl(this);
+        this.locationBasedPerformanceTiers = new LocationBasedPerformanceTiersClientImpl(this);
+        this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.serverSecurityAlertPolicies = new ServerSecurityAlertPoliciesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.serverKeys = new ServerKeysClientImpl(this);
     }
 
     /**

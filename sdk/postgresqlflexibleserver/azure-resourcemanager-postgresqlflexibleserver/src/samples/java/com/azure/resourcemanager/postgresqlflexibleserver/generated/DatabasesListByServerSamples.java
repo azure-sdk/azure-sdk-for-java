@@ -7,15 +7,14 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 /** Samples for Databases ListByServer. */
 public final class DatabasesListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2022-12-01/examples/DatabasesListByServer.json
+     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2017-12-01/examples/DatabaseListByServer.json
      */
     /**
-     * Sample code: List databases in a server.
+     * Sample code: DatabaseList.
      *
      * @param manager Entry point to PostgreSqlManager.
      */
-    public static void listDatabasesInAServer(
-        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+    public static void databaseList(com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
         manager.databases().listByServer("TestGroup", "testserver", com.azure.core.util.Context.NONE);
     }
 }

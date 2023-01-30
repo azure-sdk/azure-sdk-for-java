@@ -8,10 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The tier of the particular SKU, e.g. Burstable. */
+/** The tier of the particular SKU, e.g. Basic. */
 public final class SkuTier extends ExpandableStringEnum<SkuTier> {
-    /** Static value Burstable for SkuTier. */
-    public static final SkuTier BURSTABLE = fromString("Burstable");
+    /** Static value Basic for SkuTier. */
+    public static final SkuTier BASIC = fromString("Basic");
 
     /** Static value GeneralPurpose for SkuTier. */
     public static final SkuTier GENERAL_PURPOSE = fromString("GeneralPurpose");

@@ -8,16 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The mode to create a new PostgreSQL server. */
+/** The mode to create a new server. */
 public final class CreateMode extends ExpandableStringEnum<CreateMode> {
     /** Static value Default for CreateMode. */
     public static final CreateMode DEFAULT = fromString("Default");
-
-    /** Static value Create for CreateMode. */
-    public static final CreateMode CREATE = fromString("Create");
-
-    /** Static value Update for CreateMode. */
-    public static final CreateMode UPDATE = fromString("Update");
 
     /** Static value PointInTimeRestore for CreateMode. */
     public static final CreateMode POINT_IN_TIME_RESTORE = fromString("PointInTimeRestore");

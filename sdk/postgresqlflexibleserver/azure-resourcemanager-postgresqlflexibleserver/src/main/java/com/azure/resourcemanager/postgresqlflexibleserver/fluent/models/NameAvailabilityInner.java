@@ -5,65 +5,90 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.postgresqlflexibleserver.models.CheckNameAvailabilityReason;
-import com.azure.resourcemanager.postgresqlflexibleserver.models.CheckNameAvailabilityResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Represents a resource name availability. */
 @Fluent
-public final class NameAvailabilityInner extends CheckNameAvailabilityResponse {
+public final class NameAvailabilityInner {
     /*
-     * name of the PostgreSQL server.
+     * Error Message.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
+    @JsonProperty(value = "message")
+    private String message;
 
     /*
-     * type of the server
+     * Indicates whether the resource name is available.
      */
-    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
-    private String type;
+    @JsonProperty(value = "nameAvailable")
+    private Boolean nameAvailable;
+
+    /*
+     * Reason for name being unavailable.
+     */
+    @JsonProperty(value = "reason")
+    private String reason;
 
     /** Creates an instance of NameAvailabilityInner class. */
     public NameAvailabilityInner() {
     }
 
     /**
-     * Get the name property: name of the PostgreSQL server.
+     * Get the message property: Error Message.
      *
-     * @return the name value.
+     * @return the message value.
      */
-    public String name() {
-        return this.name;
+    public String message() {
+        return this.message;
     }
 
     /**
-     * Get the type property: type of the server.
+     * Set the message property: Error Message.
      *
-     * @return the type value.
+     * @param message the message value to set.
+     * @return the NameAvailabilityInner object itself.
      */
-    public String type() {
-        return this.type;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public NameAvailabilityInner withNameAvailable(Boolean nameAvailable) {
-        super.withNameAvailable(nameAvailable);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public NameAvailabilityInner withReason(CheckNameAvailabilityReason reason) {
-        super.withReason(reason);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public NameAvailabilityInner withMessage(String message) {
-        super.withMessage(message);
+        this.message = message;
+        return this;
+    }
+
+    /**
+     * Get the nameAvailable property: Indicates whether the resource name is available.
+     *
+     * @return the nameAvailable value.
+     */
+    public Boolean nameAvailable() {
+        return this.nameAvailable;
+    }
+
+    /**
+     * Set the nameAvailable property: Indicates whether the resource name is available.
+     *
+     * @param nameAvailable the nameAvailable value to set.
+     * @return the NameAvailabilityInner object itself.
+     */
+    public NameAvailabilityInner withNameAvailable(Boolean nameAvailable) {
+        this.nameAvailable = nameAvailable;
+        return this;
+    }
+
+    /**
+     * Get the reason property: Reason for name being unavailable.
+     *
+     * @return the reason value.
+     */
+    public String reason() {
+        return this.reason;
+    }
+
+    /**
+     * Set the reason property: Reason for name being unavailable.
+     *
+     * @param reason the reason value to set.
+     * @return the NameAvailabilityInner object itself.
+     */
+    public NameAvailabilityInner withReason(String reason) {
+        this.reason = reason;
         return this;
     }
 
@@ -72,8 +97,6 @@ public final class NameAvailabilityInner extends CheckNameAvailabilityResponse {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
     }
 }

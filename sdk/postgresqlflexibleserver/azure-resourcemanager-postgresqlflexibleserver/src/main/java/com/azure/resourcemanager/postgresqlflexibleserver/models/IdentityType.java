@@ -8,16 +8,13 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** the types of identities associated with this resource; currently restricted to 'SystemAssigned and UserAssigned'. */
+/**
+ * The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory
+ * principal for the resource.
+ */
 public final class IdentityType extends ExpandableStringEnum<IdentityType> {
-    /** Static value None for IdentityType. */
-    public static final IdentityType NONE = fromString("None");
-
     /** Static value SystemAssigned for IdentityType. */
     public static final IdentityType SYSTEM_ASSIGNED = fromString("SystemAssigned");
-
-    /** Static value UserAssigned for IdentityType. */
-    public static final IdentityType USER_ASSIGNED = fromString("UserAssigned");
 
     /**
      * Creates a new instance of IdentityType value.

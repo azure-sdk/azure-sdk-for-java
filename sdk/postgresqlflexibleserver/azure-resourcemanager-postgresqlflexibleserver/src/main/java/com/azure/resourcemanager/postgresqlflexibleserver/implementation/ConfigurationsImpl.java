@@ -28,17 +28,6 @@ public final class ConfigurationsImpl implements Configurations {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Configuration> listByServer(String resourceGroupName, String serverName) {
-        PagedIterable<ConfigurationInner> inner = this.serviceClient().listByServer(resourceGroupName, serverName);
-        return Utils.mapPage(inner, inner1 -> new ConfigurationImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Configuration> listByServer(String resourceGroupName, String serverName, Context context) {
-        PagedIterable<ConfigurationInner> inner =
-            this.serviceClient().listByServer(resourceGroupName, serverName, context);
-        return Utils.mapPage(inner, inner1 -> new ConfigurationImpl(inner1, this.manager()));
-    }
-
     public Response<Configuration> getWithResponse(
         String resourceGroupName, String serverName, String configurationName, Context context) {
         Response<ConfigurationInner> inner =
@@ -63,6 +52,17 @@ public final class ConfigurationsImpl implements Configurations {
         }
     }
 
+    public PagedIterable<Configuration> listByServer(String resourceGroupName, String serverName) {
+        PagedIterable<ConfigurationInner> inner = this.serviceClient().listByServer(resourceGroupName, serverName);
+        return Utils.mapPage(inner, inner1 -> new ConfigurationImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Configuration> listByServer(String resourceGroupName, String serverName, Context context) {
+        PagedIterable<ConfigurationInner> inner =
+            this.serviceClient().listByServer(resourceGroupName, serverName, context);
+        return Utils.mapPage(inner, inner1 -> new ConfigurationImpl(inner1, this.manager()));
+    }
+
     public Configuration getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
@@ -72,13 +72,12 @@ public final class ConfigurationsImpl implements Configurations {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
+        String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
         String configurationName = Utils.getValueFromIdByName(id, "configurations");
         if (configurationName == null) {
@@ -100,13 +99,12 @@ public final class ConfigurationsImpl implements Configurations {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
+        String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
         String configurationName = Utils.getValueFromIdByName(id, "configurations");
         if (configurationName == null) {
