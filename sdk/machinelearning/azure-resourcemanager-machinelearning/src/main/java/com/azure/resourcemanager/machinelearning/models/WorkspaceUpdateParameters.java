@@ -299,6 +299,52 @@ public final class WorkspaceUpdateParameters {
     }
 
     /**
+     * Get the encryption property: The encryption settings of the workspace.
+     *
+     * @return the encryption value.
+     */
+    public EncryptionUpdateProperties encryption() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryption();
+    }
+
+    /**
+     * Set the encryption property: The encryption settings of the workspace.
+     *
+     * @param encryption the encryption value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withEncryption(EncryptionUpdateProperties encryption) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withEncryption(encryption);
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().featureStoreSettings();
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withFeatureStoreSettings(featureStoreSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

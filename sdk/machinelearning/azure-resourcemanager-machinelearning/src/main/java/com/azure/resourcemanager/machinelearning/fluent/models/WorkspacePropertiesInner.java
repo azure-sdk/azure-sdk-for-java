@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
@@ -169,6 +170,30 @@ public final class WorkspacePropertiesInner {
      */
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
+
+    /*
+     * The timestamp when the workspace was soft deleted
+     */
+    @JsonProperty(value = "softDeletedAt", access = JsonProperty.Access.WRITE_ONLY)
+    private String softDeletedAt;
+
+    /*
+     * The timestamp when the soft deleted workspace is going to be purged
+     */
+    @JsonProperty(value = "scheduledPurgeDate", access = JsonProperty.Access.WRITE_ONLY)
+    private String scheduledPurgeDate;
+
+    /*
+     * The auth mode used for accessing the system datastores of the workspace
+     */
+    @JsonProperty(value = "systemDatastoresAuthMode")
+    private String systemDatastoresAuthMode;
+
+    /*
+     * Settings for feature store type workspace.
+     */
+    @JsonProperty(value = "featureStoreSettings")
+    private FeatureStoreSettings featureStoreSettings;
 
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
@@ -596,6 +621,66 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.softDeletedAt;
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.scheduledPurgeDate;
+    }
+
+    /**
+     * Get the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    public String systemDatastoresAuthMode() {
+        return this.systemDatastoresAuthMode;
+    }
+
+    /**
+     * Set the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @param systemDatastoresAuthMode the systemDatastoresAuthMode value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        this.systemDatastoresAuthMode = systemDatastoresAuthMode;
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.featureStoreSettings;
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        this.featureStoreSettings = featureStoreSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -615,6 +700,9 @@ public final class WorkspacePropertiesInner {
         }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (featureStoreSettings() != null) {
+            featureStoreSettings().validate();
         }
     }
 }

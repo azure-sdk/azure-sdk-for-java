@@ -43,6 +43,13 @@ public interface Workspace {
     ManagedServiceIdentity identity();
 
     /**
+     * Gets the kind property: The kind property.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the location property: Specifies the location of the resource.
      *
      * @return the location value.
@@ -257,6 +264,35 @@ public interface Workspace {
     Boolean v1LegacyMode();
 
     /**
+     * Gets the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    String softDeletedAt();
+
+    /**
+     * Gets the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    String scheduledPurgeDate();
+
+    /**
+     * Gets the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    String systemDatastoresAuthMode();
+
+    /**
+     * Gets the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    FeatureStoreSettings featureStoreSettings();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -311,6 +347,7 @@ public interface Workspace {
             extends DefinitionStages.WithLocation,
                 DefinitionStages.WithTags,
                 DefinitionStages.WithIdentity,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithFriendlyName,
@@ -327,7 +364,9 @@ public interface Workspace {
                 DefinitionStages.WithSharedPrivateLinkResources,
                 DefinitionStages.WithServiceManagedResourcesSettings,
                 DefinitionStages.WithPrimaryUserAssignedIdentity,
-                DefinitionStages.WithV1LegacyMode {
+                DefinitionStages.WithV1LegacyMode,
+                DefinitionStages.WithSystemDatastoresAuthMode,
+                DefinitionStages.WithFeatureStoreSettings {
             /**
              * Executes the create request.
              *
@@ -380,6 +419,16 @@ public interface Workspace {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+        /** The stage of the Workspace definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: The kind property..
+             *
+             * @param kind The kind property.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
         }
         /** The stage of the Workspace definition allowing to specify sku. */
         interface WithSku {
@@ -568,6 +617,27 @@ public interface Workspace {
              */
             WithCreate withV1LegacyMode(Boolean v1LegacyMode);
         }
+        /** The stage of the Workspace definition allowing to specify systemDatastoresAuthMode. */
+        interface WithSystemDatastoresAuthMode {
+            /**
+             * Specifies the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores
+             * of the workspace.
+             *
+             * @param systemDatastoresAuthMode The auth mode used for accessing the system datastores of the workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withSystemDatastoresAuthMode(String systemDatastoresAuthMode);
+        }
+        /** The stage of the Workspace definition allowing to specify featureStoreSettings. */
+        interface WithFeatureStoreSettings {
+            /**
+             * Specifies the featureStoreSettings property: Settings for feature store type workspace..
+             *
+             * @param featureStoreSettings Settings for feature store type workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings);
+        }
     }
     /**
      * Begins update for the Workspace resource.
@@ -588,7 +658,9 @@ public interface Workspace {
             UpdateStages.WithPrimaryUserAssignedIdentity,
             UpdateStages.WithPublicNetworkAccess,
             UpdateStages.WithApplicationInsights,
-            UpdateStages.WithContainerRegistry {
+            UpdateStages.WithContainerRegistry,
+            UpdateStages.WithEncryption,
+            UpdateStages.WithFeatureStoreSettings {
         /**
          * Executes the update request.
          *
@@ -719,6 +791,26 @@ public interface Workspace {
              * @return the next definition stage.
              */
             Update withContainerRegistry(String containerRegistry);
+        }
+        /** The stage of the Workspace update allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: The encryption settings of the workspace..
+             *
+             * @param encryption The encryption settings of the workspace.
+             * @return the next definition stage.
+             */
+            Update withEncryption(EncryptionUpdateProperties encryption);
+        }
+        /** The stage of the Workspace update allowing to specify featureStoreSettings. */
+        interface WithFeatureStoreSettings {
+            /**
+             * Specifies the featureStoreSettings property: Settings for feature store type workspace..
+             *
+             * @param featureStoreSettings Settings for feature store type workspace.
+             * @return the next definition stage.
+             */
+            Update withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings);
         }
     }
     /**

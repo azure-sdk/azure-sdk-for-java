@@ -20,9 +20,11 @@ import java.util.Map;
     defaultImpl = JobBaseProperties.class)
 @JsonTypeName("JobBaseProperties")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "Labeling", value = LabelingJobProperties.class),
     @JsonSubTypes.Type(name = "AutoML", value = AutoMLJob.class),
     @JsonSubTypes.Type(name = "Command", value = CommandJob.class),
     @JsonSubTypes.Type(name = "Pipeline", value = PipelineJob.class),
+    @JsonSubTypes.Type(name = "Spark", value = SparkJob.class),
     @JsonSubTypes.Type(name = "Sweep", value = SweepJob.class)
 })
 @Fluent

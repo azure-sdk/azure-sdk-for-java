@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for OnlineEndpoints Get. */
 public final class OnlineEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/get.json
      */
     /**
-     * Sample code: Get Online Endpoint.
+     * Sample code: Get Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .onlineEndpoints()
             .getWithResponse("test-rg", "my-aml-workspace", "testEndpointName", com.azure.core.util.Context.NONE);
