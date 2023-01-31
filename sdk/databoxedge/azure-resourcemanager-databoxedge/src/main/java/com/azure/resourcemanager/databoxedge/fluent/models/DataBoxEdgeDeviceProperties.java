@@ -5,8 +5,12 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDeviceStatus;
+import com.azure.resourcemanager.databoxedge.models.DataResidency;
 import com.azure.resourcemanager.databoxedge.models.DeviceType;
+import com.azure.resourcemanager.databoxedge.models.EdgeProfile;
+import com.azure.resourcemanager.databoxedge.models.ResourceMoveDetails;
 import com.azure.resourcemanager.databoxedge.models.RoleTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -15,9 +19,15 @@ import java.util.List;
 @Fluent
 public final class DataBoxEdgeDeviceProperties {
     /*
+     * DataBoxEdge Device Properties
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /*
      * The status of the Data Box Edge/Gateway device.
      */
-    @JsonProperty(value = "dataBoxEdgeDeviceStatus")
+    @JsonProperty(value = "dataBoxEdgeDeviceStatus", access = JsonProperty.Access.WRITE_ONLY)
     private DataBoxEdgeDeviceStatus dataBoxEdgeDeviceStatus;
 
     /*
@@ -29,13 +39,13 @@ public final class DataBoxEdgeDeviceProperties {
     /*
      * The Description of the Data Box Edge/Gateway device.
      */
-    @JsonProperty(value = "description")
+    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
     /*
      * The description of the Data Box Edge/Gateway device model.
      */
-    @JsonProperty(value = "modelDescription")
+    @JsonProperty(value = "modelDescription", access = JsonProperty.Access.WRITE_ONLY)
     private String modelDescription;
 
     /*
@@ -47,7 +57,7 @@ public final class DataBoxEdgeDeviceProperties {
     /*
      * The Data Box Edge/Gateway device name.
      */
-    @JsonProperty(value = "friendlyName")
+    @JsonProperty(value = "friendlyName", access = JsonProperty.Access.WRITE_ONLY)
     private String friendlyName;
 
     /*
@@ -98,8 +108,35 @@ public final class DataBoxEdgeDeviceProperties {
     @JsonProperty(value = "nodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer nodeCount;
 
+    /*
+     * The details of the move operation on this resource.
+     */
+    @JsonProperty(value = "resourceMoveDetails", access = JsonProperty.Access.WRITE_ONLY)
+    private ResourceMoveDetails resourceMoveDetails;
+
+    /*
+     * The details of Edge Profile for this resource
+     */
+    @JsonProperty(value = "edgeProfile", access = JsonProperty.Access.WRITE_ONLY)
+    private EdgeProfile edgeProfile;
+
+    /*
+     * The details of data-residency related properties for this resource
+     */
+    @JsonProperty(value = "dataResidency")
+    private DataResidency dataResidency;
+
     /** Creates an instance of DataBoxEdgeDeviceProperties class. */
     public DataBoxEdgeDeviceProperties() {
+    }
+
+    /**
+     * Get the systemData property: DataBoxEdge Device Properties.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -109,17 +146,6 @@ public final class DataBoxEdgeDeviceProperties {
      */
     public DataBoxEdgeDeviceStatus dataBoxEdgeDeviceStatus() {
         return this.dataBoxEdgeDeviceStatus;
-    }
-
-    /**
-     * Set the dataBoxEdgeDeviceStatus property: The status of the Data Box Edge/Gateway device.
-     *
-     * @param dataBoxEdgeDeviceStatus the dataBoxEdgeDeviceStatus value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withDataBoxEdgeDeviceStatus(DataBoxEdgeDeviceStatus dataBoxEdgeDeviceStatus) {
-        this.dataBoxEdgeDeviceStatus = dataBoxEdgeDeviceStatus;
-        return this;
     }
 
     /**
@@ -141,34 +167,12 @@ public final class DataBoxEdgeDeviceProperties {
     }
 
     /**
-     * Set the description property: The Description of the Data Box Edge/Gateway device.
-     *
-     * @param description the description value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
      * Get the modelDescription property: The description of the Data Box Edge/Gateway device model.
      *
      * @return the modelDescription value.
      */
     public String modelDescription() {
         return this.modelDescription;
-    }
-
-    /**
-     * Set the modelDescription property: The description of the Data Box Edge/Gateway device model.
-     *
-     * @param modelDescription the modelDescription value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withModelDescription(String modelDescription) {
-        this.modelDescription = modelDescription;
-        return this;
     }
 
     /**
@@ -187,17 +191,6 @@ public final class DataBoxEdgeDeviceProperties {
      */
     public String friendlyName() {
         return this.friendlyName;
-    }
-
-    /**
-     * Set the friendlyName property: The Data Box Edge/Gateway device name.
-     *
-     * @param friendlyName the friendlyName value to set.
-     * @return the DataBoxEdgeDeviceProperties object itself.
-     */
-    public DataBoxEdgeDeviceProperties withFriendlyName(String friendlyName) {
-        this.friendlyName = friendlyName;
-        return this;
     }
 
     /**
@@ -273,10 +266,57 @@ public final class DataBoxEdgeDeviceProperties {
     }
 
     /**
+     * Get the resourceMoveDetails property: The details of the move operation on this resource.
+     *
+     * @return the resourceMoveDetails value.
+     */
+    public ResourceMoveDetails resourceMoveDetails() {
+        return this.resourceMoveDetails;
+    }
+
+    /**
+     * Get the edgeProfile property: The details of Edge Profile for this resource.
+     *
+     * @return the edgeProfile value.
+     */
+    public EdgeProfile edgeProfile() {
+        return this.edgeProfile;
+    }
+
+    /**
+     * Get the dataResidency property: The details of data-residency related properties for this resource.
+     *
+     * @return the dataResidency value.
+     */
+    public DataResidency dataResidency() {
+        return this.dataResidency;
+    }
+
+    /**
+     * Set the dataResidency property: The details of data-residency related properties for this resource.
+     *
+     * @param dataResidency the dataResidency value to set.
+     * @return the DataBoxEdgeDeviceProperties object itself.
+     */
+    public DataBoxEdgeDeviceProperties withDataResidency(DataResidency dataResidency) {
+        this.dataResidency = dataResidency;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (resourceMoveDetails() != null) {
+            resourceMoveDetails().validate();
+        }
+        if (edgeProfile() != null) {
+            edgeProfile().validate();
+        }
+        if (dataResidency() != null) {
+            dataResidency().validate();
+        }
     }
 }

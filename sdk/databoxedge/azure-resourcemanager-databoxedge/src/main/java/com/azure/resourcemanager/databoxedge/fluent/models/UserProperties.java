@@ -24,7 +24,7 @@ public final class UserProperties {
     /*
      * List of shares that the user has rights on. This field should not be specified during user creation.
      */
-    @JsonProperty(value = "shareAccessRights")
+    @JsonProperty(value = "shareAccessRights", access = JsonProperty.Access.WRITE_ONLY)
     private List<ShareAccessRight> shareAccessRights;
 
     /*
@@ -65,18 +65,6 @@ public final class UserProperties {
      */
     public List<ShareAccessRight> shareAccessRights() {
         return this.shareAccessRights;
-    }
-
-    /**
-     * Set the shareAccessRights property: List of shares that the user has rights on. This field should not be
-     * specified during user creation.
-     *
-     * @param shareAccessRights the shareAccessRights value to set.
-     * @return the UserProperties object itself.
-     */
-    public UserProperties withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        this.shareAccessRights = shareAccessRights;
-        return this;
     }
 
     /**

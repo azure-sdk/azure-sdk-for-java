@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.models.AlertErrorDetails;
 import com.azure.resourcemanager.databoxedge.models.AlertSeverity;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
@@ -21,6 +22,12 @@ public final class AlertInner extends ArmBaseModel {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private AlertProperties innerProperties;
 
+    /*
+     * Metadata pertaining to creation and last modification of Alert
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of AlertInner class. */
     public AlertInner() {
     }
@@ -32,6 +39,15 @@ public final class AlertInner extends ArmBaseModel {
      */
     private AlertProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Alert.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

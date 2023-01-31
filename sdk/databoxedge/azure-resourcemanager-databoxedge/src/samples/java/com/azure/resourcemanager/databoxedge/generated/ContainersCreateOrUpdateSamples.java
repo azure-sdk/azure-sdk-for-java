@@ -9,7 +9,7 @@ import com.azure.resourcemanager.databoxedge.models.AzureContainerDataFormat;
 /** Samples for Containers CreateOrUpdate. */
 public final class ContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ContainerPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ContainerPut.json
      */
     /**
      * Sample code: ContainerPut.

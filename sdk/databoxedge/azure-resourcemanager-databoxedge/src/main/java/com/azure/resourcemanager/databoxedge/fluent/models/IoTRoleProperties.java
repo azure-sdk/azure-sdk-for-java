@@ -6,7 +6,10 @@ package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.databoxedge.models.ComputeResource;
+import com.azure.resourcemanager.databoxedge.models.HostPlatformType;
 import com.azure.resourcemanager.databoxedge.models.IoTDeviceInfo;
+import com.azure.resourcemanager.databoxedge.models.IoTEdgeAgentInfo;
 import com.azure.resourcemanager.databoxedge.models.MountPointMap;
 import com.azure.resourcemanager.databoxedge.models.PlatformType;
 import com.azure.resourcemanager.databoxedge.models.RoleStatus;
@@ -39,6 +42,24 @@ public final class IoTRoleProperties {
      */
     @JsonProperty(value = "shareMappings")
     private List<MountPointMap> shareMappings;
+
+    /*
+     * Iot edge agent details to download the agent and bootstrap iot runtime.
+     */
+    @JsonProperty(value = "ioTEdgeAgentInfo")
+    private IoTEdgeAgentInfo ioTEdgeAgentInfo;
+
+    /*
+     * Platform where the Iot runtime is hosted.
+     */
+    @JsonProperty(value = "hostPlatformType", access = JsonProperty.Access.WRITE_ONLY)
+    private HostPlatformType hostPlatformType;
+
+    /*
+     * Resource allocation
+     */
+    @JsonProperty(value = "computeResource")
+    private ComputeResource computeResource;
 
     /*
      * Role status.
@@ -131,6 +152,55 @@ public final class IoTRoleProperties {
     }
 
     /**
+     * Get the ioTEdgeAgentInfo property: Iot edge agent details to download the agent and bootstrap iot runtime.
+     *
+     * @return the ioTEdgeAgentInfo value.
+     */
+    public IoTEdgeAgentInfo ioTEdgeAgentInfo() {
+        return this.ioTEdgeAgentInfo;
+    }
+
+    /**
+     * Set the ioTEdgeAgentInfo property: Iot edge agent details to download the agent and bootstrap iot runtime.
+     *
+     * @param ioTEdgeAgentInfo the ioTEdgeAgentInfo value to set.
+     * @return the IoTRoleProperties object itself.
+     */
+    public IoTRoleProperties withIoTEdgeAgentInfo(IoTEdgeAgentInfo ioTEdgeAgentInfo) {
+        this.ioTEdgeAgentInfo = ioTEdgeAgentInfo;
+        return this;
+    }
+
+    /**
+     * Get the hostPlatformType property: Platform where the Iot runtime is hosted.
+     *
+     * @return the hostPlatformType value.
+     */
+    public HostPlatformType hostPlatformType() {
+        return this.hostPlatformType;
+    }
+
+    /**
+     * Get the computeResource property: Resource allocation.
+     *
+     * @return the computeResource value.
+     */
+    public ComputeResource computeResource() {
+        return this.computeResource;
+    }
+
+    /**
+     * Set the computeResource property: Resource allocation.
+     *
+     * @param computeResource the computeResource value to set.
+     * @return the IoTRoleProperties object itself.
+     */
+    public IoTRoleProperties withComputeResource(ComputeResource computeResource) {
+        this.computeResource = computeResource;
+        return this;
+    }
+
+    /**
      * Get the roleStatus property: Role status.
      *
      * @return the roleStatus value.
@@ -179,6 +249,12 @@ public final class IoTRoleProperties {
         }
         if (shareMappings() != null) {
             shareMappings().forEach(e -> e.validate());
+        }
+        if (ioTEdgeAgentInfo() != null) {
+            ioTEdgeAgentInfo().validate();
+        }
+        if (computeResource() != null) {
+            computeResource().validate();
         }
         if (roleStatus() == null) {
             throw LOGGER

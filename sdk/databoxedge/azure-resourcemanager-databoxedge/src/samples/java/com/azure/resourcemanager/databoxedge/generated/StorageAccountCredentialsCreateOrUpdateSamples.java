@@ -12,7 +12,7 @@ import com.azure.resourcemanager.databoxedge.models.SslStatus;
 /** Samples for StorageAccountCredentials CreateOrUpdate. */
 public final class StorageAccountCredentialsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SACPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SACPut.json
      */
     /**
      * Sample code: SACPut.
