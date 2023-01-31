@@ -22,7 +22,7 @@ import java.util.Map;
 /** Samples for Jobs Update. */
 public final class JobsUpdateSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsPatchCmk.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsPatchCmk.json
      */
     /**
      * Sample code: JobsPatchCmk.
@@ -49,7 +49,7 @@ public final class JobsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsPatchSystemAssignedToUserAssigned.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsPatchSystemAssignedToUserAssigned.json
      */
     /**
      * Sample code: JobsPatchSystemAssignedToUserAssigned.
@@ -90,7 +90,7 @@ public final class JobsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsPatch.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsPatch.json
      */
     /**
      * Sample code: JobsPatch.

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databox.generated;
 /** Samples for Jobs GetByResourceGroup. */
 public final class JobsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsGet.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsGet.json
      */
     /**
      * Sample code: JobsGet.
@@ -21,7 +21,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsGetCmk.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsGetCmk.json
      */
     /**
      * Sample code: JobsGetCmk.
@@ -35,7 +35,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsGetExport.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsGetExport.json
      */
     /**
      * Sample code: JobsGetExport.
@@ -49,7 +49,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsGetCopyStuck.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsGetCopyStuck.json
      */
     /**
      * Sample code: JobsGetCopyStuck.
@@ -57,6 +57,21 @@ public final class JobsGetByResourceGroupSamples {
      * @param manager Entry point to DataBoxManager.
      */
     public static void jobsGetCopyStuck(com.azure.resourcemanager.databox.DataBoxManager manager) {
+        manager
+            .jobs()
+            .getByResourceGroupWithResponse(
+                "dmstestresource", "TJx-637505258985313014", "details", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsGetWaitingForAction.json
+     */
+    /**
+     * Sample code: JobsGetWaitingForAction.
+     *
+     * @param manager Entry point to DataBoxManager.
+     */
+    public static void jobsGetWaitingForAction(com.azure.resourcemanager.databox.DataBoxManager manager) {
         manager
             .jobs()
             .getByResourceGroupWithResponse(

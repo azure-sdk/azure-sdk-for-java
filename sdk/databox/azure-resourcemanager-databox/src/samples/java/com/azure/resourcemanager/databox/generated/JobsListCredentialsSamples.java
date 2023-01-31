@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databox.generated;
 /** Samples for Jobs ListCredentials. */
 public final class JobsListCredentialsSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsListCredentials.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsListCredentials.json
      */
     /**
      * Sample code: JobsListCredentials.
