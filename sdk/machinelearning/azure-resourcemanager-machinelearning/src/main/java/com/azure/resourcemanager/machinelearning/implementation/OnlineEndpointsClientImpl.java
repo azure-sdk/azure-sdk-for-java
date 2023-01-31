@@ -52,21 +52,21 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     private final OnlineEndpointsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of OnlineEndpointsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OnlineEndpointsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    OnlineEndpointsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(OnlineEndpointsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesOnlineEndpoints to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesOnlineEndpoints to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")

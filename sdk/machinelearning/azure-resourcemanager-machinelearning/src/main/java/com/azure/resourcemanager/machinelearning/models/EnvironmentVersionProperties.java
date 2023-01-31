@@ -62,6 +62,12 @@ public final class EnvironmentVersionProperties extends AssetBase {
     @JsonProperty(value = "osType")
     private OperatingSystemType osType;
 
+    /*
+     * Provisioning state for the environment version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
     /** Creates an instance of EnvironmentVersionProperties class. */
     public EnvironmentVersionProperties() {
     }
@@ -206,6 +212,15 @@ public final class EnvironmentVersionProperties extends AssetBase {
     public EnvironmentVersionProperties withOsType(OperatingSystemType osType) {
         this.osType = osType;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the environment version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /** {@inheritDoc} */

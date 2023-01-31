@@ -23,7 +23,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "AzureBlob", value = AzureBlobDatastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen1", value = AzureDataLakeGen1Datastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen2", value = AzureDataLakeGen2Datastore.class),
-    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class)
+    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class),
+    @JsonSubTypes.Type(name = "Hdfs", value = HdfsDatastore.class)
 })
 @Fluent
 public class DatastoreProperties extends ResourceBase {

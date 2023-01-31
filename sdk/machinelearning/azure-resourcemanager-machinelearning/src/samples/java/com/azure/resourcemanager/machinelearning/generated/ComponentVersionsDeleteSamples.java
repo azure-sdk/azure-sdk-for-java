@@ -7,14 +7,14 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for ComponentVersions Delete. */
 public final class ComponentVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentVersion/delete.json
      */
     /**
-     * Sample code: Delete Component Version.
+     * Sample code: Delete Workspace Component Version.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteComponentVersion(
+    public static void deleteWorkspaceComponentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .componentVersions()
