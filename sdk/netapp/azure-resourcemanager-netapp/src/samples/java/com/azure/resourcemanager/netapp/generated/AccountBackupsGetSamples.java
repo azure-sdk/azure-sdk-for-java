@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AccountBackups Get. */
 public final class AccountBackupsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class AccountBackupsGetSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void accountBackupsGet(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.accountBackups().getWithResponse("myRG", "account1", "backup1", Context.NONE);
+        manager.accountBackups().getWithResponse("myRG", "account1", "backup1", com.azure.core.util.Context.NONE);
     }
 }

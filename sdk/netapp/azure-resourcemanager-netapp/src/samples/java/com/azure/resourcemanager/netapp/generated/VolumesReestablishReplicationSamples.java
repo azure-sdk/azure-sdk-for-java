@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.ReestablishReplicationRequest;
 
 /** Samples for Volumes ReestablishReplication. */
@@ -28,6 +27,6 @@ public final class VolumesReestablishReplicationSamples {
                 new ReestablishReplicationRequest()
                     .withSourceVolumeId(
                         "/subscriptions/D633CC2E-722B-4AE1-B636-BBD9E4C60ED9/resourceGroups/mySourceRG/providers/Microsoft.NetApp/netAppAccounts/sourceAccount1/capacityPools/sourcePool1/volumes/sourceVolume1"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

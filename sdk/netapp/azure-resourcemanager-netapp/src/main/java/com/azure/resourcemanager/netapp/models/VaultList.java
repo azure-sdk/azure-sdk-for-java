@@ -18,6 +18,10 @@ public final class VaultList {
     @JsonProperty(value = "value")
     private List<VaultInner> value;
 
+    /** Creates an instance of VaultList class. */
+    public VaultList() {
+    }
+
     /**
      * Get the value property: A list of vaults.
      *

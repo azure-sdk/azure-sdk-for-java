@@ -65,7 +65,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NetAppManagementClie")
-    private interface BackupPoliciesService {
+    public interface BackupPoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp"
@@ -459,24 +459,6 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param backupPolicyName Backup policy Name which uniquely identify backup policy.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a particular backup Policy.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BackupPolicyInner get(String resourceGroupName, String accountName, String backupPolicyName) {
-        return getAsync(resourceGroupName, accountName, backupPolicyName).block();
-    }
-
-    /**
-     * Get a backup Policy
-     *
-     * <p>Get a particular backup Policy.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param backupPolicyName Backup policy Name which uniquely identify backup policy.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -487,6 +469,24 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
     public Response<BackupPolicyInner> getWithResponse(
         String resourceGroupName, String accountName, String backupPolicyName, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, backupPolicyName, context).block();
+    }
+
+    /**
+     * Get a backup Policy
+     *
+     * <p>Get a particular backup Policy.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param backupPolicyName Backup policy Name which uniquely identify backup policy.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a particular backup Policy.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupPolicyInner get(String resourceGroupName, String accountName, String backupPolicyName) {
+        return getWithResponse(resourceGroupName, accountName, backupPolicyName, Context.NONE).getValue();
     }
 
     /**
@@ -694,7 +694,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupPolicyInner>, BackupPolicyInner> beginCreate(
         String resourceGroupName, String accountName, String backupPolicyName, BackupPolicyInner body) {
-        return beginCreateAsync(resourceGroupName, accountName, backupPolicyName, body).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, accountName, backupPolicyName, body).getSyncPoller();
     }
 
     /**
@@ -719,7 +719,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
         String backupPolicyName,
         BackupPolicyInner body,
         Context context) {
-        return beginCreateAsync(resourceGroupName, accountName, backupPolicyName, body, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, accountName, backupPolicyName, body, context).getSyncPoller();
     }
 
     /**
@@ -1021,7 +1021,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupPolicyInner>, BackupPolicyInner> beginUpdate(
         String resourceGroupName, String accountName, String backupPolicyName, BackupPolicyPatch body) {
-        return beginUpdateAsync(resourceGroupName, accountName, backupPolicyName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, accountName, backupPolicyName, body).getSyncPoller();
     }
 
     /**
@@ -1046,7 +1046,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
         String backupPolicyName,
         BackupPolicyPatch body,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, accountName, backupPolicyName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, accountName, backupPolicyName, body, context).getSyncPoller();
     }
 
     /**
@@ -1314,7 +1314,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String backupPolicyName) {
-        return beginDeleteAsync(resourceGroupName, accountName, backupPolicyName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, accountName, backupPolicyName).getSyncPoller();
     }
 
     /**
@@ -1334,7 +1334,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String backupPolicyName, Context context) {
-        return beginDeleteAsync(resourceGroupName, accountName, backupPolicyName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, accountName, backupPolicyName, context).getSyncPoller();
     }
 
     /**

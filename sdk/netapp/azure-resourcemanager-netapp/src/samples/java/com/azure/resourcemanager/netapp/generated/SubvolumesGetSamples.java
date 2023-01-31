@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Subvolumes Get. */
 public final class SubvolumesGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class SubvolumesGetSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void subvolumesGet(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.subvolumes().getWithResponse("myRG", "account1", "pool1", "volume1", "subvolume1", Context.NONE);
+        manager
+            .subvolumes()
+            .getWithResponse("myRG", "account1", "pool1", "volume1", "subvolume1", com.azure.core.util.Context.NONE);
     }
 }

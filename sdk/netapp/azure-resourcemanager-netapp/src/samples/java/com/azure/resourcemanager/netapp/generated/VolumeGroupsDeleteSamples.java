@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VolumeGroups Delete. */
 public final class VolumeGroupsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class VolumeGroupsDeleteSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void volumeGroupsDelete(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.volumeGroups().delete("myRG", "account1", "group1", Context.NONE);
+        manager.volumeGroups().delete("myRG", "account1", "group1", com.azure.core.util.Context.NONE);
     }
 }

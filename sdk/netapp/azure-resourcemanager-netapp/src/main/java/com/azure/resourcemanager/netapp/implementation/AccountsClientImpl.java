@@ -65,7 +65,7 @@ public final class AccountsClientImpl implements AccountsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NetAppManagementClie")
-    private interface AccountsService {
+    public interface AccountsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/netAppAccounts")
         @ExpectedResponses({200})
@@ -163,6 +163,7 @@ public final class AccountsClientImpl implements AccountsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("accountName") String accountName,
+            @QueryParam("api-version") String apiVersion,
             Context context);
 
         @Headers({"Content-Type: application/json"})
@@ -640,23 +641,6 @@ public final class AccountsClientImpl implements AccountsClient {
      *
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the NetApp account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NetAppAccountInner getByResourceGroup(String resourceGroupName, String accountName) {
-        return getByResourceGroupAsync(resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Describe a NetApp Account
-     *
-     * <p>Get the NetApp account.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -667,6 +651,23 @@ public final class AccountsClientImpl implements AccountsClient {
     public Response<NetAppAccountInner> getByResourceGroupWithResponse(
         String resourceGroupName, String accountName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, accountName, context).block();
+    }
+
+    /**
+     * Describe a NetApp Account
+     *
+     * <p>Get the NetApp account.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the NetApp account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NetAppAccountInner getByResourceGroup(String resourceGroupName, String accountName) {
+        return getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
     }
 
     /**
@@ -850,7 +851,7 @@ public final class AccountsClientImpl implements AccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetAppAccountInner>, NetAppAccountInner> beginCreateOrUpdate(
         String resourceGroupName, String accountName, NetAppAccountInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, accountName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, accountName, body).getSyncPoller();
     }
 
     /**
@@ -870,7 +871,7 @@ public final class AccountsClientImpl implements AccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetAppAccountInner>, NetAppAccountInner> beginCreateOrUpdate(
         String resourceGroupName, String accountName, NetAppAccountInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, accountName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, accountName, body, context).getSyncPoller();
     }
 
     /**
@@ -1105,7 +1106,7 @@ public final class AccountsClientImpl implements AccountsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String accountName) {
-        return beginDeleteAsync(resourceGroupName, accountName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, accountName).getSyncPoller();
     }
 
     /**
@@ -1124,7 +1125,7 @@ public final class AccountsClientImpl implements AccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, Context context) {
-        return beginDeleteAsync(resourceGroupName, accountName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, accountName, context).getSyncPoller();
     }
 
     /**
@@ -1377,7 +1378,7 @@ public final class AccountsClientImpl implements AccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetAppAccountInner>, NetAppAccountInner> beginUpdate(
         String resourceGroupName, String accountName, NetAppAccountPatch body) {
-        return beginUpdateAsync(resourceGroupName, accountName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, accountName, body).getSyncPoller();
     }
 
     /**
@@ -1397,7 +1398,7 @@ public final class AccountsClientImpl implements AccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetAppAccountInner>, NetAppAccountInner> beginUpdate(
         String resourceGroupName, String accountName, NetAppAccountPatch body, Context context) {
-        return beginUpdateAsync(resourceGroupName, accountName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, accountName, body, context).getSyncPoller();
     }
 
     /**
@@ -1525,6 +1526,7 @@ public final class AccountsClientImpl implements AccountsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             accountName,
+                            this.client.getApiVersion(),
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1568,7 +1570,12 @@ public final class AccountsClientImpl implements AccountsClient {
         context = this.client.mergeContext(context);
         return service
             .renewCredentials(
-                this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, accountName, context);
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                accountName,
+                this.client.getApiVersion(),
+                context);
     }
 
     /**
@@ -1634,7 +1641,7 @@ public final class AccountsClientImpl implements AccountsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRenewCredentials(String resourceGroupName, String accountName) {
-        return beginRenewCredentialsAsync(resourceGroupName, accountName).getSyncPoller();
+        return this.beginRenewCredentialsAsync(resourceGroupName, accountName).getSyncPoller();
     }
 
     /**
@@ -1654,7 +1661,7 @@ public final class AccountsClientImpl implements AccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRenewCredentials(
         String resourceGroupName, String accountName, Context context) {
-        return beginRenewCredentialsAsync(resourceGroupName, accountName, context).getSyncPoller();
+        return this.beginRenewCredentialsAsync(resourceGroupName, accountName, context).getSyncPoller();
     }
 
     /**

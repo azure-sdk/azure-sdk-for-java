@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetAppResourceQuotaLimits List. */
 public final class NetAppResourceQuotaLimitsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class NetAppResourceQuotaLimitsListSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void quotaLimits(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.netAppResourceQuotaLimits().list("eastus", Context.NONE);
+        manager.netAppResourceQuotaLimits().list("eastus", com.azure.core.util.Context.NONE);
     }
 }

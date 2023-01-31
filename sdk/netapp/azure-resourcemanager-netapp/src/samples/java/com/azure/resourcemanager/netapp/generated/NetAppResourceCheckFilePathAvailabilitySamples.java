@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.FilePathAvailabilityRequest;
 
 /** Samples for NetAppResource CheckFilePathAvailability. */
@@ -26,6 +25,6 @@ public final class NetAppResourceCheckFilePathAvailabilitySamples {
                     .withName("my-exact-filepth")
                     .withSubnetId(
                         "/subscriptions/9760acf5-4638-11e7-9bdb-020073ca7778/resourceGroups/myRP/providers/Microsoft.Network/virtualNetworks/testvnet3/subnets/testsubnet3"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

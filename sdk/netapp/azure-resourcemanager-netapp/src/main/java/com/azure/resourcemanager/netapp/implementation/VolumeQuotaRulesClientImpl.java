@@ -65,7 +65,7 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
      */
     @Host("{$host}")
     @ServiceInterface(name = "NetAppManagementClie")
-    private interface VolumeQuotaRulesService {
+    public interface VolumeQuotaRulesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp"
@@ -537,27 +537,6 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param volumeQuotaRuleName The name of volume quota rule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified quota rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VolumeQuotaRuleInner get(
-        String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName) {
-        return getAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName).block();
-    }
-
-    /**
-     * Describe a quota rule
-     *
-     * <p>Get details of the specified quota rule.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param volumeQuotaRuleName The name of volume quota rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -574,6 +553,28 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, context)
             .block();
+    }
+
+    /**
+     * Describe a quota rule
+     *
+     * <p>Get details of the specified quota rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param volumeQuotaRuleName The name of volume quota rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified quota rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VolumeQuotaRuleInner get(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName) {
+        return getWithResponse(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -827,7 +828,8 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         String volumeName,
         String volumeQuotaRuleName,
         VolumeQuotaRuleInner body) {
-        return beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body)
+        return this
+            .beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body)
             .getSyncPoller();
     }
 
@@ -857,8 +859,8 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         String volumeQuotaRuleName,
         VolumeQuotaRuleInner body,
         Context context) {
-        return beginCreateAsync(
-                resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body, context)
+        return this
+            .beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body, context)
             .getSyncPoller();
     }
 
@@ -1231,7 +1233,8 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         String volumeName,
         String volumeQuotaRuleName,
         VolumeQuotaRulePatch body) {
-        return beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body)
+        return this
+            .beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body)
             .getSyncPoller();
     }
 
@@ -1261,8 +1264,8 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         String volumeQuotaRuleName,
         VolumeQuotaRulePatch body,
         Context context) {
-        return beginUpdateAsync(
-                resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, body, context)
             .getSyncPoller();
     }
 
@@ -1591,7 +1594,8 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName) {
-        return beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName)
+        return this
+            .beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName)
             .getSyncPoller();
     }
 
@@ -1619,7 +1623,8 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         String volumeName,
         String volumeQuotaRuleName,
         Context context) {
-        return beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, context)
             .getSyncPoller();
     }
 

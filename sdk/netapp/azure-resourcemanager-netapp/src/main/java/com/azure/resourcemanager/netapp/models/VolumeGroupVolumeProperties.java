@@ -36,6 +36,10 @@ public final class VolumeGroupVolumeProperties extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private VolumeProperties innerProperties = new VolumeProperties();
 
+    /** Creates an instance of VolumeGroupVolumeProperties class. */
+    public VolumeGroupVolumeProperties() {
+    }
+
     /**
      * Get the name property: Resource name.
      *
@@ -154,7 +158,7 @@ public final class VolumeGroupVolumeProperties extends ProxyResource {
      * Get the usageThreshold property: usageThreshold
      *
      * <p>Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      *
      * @return the usageThreshold value.
      */
@@ -166,7 +170,7 @@ public final class VolumeGroupVolumeProperties extends ProxyResource {
      * Set the usageThreshold property: usageThreshold
      *
      * <p>Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      *
      * @param usageThreshold the usageThreshold value to set.
      * @return the VolumeGroupVolumeProperties object itself.

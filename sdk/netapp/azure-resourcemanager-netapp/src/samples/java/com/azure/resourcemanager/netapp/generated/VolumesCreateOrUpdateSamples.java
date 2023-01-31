@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.resourcemanager.netapp.models.EncryptionKeySource;
 import com.azure.resourcemanager.netapp.models.ServiceLevel;
 
 /** Samples for Volumes CreateOrUpdate. */
@@ -28,8 +27,6 @@ public final class VolumesCreateOrUpdateSamples {
             .withSubnetId(
                 "/subscriptions/9760acf5-4638-11e7-9bdb-020073ca7778/resourceGroups/myRP/providers/Microsoft.Network/virtualNetworks/testvnet3/subnets/testsubnet3")
             .withServiceLevel(ServiceLevel.PREMIUM)
-            .withThroughputMibps(128.0F)
-            .withEncryptionKeySource(EncryptionKeySource.MICROSOFT_KEY_VAULT)
             .create();
     }
 }

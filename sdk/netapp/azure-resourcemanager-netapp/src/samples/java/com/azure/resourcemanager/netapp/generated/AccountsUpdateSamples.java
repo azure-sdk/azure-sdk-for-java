@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.NetAppAccount;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,10 @@ public final class AccountsUpdateSamples {
      */
     public static void accountsUpdate(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
         NetAppAccount resource =
-            manager.accounts().getByResourceGroupWithResponse("myRG", "account1", Context.NONE).getValue();
+            manager
+                .accounts()
+                .getByResourceGroupWithResponse("myRG", "account1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("Tag1", "Value1")).apply();
     }
 

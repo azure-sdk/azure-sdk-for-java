@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Backups Delete. */
 public final class BackupsDeleteSamples {
     /*
@@ -17,6 +15,14 @@ public final class BackupsDeleteSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void backupsDelete(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.backups().delete("resourceGroup", "accountName", "poolName", "volumeName", "backupName", Context.NONE);
+        manager
+            .backups()
+            .delete(
+                "resourceGroup",
+                "accountName",
+                "poolName",
+                "volumeName",
+                "backupName",
+                com.azure.core.util.Context.NONE);
     }
 }

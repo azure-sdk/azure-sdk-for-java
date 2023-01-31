@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.Backup;
 
 /** Samples for Backups Update. */
@@ -21,7 +20,7 @@ public final class BackupsUpdateSamples {
         Backup resource =
             manager
                 .backups()
-                .getWithResponse("myRG", "account1", "pool1", "volume1", "backup1", Context.NONE)
+                .getWithResponse("myRG", "account1", "pool1", "volume1", "backup1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.CheckQuotaNameResourceTypes;
 import com.azure.resourcemanager.netapp.models.QuotaAvailabilityRequest;
 
@@ -27,6 +26,6 @@ public final class NetAppResourceCheckQuotaAvailabilitySamples {
                     .withName("resource1")
                     .withType(CheckQuotaNameResourceTypes.MICROSOFT_NET_APP_NET_APP_ACCOUNTS)
                     .withResourceGroup("myRG"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

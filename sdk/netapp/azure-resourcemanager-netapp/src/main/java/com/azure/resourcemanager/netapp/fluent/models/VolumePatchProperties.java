@@ -93,6 +93,10 @@ public final class VolumePatchProperties {
     @JsonProperty(value = "coolnessPeriod")
     private Integer coolnessPeriod;
 
+    /** Creates an instance of VolumePatchProperties class. */
+    public VolumePatchProperties() {
+    }
+
     /**
      * Get the serviceLevel property: serviceLevel
      *

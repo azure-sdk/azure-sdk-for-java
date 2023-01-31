@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.SnapshotRestoreFiles;
 import java.util.Arrays;
 
@@ -28,6 +27,6 @@ public final class SnapshotsRestoreFilesSamples {
                 "volume1",
                 "snapshot1",
                 new SnapshotRestoreFiles().withFilePaths(Arrays.asList("/dir1/customer1.db", "/dir1/customer2.db")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

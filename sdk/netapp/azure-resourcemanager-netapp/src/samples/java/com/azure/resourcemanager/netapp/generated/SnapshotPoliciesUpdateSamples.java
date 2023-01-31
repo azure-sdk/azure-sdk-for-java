@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.DailySchedule;
 import com.azure.resourcemanager.netapp.models.HourlySchedule;
 import com.azure.resourcemanager.netapp.models.MonthlySchedule;
@@ -25,7 +24,7 @@ public final class SnapshotPoliciesUpdateSamples {
         SnapshotPolicy resource =
             manager
                 .snapshotPolicies()
-                .getWithResponse("myRG", "account1", "snapshotPolicyName", Context.NONE)
+                .getWithResponse("myRG", "account1", "snapshotPolicyName", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
