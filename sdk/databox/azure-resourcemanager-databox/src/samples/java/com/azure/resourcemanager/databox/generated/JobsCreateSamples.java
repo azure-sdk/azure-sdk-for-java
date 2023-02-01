@@ -31,7 +31,7 @@ import java.util.Map;
 /** Samples for Jobs Create. */
 public final class JobsCreateSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsCreateDevicePassword.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateDevicePassword.json
      */
     /**
      * Sample code: JobsCreateDevicePassword.
@@ -78,7 +78,7 @@ public final class JobsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsCreate.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreate.json
      */
     /**
      * Sample code: JobsCreate.
@@ -123,7 +123,7 @@ public final class JobsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsCreateDoubleEncryption.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateDoubleEncryption.json
      */
     /**
      * Sample code: JobsCreateDoubleEncryption.
@@ -172,7 +172,7 @@ public final class JobsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsCreateWithUserAssignedIdentity.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateWithUserAssignedIdentity.json
      */
     /**
      * Sample code: JobsCreateWithUserAssignedIdentity.
@@ -224,7 +224,7 @@ public final class JobsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsCreateExport.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsCreateExport.json
      */
     /**
      * Sample code: JobsCreateExport.

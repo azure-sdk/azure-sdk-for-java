@@ -12,7 +12,7 @@ import com.azure.resourcemanager.databox.models.ValidateAddress;
 /** Samples for Service ValidateAddress. */
 public final class ServiceValidateAddressSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/ValidateAddressPost.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/ValidateAddressPost.json
      */
     /**
      * Sample code: ValidateAddressPost.
