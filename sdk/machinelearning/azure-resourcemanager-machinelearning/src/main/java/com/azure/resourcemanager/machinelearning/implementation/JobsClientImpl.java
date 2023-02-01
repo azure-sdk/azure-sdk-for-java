@@ -46,20 +46,20 @@ public final class JobsClientImpl implements JobsClient {
     private final JobsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of JobsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    JobsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    JobsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(JobsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesJobs to be used by the proxy service to
+     * The interface defining all the services for AzureMachineLearningServicesJobs to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
@@ -81,6 +81,8 @@ public final class JobsClientImpl implements JobsClient {
             @QueryParam("jobType") String jobType,
             @QueryParam("tag") String tag,
             @QueryParam("listViewType") ListViewType listViewType,
+            @QueryParam("scheduled") Boolean scheduled,
+            @QueryParam("scheduleId") String scheduleId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -169,6 +171,8 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -182,7 +186,9 @@ public final class JobsClientImpl implements JobsClient {
         String skip,
         String jobType,
         String tag,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        Boolean scheduled,
+        String scheduleId) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -217,6 +223,8 @@ public final class JobsClientImpl implements JobsClient {
                             jobType,
                             tag,
                             listViewType,
+                            scheduled,
+                            scheduleId,
                             accept,
                             context))
             .<PagedResponse<JobBaseInner>>map(
@@ -240,6 +248,8 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -255,6 +265,8 @@ public final class JobsClientImpl implements JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        Boolean scheduled,
+        String scheduleId,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -288,6 +300,8 @@ public final class JobsClientImpl implements JobsClient {
                 jobType,
                 tag,
                 listViewType,
+                scheduled,
+                scheduleId,
                 accept,
                 context)
             .map(
@@ -310,6 +324,8 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -322,9 +338,13 @@ public final class JobsClientImpl implements JobsClient {
         String skip,
         String jobType,
         String tag,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        Boolean scheduled,
+        String scheduleId) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, skip, jobType, tag, listViewType, scheduled, scheduleId),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -344,8 +364,12 @@ public final class JobsClientImpl implements JobsClient {
         final String jobType = null;
         final String tag = null;
         final ListViewType listViewType = null;
+        final Boolean scheduled = null;
+        final String scheduleId = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, skip, jobType, tag, listViewType, scheduled, scheduleId),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -358,6 +382,8 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -372,9 +398,13 @@ public final class JobsClientImpl implements JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        Boolean scheduled,
+        String scheduleId,
         Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, context),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, skip, jobType, tag, listViewType, scheduled, scheduleId, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -394,7 +424,10 @@ public final class JobsClientImpl implements JobsClient {
         final String jobType = null;
         final String tag = null;
         final ListViewType listViewType = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType));
+        final Boolean scheduled = null;
+        final String scheduleId = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, scheduled, scheduleId));
     }
 
     /**
@@ -406,6 +439,8 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -420,9 +455,12 @@ public final class JobsClientImpl implements JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        Boolean scheduled,
+        String scheduleId,
         Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, context));
+            listAsync(
+                resourceGroupName, workspaceName, skip, jobType, tag, listViewType, scheduled, scheduleId, context));
     }
 
     /**

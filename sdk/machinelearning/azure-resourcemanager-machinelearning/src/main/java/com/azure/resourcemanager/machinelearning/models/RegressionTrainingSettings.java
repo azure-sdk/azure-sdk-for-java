@@ -117,6 +117,13 @@ public final class RegressionTrainingSettings extends TrainingSettings {
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public RegressionTrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        super.withTrainingMode(trainingMode);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *

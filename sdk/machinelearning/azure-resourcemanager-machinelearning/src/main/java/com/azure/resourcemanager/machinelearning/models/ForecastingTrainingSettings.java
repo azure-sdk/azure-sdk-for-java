@@ -119,6 +119,13 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public ForecastingTrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        super.withTrainingMode(trainingMode);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *

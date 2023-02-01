@@ -14,6 +14,8 @@ import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseResponseResult;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.EncryptionUpdateProperties;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.ListNotebookKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListStorageAccountKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListWorkspaceKeysResult;
@@ -69,6 +71,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public Sku sku() {
         return this.innerModel().sku();
+    }
+
+    public String kind() {
+        return this.innerModel().kind();
     }
 
     public SystemData systemData() {
@@ -193,6 +199,22 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public String softDeletedAt() {
+        return this.innerModel().softDeletedAt();
+    }
+
+    public String scheduledPurgeDate() {
+        return this.innerModel().scheduledPurgeDate();
+    }
+
+    public String systemDatastoresAuthMode() {
+        return this.innerModel().systemDatastoresAuthMode();
+    }
+
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerModel().featureStoreSettings();
     }
 
     public Region region() {
@@ -401,6 +423,11 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
+    public WorkspaceImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
+        return this;
+    }
+
     public WorkspaceImpl withDescription(String description) {
         if (isInCreateMode()) {
             this.innerModel().withDescription(description);
@@ -519,6 +546,26 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
         this.innerModel().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    public WorkspaceImpl withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        this.innerModel().withSystemDatastoresAuthMode(systemDatastoresAuthMode);
+        return this;
+    }
+
+    public WorkspaceImpl withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withFeatureStoreSettings(featureStoreSettings);
+            return this;
+        } else {
+            this.updateParameters.withFeatureStoreSettings(featureStoreSettings);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withEncryption(EncryptionUpdateProperties encryption) {
+        this.updateParameters.withEncryption(encryption);
         return this;
     }
 
