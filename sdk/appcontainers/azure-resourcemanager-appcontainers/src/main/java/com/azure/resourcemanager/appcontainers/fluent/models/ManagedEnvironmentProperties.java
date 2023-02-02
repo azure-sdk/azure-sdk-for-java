@@ -7,7 +7,10 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
+import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentQuota;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -89,6 +92,24 @@ public final class ManagedEnvironmentProperties {
      */
     @JsonProperty(value = "workloadProfiles")
     private List<WorkloadProfile> workloadProfiles;
+
+    /*
+     * The configuration of Keda component.
+     */
+    @JsonProperty(value = "kedaConfiguration")
+    private KedaConfiguration kedaConfiguration;
+
+    /*
+     * The configuration of Dapr component.
+     */
+    @JsonProperty(value = "daprConfiguration")
+    private DaprConfiguration daprConfiguration;
+
+    /*
+     * Quota status for the environment.
+     */
+    @JsonProperty(value = "quotas")
+    private ManagedEnvironmentQuota quotas;
 
     /** Creates an instance of ManagedEnvironmentProperties class. */
     public ManagedEnvironmentProperties() {
@@ -287,6 +308,66 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
+     * Get the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @return the kedaConfiguration value.
+     */
+    public KedaConfiguration kedaConfiguration() {
+        return this.kedaConfiguration;
+    }
+
+    /**
+     * Set the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @param kedaConfiguration the kedaConfiguration value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withKedaConfiguration(KedaConfiguration kedaConfiguration) {
+        this.kedaConfiguration = kedaConfiguration;
+        return this;
+    }
+
+    /**
+     * Get the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @return the daprConfiguration value.
+     */
+    public DaprConfiguration daprConfiguration() {
+        return this.daprConfiguration;
+    }
+
+    /**
+     * Set the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @param daprConfiguration the daprConfiguration value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withDaprConfiguration(DaprConfiguration daprConfiguration) {
+        this.daprConfiguration = daprConfiguration;
+        return this;
+    }
+
+    /**
+     * Get the quotas property: Quota status for the environment.
+     *
+     * @return the quotas value.
+     */
+    public ManagedEnvironmentQuota quotas() {
+        return this.quotas;
+    }
+
+    /**
+     * Set the quotas property: Quota status for the environment.
+     *
+     * @param quotas the quotas value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withQuotas(ManagedEnvironmentQuota quotas) {
+        this.quotas = quotas;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -303,6 +384,15 @@ public final class ManagedEnvironmentProperties {
         }
         if (workloadProfiles() != null) {
             workloadProfiles().forEach(e -> e.validate());
+        }
+        if (kedaConfiguration() != null) {
+            kedaConfiguration().validate();
+        }
+        if (daprConfiguration() != null) {
+            daprConfiguration().validate();
+        }
+        if (quotas() != null) {
+            quotas().validate();
         }
     }
 }
