@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores ListKeys. */
 public final class ConfigurationStoresListKeysSamples {
     /*
@@ -18,6 +16,6 @@ public final class ConfigurationStoresListKeysSamples {
      */
     public static void configurationStoresListKeys(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listKeys("myResourceGroup", "contoso", null, Context.NONE);
+        manager.configurationStores().listKeys("myResourceGroup", "contoso", null, com.azure.core.util.Context.NONE);
     }
 }

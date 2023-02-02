@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for KeyValues Get. */
 public final class KeyValuesGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class KeyValuesGetSamples {
      * @param manager Entry point to AppConfigurationManager.
      */
     public static void keyValuesGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().getWithResponse("myResourceGroup", "contoso", "myKey$myLabel", Context.NONE);
+        manager
+            .keyValues()
+            .getWithResponse("myResourceGroup", "contoso", "myKey$myLabel", com.azure.core.util.Context.NONE);
     }
 }

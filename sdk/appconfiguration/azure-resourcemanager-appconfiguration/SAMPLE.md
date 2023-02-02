@@ -20,11 +20,11 @@
 - [CreateOrUpdate](#keyvalues_createorupdate)
 - [Delete](#keyvalues_delete)
 - [Get](#keyvalues_get)
-- [ListByConfigurationStore](#keyvalues_listbyconfigurationstore)
 
 ## Operations
 
 - [CheckNameAvailability](#operations_checknameavailability)
+- [List](#operations_list)
 - [RegionalCheckNameAvailability](#operations_regionalchecknameavailability)
 
 ## PrivateEndpointConnections
@@ -133,8 +133,6 @@ public final class ConfigurationStoresCreateSamples {
 ### ConfigurationStores_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores Delete. */
 public final class ConfigurationStoresDeleteSamples {
     /*
@@ -147,7 +145,7 @@ public final class ConfigurationStoresDeleteSamples {
      */
     public static void configurationStoresDelete(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().delete("myResourceGroup", "contoso", Context.NONE);
+        manager.configurationStores().delete("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -155,8 +153,6 @@ public final class ConfigurationStoresDeleteSamples {
 ### ConfigurationStores_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores GetByResourceGroup. */
 public final class ConfigurationStoresGetByResourceGroupSamples {
     /*
@@ -169,7 +165,9 @@ public final class ConfigurationStoresGetByResourceGroupSamples {
      */
     public static void configurationStoresGet(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE);
+        manager
+            .configurationStores()
+            .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -177,8 +175,6 @@ public final class ConfigurationStoresGetByResourceGroupSamples {
 ### ConfigurationStores_GetDeleted
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores GetDeleted. */
 public final class ConfigurationStoresGetDeletedSamples {
     /*
@@ -191,7 +187,7 @@ public final class ConfigurationStoresGetDeletedSamples {
      */
     public static void deletedConfigurationStoresGet(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().getDeletedWithResponse("westus", "contoso", Context.NONE);
+        manager.configurationStores().getDeletedWithResponse("westus", "contoso", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -199,8 +195,6 @@ public final class ConfigurationStoresGetDeletedSamples {
 ### ConfigurationStores_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores List. */
 public final class ConfigurationStoresListSamples {
     /*
@@ -213,7 +207,7 @@ public final class ConfigurationStoresListSamples {
      */
     public static void configurationStoresList(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().list(null, Context.NONE);
+        manager.configurationStores().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -221,8 +215,6 @@ public final class ConfigurationStoresListSamples {
 ### ConfigurationStores_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores ListByResourceGroup. */
 public final class ConfigurationStoresListByResourceGroupSamples {
     /*
@@ -235,7 +227,7 @@ public final class ConfigurationStoresListByResourceGroupSamples {
      */
     public static void configurationStoresListByResourceGroup(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listByResourceGroup("myResourceGroup", null, Context.NONE);
+        manager.configurationStores().listByResourceGroup("myResourceGroup", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -243,8 +235,6 @@ public final class ConfigurationStoresListByResourceGroupSamples {
 ### ConfigurationStores_ListDeleted
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores ListDeleted. */
 public final class ConfigurationStoresListDeletedSamples {
     /*
@@ -257,7 +247,7 @@ public final class ConfigurationStoresListDeletedSamples {
      */
     public static void deletedConfigurationStoresList(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listDeleted(Context.NONE);
+        manager.configurationStores().listDeleted(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -265,8 +255,6 @@ public final class ConfigurationStoresListDeletedSamples {
 ### ConfigurationStores_ListKeys
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores ListKeys. */
 public final class ConfigurationStoresListKeysSamples {
     /*
@@ -279,7 +267,7 @@ public final class ConfigurationStoresListKeysSamples {
      */
     public static void configurationStoresListKeys(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listKeys("myResourceGroup", "contoso", null, Context.NONE);
+        manager.configurationStores().listKeys("myResourceGroup", "contoso", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -287,8 +275,6 @@ public final class ConfigurationStoresListKeysSamples {
 ### ConfigurationStores_PurgeDeleted
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores PurgeDeleted. */
 public final class ConfigurationStoresPurgeDeletedSamples {
     /*
@@ -301,7 +287,7 @@ public final class ConfigurationStoresPurgeDeletedSamples {
      */
     public static void purgeADeletedConfigurationStore(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().purgeDeleted("westus", "contoso", Context.NONE);
+        manager.configurationStores().purgeDeleted("westus", "contoso", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -309,7 +295,6 @@ public final class ConfigurationStoresPurgeDeletedSamples {
 ### ConfigurationStores_RegenerateKey
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 
 /** Samples for ConfigurationStores RegenerateKey. */
@@ -327,7 +312,10 @@ public final class ConfigurationStoresRegenerateKeySamples {
         manager
             .configurationStores()
             .regenerateKeyWithResponse(
-                "myResourceGroup", "contoso", new RegenerateKeyParameters().withId("439AD01B4BE67DB1"), Context.NONE);
+                "myResourceGroup",
+                "contoso",
+                new RegenerateKeyParameters().withId("439AD01B4BE67DB1"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -335,7 +323,6 @@ public final class ConfigurationStoresRegenerateKeySamples {
 ### ConfigurationStores_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStore;
 import com.azure.resourcemanager.appconfiguration.models.IdentityType;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
@@ -359,7 +346,7 @@ public final class ConfigurationStoresUpdateSamples {
         ConfigurationStore resource =
             manager
                 .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withSku(new Sku().withName("Standard")).withDisableLocalAuth(true).apply();
     }
@@ -377,7 +364,7 @@ public final class ConfigurationStoresUpdateSamples {
         ConfigurationStore resource =
             manager
                 .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("Category", "Marketing")).withSku(new Sku().withName("Standard")).apply();
     }
@@ -395,7 +382,7 @@ public final class ConfigurationStoresUpdateSamples {
         ConfigurationStore resource =
             manager
                 .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -467,8 +454,6 @@ public final class KeyValuesCreateOrUpdateSamples {
 ### KeyValues_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for KeyValues Delete. */
 public final class KeyValuesDeleteSamples {
     /*
@@ -480,7 +465,7 @@ public final class KeyValuesDeleteSamples {
      * @param manager Entry point to AppConfigurationManager.
      */
     public static void keyValuesDelete(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().delete("myResourceGroup", "contoso", "myKey$myLabel", Context.NONE);
+        manager.keyValues().delete("myResourceGroup", "contoso", "myKey$myLabel", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -488,8 +473,6 @@ public final class KeyValuesDeleteSamples {
 ### KeyValues_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for KeyValues Get. */
 public final class KeyValuesGetSamples {
     /*
@@ -501,29 +484,9 @@ public final class KeyValuesGetSamples {
      * @param manager Entry point to AppConfigurationManager.
      */
     public static void keyValuesGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().getWithResponse("myResourceGroup", "contoso", "myKey$myLabel", Context.NONE);
-    }
-}
-```
-
-### KeyValues_ListByConfigurationStore
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for KeyValues ListByConfigurationStore. */
-public final class KeyValuesListByConfigurationStoreSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresListKeyValues.json
-     */
-    /**
-     * Sample code: KeyValues_ListByConfigurationStore.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void keyValuesListByConfigurationStore(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().listByConfigurationStore("myResourceGroup", "contoso", null, Context.NONE);
+        manager
+            .keyValues()
+            .getWithResponse("myResourceGroup", "contoso", "myKey$myLabel", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -531,7 +494,6 @@ public final class KeyValuesListByConfigurationStoreSamples {
 ### Operations_CheckNameAvailability
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceType;
 
@@ -553,7 +515,7 @@ public final class OperationsCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -572,7 +534,26 @@ public final class OperationsCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/OperationsList.json
+     */
+    /**
+     * Sample code: Operations_List.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.operations().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -580,7 +561,6 @@ public final class OperationsCheckNameAvailabilitySamples {
 ### Operations_RegionalCheckNameAvailability
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceType;
 
@@ -603,7 +583,7 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -623,7 +603,7 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -632,29 +612,33 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
 
 ```java
 import com.azure.resourcemanager.appconfiguration.models.ConnectionStatus;
+import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.appconfiguration.models.PrivateLinkServiceConnectionState;
 
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresCreatePrivateEndpointConnection.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresUpdatePrivateEndpointConnection.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_CreateOrUpdate.
+     * Sample code: PrivateEndpointConnection_Update.
      *
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void privateEndpointConnectionCreateOrUpdate(
+    public static void privateEndpointConnectionUpdate(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .define("myConnection")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
+        PrivateEndpointConnection resource =
+            manager
+                .privateEndpointConnections()
+                .getWithResponse("myResourceGroup", "contoso", "myConnection", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
             .withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState()
                     .withStatus(ConnectionStatus.APPROVED)
                     .withDescription("Auto-Approved"))
-            .create();
+            .apply();
     }
 }
 ```
@@ -662,8 +646,6 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 ### PrivateEndpointConnections_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
@@ -676,7 +658,9 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void privateEndpointConnectionsDelete(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateEndpointConnections().delete("myResourceGroup", "contoso", "myConnection", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .delete("myResourceGroup", "contoso", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -684,8 +668,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 ### PrivateEndpointConnections_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
@@ -700,7 +682,7 @@ public final class PrivateEndpointConnectionsGetSamples {
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         manager
             .privateEndpointConnections()
-            .getWithResponse("myResourceGroup", "contoso", "myConnection", Context.NONE);
+            .getWithResponse("myResourceGroup", "contoso", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -708,8 +690,6 @@ public final class PrivateEndpointConnectionsGetSamples {
 ### PrivateEndpointConnections_ListByConfigurationStore
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections ListByConfigurationStore. */
 public final class PrivateEndpointConnectionsListByConfigurationStoreSamples {
     /*
@@ -722,7 +702,9 @@ public final class PrivateEndpointConnectionsListByConfigurationStoreSamples {
      */
     public static void privateEndpointConnectionList(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateEndpointConnections().listByConfigurationStore("myResourceGroup", "contoso", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .listByConfigurationStore("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -730,8 +712,6 @@ public final class PrivateEndpointConnectionsListByConfigurationStoreSamples {
 ### PrivateLinkResources_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
@@ -746,7 +726,7 @@ public final class PrivateLinkResourcesGetSamples {
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         manager
             .privateLinkResources()
-            .getWithResponse("myResourceGroup", "contoso", "configurationStores", Context.NONE);
+            .getWithResponse("myResourceGroup", "contoso", "configurationStores", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -754,8 +734,6 @@ public final class PrivateLinkResourcesGetSamples {
 ### PrivateLinkResources_ListByConfigurationStore
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources ListByConfigurationStore. */
 public final class PrivateLinkResourcesListByConfigurationStoreSamples {
     /*
@@ -768,7 +746,9 @@ public final class PrivateLinkResourcesListByConfigurationStoreSamples {
      */
     public static void privateLinkResourcesListGroupIds(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateLinkResources().listByConfigurationStore("myResourceGroup", "contoso", Context.NONE);
+        manager
+            .privateLinkResources()
+            .listByConfigurationStore("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
     }
 }
 ```
