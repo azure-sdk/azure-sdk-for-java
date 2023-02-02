@@ -15,6 +15,10 @@ import java.util.List;
 /** Properties of the contact profile resource. */
 @Fluent
 public final class ContactProfileProperties extends ContactProfilesProperties {
+    /** Creates an instance of ContactProfileProperties class. */
+    public ContactProfileProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public ContactProfileProperties withProvisioningState(

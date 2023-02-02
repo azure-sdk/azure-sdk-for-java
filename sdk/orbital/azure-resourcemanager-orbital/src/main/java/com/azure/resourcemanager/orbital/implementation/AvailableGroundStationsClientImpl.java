@@ -57,7 +57,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureOrbitalAvailabl")
-    private interface AvailableGroundStationsService {
+    public interface AvailableGroundStationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/availableGroundStations")
         @ExpectedResponses({200})
@@ -360,20 +360,6 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * Gets the specified available ground station.
      *
      * @param groundStationName Ground Station name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified available ground station.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AvailableGroundStationInner get(String groundStationName) {
-        return getAsync(groundStationName).block();
-    }
-
-    /**
-     * Gets the specified available ground station.
-     *
-     * @param groundStationName Ground Station name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -386,9 +372,24 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
     }
 
     /**
+     * Gets the specified available ground station.
+     *
+     * @param groundStationName Ground Station name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified available ground station.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AvailableGroundStationInner get(String groundStationName) {
+        return getWithResponse(groundStationName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -424,7 +425,8 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

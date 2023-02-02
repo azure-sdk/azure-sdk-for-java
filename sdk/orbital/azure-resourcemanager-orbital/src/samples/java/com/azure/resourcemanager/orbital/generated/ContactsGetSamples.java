@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Contacts Get. */
 public final class ContactsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class ContactsGetSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getContact(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contacts().getWithResponse("contoso-Rgp", "CONTOSO_SAT", "contact1", Context.NONE);
+        manager.contacts().getWithResponse("contoso-Rgp", "CONTOSO_SAT", "contact1", com.azure.core.util.Context.NONE);
     }
 }

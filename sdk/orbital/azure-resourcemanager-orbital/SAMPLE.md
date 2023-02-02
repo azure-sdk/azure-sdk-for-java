@@ -42,8 +42,6 @@
 ### AvailableGroundStations_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AvailableGroundStations Get. */
 public final class AvailableGroundStationsGetSamples {
     /*
@@ -55,7 +53,7 @@ public final class AvailableGroundStationsGetSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getGroundStation(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.availableGroundStations().getWithResponse("EASTUS2_0", Context.NONE);
+        manager.availableGroundStations().getWithResponse("EASTUS2_0", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -63,7 +61,6 @@ public final class AvailableGroundStationsGetSamples {
 ### AvailableGroundStations_List
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.models.CapabilityParameter;
 
 /** Samples for AvailableGroundStations List. */
@@ -77,7 +74,7 @@ public final class AvailableGroundStationsListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfGroundStationsByCapability(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.availableGroundStations().list(CapabilityParameter.EARTH_OBSERVATION, Context.NONE);
+        manager.availableGroundStations().list(CapabilityParameter.EARTH_OBSERVATION, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -85,6 +82,16 @@ public final class AvailableGroundStationsListSamples {
 ### ContactProfiles_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.orbital.models.AutoTrackingConfiguration;
+import com.azure.resourcemanager.orbital.models.ContactProfileLink;
+import com.azure.resourcemanager.orbital.models.ContactProfileLinkChannel;
+import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesNetworkConfiguration;
+import com.azure.resourcemanager.orbital.models.Direction;
+import com.azure.resourcemanager.orbital.models.EndPoint;
+import com.azure.resourcemanager.orbital.models.Polarization;
+import com.azure.resourcemanager.orbital.models.Protocol;
+import java.util.Arrays;
+
 /** Samples for ContactProfiles CreateOrUpdate. */
 public final class ContactProfilesCreateOrUpdateSamples {
     /*
@@ -101,6 +108,56 @@ public final class ContactProfilesCreateOrUpdateSamples {
             .define("CONTOSO-CP")
             .withRegion("eastus2")
             .withExistingResourceGroup("contoso-Rgp")
+            .withMinimumViableContactDuration("PT1M")
+            .withMinimumElevationDegrees(5.0F)
+            .withAutoTrackingConfiguration(AutoTrackingConfiguration.DISABLED)
+            .withEventHubUri(
+                "/subscriptions/c1be1141-a7c9-4aac-9608-3c2e2f1152c3/resourceGroups/contoso-Rgp/providers/Microsoft.EventHub/namespaces/contosoHub/eventhubs/contosoHub")
+            .withNetworkConfiguration(
+                new ContactProfilesPropertiesNetworkConfiguration()
+                    .withSubnetId(
+                        "/subscriptions/c1be1141-a7c9-4aac-9608-3c2e2f1152c3/resourceGroups/contoso-Rgp/providers/Microsoft.Network/virtualNetworks/contoso-vnet/subnets/orbital-delegated-subnet"))
+            .withLinks(
+                Arrays
+                    .asList(
+                        new ContactProfileLink()
+                            .withName("contoso-uplink")
+                            .withPolarization(Polarization.LHCP)
+                            .withDirection(Direction.UPLINK)
+                            .withGainOverTemperature(0.0F)
+                            .withEirpdBW(45.0F)
+                            .withChannels(
+                                Arrays
+                                    .asList(
+                                        new ContactProfileLinkChannel()
+                                            .withName("contoso-uplink-channel")
+                                            .withCenterFrequencyMHz(2250f)
+                                            .withBandwidthMHz(2f)
+                                            .withEndPoint(
+                                                new EndPoint()
+                                                    .withIpAddress("10.1.0.4")
+                                                    .withEndPointName("ContosoTest_Uplink")
+                                                    .withPort("50000")
+                                                    .withProtocol(Protocol.TCP)))),
+                        new ContactProfileLink()
+                            .withName("contoso-downlink")
+                            .withPolarization(Polarization.RHCP)
+                            .withDirection(Direction.DOWNLINK)
+                            .withGainOverTemperature(25.0F)
+                            .withEirpdBW(0.0F)
+                            .withChannels(
+                                Arrays
+                                    .asList(
+                                        new ContactProfileLinkChannel()
+                                            .withName("contoso-downlink-channel")
+                                            .withCenterFrequencyMHz(8160f)
+                                            .withBandwidthMHz(15f)
+                                            .withEndPoint(
+                                                new EndPoint()
+                                                    .withIpAddress("10.1.0.5")
+                                                    .withEndPointName("ContosoTest_Downlink")
+                                                    .withPort("50001")
+                                                    .withProtocol(Protocol.UDP))))))
             .create();
     }
 }
@@ -109,8 +166,6 @@ public final class ContactProfilesCreateOrUpdateSamples {
 ### ContactProfiles_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ContactProfiles Delete. */
 public final class ContactProfilesDeleteSamples {
     /*
@@ -122,7 +177,7 @@ public final class ContactProfilesDeleteSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void deleteContactProfile(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contactProfiles().delete("contoso-Rgp", "CONTOSO-CP", Context.NONE);
+        manager.contactProfiles().delete("contoso-Rgp", "CONTOSO-CP", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -130,8 +185,6 @@ public final class ContactProfilesDeleteSamples {
 ### ContactProfiles_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ContactProfiles GetByResourceGroup. */
 public final class ContactProfilesGetByResourceGroupSamples {
     /*
@@ -143,7 +196,9 @@ public final class ContactProfilesGetByResourceGroupSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getAContactProfile(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contactProfiles().getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO-CP", Context.NONE);
+        manager
+            .contactProfiles()
+            .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO-CP", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -151,8 +206,6 @@ public final class ContactProfilesGetByResourceGroupSamples {
 ### ContactProfiles_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ContactProfiles List. */
 public final class ContactProfilesListSamples {
     /*
@@ -164,7 +217,7 @@ public final class ContactProfilesListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfContactProfiles(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contactProfiles().list("opaqueString", Context.NONE);
+        manager.contactProfiles().list("opaqueString", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -172,8 +225,6 @@ public final class ContactProfilesListSamples {
 ### ContactProfiles_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ContactProfiles ListByResourceGroup. */
 public final class ContactProfilesListByResourceGroupSamples {
     /*
@@ -185,7 +236,7 @@ public final class ContactProfilesListByResourceGroupSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfContactProfilesByResourceGroup(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contactProfiles().listByResourceGroup("contoso-Rgp", "opaqueString", Context.NONE);
+        manager.contactProfiles().listByResourceGroup("contoso-Rgp", "opaqueString", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -193,7 +244,6 @@ public final class ContactProfilesListByResourceGroupSamples {
 ### ContactProfiles_UpdateTags
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.models.ContactProfile;
 import java.util.HashMap;
 import java.util.Map;
@@ -212,7 +262,7 @@ public final class ContactProfilesUpdateTagsSamples {
         ContactProfile resource =
             manager
                 .contactProfiles()
-                .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO-CP", Context.NONE)
+                .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO-CP", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -266,8 +316,6 @@ public final class ContactsCreateSamples {
 ### Contacts_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Contacts Delete. */
 public final class ContactsDeleteSamples {
     /*
@@ -279,7 +327,7 @@ public final class ContactsDeleteSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void deleteContact(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contacts().delete("contoso-Rgp", "CONTOSO_SAT", "contact1", Context.NONE);
+        manager.contacts().delete("contoso-Rgp", "CONTOSO_SAT", "contact1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -287,8 +335,6 @@ public final class ContactsDeleteSamples {
 ### Contacts_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Contacts Get. */
 public final class ContactsGetSamples {
     /*
@@ -300,7 +346,7 @@ public final class ContactsGetSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getContact(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contacts().getWithResponse("contoso-Rgp", "CONTOSO_SAT", "contact1", Context.NONE);
+        manager.contacts().getWithResponse("contoso-Rgp", "CONTOSO_SAT", "contact1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -308,8 +354,6 @@ public final class ContactsGetSamples {
 ### Contacts_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Contacts List. */
 public final class ContactsListSamples {
     /*
@@ -321,7 +365,7 @@ public final class ContactsListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfSpacecraft(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contacts().list("contoso-Rgp", "CONTOSO_SAT", "opaqueString", Context.NONE);
+        manager.contacts().list("contoso-Rgp", "CONTOSO_SAT", "opaqueString", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -329,8 +373,6 @@ public final class ContactsListSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -342,7 +384,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void operationsList(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -350,8 +392,6 @@ public final class OperationsListSamples {
 ### OperationsResults_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for OperationsResults Get. */
 public final class OperationsResultsGetSamples {
     /*
@@ -363,7 +403,9 @@ public final class OperationsResultsGetSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void kustoOperationResultsGet(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.operationsResults().get("eastus2", "30972f1b-b61d-4fd8-bd34-3dcfa24670f3", Context.NONE);
+        manager
+            .operationsResults()
+            .get("eastus2", "30972f1b-b61d-4fd8-bd34-3dcfa24670f3", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -419,8 +461,6 @@ public final class SpacecraftsCreateOrUpdateSamples {
 ### Spacecrafts_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Spacecrafts Delete. */
 public final class SpacecraftsDeleteSamples {
     /*
@@ -432,7 +472,7 @@ public final class SpacecraftsDeleteSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void deleteSpacecraft(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.spacecrafts().delete("contoso-Rgp", "CONTOSO_SAT", Context.NONE);
+        manager.spacecrafts().delete("contoso-Rgp", "CONTOSO_SAT", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -440,8 +480,6 @@ public final class SpacecraftsDeleteSamples {
 ### Spacecrafts_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Spacecrafts GetByResourceGroup. */
 public final class SpacecraftsGetByResourceGroupSamples {
     /*
@@ -453,7 +491,9 @@ public final class SpacecraftsGetByResourceGroupSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getSpacecraft(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.spacecrafts().getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO_SAT", Context.NONE);
+        manager
+            .spacecrafts()
+            .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO_SAT", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -461,8 +501,6 @@ public final class SpacecraftsGetByResourceGroupSamples {
 ### Spacecrafts_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Spacecrafts List. */
 public final class SpacecraftsListSamples {
     /*
@@ -474,7 +512,7 @@ public final class SpacecraftsListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfSpacecraftBySubscription(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.spacecrafts().list("opaqueString", Context.NONE);
+        manager.spacecrafts().list("opaqueString", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -482,7 +520,6 @@ public final class SpacecraftsListSamples {
 ### Spacecrafts_ListAvailableContacts
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.models.ContactParameters;
 import com.azure.resourcemanager.orbital.models.ContactParametersContactProfile;
 import java.time.OffsetDateTime;
@@ -511,7 +548,7 @@ public final class SpacecraftsListAvailableContactsSamples {
                     .withGroundStationName("EASTUS2_0")
                     .withStartTime(OffsetDateTime.parse("2022-03-01T11:30:00Z"))
                     .withEndTime(OffsetDateTime.parse("2022-03-02T11:30:00Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -519,8 +556,6 @@ public final class SpacecraftsListAvailableContactsSamples {
 ### Spacecrafts_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Spacecrafts ListByResourceGroup. */
 public final class SpacecraftsListByResourceGroupSamples {
     /*
@@ -532,7 +567,7 @@ public final class SpacecraftsListByResourceGroupSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfSpacecraftByResourceGroup(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.spacecrafts().listByResourceGroup("contoso-Rgp", "opaqueString", Context.NONE);
+        manager.spacecrafts().listByResourceGroup("contoso-Rgp", "opaqueString", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -540,7 +575,6 @@ public final class SpacecraftsListByResourceGroupSamples {
 ### Spacecrafts_UpdateTags
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.models.Spacecraft;
 import java.util.HashMap;
 import java.util.Map;
@@ -557,7 +591,10 @@ public final class SpacecraftsUpdateTagsSamples {
      */
     public static void updateSpacecraftTags(com.azure.resourcemanager.orbital.OrbitalManager manager) {
         Spacecraft resource =
-            manager.spacecrafts().getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO_SAT", Context.NONE).getValue();
+            manager
+                .spacecrafts()
+                .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO_SAT", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

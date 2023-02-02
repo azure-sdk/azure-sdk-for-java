@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.models.CapabilityParameter;
 
 /** Samples for AvailableGroundStations List. */
@@ -18,6 +17,6 @@ public final class AvailableGroundStationsListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfGroundStationsByCapability(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.availableGroundStations().list(CapabilityParameter.EARTH_OBSERVATION, Context.NONE);
+        manager.availableGroundStations().list(CapabilityParameter.EARTH_OBSERVATION, com.azure.core.util.Context.NONE);
     }
 }

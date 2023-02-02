@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AvailableGroundStations Get. */
 public final class AvailableGroundStationsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class AvailableGroundStationsGetSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getGroundStation(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.availableGroundStations().getWithResponse("EASTUS2_0", Context.NONE);
+        manager.availableGroundStations().getWithResponse("EASTUS2_0", com.azure.core.util.Context.NONE);
     }
 }

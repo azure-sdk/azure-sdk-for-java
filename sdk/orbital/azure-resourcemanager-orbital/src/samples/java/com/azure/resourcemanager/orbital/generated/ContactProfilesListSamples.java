@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ContactProfiles List. */
 public final class ContactProfilesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class ContactProfilesListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfContactProfiles(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contactProfiles().list("opaqueString", Context.NONE);
+        manager.contactProfiles().list("opaqueString", com.azure.core.util.Context.NONE);
     }
 }

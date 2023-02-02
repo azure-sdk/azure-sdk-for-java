@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ContactProfiles GetByResourceGroup. */
 public final class ContactProfilesGetByResourceGroupSamples {
     /*
@@ -17,6 +15,8 @@ public final class ContactProfilesGetByResourceGroupSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getAContactProfile(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.contactProfiles().getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO-CP", Context.NONE);
+        manager
+            .contactProfiles()
+            .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO-CP", com.azure.core.util.Context.NONE);
     }
 }

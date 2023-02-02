@@ -50,6 +50,10 @@ public final class SpacecraftsProperties {
     @JsonProperty(value = "links")
     private List<SpacecraftLink> links;
 
+    /** Creates an instance of SpacecraftsProperties class. */
+    public SpacecraftsProperties() {
+    }
+
     /**
      * Get the provisioningState property: The current state of the resource's creation, deletion, or modification.
      *

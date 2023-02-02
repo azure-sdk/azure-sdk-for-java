@@ -23,6 +23,10 @@ public final class AuthorizedGroundstation {
     @JsonProperty(value = "expirationDate")
     private LocalDate expirationDate;
 
+    /** Creates an instance of AuthorizedGroundstation class. */
+    public AuthorizedGroundstation() {
+    }
+
     /**
      * Get the groundStation property: Groundstation name.
      *

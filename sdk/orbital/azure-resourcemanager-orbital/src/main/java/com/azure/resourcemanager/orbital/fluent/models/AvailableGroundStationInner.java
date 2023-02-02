@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.orbital.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.orbital.models.ReleaseMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Ground Stations available to schedule Contacts. */
@@ -39,6 +40,10 @@ public final class AvailableGroundStationInner {
      */
     @JsonProperty(value = "properties")
     private AvailableGroundStationProperties innerProperties;
+
+    /** Creates an instance of AvailableGroundStationInner class. */
+    public AvailableGroundStationInner() {
+    }
 
     /**
      * Get the id property: ID of groundStation.
@@ -94,6 +99,144 @@ public final class AvailableGroundStationInner {
      */
     private AvailableGroundStationProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the city property: City of ground station.
+     *
+     * @return the city value.
+     */
+    public String city() {
+        return this.innerProperties() == null ? null : this.innerProperties().city();
+    }
+
+    /**
+     * Set the city property: City of ground station.
+     *
+     * @param city the city value to set.
+     * @return the AvailableGroundStationInner object itself.
+     */
+    public AvailableGroundStationInner withCity(String city) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailableGroundStationProperties();
+        }
+        this.innerProperties().withCity(city);
+        return this;
+    }
+
+    /**
+     * Get the providerName property: Ground station provider name.
+     *
+     * @return the providerName value.
+     */
+    public String providerName() {
+        return this.innerProperties() == null ? null : this.innerProperties().providerName();
+    }
+
+    /**
+     * Set the providerName property: Ground station provider name.
+     *
+     * @param providerName the providerName value to set.
+     * @return the AvailableGroundStationInner object itself.
+     */
+    public AvailableGroundStationInner withProviderName(String providerName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailableGroundStationProperties();
+        }
+        this.innerProperties().withProviderName(providerName);
+        return this;
+    }
+
+    /**
+     * Get the longitudeDegrees property: Longitude of the ground station in decimal degrees.
+     *
+     * @return the longitudeDegrees value.
+     */
+    public Float longitudeDegrees() {
+        return this.innerProperties() == null ? null : this.innerProperties().longitudeDegrees();
+    }
+
+    /**
+     * Set the longitudeDegrees property: Longitude of the ground station in decimal degrees.
+     *
+     * @param longitudeDegrees the longitudeDegrees value to set.
+     * @return the AvailableGroundStationInner object itself.
+     */
+    public AvailableGroundStationInner withLongitudeDegrees(Float longitudeDegrees) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailableGroundStationProperties();
+        }
+        this.innerProperties().withLongitudeDegrees(longitudeDegrees);
+        return this;
+    }
+
+    /**
+     * Get the latitudeDegrees property: Latitude of the ground station in decimal degrees.
+     *
+     * @return the latitudeDegrees value.
+     */
+    public Float latitudeDegrees() {
+        return this.innerProperties() == null ? null : this.innerProperties().latitudeDegrees();
+    }
+
+    /**
+     * Set the latitudeDegrees property: Latitude of the ground station in decimal degrees.
+     *
+     * @param latitudeDegrees the latitudeDegrees value to set.
+     * @return the AvailableGroundStationInner object itself.
+     */
+    public AvailableGroundStationInner withLatitudeDegrees(Float latitudeDegrees) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailableGroundStationProperties();
+        }
+        this.innerProperties().withLatitudeDegrees(latitudeDegrees);
+        return this;
+    }
+
+    /**
+     * Get the altitudeMeters property: Altitude of the ground station.
+     *
+     * @return the altitudeMeters value.
+     */
+    public Float altitudeMeters() {
+        return this.innerProperties() == null ? null : this.innerProperties().altitudeMeters();
+    }
+
+    /**
+     * Set the altitudeMeters property: Altitude of the ground station.
+     *
+     * @param altitudeMeters the altitudeMeters value to set.
+     * @return the AvailableGroundStationInner object itself.
+     */
+    public AvailableGroundStationInner withAltitudeMeters(Float altitudeMeters) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailableGroundStationProperties();
+        }
+        this.innerProperties().withAltitudeMeters(altitudeMeters);
+        return this;
+    }
+
+    /**
+     * Get the releaseMode property: Release Status of a ground station.
+     *
+     * @return the releaseMode value.
+     */
+    public ReleaseMode releaseMode() {
+        return this.innerProperties() == null ? null : this.innerProperties().releaseMode();
+    }
+
+    /**
+     * Set the releaseMode property: Release Status of a ground station.
+     *
+     * @param releaseMode the releaseMode value to set.
+     * @return the AvailableGroundStationInner object itself.
+     */
+    public AvailableGroundStationInner withReleaseMode(ReleaseMode releaseMode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailableGroundStationProperties();
+        }
+        this.innerProperties().withReleaseMode(releaseMode);
+        return this;
     }
 
     /**

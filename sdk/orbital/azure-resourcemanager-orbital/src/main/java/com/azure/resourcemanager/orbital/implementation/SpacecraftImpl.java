@@ -6,6 +6,7 @@ package com.azure.resourcemanager.orbital.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.fluent.models.SpacecraftInner;
 import com.azure.resourcemanager.orbital.models.AvailableContacts;
@@ -50,6 +51,10 @@ public final class SpacecraftImpl implements Spacecraft, Spacecraft.Definition, 
 
     public String etag() {
         return this.innerModel().etag();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public SpacecraftsPropertiesProvisioningState provisioningState() {

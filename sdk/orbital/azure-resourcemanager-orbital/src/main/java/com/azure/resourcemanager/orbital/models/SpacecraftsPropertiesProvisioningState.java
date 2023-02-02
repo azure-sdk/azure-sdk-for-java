@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SpacecraftsPropertiesProvisioningState. */
+/** The current state of the resource's creation, deletion, or modification. */
 public final class SpacecraftsPropertiesProvisioningState
     extends ExpandableStringEnum<SpacecraftsPropertiesProvisioningState> {
     /** Static value Creating for SpacecraftsPropertiesProvisioningState. */
@@ -28,6 +28,15 @@ public final class SpacecraftsPropertiesProvisioningState
 
     /** Static value Deleting for SpacecraftsPropertiesProvisioningState. */
     public static final SpacecraftsPropertiesProvisioningState DELETING = fromString("Deleting");
+
+    /**
+     * Creates a new instance of SpacecraftsPropertiesProvisioningState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SpacecraftsPropertiesProvisioningState() {
+    }
 
     /**
      * Creates or finds a SpacecraftsPropertiesProvisioningState from its string representation.

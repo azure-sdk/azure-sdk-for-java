@@ -61,6 +61,10 @@ public final class OperationResultInner {
     @JsonProperty(value = "error")
     private OperationResultErrorProperties error;
 
+    /** Creates an instance of OperationResultInner class. */
+    public OperationResultInner() {
+    }
+
     /**
      * Get the id property: ID of the resource.
      *

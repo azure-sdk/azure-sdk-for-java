@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ContactProfilesPropertiesProvisioningState. */
+/** The current state of the resource's creation, deletion, or modification. */
 public final class ContactProfilesPropertiesProvisioningState
     extends ExpandableStringEnum<ContactProfilesPropertiesProvisioningState> {
     /** Static value Creating for ContactProfilesPropertiesProvisioningState. */
@@ -28,6 +28,15 @@ public final class ContactProfilesPropertiesProvisioningState
 
     /** Static value Deleting for ContactProfilesPropertiesProvisioningState. */
     public static final ContactProfilesPropertiesProvisioningState DELETING = fromString("Deleting");
+
+    /**
+     * Creates a new instance of ContactProfilesPropertiesProvisioningState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ContactProfilesPropertiesProvisioningState() {
+    }
 
     /**
      * Creates or finds a ContactProfilesPropertiesProvisioningState from its string representation.

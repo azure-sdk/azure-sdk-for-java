@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Spacecrafts List. */
 public final class SpacecraftsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class SpacecraftsListSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void listOfSpacecraftBySubscription(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.spacecrafts().list("opaqueString", Context.NONE);
+        manager.spacecrafts().list("opaqueString", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.models.ContactParameters;
 import com.azure.resourcemanager.orbital.models.ContactParametersContactProfile;
 import java.time.OffsetDateTime;
@@ -33,6 +32,6 @@ public final class SpacecraftsListAvailableContactsSamples {
                     .withGroundStationName("EASTUS2_0")
                     .withStartTime(OffsetDateTime.parse("2022-03-01T11:30:00Z"))
                     .withEndTime(OffsetDateTime.parse("2022-03-02T11:30:00Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

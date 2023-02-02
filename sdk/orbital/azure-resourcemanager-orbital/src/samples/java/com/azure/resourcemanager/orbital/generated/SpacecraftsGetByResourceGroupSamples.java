@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Spacecrafts GetByResourceGroup. */
 public final class SpacecraftsGetByResourceGroupSamples {
     /*
@@ -17,6 +15,8 @@ public final class SpacecraftsGetByResourceGroupSamples {
      * @param manager Entry point to OrbitalManager.
      */
     public static void getSpacecraft(com.azure.resourcemanager.orbital.OrbitalManager manager) {
-        manager.spacecrafts().getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO_SAT", Context.NONE);
+        manager
+            .spacecrafts()
+            .getByResourceGroupWithResponse("contoso-Rgp", "CONTOSO_SAT", com.azure.core.util.Context.NONE);
     }
 }

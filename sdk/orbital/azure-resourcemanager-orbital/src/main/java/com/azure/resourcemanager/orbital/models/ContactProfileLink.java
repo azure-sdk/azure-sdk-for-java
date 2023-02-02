@@ -31,15 +31,13 @@ public final class ContactProfileLink {
     private Direction direction;
 
     /*
-     * Gain To Noise Temperature in db/K. It is the required G/T by the
-     * customer. Not used yet.
+     * Gain To Noise Temperature in db/K. It is the required G/T by the customer. Not used yet.
      */
     @JsonProperty(value = "gainOverTemperature")
     private Float gainOverTemperature;
 
     /*
-     * Effective Isotropic Radiated Power (EIRP) in dBW. It is the required
-     * EIRP by the customer. Not used yet.
+     * Effective Isotropic Radiated Power (EIRP) in dBW. It is the required EIRP by the customer. Not used yet.
      */
     @JsonProperty(value = "eirpdBW")
     private Float eirpdBW;
@@ -49,6 +47,10 @@ public final class ContactProfileLink {
      */
     @JsonProperty(value = "channels", required = true)
     private List<ContactProfileLinkChannel> channels;
+
+    /** Creates an instance of ContactProfileLink class. */
+    public ContactProfileLink() {
+    }
 
     /**
      * Get the name property: Link name.
