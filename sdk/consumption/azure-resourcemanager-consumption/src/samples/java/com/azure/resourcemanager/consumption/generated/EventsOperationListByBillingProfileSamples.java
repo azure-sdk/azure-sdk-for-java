@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventsOperation ListByBillingProfile. */
 public final class EventsOperationListByBillingProfileSamples {
     /*
@@ -17,6 +15,8 @@ public final class EventsOperationListByBillingProfileSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void eventsListByBillingProfile(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.eventsOperations().listByBillingProfile("1234:5678", "4268", "2019-09-01", "2019-10-31", Context.NONE);
+        manager
+            .eventsOperations()
+            .listByBillingProfile("1234:5678", "4268", "2019-09-01", "2019-10-31", com.azure.core.util.Context.NONE);
     }
 }

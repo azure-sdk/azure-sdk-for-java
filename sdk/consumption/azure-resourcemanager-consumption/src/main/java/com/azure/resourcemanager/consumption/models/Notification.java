@@ -6,7 +6,6 @@ package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.List;
 /** The notification associated with a budget. */
 @Fluent
 public final class Notification {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Notification.class);
-
     /*
      * The notification is enabled or not.
      */
@@ -29,33 +26,29 @@ public final class Notification {
     private OperatorType operator;
 
     /*
-     * Threshold value associated with a notification. Notification is sent
-     * when the cost exceeded the threshold. It is always percent and has to be
-     * between 0 and 1000.
+     * Threshold value associated with a notification. Notification is sent when the cost exceeded the threshold. It is
+     * always percent and has to be between 0 and 1000.
      */
     @JsonProperty(value = "threshold", required = true)
     private BigDecimal threshold;
 
     /*
-     * Email addresses to send the budget notification to when the threshold is
-     * exceeded. Must have at least one contact email or contact group
-     * specified at the Subscription or Resource Group scopes. All other scopes
-     * must have at least one contact email specified.
+     * Email addresses to send the budget notification to when the threshold is exceeded. Must have at least one
+     * contact email or contact group specified at the Subscription or Resource Group scopes. All other scopes must
+     * have at least one contact email specified.
      */
     @JsonProperty(value = "contactEmails", required = true)
     private List<String> contactEmails;
 
     /*
-     * Contact roles to send the budget notification to when the threshold is
-     * exceeded.
+     * Contact roles to send the budget notification to when the threshold is exceeded.
      */
     @JsonProperty(value = "contactRoles")
     private List<String> contactRoles;
 
     /*
-     * Action groups to send the budget notification to when the threshold is
-     * exceeded. Must be provided as a fully qualified Azure resource id. Only
-     * supported at Subscription or Resource Group scopes.
+     * Action groups to send the budget notification to when the threshold is exceeded. Must be provided as a fully
+     * qualified Azure resource id. Only supported at Subscription or Resource Group scopes.
      */
     @JsonProperty(value = "contactGroups")
     private List<String> contactGroups;
@@ -71,6 +64,10 @@ public final class Notification {
      */
     @JsonProperty(value = "locale")
     private CultureCode locale;
+
+    /** Creates an instance of Notification class. */
+    public Notification() {
+    }
 
     /**
      * Get the enabled property: The notification is enabled or not.
@@ -247,19 +244,21 @@ public final class Notification {
      */
     public void validate() {
         if (operator() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property operator in model Notification"));
         }
         if (threshold() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property threshold in model Notification"));
         }
         if (contactEmails() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property contactEmails in model Notification"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Notification.class);
 }

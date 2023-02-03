@@ -20,12 +20,13 @@ public interface Tags {
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
      *     for EnrollmentAccount scope and '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
      *     Management Group scope..
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available tag keys for the defined scope.
+     * @return all available tag keys for the defined scope along with {@link Response}.
      */
-    TagsResult get(String scope);
+    Response<TagsResult> getWithResponse(String scope, Context context);
 
     /**
      * Get all available tag keys for the defined scope.
@@ -38,11 +39,10 @@ public interface Tags {
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
      *     for EnrollmentAccount scope and '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
      *     Management Group scope..
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all available tag keys for the defined scope.
      */
-    Response<TagsResult> getWithResponse(String scope, Context context);
+    TagsResult get(String scope);
 }

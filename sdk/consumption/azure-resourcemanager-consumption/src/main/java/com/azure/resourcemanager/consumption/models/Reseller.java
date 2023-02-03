@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The reseller properties. */
 @Immutable
 public final class Reseller {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Reseller.class);
-
     /*
      * The reseller property ID.
      */
@@ -25,6 +21,10 @@ public final class Reseller {
      */
     @JsonProperty(value = "resellerDescription", access = JsonProperty.Access.WRITE_ONLY)
     private String resellerDescription;
+
+    /** Creates an instance of Reseller class. */
+    public Reseller() {
+    }
 
     /**
      * Get the resellerId property: The reseller property ID.
