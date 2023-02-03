@@ -25,8 +25,8 @@ public final class VnetConfiguration {
     private String infrastructureSubnetId;
 
     /*
-     * Resource ID of a subnet that Container App containers are injected into. This subnet must be in the same VNET as
-     * the subnet defined in infrastructureSubnetId. Must not overlap with any other provided IP ranges.
+     * This field is deprecated and not used. If you wish to provide your own subnet that Container App containers are
+     * injected into, then you should leverage the infrastructureSubnetId.
      */
     @JsonProperty(value = "runtimeSubnetId")
     private String runtimeSubnetId;
@@ -109,9 +109,8 @@ public final class VnetConfiguration {
     }
 
     /**
-     * Get the runtimeSubnetId property: Resource ID of a subnet that Container App containers are injected into. This
-     * subnet must be in the same VNET as the subnet defined in infrastructureSubnetId. Must not overlap with any other
-     * provided IP ranges.
+     * Get the runtimeSubnetId property: This field is deprecated and not used. If you wish to provide your own subnet
+     * that Container App containers are injected into, then you should leverage the infrastructureSubnetId.
      *
      * @return the runtimeSubnetId value.
      */
@@ -120,9 +119,8 @@ public final class VnetConfiguration {
     }
 
     /**
-     * Set the runtimeSubnetId property: Resource ID of a subnet that Container App containers are injected into. This
-     * subnet must be in the same VNET as the subnet defined in infrastructureSubnetId. Must not overlap with any other
-     * provided IP ranges.
+     * Set the runtimeSubnetId property: This field is deprecated and not used. If you wish to provide your own subnet
+     * that Container App containers are injected into, then you should leverage the infrastructureSubnetId.
      *
      * @param runtimeSubnetId the runtimeSubnetId value to set.
      * @return the VnetConfiguration object itself.
