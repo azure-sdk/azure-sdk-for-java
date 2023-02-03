@@ -9,8 +9,10 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentSkuProperties;
+import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,6 +27,12 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     @JsonProperty(value = "sku")
     private EnvironmentSkuProperties sku;
+
+    /*
+     * Kind of the Environment.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
 
     /*
      * Managed environment resource specific properties
@@ -59,6 +67,26 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withSku(EnvironmentSkuProperties sku) {
         this.sku = sku;
+        return this;
+    }
+
+    /**
+     * Get the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Kind of the Environment.
+     *
+     * @param kind the kind value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withKind(String kind) {
+        this.kind = kind;
         return this;
     }
 
@@ -303,6 +331,52 @@ public final class ManagedEnvironmentInner extends Resource {
             this.innerProperties = new ManagedEnvironmentProperties();
         }
         this.innerProperties().withWorkloadProfiles(workloadProfiles);
+        return this;
+    }
+
+    /**
+     * Get the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @return the kedaConfiguration value.
+     */
+    public KedaConfiguration kedaConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().kedaConfiguration();
+    }
+
+    /**
+     * Set the kedaConfiguration property: The configuration of Keda component.
+     *
+     * @param kedaConfiguration the kedaConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withKedaConfiguration(KedaConfiguration kedaConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withKedaConfiguration(kedaConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @return the daprConfiguration value.
+     */
+    public DaprConfiguration daprConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().daprConfiguration();
+    }
+
+    /**
+     * Set the daprConfiguration property: The configuration of Dapr component.
+     *
+     * @param daprConfiguration the daprConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withDaprConfiguration(DaprConfiguration daprConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withDaprConfiguration(daprConfiguration);
         return this;
     }
 
