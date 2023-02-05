@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** MTP (Microsoft Threat Protection) requirements check properties. */
 @Fluent
 public final class MtpCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of MtpCheckRequirementsProperties class. */
+    public MtpCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public MtpCheckRequirementsProperties withTenantId(String tenantId) {

@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Data type for TAXII connector. */
 @Fluent
 public final class TiTaxiiDataConnectorDataTypesTaxiiClient extends DataConnectorDataTypeCommon {
+    /** Creates an instance of TiTaxiiDataConnectorDataTypesTaxiiClient class. */
+    public TiTaxiiDataConnectorDataTypesTaxiiClient() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public TiTaxiiDataConnectorDataTypesTaxiiClient withState(DataTypeState state) {

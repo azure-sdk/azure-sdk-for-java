@@ -17,6 +17,10 @@ public final class TIDataConnectorDataTypes {
     @JsonProperty(value = "indicators", required = true)
     private TIDataConnectorDataTypesIndicators indicators;
 
+    /** Creates an instance of TIDataConnectorDataTypes class. */
+    public TIDataConnectorDataTypes() {
+    }
+
     /**
      * Get the indicators property: Data type for indicators connection.
      *

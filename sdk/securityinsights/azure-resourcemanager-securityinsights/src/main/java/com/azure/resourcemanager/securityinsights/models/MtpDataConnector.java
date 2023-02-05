@@ -22,6 +22,10 @@ public final class MtpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private MtpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of MtpDataConnector class. */
+    public MtpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: MTP (Microsoft Threat Protection) data connector properties.
      *
@@ -58,6 +62,29 @@ public final class MtpDataConnector extends DataConnectorInner {
             this.innerProperties = new MtpDataConnectorProperties();
         }
         this.innerProperties().withDataTypes(dataTypes);
+        return this;
+    }
+
+    /**
+     * Get the filteredProviders property: The available filtered providers for the connector.
+     *
+     * @return the filteredProviders value.
+     */
+    public MtpFilteredProviders filteredProviders() {
+        return this.innerProperties() == null ? null : this.innerProperties().filteredProviders();
+    }
+
+    /**
+     * Set the filteredProviders property: The available filtered providers for the connector.
+     *
+     * @param filteredProviders the filteredProviders value to set.
+     * @return the MtpDataConnector object itself.
+     */
+    public MtpDataConnector withFilteredProviders(MtpFilteredProviders filteredProviders) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MtpDataConnectorProperties();
+        }
+        this.innerProperties().withFilteredProviders(filteredProviders);
         return this;
     }
 

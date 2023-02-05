@@ -20,6 +20,15 @@ public final class AutomationRulePropertyArrayConditionSupportedArrayType
         fromString("CustomDetailValues");
 
     /**
+     * Creates a new instance of AutomationRulePropertyArrayConditionSupportedArrayType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyArrayConditionSupportedArrayType() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyArrayConditionSupportedArrayType from its string representation.
      *
      * @param name a name to look for.

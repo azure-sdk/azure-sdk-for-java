@@ -20,6 +20,15 @@ public final class PollingFrequency extends ExpandableStringEnum<PollingFrequenc
     public static final PollingFrequency ONCE_ADAY = fromString("OnceADay");
 
     /**
+     * Creates a new instance of PollingFrequency value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PollingFrequency() {
+    }
+
+    /**
      * Creates or finds a PollingFrequency from its string representation.
      *
      * @param name a name to look for.

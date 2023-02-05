@@ -41,6 +41,10 @@ public final class Repository {
     @JsonProperty(value = "pathMapping")
     private List<ContentPathMap> pathMapping;
 
+    /** Creates an instance of Repository class. */
+    public Repository() {
+    }
+
     /**
      * Get the url property: Url of repository.
      *

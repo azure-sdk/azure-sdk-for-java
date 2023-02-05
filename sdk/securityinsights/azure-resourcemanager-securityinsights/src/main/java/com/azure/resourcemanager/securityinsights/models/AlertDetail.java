@@ -17,6 +17,15 @@ public final class AlertDetail extends ExpandableStringEnum<AlertDetail> {
     public static final AlertDetail SEVERITY = fromString("Severity");
 
     /**
+     * Creates a new instance of AlertDetail value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AlertDetail() {
+    }
+
+    /**
      * Creates or finds a AlertDetail from its string representation.
      *
      * @param name a name to look for.

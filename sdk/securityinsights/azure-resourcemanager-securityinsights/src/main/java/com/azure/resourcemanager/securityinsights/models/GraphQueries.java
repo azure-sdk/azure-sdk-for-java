@@ -28,6 +28,10 @@ public class GraphQueries {
     @JsonProperty(value = "baseQuery")
     private String baseQuery;
 
+    /** Creates an instance of GraphQueries class. */
+    public GraphQueries() {
+    }
+
     /**
      * Get the metricName property: the metric that the query is checking.
      *

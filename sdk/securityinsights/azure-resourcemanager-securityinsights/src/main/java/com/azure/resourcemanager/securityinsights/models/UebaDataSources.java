@@ -23,6 +23,15 @@ public final class UebaDataSources extends ExpandableStringEnum<UebaDataSources>
     public static final UebaDataSources SIGNIN_LOGS = fromString("SigninLogs");
 
     /**
+     * Creates a new instance of UebaDataSources value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public UebaDataSources() {
+    }
+
+    /**
      * Creates or finds a UebaDataSources from its string representation.
      *
      * @param name a name to look for.

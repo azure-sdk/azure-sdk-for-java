@@ -77,6 +77,15 @@ public final class EntityKind extends ExpandableStringEnum<EntityKind> {
     public static final EntityKind NIC = fromString("Nic");
 
     /**
+     * Creates a new instance of EntityKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityKind() {
+    }
+
+    /**
      * Creates or finds a EntityKind from its string representation.
      *
      * @param name a name to look for.

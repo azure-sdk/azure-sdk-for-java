@@ -55,7 +55,7 @@ public final class AlertRuleTemplatesClientImpl implements AlertRuleTemplatesCli
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsAler")
-    private interface AlertRuleTemplatesService {
+    public interface AlertRuleTemplatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -407,22 +407,6 @@ public final class AlertRuleTemplatesClientImpl implements AlertRuleTemplatesCli
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param alertRuleTemplateId Alert rule template ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the alert rule template.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AlertRuleTemplateInner get(String resourceGroupName, String workspaceName, String alertRuleTemplateId) {
-        return getAsync(resourceGroupName, workspaceName, alertRuleTemplateId).block();
-    }
-
-    /**
-     * Gets the alert rule template.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param alertRuleTemplateId Alert rule template ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -433,6 +417,22 @@ public final class AlertRuleTemplatesClientImpl implements AlertRuleTemplatesCli
     public Response<AlertRuleTemplateInner> getWithResponse(
         String resourceGroupName, String workspaceName, String alertRuleTemplateId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, alertRuleTemplateId, context).block();
+    }
+
+    /**
+     * Gets the alert rule template.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param alertRuleTemplateId Alert rule template ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the alert rule template.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AlertRuleTemplateInner get(String resourceGroupName, String workspaceName, String alertRuleTemplateId) {
+        return getWithResponse(resourceGroupName, workspaceName, alertRuleTemplateId, Context.NONE).getValue();
     }
 
     /**
