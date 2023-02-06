@@ -187,6 +187,13 @@ public final class IaasVMRestoreWithRehydrationRequest extends IaasVMRestoreRequ
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public IaasVMRestoreWithRehydrationRequest withExtendedLocation(ExtendedLocation extendedLocation) {
+        super.withExtendedLocation(extendedLocation);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *
