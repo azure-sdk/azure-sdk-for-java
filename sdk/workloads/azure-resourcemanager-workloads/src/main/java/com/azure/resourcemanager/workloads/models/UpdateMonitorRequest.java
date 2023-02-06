@@ -20,10 +20,15 @@ public final class UpdateMonitorRequest {
     private Map<String, String> tags;
 
     /*
-     * Managed service identity (user assigned identities)
+     * A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles
+     * required, visit the ACSS how-to-guide.
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
+
+    /** Creates an instance of UpdateMonitorRequest class. */
+    public UpdateMonitorRequest() {
+    }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
@@ -46,7 +51,8 @@ public final class UpdateMonitorRequest {
     }
 
     /**
-     * Get the identity property: Managed service identity (user assigned identities).
+     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
+     * identity and roles required, visit the ACSS how-to-guide.
      *
      * @return the identity value.
      */
@@ -55,7 +61,8 @@ public final class UpdateMonitorRequest {
     }
 
     /**
-     * Set the identity property: Managed service identity (user assigned identities).
+     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
+     * identity and roles required, visit the ACSS how-to-guide.
      *
      * @param identity the identity value to set.
      * @return the UpdateMonitorRequest object itself.

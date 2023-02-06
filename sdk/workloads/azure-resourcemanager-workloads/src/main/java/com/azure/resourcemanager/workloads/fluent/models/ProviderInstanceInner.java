@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ProviderInstanceInner extends ProxyResource {
     /*
-     * Managed service identity (user assigned identities)
+     * A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles
+     * required, visit the ACSS how-to-guide.
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
@@ -29,14 +30,18 @@ public final class ProviderInstanceInner extends ProxyResource {
     private ProviderInstanceProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of ProviderInstanceInner class. */
+    public ProviderInstanceInner() {
+    }
+
     /**
-     * Get the identity property: Managed service identity (user assigned identities).
+     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
+     * identity and roles required, visit the ACSS how-to-guide.
      *
      * @return the identity value.
      */
@@ -45,7 +50,8 @@ public final class ProviderInstanceInner extends ProxyResource {
     }
 
     /**
-     * Set the identity property: Managed service identity (user assigned identities).
+     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
+     * identity and roles required, visit the ACSS how-to-guide.
      *
      * @param identity the identity value to set.
      * @return the ProviderInstanceInner object itself.
