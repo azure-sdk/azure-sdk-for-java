@@ -19,19 +19,6 @@ public interface ThreatIntelligenceIndicatorMetricsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ThreatIntelligenceMetricsListInner list(String resourceGroupName, String workspaceName);
-
-    /**
-     * Get threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -42,4 +29,17 @@ public interface ThreatIntelligenceIndicatorMetricsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ThreatIntelligenceMetricsListInner> listWithResponse(
         String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Get threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ThreatIntelligenceMetricsListInner list(String resourceGroupName, String workspaceName);
 }

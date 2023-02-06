@@ -77,6 +77,10 @@ public final class WatchlistItemProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> entityMapping;
 
+    /** Creates an instance of WatchlistItemProperties class. */
+    public WatchlistItemProperties() {
+    }
+
     /**
      * Get the watchlistItemType property: The type of the watchlist item.
      *

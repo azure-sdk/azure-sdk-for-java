@@ -20,6 +20,15 @@ public final class DataConnectorLicenseState extends ExpandableStringEnum<DataCo
     public static final DataConnectorLicenseState UNKNOWN = fromString("Unknown");
 
     /**
+     * Creates a new instance of DataConnectorLicenseState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DataConnectorLicenseState() {
+    }
+
+    /**
      * Creates or finds a DataConnectorLicenseState from its string representation.
      *
      * @param name a name to look for.

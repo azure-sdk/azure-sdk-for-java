@@ -23,6 +23,10 @@ public final class Permissions {
     @JsonProperty(value = "customs")
     private List<PermissionsCustomsItem> customs;
 
+    /** Creates an instance of Permissions class. */
+    public Permissions() {
+    }
+
     /**
      * Get the resourceProvider property: Resource provider permissions required for the connector.
      *

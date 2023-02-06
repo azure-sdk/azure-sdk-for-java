@@ -15,6 +15,15 @@ public final class AutomationRulePropertyArrayChangedConditionSupportedChangeTyp
     public static final AutomationRulePropertyArrayChangedConditionSupportedChangeType ADDED = fromString("Added");
 
     /**
+     * Creates a new instance of AutomationRulePropertyArrayChangedConditionSupportedChangeType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyArrayChangedConditionSupportedChangeType() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyArrayChangedConditionSupportedChangeType from its string representation.
      *
      * @param name a name to look for.

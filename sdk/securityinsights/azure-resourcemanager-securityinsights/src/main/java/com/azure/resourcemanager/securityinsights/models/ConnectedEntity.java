@@ -22,6 +22,10 @@ public final class ConnectedEntity {
     @JsonProperty(value = "additionalData")
     private Object additionalData;
 
+    /** Creates an instance of ConnectedEntity class. */
+    public ConnectedEntity() {
+    }
+
     /**
      * Get the targetEntityId property: Entity Id of the connected entity.
      *

@@ -20,6 +20,15 @@ public final class ConnectAuthKind extends ExpandableStringEnum<ConnectAuthKind>
     public static final ConnectAuthKind APIKEY = fromString("APIKey");
 
     /**
+     * Creates a new instance of ConnectAuthKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ConnectAuthKind() {
+    }
+
+    /**
      * Creates or finds a ConnectAuthKind from its string representation.
      *
      * @param name a name to look for.

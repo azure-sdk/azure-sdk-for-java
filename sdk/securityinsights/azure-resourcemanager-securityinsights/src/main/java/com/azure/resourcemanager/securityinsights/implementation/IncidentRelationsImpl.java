@@ -49,15 +49,6 @@ public final class IncidentRelationsImpl implements IncidentRelations {
         return Utils.mapPage(inner, inner1 -> new RelationImpl(inner1, this.manager()));
     }
 
-    public Relation get(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
-        RelationInner inner = this.serviceClient().get(resourceGroupName, workspaceName, incidentId, relationName);
-        if (inner != null) {
-            return new RelationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Relation> getWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, String relationName, Context context) {
         Response<RelationInner> inner =
@@ -73,14 +64,8 @@ public final class IncidentRelationsImpl implements IncidentRelations {
         }
     }
 
-    public Relation createOrUpdate(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentId,
-        String relationName,
-        RelationInner relation) {
-        RelationInner inner =
-            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, incidentId, relationName, relation);
+    public Relation get(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
+        RelationInner inner = this.serviceClient().get(resourceGroupName, workspaceName, incidentId, relationName);
         if (inner != null) {
             return new RelationImpl(inner, this.manager());
         } else {
@@ -111,8 +96,19 @@ public final class IncidentRelationsImpl implements IncidentRelations {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, incidentId, relationName);
+    public Relation createOrUpdate(
+        String resourceGroupName,
+        String workspaceName,
+        String incidentId,
+        String relationName,
+        RelationInner relation) {
+        RelationInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, incidentId, relationName, relation);
+        if (inner != null) {
+            return new RelationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -120,6 +116,10 @@ public final class IncidentRelationsImpl implements IncidentRelations {
         return this
             .serviceClient()
             .deleteWithResponse(resourceGroupName, workspaceName, incidentId, relationName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, incidentId, relationName);
     }
 
     private IncidentRelationsClient serviceClient() {

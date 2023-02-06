@@ -14,6 +14,15 @@ public final class SecurityMLAnalyticsSettingsKind extends ExpandableStringEnum<
     public static final SecurityMLAnalyticsSettingsKind ANOMALY = fromString("Anomaly");
 
     /**
+     * Creates a new instance of SecurityMLAnalyticsSettingsKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SecurityMLAnalyticsSettingsKind() {
+    }
+
+    /**
      * Creates or finds a SecurityMLAnalyticsSettingsKind from its string representation.
      *
      * @param name a name to look for.
