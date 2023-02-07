@@ -35,6 +35,10 @@ public final class DeploymentInfoResponseImpl implements DeploymentInfoResponse 
         return this.innerModel().diskCapacity();
     }
 
+    public String deploymentUrl() {
+        return this.innerModel().deploymentUrl();
+    }
+
     public DeploymentInfoResponseInner innerModel() {
         return this.innerObject;
     }

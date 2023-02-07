@@ -248,7 +248,7 @@ public final class DetachTrafficFiltersClientImpl implements DetachTrafficFilter
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginUpdate(String resourceGroupName, String monitorName) {
         final String rulesetId = null;
-        return beginUpdateAsync(resourceGroupName, monitorName, rulesetId).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, monitorName, rulesetId).getSyncPoller();
     }
 
     /**
@@ -266,7 +266,7 @@ public final class DetachTrafficFiltersClientImpl implements DetachTrafficFilter
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginUpdate(
         String resourceGroupName, String monitorName, String rulesetId, Context context) {
-        return beginUpdateAsync(resourceGroupName, monitorName, rulesetId, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, monitorName, rulesetId, context).getSyncPoller();
     }
 
     /**
