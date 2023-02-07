@@ -51,22 +51,22 @@ public final class OnlineDeploymentsClientImpl implements OnlineDeploymentsClien
     private final OnlineDeploymentsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of OnlineDeploymentsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OnlineDeploymentsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    OnlineDeploymentsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(OnlineDeploymentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesOnlineDeployments to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesOnlineDeployments to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
@@ -1640,7 +1640,7 @@ public final class OnlineDeploymentsClientImpl implements OnlineDeploymentsClien
     }
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -1709,7 +1709,7 @@ public final class OnlineDeploymentsClientImpl implements OnlineDeploymentsClien
     }
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -1777,7 +1777,7 @@ public final class OnlineDeploymentsClientImpl implements OnlineDeploymentsClien
     }
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -1801,7 +1801,7 @@ public final class OnlineDeploymentsClientImpl implements OnlineDeploymentsClien
     }
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -1827,7 +1827,7 @@ public final class OnlineDeploymentsClientImpl implements OnlineDeploymentsClien
     }
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.

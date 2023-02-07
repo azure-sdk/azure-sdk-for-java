@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,25 +12,28 @@ import java.util.Map;
 /** Samples for ComponentContainers CreateOrUpdate. */
 public final class ComponentContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Component Container.
+     * Sample code: CreateOrUpdate Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateComponentContainer(
+    public static void createOrUpdateWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .componentContainers()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new ComponentContainerProperties()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string")))
-            .create();
+            .createOrUpdateWithResponse(
+                "test-rg",
+                "my-aml-workspace",
+                "string",
+                new ComponentContainerInner()
+                    .withProperties(
+                        new ComponentContainerProperties()
+                            .withDescription("string")
+                            .withProperties(mapOf("string", "string"))
+                            .withTags(mapOf("string", "string"))),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

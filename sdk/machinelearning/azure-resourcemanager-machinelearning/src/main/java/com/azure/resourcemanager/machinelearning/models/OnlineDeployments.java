@@ -106,7 +106,7 @@ public interface OnlineDeployments {
     OnlineDeployment get(String resourceGroupName, String workspaceName, String endpointName, String deploymentName);
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -128,7 +128,7 @@ public interface OnlineDeployments {
         Context context);
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.

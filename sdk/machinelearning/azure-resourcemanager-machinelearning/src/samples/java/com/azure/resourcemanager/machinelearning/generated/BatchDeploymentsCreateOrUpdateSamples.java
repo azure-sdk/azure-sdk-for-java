@@ -26,14 +26,14 @@ import java.util.Map;
 /** Samples for BatchDeployments CreateOrUpdate. */
 public final class BatchDeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Batch Deployment.
+     * Sample code: CreateOrUpdate Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateBatchDeployment(
+    public static void createOrUpdateWorkspaceBatchDeployment(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         manager
             .batchDeployments()
