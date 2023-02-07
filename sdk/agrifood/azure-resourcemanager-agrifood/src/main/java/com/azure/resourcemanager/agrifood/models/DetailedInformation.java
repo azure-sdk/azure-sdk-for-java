@@ -41,6 +41,10 @@ public final class DetailedInformation {
     @JsonProperty(value = "apiInputParameters")
     private List<String> apiInputParameters;
 
+    /** Creates an instance of DetailedInformation class. */
+    public DetailedInformation() {
+    }
+
     /**
      * Get the apiName property: ApiName available for the farmBeatsExtension.
      *

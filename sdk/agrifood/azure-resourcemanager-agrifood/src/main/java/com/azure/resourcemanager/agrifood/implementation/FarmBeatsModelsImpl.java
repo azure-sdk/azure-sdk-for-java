@@ -29,15 +29,6 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
         this.serviceManager = serviceManager;
     }
 
-    public FarmBeats getByResourceGroup(String resourceGroupName, String farmBeatsResourceName) {
-        FarmBeatsInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, farmBeatsResourceName);
-        if (inner != null) {
-            return new FarmBeatsImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FarmBeats> getByResourceGroupWithResponse(
         String resourceGroupName, String farmBeatsResourceName, Context context) {
         Response<FarmBeatsInner> inner =
@@ -53,12 +44,22 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String farmBeatsResourceName) {
-        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName);
+    public FarmBeats getByResourceGroup(String resourceGroupName, String farmBeatsResourceName) {
+        FarmBeatsInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, farmBeatsResourceName);
+        if (inner != null) {
+            return new FarmBeatsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String farmBeatsResourceName, Context context) {
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String farmBeatsResourceName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, farmBeatsResourceName, context);
+    }
+
+    public void deleteByResourceGroup(String resourceGroupName, String farmBeatsResourceName) {
+        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName);
     }
 
     public PagedIterable<FarmBeats> list() {
@@ -83,17 +84,6 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
         return Utils.mapPage(inner, inner1 -> new FarmBeatsImpl(inner1, this.manager()));
     }
 
-    public ArmAsyncOperation getOperationResult(
-        String resourceGroupName, String farmBeatsResourceName, String operationResultsId) {
-        ArmAsyncOperationInner inner =
-            this.serviceClient().getOperationResult(resourceGroupName, farmBeatsResourceName, operationResultsId);
-        if (inner != null) {
-            return new ArmAsyncOperationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ArmAsyncOperation> getOperationResultWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String operationResultsId, Context context) {
         Response<ArmAsyncOperationInner> inner =
@@ -106,6 +96,17 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ArmAsyncOperationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ArmAsyncOperation getOperationResult(
+        String resourceGroupName, String farmBeatsResourceName, String operationResultsId) {
+        ArmAsyncOperationInner inner =
+            this.serviceClient().getOperationResult(resourceGroupName, farmBeatsResourceName, operationResultsId);
+        if (inner != null) {
+            return new ArmAsyncOperationImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -165,7 +166,7 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, farmBeatsResourceName, Context.NONE);
+        this.deleteByResourceGroupWithResponse(resourceGroupName, farmBeatsResourceName, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
@@ -184,7 +185,7 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, farmBeatsResourceName, context);
+        return this.deleteByResourceGroupWithResponse(resourceGroupName, farmBeatsResourceName, context);
     }
 
     private FarmBeatsModelsClient serviceClient() {

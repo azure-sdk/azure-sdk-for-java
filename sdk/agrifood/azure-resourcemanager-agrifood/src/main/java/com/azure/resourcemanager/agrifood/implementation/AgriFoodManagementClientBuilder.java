@@ -13,22 +13,23 @@ import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
+import java.util.UUID;
 
 /** A builder for creating a new instance of the AgriFoodManagementClientImpl type. */
 @ServiceClientBuilder(serviceClients = {AgriFoodManagementClientImpl.class})
 public final class AgriFoodManagementClientBuilder {
     /*
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
-    private String subscriptionId;
+    private UUID subscriptionId;
 
     /**
-     * Sets The ID of the target subscription.
+     * Sets The ID of the target subscription. The value must be an UUID.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the AgriFoodManagementClientBuilder.
      */
-    public AgriFoodManagementClientBuilder subscriptionId(String subscriptionId) {
+    public AgriFoodManagementClientBuilder subscriptionId(UUID subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
