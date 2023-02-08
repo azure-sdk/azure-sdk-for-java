@@ -44,7 +44,7 @@ public class Compute {
      * The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
+    private ComputeProvisioningState provisioningState;
 
     /*
      * The description of the Machine Learning compute.
@@ -119,7 +119,7 @@ public class Compute {
      *
      * @return the provisioningState value.
      */
-    public ProvisioningState provisioningState() {
+    public ComputeProvisioningState provisioningState() {
         return this.provisioningState;
     }
 
