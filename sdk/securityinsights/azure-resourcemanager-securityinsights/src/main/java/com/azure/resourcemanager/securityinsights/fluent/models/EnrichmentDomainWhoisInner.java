@@ -48,6 +48,10 @@ public final class EnrichmentDomainWhoisInner {
     @JsonProperty(value = "parsedWhois")
     private EnrichmentDomainWhoisDetails parsedWhois;
 
+    /** Creates an instance of EnrichmentDomainWhoisInner class. */
+    public EnrichmentDomainWhoisInner() {
+    }
+
     /**
      * Get the domain property: The domain for this whois record.
      *

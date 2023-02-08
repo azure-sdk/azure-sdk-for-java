@@ -16,6 +16,10 @@ public final class InsightQueryItemPropertiesReferenceTimeRange {
     @JsonProperty(value = "beforeRange")
     private String beforeRange;
 
+    /** Creates an instance of InsightQueryItemPropertiesReferenceTimeRange class. */
+    public InsightQueryItemPropertiesReferenceTimeRange() {
+    }
+
     /**
      * Get the beforeRange property: Additional query time for looking back.
      *

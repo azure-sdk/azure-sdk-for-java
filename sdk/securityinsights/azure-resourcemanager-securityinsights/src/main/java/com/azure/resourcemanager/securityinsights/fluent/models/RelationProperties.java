@@ -35,6 +35,10 @@ public final class RelationProperties {
     @JsonProperty(value = "relatedResourceKind", access = JsonProperty.Access.WRITE_ONLY)
     private String relatedResourceKind;
 
+    /** Creates an instance of RelationProperties class. */
+    public RelationProperties() {
+    }
+
     /**
      * Get the relatedResourceId property: The resource ID of the related resource.
      *

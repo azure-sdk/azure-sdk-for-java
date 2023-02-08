@@ -23,6 +23,10 @@ public final class AzureResourceEntityProperties extends EntityCommonProperties 
     @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
     private String subscriptionId;
 
+    /** Creates an instance of AzureResourceEntityProperties class. */
+    public AzureResourceEntityProperties() {
+    }
+
     /**
      * Get the resourceId property: The azure resource id of the resource.
      *
