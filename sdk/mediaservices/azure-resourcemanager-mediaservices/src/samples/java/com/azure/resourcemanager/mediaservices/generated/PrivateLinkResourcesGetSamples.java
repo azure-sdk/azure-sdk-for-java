@@ -17,6 +17,6 @@ public final class PrivateLinkResourcesGetSamples {
     public static void getDetailsOfAGroupID(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .privateLinkResources()
-            .getWithResponse("contoso", "contososports", "keydelivery", com.azure.core.util.Context.NONE);
+            .getWithResponse("contosorg", "contososports", "keydelivery", com.azure.core.util.Context.NONE);
     }
 }

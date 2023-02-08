@@ -18,6 +18,6 @@ public final class MediaservicesDeleteSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .mediaservices()
-            .deleteByResourceGroupWithResponse("contoso", "contososports", com.azure.core.util.Context.NONE);
+            .deleteByResourceGroupWithResponse("contosorg", "contososports", com.azure.core.util.Context.NONE);
     }
 }
