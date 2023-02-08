@@ -24,6 +24,10 @@ public final class LinkerList {
     @JsonProperty(value = "value")
     private List<LinkerResourceInner> value;
 
+    /** Creates an instance of LinkerList class. */
+    public LinkerList() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of Linker list.
      *

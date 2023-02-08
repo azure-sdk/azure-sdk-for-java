@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SecretType. */
+/** The secret type. */
 public final class SecretType extends ExpandableStringEnum<SecretType> {
     /** Static value rawValue for SecretType. */
     public static final SecretType RAW_VALUE = fromString("rawValue");
@@ -18,6 +18,15 @@ public final class SecretType extends ExpandableStringEnum<SecretType> {
 
     /** Static value keyVaultSecretReference for SecretType. */
     public static final SecretType KEY_VAULT_SECRET_REFERENCE = fromString("keyVaultSecretReference");
+
+    /**
+     * Creates a new instance of SecretType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SecretType() {
+    }
 
     /**
      * Creates or finds a SecretType from its string representation.
