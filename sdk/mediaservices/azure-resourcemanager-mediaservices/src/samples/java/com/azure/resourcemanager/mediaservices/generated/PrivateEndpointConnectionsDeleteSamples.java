@@ -18,6 +18,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .privateEndpointConnections()
-            .deleteWithResponse("contoso", "contososports", "connectionName1", com.azure.core.util.Context.NONE);
+            .deleteWithResponse("contosorg", "contososports", "connectionName1", com.azure.core.util.Context.NONE);
     }
 }

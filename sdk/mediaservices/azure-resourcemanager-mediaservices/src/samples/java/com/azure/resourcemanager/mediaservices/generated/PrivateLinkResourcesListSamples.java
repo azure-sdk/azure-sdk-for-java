@@ -15,6 +15,6 @@ public final class PrivateLinkResourcesListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void getListOfAllGroupIDs(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.privateLinkResources().listWithResponse("contoso", "contososports", com.azure.core.util.Context.NONE);
+        manager.privateLinkResources().listWithResponse("contosorg", "contososports", com.azure.core.util.Context.NONE);
     }
 }

@@ -18,6 +18,6 @@ public final class PrivateEndpointConnectionsListSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .privateEndpointConnections()
-            .listWithResponse("contoso", "contososports", com.azure.core.util.Context.NONE);
+            .listWithResponse("contosorg", "contososports", com.azure.core.util.Context.NONE);
     }
 }

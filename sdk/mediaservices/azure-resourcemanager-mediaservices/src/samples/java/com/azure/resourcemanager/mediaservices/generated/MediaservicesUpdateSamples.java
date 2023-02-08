@@ -23,7 +23,7 @@ public final class MediaservicesUpdateSamples {
         MediaService resource =
             manager
                 .mediaservices()
-                .getByResourceGroupWithResponse("contoso", "contososports", com.azure.core.util.Context.NONE)
+                .getByResourceGroupWithResponse("contosorg", "contososports", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("key1", "value3")).apply();
     }
