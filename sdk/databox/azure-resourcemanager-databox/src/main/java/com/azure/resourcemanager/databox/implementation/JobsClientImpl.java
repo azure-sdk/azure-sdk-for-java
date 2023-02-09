@@ -40,6 +40,7 @@ import com.azure.resourcemanager.databox.fluent.models.UnencryptedCredentialsInn
 import com.azure.resourcemanager.databox.models.CancellationReason;
 import com.azure.resourcemanager.databox.models.JobResourceList;
 import com.azure.resourcemanager.databox.models.JobResourceUpdateParameter;
+import com.azure.resourcemanager.databox.models.MarkDevicesShippedRequest;
 import com.azure.resourcemanager.databox.models.ShipmentPickUpRequest;
 import com.azure.resourcemanager.databox.models.UnencryptedCredentialsList;
 import java.nio.ByteBuffer;
@@ -80,6 +81,22 @@ public final class JobsClientImpl implements JobsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("api-version") String apiVersion,
             @QueryParam("$skipToken") String skipToken,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs"
+                + "/{jobName}/markDevicesShipped")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> markDevicesShipped(
+            @HostParam("$host") String endpoint,
+            @PathParam("jobName") String jobName,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") MarkDevicesShippedRequest markDevicesShippedRequest,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -389,6 +406,184 @@ public final class JobsClientImpl implements JobsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JobResourceInner> list(String skipToken, Context context) {
         return new PagedIterable<>(listAsync(skipToken, context));
+    }
+
+    /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param jobName The name of the job Resource within the specified resource group. job names must be between 3 and
+     *     24 characters in length and use any alphanumeric and underscore only.
+     * @param resourceGroupName The Resource Group Name.
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> markDevicesShippedWithResponseAsync(
+        String jobName, String resourceGroupName, MarkDevicesShippedRequest markDevicesShippedRequest) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (markDevicesShippedRequest == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter markDevicesShippedRequest is required and cannot be null."));
+        } else {
+            markDevicesShippedRequest.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .markDevicesShipped(
+                            this.client.getEndpoint(),
+                            jobName,
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            this.client.getApiVersion(),
+                            markDevicesShippedRequest,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param jobName The name of the job Resource within the specified resource group. job names must be between 3 and
+     *     24 characters in length and use any alphanumeric and underscore only.
+     * @param resourceGroupName The Resource Group Name.
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> markDevicesShippedWithResponseAsync(
+        String jobName,
+        String resourceGroupName,
+        MarkDevicesShippedRequest markDevicesShippedRequest,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (markDevicesShippedRequest == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter markDevicesShippedRequest is required and cannot be null."));
+        } else {
+            markDevicesShippedRequest.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .markDevicesShipped(
+                this.client.getEndpoint(),
+                jobName,
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                this.client.getApiVersion(),
+                markDevicesShippedRequest,
+                accept,
+                context);
+    }
+
+    /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param jobName The name of the job Resource within the specified resource group. job names must be between 3 and
+     *     24 characters in length and use any alphanumeric and underscore only.
+     * @param resourceGroupName The Resource Group Name.
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> markDevicesShippedAsync(
+        String jobName, String resourceGroupName, MarkDevicesShippedRequest markDevicesShippedRequest) {
+        return markDevicesShippedWithResponseAsync(jobName, resourceGroupName, markDevicesShippedRequest)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param jobName The name of the job Resource within the specified resource group. job names must be between 3 and
+     *     24 characters in length and use any alphanumeric and underscore only.
+     * @param resourceGroupName The Resource Group Name.
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> markDevicesShippedWithResponse(
+        String jobName,
+        String resourceGroupName,
+        MarkDevicesShippedRequest markDevicesShippedRequest,
+        Context context) {
+        return markDevicesShippedWithResponseAsync(jobName, resourceGroupName, markDevicesShippedRequest, context)
+            .block();
+    }
+
+    /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param jobName The name of the job Resource within the specified resource group. job names must be between 3 and
+     *     24 characters in length and use any alphanumeric and underscore only.
+     * @param resourceGroupName The Resource Group Name.
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void markDevicesShipped(
+        String jobName, String resourceGroupName, MarkDevicesShippedRequest markDevicesShippedRequest) {
+        markDevicesShippedWithResponse(jobName, resourceGroupName, markDevicesShippedRequest, Context.NONE);
     }
 
     /**
