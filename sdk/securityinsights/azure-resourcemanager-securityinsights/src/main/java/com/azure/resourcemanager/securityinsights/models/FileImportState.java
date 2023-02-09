@@ -32,6 +32,15 @@ public final class FileImportState extends ExpandableStringEnum<FileImportState>
     public static final FileImportState UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of FileImportState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public FileImportState() {
+    }
+
+    /**
      * Creates or finds a FileImportState from its string representation.
      *
      * @param name a name to look for.

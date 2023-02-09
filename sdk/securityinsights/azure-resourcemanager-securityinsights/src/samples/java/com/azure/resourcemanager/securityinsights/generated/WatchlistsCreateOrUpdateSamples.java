@@ -9,7 +9,7 @@ import com.azure.resourcemanager.securityinsights.models.SourceType;
 /** Samples for Watchlists CreateOrUpdate. */
 public final class WatchlistsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/watchlists/CreateWatchlistAndWatchlistItems.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/watchlists/CreateWatchlistAndWatchlistItems.json
      */
     /**
      * Sample code: Creates or updates a watchlist and bulk creates watchlist items.
@@ -36,7 +36,7 @@ public final class WatchlistsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/watchlists/CreateWatchlist.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/watchlists/CreateWatchlist.json
      */
     /**
      * Sample code: Creates or updates a watchlist.

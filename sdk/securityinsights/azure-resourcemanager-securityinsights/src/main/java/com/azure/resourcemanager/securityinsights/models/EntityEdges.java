@@ -25,6 +25,10 @@ public final class EntityEdges {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> additionalData;
 
+    /** Creates an instance of EntityEdges class. */
+    public EntityEdges() {
+    }
+
     /**
      * Get the targetEntityId property: The target entity Id.
      *
