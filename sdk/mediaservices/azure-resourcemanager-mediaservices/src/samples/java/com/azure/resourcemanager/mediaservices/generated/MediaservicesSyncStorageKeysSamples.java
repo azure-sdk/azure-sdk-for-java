@@ -21,7 +21,7 @@ public final class MediaservicesSyncStorageKeysSamples {
         manager
             .mediaservices()
             .syncStorageKeysWithResponse(
-                "contoso",
+                "contosorg",
                 "contososports",
                 new SyncStorageKeysInput().withId("contososportsstore"),
                 com.azure.core.util.Context.NONE);
