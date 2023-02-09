@@ -30,6 +30,7 @@ public final class ReplicationProtectionContainersSwitchProtection {
                 new SwitchProtectionInput()
                     .withProperties(
                         new SwitchProtectionInputProperties()
+                            .withReplicationProtectedItemName("a2aSwapOsVm")
                             .withProviderSpecificDetails(new A2ASwitchProtectionInput())),
                 com.azure.core.util.Context.NONE);
     }
