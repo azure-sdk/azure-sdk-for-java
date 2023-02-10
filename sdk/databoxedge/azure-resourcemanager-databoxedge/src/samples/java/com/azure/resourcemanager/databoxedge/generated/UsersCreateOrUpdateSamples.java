@@ -7,12 +7,11 @@ package com.azure.resourcemanager.databoxedge.generated;
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
 import com.azure.resourcemanager.databoxedge.models.EncryptionAlgorithm;
 import com.azure.resourcemanager.databoxedge.models.UserType;
-import java.util.Arrays;
 
 /** Samples for Users CreateOrUpdate. */
 public final class UsersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UserPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UserPut.json
      */
     /**
      * Sample code: UserPut.
@@ -30,7 +29,6 @@ public final class UsersCreateOrUpdateSamples {
                     .withValue("<value>")
                     .withEncryptionCertThumbprint("blah")
                     .withEncryptionAlgorithm(EncryptionAlgorithm.NONE))
-            .withShareAccessRights(Arrays.asList())
             .create();
     }
 }
