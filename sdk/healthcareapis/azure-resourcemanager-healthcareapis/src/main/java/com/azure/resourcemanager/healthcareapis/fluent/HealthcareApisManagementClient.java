@@ -122,6 +122,13 @@ public interface HealthcareApisManagementClient {
     WorkspacePrivateLinkResourcesClient getWorkspacePrivateLinkResources();
 
     /**
+     * Gets the AnalyticsConnectorsClient object to access its operations.
+     *
+     * @return the AnalyticsConnectorsClient object.
+     */
+    AnalyticsConnectorsClient getAnalyticsConnectors();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.

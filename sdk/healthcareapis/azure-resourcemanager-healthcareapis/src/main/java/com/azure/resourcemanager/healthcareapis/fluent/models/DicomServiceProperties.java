@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.healthcareapis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.healthcareapis.models.CorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
@@ -28,24 +29,32 @@ public final class DicomServiceProperties {
     private DicomServiceAuthenticationConfiguration authenticationConfiguration;
 
     /*
+     * Dicom Service Cors configuration.
+     */
+    @JsonProperty(value = "corsConfiguration")
+    private CorsConfiguration corsConfiguration;
+
+    /*
      * The url of the Dicom Services.
      */
     @JsonProperty(value = "serviceUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String serviceUrl;
 
     /*
-     * The list of private endpoint connections that are set up for this
-     * resource.
+     * The list of private endpoint connections that are set up for this resource.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnection> privateEndpointConnections;
 
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
+
+    /** Creates an instance of DicomServiceProperties class. */
+    public DicomServiceProperties() {
+    }
 
     /**
      * Get the provisioningState property: The provisioning state.
@@ -74,6 +83,26 @@ public final class DicomServiceProperties {
     public DicomServiceProperties withAuthenticationConfiguration(
         DicomServiceAuthenticationConfiguration authenticationConfiguration) {
         this.authenticationConfiguration = authenticationConfiguration;
+        return this;
+    }
+
+    /**
+     * Get the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @return the corsConfiguration value.
+     */
+    public CorsConfiguration corsConfiguration() {
+        return this.corsConfiguration;
+    }
+
+    /**
+     * Set the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @param corsConfiguration the corsConfiguration value to set.
+     * @return the DicomServiceProperties object itself.
+     */
+    public DicomServiceProperties withCorsConfiguration(CorsConfiguration corsConfiguration) {
+        this.corsConfiguration = corsConfiguration;
         return this;
     }
 
@@ -126,6 +155,9 @@ public final class DicomServiceProperties {
     public void validate() {
         if (authenticationConfiguration() != null) {
             authenticationConfiguration().validate();
+        }
+        if (corsConfiguration() != null) {
+            corsConfiguration().validate();
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());

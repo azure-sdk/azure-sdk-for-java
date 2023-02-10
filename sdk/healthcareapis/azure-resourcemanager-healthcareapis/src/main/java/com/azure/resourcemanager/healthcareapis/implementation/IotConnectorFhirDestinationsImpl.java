@@ -27,17 +27,6 @@ public final class IotConnectorFhirDestinationsImpl implements IotConnectorFhirD
         this.serviceManager = serviceManager;
     }
 
-    public IotFhirDestination get(
-        String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName) {
-        IotFhirDestinationInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName);
-        if (inner != null) {
-            return new IotFhirDestinationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<IotFhirDestination> getWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -54,6 +43,17 @@ public final class IotConnectorFhirDestinationsImpl implements IotConnectorFhirD
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new IotFhirDestinationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public IotFhirDestination get(
+        String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName) {
+        IotFhirDestinationInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName);
+        if (inner != null) {
+            return new IotFhirDestinationImpl(inner, this.manager());
         } else {
             return null;
         }
