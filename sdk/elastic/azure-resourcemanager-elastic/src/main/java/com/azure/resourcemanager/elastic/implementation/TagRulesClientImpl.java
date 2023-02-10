@@ -814,7 +814,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String monitorName, String ruleSetName) {
-        return beginDeleteAsync(resourceGroupName, monitorName, ruleSetName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, monitorName, ruleSetName).getSyncPoller();
     }
 
     /**
@@ -832,7 +832,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String monitorName, String ruleSetName, Context context) {
-        return beginDeleteAsync(resourceGroupName, monitorName, ruleSetName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, monitorName, ruleSetName, context).getSyncPoller();
     }
 
     /**
