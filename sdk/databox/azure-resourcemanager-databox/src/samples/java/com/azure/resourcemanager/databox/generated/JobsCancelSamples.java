@@ -9,7 +9,7 @@ import com.azure.resourcemanager.databox.models.CancellationReason;
 /** Samples for Jobs Cancel. */
 public final class JobsCancelSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2021-03-01/examples/JobsCancelPost.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-10-01/examples/JobsCancelPost.json
      */
     /**
      * Sample code: JobsCancelPost.
