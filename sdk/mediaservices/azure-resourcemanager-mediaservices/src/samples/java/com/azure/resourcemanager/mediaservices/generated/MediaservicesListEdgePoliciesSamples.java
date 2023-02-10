@@ -20,7 +20,7 @@ public final class MediaservicesListEdgePoliciesSamples {
         manager
             .mediaservices()
             .listEdgePoliciesWithResponse(
-                "contoso",
+                "contosorg",
                 "contososports",
                 new ListEdgePoliciesInput().withDeviceId("contosiothubhost_contosoiotdevice"),
                 com.azure.core.util.Context.NONE);

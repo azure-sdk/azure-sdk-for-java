@@ -18,6 +18,6 @@ public final class MediaservicesGetByResourceGroupSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .mediaservices()
-            .getByResourceGroupWithResponse("contoso", "contosotv", com.azure.core.util.Context.NONE);
+            .getByResourceGroupWithResponse("contosorg", "contosotv", com.azure.core.util.Context.NONE);
     }
 }

@@ -21,7 +21,7 @@ public final class LocationsCheckNameAvailabilitySamples {
             .locations()
             .checkNameAvailabilityWithResponse(
                 "japanwest",
-                new CheckNameAvailabilityInput().withName("contosotv").withType("videoAnalyzers"),
+                new CheckNameAvailabilityInput().withName("contosotv").withType("Microsoft.Media/mediaservices"),
                 com.azure.core.util.Context.NONE);
     }
 }

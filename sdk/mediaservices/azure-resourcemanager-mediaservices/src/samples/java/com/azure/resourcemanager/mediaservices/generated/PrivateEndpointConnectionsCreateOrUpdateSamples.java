@@ -23,7 +23,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
         PrivateEndpointConnection resource =
             manager
                 .privateEndpointConnections()
-                .getWithResponse("contoso", "contososports", "connectionName1", com.azure.core.util.Context.NONE)
+                .getWithResponse("contosorg", "contososports", "connectionName1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

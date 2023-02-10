@@ -16,6 +16,6 @@ public final class MediaservicesListByResourceGroupSamples {
      */
     public static void listAllMediaServicesAccounts(
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.mediaservices().listByResourceGroup("contoso", com.azure.core.util.Context.NONE);
+        manager.mediaservices().listByResourceGroup("contosorg", com.azure.core.util.Context.NONE);
     }
 }
