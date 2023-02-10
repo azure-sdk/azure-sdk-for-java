@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -15,8 +13,6 @@ import java.util.UUID;
 /** The properties of a modern reservation transaction. */
 @Immutable
 public final class ModernReservationTransactionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationTransactionProperties.class);
-
     /*
      * The charge of the transaction.
      */
@@ -24,8 +20,7 @@ public final class ModernReservationTransactionProperties {
     private BigDecimal amount;
 
     /*
-     * This is the ARM Sku name. It can be used to join with the serviceType
-     * field in additional info in usage records.
+     * This is the ARM Sku name. It can be used to join with the serviceType field in additional info in usage records.
      */
     @JsonProperty(value = "armSkuName", access = JsonProperty.Access.WRITE_ONLY)
     private String armSkuName;
@@ -67,7 +62,7 @@ public final class ModernReservationTransactionProperties {
     private OffsetDateTime eventDate;
 
     /*
-     * The type of the transaction (Purchase, Cancel, etc.)
+     * The type of the transaction (Purchase, Cancel or Refund).
      */
     @JsonProperty(value = "eventType", access = JsonProperty.Access.WRITE_ONLY)
     private String eventType;
@@ -121,10 +116,9 @@ public final class ModernReservationTransactionProperties {
     private String region;
 
     /*
-     * The reservation order ID is the identifier for a reservation purchase.
-     * Each reservation order ID represents a single purchase transaction. A
-     * reservation order contains reservations. The reservation order specifies
-     * the VM size and region for the reservations.
+     * The reservation order ID is the identifier for a reservation purchase. Each reservation order ID represents a
+     * single purchase transaction. A reservation order contains reservations. The reservation order specifies the VM
+     * size and region for the reservations.
      */
     @JsonProperty(value = "reservationOrderId", access = JsonProperty.Access.WRITE_ONLY)
     private String reservationOrderId;
@@ -140,6 +134,10 @@ public final class ModernReservationTransactionProperties {
      */
     @JsonProperty(value = "term", access = JsonProperty.Access.WRITE_ONLY)
     private String term;
+
+    /** Creates an instance of ModernReservationTransactionProperties class. */
+    public ModernReservationTransactionProperties() {
+    }
 
     /**
      * Get the amount property: The charge of the transaction.
@@ -215,7 +213,7 @@ public final class ModernReservationTransactionProperties {
     }
 
     /**
-     * Get the eventType property: The type of the transaction (Purchase, Cancel, etc.).
+     * Get the eventType property: The type of the transaction (Purchase, Cancel or Refund).
      *
      * @return the eventType value.
      */
