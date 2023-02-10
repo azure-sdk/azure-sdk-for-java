@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Pools List. */
 public final class PoolsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class PoolsListSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void poolsList(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.pools().list("myRG", "account1", Context.NONE);
+        manager.pools().list("myRG", "account1", com.azure.core.util.Context.NONE);
     }
 }

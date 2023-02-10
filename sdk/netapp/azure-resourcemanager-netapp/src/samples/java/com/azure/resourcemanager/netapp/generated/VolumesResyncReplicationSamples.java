@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes ResyncReplication. */
 public final class VolumesResyncReplicationSamples {
     /*
@@ -17,6 +15,6 @@ public final class VolumesResyncReplicationSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void volumesResyncReplication(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.volumes().resyncReplication("myRG", "account1", "pool1", "volume1", Context.NONE);
+        manager.volumes().resyncReplication("myRG", "account1", "pool1", "volume1", com.azure.core.util.Context.NONE);
     }
 }

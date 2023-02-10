@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetAppResource QueryRegionInfo. */
 public final class NetAppResourceQueryRegionInfoSamples {
     /*
@@ -17,6 +15,6 @@ public final class NetAppResourceQueryRegionInfoSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void regionInfoQuery(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.netAppResources().queryRegionInfoWithResponse("eastus", Context.NONE);
+        manager.netAppResources().queryRegionInfoWithResponse("eastus", com.azure.core.util.Context.NONE);
     }
 }

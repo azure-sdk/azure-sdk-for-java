@@ -41,19 +41,6 @@ public interface SnapshotPolicies {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param snapshotPolicyName The name of the snapshot policy.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a snapshot Policy.
-     */
-    SnapshotPolicy get(String resourceGroupName, String accountName, String snapshotPolicyName);
-
-    /**
-     * Get a snapshot Policy.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param snapshotPolicyName The name of the snapshot policy.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,6 +49,19 @@ public interface SnapshotPolicies {
      */
     Response<SnapshotPolicy> getWithResponse(
         String resourceGroupName, String accountName, String snapshotPolicyName, Context context);
+
+    /**
+     * Get a snapshot Policy.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param snapshotPolicyName The name of the snapshot policy.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a snapshot Policy.
+     */
+    SnapshotPolicy get(String resourceGroupName, String accountName, String snapshotPolicyName);
 
     /**
      * Delete snapshot policy.
@@ -96,12 +96,14 @@ public interface SnapshotPolicies {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param snapshotPolicyName The name of the snapshot policy.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return volumes associated with snapshot policy.
+     * @return volumes associated with snapshot policy along with {@link Response}.
      */
-    SnapshotPolicyVolumeList listVolumes(String resourceGroupName, String accountName, String snapshotPolicyName);
+    Response<SnapshotPolicyVolumeList> listVolumesWithResponse(
+        String resourceGroupName, String accountName, String snapshotPolicyName, Context context);
 
     /**
      * Get volumes for snapshot policy
@@ -111,14 +113,12 @@ public interface SnapshotPolicies {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param snapshotPolicyName The name of the snapshot policy.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return volumes associated with snapshot policy along with {@link Response}.
+     * @return volumes associated with snapshot policy.
      */
-    Response<SnapshotPolicyVolumeList> listVolumesWithResponse(
-        String resourceGroupName, String accountName, String snapshotPolicyName, Context context);
+    SnapshotPolicyVolumeList listVolumes(String resourceGroupName, String accountName, String snapshotPolicyName);
 
     /**
      * Get a snapshot Policy.

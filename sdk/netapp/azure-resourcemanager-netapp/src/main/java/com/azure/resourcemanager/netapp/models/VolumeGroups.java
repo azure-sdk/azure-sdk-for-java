@@ -47,12 +47,14 @@ public interface VolumeGroups {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param volumeGroupName The name of the volumeGroup.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified volume group.
+     * @return details of the specified volume group along with {@link Response}.
      */
-    VolumeGroupDetails get(String resourceGroupName, String accountName, String volumeGroupName);
+    Response<VolumeGroupDetails> getWithResponse(
+        String resourceGroupName, String accountName, String volumeGroupName, Context context);
 
     /**
      * Describe a Volume Group
@@ -62,14 +64,12 @@ public interface VolumeGroups {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param volumeGroupName The name of the volumeGroup.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified volume group along with {@link Response}.
+     * @return details of the specified volume group.
      */
-    Response<VolumeGroupDetails> getWithResponse(
-        String resourceGroupName, String accountName, String volumeGroupName, Context context);
+    VolumeGroupDetails get(String resourceGroupName, String accountName, String volumeGroupName);
 
     /**
      * Delete a volume group

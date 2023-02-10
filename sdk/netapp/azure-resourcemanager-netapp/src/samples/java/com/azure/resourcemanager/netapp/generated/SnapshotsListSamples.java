@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Snapshots List. */
 public final class SnapshotsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class SnapshotsListSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void snapshotsList(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.snapshots().list("myRG", "account1", "pool1", "volume1", Context.NONE);
+        manager.snapshots().list("myRG", "account1", "pool1", "volume1", com.azure.core.util.Context.NONE);
     }
 }

@@ -34,6 +34,10 @@ public final class VolumeBackupProperties {
     @JsonProperty(value = "backupEnabled")
     private Boolean backupEnabled;
 
+    /** Creates an instance of VolumeBackupProperties class. */
+    public VolumeBackupProperties() {
+    }
+
     /**
      * Get the backupPolicyId property: Backup Policy Resource ID.
      *

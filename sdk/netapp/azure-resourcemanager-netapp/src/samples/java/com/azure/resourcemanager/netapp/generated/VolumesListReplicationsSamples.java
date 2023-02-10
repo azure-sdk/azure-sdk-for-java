@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes ListReplications. */
 public final class VolumesListReplicationsSamples {
     /*
@@ -17,6 +15,6 @@ public final class VolumesListReplicationsSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void volumesListReplications(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.volumes().listReplications("myRG", "account1", "pool1", "volume1", Context.NONE);
+        manager.volumes().listReplications("myRG", "account1", "pool1", "volume1", com.azure.core.util.Context.NONE);
     }
 }

@@ -28,7 +28,7 @@ public final class AccountsCreateOrUpdateSamples {
                     .asList(
                         new ActiveDirectory()
                             .withUsername("ad_user_name")
-                            .withPassword("ad_password")
+                            .withPassword("fakeTokenPlaceholder")
                             .withDomain("10.10.10.3")
                             .withDns("10.10.10.3, 10.10.10.4")
                             .withSmbServerName("SMBServer")

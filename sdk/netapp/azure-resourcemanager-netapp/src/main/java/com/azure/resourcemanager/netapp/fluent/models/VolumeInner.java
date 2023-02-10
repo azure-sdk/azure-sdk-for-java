@@ -51,6 +51,10 @@ public final class VolumeInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of VolumeInner class. */
+    public VolumeInner() {
+    }
+
     /**
      * Get the etag property: A unique read-only string that changes whenever the resource is updated.
      *
@@ -181,7 +185,7 @@ public final class VolumeInner extends Resource {
      * Get the usageThreshold property: usageThreshold
      *
      * <p>Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      *
      * @return the usageThreshold value.
      */
@@ -193,7 +197,7 @@ public final class VolumeInner extends Resource {
      * Set the usageThreshold property: usageThreshold
      *
      * <p>Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      *
      * @param usageThreshold the usageThreshold value to set.
      * @return the VolumeInner object itself.

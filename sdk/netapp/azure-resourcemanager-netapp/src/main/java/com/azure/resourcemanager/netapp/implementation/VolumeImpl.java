@@ -416,10 +416,6 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
         serviceManager.volumes().resetCifsPassword(resourceGroupName, accountName, poolName, volumeName, context);
     }
 
-    public void breakReplication(BreakReplicationRequest body) {
-        serviceManager.volumes().breakReplication(resourceGroupName, accountName, poolName, volumeName, body);
-    }
-
     public void breakReplication() {
         serviceManager.volumes().breakReplication(resourceGroupName, accountName, poolName, volumeName);
     }
@@ -486,10 +482,6 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
 
     public void poolChange(PoolChangeRequest body, Context context) {
         serviceManager.volumes().poolChange(resourceGroupName, accountName, poolName, volumeName, body, context);
-    }
-
-    public void relocate(RelocateVolumeRequest body) {
-        serviceManager.volumes().relocate(resourceGroupName, accountName, poolName, volumeName, body);
     }
 
     public void relocate() {

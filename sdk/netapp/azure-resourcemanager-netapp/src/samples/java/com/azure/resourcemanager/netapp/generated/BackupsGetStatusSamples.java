@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Backups GetStatus. */
 public final class BackupsGetStatusSamples {
     /*
@@ -17,6 +15,8 @@ public final class BackupsGetStatusSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void volumesBackupStatus(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.backups().getStatusWithResponse("myRG", "account1", "pool1", "volume1", Context.NONE);
+        manager
+            .backups()
+            .getStatusWithResponse("myRG", "account1", "pool1", "volume1", com.azure.core.util.Context.NONE);
     }
 }

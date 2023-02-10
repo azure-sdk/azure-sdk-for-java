@@ -52,7 +52,7 @@ public final class VolumeProperties {
      * usageThreshold
      *
      * Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      */
     @JsonProperty(value = "usageThreshold", required = true)
     private long usageThreshold;
@@ -357,6 +357,10 @@ public final class VolumeProperties {
     @JsonProperty(value = "enableSubvolumes")
     private EnableSubvolumes enableSubvolumes;
 
+    /** Creates an instance of VolumeProperties class. */
+    public VolumeProperties() {
+    }
+
     /**
      * Get the fileSystemId property: FileSystem ID
      *
@@ -420,7 +424,7 @@ public final class VolumeProperties {
      * Get the usageThreshold property: usageThreshold
      *
      * <p>Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      *
      * @return the usageThreshold value.
      */
@@ -432,7 +436,7 @@ public final class VolumeProperties {
      * Set the usageThreshold property: usageThreshold
      *
      * <p>Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum
-     * size is 500 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
+     * size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes.
      *
      * @param usageThreshold the usageThreshold value to set.
      * @return the VolumeProperties object itself.

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.CheckNameResourceTypes;
 import com.azure.resourcemanager.netapp.models.ResourceNameAvailabilityRequest;
 
@@ -27,6 +26,6 @@ public final class NetAppResourceCheckNameAvailabilitySamples {
                     .withName("accName")
                     .withType(CheckNameResourceTypes.fromString("netAppAccount"))
                     .withResourceGroup("myRG"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.BreakReplicationRequest;
 
 /** Samples for Volumes BreakReplication. */
@@ -26,6 +25,6 @@ public final class VolumesBreakReplicationSamples {
                 "pool1",
                 "volume1",
                 new BreakReplicationRequest().withForceBreakReplication(false),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

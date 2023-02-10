@@ -66,7 +66,7 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NetAppManagementClie")
-    private interface SnapshotsService {
+    public interface SnapshotsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp"
@@ -555,27 +555,6 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param snapshotName The name of the snapshot.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified snapshot.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SnapshotInner get(
-        String resourceGroupName, String accountName, String poolName, String volumeName, String snapshotName) {
-        return getAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName).block();
-    }
-
-    /**
-     * Describe a snapshot
-     *
-     * <p>Get details of the specified snapshot.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param snapshotName The name of the snapshot.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -592,6 +571,28 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, context)
             .block();
+    }
+
+    /**
+     * Describe a snapshot
+     *
+     * <p>Get details of the specified snapshot.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param snapshotName The name of the snapshot.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified snapshot.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SnapshotInner get(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String snapshotName) {
+        return getWithResponse(resourceGroupName, accountName, poolName, volumeName, snapshotName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -842,7 +843,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String volumeName,
         String snapshotName,
         SnapshotInner body) {
-        return beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body)
+        return this
+            .beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body)
             .getSyncPoller();
     }
 
@@ -872,7 +874,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String snapshotName,
         SnapshotInner body,
         Context context) {
-        return beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body, context)
+        return this
+            .beginCreateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body, context)
             .getSyncPoller();
     }
 
@@ -1236,7 +1239,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String volumeName,
         String snapshotName,
         Object body) {
-        return beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body)
+        return this
+            .beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body)
             .getSyncPoller();
     }
 
@@ -1266,7 +1270,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String snapshotName,
         Object body,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body, context)
             .getSyncPoller();
     }
 
@@ -1591,7 +1596,9 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String poolName, String volumeName, String snapshotName) {
-        return beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName).getSyncPoller();
+        return this
+            .beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName)
+            .getSyncPoller();
     }
 
     /**
@@ -1618,7 +1625,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String volumeName,
         String snapshotName,
         Context context) {
-        return beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, context)
             .getSyncPoller();
     }
 
@@ -1960,7 +1968,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String volumeName,
         String snapshotName,
         SnapshotRestoreFiles body) {
-        return beginRestoreFilesAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body)
+        return this
+            .beginRestoreFilesAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body)
             .getSyncPoller();
     }
 
@@ -1990,7 +1999,8 @@ public final class SnapshotsClientImpl implements SnapshotsClient {
         String snapshotName,
         SnapshotRestoreFiles body,
         Context context) {
-        return beginRestoreFilesAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body, context)
+        return this
+            .beginRestoreFilesAsync(resourceGroupName, accountName, poolName, volumeName, snapshotName, body, context)
             .getSyncPoller();
     }
 

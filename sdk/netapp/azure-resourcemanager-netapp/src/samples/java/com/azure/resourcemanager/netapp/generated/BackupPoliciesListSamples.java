@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for BackupPolicies List. */
 public final class BackupPoliciesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class BackupPoliciesListSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void backupsList(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.backupPolicies().list("myRG", "account1", Context.NONE);
+        manager.backupPolicies().list("myRG", "account1", com.azure.core.util.Context.NONE);
     }
 }
