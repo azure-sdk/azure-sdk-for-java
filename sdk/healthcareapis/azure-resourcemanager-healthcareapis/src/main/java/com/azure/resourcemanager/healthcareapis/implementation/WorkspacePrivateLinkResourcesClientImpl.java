@@ -59,7 +59,7 @@ public final class WorkspacePrivateLinkResourcesClientImpl implements WorkspaceP
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface WorkspacePrivateLinkResourcesService {
+    public interface WorkspacePrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
@@ -387,30 +387,7 @@ public final class WorkspacePrivateLinkResourcesClientImpl implements WorkspaceP
     private Mono<PrivateLinkResourceDescriptionInner> getAsync(
         String resourceGroupName, String workspaceName, String groupName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, groupName)
-            .flatMap(
-                (Response<PrivateLinkResourceDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets a private link resource that need to be created for a workspace.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param groupName The name of the private link resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private link resource that need to be created for a workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceDescriptionInner get(String resourceGroupName, String workspaceName, String groupName) {
-        return getAsync(resourceGroupName, workspaceName, groupName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -429,5 +406,21 @@ public final class WorkspacePrivateLinkResourcesClientImpl implements WorkspaceP
     public Response<PrivateLinkResourceDescriptionInner> getWithResponse(
         String resourceGroupName, String workspaceName, String groupName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, groupName, context).block();
+    }
+
+    /**
+     * Gets a private link resource that need to be created for a workspace.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param groupName The name of the private link resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceDescriptionInner get(String resourceGroupName, String workspaceName, String groupName) {
+        return getWithResponse(resourceGroupName, workspaceName, groupName, Context.NONE).getValue();
     }
 }

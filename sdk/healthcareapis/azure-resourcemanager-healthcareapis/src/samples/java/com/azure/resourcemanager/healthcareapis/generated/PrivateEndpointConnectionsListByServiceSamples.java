@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections ListByService. */
 public final class PrivateEndpointConnectionsListByServiceSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceListPrivateEndpointConnections.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServiceListPrivateEndpointConnections.json
      */
     /**
      * Sample code: PrivateEndpointConnection_List.
@@ -18,6 +16,6 @@ public final class PrivateEndpointConnectionsListByServiceSamples {
      */
     public static void privateEndpointConnectionList(
         com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.privateEndpointConnections().listByService("rgname", "service1", Context.NONE);
+        manager.privateEndpointConnections().listByService("rgname", "service1", com.azure.core.util.Context.NONE);
     }
 }
