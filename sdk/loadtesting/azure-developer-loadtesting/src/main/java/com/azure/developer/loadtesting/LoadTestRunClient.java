@@ -282,6 +282,16 @@ public final class LoadTestRunClient {
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      *
+     * <p><strong>Header Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Header Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>Content-Type</td><td>String</td><td>No</td><td>The content type. Allowed values: "application/json".</td></tr>
+     * </table>
+     *
+     * You can add these to a request with {@link RequestOptions#addHeader}
+     *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
@@ -301,23 +311,18 @@ public final class LoadTestRunClient {
      *
      * <pre>{@code
      * {
-     *     value (Optional): [
+     *     data (Optional): [
      *          (Optional){
-     *             data (Optional): [
-     *                  (Optional){
-     *                     timestamp: String (Optional)
-     *                     value: Double (Optional)
-     *                 }
-     *             ]
-     *             dimensionValues (Optional): [
-     *                  (Optional){
-     *                     name: String (Optional)
-     *                     value: String (Optional)
-     *                 }
-     *             ]
+     *             timestamp: String (Optional)
+     *             value: Double (Optional)
      *         }
      *     ]
-     *     nextLink: String (Optional)
+     *     dimensionValues (Optional): [
+     *          (Optional){
+     *             name: String (Optional)
+     *             value: String (Optional)
+     *         }
+     *     ]
      * }
      * }</pre>
      *
@@ -362,12 +367,7 @@ public final class LoadTestRunClient {
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
-     * {
-     *     value (Optional): [
-     *         String (Optional)
-     *     ]
-     *     nextLink: String (Optional)
-     * }
+     * String
      * }</pre>
      *
      * @param testRunId Unique name for the load test run, must contain only lower-case alphabetic, numeric, underscore
@@ -927,112 +927,107 @@ public final class LoadTestRunClient {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientMetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
-     *                         aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String(continue/stop) (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String(passed/undetermined/failed) (Optional)
-     *                     }
-     *                 }
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientMetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(continue/stop) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
-     *                 }
-     *             }
-     *             certificate (Optional): {
-     *                 value: String (Optional)
-     *                 type: String(AKV_CERT_URI) (Optional)
-     *                 name: String (Optional)
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             errorDetails (Optional): [
-     *                  (Optional){
-     *                     message: String (Optional)
-     *                 }
-     *             ]
-     *             testRunStatistics (Optional): {
-     *                 String (Optional): {
-     *                     transaction: String (Optional)
-     *                     sampleCount: Double (Optional)
-     *                     errorCount: Double (Optional)
-     *                     errorPct: Double (Optional)
-     *                     meanResTime: Double (Optional)
-     *                     medianResTime: Double (Optional)
-     *                     maxResTime: Double (Optional)
-     *                     minResTime: Double (Optional)
-     *                     pct1ResTime: Double (Optional)
-     *                     pct2ResTime: Double (Optional)
-     *                     pct3ResTime: Double (Optional)
-     *                     throughput: Double (Optional)
-     *                     receivedKBytesPerSec: Double (Optional)
-     *                     sentKBytesPerSec: Double (Optional)
-     *                 }
-     *             }
-     *             loadTestConfiguration (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
-     *                 quickStartTest: Boolean (Optional)
-     *                 optionalLoadTestConfig (Optional): {
-     *                     endpointUrl: String (Optional)
-     *                     virtualUsers: Integer (Optional)
-     *                     rampUpTime: Integer (Optional)
-     *                     duration: Integer (Optional)
-     *                 }
-     *             }
-     *             testArtifacts (Optional): {
-     *                 inputArtifacts (Optional): {
-     *                     configFileInfo (Optional): {
-     *                         url: String (Optional)
-     *                         fileName: String (Optional)
-     *                         fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
-     *                         expireDateTime: OffsetDateTime (Optional)
-     *                         validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
-     *                         validationFailureDetails: String (Optional)
-     *                     }
-     *                     testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
-     *                     userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
-     *                     inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
-     *                     additionalFileInfo (Optional): [
-     *                         (recursive schema, see above)
-     *                     ]
-     *                 }
-     *                 outputArtifacts (Optional): {
-     *                     resultFileInfo (Optional): (recursive schema, see resultFileInfo above)
-     *                     logsFileInfo (Optional): (recursive schema, see logsFileInfo above)
-     *                 }
-     *             }
-     *             testResult: String(PASSED/NOT_APPLICABLE/FAILED) (Optional)
-     *             virtualUsers: Integer (Optional)
-     *             testRunId: String (Optional)
-     *             displayName: String (Optional)
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             status: String(ACCEPTED/NOTSTARTED/PROVISIONING/PROVISIONED/CONFIGURING/CONFIGURED/EXECUTING/EXECUTED/DEPROVISIONING/DEPROVISIONED/DONE/CANCELLING/CANCELLED/FAILED/VALIDATION_SUCCESS/VALIDATION_FAILURE) (Optional)
-     *             startDateTime: OffsetDateTime (Optional)
-     *             endDateTime: OffsetDateTime (Optional)
-     *             executedDateTime: OffsetDateTime (Optional)
-     *             portalUrl: String (Optional)
-     *             duration: Long (Optional)
-     *             subnetId: String (Optional)
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
+     *         }
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
+     *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     errorDetails (Optional): [
+     *          (Optional){
+     *             message: String (Optional)
      *         }
      *     ]
-     *     nextLink: String (Optional)
+     *     testRunStatistics (Optional): {
+     *         String (Optional): {
+     *             transaction: String (Optional)
+     *             sampleCount: Double (Optional)
+     *             errorCount: Double (Optional)
+     *             errorPct: Double (Optional)
+     *             meanResTime: Double (Optional)
+     *             medianResTime: Double (Optional)
+     *             maxResTime: Double (Optional)
+     *             minResTime: Double (Optional)
+     *             pct1ResTime: Double (Optional)
+     *             pct2ResTime: Double (Optional)
+     *             pct3ResTime: Double (Optional)
+     *             throughput: Double (Optional)
+     *             receivedKBytesPerSec: Double (Optional)
+     *             sentKBytesPerSec: Double (Optional)
+     *         }
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             virtualUsers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     testArtifacts (Optional): {
+     *         inputArtifacts (Optional): {
+     *             configFileInfo (Optional): {
+     *                 url: String (Optional)
+     *                 fileName: String (Optional)
+     *                 fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *                 expireDateTime: OffsetDateTime (Optional)
+     *                 validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *                 validationFailureDetails: String (Optional)
+     *             }
+     *             testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *             userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *             inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *             additionalFileInfo (Optional): [
+     *                 (recursive schema, see above)
+     *             ]
+     *         }
+     *         outputArtifacts (Optional): {
+     *             resultFileInfo (Optional): (recursive schema, see resultFileInfo above)
+     *             logsFileInfo (Optional): (recursive schema, see logsFileInfo above)
+     *         }
+     *     }
+     *     testResult: String(PASSED/NOT_APPLICABLE/FAILED) (Optional)
+     *     virtualUsers: Integer (Optional)
+     *     testRunId: String (Optional)
+     *     displayName: String (Optional)
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     status: String(ACCEPTED/NOTSTARTED/PROVISIONING/PROVISIONED/CONFIGURING/CONFIGURED/EXECUTING/EXECUTED/DEPROVISIONING/DEPROVISIONED/DONE/CANCELLING/CANCELLED/FAILED/VALIDATION_SUCCESS/VALIDATION_FAILURE) (Optional)
+     *     startDateTime: OffsetDateTime (Optional)
+     *     endDateTime: OffsetDateTime (Optional)
+     *     executedDateTime: OffsetDateTime (Optional)
+     *     portalUrl: String (Optional)
+     *     duration: Long (Optional)
+     *     subnetId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
