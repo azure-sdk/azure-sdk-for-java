@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hybridcompute.generated;
 /** Samples for Machines GetByResourceGroup. */
 public final class MachinesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/Machines_Get.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2022-12-27-preview/examples/Machines_Get.json
      */
     /**
      * Sample code: Get Machine.
