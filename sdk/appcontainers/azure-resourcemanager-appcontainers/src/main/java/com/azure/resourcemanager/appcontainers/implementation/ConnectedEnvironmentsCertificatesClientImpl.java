@@ -66,7 +66,7 @@ public final class ConnectedEnvironmentsCertificatesClientImpl implements Connec
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ConnectedEnvironmentsCertificatesService {
+    public interface ConnectedEnvironmentsCertificatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
