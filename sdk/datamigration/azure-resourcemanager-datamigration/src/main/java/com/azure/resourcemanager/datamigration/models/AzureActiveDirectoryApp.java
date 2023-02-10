@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Azure Active Directory Application. */
@@ -14,20 +13,26 @@ public final class AzureActiveDirectoryApp {
     /*
      * Application ID of the Azure Active Directory Application
      */
-    @JsonProperty(value = "applicationId", required = true)
+    @JsonProperty(value = "applicationId")
     private String applicationId;
 
     /*
      * Key used to authenticate to the Azure Active Directory Application
      */
-    @JsonProperty(value = "appKey", required = true)
+    @JsonProperty(value = "appKey")
     private String appKey;
 
     /*
      * Tenant id of the customer
      */
-    @JsonProperty(value = "tenantId", required = true)
+    @JsonProperty(value = "tenantId")
     private String tenantId;
+
+    /*
+     * Ignore checking azure permissions on the AAD app
+     */
+    @JsonProperty(value = "ignoreAzurePermissions")
+    private Boolean ignoreAzurePermissions;
 
     /** Creates an instance of AzureActiveDirectoryApp class. */
     public AzureActiveDirectoryApp() {
@@ -94,29 +99,30 @@ public final class AzureActiveDirectoryApp {
     }
 
     /**
+     * Get the ignoreAzurePermissions property: Ignore checking azure permissions on the AAD app.
+     *
+     * @return the ignoreAzurePermissions value.
+     */
+    public Boolean ignoreAzurePermissions() {
+        return this.ignoreAzurePermissions;
+    }
+
+    /**
+     * Set the ignoreAzurePermissions property: Ignore checking azure permissions on the AAD app.
+     *
+     * @param ignoreAzurePermissions the ignoreAzurePermissions value to set.
+     * @return the AzureActiveDirectoryApp object itself.
+     */
+    public AzureActiveDirectoryApp withIgnoreAzurePermissions(Boolean ignoreAzurePermissions) {
+        this.ignoreAzurePermissions = ignoreAzurePermissions;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (applicationId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property applicationId in model AzureActiveDirectoryApp"));
-        }
-        if (appKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property appKey in model AzureActiveDirectoryApp"));
-        }
-        if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property tenantId in model AzureActiveDirectoryApp"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureActiveDirectoryApp.class);
 }

@@ -1,6 +1,37 @@
 # Code snippets and samples
 
 
+## DatabaseMigrationsSqlDb
+
+- [Cancel](#databasemigrationssqldb_cancel)
+- [CreateOrUpdate](#databasemigrationssqldb_createorupdate)
+- [Delete](#databasemigrationssqldb_delete)
+- [Get](#databasemigrationssqldb_get)
+
+## DatabaseMigrationsSqlMi
+
+- [Cancel](#databasemigrationssqlmi_cancel)
+- [CreateOrUpdate](#databasemigrationssqlmi_createorupdate)
+- [Cutover](#databasemigrationssqlmi_cutover)
+- [Get](#databasemigrationssqlmi_get)
+
+## DatabaseMigrationsSqlVm
+
+- [Cancel](#databasemigrationssqlvm_cancel)
+- [CreateOrUpdate](#databasemigrationssqlvm_createorupdate)
+- [Cutover](#databasemigrationssqlvm_cutover)
+- [Get](#databasemigrationssqlvm_get)
+
+## Files
+
+- [CreateOrUpdate](#files_createorupdate)
+- [Delete](#files_delete)
+- [Get](#files_get)
+- [List](#files_list)
+- [Read](#files_read)
+- [ReadWrite](#files_readwrite)
+- [Update](#files_update)
+
 ## Operations
 
 - [List](#operations_list)
@@ -10,15 +41,25 @@
 - [CreateOrUpdate](#projects_createorupdate)
 - [Delete](#projects_delete)
 - [Get](#projects_get)
-- [ListByResourceGroup](#projects_listbyresourcegroup)
+- [List](#projects_list)
 - [Update](#projects_update)
 
 ## ResourceSkus
 
 - [List](#resourceskus_list)
 
+## ServiceTasks
+
+- [Cancel](#servicetasks_cancel)
+- [CreateOrUpdate](#servicetasks_createorupdate)
+- [Delete](#servicetasks_delete)
+- [Get](#servicetasks_get)
+- [List](#servicetasks_list)
+- [Update](#servicetasks_update)
+
 ## Services
 
+- [CheckChildrenNameAvailability](#services_checkchildrennameavailability)
 - [CheckNameAvailability](#services_checknameavailability)
 - [CheckStatus](#services_checkstatus)
 - [CreateOrUpdate](#services_createorupdate)
@@ -27,14 +68,28 @@
 - [List](#services_list)
 - [ListByResourceGroup](#services_listbyresourcegroup)
 - [ListSkus](#services_listskus)
-- [NestedCheckNameAvailability](#services_nestedchecknameavailability)
 - [Start](#services_start)
 - [Stop](#services_stop)
 - [Update](#services_update)
 
+## SqlMigrationServices
+
+- [CreateOrUpdate](#sqlmigrationservices_createorupdate)
+- [Delete](#sqlmigrationservices_delete)
+- [DeleteNode](#sqlmigrationservices_deletenode)
+- [GetByResourceGroup](#sqlmigrationservices_getbyresourcegroup)
+- [List](#sqlmigrationservices_list)
+- [ListAuthKeys](#sqlmigrationservices_listauthkeys)
+- [ListByResourceGroup](#sqlmigrationservices_listbyresourcegroup)
+- [ListMigrations](#sqlmigrationservices_listmigrations)
+- [ListMonitoringData](#sqlmigrationservices_listmonitoringdata)
+- [RegenerateAuthKeys](#sqlmigrationservices_regenerateauthkeys)
+- [Update](#sqlmigrationservices_update)
+
 ## Tasks
 
 - [Cancel](#tasks_cancel)
+- [Command](#tasks_command)
 - [CreateOrUpdate](#tasks_createorupdate)
 - [Delete](#tasks_delete)
 - [Get](#tasks_get)
@@ -44,20 +99,782 @@
 ## Usages
 
 - [List](#usages_list)
+### DatabaseMigrationsSqlDb_Cancel
+
+```java
+import com.azure.resourcemanager.datamigration.models.MigrationOperationInput;
+import java.util.UUID;
+
+/** Samples for DatabaseMigrationsSqlDb Cancel. */
+public final class DatabaseMigrationsSqlDbCancelSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlDbCancelDatabaseMigration.json
+     */
+    /**
+     * Sample code: Stop ongoing migration for the database.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void stopOngoingMigrationForTheDatabase(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlDbs()
+            .cancel(
+                "testrg",
+                "sqldbinstance",
+                "db1",
+                new MigrationOperationInput()
+                    .withMigrationOperationId(UUID.fromString("9a90bb84-e70f-46f7-b0ae-1aef5b3b9f07")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlDb_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.datamigration.models.DatabaseMigrationPropertiesSqlDb;
+import com.azure.resourcemanager.datamigration.models.SqlConnectionInformation;
+import java.util.Arrays;
+
+/** Samples for DatabaseMigrationsSqlDb CreateOrUpdate. */
+public final class DatabaseMigrationsSqlDbCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlDbCreateOrUpdateDatabaseMigrationMAX.json
+     */
+    /**
+     * Sample code: Create or Update Database Migration resource with Maximum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateDatabaseMigrationResourceWithMaximumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlDbs()
+            .define("db1")
+            .withExistingServer("testrg", "sqldbinstance")
+            .withProperties(
+                new DatabaseMigrationPropertiesSqlDb()
+                    .withScope(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Sql/servers/sqldbinstance")
+                    .withSourceSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("aaa")
+                            .withAuthentication("WindowsAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withSourceDatabaseName("aaa")
+                    .withMigrationService(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.DataMigration/sqlMigrationServices/testagent")
+                    .withTargetSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("sqldbinstance")
+                            .withAuthentication("SqlAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withTableList(Arrays.asList("[Schema1].[TableName1]", "[Schema2].[TableName2]")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlDbCreateOrUpdateDatabaseMigrationMIN.json
+     */
+    /**
+     * Sample code: Create or Update Database Migration resource with Minimum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateDatabaseMigrationResourceWithMinimumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlDbs()
+            .define("db1")
+            .withExistingServer("testrg", "sqldbinstance")
+            .withProperties(
+                new DatabaseMigrationPropertiesSqlDb()
+                    .withScope(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Sql/servers/sqldbinstance")
+                    .withSourceSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("aaa")
+                            .withAuthentication("WindowsAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withSourceDatabaseName("aaa")
+                    .withMigrationService(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.DataMigration/sqlMigrationServices/testagent")
+                    .withTargetSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("sqldbinstance")
+                            .withAuthentication("SqlAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true)))
+            .create();
+    }
+}
+```
+
+### DatabaseMigrationsSqlDb_Delete
+
+```java
+/** Samples for DatabaseMigrationsSqlDb Delete. */
+public final class DatabaseMigrationsSqlDbDeleteSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlDbDeleteDatabaseMigration.json
+     */
+    /**
+     * Sample code: Delete Database Migration resource.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void deleteDatabaseMigrationResource(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlDbs()
+            .delete("testrg", "sqldbinstance", "db1", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlDb_Get
+
+```java
+/** Samples for DatabaseMigrationsSqlDb Get. */
+public final class DatabaseMigrationsSqlDbGetSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlDbGetDatabaseMigration.json
+     */
+    /**
+     * Sample code: Get Sql DB database Migration without the expand parameter.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getSqlDBDatabaseMigrationWithoutTheExpandParameter(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlDbs()
+            .getWithResponse("testrg", "sqldbinstance", "db1", null, null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlDbGetDatabaseMigrationExpanded.json
+     */
+    /**
+     * Sample code: Get Sql DB database Migration with the expand parameter.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getSqlDBDatabaseMigrationWithTheExpandParameter(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlDbs()
+            .getWithResponse(
+                "testrg", "sqldbinstance", "db1", null, "MigrationStatusDetails", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlMi_Cancel
+
+```java
+import com.azure.resourcemanager.datamigration.models.MigrationOperationInput;
+import java.util.UUID;
+
+/** Samples for DatabaseMigrationsSqlMi Cancel. */
+public final class DatabaseMigrationsSqlMiCancelSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlMiCancelDatabaseMigration.json
+     */
+    /**
+     * Sample code: Stop ongoing migration for the database.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void stopOngoingMigrationForTheDatabase(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlMis()
+            .cancel(
+                "testrg",
+                "managedInstance1",
+                "db1",
+                new MigrationOperationInput()
+                    .withMigrationOperationId(UUID.fromString("4124fe90-d1b6-4b50-b4d9-46d02381f59a")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlMi_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.datamigration.models.BackupConfiguration;
+import com.azure.resourcemanager.datamigration.models.DatabaseMigrationPropertiesSqlMi;
+import com.azure.resourcemanager.datamigration.models.OfflineConfiguration;
+import com.azure.resourcemanager.datamigration.models.SourceLocation;
+import com.azure.resourcemanager.datamigration.models.SqlConnectionInformation;
+import com.azure.resourcemanager.datamigration.models.SqlFileShare;
+import com.azure.resourcemanager.datamigration.models.TargetLocation;
+
+/** Samples for DatabaseMigrationsSqlMi CreateOrUpdate. */
+public final class DatabaseMigrationsSqlMiCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlMiCreateOrUpdateDatabaseMigrationMAX.json
+     */
+    /**
+     * Sample code: Create or Update Database Migration resource with Maximum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateDatabaseMigrationResourceWithMaximumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlMis()
+            .define("db1")
+            .withExistingManagedInstance("testrg", "managedInstance1")
+            .withProperties(
+                new DatabaseMigrationPropertiesSqlMi()
+                    .withScope(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Sql/managedInstances/instance")
+                    .withSourceSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("aaa")
+                            .withAuthentication("WindowsAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withSourceDatabaseName("aaa")
+                    .withMigrationService(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.DataMigration/sqlMigrationServices/testagent")
+                    .withBackupConfiguration(
+                        new BackupConfiguration()
+                            .withSourceLocation(
+                                new SourceLocation()
+                                    .withFileShare(
+                                        new SqlFileShare()
+                                            .withPath("C:\\aaa\\bbb\\ccc")
+                                            .withUsername("name")
+                                            .withPassword("fakeTokenPlaceholder")))
+                            .withTargetLocation(
+                                new TargetLocation()
+                                    .withStorageAccountResourceId("account.database.windows.net")
+                                    .withAccountKey("fakeTokenPlaceholder")))
+                    .withOfflineConfiguration(
+                        new OfflineConfiguration().withOffline(true).withLastBackupName("last_backup_file_name")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlMiCreateOrUpdateDatabaseMigrationMIN.json
+     */
+    /**
+     * Sample code: Create or Update Database Migration resource with Minimum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateDatabaseMigrationResourceWithMinimumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlMis()
+            .define("db1")
+            .withExistingManagedInstance("testrg", "managedInstance1")
+            .withProperties(
+                new DatabaseMigrationPropertiesSqlMi()
+                    .withScope(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Sql/managedInstances/instance")
+                    .withSourceSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("aaa")
+                            .withAuthentication("WindowsAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withSourceDatabaseName("aaa")
+                    .withMigrationService(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.DataMigration/sqlMigrationServices/testagent")
+                    .withBackupConfiguration(
+                        new BackupConfiguration()
+                            .withSourceLocation(
+                                new SourceLocation()
+                                    .withFileShare(
+                                        new SqlFileShare()
+                                            .withPath("C:\\aaa\\bbb\\ccc")
+                                            .withUsername("name")
+                                            .withPassword("fakeTokenPlaceholder")))
+                            .withTargetLocation(
+                                new TargetLocation()
+                                    .withStorageAccountResourceId("account.database.windows.net")
+                                    .withAccountKey("fakeTokenPlaceholder"))))
+            .create();
+    }
+}
+```
+
+### DatabaseMigrationsSqlMi_Cutover
+
+```java
+import com.azure.resourcemanager.datamigration.models.MigrationOperationInput;
+import java.util.UUID;
+
+/** Samples for DatabaseMigrationsSqlMi Cutover. */
+public final class DatabaseMigrationsSqlMiCutoverSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlMiCutoverDatabaseMigration.json
+     */
+    /**
+     * Sample code: Cutover online migration operation for the database.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void cutoverOnlineMigrationOperationForTheDatabase(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlMis()
+            .cutover(
+                "testrg",
+                "managedInstance1",
+                "db1",
+                new MigrationOperationInput()
+                    .withMigrationOperationId(UUID.fromString("4124fe90-d1b6-4b50-b4d9-46d02381f59a")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlMi_Get
+
+```java
+/** Samples for DatabaseMigrationsSqlMi Get. */
+public final class DatabaseMigrationsSqlMiGetSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlMiGetDatabaseMigrationExpanded.json
+     */
+    /**
+     * Sample code: Get Sql MI database Migration with the expand parameter.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getSqlMIDatabaseMigrationWithTheExpandParameter(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlMis()
+            .getWithResponse(
+                "testrg", "managedInstance1", "db1", null, "MigrationStatusDetails", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlMiGetDatabaseMigration.json
+     */
+    /**
+     * Sample code: Get Sql MI database Migration without the expand parameter.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getSqlMIDatabaseMigrationWithoutTheExpandParameter(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlMis()
+            .getWithResponse("testrg", "managedInstance1", "db1", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlVm_Cancel
+
+```java
+import com.azure.resourcemanager.datamigration.models.MigrationOperationInput;
+import java.util.UUID;
+
+/** Samples for DatabaseMigrationsSqlVm Cancel. */
+public final class DatabaseMigrationsSqlVmCancelSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlVmCancelDatabaseMigration.json
+     */
+    /**
+     * Sample code: Stop ongoing migration for the database.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void stopOngoingMigrationForTheDatabase(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlVms()
+            .cancel(
+                "testrg",
+                "testvm",
+                "db1",
+                new MigrationOperationInput()
+                    .withMigrationOperationId(UUID.fromString("4124fe90-d1b6-4b50-b4d9-46d02381f59a")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlVm_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.datamigration.models.BackupConfiguration;
+import com.azure.resourcemanager.datamigration.models.DatabaseMigrationPropertiesSqlVm;
+import com.azure.resourcemanager.datamigration.models.OfflineConfiguration;
+import com.azure.resourcemanager.datamigration.models.SourceLocation;
+import com.azure.resourcemanager.datamigration.models.SqlConnectionInformation;
+import com.azure.resourcemanager.datamigration.models.SqlFileShare;
+import com.azure.resourcemanager.datamigration.models.TargetLocation;
+
+/** Samples for DatabaseMigrationsSqlVm CreateOrUpdate. */
+public final class DatabaseMigrationsSqlVmCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlVmCreateOrUpdateDatabaseMigrationMAX.json
+     */
+    /**
+     * Sample code: Create or Update Database Migration resource with Maximum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateDatabaseMigrationResourceWithMaximumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlVms()
+            .define("db1")
+            .withExistingSqlVirtualMachine("testrg", "testvm")
+            .withProperties(
+                new DatabaseMigrationPropertiesSqlVm()
+                    .withScope(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm")
+                    .withSourceSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("aaa")
+                            .withAuthentication("WindowsAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withSourceDatabaseName("aaa")
+                    .withMigrationService(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.DataMigration/sqlMigrationServices/testagent")
+                    .withBackupConfiguration(
+                        new BackupConfiguration()
+                            .withSourceLocation(
+                                new SourceLocation()
+                                    .withFileShare(
+                                        new SqlFileShare()
+                                            .withPath("C:\\aaa\\bbb\\ccc")
+                                            .withUsername("name")
+                                            .withPassword("fakeTokenPlaceholder")))
+                            .withTargetLocation(
+                                new TargetLocation()
+                                    .withStorageAccountResourceId("account.database.windows.net")
+                                    .withAccountKey("fakeTokenPlaceholder")))
+                    .withOfflineConfiguration(
+                        new OfflineConfiguration().withOffline(true).withLastBackupName("last_backup_file_name")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlVmCreateOrUpdateDatabaseMigrationMIN.json
+     */
+    /**
+     * Sample code: Create or Update Database Migration resource with Minimum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateDatabaseMigrationResourceWithMinimumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlVms()
+            .define("db1")
+            .withExistingSqlVirtualMachine("testrg", "testvm")
+            .withProperties(
+                new DatabaseMigrationPropertiesSqlVm()
+                    .withScope(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm")
+                    .withSourceSqlConnection(
+                        new SqlConnectionInformation()
+                            .withDataSource("aaa")
+                            .withAuthentication("WindowsAuthentication")
+                            .withUsername("bbb")
+                            .withPassword("fakeTokenPlaceholder")
+                            .withEncryptConnection(true)
+                            .withTrustServerCertificate(true))
+                    .withSourceDatabaseName("aaa")
+                    .withMigrationService(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.DataMigration/sqlMigrationServices/testagent")
+                    .withBackupConfiguration(
+                        new BackupConfiguration()
+                            .withSourceLocation(
+                                new SourceLocation()
+                                    .withFileShare(
+                                        new SqlFileShare()
+                                            .withPath("C:\\aaa\\bbb\\ccc")
+                                            .withUsername("name")
+                                            .withPassword("fakeTokenPlaceholder")))
+                            .withTargetLocation(
+                                new TargetLocation()
+                                    .withStorageAccountResourceId("account.database.windows.net")
+                                    .withAccountKey("fakeTokenPlaceholder"))))
+            .create();
+    }
+}
+```
+
+### DatabaseMigrationsSqlVm_Cutover
+
+```java
+import com.azure.resourcemanager.datamigration.models.MigrationOperationInput;
+import java.util.UUID;
+
+/** Samples for DatabaseMigrationsSqlVm Cutover. */
+public final class DatabaseMigrationsSqlVmCutoverSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlVmCutoverDatabaseMigration.json
+     */
+    /**
+     * Sample code: Cutover online migration operation for the database.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void cutoverOnlineMigrationOperationForTheDatabase(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlVms()
+            .cutover(
+                "testrg",
+                "testvm",
+                "db1",
+                new MigrationOperationInput()
+                    .withMigrationOperationId(UUID.fromString("4124fe90-d1b6-4b50-b4d9-46d02381f59a")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DatabaseMigrationsSqlVm_Get
+
+```java
+/** Samples for DatabaseMigrationsSqlVm Get. */
+public final class DatabaseMigrationsSqlVmGetSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlVmGetDatabaseMigrationExpanded.json
+     */
+    /**
+     * Sample code: Get Sql VM database Migration with the expand parameter.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getSqlVMDatabaseMigrationWithTheExpandParameter(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlVms()
+            .getWithResponse(
+                "testrg", "testvm", "db1", null, "MigrationStatusDetails", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/SqlVmGetDatabaseMigration.json
+     */
+    /**
+     * Sample code: Get Sql VM database Migration without the expand parameter.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getSqlVMDatabaseMigrationWithoutTheExpandParameter(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .databaseMigrationsSqlVms()
+            .getWithResponse("testrg", "testvm", "db1", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Files_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.datamigration.models.ProjectFileProperties;
+
+/** Samples for Files CreateOrUpdate. */
+public final class FilesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Files_CreateOrUpdate.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesCreateOrUpdate(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .files()
+            .define("x114d023d8")
+            .withExistingProject("DmsSdkRg", "DmsSdkService", "DmsSdkProject")
+            .withProperties(new ProjectFileProperties().withFilePath("DmsSdkFilePath/DmsSdkFile.sql"))
+            .create();
+    }
+}
+```
+
+### Files_Delete
+
+```java
+/** Samples for Files Delete. */
+public final class FilesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_Delete.json
+     */
+    /**
+     * Sample code: Files_Delete.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesDelete(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .files()
+            .deleteWithResponse(
+                "DmsSdkRg", "DmsSdkService", "DmsSdkProject", "x114d023d8", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Files_Get
+
+```java
+/** Samples for Files Get. */
+public final class FilesGetSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_Get.json
+     */
+    /**
+     * Sample code: Files_List.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .files()
+            .getWithResponse(
+                "DmsSdkRg", "DmsSdkService", "DmsSdkProject", "x114d023d8", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Files_List
+
+```java
+/** Samples for Files List. */
+public final class FilesListSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_List.json
+     */
+    /**
+     * Sample code: Files_List.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.files().list("DmsSdkRg", "DmsSdkService", "DmsSdkProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Files_Read
+
+```java
+/** Samples for Files Read. */
+public final class FilesReadSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_Read.json
+     */
+    /**
+     * Sample code: Files_List.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .files()
+            .readWithResponse(
+                "DmsSdkRg", "DmsSdkService", "DmsSdkProject", "x114d023d8", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Files_ReadWrite
+
+```java
+/** Samples for Files ReadWrite. */
+public final class FilesReadWriteSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_ReadWrite.json
+     */
+    /**
+     * Sample code: Files_List.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .files()
+            .readWriteWithResponse(
+                "DmsSdkRg", "DmsSdkService", "DmsSdkProject", "x114d023d8", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Files_Update
+
+```java
+import com.azure.resourcemanager.datamigration.models.ProjectFile;
+import com.azure.resourcemanager.datamigration.models.ProjectFileProperties;
+
+/** Samples for Files Update. */
+public final class FilesUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Files_Update.json
+     */
+    /**
+     * Sample code: Files_Update.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void filesUpdate(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        ProjectFile resource =
+            manager
+                .files()
+                .getWithResponse(
+                    "DmsSdkRg", "DmsSdkService", "DmsSdkProject", "x114d023d8", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withProperties(new ProjectFileProperties().withFilePath("DmsSdkFilePath/DmsSdkFile.sql"))
+            .apply();
+    }
+}
+```
+
 ### Operations_List
 
 ```java
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Operations_List.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ListOperation.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: Lists all of the available SQL Rest API operations.
      *
      * @param manager Entry point to DataMigrationManager.
      */
-    public static void operationsList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+    public static void listsAllOfTheAvailableSQLRestAPIOperations(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -72,7 +889,7 @@ import com.azure.resourcemanager.datamigration.models.ProjectTargetPlatform;
 /** Samples for Projects CreateOrUpdate. */
 public final class ProjectsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_CreateOrUpdate.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Projects_CreateOrUpdate.json
      */
     /**
      * Sample code: Projects_CreateOrUpdate.
@@ -98,7 +915,7 @@ public final class ProjectsCreateOrUpdateSamples {
 /** Samples for Projects Delete. */
 public final class ProjectsDeleteSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_Delete.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Projects_Delete.json
      */
     /**
      * Sample code: Projects_Delete.
@@ -119,7 +936,7 @@ public final class ProjectsDeleteSamples {
 /** Samples for Projects Get. */
 public final class ProjectsGetSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_Get.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Projects_Get.json
      */
     /**
      * Sample code: Projects_Get.
@@ -134,22 +951,21 @@ public final class ProjectsGetSamples {
 }
 ```
 
-### Projects_ListByResourceGroup
+### Projects_List
 
 ```java
-/** Samples for Projects ListByResourceGroup. */
-public final class ProjectsListByResourceGroupSamples {
+/** Samples for Projects List. */
+public final class ProjectsListSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_List.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Projects_List.json
      */
     /**
-     * Sample code: Projects_ListByResourceGroup.
+     * Sample code: Projects_List.
      *
      * @param manager Entry point to DataMigrationManager.
      */
-    public static void projectsListByResourceGroup(
-        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
-        manager.projects().listByResourceGroup("DmsSdkRg", "DmsSdkService", com.azure.core.util.Context.NONE);
+    public static void projectsList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.projects().list("DmsSdkRg", "DmsSdkService", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -164,7 +980,7 @@ import com.azure.resourcemanager.datamigration.models.ProjectTargetPlatform;
 /** Samples for Projects Update. */
 public final class ProjectsUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_Update.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Projects_Update.json
      */
     /**
      * Sample code: Projects_Update.
@@ -192,7 +1008,7 @@ public final class ProjectsUpdateSamples {
 /** Samples for ResourceSkus List. */
 public final class ResourceSkusListSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/ResourceSkus_ListSkus.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ResourceSkus_ListSkus.json
      */
     /**
      * Sample code: ListSkus.
@@ -205,6 +1021,182 @@ public final class ResourceSkusListSamples {
 }
 ```
 
+### ServiceTasks_Cancel
+
+```java
+/** Samples for ServiceTasks Cancel. */
+public final class ServiceTasksCancelSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ServiceTasks_Cancel.json
+     */
+    /**
+     * Sample code: Tasks_Cancel.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void tasksCancel(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .serviceTasks()
+            .cancelWithResponse("DmsSdkRg", "DmsSdkService", "DmsSdkTask", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceTasks_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner;
+import com.azure.resourcemanager.datamigration.models.CheckOciDriverTaskInput;
+import com.azure.resourcemanager.datamigration.models.CheckOciDriverTaskProperties;
+
+/** Samples for ServiceTasks CreateOrUpdate. */
+public final class ServiceTasksCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ServiceTasks_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Tasks_CreateOrUpdate.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void tasksCreateOrUpdate(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .serviceTasks()
+            .createOrUpdateWithResponse(
+                "DmsSdkRg",
+                "DmsSdkService",
+                "DmsSdkTask",
+                new ProjectTaskInner()
+                    .withProperties(
+                        new CheckOciDriverTaskProperties()
+                            .withInput(new CheckOciDriverTaskInput().withServerVersion("NA"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceTasks_Delete
+
+```java
+/** Samples for ServiceTasks Delete. */
+public final class ServiceTasksDeleteSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ServiceTasks_Delete.json
+     */
+    /**
+     * Sample code: Tasks_Delete.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void tasksDelete(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .serviceTasks()
+            .deleteWithResponse("DmsSdkRg", "DmsSdkService", "DmsSdkTask", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceTasks_Get
+
+```java
+/** Samples for ServiceTasks Get. */
+public final class ServiceTasksGetSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ServiceTasks_Get.json
+     */
+    /**
+     * Sample code: Tasks_Get.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void tasksGet(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .serviceTasks()
+            .getWithResponse("DmsSdkRg", "DmsSdkService", "DmsSdkTask", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceTasks_List
+
+```java
+/** Samples for ServiceTasks List. */
+public final class ServiceTasksListSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ServiceTasks_List.json
+     */
+    /**
+     * Sample code: ServiceTasks_List.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void serviceTasksList(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.serviceTasks().list("DmsSdkRg", "DmsSdkService", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServiceTasks_Update
+
+```java
+import com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner;
+import com.azure.resourcemanager.datamigration.models.CheckOciDriverTaskInput;
+import com.azure.resourcemanager.datamigration.models.CheckOciDriverTaskProperties;
+
+/** Samples for ServiceTasks Update. */
+public final class ServiceTasksUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ServiceTasks_Update.json
+     */
+    /**
+     * Sample code: Tasks_Update.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void tasksUpdate(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .serviceTasks()
+            .updateWithResponse(
+                "DmsSdkRg",
+                "DmsSdkService",
+                "DmsSdkTask",
+                new ProjectTaskInner()
+                    .withProperties(
+                        new CheckOciDriverTaskProperties()
+                            .withInput(new CheckOciDriverTaskInput().withServerVersion("NA"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Services_CheckChildrenNameAvailability
+
+```java
+import com.azure.resourcemanager.datamigration.models.NameAvailabilityRequest;
+
+/** Samples for Services CheckChildrenNameAvailability. */
+public final class ServicesCheckChildrenNameAvailabilitySamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_CheckChildrenNameAvailability.json
+     */
+    /**
+     * Sample code: Services_CheckChildrenNameAvailability.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void servicesCheckChildrenNameAvailability(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .services()
+            .checkChildrenNameAvailabilityWithResponse(
+                "DmsSdkRg",
+                "DmsSdkService",
+                new NameAvailabilityRequest().withName("Task1").withType("tasks"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Services_CheckNameAvailability
 
 ```java
@@ -213,7 +1205,7 @@ import com.azure.resourcemanager.datamigration.models.NameAvailabilityRequest;
 /** Samples for Services CheckNameAvailability. */
 public final class ServicesCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_CheckNameAvailability.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_CheckNameAvailability.json
      */
     /**
      * Sample code: Services_CheckNameAvailability.
@@ -225,7 +1217,9 @@ public final class ServicesCheckNameAvailabilitySamples {
         manager
             .services()
             .checkNameAvailabilityWithResponse(
-                "eastus", new NameAvailabilityRequest(), com.azure.core.util.Context.NONE);
+                "eastus",
+                new NameAvailabilityRequest().withName("DmsSdkService").withType("services"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -236,7 +1230,7 @@ public final class ServicesCheckNameAvailabilitySamples {
 /** Samples for Services CheckStatus. */
 public final class ServicesCheckStatusSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_CheckStatus.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_CheckStatus.json
      */
     /**
      * Sample code: Services_CheckStatus.
@@ -257,7 +1251,7 @@ import com.azure.resourcemanager.datamigration.models.ServiceSku;
 /** Samples for Services CreateOrUpdate. */
 public final class ServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_CreateOrUpdate.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_CreateOrUpdate.json
      */
     /**
      * Sample code: Services_CreateOrUpdate.
@@ -284,7 +1278,7 @@ public final class ServicesCreateOrUpdateSamples {
 /** Samples for Services Delete. */
 public final class ServicesDeleteSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_Delete.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_Delete.json
      */
     /**
      * Sample code: Services_CreateOrUpdate.
@@ -303,7 +1297,7 @@ public final class ServicesDeleteSamples {
 /** Samples for Services GetByResourceGroup. */
 public final class ServicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_Get.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_Get.json
      */
     /**
      * Sample code: Services_CreateOrUpdate.
@@ -324,7 +1318,7 @@ public final class ServicesGetByResourceGroupSamples {
 /** Samples for Services List. */
 public final class ServicesListSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_List.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_List.json
      */
     /**
      * Sample code: Services_List.
@@ -343,7 +1337,7 @@ public final class ServicesListSamples {
 /** Samples for Services ListByResourceGroup. */
 public final class ServicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_ListByResourceGroup.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_ListByResourceGroup.json
      */
     /**
      * Sample code: Services_ListByResourceGroup.
@@ -363,7 +1357,7 @@ public final class ServicesListByResourceGroupSamples {
 /** Samples for Services ListSkus. */
 public final class ServicesListSkusSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_ListSkus.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_ListSkus.json
      */
     /**
      * Sample code: Services_ListSkus.
@@ -376,38 +1370,13 @@ public final class ServicesListSkusSamples {
 }
 ```
 
-### Services_NestedCheckNameAvailability
-
-```java
-import com.azure.resourcemanager.datamigration.models.NameAvailabilityRequest;
-
-/** Samples for Services NestedCheckNameAvailability. */
-public final class ServicesNestedCheckNameAvailabilitySamples {
-    /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_NestedCheckNameAvailability.json
-     */
-    /**
-     * Sample code: Services_NestedCheckNameAvailability.
-     *
-     * @param manager Entry point to DataMigrationManager.
-     */
-    public static void servicesNestedCheckNameAvailability(
-        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
-        manager
-            .services()
-            .nestedCheckNameAvailabilityWithResponse(
-                "DmsSdkRg", "DmsSdkService", new NameAvailabilityRequest(), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Services_Start
 
 ```java
 /** Samples for Services Start. */
 public final class ServicesStartSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_Start.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_Start.json
      */
     /**
      * Sample code: Services_Start.
@@ -426,7 +1395,7 @@ public final class ServicesStartSamples {
 /** Samples for Services Stop. */
 public final class ServicesStopSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_Stop.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_Stop.json
      */
     /**
      * Sample code: Services_Stop.
@@ -447,7 +1416,7 @@ import com.azure.resourcemanager.datamigration.models.DataMigrationService;
 /** Samples for Services Update. */
 public final class ServicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_Update.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_Update.json
      */
     /**
      * Sample code: Services_CreateOrUpdate.
@@ -469,13 +1438,292 @@ public final class ServicesUpdateSamples {
 }
 ```
 
+### SqlMigrationServices_CreateOrUpdate
+
+```java
+/** Samples for SqlMigrationServices CreateOrUpdate. */
+public final class SqlMigrationServicesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/CreateOrUpdateMigrationServiceMAX.json
+     */
+    /**
+     * Sample code: Create or Update SQL Migration Service with maximum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateSQLMigrationServiceWithMaximumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .sqlMigrationServices()
+            .define("testagent")
+            .withRegion("northeurope")
+            .withExistingResourceGroup("testrg")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/CreateOrUpdateMigrationServiceMIN.json
+     */
+    /**
+     * Sample code: Create or Update SQL Migration Service with minimum parameters.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void createOrUpdateSQLMigrationServiceWithMinimumParameters(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .sqlMigrationServices()
+            .define("testagent")
+            .withRegion("northeurope")
+            .withExistingResourceGroup("testrg")
+            .create();
+    }
+}
+```
+
+### SqlMigrationServices_Delete
+
+```java
+/** Samples for SqlMigrationServices Delete. */
+public final class SqlMigrationServicesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/DeleteMigrationService.json
+     */
+    /**
+     * Sample code: Delete SQL Migration Service.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void deleteSQLMigrationService(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.sqlMigrationServices().delete("testrg", "service1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_DeleteNode
+
+```java
+import com.azure.resourcemanager.datamigration.fluent.models.DeleteNodeInner;
+
+/** Samples for SqlMigrationServices DeleteNode. */
+public final class SqlMigrationServicesDeleteNodeSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/DeleteIntegrationRuntimeNode.json
+     */
+    /**
+     * Sample code: Delete the integration runtime node.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void deleteTheIntegrationRuntimeNode(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .sqlMigrationServices()
+            .deleteNodeWithResponse(
+                "testrg",
+                "service1",
+                new DeleteNodeInner().withNodeName("nodeName").withIntegrationRuntimeName("IRName"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_GetByResourceGroup
+
+```java
+/** Samples for SqlMigrationServices GetByResourceGroup. */
+public final class SqlMigrationServicesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/GetMigrationService.json
+     */
+    /**
+     * Sample code: Get Migration Service.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getMigrationService(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .sqlMigrationServices()
+            .getByResourceGroupWithResponse("testrg", "service1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_List
+
+```java
+/** Samples for SqlMigrationServices List. */
+public final class SqlMigrationServicesListSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ListBySubscriptionMigrationService.json
+     */
+    /**
+     * Sample code: Get Services in the Subscriptions.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getServicesInTheSubscriptions(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.sqlMigrationServices().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_ListAuthKeys
+
+```java
+/** Samples for SqlMigrationServices ListAuthKeys. */
+public final class SqlMigrationServicesListAuthKeysSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ListAuthKeysMigrationService.json
+     */
+    /**
+     * Sample code: Retrieve the List of Authentication Keys.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void retrieveTheListOfAuthenticationKeys(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.sqlMigrationServices().listAuthKeysWithResponse("testrg", "service1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_ListByResourceGroup
+
+```java
+/** Samples for SqlMigrationServices ListByResourceGroup. */
+public final class SqlMigrationServicesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ListByResourceGroupMigrationService.json
+     */
+    /**
+     * Sample code: Get Migration Services in the Resource Group.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void getMigrationServicesInTheResourceGroup(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.sqlMigrationServices().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_ListMigrations
+
+```java
+/** Samples for SqlMigrationServices ListMigrations. */
+public final class SqlMigrationServicesListMigrationsSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/ListMigrationsByMigrationService.json
+     */
+    /**
+     * Sample code: List database migrations attached to the service.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void listDatabaseMigrationsAttachedToTheService(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager.sqlMigrationServices().listMigrations("testrg", "service1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_ListMonitoringData
+
+```java
+/** Samples for SqlMigrationServices ListMonitoringData. */
+public final class SqlMigrationServicesListMonitoringDataSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/GetMonitorDataMigrationService.json
+     */
+    /**
+     * Sample code: Retrieve the Monitoring Data.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void retrieveTheMonitoringData(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .sqlMigrationServices()
+            .listMonitoringDataWithResponse("testrg", "service1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_RegenerateAuthKeys
+
+```java
+import com.azure.resourcemanager.datamigration.fluent.models.RegenAuthKeysInner;
+
+/** Samples for SqlMigrationServices RegenerateAuthKeys. */
+public final class SqlMigrationServicesRegenerateAuthKeysSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/RegenAuthKeysMigrationService.json
+     */
+    /**
+     * Sample code: Regenerate the of Authentication Keys.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void regenerateTheOfAuthenticationKeys(
+        com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .sqlMigrationServices()
+            .regenerateAuthKeysWithResponse(
+                "testrg",
+                "service1",
+                new RegenAuthKeysInner().withKeyName("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SqlMigrationServices_Update
+
+```java
+import com.azure.resourcemanager.datamigration.models.SqlMigrationService;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for SqlMigrationServices Update. */
+public final class SqlMigrationServicesUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/UpdateMigrationService.json
+     */
+    /**
+     * Sample code: Update SQL Migration Service.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void updateSQLMigrationService(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        SqlMigrationService resource =
+            manager
+                .sqlMigrationServices()
+                .getByResourceGroupWithResponse("testrg", "testagent", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("mytag", "myval")).apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### Tasks_Cancel
 
 ```java
 /** Samples for Tasks Cancel. */
 public final class TasksCancelSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_Cancel.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_Cancel.json
      */
     /**
      * Sample code: Tasks_Cancel.
@@ -491,6 +1739,37 @@ public final class TasksCancelSamples {
 }
 ```
 
+### Tasks_Command
+
+```java
+import com.azure.resourcemanager.datamigration.models.MigrateSyncCompleteCommandInput;
+import com.azure.resourcemanager.datamigration.models.MigrateSyncCompleteCommandProperties;
+
+/** Samples for Tasks Command. */
+public final class TasksCommandSamples {
+    /*
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_Command.json
+     */
+    /**
+     * Sample code: Tasks_Command.
+     *
+     * @param manager Entry point to DataMigrationManager.
+     */
+    public static void tasksCommand(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
+        manager
+            .tasks()
+            .commandWithResponse(
+                "DmsSdkRg",
+                "DmsSdkService",
+                "DmsSdkProject",
+                "DmsSdkTask",
+                new MigrateSyncCompleteCommandProperties()
+                    .withInput(new MigrateSyncCompleteCommandInput().withDatabaseName("TestDatabase")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Tasks_CreateOrUpdate
 
 ```java
@@ -502,7 +1781,7 @@ import com.azure.resourcemanager.datamigration.models.SqlConnectionInfo;
 /** Samples for Tasks CreateOrUpdate. */
 public final class TasksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_CreateOrUpdate.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_CreateOrUpdate.json
      */
     /**
      * Sample code: Tasks_CreateOrUpdate.
@@ -537,7 +1816,7 @@ public final class TasksCreateOrUpdateSamples {
 /** Samples for Tasks Delete. */
 public final class TasksDeleteSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_Delete.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_Delete.json
      */
     /**
      * Sample code: Tasks_Delete.
@@ -559,7 +1838,7 @@ public final class TasksDeleteSamples {
 /** Samples for Tasks Get. */
 public final class TasksGetSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_Get.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_Get.json
      */
     /**
      * Sample code: Tasks_Get.
@@ -581,7 +1860,7 @@ public final class TasksGetSamples {
 /** Samples for Tasks List. */
 public final class TasksListSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_List.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_List.json
      */
     /**
      * Sample code: Tasks_List.
@@ -606,7 +1885,7 @@ import com.azure.resourcemanager.datamigration.models.SqlConnectionInfo;
 /** Samples for Tasks Update. */
 public final class TasksUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_Update.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_Update.json
      */
     /**
      * Sample code: Tasks_Update.
@@ -645,7 +1924,7 @@ public final class TasksUpdateSamples {
 /** Samples for Usages List. */
 public final class UsagesListSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Usages_List.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Usages_List.json
      */
     /**
      * Sample code: Services_Usages.
