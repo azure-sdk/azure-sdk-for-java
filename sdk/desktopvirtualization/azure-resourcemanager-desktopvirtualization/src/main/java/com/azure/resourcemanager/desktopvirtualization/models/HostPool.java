@@ -242,13 +242,6 @@ public interface HostPool {
     Boolean startVMOnConnect();
 
     /**
-     * Gets the migrationRequest property: The registration info of HostPool.
-     *
-     * @return the migrationRequest value.
-     */
-    MigrationRequestProperties migrationRequest();
-
-    /**
      * Gets the cloudPcResource property: Is cloud pc resource.
      *
      * @return the cloudPcResource value.
@@ -261,7 +254,23 @@ public interface HostPool {
      *
      * @return the publicNetworkAccess value.
      */
-    PublicNetworkAccess publicNetworkAccess();
+    HostpoolPublicNetworkAccess publicNetworkAccess();
+
+    /**
+     * Gets the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
+     * component.
+     *
+     * @return the agentUpdate value.
+     */
+    AgentUpdateProperties agentUpdate();
+
+    /**
+     * Gets the privateEndpointConnections property: List of private endpoint connection associated with the specified
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
      * Gets the region of the resource.
@@ -391,8 +400,8 @@ public interface HostPool {
                 DefinitionStages.WithSsoClientSecretKeyVaultPath,
                 DefinitionStages.WithSsoSecretType,
                 DefinitionStages.WithStartVMOnConnect,
-                DefinitionStages.WithMigrationRequest,
-                DefinitionStages.WithPublicNetworkAccess {
+                DefinitionStages.WithPublicNetworkAccess,
+                DefinitionStages.WithAgentUpdate {
             /**
              * Executes the create request.
              *
@@ -620,16 +629,6 @@ public interface HostPool {
              */
             WithCreate withStartVMOnConnect(Boolean startVMOnConnect);
         }
-        /** The stage of the HostPool definition allowing to specify migrationRequest. */
-        interface WithMigrationRequest {
-            /**
-             * Specifies the migrationRequest property: The registration info of HostPool..
-             *
-             * @param migrationRequest The registration info of HostPool.
-             * @return the next definition stage.
-             */
-            WithCreate withMigrationRequest(MigrationRequestProperties migrationRequest);
-        }
         /** The stage of the HostPool definition allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {
             /**
@@ -640,7 +639,19 @@ public interface HostPool {
              *     networks, Disabled allows this resource to only be accessed via private endpoints.
              * @return the next definition stage.
              */
-            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+            WithCreate withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess);
+        }
+        /** The stage of the HostPool definition allowing to specify agentUpdate. */
+        interface WithAgentUpdate {
+            /**
+             * Specifies the agentUpdate property: The session host configuration for updating agent, monitoring agent,
+             * and stack component..
+             *
+             * @param agentUpdate The session host configuration for updating agent, monitoring agent, and stack
+             *     component.
+             * @return the next definition stage.
+             */
+            WithCreate withAgentUpdate(AgentUpdateProperties agentUpdate);
         }
     }
     /**
@@ -669,7 +680,8 @@ public interface HostPool {
             UpdateStages.WithSsoSecretType,
             UpdateStages.WithPreferredAppGroupType,
             UpdateStages.WithStartVMOnConnect,
-            UpdateStages.WithPublicNetworkAccess {
+            UpdateStages.WithPublicNetworkAccess,
+            UpdateStages.WithAgentUpdate {
         /**
          * Executes the update request.
          *
@@ -871,7 +883,19 @@ public interface HostPool {
              * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
              * @return the next definition stage.
              */
-            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+            Update withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess);
+        }
+        /** The stage of the HostPool update allowing to specify agentUpdate. */
+        interface WithAgentUpdate {
+            /**
+             * Specifies the agentUpdate property: The session host configuration for updating agent, monitoring agent,
+             * and stack component..
+             *
+             * @param agentUpdate The session host configuration for updating agent, monitoring agent, and stack
+             *     component.
+             * @return the next definition stage.
+             */
+            Update withAgentUpdate(AgentUpdatePatchProperties agentUpdate);
         }
     }
     /**
@@ -892,15 +916,6 @@ public interface HostPool {
     /**
      * Registration token of the host pool.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a RegistrationInfo definition.
-     */
-    RegistrationInfo retrieveRegistrationToken();
-
-    /**
-     * Registration token of the host pool.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -908,4 +923,13 @@ public interface HostPool {
      * @return represents a RegistrationInfo definition along with {@link Response}.
      */
     Response<RegistrationInfo> retrieveRegistrationTokenWithResponse(Context context);
+
+    /**
+     * Registration token of the host pool.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a RegistrationInfo definition.
+     */
+    RegistrationInfo retrieveRegistrationToken();
 }

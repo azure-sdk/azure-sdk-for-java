@@ -36,6 +36,10 @@ public final class WorkspacePatchProperties {
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
+    /** Creates an instance of WorkspacePatchProperties class. */
+    public WorkspacePatchProperties() {
+    }
+
     /**
      * Get the description property: Description of Workspace.
      *

@@ -55,7 +55,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "DesktopVirtualizatio")
-    private interface StartMenuItemsService {
+    public interface StartMenuItemsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -68,6 +68,9 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("applicationGroupName") String applicationGroupName,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -87,6 +90,9 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -94,7 +100,11 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StartMenuItemInner>> listSinglePageAsync(
-        String resourceGroupName, String applicationGroupName) {
+        String resourceGroupName,
+        String applicationGroupName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -126,6 +136,9 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             applicationGroupName,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<StartMenuItemInner>>map(
@@ -145,6 +158,9 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -153,7 +169,12 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StartMenuItemInner>> listSinglePageAsync(
-        String resourceGroupName, String applicationGroupName, Context context) {
+        String resourceGroupName,
+        String applicationGroupName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -183,6 +204,9 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 applicationGroupName,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -201,15 +225,23 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return startMenuItemList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName) {
+    public PagedFlux<StartMenuItemInner> listAsync(
+        String resourceGroupName,
+        String applicationGroupName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, applicationGroupName),
+            () -> listSinglePageAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -218,6 +250,29 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return startMenuItemList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName) {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List start menu items in the given application group.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -226,9 +281,16 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StartMenuItemInner> listAsync(
-        String resourceGroupName, String applicationGroupName, Context context) {
+        String resourceGroupName,
+        String applicationGroupName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, applicationGroupName, context),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -244,7 +306,11 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StartMenuItemInner> list(String resourceGroupName, String applicationGroupName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, applicationGroupName));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip));
     }
 
     /**
@@ -252,6 +318,9 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -260,14 +329,21 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StartMenuItemInner> list(
-        String resourceGroupName, String applicationGroupName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, applicationGroupName, context));
+        String resourceGroupName,
+        String applicationGroupName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -302,7 +378,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
