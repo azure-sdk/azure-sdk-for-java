@@ -74,13 +74,13 @@ public interface ModelContainer {
         /** The stage of the ModelContainer definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName.
+             * Specifies resourceGroupName, registryName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param registryName Name of Azure Machine Learning registry.
              * @return the next definition stage.
              */
-            WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
+            WithProperties withExistingRegistry(String resourceGroupName, String registryName);
         }
         /** The stage of the ModelContainer definition allowing to specify properties. */
         interface WithProperties {

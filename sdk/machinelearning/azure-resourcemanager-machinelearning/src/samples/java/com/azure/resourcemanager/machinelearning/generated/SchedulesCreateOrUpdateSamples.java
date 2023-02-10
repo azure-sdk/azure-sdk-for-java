@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for Schedules CreateOrUpdate. */
 public final class SchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Schedule/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Schedule.
