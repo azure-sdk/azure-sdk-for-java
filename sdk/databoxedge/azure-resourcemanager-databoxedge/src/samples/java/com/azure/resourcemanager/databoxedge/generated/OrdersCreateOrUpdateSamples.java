@@ -12,7 +12,7 @@ import java.util.Arrays;
 /** Samples for Orders CreateOrUpdate. */
 public final class OrdersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderPut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OrderPut.json
      */
     /**
      * Sample code: OrderPut.
