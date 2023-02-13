@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource List. */
 public final class IotHubResourceListSamples {
     /*
@@ -17,6 +15,6 @@ public final class IotHubResourceListSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void iotHubResourceListBySubscription(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().list(Context.NONE);
+        manager.iotHubResources().list(com.azure.core.util.Context.NONE);
     }
 }
