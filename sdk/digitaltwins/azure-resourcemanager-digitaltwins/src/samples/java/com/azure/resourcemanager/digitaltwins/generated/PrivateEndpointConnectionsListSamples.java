@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
@@ -18,6 +16,8 @@ public final class PrivateEndpointConnectionsListSamples {
      */
     public static void listPrivateEndpointConnectionProperties(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateEndpointConnections().listWithResponse("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .listWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }

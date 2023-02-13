@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins ListByResourceGroup. */
 public final class DigitalTwinsListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class DigitalTwinsListByResourceGroupSamples {
      */
     public static void getDigitalTwinsInstanceResourcesByResourceGroup(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().listByResourceGroup("resRg", Context.NONE);
+        manager.digitalTwins().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
     }
 }

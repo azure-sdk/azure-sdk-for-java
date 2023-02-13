@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for TimeSeriesDatabaseConnections Delete. */
 public final class TimeSeriesDatabaseConnectionsDeleteSamples {
     /*
@@ -18,6 +16,8 @@ public final class TimeSeriesDatabaseConnectionsDeleteSamples {
      */
     public static void deleteATimeSeriesDatabaseConnectionForADigitalTwinsInstance(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections().delete("resRg", "myDigitalTwinsService", "myConnection", Context.NONE);
+        manager
+            .timeSeriesDatabaseConnections()
+            .delete("resRg", "myDigitalTwinsService", "myConnection", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.models.ConnectionProperties;
 import com.azure.resourcemanager.digitaltwins.models.ConnectionPropertiesPrivateLinkServiceConnectionState;
 import com.azure.resourcemanager.digitaltwins.models.PrivateEndpointConnection;
@@ -25,7 +24,8 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
         PrivateEndpointConnection resource =
             manager
                 .privateEndpointConnections()
-                .getWithResponse("resRg", "myDigitalTwinsService", "myPrivateConnection", Context.NONE)
+                .getWithResponse(
+                    "resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
