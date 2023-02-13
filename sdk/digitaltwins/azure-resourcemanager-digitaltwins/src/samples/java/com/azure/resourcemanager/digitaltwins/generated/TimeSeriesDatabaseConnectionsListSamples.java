@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for TimeSeriesDatabaseConnections List. */
 public final class TimeSeriesDatabaseConnectionsListSamples {
     /*
@@ -18,6 +16,8 @@ public final class TimeSeriesDatabaseConnectionsListSamples {
      */
     public static void listTimeSeriesDatabaseConnectionsForADigitalTwinsInstance(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections().list("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .timeSeriesDatabaseConnections()
+            .list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }

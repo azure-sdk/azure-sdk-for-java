@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
@@ -18,6 +16,8 @@ public final class PrivateLinkResourcesGetSamples {
      */
     public static void getTheSpecifiedPrivateLinkResourceForTheGivenDigitalTwin(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateLinkResources().getWithResponse("resRg", "myDigitalTwinsService", "subResource", Context.NONE);
+        manager
+            .privateLinkResources()
+            .getWithResponse("resRg", "myDigitalTwinsService", "subResource", com.azure.core.util.Context.NONE);
     }
 }

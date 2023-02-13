@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwinsEndpoint Get. */
 public final class DigitalTwinsEndpointGetSamples {
     /*
@@ -18,7 +16,9 @@ public final class DigitalTwinsEndpointGetSamples {
      */
     public static void getADigitalTwinsInstanceEndpoint(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", Context.NONE);
+        manager
+            .digitalTwinsEndpoints()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +31,8 @@ public final class DigitalTwinsEndpointGetSamples {
      */
     public static void getADigitalTwinsInstanceEndpointWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", Context.NONE);
+        manager
+            .digitalTwinsEndpoints()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
     }
 }

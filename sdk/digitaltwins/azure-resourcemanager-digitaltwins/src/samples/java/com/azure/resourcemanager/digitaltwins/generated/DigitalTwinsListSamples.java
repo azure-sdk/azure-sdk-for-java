@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins List. */
 public final class DigitalTwinsListSamples {
     /*
@@ -18,6 +16,6 @@ public final class DigitalTwinsListSamples {
      */
     public static void getDigitalTwinsInstanceResourcesBySubscription(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().list(Context.NONE);
+        manager.digitalTwins().list(com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
@@ -20,6 +18,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
         manager
             .privateEndpointConnections()
-            .delete("resRg", "myDigitalTwinsService", "myPrivateConnection", Context.NONE);
+            .delete("resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE);
     }
 }

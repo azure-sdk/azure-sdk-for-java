@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsDescription;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsIdentity;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsIdentityType;
@@ -28,7 +27,7 @@ public final class DigitalTwinsUpdateSamples {
         DigitalTwinsDescription resource =
             manager
                 .digitalTwins()
-                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE)
+                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("purpose", "dev")).apply();
     }
@@ -46,7 +45,7 @@ public final class DigitalTwinsUpdateSamples {
         DigitalTwinsDescription resource =
             manager
                 .digitalTwins()
-                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE)
+                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -67,7 +66,7 @@ public final class DigitalTwinsUpdateSamples {
         DigitalTwinsDescription resource =
             manager
                 .digitalTwins()
-                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE)
+                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withIdentity(new DigitalTwinsIdentity().withType(DigitalTwinsIdentityType.NONE)).apply();
     }

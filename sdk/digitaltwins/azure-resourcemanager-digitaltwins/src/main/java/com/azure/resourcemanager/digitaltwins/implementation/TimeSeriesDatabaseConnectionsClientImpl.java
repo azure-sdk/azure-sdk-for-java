@@ -729,7 +729,8 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
             String resourceName,
             String timeSeriesDatabaseConnectionName,
             TimeSeriesDatabaseConnectionInner timeSeriesDatabaseConnectionDescription) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName,
                 resourceName,
                 timeSeriesDatabaseConnectionName,
@@ -758,7 +759,8 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
             String timeSeriesDatabaseConnectionName,
             TimeSeriesDatabaseConnectionInner timeSeriesDatabaseConnectionDescription,
             Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName,
                 resourceName,
                 timeSeriesDatabaseConnectionName,
@@ -1060,7 +1062,7 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner> beginDelete(
         String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
-        return beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName).getSyncPoller();
     }
 
     /**
@@ -1078,7 +1080,8 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner> beginDelete(
         String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, context)
             .getSyncPoller();
     }
 

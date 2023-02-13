@@ -43,7 +43,6 @@
 ### DigitalTwins_CheckNameAvailability
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.models.CheckNameRequest;
 
 /** Samples for DigitalTwins CheckNameAvailability. */
@@ -60,7 +59,7 @@ public final class DigitalTwinsCheckNameAvailabilitySamples {
         manager
             .digitalTwins()
             .checkNameAvailabilityWithResponse(
-                "WestUS2", new CheckNameRequest().withName("myadtinstance"), Context.NONE);
+                "WestUS2", new CheckNameRequest().withName("myadtinstance"), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -155,8 +154,6 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 ### DigitalTwins_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins Delete. */
 public final class DigitalTwinsDeleteSamples {
     /*
@@ -169,7 +166,7 @@ public final class DigitalTwinsDeleteSamples {
      */
     public static void deleteADigitalTwinsInstanceResource(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -182,7 +179,7 @@ public final class DigitalTwinsDeleteSamples {
      */
     public static void deleteADigitalTwinsInstanceResourceWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -190,8 +187,6 @@ public final class DigitalTwinsDeleteSamples {
 ### DigitalTwins_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins GetByResourceGroup. */
 public final class DigitalTwinsGetByResourceGroupSamples {
     /*
@@ -204,7 +199,9 @@ public final class DigitalTwinsGetByResourceGroupSamples {
      */
     public static void getADigitalTwinsInstanceResourceWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .digitalTwins()
+            .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -217,7 +214,9 @@ public final class DigitalTwinsGetByResourceGroupSamples {
      */
     public static void getADigitalTwinsInstanceResourceWithAPrivateEndpointConnection(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .digitalTwins()
+            .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -230,7 +229,9 @@ public final class DigitalTwinsGetByResourceGroupSamples {
      */
     public static void getADigitalTwinsInstanceResource(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .digitalTwins()
+            .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -238,8 +239,6 @@ public final class DigitalTwinsGetByResourceGroupSamples {
 ### DigitalTwins_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins List. */
 public final class DigitalTwinsListSamples {
     /*
@@ -252,7 +251,7 @@ public final class DigitalTwinsListSamples {
      */
     public static void getDigitalTwinsInstanceResourcesBySubscription(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().list(Context.NONE);
+        manager.digitalTwins().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -260,8 +259,6 @@ public final class DigitalTwinsListSamples {
 ### DigitalTwins_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins ListByResourceGroup. */
 public final class DigitalTwinsListByResourceGroupSamples {
     /*
@@ -274,7 +271,7 @@ public final class DigitalTwinsListByResourceGroupSamples {
      */
     public static void getDigitalTwinsInstanceResourcesByResourceGroup(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().listByResourceGroup("resRg", Context.NONE);
+        manager.digitalTwins().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -282,7 +279,6 @@ public final class DigitalTwinsListByResourceGroupSamples {
 ### DigitalTwins_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsDescription;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsIdentity;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsIdentityType;
@@ -306,7 +302,7 @@ public final class DigitalTwinsUpdateSamples {
         DigitalTwinsDescription resource =
             manager
                 .digitalTwins()
-                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE)
+                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("purpose", "dev")).apply();
     }
@@ -324,7 +320,7 @@ public final class DigitalTwinsUpdateSamples {
         DigitalTwinsDescription resource =
             manager
                 .digitalTwins()
-                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE)
+                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -345,7 +341,7 @@ public final class DigitalTwinsUpdateSamples {
         DigitalTwinsDescription resource =
             manager
                 .digitalTwins()
-                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", Context.NONE)
+                .getByResourceGroupWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withIdentity(new DigitalTwinsIdentity().withType(DigitalTwinsIdentityType.NONE)).apply();
     }
@@ -451,8 +447,6 @@ public final class DigitalTwinsEndpointCreateOrUpdateSamples {
 ### DigitalTwinsEndpoint_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwinsEndpoint Delete. */
 public final class DigitalTwinsEndpointDeleteSamples {
     /*
@@ -465,7 +459,9 @@ public final class DigitalTwinsEndpointDeleteSamples {
      */
     public static void deleteADigitalTwinsInstanceEndpoint(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().delete("resRg", "myDigitalTwinsService", "myendpoint", Context.NONE);
+        manager
+            .digitalTwinsEndpoints()
+            .delete("resRg", "myDigitalTwinsService", "myendpoint", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -478,7 +474,9 @@ public final class DigitalTwinsEndpointDeleteSamples {
      */
     public static void deleteADigitalTwinsInstanceEndpointWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().delete("resRg", "myDigitalTwinsService", "myendpoint", Context.NONE);
+        manager
+            .digitalTwinsEndpoints()
+            .delete("resRg", "myDigitalTwinsService", "myendpoint", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -486,8 +484,6 @@ public final class DigitalTwinsEndpointDeleteSamples {
 ### DigitalTwinsEndpoint_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwinsEndpoint Get. */
 public final class DigitalTwinsEndpointGetSamples {
     /*
@@ -500,7 +496,9 @@ public final class DigitalTwinsEndpointGetSamples {
      */
     public static void getADigitalTwinsInstanceEndpoint(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", Context.NONE);
+        manager
+            .digitalTwinsEndpoints()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -513,7 +511,9 @@ public final class DigitalTwinsEndpointGetSamples {
      */
     public static void getADigitalTwinsInstanceEndpointWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", Context.NONE);
+        manager
+            .digitalTwinsEndpoints()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -521,8 +521,6 @@ public final class DigitalTwinsEndpointGetSamples {
 ### DigitalTwinsEndpoint_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwinsEndpoint List. */
 public final class DigitalTwinsEndpointListSamples {
     /*
@@ -535,7 +533,7 @@ public final class DigitalTwinsEndpointListSamples {
      */
     public static void getADigitalTwinsInstanceEndpoints(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -548,7 +546,7 @@ public final class DigitalTwinsEndpointListSamples {
      */
     public static void getADigitalTwinsInstanceEndpointsWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -556,8 +554,6 @@ public final class DigitalTwinsEndpointListSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -569,7 +565,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to AzureDigitalTwinsManager.
      */
     public static void getAvailableOperations(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -577,7 +573,6 @@ public final class OperationsListSamples {
 ### PrivateEndpointConnections_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.models.ConnectionProperties;
 import com.azure.resourcemanager.digitaltwins.models.ConnectionPropertiesPrivateLinkServiceConnectionState;
 import com.azure.resourcemanager.digitaltwins.models.PrivateEndpointConnection;
@@ -598,7 +593,8 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
         PrivateEndpointConnection resource =
             manager
                 .privateEndpointConnections()
-                .getWithResponse("resRg", "myDigitalTwinsService", "myPrivateConnection", Context.NONE)
+                .getWithResponse(
+                    "resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -616,8 +612,6 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 ### PrivateEndpointConnections_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
@@ -632,7 +626,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
         manager
             .privateEndpointConnections()
-            .delete("resRg", "myDigitalTwinsService", "myPrivateConnection", Context.NONE);
+            .delete("resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -640,8 +634,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 ### PrivateEndpointConnections_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
@@ -656,7 +648,7 @@ public final class PrivateEndpointConnectionsGetSamples {
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
         manager
             .privateEndpointConnections()
-            .getWithResponse("resRg", "myDigitalTwinsService", "myPrivateConnection", Context.NONE);
+            .getWithResponse("resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -664,8 +656,6 @@ public final class PrivateEndpointConnectionsGetSamples {
 ### PrivateEndpointConnections_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
@@ -678,7 +668,9 @@ public final class PrivateEndpointConnectionsListSamples {
      */
     public static void listPrivateEndpointConnectionProperties(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateEndpointConnections().listWithResponse("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .listWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -686,8 +678,6 @@ public final class PrivateEndpointConnectionsListSamples {
 ### PrivateLinkResources_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
@@ -700,7 +690,9 @@ public final class PrivateLinkResourcesGetSamples {
      */
     public static void getTheSpecifiedPrivateLinkResourceForTheGivenDigitalTwin(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateLinkResources().getWithResponse("resRg", "myDigitalTwinsService", "subResource", Context.NONE);
+        manager
+            .privateLinkResources()
+            .getWithResponse("resRg", "myDigitalTwinsService", "subResource", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -708,8 +700,6 @@ public final class PrivateLinkResourcesGetSamples {
 ### PrivateLinkResources_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
@@ -722,7 +712,9 @@ public final class PrivateLinkResourcesListSamples {
      */
     public static void listPrivateLinkResourcesForGivenDigitalTwin(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateLinkResources().listWithResponse("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .privateLinkResources()
+            .listWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -803,8 +795,6 @@ public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
 ### TimeSeriesDatabaseConnections_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TimeSeriesDatabaseConnections Delete. */
 public final class TimeSeriesDatabaseConnectionsDeleteSamples {
     /*
@@ -817,7 +807,9 @@ public final class TimeSeriesDatabaseConnectionsDeleteSamples {
      */
     public static void deleteATimeSeriesDatabaseConnectionForADigitalTwinsInstance(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections().delete("resRg", "myDigitalTwinsService", "myConnection", Context.NONE);
+        manager
+            .timeSeriesDatabaseConnections()
+            .delete("resRg", "myDigitalTwinsService", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -825,8 +817,6 @@ public final class TimeSeriesDatabaseConnectionsDeleteSamples {
 ### TimeSeriesDatabaseConnections_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TimeSeriesDatabaseConnections Get. */
 public final class TimeSeriesDatabaseConnectionsGetSamples {
     /*
@@ -841,7 +831,7 @@ public final class TimeSeriesDatabaseConnectionsGetSamples {
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
         manager
             .timeSeriesDatabaseConnections()
-            .getWithResponse("resRg", "myDigitalTwinsService", "myConnection", Context.NONE);
+            .getWithResponse("resRg", "myDigitalTwinsService", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -849,8 +839,6 @@ public final class TimeSeriesDatabaseConnectionsGetSamples {
 ### TimeSeriesDatabaseConnections_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TimeSeriesDatabaseConnections List. */
 public final class TimeSeriesDatabaseConnectionsListSamples {
     /*
@@ -863,7 +851,9 @@ public final class TimeSeriesDatabaseConnectionsListSamples {
      */
     public static void listTimeSeriesDatabaseConnectionsForADigitalTwinsInstance(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections().list("resRg", "myDigitalTwinsService", Context.NONE);
+        manager
+            .timeSeriesDatabaseConnections()
+            .list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
