@@ -7,7 +7,7 @@ package com.azure.resourcemanager.datamigration.generated;
 /** Samples for Services ListByResourceGroup. */
 public final class ServicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_ListByResourceGroup.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_ListByResourceGroup.json
      */
     /**
      * Sample code: Services_ListByResourceGroup.
