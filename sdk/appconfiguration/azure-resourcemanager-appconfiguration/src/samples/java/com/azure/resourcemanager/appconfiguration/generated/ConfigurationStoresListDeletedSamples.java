@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores ListDeleted. */
 public final class ConfigurationStoresListDeletedSamples {
     /*
@@ -18,6 +16,6 @@ public final class ConfigurationStoresListDeletedSamples {
      */
     public static void deletedConfigurationStoresList(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listDeleted(Context.NONE);
+        manager.configurationStores().listDeleted(com.azure.core.util.Context.NONE);
     }
 }

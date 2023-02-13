@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceType;
 
@@ -27,7 +26,7 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -47,6 +46,6 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityParameters()
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
