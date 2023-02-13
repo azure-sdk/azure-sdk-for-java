@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStore;
 import com.azure.resourcemanager.appconfiguration.models.IdentityType;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
@@ -28,7 +27,7 @@ public final class ConfigurationStoresUpdateSamples {
         ConfigurationStore resource =
             manager
                 .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withSku(new Sku().withName("Standard")).withDisableLocalAuth(true).apply();
     }
@@ -46,7 +45,7 @@ public final class ConfigurationStoresUpdateSamples {
         ConfigurationStore resource =
             manager
                 .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("Category", "Marketing")).withSku(new Sku().withName("Standard")).apply();
     }
@@ -64,7 +63,7 @@ public final class ConfigurationStoresUpdateSamples {
         ConfigurationStore resource =
             manager
                 .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
