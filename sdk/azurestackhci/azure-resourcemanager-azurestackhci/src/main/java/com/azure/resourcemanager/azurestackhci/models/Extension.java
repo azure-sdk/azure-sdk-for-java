@@ -33,7 +33,7 @@ public interface Extension {
     String type();
 
     /**
-     * Gets the systemData property: System data of Extension resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -83,7 +83,8 @@ public interface Extension {
     String typePropertiesType();
 
     /**
-     * Gets the typeHandlerVersion property: Specifies the version of the script handler.
+     * Gets the typeHandlerVersion property: Specifies the version of the script handler. Latest version would be used
+     * if not specified.
      *
      * @return the typeHandlerVersion value.
      */
@@ -111,6 +112,14 @@ public interface Extension {
      * @return the protectedSettings value.
      */
     Object protectedSettings();
+
+    /**
+     * Gets the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @return the enableAutomaticUpgrade value.
+     */
+    Boolean enableAutomaticUpgrade();
 
     /**
      * Gets the name of the resource group.
@@ -158,7 +167,8 @@ public interface Extension {
                 DefinitionStages.WithTypeHandlerVersion,
                 DefinitionStages.WithAutoUpgradeMinorVersion,
                 DefinitionStages.WithSettings,
-                DefinitionStages.WithProtectedSettings {
+                DefinitionStages.WithProtectedSettings,
+                DefinitionStages.WithEnableAutomaticUpgrade {
             /**
              * Executes the create request.
              *
@@ -210,9 +220,11 @@ public interface Extension {
         /** The stage of the Extension definition allowing to specify typeHandlerVersion. */
         interface WithTypeHandlerVersion {
             /**
-             * Specifies the typeHandlerVersion property: Specifies the version of the script handler..
+             * Specifies the typeHandlerVersion property: Specifies the version of the script handler. Latest version
+             * would be used if not specified..
              *
-             * @param typeHandlerVersion Specifies the version of the script handler.
+             * @param typeHandlerVersion Specifies the version of the script handler. Latest version would be used if
+             *     not specified.
              * @return the next definition stage.
              */
             WithCreate withTypeHandlerVersion(String typeHandlerVersion);
@@ -251,6 +263,18 @@ public interface Extension {
              */
             WithCreate withProtectedSettings(Object protectedSettings);
         }
+        /** The stage of the Extension definition allowing to specify enableAutomaticUpgrade. */
+        interface WithEnableAutomaticUpgrade {
+            /**
+             * Specifies the enableAutomaticUpgrade property: Indicates whether the extension should be automatically
+             * upgraded by the platform if there is a newer version available..
+             *
+             * @param enableAutomaticUpgrade Indicates whether the extension should be automatically upgraded by the
+             *     platform if there is a newer version available.
+             * @return the next definition stage.
+             */
+            WithCreate withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
+        }
     }
     /**
      * Begins update for the Extension resource.
@@ -267,7 +291,8 @@ public interface Extension {
             UpdateStages.WithTypeHandlerVersion,
             UpdateStages.WithAutoUpgradeMinorVersion,
             UpdateStages.WithSettings,
-            UpdateStages.WithProtectedSettings {
+            UpdateStages.WithProtectedSettings,
+            UpdateStages.WithEnableAutomaticUpgrade {
         /**
          * Executes the update request.
          *
@@ -321,9 +346,11 @@ public interface Extension {
         /** The stage of the Extension update allowing to specify typeHandlerVersion. */
         interface WithTypeHandlerVersion {
             /**
-             * Specifies the typeHandlerVersion property: Specifies the version of the script handler..
+             * Specifies the typeHandlerVersion property: Specifies the version of the script handler. Latest version
+             * would be used if not specified..
              *
-             * @param typeHandlerVersion Specifies the version of the script handler.
+             * @param typeHandlerVersion Specifies the version of the script handler. Latest version would be used if
+             *     not specified.
              * @return the next definition stage.
              */
             Update withTypeHandlerVersion(String typeHandlerVersion);
@@ -362,6 +389,18 @@ public interface Extension {
              */
             Update withProtectedSettings(Object protectedSettings);
         }
+        /** The stage of the Extension update allowing to specify enableAutomaticUpgrade. */
+        interface WithEnableAutomaticUpgrade {
+            /**
+             * Specifies the enableAutomaticUpgrade property: Indicates whether the extension should be automatically
+             * upgraded by the platform if there is a newer version available..
+             *
+             * @param enableAutomaticUpgrade Indicates whether the extension should be automatically upgraded by the
+             *     platform if there is a newer version available.
+             * @return the next definition stage.
+             */
+            Update withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -377,4 +416,25 @@ public interface Extension {
      * @return the refreshed resource.
      */
     Extension refresh(Context context);
+
+    /**
+     * Upgrade a particular Arc Extension of HCI Cluster.
+     *
+     * @param extensionUpgradeParameters Parameters supplied to the Upgrade Extensions operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void upgrade(ExtensionUpgradeParameters extensionUpgradeParameters);
+
+    /**
+     * Upgrade a particular Arc Extension of HCI Cluster.
+     *
+     * @param extensionUpgradeParameters Parameters supplied to the Upgrade Extensions operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void upgrade(ExtensionUpgradeParameters extensionUpgradeParameters, Context context);
 }

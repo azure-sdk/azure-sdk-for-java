@@ -17,24 +17,19 @@ import java.util.List;
 @Fluent
 public final class ArcSettingInner extends ProxyResource {
     /*
-     * System data of ArcSetting resource
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * ArcSetting properties.
      */
     @JsonProperty(value = "properties")
     private ArcSettingProperties innerProperties;
 
-    /**
-     * Get the systemData property: System data of ArcSetting resource.
-     *
-     * @return the systemData value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ArcSettingInner class. */
+    public ArcSettingInner() {
     }
 
     /**
@@ -44,6 +39,15 @@ public final class ArcSettingInner extends ProxyResource {
      */
     private ArcSettingProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

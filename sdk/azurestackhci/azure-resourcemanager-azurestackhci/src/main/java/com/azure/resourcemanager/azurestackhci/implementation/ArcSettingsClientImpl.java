@@ -68,7 +68,7 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientA")
-    private interface ArcSettingsService {
+    public interface ArcSettingsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI"
@@ -503,22 +503,6 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return arcSetting resource details of HCI Cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ArcSettingInner get(String resourceGroupName, String clusterName, String arcSettingName) {
-        return getAsync(resourceGroupName, clusterName, arcSettingName).block();
-    }
-
-    /**
-     * Get ArcSetting resource details of HCI Cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the cluster.
-     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -529,6 +513,22 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     public Response<ArcSettingInner> getWithResponse(
         String resourceGroupName, String clusterName, String arcSettingName, Context context) {
         return getWithResponseAsync(resourceGroupName, clusterName, arcSettingName, context).block();
+    }
+
+    /**
+     * Get ArcSetting resource details of HCI Cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return arcSetting resource details of HCI Cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ArcSettingInner get(String resourceGroupName, String clusterName, String arcSettingName) {
+        return getWithResponse(resourceGroupName, clusterName, arcSettingName, Context.NONE).getValue();
     }
 
     /**
@@ -679,24 +679,6 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
      * @param clusterName The name of the cluster.
      * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
      * @param arcSetting Parameters supplied to the Create ArcSetting resource for this HCI cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return arcSetting details.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ArcSettingInner create(
-        String resourceGroupName, String clusterName, String arcSettingName, ArcSettingInner arcSetting) {
-        return createAsync(resourceGroupName, clusterName, arcSettingName, arcSetting).block();
-    }
-
-    /**
-     * Create ArcSetting for HCI cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the cluster.
-     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
-     * @param arcSetting Parameters supplied to the Create ArcSetting resource for this HCI cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -711,6 +693,24 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
         ArcSettingInner arcSetting,
         Context context) {
         return createWithResponseAsync(resourceGroupName, clusterName, arcSettingName, arcSetting, context).block();
+    }
+
+    /**
+     * Create ArcSetting for HCI cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
+     * @param arcSetting Parameters supplied to the Create ArcSetting resource for this HCI cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return arcSetting details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ArcSettingInner create(
+        String resourceGroupName, String clusterName, String arcSettingName, ArcSettingInner arcSetting) {
+        return createWithResponse(resourceGroupName, clusterName, arcSettingName, arcSetting, Context.NONE).getValue();
     }
 
     /**
@@ -861,24 +861,6 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
      * @param clusterName The name of the cluster.
      * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
      * @param arcSetting ArcSettings parameters that needs to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return arcSetting details.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ArcSettingInner update(
-        String resourceGroupName, String clusterName, String arcSettingName, ArcSettingsPatch arcSetting) {
-        return updateAsync(resourceGroupName, clusterName, arcSettingName, arcSetting).block();
-    }
-
-    /**
-     * Update ArcSettings for HCI cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the cluster.
-     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
-     * @param arcSetting ArcSettings parameters that needs to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -893,6 +875,24 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
         ArcSettingsPatch arcSetting,
         Context context) {
         return updateWithResponseAsync(resourceGroupName, clusterName, arcSettingName, arcSetting, context).block();
+    }
+
+    /**
+     * Update ArcSettings for HCI cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
+     * @param arcSetting ArcSettings parameters that needs to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return arcSetting details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ArcSettingInner update(
+        String resourceGroupName, String clusterName, String arcSettingName, ArcSettingsPatch arcSetting) {
+        return updateWithResponse(resourceGroupName, clusterName, arcSettingName, arcSetting, Context.NONE).getValue();
     }
 
     /**
@@ -1057,7 +1057,7 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, String arcSettingName) {
-        return beginDeleteAsync(resourceGroupName, clusterName, arcSettingName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName, arcSettingName).getSyncPoller();
     }
 
     /**
@@ -1075,7 +1075,7 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, String arcSettingName, Context context) {
-        return beginDeleteAsync(resourceGroupName, clusterName, arcSettingName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName, arcSettingName, context).getSyncPoller();
     }
 
     /**
@@ -1275,23 +1275,6 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PasswordCredentialInner generatePassword(
-        String resourceGroupName, String clusterName, String arcSettingName) {
-        return generatePasswordAsync(resourceGroupName, clusterName, arcSettingName).block();
-    }
-
-    /**
-     * Generate password for arc settings.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the cluster.
-     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1302,6 +1285,23 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     public Response<PasswordCredentialInner> generatePasswordWithResponse(
         String resourceGroupName, String clusterName, String arcSettingName, Context context) {
         return generatePasswordWithResponseAsync(resourceGroupName, clusterName, arcSettingName, context).block();
+    }
+
+    /**
+     * Generate password for arc settings.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PasswordCredentialInner generatePassword(
+        String resourceGroupName, String clusterName, String arcSettingName) {
+        return generatePasswordWithResponse(resourceGroupName, clusterName, arcSettingName, Context.NONE).getValue();
     }
 
     /**
@@ -1476,7 +1476,7 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ArcIdentityResponseInner>, ArcIdentityResponseInner> beginCreateIdentity(
         String resourceGroupName, String clusterName, String arcSettingName) {
-        return beginCreateIdentityAsync(resourceGroupName, clusterName, arcSettingName).getSyncPoller();
+        return this.beginCreateIdentityAsync(resourceGroupName, clusterName, arcSettingName).getSyncPoller();
     }
 
     /**
@@ -1494,7 +1494,7 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ArcIdentityResponseInner>, ArcIdentityResponseInner> beginCreateIdentity(
         String resourceGroupName, String clusterName, String arcSettingName, Context context) {
-        return beginCreateIdentityAsync(resourceGroupName, clusterName, arcSettingName, context).getSyncPoller();
+        return this.beginCreateIdentityAsync(resourceGroupName, clusterName, arcSettingName, context).getSyncPoller();
     }
 
     /**
@@ -1574,7 +1574,8 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1610,7 +1611,8 @@ public final class ArcSettingsClientImpl implements ArcSettingsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
