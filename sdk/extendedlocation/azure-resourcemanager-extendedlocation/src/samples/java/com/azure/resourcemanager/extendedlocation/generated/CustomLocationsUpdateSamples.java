@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocation;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
@@ -26,7 +25,8 @@ public final class CustomLocationsUpdateSamples {
         CustomLocation resource =
             manager
                 .customLocations()
-                .getByResourceGroupWithResponse("testresourcegroup", "customLocation01", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

@@ -26,6 +26,10 @@ public final class ResourceSyncRuleInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of ResourceSyncRuleInner class. */
+    public ResourceSyncRuleInner() {
+    }
+
     /**
      * Get the innerProperties property: The set of properties specific to a Resource Sync Rule.
      *

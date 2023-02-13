@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ResourceSyncRules Delete. */
 public final class ResourceSyncRulesDeleteSamples {
     /*
@@ -20,6 +18,7 @@ public final class ResourceSyncRulesDeleteSamples {
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
         manager
             .resourceSyncRules()
-            .deleteWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE);
+            .deleteWithResponse(
+                "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE);
     }
 }
