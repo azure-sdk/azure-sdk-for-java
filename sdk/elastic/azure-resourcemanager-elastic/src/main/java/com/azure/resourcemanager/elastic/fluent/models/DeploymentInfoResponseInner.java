@@ -35,6 +35,12 @@ public final class DeploymentInfoResponseInner {
     @JsonProperty(value = "diskCapacity", access = JsonProperty.Access.WRITE_ONLY)
     private String diskCapacity;
 
+    /*
+     * Deployment URL of the elasticsearch in Elastic cloud deployment.
+     */
+    @JsonProperty(value = "deploymentUrl", access = JsonProperty.Access.WRITE_ONLY)
+    private String deploymentUrl;
+
     /** Creates an instance of DeploymentInfoResponseInner class. */
     public DeploymentInfoResponseInner() {
     }
@@ -73,6 +79,15 @@ public final class DeploymentInfoResponseInner {
      */
     public String diskCapacity() {
         return this.diskCapacity;
+    }
+
+    /**
+     * Get the deploymentUrl property: Deployment URL of the elasticsearch in Elastic cloud deployment.
+     *
+     * @return the deploymentUrl value.
+     */
+    public String deploymentUrl() {
+        return this.deploymentUrl;
     }
 
     /**
