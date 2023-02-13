@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations Delete. */
 public final class CustomLocationsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class CustomLocationsDeleteSamples {
      * @param manager Entry point to CustomLocationsManager.
      */
     public static void deleteCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().delete("testresourcegroup", "customLocation01", Context.NONE);
+        manager.customLocations().delete("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }

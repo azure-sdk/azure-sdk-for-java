@@ -28,6 +28,10 @@ public final class EnabledResourceTypePropertiesTypesMetadataItem {
     @JsonProperty(value = "resourceType")
     private String resourceType;
 
+    /** Creates an instance of EnabledResourceTypePropertiesTypesMetadataItem class. */
+    public EnabledResourceTypePropertiesTypesMetadataItem() {
+    }
+
     /**
      * Get the apiVersion property: Api Version of Resource Type.
      *

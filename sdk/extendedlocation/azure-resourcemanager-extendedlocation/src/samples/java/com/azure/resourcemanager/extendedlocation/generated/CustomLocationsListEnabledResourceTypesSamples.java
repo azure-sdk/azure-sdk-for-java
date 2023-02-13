@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for CustomLocations ListEnabledResourceTypes. */
 public final class CustomLocationsListEnabledResourceTypesSamples {
     /*
@@ -17,6 +15,8 @@ public final class CustomLocationsListEnabledResourceTypesSamples {
      * @param manager Entry point to CustomLocationsManager.
      */
     public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().listEnabledResourceTypes("testresourcegroup", "customLocation01", Context.NONE);
+        manager
+            .customLocations()
+            .listEnabledResourceTypes("testresourcegroup", "customLocation01", com.azure.core.util.Context.NONE);
     }
 }
