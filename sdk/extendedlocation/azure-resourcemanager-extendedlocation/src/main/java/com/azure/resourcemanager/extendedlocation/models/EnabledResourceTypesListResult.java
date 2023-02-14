@@ -24,6 +24,10 @@ public final class EnabledResourceTypesListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<EnabledResourceTypeInner> value;
 
+    /** Creates an instance of EnabledResourceTypesListResult class. */
+    public EnabledResourceTypesListResult() {
+    }
+
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
      *

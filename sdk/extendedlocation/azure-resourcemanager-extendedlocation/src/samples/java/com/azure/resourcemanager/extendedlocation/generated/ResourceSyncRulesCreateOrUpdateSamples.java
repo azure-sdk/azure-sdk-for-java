@@ -34,7 +34,7 @@ public final class ResourceSyncRulesCreateOrUpdateSamples {
                         Arrays
                             .asList(
                                 new MatchExpressionsProperties()
-                                    .withKey("key4")
+                                    .withKey("fakeTokenPlaceholder")
                                     .withOperator("In")
                                     .withValues(Arrays.asList("value4"))))
                     .withMatchLabels(mapOf("key1", "value1")))

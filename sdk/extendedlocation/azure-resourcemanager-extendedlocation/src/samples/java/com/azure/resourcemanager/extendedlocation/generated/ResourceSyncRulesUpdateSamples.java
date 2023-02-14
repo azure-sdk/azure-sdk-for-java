@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.ResourceSyncRule;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +23,8 @@ public final class ResourceSyncRulesUpdateSamples {
         ResourceSyncRule resource =
             manager
                 .resourceSyncRules()
-                .getWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE)
+                .getWithResponse(
+                    "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
