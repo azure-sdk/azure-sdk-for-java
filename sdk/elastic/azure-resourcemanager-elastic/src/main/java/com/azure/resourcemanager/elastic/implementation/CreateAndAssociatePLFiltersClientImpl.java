@@ -61,7 +61,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors"
                 + "/{monitorName}/createAndAssociatePLFilter")
-        @ExpectedResponses({201})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
             @HostParam("$host") String endpoint,
@@ -288,7 +288,8 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
         final String name = null;
         final String privateEndpointGuid = null;
         final String privateEndpointName = null;
-        return beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName)
+        return this
+            .beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName)
             .getSyncPoller();
     }
 
@@ -314,7 +315,8 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
         String privateEndpointGuid,
         String privateEndpointName,
         Context context) {
-        return beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context)
+        return this
+            .beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context)
             .getSyncPoller();
     }
 
