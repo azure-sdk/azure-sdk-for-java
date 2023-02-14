@@ -25,6 +25,10 @@ public final class ResourceVersionPolicyConfiguration {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, FhirResourceVersionPolicy> resourceTypeOverrides;
 
+    /** Creates an instance of ResourceVersionPolicyConfiguration class. */
+    public ResourceVersionPolicyConfiguration() {
+    }
+
     /**
      * Get the defaultProperty property: The default value for tracking history across all resources.
      *

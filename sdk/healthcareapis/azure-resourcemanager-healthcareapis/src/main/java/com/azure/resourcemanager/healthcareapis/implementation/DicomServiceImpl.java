@@ -8,12 +8,14 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthcareapis.fluent.models.DicomServiceInner;
+import com.azure.resourcemanager.healthcareapis.models.CorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomService;
 import com.azure.resourcemanager.healthcareapis.models.DicomServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomServicePatchResource;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
+import com.azure.resourcemanager.healthcareapis.models.ServiceEventState;
 import com.azure.resourcemanager.healthcareapis.models.ServiceManagedIdentityIdentity;
 import java.util.Collections;
 import java.util.List;
@@ -69,6 +71,10 @@ public final class DicomServiceImpl implements DicomService, DicomService.Defini
         return this.innerModel().authenticationConfiguration();
     }
 
+    public CorsConfiguration corsConfiguration() {
+        return this.innerModel().corsConfiguration();
+    }
+
     public String serviceUrl() {
         return this.innerModel().serviceUrl();
     }
@@ -86,12 +92,20 @@ public final class DicomServiceImpl implements DicomService, DicomService.Defini
         return this.innerModel().publicNetworkAccess();
     }
 
+    public ServiceEventState eventState() {
+        return this.innerModel().eventState();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public DicomServiceInner innerModel() {
@@ -231,6 +245,11 @@ public final class DicomServiceImpl implements DicomService, DicomService.Defini
     public DicomServiceImpl withAuthenticationConfiguration(
         DicomServiceAuthenticationConfiguration authenticationConfiguration) {
         this.innerModel().withAuthenticationConfiguration(authenticationConfiguration);
+        return this;
+    }
+
+    public DicomServiceImpl withCorsConfiguration(CorsConfiguration corsConfiguration) {
+        this.innerModel().withCorsConfiguration(corsConfiguration);
         return this;
     }
 

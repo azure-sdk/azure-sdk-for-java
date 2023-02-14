@@ -14,8 +14,10 @@ import com.azure.resourcemanager.healthcareapis.models.FhirServiceAcrConfigurati
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceCorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceExportConfiguration;
+import com.azure.resourcemanager.healthcareapis.models.FhirServiceImportConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceKind;
 import com.azure.resourcemanager.healthcareapis.models.FhirServicePatchResource;
+import com.azure.resourcemanager.healthcareapis.models.ImplementationGuidesConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
@@ -122,12 +124,24 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
         return this.innerModel().resourceVersionPolicyConfiguration();
     }
 
+    public FhirServiceImportConfiguration importConfiguration() {
+        return this.innerModel().importConfiguration();
+    }
+
+    public ImplementationGuidesConfiguration implementationGuidesConfiguration() {
+        return this.innerModel().implementationGuidesConfiguration();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public FhirServiceInner innerModel() {
@@ -303,6 +317,17 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
     public FhirServiceImpl withResourceVersionPolicyConfiguration(
         ResourceVersionPolicyConfiguration resourceVersionPolicyConfiguration) {
         this.innerModel().withResourceVersionPolicyConfiguration(resourceVersionPolicyConfiguration);
+        return this;
+    }
+
+    public FhirServiceImpl withImportConfiguration(FhirServiceImportConfiguration importConfiguration) {
+        this.innerModel().withImportConfiguration(importConfiguration);
+        return this;
+    }
+
+    public FhirServiceImpl withImplementationGuidesConfiguration(
+        ImplementationGuidesConfiguration implementationGuidesConfiguration) {
+        this.innerModel().withImplementationGuidesConfiguration(implementationGuidesConfiguration);
         return this;
     }
 

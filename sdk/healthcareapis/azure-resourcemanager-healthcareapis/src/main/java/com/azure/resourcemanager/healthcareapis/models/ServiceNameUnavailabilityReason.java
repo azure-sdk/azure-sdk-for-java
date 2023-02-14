@@ -7,7 +7,7 @@ package com.azure.resourcemanager.healthcareapis.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for ServiceNameUnavailabilityReason. */
+/** The reason for unavailability. */
 public enum ServiceNameUnavailabilityReason {
     /** Enum value Invalid. */
     INVALID("Invalid"),
@@ -30,6 +30,9 @@ public enum ServiceNameUnavailabilityReason {
      */
     @JsonCreator
     public static ServiceNameUnavailabilityReason fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ServiceNameUnavailabilityReason[] items = ServiceNameUnavailabilityReason.values();
         for (ServiceNameUnavailabilityReason item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -39,6 +42,7 @@ public enum ServiceNameUnavailabilityReason {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {
