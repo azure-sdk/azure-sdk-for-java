@@ -22,7 +22,9 @@ public final class ClusterUpdate {
     private Sku sku;
 
     /*
-     * RedisEnterprise cluster properties Other properties of the cluster.
+     * RedisEnterprise cluster properties
+     *
+     * Other properties of the cluster.
      */
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
@@ -33,6 +35,10 @@ public final class ClusterUpdate {
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /** Creates an instance of ClusterUpdate class. */
+    public ClusterUpdate() {
+    }
 
     /**
      * Get the sku property: The SKU to create, which affects price, performance, and features.
@@ -55,7 +61,9 @@ public final class ClusterUpdate {
     }
 
     /**
-     * Get the innerProperties property: RedisEnterprise cluster properties Other properties of the cluster.
+     * Get the innerProperties property: RedisEnterprise cluster properties
+     *
+     * <p>Other properties of the cluster.
      *
      * @return the innerProperties value.
      */
