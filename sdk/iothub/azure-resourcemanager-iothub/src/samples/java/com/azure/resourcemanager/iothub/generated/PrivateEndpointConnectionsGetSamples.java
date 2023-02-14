@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class PrivateEndpointConnectionsGetSamples {
     public static void privateEndpointConnectionGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
         manager
             .privateEndpointConnections()
-            .getWithResponse("myResourceGroup", "testHub", "myPrivateEndpointConnection", Context.NONE);
+            .getWithResponse(
+                "myResourceGroup", "testHub", "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
     }
 }

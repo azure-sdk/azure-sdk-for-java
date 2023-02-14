@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource Delete. */
 public final class IotHubResourceDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class IotHubResourceDeleteSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void iotHubResourceDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().delete("myResourceGroup", "testHub", Context.NONE);
+        manager.iotHubResources().delete("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }
