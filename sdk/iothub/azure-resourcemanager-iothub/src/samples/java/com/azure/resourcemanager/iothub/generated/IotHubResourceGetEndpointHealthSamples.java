@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource GetEndpointHealth. */
 public final class IotHubResourceGetEndpointHealthSamples {
     /*
@@ -17,6 +15,6 @@ public final class IotHubResourceGetEndpointHealthSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void iotHubResourceGetEndpointHealth(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getEndpointHealth("myResourceGroup", "testHub", Context.NONE);
+        manager.iotHubResources().getEndpointHealth("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IotHubResource GetStats. */
 public final class IotHubResourceGetStatsSamples {
     /*
@@ -17,6 +15,6 @@ public final class IotHubResourceGetStatsSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void iotHubResourceGetStats(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getStatsWithResponse("myResourceGroup", "testHub", Context.NONE);
+        manager.iotHubResources().getStatsWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }
