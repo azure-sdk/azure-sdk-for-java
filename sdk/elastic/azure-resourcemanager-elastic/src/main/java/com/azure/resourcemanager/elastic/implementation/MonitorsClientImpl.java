@@ -814,7 +814,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     public SyncPoller<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner> beginCreate(
         String resourceGroupName, String monitorName) {
         final ElasticMonitorResourceInner body = null;
-        return beginCreateAsync(resourceGroupName, monitorName, body).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, monitorName, body).getSyncPoller();
     }
 
     /**
@@ -832,7 +832,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ElasticMonitorResourceInner>, ElasticMonitorResourceInner> beginCreate(
         String resourceGroupName, String monitorName, ElasticMonitorResourceInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, monitorName, body, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, monitorName, body, context).getSyncPoller();
     }
 
     /**
@@ -1226,7 +1226,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String monitorName) {
-        return beginDeleteAsync(resourceGroupName, monitorName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, monitorName).getSyncPoller();
     }
 
     /**
@@ -1243,7 +1243,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String monitorName, Context context) {
-        return beginDeleteAsync(resourceGroupName, monitorName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, monitorName, context).getSyncPoller();
     }
 
     /**
