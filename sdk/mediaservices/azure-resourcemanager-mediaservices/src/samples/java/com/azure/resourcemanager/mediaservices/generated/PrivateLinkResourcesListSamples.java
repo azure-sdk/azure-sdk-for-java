@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mediaservices.generated;
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-link-resources-list.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-link-resources-list.json
      */
     /**
      * Sample code: Get list of all group IDs.

@@ -5,13 +5,14 @@
 package com.azure.resourcemanager.mediaservices.generated;
 
 import com.azure.resourcemanager.mediaservices.models.MediaService;
+import com.azure.resourcemanager.mediaservices.models.MinimumTlsVersion;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Mediaservices Update. */
 public final class MediaservicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/async-accounts-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/async-accounts-update.json
      */
     /**
      * Sample code: Update a Media Services accounts.
@@ -25,7 +26,7 @@ public final class MediaservicesUpdateSamples {
                 .mediaservices()
                 .getByResourceGroupWithResponse("contoso", "contososports", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key1", "value3")).apply();
+        resource.update().withTags(mapOf("key1", "value3")).withMinimumTlsVersion(MinimumTlsVersion.TLS12).apply();
     }
 
     @SuppressWarnings("unchecked")

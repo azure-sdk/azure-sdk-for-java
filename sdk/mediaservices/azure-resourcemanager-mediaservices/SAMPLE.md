@@ -187,7 +187,7 @@ public final class AccountFiltersCreateOrUpdateSamples {
         manager
             .accountFilters()
             .define("newAccountFilter")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withPresentationTimeRange(
                 new PresentationTimeRange()
                     .withStartTimestamp(0L)
@@ -250,7 +250,7 @@ public final class AccountFiltersDeleteSamples {
         manager
             .accountFilters()
             .deleteWithResponse(
-                "contoso", "contosomedia", "accountFilterWithTimeWindowAndTrack", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "accountFilterWithTimeWindowAndTrack", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -271,7 +271,7 @@ public final class AccountFiltersGetSamples {
     public static void getAnAccountFilterByName(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .accountFilters()
-            .getWithResponse("contoso", "contosomedia", "accountFilterWithTrack", com.azure.core.util.Context.NONE);
+            .getWithResponse("contosorg", "contosomedia", "accountFilterWithTrack", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -290,7 +290,7 @@ public final class AccountFiltersListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void listAllAccountFilters(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.accountFilters().list("contoso", "contosomedia", com.azure.core.util.Context.NONE);
+        manager.accountFilters().list("contosorg", "contosomedia", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -317,7 +317,10 @@ public final class AccountFiltersUpdateSamples {
             manager
                 .accountFilters()
                 .getWithResponse(
-                    "contoso", "contosomedia", "accountFilterWithTimeWindowAndTrack", com.azure.core.util.Context.NONE)
+                    "contosorg",
+                    "contosomedia",
+                    "accountFilterWithTimeWindowAndTrack",
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -360,7 +363,7 @@ public final class AssetFiltersCreateOrUpdateSamples {
         manager
             .assetFilters()
             .define("newAssetFilter")
-            .withExistingAsset("contoso", "contosomedia", "ClimbingMountRainer")
+            .withExistingAsset("contosorg", "contosomedia", "ClimbingMountRainer")
             .withPresentationTimeRange(
                 new PresentationTimeRange()
                     .withStartTimestamp(0L)
@@ -423,7 +426,7 @@ public final class AssetFiltersDeleteSamples {
         manager
             .assetFilters()
             .deleteWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountRainer",
                 "assetFilterWithTimeWindowAndTrack",
@@ -449,7 +452,7 @@ public final class AssetFiltersGetSamples {
         manager
             .assetFilters()
             .getWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountRainer",
                 "assetFilterWithTimeWindowAndTrack",
@@ -472,7 +475,9 @@ public final class AssetFiltersListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void listAllAssetFilters(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.assetFilters().list("contoso", "contosomedia", "ClimbingMountRainer", com.azure.core.util.Context.NONE);
+        manager
+            .assetFilters()
+            .list("contosorg", "contosomedia", "ClimbingMountRainer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -499,7 +504,7 @@ public final class AssetFiltersUpdateSamples {
             manager
                 .assetFilters()
                 .getWithResponse(
-                    "contoso",
+                    "contosorg",
                     "contosomedia",
                     "ClimbingMountRainer",
                     "assetFilterWithTimeWindowAndTrack",
@@ -538,7 +543,7 @@ public final class AssetsCreateOrUpdateSamples {
         manager
             .assets()
             .define("ClimbingMountLogan")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDescription("A documentary showing the ascent of Mount Logan")
             .withStorageAccountName("storage0")
             .create();
@@ -562,7 +567,7 @@ public final class AssetsDeleteSamples {
     public static void deleteAnAsset(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .assets()
-            .deleteWithResponse("contoso", "contosomedia", "ClimbingMountAdams", com.azure.core.util.Context.NONE);
+            .deleteWithResponse("contosorg", "contosomedia", "ClimbingMountAdams", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -583,7 +588,7 @@ public final class AssetsGetSamples {
     public static void getAnAssetByName(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .assets()
-            .getWithResponse("contoso", "contosomedia", "ClimbingMountAdams", com.azure.core.util.Context.NONE);
+            .getWithResponse("contosorg", "contosomedia", "ClimbingMountAdams", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -606,7 +611,7 @@ public final class AssetsGetEncryptionKeySamples {
         manager
             .assets()
             .getEncryptionKeyWithResponse(
-                "contoso", "contosomedia", "ClimbingMountSaintHelens", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "ClimbingMountSaintHelens", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -627,7 +632,7 @@ public final class AssetsListSamples {
     public static void listAssetOrderedByDate(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .assets()
-            .list("contoso", "contosomedia", null, null, "properties/created", com.azure.core.util.Context.NONE);
+            .list("contosorg", "contosomedia", null, null, "properties/created", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -643,7 +648,7 @@ public final class AssetsListSamples {
         manager
             .assets()
             .list(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "properties/created gt 2012-06-01 and properties/created lt 2013-07-01",
                 null,
@@ -660,7 +665,7 @@ public final class AssetsListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void listAllAssets(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.assets().list("contoso", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
+        manager.assets().list("contosorg", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -686,7 +691,7 @@ public final class AssetsListContainerSasSamples {
         manager
             .assets()
             .listContainerSasWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountBaker",
                 new ListContainerSasInput()
@@ -714,7 +719,7 @@ public final class AssetsListStreamingLocatorsSamples {
         manager
             .assets()
             .listStreamingLocatorsWithResponse(
-                "contoso", "contosomedia", "ClimbingMountSaintHelens", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "ClimbingMountSaintHelens", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -738,7 +743,7 @@ public final class AssetsUpdateSamples {
         Asset resource =
             manager
                 .assets()
-                .getWithResponse("contoso", "contosomedia", "ClimbingMountBaker", com.azure.core.util.Context.NONE)
+                .getWithResponse("contosorg", "contosomedia", "ClimbingMountBaker", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withDescription("A documentary showing the ascent of Mount Baker in HD").apply();
     }
@@ -782,7 +787,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
         manager
             .contentKeyPolicies()
             .define("PolicyCreatedWithMultipleOptions")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDescription("ArmPolicyDescription")
             .withOptions(
                 Arrays
@@ -821,7 +826,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
         manager
             .contentKeyPolicies()
             .define("PolicyWithClearKeyOptionAndSwtTokenRestriction")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDescription("ArmPolicyDescription")
             .withOptions(
                 Arrays
@@ -853,7 +858,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
         manager
             .contentKeyPolicies()
             .define("PolicyWithPlayReadyOptionAndOpenRestriction")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDescription("ArmPolicyDescription")
             .withOptions(
                 Arrays
@@ -901,7 +906,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
         manager
             .contentKeyPolicies()
             .define("PolicyWithWidevineOptionAndJwtTokenRestriction")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDescription("ArmPolicyDescription")
             .withOptions(
                 Arrays
@@ -948,7 +953,7 @@ public final class ContentKeyPoliciesDeleteSamples {
         manager
             .contentKeyPolicies()
             .deleteWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "PolicyWithPlayReadyOptionAndOpenRestriction",
                 com.azure.core.util.Context.NONE);
@@ -973,7 +978,8 @@ public final class ContentKeyPoliciesGetSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .contentKeyPolicies()
-            .getWithResponse("contoso", "contosomedia", "PolicyWithMultipleOptions", com.azure.core.util.Context.NONE);
+            .getWithResponse(
+                "contosorg", "contosomedia", "PolicyWithMultipleOptions", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -996,7 +1002,7 @@ public final class ContentKeyPoliciesGetPolicyPropertiesWithSecretsSamples {
         manager
             .contentKeyPolicies()
             .getPolicyPropertiesWithSecretsWithResponse(
-                "contoso", "contosomedia", "PolicyWithMultipleOptions", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "PolicyWithMultipleOptions", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1018,7 +1024,7 @@ public final class ContentKeyPoliciesListSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .contentKeyPolicies()
-            .list("contoso", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
+            .list("contosorg", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1034,7 +1040,7 @@ public final class ContentKeyPoliciesListSamples {
         manager
             .contentKeyPolicies()
             .list(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "properties/lastModified gt 2016-06-01 and properties/created lt 2013-07-01",
                 null,
@@ -1054,7 +1060,7 @@ public final class ContentKeyPoliciesListSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .contentKeyPolicies()
-            .list("contoso", "contosomedia", null, null, "properties/lastModified", com.azure.core.util.Context.NONE);
+            .list("contosorg", "contosomedia", null, null, "properties/lastModified", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1083,7 +1089,7 @@ public final class ContentKeyPoliciesUpdateSamples {
             manager
                 .contentKeyPolicies()
                 .getWithResponse(
-                    "contoso",
+                    "contosorg",
                     "contosomedia",
                     "PolicyWithClearKeyOptionAndTokenRestriction",
                     com.azure.core.util.Context.NONE)
@@ -1912,7 +1918,7 @@ import com.azure.resourcemanager.mediaservices.models.CheckNameAvailabilityInput
 /** Samples for Locations CheckNameAvailability. */
 public final class LocationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-check-name-availability.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-check-name-availability.json
      */
     /**
      * Sample code: Check Name Availability.
@@ -1936,7 +1942,7 @@ public final class LocationsCheckNameAvailabilitySamples {
 /** Samples for MediaServicesOperationResults Get. */
 public final class MediaServicesOperationResultsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/media-service-operation-result-by-id.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/media-service-operation-result-by-id.json
      */
     /**
      * Sample code: Get status of asynchronous operation.
@@ -1958,7 +1964,7 @@ public final class MediaServicesOperationResultsGetSamples {
 /** Samples for MediaServicesOperationStatuses Get. */
 public final class MediaServicesOperationStatusesGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/media-service-operation-status-by-id-non-terminal-state-failed.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/media-service-operation-status-by-id-non-terminal-state-failed.json
      */
     /**
      * Sample code: Get status of asynchronous operation when it is completed with error.
@@ -1973,7 +1979,7 @@ public final class MediaServicesOperationStatusesGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/media-service-operation-status-by-id-terminal-state.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/media-service-operation-status-by-id-terminal-state.json
      */
     /**
      * Sample code: Get status of asynchronous operation when it is completed.
@@ -1988,7 +1994,7 @@ public final class MediaServicesOperationStatusesGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/media-service-operation-status-by-id-non-terminal-state.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/media-service-operation-status-by-id-non-terminal-state.json
      */
     /**
      * Sample code: Get status of asynchronous operation when it is ongoing.
@@ -2013,6 +2019,7 @@ import com.azure.resourcemanager.mediaservices.models.AccountEncryptionKeyType;
 import com.azure.resourcemanager.mediaservices.models.DefaultAction;
 import com.azure.resourcemanager.mediaservices.models.KeyDelivery;
 import com.azure.resourcemanager.mediaservices.models.MediaServiceIdentity;
+import com.azure.resourcemanager.mediaservices.models.MinimumTlsVersion;
 import com.azure.resourcemanager.mediaservices.models.PublicNetworkAccess;
 import com.azure.resourcemanager.mediaservices.models.ResourceIdentity;
 import com.azure.resourcemanager.mediaservices.models.StorageAccount;
@@ -2026,7 +2033,7 @@ import java.util.Map;
 /** Samples for Mediaservices CreateOrUpdate. */
 public final class MediaservicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/async-accounts-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/async-accounts-create.json
      */
     /**
      * Sample code: Create a Media Services account.
@@ -2074,6 +2081,7 @@ public final class MediaservicesCreateOrUpdateSamples {
             .withKeyDelivery(
                 new KeyDelivery().withAccessControl(new AccessControl().withDefaultAction(DefaultAction.ALLOW)))
             .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+            .withMinimumTlsVersion(MinimumTlsVersion.TLS12)
             .create();
     }
 
@@ -2096,7 +2104,7 @@ public final class MediaservicesCreateOrUpdateSamples {
 /** Samples for Mediaservices Delete. */
 public final class MediaservicesDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-delete.json
      */
     /**
      * Sample code: Delete a Media Services account.
@@ -2118,7 +2126,7 @@ public final class MediaservicesDeleteSamples {
 /** Samples for Mediaservices GetByResourceGroup. */
 public final class MediaservicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-get-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-get-by-name.json
      */
     /**
      * Sample code: Get a Media Services account by name.
@@ -2140,7 +2148,7 @@ public final class MediaservicesGetByResourceGroupSamples {
 /** Samples for Mediaservices List. */
 public final class MediaservicesListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-subscription-list-all-accounts.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-subscription-list-all-accounts.json
      */
     /**
      * Sample code: List all Media Services accounts.
@@ -2160,7 +2168,7 @@ public final class MediaservicesListSamples {
 /** Samples for Mediaservices ListByResourceGroup. */
 public final class MediaservicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-list-all-accounts.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-list-all-accounts.json
      */
     /**
      * Sample code: List all Media Services accounts.
@@ -2182,7 +2190,7 @@ import com.azure.resourcemanager.mediaservices.models.ListEdgePoliciesInput;
 /** Samples for Mediaservices ListEdgePolicies. */
 public final class MediaservicesListEdgePoliciesSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-list-media-edge-policies.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-list-media-edge-policies.json
      */
     /**
      * Sample code: List the media edge policies.
@@ -2209,7 +2217,7 @@ import com.azure.resourcemanager.mediaservices.models.SyncStorageKeysInput;
 /** Samples for Mediaservices SyncStorageKeys. */
 public final class MediaservicesSyncStorageKeysSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/accounts-sync-storage-keys.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/accounts-sync-storage-keys.json
      */
     /**
      * Sample code: Synchronizes Storage Account Keys.
@@ -2233,13 +2241,14 @@ public final class MediaservicesSyncStorageKeysSamples {
 
 ```java
 import com.azure.resourcemanager.mediaservices.models.MediaService;
+import com.azure.resourcemanager.mediaservices.models.MinimumTlsVersion;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Mediaservices Update. */
 public final class MediaservicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/async-accounts-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/async-accounts-update.json
      */
     /**
      * Sample code: Update a Media Services accounts.
@@ -2253,7 +2262,7 @@ public final class MediaservicesUpdateSamples {
                 .mediaservices()
                 .getByResourceGroupWithResponse("contoso", "contososports", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key1", "value3")).apply();
+        resource.update().withTags(mapOf("key1", "value3")).withMinimumTlsVersion(MinimumTlsVersion.TLS12).apply();
     }
 
     @SuppressWarnings("unchecked")
@@ -2287,7 +2296,7 @@ public final class OperationResultsGetSamples {
         manager
             .operationResults()
             .getWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountRainer",
                 "text1",
@@ -2315,7 +2324,7 @@ public final class OperationStatusesGetSamples {
         manager
             .operationStatuses()
             .getWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountRainer",
                 "text1",
@@ -2336,7 +2345,7 @@ public final class OperationStatusesGetSamples {
         manager
             .operationStatuses()
             .getWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountRainer",
                 "text1",
@@ -2357,7 +2366,7 @@ public final class OperationStatusesGetSamples {
         manager
             .operationStatuses()
             .getWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "ClimbingMountRainer",
                 "text1",
@@ -2373,7 +2382,7 @@ public final class OperationStatusesGetSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/operations-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/operations-list-all.json
      */
     /**
      * Sample code: List Operations.
@@ -2396,7 +2405,7 @@ import com.azure.resourcemanager.mediaservices.models.PrivateLinkServiceConnecti
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-endpoint-connection-put.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-endpoint-connection-put.json
      */
     /**
      * Sample code: Update private endpoint connection.
@@ -2427,7 +2436,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-endpoint-connection-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-endpoint-connection-delete.json
      */
     /**
      * Sample code: Delete private endpoint connection.
@@ -2449,7 +2458,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-endpoint-connection-get-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-endpoint-connection-get-by-name.json
      */
     /**
      * Sample code: Get private endpoint connection.
@@ -2471,7 +2480,7 @@ public final class PrivateEndpointConnectionsGetSamples {
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-endpoint-connection-list.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-endpoint-connection-list.json
      */
     /**
      * Sample code: Get all private endpoint connections.
@@ -2493,7 +2502,7 @@ public final class PrivateEndpointConnectionsListSamples {
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-link-resources-get-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-link-resources-get-by-name.json
      */
     /**
      * Sample code: Get details of a group ID.
@@ -2514,7 +2523,7 @@ public final class PrivateLinkResourcesGetSamples {
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2021-11-01/examples/private-link-resources-list.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Accounts/stable/2023-01-01/examples/private-link-resources-list.json
      */
     /**
      * Sample code: Get list of all group IDs.
@@ -2872,7 +2881,7 @@ public final class StreamingLocatorsCreateSamples {
         manager
             .streamingLocators()
             .define("UserCreatedClearStreamingLocator")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withAssetName("ClimbingMountRainier")
             .withStreamingPolicyName("clearStreamingPolicy")
             .create();
@@ -2891,11 +2900,11 @@ public final class StreamingLocatorsCreateSamples {
         manager
             .streamingLocators()
             .define("UserCreatedSecureStreamingLocator")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withAssetName("ClimbingMountRainier")
             .withStartTime(OffsetDateTime.parse("2018-03-01T00:00:00Z"))
             .withEndTime(OffsetDateTime.parse("2028-12-31T23:59:59.9999999Z"))
-            .withStreamingPolicyName("secureStreamingPolicy")
+            .withStreamingPolicyName("UserCreatedSecureStreamingPolicy")
             .create();
     }
 
@@ -2912,7 +2921,7 @@ public final class StreamingLocatorsCreateSamples {
         manager
             .streamingLocators()
             .define("UserCreatedSecureStreamingLocatorWithUserDefinedContentKeys")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withAssetName("ClimbingMountRainier")
             .withStreamingLocatorId(UUID.fromString("90000000-0000-0000-0000-00000000000A"))
             .withStreamingPolicyName("secureStreamingPolicy")
@@ -2952,7 +2961,7 @@ public final class StreamingLocatorsDeleteSamples {
     public static void deleteAStreamingLocator(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .streamingLocators()
-            .deleteWithResponse("contoso", "contosomedia", "clearStreamingLocator", com.azure.core.util.Context.NONE);
+            .deleteWithResponse("contosorg", "contosomedia", "clearStreamingLocator", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2974,7 +2983,7 @@ public final class StreamingLocatorsGetSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .streamingLocators()
-            .getWithResponse("contoso", "contosomedia", "clearStreamingLocator", com.azure.core.util.Context.NONE);
+            .getWithResponse("contosorg", "contosomedia", "clearStreamingLocator", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2993,7 +3002,9 @@ public final class StreamingLocatorsListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void listsStreamingLocators(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.streamingLocators().list("contoso", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
+        manager
+            .streamingLocators()
+            .list("contosorg", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3015,7 +3026,7 @@ public final class StreamingLocatorsListContentKeysSamples {
         manager
             .streamingLocators()
             .listContentKeysWithResponse(
-                "contoso", "contosomedia", "secureStreamingLocator", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "secureStreamingLocator", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3038,7 +3049,7 @@ public final class StreamingLocatorsListPathsSamples {
         manager
             .streamingLocators()
             .listPathsWithResponse(
-                "contoso", "contosomedia", "secureStreamingLocator", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "secureStreamingLocator", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3054,7 +3065,7 @@ public final class StreamingLocatorsListPathsSamples {
         manager
             .streamingLocators()
             .listPathsWithResponse(
-                "contoso", "contosomedia", "clearStreamingLocator", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "clearStreamingLocator", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3096,7 +3107,7 @@ public final class StreamingPoliciesCreateSamples {
         manager
             .streamingPolicies()
             .define("UserCreatedSecureStreamingPolicy")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDefaultContentKeyPolicyName("PolicyWithMultipleOptions")
             .withEnvelopeEncryption(
                 new EnvelopeEncryption()
@@ -3174,7 +3185,7 @@ public final class StreamingPoliciesCreateSamples {
         manager
             .streamingPolicies()
             .define("UserCreatedSecureStreamingPolicyWithCommonEncryptionCencOnly")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDefaultContentKeyPolicyName("PolicyWithPlayReadyOptionAndOpenRestriction")
             .withCommonEncryptionCenc(
                 new CommonEncryptionCenc()
@@ -3216,7 +3227,7 @@ public final class StreamingPoliciesCreateSamples {
         manager
             .streamingPolicies()
             .define("UserCreatedSecureStreamingPolicyWithCommonEncryptionCencOnly")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDefaultContentKeyPolicyName("PolicyWithPlayReadyOptionAndOpenRestriction")
             .withCommonEncryptionCenc(
                 new CommonEncryptionCenc()
@@ -3266,7 +3277,7 @@ public final class StreamingPoliciesCreateSamples {
         manager
             .streamingPolicies()
             .define("UserCreatedSecureStreamingPolicyWithCommonEncryptionCbcsOnly")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDefaultContentKeyPolicyName("PolicyWithMultipleOptions")
             .withCommonEncryptionCbcs(
                 new CommonEncryptionCbcs()
@@ -3301,7 +3312,7 @@ public final class StreamingPoliciesCreateSamples {
         manager
             .streamingPolicies()
             .define("UserCreatedSecureStreamingPolicyWithCommonEncryptionCbcsOnly")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDefaultContentKeyPolicyName("PolicyWithMultipleOptions")
             .withCommonEncryptionCbcs(
                 new CommonEncryptionCbcs()
@@ -3331,8 +3342,8 @@ public final class StreamingPoliciesCreateSamples {
         com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .streamingPolicies()
-            .define("UserCreatedClearStreamingPolicy")
-            .withExistingMediaService("contoso", "contosomedia")
+            .define("clearStreamingPolicy")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withNoEncryption(
                 new NoEncryption()
                     .withEnabledProtocols(
@@ -3357,7 +3368,7 @@ public final class StreamingPoliciesCreateSamples {
         manager
             .streamingPolicies()
             .define("UserCreatedSecureStreamingPolicyWithEnvelopeEncryptionOnly")
-            .withExistingMediaService("contoso", "contosomedia")
+            .withExistingMediaService("contosorg", "contosomedia")
             .withDefaultContentKeyPolicyName("PolicyWithClearKeyOptionAndTokenRestriction")
             .withEnvelopeEncryption(
                 new EnvelopeEncryption()
@@ -3392,7 +3403,7 @@ public final class StreamingPoliciesDeleteSamples {
         manager
             .streamingPolicies()
             .deleteWithResponse(
-                "contoso",
+                "contosorg",
                 "contosomedia",
                 "secureStreamingPolicyWithCommonEncryptionCbcsOnly",
                 com.azure.core.util.Context.NONE);
@@ -3416,7 +3427,7 @@ public final class StreamingPoliciesGetSamples {
     public static void getAStreamingPolicyByName(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .streamingPolicies()
-            .getWithResponse("contoso", "contosomedia", "clearStreamingPolicy", com.azure.core.util.Context.NONE);
+            .getWithResponse("contosorg", "contosomedia", "clearStreamingPolicy", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3435,7 +3446,9 @@ public final class StreamingPoliciesListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void listsStreamingPolicies(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.streamingPolicies().list("contoso", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
+        manager
+            .streamingPolicies()
+            .list("contosorg", "contosomedia", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3460,7 +3473,7 @@ public final class TracksCreateOrUpdateSamples {
         manager
             .tracks()
             .define("text3")
-            .withExistingAsset("contoso", "contosomedia", "ClimbingMountRainer")
+            .withExistingAsset("contosorg", "contosomedia", "ClimbingMountRainer")
             .withTrack(
                 new TextTrack()
                     .withFileName("text3.ttml")
@@ -3487,7 +3500,7 @@ public final class TracksDeleteSamples {
     public static void deleteATrack(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager
             .tracks()
-            .delete("contoso", "contosomedia", "ClimbingMountRainer", "text2", com.azure.core.util.Context.NONE);
+            .delete("contosorg", "contosomedia", "ClimbingMountRainer", "text2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3509,7 +3522,7 @@ public final class TracksGetSamples {
         manager
             .tracks()
             .getWithResponse(
-                "contoso", "contosomedia", "ClimbingMountRainer", "text1", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "ClimbingMountRainer", "text1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3528,7 +3541,7 @@ public final class TracksListSamples {
      * @param manager Entry point to MediaServicesManager.
      */
     public static void listsAllTracks(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
-        manager.tracks().list("contoso", "contosomedia", "ClimbingMountRainer", com.azure.core.util.Context.NONE);
+        manager.tracks().list("contosorg", "contosomedia", "ClimbingMountRainer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3554,7 +3567,7 @@ public final class TracksUpdateSamples {
             manager
                 .tracks()
                 .getWithResponse(
-                    "contoso", "contosomedia", "ClimbingMountRainer", "text1", com.azure.core.util.Context.NONE)
+                    "contosorg", "contosomedia", "ClimbingMountRainer", "text1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTrack(new TextTrack().withDisplayName("A new name")).apply();
     }
@@ -3578,7 +3591,7 @@ public final class TracksUpdateTrackDataSamples {
         manager
             .tracks()
             .updateTrackData(
-                "contoso", "contosomedia", "ClimbingMountRainer", "text2", com.azure.core.util.Context.NONE);
+                "contosorg", "contosomedia", "ClimbingMountRainer", "text2", com.azure.core.util.Context.NONE);
     }
 }
 ```
