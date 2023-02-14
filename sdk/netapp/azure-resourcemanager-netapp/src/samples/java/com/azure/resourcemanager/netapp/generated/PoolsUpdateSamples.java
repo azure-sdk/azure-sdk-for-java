@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.CapacityPool;
 
 /** Samples for Pools Update. */
@@ -18,7 +17,8 @@ public final class PoolsUpdateSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void poolsUpdate(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        CapacityPool resource = manager.pools().getWithResponse("myRG", "account1", "pool1", Context.NONE).getValue();
+        CapacityPool resource =
+            manager.pools().getWithResponse("myRG", "account1", "pool1", com.azure.core.util.Context.NONE).getValue();
         resource.update().apply();
     }
 }

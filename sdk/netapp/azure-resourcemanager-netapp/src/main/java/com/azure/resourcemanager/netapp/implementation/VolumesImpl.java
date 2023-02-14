@@ -46,15 +46,6 @@ public final class VolumesImpl implements Volumes {
         return Utils.mapPage(inner, inner1 -> new VolumeImpl(inner1, this.manager()));
     }
 
-    public Volume get(String resourceGroupName, String accountName, String poolName, String volumeName) {
-        VolumeInner inner = this.serviceClient().get(resourceGroupName, accountName, poolName, volumeName);
-        if (inner != null) {
-            return new VolumeImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Volume> getWithResponse(
         String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
         Response<VolumeInner> inner =
@@ -70,9 +61,13 @@ public final class VolumesImpl implements Volumes {
         }
     }
 
-    public void delete(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Boolean forceDelete) {
-        this.serviceClient().delete(resourceGroupName, accountName, poolName, volumeName, forceDelete);
+    public Volume get(String resourceGroupName, String accountName, String poolName, String volumeName) {
+        VolumeInner inner = this.serviceClient().get(resourceGroupName, accountName, poolName, volumeName);
+        if (inner != null) {
+            return new VolumeImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String accountName, String poolName, String volumeName) {
@@ -113,15 +108,6 @@ public final class VolumesImpl implements Volumes {
         this.serviceClient().resetCifsPassword(resourceGroupName, accountName, poolName, volumeName, context);
     }
 
-    public void breakReplication(
-        String resourceGroupName,
-        String accountName,
-        String poolName,
-        String volumeName,
-        BreakReplicationRequest body) {
-        this.serviceClient().breakReplication(resourceGroupName, accountName, poolName, volumeName, body);
-    }
-
     public void breakReplication(String resourceGroupName, String accountName, String poolName, String volumeName) {
         this.serviceClient().breakReplication(resourceGroupName, accountName, poolName, volumeName);
     }
@@ -157,17 +143,6 @@ public final class VolumesImpl implements Volumes {
             .reestablishReplication(resourceGroupName, accountName, poolName, volumeName, body, context);
     }
 
-    public ReplicationStatus replicationStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
-        ReplicationStatusInner inner =
-            this.serviceClient().replicationStatus(resourceGroupName, accountName, poolName, volumeName);
-        if (inner != null) {
-            return new ReplicationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ReplicationStatus> replicationStatusWithResponse(
         String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
         Response<ReplicationStatusInner> inner =
@@ -180,6 +155,17 @@ public final class VolumesImpl implements Volumes {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ReplicationStatusImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ReplicationStatus replicationStatus(
+        String resourceGroupName, String accountName, String poolName, String volumeName) {
+        ReplicationStatusInner inner =
+            this.serviceClient().replicationStatus(resourceGroupName, accountName, poolName, volumeName);
+        if (inner != null) {
+            return new ReplicationStatusImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -255,11 +241,6 @@ public final class VolumesImpl implements Volumes {
         PoolChangeRequest body,
         Context context) {
         this.serviceClient().poolChange(resourceGroupName, accountName, poolName, volumeName, body, context);
-    }
-
-    public void relocate(
-        String resourceGroupName, String accountName, String poolName, String volumeName, RelocateVolumeRequest body) {
-        this.serviceClient().relocate(resourceGroupName, accountName, poolName, volumeName, body);
     }
 
     public void relocate(String resourceGroupName, String accountName, String poolName, String volumeName) {

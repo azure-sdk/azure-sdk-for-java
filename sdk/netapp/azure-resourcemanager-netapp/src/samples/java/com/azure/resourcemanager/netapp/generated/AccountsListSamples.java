@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Accounts List. */
 public final class AccountsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class AccountsListSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void accountsList(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.accounts().list(Context.NONE);
+        manager.accounts().list(com.azure.core.util.Context.NONE);
     }
 }

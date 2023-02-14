@@ -17,6 +17,10 @@ public final class VolumeQuotaRulePatch {
     @JsonProperty(value = "properties")
     private VolumeQuotaRulesProperties innerProperties;
 
+    /** Creates an instance of VolumeQuotaRulePatch class. */
+    public VolumeQuotaRulePatch() {
+    }
+
     /**
      * Get the innerProperties property: Volume Quota Rule Properties.
      *

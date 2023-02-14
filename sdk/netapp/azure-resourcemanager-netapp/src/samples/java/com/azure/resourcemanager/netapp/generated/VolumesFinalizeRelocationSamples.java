@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes FinalizeRelocation. */
 public final class VolumesFinalizeRelocationSamples {
     /*
@@ -17,6 +15,6 @@ public final class VolumesFinalizeRelocationSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void volumesFinalizeRelocation(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.volumes().finalizeRelocation("myRG", "account1", "pool1", "volume1", Context.NONE);
+        manager.volumes().finalizeRelocation("myRG", "account1", "pool1", "volume1", com.azure.core.util.Context.NONE);
     }
 }

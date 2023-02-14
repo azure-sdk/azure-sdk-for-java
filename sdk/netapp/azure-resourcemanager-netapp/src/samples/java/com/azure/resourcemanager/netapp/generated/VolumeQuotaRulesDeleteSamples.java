@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VolumeQuotaRules Delete. */
 public final class VolumeQuotaRulesDeleteSamples {
     /*
@@ -19,6 +17,6 @@ public final class VolumeQuotaRulesDeleteSamples {
     public static void volumeQuotaRulesDelete(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
         manager
             .volumeQuotaRules()
-            .delete("myRG", "account-9957", "pool-5210", "volume-6387", "rule-0004", Context.NONE);
+            .delete("myRG", "account-9957", "pool-5210", "volume-6387", "rule-0004", com.azure.core.util.Context.NONE);
     }
 }

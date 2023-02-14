@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Snapshots Delete. */
 public final class SnapshotsDeleteSamples {
     /*
@@ -17,6 +15,8 @@ public final class SnapshotsDeleteSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void snapshotsDelete(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.snapshots().delete("myRG", "account1", "pool1", "volume1", "snapshot1", Context.NONE);
+        manager
+            .snapshots()
+            .delete("myRG", "account1", "pool1", "volume1", "snapshot1", com.azure.core.util.Context.NONE);
     }
 }

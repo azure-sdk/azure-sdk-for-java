@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VolumeGroups Get. */
 public final class VolumeGroupsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class VolumeGroupsGetSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void volumeGroupsGet(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.volumeGroups().getWithResponse("myRG", "account1", "group1", Context.NONE);
+        manager.volumeGroups().getWithResponse("myRG", "account1", "group1", com.azure.core.util.Context.NONE);
     }
 }

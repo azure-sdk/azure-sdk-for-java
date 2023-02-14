@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SnapshotPolicies Delete. */
 public final class SnapshotPoliciesDeleteSamples {
     /*
@@ -17,6 +15,8 @@ public final class SnapshotPoliciesDeleteSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void snapshotPoliciesDelete(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.snapshotPolicies().delete("resourceGroup", "accountName", "snapshotPolicyName", Context.NONE);
+        manager
+            .snapshotPolicies()
+            .delete("resourceGroup", "accountName", "snapshotPolicyName", com.azure.core.util.Context.NONE);
     }
 }

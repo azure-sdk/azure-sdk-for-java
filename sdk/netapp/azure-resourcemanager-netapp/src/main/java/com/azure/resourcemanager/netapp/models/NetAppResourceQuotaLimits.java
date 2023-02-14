@@ -44,12 +44,13 @@ public interface NetAppResourceQuotaLimits {
      *
      * @param location The location.
      * @param quotaLimitName The name of the Quota Limit.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default and current subscription quota limit.
+     * @return the default and current subscription quota limit along with {@link Response}.
      */
-    SubscriptionQuotaItem get(String location, String quotaLimitName);
+    Response<SubscriptionQuotaItem> getWithResponse(String location, String quotaLimitName, Context context);
 
     /**
      * Get quota limits
@@ -58,11 +59,10 @@ public interface NetAppResourceQuotaLimits {
      *
      * @param location The location.
      * @param quotaLimitName The name of the Quota Limit.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default and current subscription quota limit along with {@link Response}.
+     * @return the default and current subscription quota limit.
      */
-    Response<SubscriptionQuotaItem> getWithResponse(String location, String quotaLimitName, Context context);
+    SubscriptionQuotaItem get(String location, String quotaLimitName);
 }

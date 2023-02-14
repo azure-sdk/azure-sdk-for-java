@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Accounts ListByResourceGroup. */
 public final class AccountsListByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class AccountsListByResourceGroupSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void accountsList(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.accounts().listByResourceGroup("myRG", Context.NONE);
+        manager.accounts().listByResourceGroup("myRG", com.azure.core.util.Context.NONE);
     }
 }

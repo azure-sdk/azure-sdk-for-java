@@ -78,21 +78,6 @@ public interface AccountsClient {
      *
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the NetApp account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    NetAppAccountInner getByResourceGroup(String resourceGroupName, String accountName);
-
-    /**
-     * Describe a NetApp Account
-     *
-     * <p>Get the NetApp account.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -102,6 +87,21 @@ public interface AccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NetAppAccountInner> getByResourceGroupWithResponse(
         String resourceGroupName, String accountName, Context context);
+
+    /**
+     * Describe a NetApp Account
+     *
+     * <p>Get the NetApp account.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the NetApp account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    NetAppAccountInner getByResourceGroup(String resourceGroupName, String accountName);
 
     /**
      * Create or update a NetApp account

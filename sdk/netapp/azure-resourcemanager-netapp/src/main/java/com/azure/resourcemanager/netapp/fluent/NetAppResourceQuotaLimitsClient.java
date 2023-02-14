@@ -49,21 +49,6 @@ public interface NetAppResourceQuotaLimitsClient {
      *
      * @param location The location.
      * @param quotaLimitName The name of the Quota Limit.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default and current subscription quota limit.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SubscriptionQuotaItemInner get(String location, String quotaLimitName);
-
-    /**
-     * Get quota limits
-     *
-     * <p>Get the default and current subscription quota limit.
-     *
-     * @param location The location.
-     * @param quotaLimitName The name of the Quota Limit.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -72,4 +57,19 @@ public interface NetAppResourceQuotaLimitsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SubscriptionQuotaItemInner> getWithResponse(String location, String quotaLimitName, Context context);
+
+    /**
+     * Get quota limits
+     *
+     * <p>Get the default and current subscription quota limit.
+     *
+     * @param location The location.
+     * @param quotaLimitName The name of the Quota Limit.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the default and current subscription quota limit.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SubscriptionQuotaItemInner get(String location, String quotaLimitName);
 }

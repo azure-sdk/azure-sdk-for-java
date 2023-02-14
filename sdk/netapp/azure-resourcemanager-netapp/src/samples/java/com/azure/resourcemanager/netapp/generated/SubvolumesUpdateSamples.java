@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.models.SubvolumeInfo;
 
 /** Samples for Subvolumes Update. */
@@ -21,7 +20,7 @@ public final class SubvolumesUpdateSamples {
         SubvolumeInfo resource =
             manager
                 .subvolumes()
-                .getWithResponse("myRG", "account1", "pool1", "volume1", "subvolume1", Context.NONE)
+                .getWithResponse("myRG", "account1", "pool1", "volume1", "subvolume1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withPath("/subvolumePath").apply();
     }

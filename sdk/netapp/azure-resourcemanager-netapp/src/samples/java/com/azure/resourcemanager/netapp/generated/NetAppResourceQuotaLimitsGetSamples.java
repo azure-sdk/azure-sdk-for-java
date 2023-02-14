@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetAppResourceQuotaLimits Get. */
 public final class NetAppResourceQuotaLimitsGetSamples {
     /*
@@ -19,6 +17,6 @@ public final class NetAppResourceQuotaLimitsGetSamples {
     public static void quotaLimits(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
         manager
             .netAppResourceQuotaLimits()
-            .getWithResponse("eastus", "totalCoolAccessVolumesPerSubscription", Context.NONE);
+            .getWithResponse("eastus", "totalCoolAccessVolumesPerSubscription", com.azure.core.util.Context.NONE);
     }
 }

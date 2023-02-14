@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Vaults List. */
 public final class VaultsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class VaultsListSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void vaultsList(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.vaults().list("myRG", "account1", Context.NONE);
+        manager.vaults().list("myRG", "account1", com.azure.core.util.Context.NONE);
     }
 }

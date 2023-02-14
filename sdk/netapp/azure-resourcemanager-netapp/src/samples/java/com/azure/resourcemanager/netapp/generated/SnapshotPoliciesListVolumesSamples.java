@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.netapp.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SnapshotPolicies ListVolumes. */
 public final class SnapshotPoliciesListVolumesSamples {
     /*
@@ -17,6 +15,8 @@ public final class SnapshotPoliciesListVolumesSamples {
      * @param manager Entry point to NetAppFilesManager.
      */
     public static void snapshotPoliciesListVolumes(com.azure.resourcemanager.netapp.NetAppFilesManager manager) {
-        manager.snapshotPolicies().listVolumesWithResponse("myRG", "account1", "snapshotPolicyName", Context.NONE);
+        manager
+            .snapshotPolicies()
+            .listVolumesWithResponse("myRG", "account1", "snapshotPolicyName", com.azure.core.util.Context.NONE);
     }
 }
