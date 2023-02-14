@@ -5,11 +5,13 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
+import com.azure.resourcemanager.appcontainers.models.ExtendedLocationTypes;
 
 /** Samples for ConnectedEnvironments CreateOrUpdate. */
 public final class ConnectedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ConnectedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create kube environments.
@@ -22,14 +24,19 @@ public final class ConnectedEnvironmentsCreateOrUpdateSamples {
             .define("testenv")
             .withRegion("East US")
             .withExistingResourceGroup("examplerg")
+            .withExtendedLocation(
+                new ExtendedLocation()
+                    .withName(
+                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/examplerg/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation")
+                    .withType(ExtendedLocationTypes.CUSTOM_LOCATION))
             .withStaticIp("1.2.3.4")
             .withDaprAIConnectionString(
                 "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://northcentralus-0.in.applicationinsights.azure.com/")
             .withCustomDomainConfiguration(
                 new CustomDomainConfiguration()
                     .withDnsSuffix("www.my-name.com")
-                    .withCertificateValue("PFX-or-PEM-blob".getBytes())
-                    .withCertificatePassword("private key password".getBytes()))
+                    .withCertificateValue("Y2VydA==".getBytes())
+                    .withCertificatePassword("fakeTokenPlaceholder"))
             .create();
     }
 }

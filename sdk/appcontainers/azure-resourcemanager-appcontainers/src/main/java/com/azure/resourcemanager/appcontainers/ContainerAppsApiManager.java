@@ -76,13 +76,23 @@ import java.util.stream.Collectors;
 public final class ContainerAppsApiManager {
     private ContainerAppsAuthConfigs containerAppsAuthConfigs;
 
+    private AvailableWorkloadProfiles availableWorkloadProfiles;
+
+    private BillingMeters billingMeters;
+
+    private ConnectedEnvironments connectedEnvironments;
+
+    private ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates;
+
+    private ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents;
+
+    private ConnectedEnvironmentsStorages connectedEnvironmentsStorages;
+
     private ContainerApps containerApps;
 
     private ContainerAppsRevisions containerAppsRevisions;
 
     private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
-
-    private DaprComponents daprComponents;
 
     private ContainerAppsDiagnostics containerAppsDiagnostics;
 
@@ -98,21 +108,11 @@ public final class ContainerAppsApiManager {
 
     private Namespaces namespaces;
 
+    private DaprComponents daprComponents;
+
     private ManagedEnvironmentsStorages managedEnvironmentsStorages;
 
     private ContainerAppsSourceControls containerAppsSourceControls;
-
-    private ConnectedEnvironments connectedEnvironments;
-
-    private ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates;
-
-    private ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents;
-
-    private ConnectedEnvironmentsStorages connectedEnvironmentsStorages;
-
-    private AvailableWorkloadProfiles availableWorkloadProfiles;
-
-    private BillingMeters billingMeters;
 
     private final ContainerAppsApiClient clientObject;
 
@@ -279,7 +279,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -350,6 +350,83 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of AvailableWorkloadProfiles.
+     *
+     * @return Resource collection API of AvailableWorkloadProfiles.
+     */
+    public AvailableWorkloadProfiles availableWorkloadProfiles() {
+        if (this.availableWorkloadProfiles == null) {
+            this.availableWorkloadProfiles =
+                new AvailableWorkloadProfilesImpl(clientObject.getAvailableWorkloadProfiles(), this);
+        }
+        return availableWorkloadProfiles;
+    }
+
+    /**
+     * Gets the resource collection API of BillingMeters.
+     *
+     * @return Resource collection API of BillingMeters.
+     */
+    public BillingMeters billingMeters() {
+        if (this.billingMeters == null) {
+            this.billingMeters = new BillingMetersImpl(clientObject.getBillingMeters(), this);
+        }
+        return billingMeters;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironments. It manages ConnectedEnvironment.
+     *
+     * @return Resource collection API of ConnectedEnvironments.
+     */
+    public ConnectedEnvironments connectedEnvironments() {
+        if (this.connectedEnvironments == null) {
+            this.connectedEnvironments = new ConnectedEnvironmentsImpl(clientObject.getConnectedEnvironments(), this);
+        }
+        return connectedEnvironments;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironmentsCertificates. It manages Certificate.
+     *
+     * @return Resource collection API of ConnectedEnvironmentsCertificates.
+     */
+    public ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates() {
+        if (this.connectedEnvironmentsCertificates == null) {
+            this.connectedEnvironmentsCertificates =
+                new ConnectedEnvironmentsCertificatesImpl(clientObject.getConnectedEnvironmentsCertificates(), this);
+        }
+        return connectedEnvironmentsCertificates;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironmentsDaprComponents. It manages DaprComponent.
+     *
+     * @return Resource collection API of ConnectedEnvironmentsDaprComponents.
+     */
+    public ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents() {
+        if (this.connectedEnvironmentsDaprComponents == null) {
+            this.connectedEnvironmentsDaprComponents =
+                new ConnectedEnvironmentsDaprComponentsImpl(
+                    clientObject.getConnectedEnvironmentsDaprComponents(), this);
+        }
+        return connectedEnvironmentsDaprComponents;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironmentsStorages. It manages ConnectedEnvironmentStorage.
+     *
+     * @return Resource collection API of ConnectedEnvironmentsStorages.
+     */
+    public ConnectedEnvironmentsStorages connectedEnvironmentsStorages() {
+        if (this.connectedEnvironmentsStorages == null) {
+            this.connectedEnvironmentsStorages =
+                new ConnectedEnvironmentsStoragesImpl(clientObject.getConnectedEnvironmentsStorages(), this);
+        }
+        return connectedEnvironmentsStorages;
+    }
+
+    /**
      * Gets the resource collection API of ContainerApps. It manages ContainerApp.
      *
      * @return Resource collection API of ContainerApps.
@@ -385,18 +462,6 @@ public final class ContainerAppsApiManager {
                 new ContainerAppsRevisionReplicasImpl(clientObject.getContainerAppsRevisionReplicas(), this);
         }
         return containerAppsRevisionReplicas;
-    }
-
-    /**
-     * Gets the resource collection API of DaprComponents. It manages DaprComponent.
-     *
-     * @return Resource collection API of DaprComponents.
-     */
-    public DaprComponents daprComponents() {
-        if (this.daprComponents == null) {
-            this.daprComponents = new DaprComponentsImpl(clientObject.getDaprComponents(), this);
-        }
-        return daprComponents;
     }
 
     /**
@@ -463,7 +528,7 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of Certificates. It manages Certificate.
+     * Gets the resource collection API of Certificates.
      *
      * @return Resource collection API of Certificates.
      */
@@ -484,6 +549,18 @@ public final class ContainerAppsApiManager {
             this.namespaces = new NamespacesImpl(clientObject.getNamespaces(), this);
         }
         return namespaces;
+    }
+
+    /**
+     * Gets the resource collection API of DaprComponents.
+     *
+     * @return Resource collection API of DaprComponents.
+     */
+    public DaprComponents daprComponents() {
+        if (this.daprComponents == null) {
+            this.daprComponents = new DaprComponentsImpl(clientObject.getDaprComponents(), this);
+        }
+        return daprComponents;
     }
 
     /**
@@ -510,83 +587,6 @@ public final class ContainerAppsApiManager {
                 new ContainerAppsSourceControlsImpl(clientObject.getContainerAppsSourceControls(), this);
         }
         return containerAppsSourceControls;
-    }
-
-    /**
-     * Gets the resource collection API of ConnectedEnvironments. It manages ConnectedEnvironment.
-     *
-     * @return Resource collection API of ConnectedEnvironments.
-     */
-    public ConnectedEnvironments connectedEnvironments() {
-        if (this.connectedEnvironments == null) {
-            this.connectedEnvironments = new ConnectedEnvironmentsImpl(clientObject.getConnectedEnvironments(), this);
-        }
-        return connectedEnvironments;
-    }
-
-    /**
-     * Gets the resource collection API of ConnectedEnvironmentsCertificates.
-     *
-     * @return Resource collection API of ConnectedEnvironmentsCertificates.
-     */
-    public ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates() {
-        if (this.connectedEnvironmentsCertificates == null) {
-            this.connectedEnvironmentsCertificates =
-                new ConnectedEnvironmentsCertificatesImpl(clientObject.getConnectedEnvironmentsCertificates(), this);
-        }
-        return connectedEnvironmentsCertificates;
-    }
-
-    /**
-     * Gets the resource collection API of ConnectedEnvironmentsDaprComponents.
-     *
-     * @return Resource collection API of ConnectedEnvironmentsDaprComponents.
-     */
-    public ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents() {
-        if (this.connectedEnvironmentsDaprComponents == null) {
-            this.connectedEnvironmentsDaprComponents =
-                new ConnectedEnvironmentsDaprComponentsImpl(
-                    clientObject.getConnectedEnvironmentsDaprComponents(), this);
-        }
-        return connectedEnvironmentsDaprComponents;
-    }
-
-    /**
-     * Gets the resource collection API of ConnectedEnvironmentsStorages. It manages ConnectedEnvironmentStorage.
-     *
-     * @return Resource collection API of ConnectedEnvironmentsStorages.
-     */
-    public ConnectedEnvironmentsStorages connectedEnvironmentsStorages() {
-        if (this.connectedEnvironmentsStorages == null) {
-            this.connectedEnvironmentsStorages =
-                new ConnectedEnvironmentsStoragesImpl(clientObject.getConnectedEnvironmentsStorages(), this);
-        }
-        return connectedEnvironmentsStorages;
-    }
-
-    /**
-     * Gets the resource collection API of AvailableWorkloadProfiles.
-     *
-     * @return Resource collection API of AvailableWorkloadProfiles.
-     */
-    public AvailableWorkloadProfiles availableWorkloadProfiles() {
-        if (this.availableWorkloadProfiles == null) {
-            this.availableWorkloadProfiles =
-                new AvailableWorkloadProfilesImpl(clientObject.getAvailableWorkloadProfiles(), this);
-        }
-        return availableWorkloadProfiles;
-    }
-
-    /**
-     * Gets the resource collection API of BillingMeters.
-     *
-     * @return Resource collection API of BillingMeters.
-     */
-    public BillingMeters billingMeters() {
-        if (this.billingMeters == null) {
-            this.billingMeters = new BillingMetersImpl(clientObject.getBillingMeters(), this);
-        }
-        return billingMeters;
     }
 
     /**

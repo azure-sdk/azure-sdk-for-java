@@ -231,10 +231,10 @@ public interface ContainerAppsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of container App.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginUpdate(
+    SyncPoller<PollResult<ContainerAppInner>, ContainerAppInner> beginUpdate(
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
@@ -250,10 +250,10 @@ public interface ContainerAppsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of container App.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginUpdate(
+    SyncPoller<PollResult<ContainerAppInner>, ContainerAppInner> beginUpdate(
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
@@ -268,9 +268,10 @@ public interface ContainerAppsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
+    ContainerAppInner update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
      * Update properties of a Container App
@@ -285,9 +286,10 @@ public interface ContainerAppsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void update(
+    ContainerAppInner update(
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
