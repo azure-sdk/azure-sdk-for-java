@@ -9,9 +9,8 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineExtensionInner;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtension;
-import com.azure.resourcemanager.hybridcompute.models.MachineExtensionProperties;
+import com.azure.resourcemanager.hybridcompute.models.MachineExtensionInstanceView;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensionUpdate;
-import com.azure.resourcemanager.hybridcompute.models.MachineExtensionUpdateProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -46,12 +45,58 @@ public final class MachineExtensionImpl
         }
     }
 
-    public MachineExtensionProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String forceUpdateTag() {
+        return this.innerModel().forceUpdateTag();
+    }
+
+    public String publisher() {
+        return this.innerModel().publisher();
+    }
+
+    public String typePropertiesType() {
+        return this.innerModel().typePropertiesType();
+    }
+
+    public String typeHandlerVersion() {
+        return this.innerModel().typeHandlerVersion();
+    }
+
+    public Boolean enableAutomaticUpgrade() {
+        return this.innerModel().enableAutomaticUpgrade();
+    }
+
+    public Boolean autoUpgradeMinorVersion() {
+        return this.innerModel().autoUpgradeMinorVersion();
+    }
+
+    public Map<String, Object> settings() {
+        Map<String, Object> inner = this.innerModel().settings();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public Map<String, Object> protectedSettings() {
+        Map<String, Object> inner = this.innerModel().protectedSettings();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public MachineExtensionInstanceView instanceView() {
+        return this.innerModel().instanceView();
     }
 
     public Region region() {
@@ -185,13 +230,88 @@ public final class MachineExtensionImpl
         }
     }
 
-    public MachineExtensionImpl withProperties(MachineExtensionProperties properties) {
-        this.innerModel().withProperties(properties);
+    public MachineExtensionImpl withForceUpdateTag(String forceUpdateTag) {
+        if (isInCreateMode()) {
+            this.innerModel().withForceUpdateTag(forceUpdateTag);
+            return this;
+        } else {
+            this.updateExtensionParameters.withForceUpdateTag(forceUpdateTag);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withPublisher(String publisher) {
+        if (isInCreateMode()) {
+            this.innerModel().withPublisher(publisher);
+            return this;
+        } else {
+            this.updateExtensionParameters.withPublisher(publisher);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withTypePropertiesType(String typePropertiesType) {
+        this.innerModel().withTypePropertiesType(typePropertiesType);
         return this;
     }
 
-    public MachineExtensionImpl withProperties(MachineExtensionUpdateProperties properties) {
-        this.updateExtensionParameters.withProperties(properties);
+    public MachineExtensionImpl withTypeHandlerVersion(String typeHandlerVersion) {
+        if (isInCreateMode()) {
+            this.innerModel().withTypeHandlerVersion(typeHandlerVersion);
+            return this;
+        } else {
+            this.updateExtensionParameters.withTypeHandlerVersion(typeHandlerVersion);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade) {
+        if (isInCreateMode()) {
+            this.innerModel().withEnableAutomaticUpgrade(enableAutomaticUpgrade);
+            return this;
+        } else {
+            this.updateExtensionParameters.withEnableAutomaticUpgrade(enableAutomaticUpgrade);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion) {
+        if (isInCreateMode()) {
+            this.innerModel().withAutoUpgradeMinorVersion(autoUpgradeMinorVersion);
+            return this;
+        } else {
+            this.updateExtensionParameters.withAutoUpgradeMinorVersion(autoUpgradeMinorVersion);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withSettings(Map<String, Object> settings) {
+        if (isInCreateMode()) {
+            this.innerModel().withSettings(settings);
+            return this;
+        } else {
+            this.updateExtensionParameters.withSettings(settings);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withProtectedSettings(Map<String, Object> protectedSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withProtectedSettings(protectedSettings);
+            return this;
+        } else {
+            this.updateExtensionParameters.withProtectedSettings(protectedSettings);
+            return this;
+        }
+    }
+
+    public MachineExtensionImpl withInstanceView(MachineExtensionInstanceView instanceView) {
+        this.innerModel().withInstanceView(instanceView);
+        return this;
+    }
+
+    public MachineExtensionImpl withType(String type) {
+        this.updateExtensionParameters.withType(type);
         return this;
     }
 
