@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for DataVersions Delete. */
 public final class DataVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataVersionBase/delete.json
      */
     /**
-     * Sample code: Delete Data Version Base.
+     * Sample code: Delete Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteDataVersionBase(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceDataVersionBase(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .dataVersions()
             .deleteWithResponse("test-rg", "my-aml-workspace", "string", "string", com.azure.core.util.Context.NONE);

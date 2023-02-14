@@ -39,14 +39,14 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     private final WorkspaceConnectionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of WorkspaceConnectionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspaceConnectionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    WorkspaceConnectionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy
                 .create(WorkspaceConnectionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
@@ -54,7 +54,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesWorkspaceConnections to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesWorkspaceConnections to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
