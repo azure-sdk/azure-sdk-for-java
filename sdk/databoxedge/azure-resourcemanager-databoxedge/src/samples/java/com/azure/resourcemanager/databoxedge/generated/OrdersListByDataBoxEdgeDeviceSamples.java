@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 /** Samples for Orders ListByDataBoxEdgeDevice. */
 public final class OrdersListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/OrderGetAllInDevice.json
      */
     /**
      * Sample code: OrderGetAllInDevice.

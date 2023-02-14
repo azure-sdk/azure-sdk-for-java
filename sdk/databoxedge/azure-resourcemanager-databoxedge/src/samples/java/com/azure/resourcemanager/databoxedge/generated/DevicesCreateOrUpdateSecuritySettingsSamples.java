@@ -11,7 +11,7 @@ import com.azure.resourcemanager.databoxedge.models.SecuritySettings;
 /** Samples for Devices CreateOrUpdateSecuritySettings. */
 public final class DevicesCreateOrUpdateSecuritySettingsSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SecuritySettingsUpdatePost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/SecuritySettingsUpdatePost.json
      */
     /**
      * Sample code: CreateOrUpdateSecuritySettings.
@@ -28,8 +28,8 @@ public final class DevicesCreateOrUpdateSecuritySettingsSamples {
                 new SecuritySettings()
                     .withDeviceAdminPassword(
                         new AsymmetricEncryptedSecret()
-                            .withValue("<value>")
-                            .withEncryptionCertThumbprint("7DCBDFC44ED968D232C9A998FC105B5C70E84BE0")
+                            .withValue("<deviceAdminPassword>")
+                            .withEncryptionCertThumbprint("<encryptionThumprint>")
                             .withEncryptionAlgorithm(EncryptionAlgorithm.AES256)),
                 com.azure.core.util.Context.NONE);
     }

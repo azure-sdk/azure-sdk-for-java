@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 /** Samples for Devices GetExtendedInformation. */
 public final class DevicesGetExtendedInformationSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ExtendedInfoPost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/ExtendedInfoPost.json
      */
     /**
      * Sample code: ExtendedInfoPost.
