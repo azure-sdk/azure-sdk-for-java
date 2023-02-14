@@ -5,7 +5,10 @@
 package com.azure.resourcemanager.agrifood.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.resourcemanager.agrifood.models.ApiProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** Extension resource properties. */
 @Immutable
@@ -39,6 +42,17 @@ public final class ExtensionProperties {
      */
     @JsonProperty(value = "extensionApiDocsLink", access = JsonProperty.Access.WRITE_ONLY)
     private String extensionApiDocsLink;
+
+    /*
+     * Additional api properties.
+     */
+    @JsonProperty(value = "additionalApiProperties", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, ApiProperties> additionalApiProperties;
+
+    /** Creates an instance of ExtensionProperties class. */
+    public ExtensionProperties() {
+    }
 
     /**
      * Get the extensionId property: Extension Id.
@@ -86,10 +100,29 @@ public final class ExtensionProperties {
     }
 
     /**
+     * Get the additionalApiProperties property: Additional api properties.
+     *
+     * @return the additionalApiProperties value.
+     */
+    public Map<String, ApiProperties> additionalApiProperties() {
+        return this.additionalApiProperties;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (additionalApiProperties() != null) {
+            additionalApiProperties()
+                .values()
+                .forEach(
+                    e -> {
+                        if (e != null) {
+                            e.validate();
+                        }
+                    });
+        }
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FarmBeatsModels GetByResourceGroup. */
 public final class FarmBeatsModelsGetByResourceGroupSamples {
     /*
@@ -19,6 +17,7 @@ public final class FarmBeatsModelsGetByResourceGroupSamples {
     public static void farmBeatsModelsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .farmBeatsModels()
-            .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "examples-rg", "examples-farmBeatsResourceName", com.azure.core.util.Context.NONE);
     }
 }

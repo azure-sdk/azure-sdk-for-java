@@ -32,6 +32,10 @@ public final class SensorIntegration {
     @JsonProperty(value = "provisioningInfo")
     private ManagementError provisioningInfo;
 
+    /** Creates an instance of SensorIntegration class. */
+    public SensorIntegration() {
+    }
+
     /**
      * Get the enabled property: Sensor integration enable state. Allowed values are True, None.
      *
