@@ -11,11 +11,17 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Validation result for Sql Server to Azure Sql DB migration. */
+/** The MigrateSqlServerSqlDbTaskOutputValidationResult model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationValidationOutput")
 @Fluent
 public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends MigrateSqlServerSqlDbTaskOutput {
+    /*
+     * Migration validation result identifier
+     */
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
     /*
      * Migration Identifier
      */
@@ -38,6 +44,15 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
 
     /** Creates an instance of MigrateSqlServerSqlDbTaskOutputValidationResult class. */
     public MigrateSqlServerSqlDbTaskOutputValidationResult() {
+    }
+
+    /**
+     * Get the id property: Migration validation result identifier.
+     *
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
     }
 
     /**

@@ -19,6 +19,12 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     private List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases;
 
     /*
+     * Date and time relative to UTC when the migration was started on
+     */
+    @JsonProperty(value = "startedOn")
+    private String startedOn;
+
+    /*
      * Logins to migrate.
      */
     @JsonProperty(value = "selectedLogins")
@@ -49,6 +55,19 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     @JsonProperty(value = "backupMode")
     private BackupMode backupMode;
 
+    /*
+     * Azure Active Directory domain name in the format of 'contoso.com' for federated Azure AD or
+     * 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected
+     */
+    @JsonProperty(value = "aadDomainName")
+    private String aadDomainName;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
     /** Creates an instance of MigrateSqlServerSqlMITaskInput class. */
     public MigrateSqlServerSqlMITaskInput() {
     }
@@ -71,6 +90,26 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     public MigrateSqlServerSqlMITaskInput withSelectedDatabases(
         List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
+        return this;
+    }
+
+    /**
+     * Get the startedOn property: Date and time relative to UTC when the migration was started on.
+     *
+     * @return the startedOn value.
+     */
+    public String startedOn() {
+        return this.startedOn;
+    }
+
+    /**
+     * Set the startedOn property: Date and time relative to UTC when the migration was started on.
+     *
+     * @param startedOn the startedOn value to set.
+     * @return the MigrateSqlServerSqlMITaskInput object itself.
+     */
+    public MigrateSqlServerSqlMITaskInput withStartedOn(String startedOn) {
+        this.startedOn = startedOn;
         return this;
     }
 
@@ -173,6 +212,48 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
      */
     public MigrateSqlServerSqlMITaskInput withBackupMode(BackupMode backupMode) {
         this.backupMode = backupMode;
+        return this;
+    }
+
+    /**
+     * Get the aadDomainName property: Azure Active Directory domain name in the format of 'contoso.com' for federated
+     * Azure AD or 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected.
+     *
+     * @return the aadDomainName value.
+     */
+    public String aadDomainName() {
+        return this.aadDomainName;
+    }
+
+    /**
+     * Set the aadDomainName property: Azure Active Directory domain name in the format of 'contoso.com' for federated
+     * Azure AD or 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected.
+     *
+     * @param aadDomainName the aadDomainName value to set.
+     * @return the MigrateSqlServerSqlMITaskInput object itself.
+     */
+    public MigrateSqlServerSqlMITaskInput withAadDomainName(String aadDomainName) {
+        this.aadDomainName = aadDomainName;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the MigrateSqlServerSqlMITaskInput object itself.
+     */
+    public MigrateSqlServerSqlMITaskInput withEncryptedKeyForSecureFields(String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
         return this;
     }
 
