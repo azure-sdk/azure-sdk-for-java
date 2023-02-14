@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The validation result for a linker. */
+/** The validation result for a Linker. */
 @Fluent
 public final class ValidateResult {
     /*
@@ -39,7 +39,7 @@ public final class ValidateResult {
     private OffsetDateTime reportEndTimeUtc;
 
     /*
-     * The resource id of the linker source application.
+     * The resource id of the Linker source application.
      */
     @JsonProperty(value = "sourceId")
     private String sourceId;
@@ -61,6 +61,10 @@ public final class ValidateResult {
      */
     @JsonProperty(value = "validationDetail")
     private List<ValidationResultItem> validationDetail;
+
+    /** Creates an instance of ValidateResult class. */
+    public ValidateResult() {
+    }
 
     /**
      * Get the linkerName property: The linker name.
@@ -143,7 +147,7 @@ public final class ValidateResult {
     }
 
     /**
-     * Get the sourceId property: The resource id of the linker source application.
+     * Get the sourceId property: The resource id of the Linker source application.
      *
      * @return the sourceId value.
      */
@@ -152,7 +156,7 @@ public final class ValidateResult {
     }
 
     /**
-     * Set the sourceId property: The resource id of the linker source application.
+     * Set the sourceId property: The resource id of the Linker source application.
      *
      * @param sourceId the sourceId value to set.
      * @return the ValidateResult object itself.

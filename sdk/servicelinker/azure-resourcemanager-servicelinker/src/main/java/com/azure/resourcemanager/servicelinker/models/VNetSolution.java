@@ -16,6 +16,16 @@ public final class VNetSolution {
     @JsonProperty(value = "type")
     private VNetSolutionType type;
 
+    /*
+     * Indicates whether to clean up previous operation when Linker is updating or deleting
+     */
+    @JsonProperty(value = "deleteOrUpdateBehavior")
+    private DeleteOrUpdateBehavior deleteOrUpdateBehavior;
+
+    /** Creates an instance of VNetSolution class. */
+    public VNetSolution() {
+    }
+
     /**
      * Get the type property: Type of VNet solution.
      *
@@ -33,6 +43,28 @@ public final class VNetSolution {
      */
     public VNetSolution withType(VNetSolutionType type) {
         this.type = type;
+        return this;
+    }
+
+    /**
+     * Get the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     *
+     * @return the deleteOrUpdateBehavior value.
+     */
+    public DeleteOrUpdateBehavior deleteOrUpdateBehavior() {
+        return this.deleteOrUpdateBehavior;
+    }
+
+    /**
+     * Set the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     *
+     * @param deleteOrUpdateBehavior the deleteOrUpdateBehavior value to set.
+     * @return the VNetSolution object itself.
+     */
+    public VNetSolution withDeleteOrUpdateBehavior(DeleteOrUpdateBehavior deleteOrUpdateBehavior) {
+        this.deleteOrUpdateBehavior = deleteOrUpdateBehavior;
         return this;
     }
 

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The validation operation result for a linker. */
+/** The validation operation result for a Linker. */
 @Fluent
 public final class ValidateOperationResultInner {
     /*
@@ -21,7 +21,7 @@ public final class ValidateOperationResultInner {
     private ValidateResult innerProperties;
 
     /*
-     * Validated linker id.
+     * Validated Linker id.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;
@@ -31,6 +31,10 @@ public final class ValidateOperationResultInner {
      */
     @JsonProperty(value = "status")
     private String status;
+
+    /** Creates an instance of ValidateOperationResultInner class. */
+    public ValidateOperationResultInner() {
+    }
 
     /**
      * Get the innerProperties property: The validation result detail.
@@ -42,7 +46,7 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Get the resourceId property: Validated linker id.
+     * Get the resourceId property: Validated Linker id.
      *
      * @return the resourceId value.
      */
@@ -51,7 +55,7 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Set the resourceId property: Validated linker id.
+     * Set the resourceId property: Validated Linker id.
      *
      * @param resourceId the resourceId value to set.
      * @return the ValidateOperationResultInner object itself.
@@ -174,7 +178,7 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Get the sourceId property: The resource id of the linker source application.
+     * Get the sourceId property: The resource id of the Linker source application.
      *
      * @return the sourceId value.
      */
@@ -183,7 +187,7 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Set the sourceId property: The resource id of the linker source application.
+     * Set the sourceId property: The resource id of the Linker source application.
      *
      * @param sourceId the sourceId value to set.
      * @return the ValidateOperationResultInner object itself.
