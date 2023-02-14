@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
@@ -20,6 +18,6 @@ public final class PrivateLinkResourcesGetSamples {
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         manager
             .privateLinkResources()
-            .getWithResponse("myResourceGroup", "contoso", "configurationStores", Context.NONE);
+            .getWithResponse("myResourceGroup", "contoso", "configurationStores", com.azure.core.util.Context.NONE);
     }
 }

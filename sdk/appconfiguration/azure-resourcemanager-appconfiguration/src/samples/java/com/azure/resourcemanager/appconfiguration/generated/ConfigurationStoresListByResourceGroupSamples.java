@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores ListByResourceGroup. */
 public final class ConfigurationStoresListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class ConfigurationStoresListByResourceGroupSamples {
      */
     public static void configurationStoresListByResourceGroup(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listByResourceGroup("myResourceGroup", null, Context.NONE);
+        manager.configurationStores().listByResourceGroup("myResourceGroup", null, com.azure.core.util.Context.NONE);
     }
 }
