@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwins Delete. */
 public final class DigitalTwinsDeleteSamples {
     /*
@@ -18,7 +16,7 @@ public final class DigitalTwinsDeleteSamples {
      */
     public static void deleteADigitalTwinsInstanceResource(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class DigitalTwinsDeleteSamples {
      */
     public static void deleteADigitalTwinsInstanceResourceWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DigitalTwinsEndpoint List. */
 public final class DigitalTwinsEndpointListSamples {
     /*
@@ -18,7 +16,7 @@ public final class DigitalTwinsEndpointListSamples {
      */
     public static void getADigitalTwinsInstanceEndpoints(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class DigitalTwinsEndpointListSamples {
      */
     public static void getADigitalTwinsInstanceEndpointsWithIdentity(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", Context.NONE);
+        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
