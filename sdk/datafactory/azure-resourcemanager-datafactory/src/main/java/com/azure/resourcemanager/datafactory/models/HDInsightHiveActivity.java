@@ -222,7 +222,7 @@ public final class HDInsightHiveActivity extends ExecutionActivity {
      *
      * @return the variables value.
      */
-    public List<Object> variables() {
+    public Map<String, String> variables() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().variables();
     }
 
@@ -232,7 +232,7 @@ public final class HDInsightHiveActivity extends ExecutionActivity {
      * @param variables the variables value to set.
      * @return the HDInsightHiveActivity object itself.
      */
-    public HDInsightHiveActivity withVariables(List<Object> variables) {
+    public HDInsightHiveActivity withVariables(Map<String, String> variables) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new HDInsightHiveActivityTypeProperties();
         }
