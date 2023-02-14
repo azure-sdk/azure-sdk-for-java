@@ -128,17 +128,12 @@ public final class LoadTestAdministrationClient {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileName: String (Optional)
-     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
-     *             expireDateTime: OffsetDateTime (Optional)
-     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
-     *             validationFailureDetails: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     url: String (Optional)
+     *     fileName: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *     validationFailureDetails: String (Optional)
      * }
      * }</pre>
      *
@@ -451,76 +446,71 @@ public final class LoadTestAdministrationClient {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientMetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
-     *                         aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String(continue/stop) (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String(passed/undetermined/failed) (Optional)
-     *                     }
-     *                 }
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientMetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(continue/stop) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
-     *                 }
-     *             }
-     *             certificate (Optional): {
-     *                 value: String (Optional)
-     *                 type: String(AKV_CERT_URI) (Optional)
-     *                 name: String (Optional)
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             loadTestConfiguration (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
-     *                 quickStartTest: Boolean (Optional)
-     *                 optionalLoadTestConfig (Optional): {
-     *                     endpointUrl: String (Optional)
-     *                     virtualUsers: Integer (Optional)
-     *                     rampUpTime: Integer (Optional)
-     *                     duration: Integer (Optional)
-     *                 }
-     *             }
-     *             inputArtifacts (Optional): {
-     *                 configFileInfo (Optional): {
-     *                     url: String (Optional)
-     *                     fileName: String (Optional)
-     *                     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
-     *                     expireDateTime: OffsetDateTime (Optional)
-     *                     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
-     *                     validationFailureDetails: String (Optional)
-     *                 }
-     *                 testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
-     *                 userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
-     *                 inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
-     *                 additionalFileInfo (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
+     *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             virtualUsers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileName: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *             validationFailureDetails: String (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
