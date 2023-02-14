@@ -35,15 +35,6 @@ public final class DatabasesImpl implements Databases {
         this.serviceClient().delete(resourceGroupName, serverName, databaseName, context);
     }
 
-    public Database get(String resourceGroupName, String serverName, String databaseName) {
-        DatabaseInner inner = this.serviceClient().get(resourceGroupName, serverName, databaseName);
-        if (inner != null) {
-            return new DatabaseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Database> getWithResponse(
         String resourceGroupName, String serverName, String databaseName, Context context) {
         Response<DatabaseInner> inner =
@@ -54,6 +45,15 @@ public final class DatabasesImpl implements Databases {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new DatabaseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Database get(String resourceGroupName, String serverName, String databaseName) {
+        DatabaseInner inner = this.serviceClient().get(resourceGroupName, serverName, databaseName);
+        if (inner != null) {
+            return new DatabaseImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -78,13 +78,12 @@ public final class DatabasesImpl implements Databases {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
+        String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
@@ -105,13 +104,12 @@ public final class DatabasesImpl implements Databases {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
+        String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
@@ -132,13 +130,12 @@ public final class DatabasesImpl implements Databases {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
+        String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
@@ -159,13 +156,12 @@ public final class DatabasesImpl implements Databases {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
+        String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {

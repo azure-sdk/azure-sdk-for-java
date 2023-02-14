@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CreateMode. */
+/** The mode to create a new server. */
 public final class CreateMode extends ExpandableStringEnum<CreateMode> {
     /** Static value Default for CreateMode. */
     public static final CreateMode DEFAULT = fromString("Default");
@@ -16,11 +16,20 @@ public final class CreateMode extends ExpandableStringEnum<CreateMode> {
     /** Static value PointInTimeRestore for CreateMode. */
     public static final CreateMode POINT_IN_TIME_RESTORE = fromString("PointInTimeRestore");
 
+    /** Static value GeoRestore for CreateMode. */
+    public static final CreateMode GEO_RESTORE = fromString("GeoRestore");
+
     /** Static value Replica for CreateMode. */
     public static final CreateMode REPLICA = fromString("Replica");
 
-    /** Static value GeoRestore for CreateMode. */
-    public static final CreateMode GEO_RESTORE = fromString("GeoRestore");
+    /**
+     * Creates a new instance of CreateMode value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public CreateMode() {
+    }
 
     /**
      * Creates or finds a CreateMode from its string representation.
@@ -33,7 +42,11 @@ public final class CreateMode extends ExpandableStringEnum<CreateMode> {
         return fromString(name, CreateMode.class);
     }
 
-    /** @return known CreateMode values. */
+    /**
+     * Gets known CreateMode values.
+     *
+     * @return known CreateMode values.
+     */
     public static Collection<CreateMode> values() {
         return values(CreateMode.class);
     }
