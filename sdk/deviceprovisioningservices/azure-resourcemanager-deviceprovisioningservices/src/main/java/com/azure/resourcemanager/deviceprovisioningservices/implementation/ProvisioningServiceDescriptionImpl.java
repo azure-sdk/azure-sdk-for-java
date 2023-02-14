@@ -66,6 +66,14 @@ public final class ProvisioningServiceDescriptionImpl
         return this.innerModel().systemData();
     }
 
+    public String resourcegroup() {
+        return this.innerModel().resourcegroup();
+    }
+
+    public String subscriptionid() {
+        return this.innerModel().subscriptionid();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -214,6 +222,16 @@ public final class ProvisioningServiceDescriptionImpl
 
     public ProvisioningServiceDescriptionImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withResourcegroup(String resourcegroup) {
+        this.innerModel().withResourcegroup(resourcegroup);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withSubscriptionid(String subscriptionid) {
+        this.innerModel().withSubscriptionid(subscriptionid);
         return this;
     }
 
