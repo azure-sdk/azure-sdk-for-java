@@ -59,6 +59,12 @@ public final class Dapr {
     @JsonProperty(value = "enableApiLogging")
     private Boolean enableApiLogging;
 
+    /*
+     * Dapr targets for for applied resiliency policies
+     */
+    @JsonProperty(value = "resiliencyTargets")
+    private DaprResiliencyTargets resiliencyTargets;
+
     /** Creates an instance of Dapr class. */
     public Dapr() {
     }
@@ -232,10 +238,33 @@ public final class Dapr {
     }
 
     /**
+     * Get the resiliencyTargets property: Dapr targets for for applied resiliency policies.
+     *
+     * @return the resiliencyTargets value.
+     */
+    public DaprResiliencyTargets resiliencyTargets() {
+        return this.resiliencyTargets;
+    }
+
+    /**
+     * Set the resiliencyTargets property: Dapr targets for for applied resiliency policies.
+     *
+     * @param resiliencyTargets the resiliencyTargets value to set.
+     * @return the Dapr object itself.
+     */
+    public Dapr withResiliencyTargets(DaprResiliencyTargets resiliencyTargets) {
+        this.resiliencyTargets = resiliencyTargets;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (resiliencyTargets() != null) {
+            resiliencyTargets().validate();
+        }
     }
 }

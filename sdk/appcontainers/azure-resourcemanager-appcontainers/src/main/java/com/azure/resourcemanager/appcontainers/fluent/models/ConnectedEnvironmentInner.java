@@ -26,7 +26,7 @@ public final class ConnectedEnvironmentInner extends Resource {
      * ConnectedEnvironment resource specific properties
      */
     @JsonProperty(value = "properties")
-    private ConnectedEnvironmentProperties innerProperties;
+    private ConnectedEnvironmentPropertiesInner innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -63,7 +63,7 @@ public final class ConnectedEnvironmentInner extends Resource {
      *
      * @return the innerProperties value.
      */
-    private ConnectedEnvironmentProperties innerProperties() {
+    private ConnectedEnvironmentPropertiesInner innerProperties() {
         return this.innerProperties;
     }
 
@@ -134,7 +134,7 @@ public final class ConnectedEnvironmentInner extends Resource {
      */
     public ConnectedEnvironmentInner withStaticIp(String staticIp) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ConnectedEnvironmentProperties();
+            this.innerProperties = new ConnectedEnvironmentPropertiesInner();
         }
         this.innerProperties().withStaticIp(staticIp);
         return this;
@@ -159,7 +159,7 @@ public final class ConnectedEnvironmentInner extends Resource {
      */
     public ConnectedEnvironmentInner withDaprAIConnectionString(String daprAIConnectionString) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ConnectedEnvironmentProperties();
+            this.innerProperties = new ConnectedEnvironmentPropertiesInner();
         }
         this.innerProperties().withDaprAIConnectionString(daprAIConnectionString);
         return this;
@@ -183,9 +183,32 @@ public final class ConnectedEnvironmentInner extends Resource {
     public ConnectedEnvironmentInner withCustomDomainConfiguration(
         CustomDomainConfiguration customDomainConfiguration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ConnectedEnvironmentProperties();
+            this.innerProperties = new ConnectedEnvironmentPropertiesInner();
         }
         this.innerProperties().withCustomDomainConfiguration(customDomainConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+     *
+     * @return the daprResiliencyDefaults value.
+     */
+    public DaprResiliencyDefaultsInner daprResiliencyDefaults() {
+        return this.innerProperties() == null ? null : this.innerProperties().daprResiliencyDefaults();
+    }
+
+    /**
+     * Set the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+     *
+     * @param daprResiliencyDefaults the daprResiliencyDefaults value to set.
+     * @return the ConnectedEnvironmentInner object itself.
+     */
+    public ConnectedEnvironmentInner withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConnectedEnvironmentPropertiesInner();
+        }
+        this.innerProperties().withDaprResiliencyDefaults(daprResiliencyDefaults);
         return this;
     }
 

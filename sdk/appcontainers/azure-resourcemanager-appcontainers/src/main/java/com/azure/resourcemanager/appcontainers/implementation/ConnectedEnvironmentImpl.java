@@ -8,9 +8,11 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ConnectedEnvironmentInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DaprResiliencyDefaultsInner;
 import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DaprResiliencyDefaults;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import java.util.Collections;
 import java.util.Map;
@@ -76,6 +78,15 @@ public final class ConnectedEnvironmentImpl
 
     public CustomDomainConfiguration customDomainConfiguration() {
         return this.innerModel().customDomainConfiguration();
+    }
+
+    public DaprResiliencyDefaults daprResiliencyDefaults() {
+        DaprResiliencyDefaultsInner inner = this.innerModel().daprResiliencyDefaults();
+        if (inner != null) {
+            return new DaprResiliencyDefaultsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Region region() {
@@ -215,6 +226,11 @@ public final class ConnectedEnvironmentImpl
 
     public ConnectedEnvironmentImpl withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
         this.innerModel().withCustomDomainConfiguration(customDomainConfiguration);
+        return this;
+    }
+
+    public ConnectedEnvironmentImpl withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults) {
+        this.innerModel().withDaprResiliencyDefaults(daprResiliencyDefaults);
         return this;
     }
 }

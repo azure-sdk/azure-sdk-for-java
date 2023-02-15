@@ -8,12 +8,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.appcontainers.fluent.models.DaprResiliencyDefaultsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DaprResiliencyDefaults;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentAuthToken;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
-import com.azure.resourcemanager.appcontainers.models.EnvironmentSkuProperties;
+import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
@@ -52,8 +55,8 @@ public final class ManagedEnvironmentImpl
         }
     }
 
-    public EnvironmentSkuProperties sku() {
-        return this.innerModel().sku();
+    public String kind() {
+        return this.innerModel().kind();
     }
 
     public SystemData systemData() {
@@ -74,6 +77,15 @@ public final class ManagedEnvironmentImpl
 
     public VnetConfiguration vnetConfiguration() {
         return this.innerModel().vnetConfiguration();
+    }
+
+    public DaprResiliencyDefaults daprResiliencyDefaults() {
+        DaprResiliencyDefaultsInner inner = this.innerModel().daprResiliencyDefaults();
+        if (inner != null) {
+            return new DaprResiliencyDefaultsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public String deploymentErrors() {
@@ -111,6 +123,14 @@ public final class ManagedEnvironmentImpl
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public KedaConfiguration kedaConfiguration() {
+        return this.innerModel().kedaConfiguration();
+    }
+
+    public DaprConfiguration daprConfiguration() {
+        return this.innerModel().daprConfiguration();
     }
 
     public Region region() {
@@ -176,7 +196,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
+                .update(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -185,7 +205,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), context);
+                .update(resourceGroupName, environmentName, this.innerModel(), context);
         return this;
     }
 
@@ -243,8 +263,8 @@ public final class ManagedEnvironmentImpl
         return this;
     }
 
-    public ManagedEnvironmentImpl withSku(EnvironmentSkuProperties sku) {
-        this.innerModel().withSku(sku);
+    public ManagedEnvironmentImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
@@ -260,6 +280,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withVnetConfiguration(VnetConfiguration vnetConfiguration) {
         this.innerModel().withVnetConfiguration(vnetConfiguration);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults) {
+        this.innerModel().withDaprResiliencyDefaults(daprResiliencyDefaults);
         return this;
     }
 
@@ -280,6 +305,16 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withWorkloadProfiles(List<WorkloadProfile> workloadProfiles) {
         this.innerModel().withWorkloadProfiles(workloadProfiles);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withKedaConfiguration(KedaConfiguration kedaConfiguration) {
+        this.innerModel().withKedaConfiguration(kedaConfiguration);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withDaprConfiguration(DaprConfiguration daprConfiguration) {
+        this.innerModel().withDaprConfiguration(daprConfiguration);
         return this;
     }
 }

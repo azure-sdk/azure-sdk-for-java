@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ConnectedEnvironmentInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DaprResiliencyDefaultsInner;
 import java.util.Map;
 
 /** An immutable client-side representation of ConnectedEnvironment. */
@@ -105,6 +106,13 @@ public interface ConnectedEnvironment {
     CustomDomainConfiguration customDomainConfiguration();
 
     /**
+     * Gets the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+     *
+     * @return the daprResiliencyDefaults value.
+     */
+    DaprResiliencyDefaults daprResiliencyDefaults();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -181,7 +189,8 @@ public interface ConnectedEnvironment {
                 DefinitionStages.WithExtendedLocation,
                 DefinitionStages.WithStaticIp,
                 DefinitionStages.WithDaprAIConnectionString,
-                DefinitionStages.WithCustomDomainConfiguration {
+                DefinitionStages.WithCustomDomainConfiguration,
+                DefinitionStages.WithDaprResiliencyDefaults {
             /**
              * Executes the create request.
              *
@@ -249,6 +258,16 @@ public interface ConnectedEnvironment {
              */
             WithCreate withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration);
         }
+        /** The stage of the ConnectedEnvironment definition allowing to specify daprResiliencyDefaults. */
+        interface WithDaprResiliencyDefaults {
+            /**
+             * Specifies the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+             *
+             * @param daprResiliencyDefaults Dapr Resiliency Default Policies.
+             * @return the next definition stage.
+             */
+            WithCreate withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults);
+        }
     }
     /**
      * Begins update for the ConnectedEnvironment resource.
@@ -263,7 +282,8 @@ public interface ConnectedEnvironment {
             UpdateStages.WithExtendedLocation,
             UpdateStages.WithStaticIp,
             UpdateStages.WithDaprAIConnectionString,
-            UpdateStages.WithCustomDomainConfiguration {
+            UpdateStages.WithCustomDomainConfiguration,
+            UpdateStages.WithDaprResiliencyDefaults {
         /**
          * Executes the update request.
          *
@@ -332,6 +352,16 @@ public interface ConnectedEnvironment {
              * @return the next definition stage.
              */
             Update withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration);
+        }
+        /** The stage of the ConnectedEnvironment update allowing to specify daprResiliencyDefaults. */
+        interface WithDaprResiliencyDefaults {
+            /**
+             * Specifies the daprResiliencyDefaults property: Dapr Resiliency Default Policies.
+             *
+             * @param daprResiliencyDefaults Dapr Resiliency Default Policies.
+             * @return the next definition stage.
+             */
+            Update withDaprResiliencyDefaults(DaprResiliencyDefaultsInner daprResiliencyDefaults);
         }
     }
     /**
