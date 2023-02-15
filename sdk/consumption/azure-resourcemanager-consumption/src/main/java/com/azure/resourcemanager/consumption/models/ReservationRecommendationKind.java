@@ -8,13 +8,22 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ReservationRecommendationKind. */
+/** Specifies the kind of reservation recommendation. */
 public final class ReservationRecommendationKind extends ExpandableStringEnum<ReservationRecommendationKind> {
     /** Static value legacy for ReservationRecommendationKind. */
     public static final ReservationRecommendationKind LEGACY = fromString("legacy");
 
     /** Static value modern for ReservationRecommendationKind. */
     public static final ReservationRecommendationKind MODERN = fromString("modern");
+
+    /**
+     * Creates a new instance of ReservationRecommendationKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ReservationRecommendationKind() {
+    }
 
     /**
      * Creates or finds a ReservationRecommendationKind from its string representation.
@@ -27,7 +36,11 @@ public final class ReservationRecommendationKind extends ExpandableStringEnum<Re
         return fromString(name, ReservationRecommendationKind.class);
     }
 
-    /** @return known ReservationRecommendationKind values. */
+    /**
+     * Gets known ReservationRecommendationKind values.
+     *
+     * @return known ReservationRecommendationKind values.
+     */
     public static Collection<ReservationRecommendationKind> values() {
         return values(ReservationRecommendationKind.class);
     }

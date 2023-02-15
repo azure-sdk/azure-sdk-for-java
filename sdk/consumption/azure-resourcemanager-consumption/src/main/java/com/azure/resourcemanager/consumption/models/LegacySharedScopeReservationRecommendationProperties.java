@@ -5,9 +5,6 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.consumption.fluent.models.LegacyReservationRecommendationProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -17,8 +14,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Immutable
 public final class LegacySharedScopeReservationRecommendationProperties
     extends LegacyReservationRecommendationProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(LegacySharedScopeReservationRecommendationProperties.class);
+    /** Creates an instance of LegacySharedScopeReservationRecommendationProperties class. */
+    public LegacySharedScopeReservationRecommendationProperties() {
+    }
 
     /**
      * Validates the instance.
