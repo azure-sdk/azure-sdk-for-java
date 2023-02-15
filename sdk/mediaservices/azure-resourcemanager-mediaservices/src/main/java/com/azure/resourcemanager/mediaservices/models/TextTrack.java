@@ -32,7 +32,7 @@ public final class TextTrack extends TrackBase {
     /*
      * The RFC5646 language code for the text track.
      */
-    @JsonProperty(value = "languageCode", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "languageCode")
     private String languageCode;
 
     /*
@@ -104,6 +104,17 @@ public final class TextTrack extends TrackBase {
      */
     public String languageCode() {
         return this.languageCode;
+    }
+
+    /**
+     * Set the languageCode property: The RFC5646 language code for the text track.
+     *
+     * @param languageCode the languageCode value to set.
+     * @return the TextTrack object itself.
+     */
+    public TextTrack withLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
+        return this;
     }
 
     /**
