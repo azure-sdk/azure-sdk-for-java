@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Charges List. */
 public final class ChargesListSamples {
     /*
@@ -26,7 +24,7 @@ public final class ChargesListSamples {
                 "2019-10-31",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -47,7 +45,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -68,7 +66,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/customerId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -89,7 +87,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -110,7 +108,7 @@ public final class ChargesListSamples {
                 "2019-10-31",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -130,7 +128,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -150,7 +148,7 @@ public final class ChargesListSamples {
                 null,
                 "usageStart eq '2018-04-01' AND usageEnd eq '2018-05-30'",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -171,7 +169,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -192,7 +190,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/invoiceSectionId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -213,7 +211,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/billingProfileId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -234,7 +232,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/invoiceSectionId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -255,7 +253,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -276,6 +274,6 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

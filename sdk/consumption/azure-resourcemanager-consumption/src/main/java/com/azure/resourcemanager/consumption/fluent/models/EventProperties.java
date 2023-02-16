@@ -5,20 +5,16 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.EventType;
 import com.azure.resourcemanager.consumption.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The event properties. */
 @Fluent
 public final class EventProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EventProperties.class);
-
     /*
      * The date of the event.
      */
@@ -32,29 +28,25 @@ public final class EventProperties {
     private String description;
 
     /*
-     * The amount of new credit or commitment for NewCredit or SettleCharges
-     * event.
+     * The amount of new credit or commitment for NewCredit or SettleCharges event.
      */
     @JsonProperty(value = "newCredit", access = JsonProperty.Access.WRITE_ONLY)
     private Amount newCredit;
 
     /*
-     * The amount of balance adjustment. The property is not available for
-     * ConsumptionCommitment lots.
+     * The amount of balance adjustment. The property is not available for ConsumptionCommitment lots.
      */
     @JsonProperty(value = "adjustments", access = JsonProperty.Access.WRITE_ONLY)
     private Amount adjustments;
 
     /*
-     * The amount of expired credit or commitment for NewCredit or
-     * SettleCharges event.
+     * The amount of expired credit or commitment for NewCredit or SettleCharges event.
      */
     @JsonProperty(value = "creditExpired", access = JsonProperty.Access.WRITE_ONLY)
     private Amount creditExpired;
 
     /*
-     * The amount of charges for events of type SettleCharges and
-     * PendingEligibleCharges.
+     * The amount of charges for events of type SettleCharges and PendingEligibleCharges.
      */
     @JsonProperty(value = "charges", access = JsonProperty.Access.WRITE_ONLY)
     private Amount charges;
@@ -72,24 +64,22 @@ public final class EventProperties {
     private EventType eventType;
 
     /*
-     * The number which uniquely identifies the invoice on which the event was
-     * billed. This will be empty for unbilled events.
+     * The number which uniquely identifies the invoice on which the event was billed. This will be empty for unbilled
+     * events.
      */
     @JsonProperty(value = "invoiceNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String invoiceNumber;
 
     /*
-     * The ID that uniquely identifies the billing profile for which the event
-     * happened. The property is only available for billing account of type
-     * MicrosoftCustomerAgreement.
+     * The ID that uniquely identifies the billing profile for which the event happened. The property is only available
+     * for billing account of type MicrosoftCustomerAgreement.
      */
     @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingProfileId;
 
     /*
-     * The display name of the billing profile for which the event happened.
-     * The property is only available for billing account of type
-     * MicrosoftCustomerAgreement.
+     * The display name of the billing profile for which the event happened. The property is only available for billing
+     * account of type MicrosoftCustomerAgreement.
      */
     @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
     private String billingProfileDisplayName;
@@ -131,15 +121,13 @@ public final class EventProperties {
     private Reseller reseller;
 
     /*
-     * The amount of expired credit or commitment for NewCredit or
-     * SettleCharges event in billing currency.
+     * The amount of expired credit or commitment for NewCredit or SettleCharges event in billing currency.
      */
     @JsonProperty(value = "creditExpiredInBillingCurrency", access = JsonProperty.Access.WRITE_ONLY)
     private AmountWithExchangeRate creditExpiredInBillingCurrency;
 
     /*
-     * The amount of new credit or commitment for NewCredit or SettleCharges
-     * event in billing currency.
+     * The amount of new credit or commitment for NewCredit or SettleCharges event in billing currency.
      */
     @JsonProperty(value = "newCreditInBillingCurrency", access = JsonProperty.Access.WRITE_ONLY)
     private AmountWithExchangeRate newCreditInBillingCurrency;
@@ -151,8 +139,7 @@ public final class EventProperties {
     private AmountWithExchangeRate adjustmentsInBillingCurrency;
 
     /*
-     * The amount of charges for events of type SettleCharges and
-     * PendingEligibleCharges in billing currency.
+     * The amount of charges for events of type SettleCharges and PendingEligibleCharges in billing currency.
      */
     @JsonProperty(value = "chargesInBillingCurrency", access = JsonProperty.Access.WRITE_ONLY)
     private AmountWithExchangeRate chargesInBillingCurrency;
@@ -168,6 +155,10 @@ public final class EventProperties {
      */
     @JsonProperty(value = "eTag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
+
+    /** Creates an instance of EventProperties class. */
+    public EventProperties() {
+    }
 
     /**
      * Get the transactionDate property: The date of the event.

@@ -35,15 +35,29 @@
 
 - [ListByBillingAccount](#lotsoperation_listbybillingaccount)
 - [ListByBillingProfile](#lotsoperation_listbybillingprofile)
+- [ListByCustomer](#lotsoperation_listbycustomer)
 
 ## Marketplaces
 
 - [List](#marketplaces_list)
 
+## Operations
+
+- [List](#operations_list)
+
+## OperationsResult
+
+- [List](#operationsresult_list)
+
 ## PriceSheet
 
 - [Get](#pricesheet_get)
 - [GetByBillingPeriod](#pricesheet_getbybillingperiod)
+
+## PriceSheetsOperation
+
+- [Get](#pricesheetsoperation_get)
+- [GetByBillingPeriod](#pricesheetsoperation_getbybillingperiod)
 
 ## ReservationRecommendationDetails
 
@@ -80,8 +94,6 @@
 ### AggregatedCost_GetByManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AggregatedCost GetByManagementGroup. */
 public final class AggregatedCostGetByManagementGroupSamples {
     /*
@@ -99,7 +111,7 @@ public final class AggregatedCostGetByManagementGroupSamples {
             .getByManagementGroupWithResponse(
                 "managementGroupForTest",
                 "usageStart ge '2018-08-15' and properties/usageStart le '2018-08-31'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -112,7 +124,9 @@ public final class AggregatedCostGetByManagementGroupSamples {
      */
     public static void aggregatedCostByManagementGroup(
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.aggregatedCosts().getByManagementGroupWithResponse("managementGroupForTest", null, Context.NONE);
+        manager
+            .aggregatedCosts()
+            .getByManagementGroupWithResponse("managementGroupForTest", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -120,8 +134,6 @@ public final class AggregatedCostGetByManagementGroupSamples {
 ### AggregatedCost_GetForBillingPeriodByManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AggregatedCost GetForBillingPeriodByManagementGroup. */
 public final class AggregatedCostGetForBillingPeriodByManagementGroupSamples {
     /*
@@ -136,7 +148,8 @@ public final class AggregatedCostGetForBillingPeriodByManagementGroupSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .aggregatedCosts()
-            .getForBillingPeriodByManagementGroupWithResponse("managementGroupForTest", "201807", Context.NONE);
+            .getForBillingPeriodByManagementGroupWithResponse(
+                "managementGroupForTest", "201807", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -144,8 +157,6 @@ public final class AggregatedCostGetForBillingPeriodByManagementGroupSamples {
 ### Balances_GetByBillingAccount
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Balances GetByBillingAccount. */
 public final class BalancesGetByBillingAccountSamples {
     /*
@@ -157,7 +168,7 @@ public final class BalancesGetByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void balances(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.balances().getByBillingAccountWithResponse("123456", Context.NONE);
+        manager.balances().getByBillingAccountWithResponse("123456", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -165,8 +176,6 @@ public final class BalancesGetByBillingAccountSamples {
 ### Balances_GetForBillingPeriodByBillingAccount
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Balances GetForBillingPeriodByBillingAccount. */
 public final class BalancesGetForBillingPeriodByBillingAccountSamples {
     /*
@@ -178,7 +187,9 @@ public final class BalancesGetForBillingPeriodByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void balances(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.balances().getForBillingPeriodByBillingAccountWithResponse("123456", "201702", Context.NONE);
+        manager
+            .balances()
+            .getForBillingPeriodByBillingAccountWithResponse("123456", "201702", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -287,8 +298,6 @@ public final class BudgetsCreateOrUpdateSamples {
 ### Budgets_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Budgets Delete. */
 public final class BudgetsDeleteSamples {
     /*
@@ -302,7 +311,8 @@ public final class BudgetsDeleteSamples {
     public static void deleteBudget(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .budgets()
-            .deleteWithResponse("subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -310,8 +320,6 @@ public final class BudgetsDeleteSamples {
 ### Budgets_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Budgets Get. */
 public final class BudgetsGetSamples {
     /*
@@ -325,7 +333,8 @@ public final class BudgetsGetSamples {
     public static void budget(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .budgets()
-            .getWithResponse("subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -333,8 +342,6 @@ public final class BudgetsGetSamples {
 ### Budgets_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Budgets List. */
 public final class BudgetsListSamples {
     /*
@@ -346,7 +353,7 @@ public final class BudgetsListSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void budgetsList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.budgets().list("subscriptions/00000000-0000-0000-0000-000000000000", Context.NONE);
+        manager.budgets().list("subscriptions/00000000-0000-0000-0000-000000000000", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -354,8 +361,6 @@ public final class BudgetsListSamples {
 ### Charges_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Charges List. */
 public final class ChargesListSamples {
     /*
@@ -376,7 +381,7 @@ public final class ChargesListSamples {
                 "2019-10-31",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -397,7 +402,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -418,7 +423,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/customerId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -439,7 +444,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -460,7 +465,7 @@ public final class ChargesListSamples {
                 "2019-10-31",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -480,7 +485,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -500,7 +505,7 @@ public final class ChargesListSamples {
                 null,
                 "usageStart eq '2018-04-01' AND usageEnd eq '2018-05-30'",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -521,7 +526,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -542,7 +547,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/invoiceSectionId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -563,7 +568,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/billingProfileId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -584,7 +589,7 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/invoiceSectionId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -605,7 +610,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -626,7 +631,7 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -634,8 +639,6 @@ public final class ChargesListSamples {
 ### Credits_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Credits Get. */
 public final class CreditsGetSamples {
     /*
@@ -647,7 +650,7 @@ public final class CreditsGetSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void creditSummaryByBillingProfile(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.credits().getWithResponse("1234:5678", "2468", Context.NONE);
+        manager.credits().getWithResponse("1234:5678", "2468", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -655,8 +658,6 @@ public final class CreditsGetSamples {
 ### EventsOperation_ListByBillingAccount
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventsOperation ListByBillingAccount. */
 public final class EventsOperationListByBillingAccountSamples {
     /*
@@ -668,7 +669,7 @@ public final class EventsOperationListByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void eventsGetByBillingAccount(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.eventsOperations().listByBillingAccount("1234:5678", null, Context.NONE);
+        manager.eventsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -684,7 +685,9 @@ public final class EventsOperationListByBillingAccountSamples {
         manager
             .eventsOperations()
             .listByBillingAccount(
-                "1234:5678", "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'", Context.NONE);
+                "1234:5678",
+                "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -692,8 +695,6 @@ public final class EventsOperationListByBillingAccountSamples {
 ### EventsOperation_ListByBillingProfile
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventsOperation ListByBillingProfile. */
 public final class EventsOperationListByBillingProfileSamples {
     /*
@@ -705,7 +706,9 @@ public final class EventsOperationListByBillingProfileSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void eventsListByBillingProfile(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.eventsOperations().listByBillingProfile("1234:5678", "4268", "2019-09-01", "2019-10-31", Context.NONE);
+        manager
+            .eventsOperations()
+            .listByBillingProfile("1234:5678", "4268", "2019-09-01", "2019-10-31", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -713,8 +716,6 @@ public final class EventsOperationListByBillingProfileSamples {
 ### LotsOperation_ListByBillingAccount
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for LotsOperation ListByBillingAccount. */
 public final class LotsOperationListByBillingAccountSamples {
     /*
@@ -726,7 +727,7 @@ public final class LotsOperationListByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void lotsListByBillingAccount(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.lotsOperations().listByBillingAccount("1234:5678", null, Context.NONE);
+        manager.lotsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -742,7 +743,9 @@ public final class LotsOperationListByBillingAccountSamples {
         manager
             .lotsOperations()
             .listByBillingAccount(
-                "1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'", Context.NONE);
+                "1234:5678",
+                "status eq 'active' AND source eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -750,8 +753,6 @@ public final class LotsOperationListByBillingAccountSamples {
 ### LotsOperation_ListByBillingProfile
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for LotsOperation ListByBillingProfile. */
 public final class LotsOperationListByBillingProfileSamples {
     /*
@@ -763,7 +764,44 @@ public final class LotsOperationListByBillingProfileSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void lotsListByBillingProfile(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.lotsOperations().listByBillingProfile("1234:5678", "2468", Context.NONE);
+        manager.lotsOperations().listByBillingProfile("1234:5678", "2468", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LotsOperation_ListByCustomer
+
+```java
+/** Samples for LotsOperation ListByCustomer. */
+public final class LotsOperationListByCustomerSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByCustomer.json
+     */
+    /**
+     * Sample code: LotsListByCustomer.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void lotsListByCustomer(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.lotsOperations().listByCustomer("1234:5678", "1234:5678", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByCustomerWithFilters.json
+     */
+    /**
+     * Sample code: LotsListByCustomerWithFilter.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void lotsListByCustomerWithFilter(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager
+            .lotsOperations()
+            .listByCustomer(
+                "1234:5678",
+                "1234:5678",
+                "status eq 'active' AND source eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -771,8 +809,6 @@ public final class LotsOperationListByBillingProfileSamples {
 ### Marketplaces_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Marketplaces List. */
 public final class MarketplacesListSamples {
     /*
@@ -787,7 +823,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -802,7 +843,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/enrollmentAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/enrollmentAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -816,7 +862,12 @@ public final class MarketplacesListSamples {
     public static void subscriptionMarketplacesList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -831,7 +882,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/enrollmentAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/enrollmentAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -844,7 +900,9 @@ public final class MarketplacesListSamples {
      */
     public static void departmentMarketplacesListForBillingPeriod(
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.marketplaces().list("providers/Microsoft.Billing/departments/123456", null, null, null, Context.NONE);
+        manager
+            .marketplaces()
+            .list("providers/Microsoft.Billing/departments/123456", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -859,7 +917,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -874,7 +937,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -886,7 +954,9 @@ public final class MarketplacesListSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void departmentMarketplacesList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.marketplaces().list("providers/Microsoft.Billing/departments/123456", null, null, null, Context.NONE);
+        manager
+            .marketplaces()
+            .list("providers/Microsoft.Billing/departments/123456", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -901,7 +971,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -916,7 +991,50 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/OperationList.json
+     */
+    /**
+     * Sample code: OperationList.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void operationList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### OperationsResult_List
+
+```java
+/** Samples for OperationsResult List. */
+public final class OperationsResultListSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/OperationList.json
+     */
+    /**
+     * Sample code: OperationList.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void operationList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.operationsResults().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -924,8 +1042,6 @@ public final class MarketplacesListSamples {
 ### PriceSheet_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PriceSheet Get. */
 public final class PriceSheetGetSamples {
     /*
@@ -937,7 +1053,7 @@ public final class PriceSheetGetSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void priceSheet(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.priceSheets().getWithResponse(null, null, null, Context.NONE);
+        manager.priceSheets().getWithResponse(null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -945,8 +1061,6 @@ public final class PriceSheetGetSamples {
 ### PriceSheet_GetByBillingPeriod
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PriceSheet GetByBillingPeriod. */
 public final class PriceSheetGetByBillingPeriodSamples {
     /*
@@ -958,7 +1072,9 @@ public final class PriceSheetGetByBillingPeriodSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void priceSheetForBillingPeriod(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.priceSheets().getByBillingPeriodWithResponse("201801", null, null, null, Context.NONE);
+        manager
+            .priceSheets()
+            .getByBillingPeriodWithResponse("201801", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -970,7 +1086,73 @@ public final class PriceSheetGetByBillingPeriodSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void priceSheetExpand(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.priceSheets().getByBillingPeriodWithResponse("201801", "meterDetails", null, null, Context.NONE);
+        manager
+            .priceSheets()
+            .getByBillingPeriodWithResponse("201801", "meterDetails", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PriceSheetsOperation_Get
+
+```java
+/** Samples for PriceSheetsOperation Get. */
+public final class PriceSheetsOperationGetSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/PriceSheet.json
+     */
+    /**
+     * Sample code: PriceSheet.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void priceSheet(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager
+            .priceSheetsOperations()
+            .getWithResponse(
+                "00000000-0000-0000-0000-000000000000", null, null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PriceSheetsOperation_GetByBillingPeriod
+
+```java
+/** Samples for PriceSheetsOperation GetByBillingPeriod. */
+public final class PriceSheetsOperationGetByBillingPeriodSamples {
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/PriceSheetForBillingPeriod.json
+     */
+    /**
+     * Sample code: PriceSheetForBillingPeriod.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void priceSheetForBillingPeriod(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager
+            .priceSheetsOperations()
+            .getByBillingPeriodWithResponse(
+                "00000000-0000-0000-0000-000000000000", "201801", null, null, null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-06-01/examples/PriceSheetExpand.json
+     */
+    /**
+     * Sample code: PriceSheetExpand.
+     *
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void priceSheetExpand(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager
+            .priceSheetsOperations()
+            .getByBillingPeriodWithResponse(
+                "00000000-0000-0000-0000-000000000000",
+                "201801",
+                "meterDetails",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -978,8 +1160,8 @@ public final class PriceSheetGetByBillingPeriodSamples {
 ### ReservationRecommendationDetails_Get
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.LookBackPeriod;
+import com.azure.resourcemanager.consumption.models.Scope;
 import com.azure.resourcemanager.consumption.models.Term;
 
 /** Samples for ReservationRecommendationDetails Get. */
@@ -996,7 +1178,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Single", "westus", Term.P3Y, LookBackPeriod.LAST30DAYS, "Standard_DS13_v2", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-00000000",
+                Scope.SINGLE,
+                "westus",
+                Term.P3Y,
+                LookBackPeriod.LAST30DAYS,
+                "Standard_DS13_v2",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1012,7 +1201,13 @@ public final class ReservationRecommendationDetailsGetSamples {
         manager
             .reservationRecommendationDetails()
             .getWithResponse(
-                "Shared", "australiaeast", Term.P1Y, LookBackPeriod.LAST7DAYS, "Standard_B2s", Context.NONE);
+                "providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-00000000:00000000-0000-0000-0000-00000000/billingProfiles/00000000-0000-0000-0000-00000000",
+                Scope.SHARED,
+                "australiaeast",
+                Term.P1Y,
+                LookBackPeriod.LAST7DAYS,
+                "Standard_B2s",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1027,7 +1222,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Single", "westus", Term.P3Y, LookBackPeriod.LAST30DAYS, "Standard_DS13_v2", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/testGroup",
+                Scope.SINGLE,
+                "westus",
+                Term.P3Y,
+                LookBackPeriod.LAST30DAYS,
+                "Standard_DS13_v2",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1042,7 +1244,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Shared", "eastus", Term.P1Y, LookBackPeriod.LAST60DAYS, "Standard_DS14_v2", Context.NONE);
+            .getWithResponse(
+                "providers/Microsoft.Billing/billingAccounts/000000",
+                Scope.SHARED,
+                "eastus",
+                Term.P1Y,
+                LookBackPeriod.LAST60DAYS,
+                "Standard_DS14_v2",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1050,8 +1259,6 @@ public final class ReservationRecommendationDetailsGetSamples {
 ### ReservationRecommendations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ReservationRecommendations List. */
 public final class ReservationRecommendationsListSamples {
     /*
@@ -1066,7 +1273,7 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, Context.NONE);
+            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1081,7 +1288,10 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("providers/Microsoft.Billing/billingAccounts/123456/billingProfiles/6420", null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456/billingProfiles/6420",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1096,7 +1306,10 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup", null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1114,7 +1327,7 @@ public final class ReservationRecommendationsListSamples {
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000",
                 "properties/scope eq 'Single' AND properties/lookBackPeriod eq 'Last7Days'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1129,7 +1342,7 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, Context.NONE);
+            .list("providers/Microsoft.Billing/billingAccounts/123456", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1137,8 +1350,6 @@ public final class ReservationRecommendationsListSamples {
 ### ReservationTransactions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ReservationTransactions List. */
 public final class ReservationTransactionsListSamples {
     /*
@@ -1153,7 +1364,10 @@ public final class ReservationTransactionsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationTransactions()
-            .list("123456", "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30", Context.NONE);
+            .list(
+                "123456",
+                "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1161,8 +1375,6 @@ public final class ReservationTransactionsListSamples {
 ### ReservationTransactions_ListByBillingProfile
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ReservationTransactions ListByBillingProfile. */
 public final class ReservationTransactionsListByBillingProfileSamples {
     /*
@@ -1181,7 +1393,7 @@ public final class ReservationTransactionsListByBillingProfileSamples {
                 "fcebaabc-fced-4284-a83d-79f83dee183c:45796ba8-988f-45ad-bea9-7b71fc6c7513_2018-09-30",
                 "Z76D-SGAF-BG7-TGB",
                 "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1189,8 +1401,6 @@ public final class ReservationTransactionsListByBillingProfileSamples {
 ### ReservationsDetails_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails List. */
 public final class ReservationsDetailsListSamples {
     /*
@@ -1212,7 +1422,7 @@ public final class ReservationsDetailsListSamples {
                 null,
                 "1c6b6358-709f-484c-85f1-72e862a0cf3b",
                 "9f39ba10-794f-4dcb-8f4b-8d0cb47c27dc",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1234,7 +1444,7 @@ public final class ReservationsDetailsListSamples {
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1256,7 +1466,7 @@ public final class ReservationsDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1264,8 +1474,6 @@ public final class ReservationsDetailsListSamples {
 ### ReservationsDetails_ListByReservationOrder
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails ListByReservationOrder. */
 public final class ReservationsDetailsListByReservationOrderSamples {
     /*
@@ -1282,7 +1490,7 @@ public final class ReservationsDetailsListByReservationOrderSamples {
             .listByReservationOrder(
                 "00000000-0000-0000-0000-000000000000",
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1290,8 +1498,6 @@ public final class ReservationsDetailsListByReservationOrderSamples {
 ### ReservationsDetails_ListByReservationOrderAndReservation
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails ListByReservationOrderAndReservation. */
 public final class ReservationsDetailsListByReservationOrderAndReservationSamples {
     /*
@@ -1310,7 +1516,7 @@ public final class ReservationsDetailsListByReservationOrderAndReservationSample
                 "00000000-0000-0000-0000-000000000000",
                 "00000000-0000-0000-0000-000000000000",
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1318,7 +1524,6 @@ public final class ReservationsDetailsListByReservationOrderAndReservationSample
 ### ReservationsSummaries_List
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Datagrain;
 
 /** Samples for ReservationsSummaries List. */
@@ -1343,7 +1548,7 @@ public final class ReservationsSummariesListSamples {
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-11-20",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1366,7 +1571,7 @@ public final class ReservationsSummariesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1389,7 +1594,7 @@ public final class ReservationsSummariesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1412,7 +1617,7 @@ public final class ReservationsSummariesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1435,7 +1640,7 @@ public final class ReservationsSummariesListSamples {
                 null,
                 "1c6b6358-709f-484c-85f1-72e862a0cf3b",
                 "9f39ba10-794f-4dcb-8f4b-8d0cb47c27dc",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1443,7 +1648,6 @@ public final class ReservationsSummariesListSamples {
 ### ReservationsSummaries_ListByReservationOrder
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Datagrain;
 
 /** Samples for ReservationsSummaries ListByReservationOrder. */
@@ -1459,7 +1663,8 @@ public final class ReservationsSummariesListByReservationOrderSamples {
     public static void reservationSummariesMonthly(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationsSummaries()
-            .listByReservationOrder("00000000-0000-0000-0000-000000000000", Datagrain.MONTHLY, null, Context.NONE);
+            .listByReservationOrder(
+                "00000000-0000-0000-0000-000000000000", Datagrain.MONTHLY, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1477,7 +1682,7 @@ public final class ReservationsSummariesListByReservationOrderSamples {
                 "00000000-0000-0000-0000-000000000000",
                 Datagrain.DAILY,
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-11-20",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1485,7 +1690,6 @@ public final class ReservationsSummariesListByReservationOrderSamples {
 ### ReservationsSummaries_ListByReservationOrderAndReservation
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Datagrain;
 
 /** Samples for ReservationsSummaries ListByReservationOrderAndReservation. */
@@ -1507,7 +1711,7 @@ public final class ReservationsSummariesListByReservationOrderAndReservationSamp
                 "00000000-0000-0000-0000-000000000000",
                 Datagrain.DAILY,
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-11-20",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1527,7 +1731,7 @@ public final class ReservationsSummariesListByReservationOrderAndReservationSamp
                 "00000000-0000-0000-0000-000000000000",
                 Datagrain.MONTHLY,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1535,8 +1739,6 @@ public final class ReservationsSummariesListByReservationOrderAndReservationSamp
 ### Tags_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Tags Get. */
 public final class TagsGetSamples {
     /*
@@ -1548,7 +1750,10 @@ public final class TagsGetSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void tagsGet(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.tags().getWithResponse("providers/Microsoft.CostManagement/billingAccounts/1234", Context.NONE);
+        manager
+            .tags()
+            .getWithResponse(
+                "providers/Microsoft.CostManagement/billingAccounts/1234", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1556,7 +1761,6 @@ public final class TagsGetSamples {
 ### UsageDetails_List
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Metrictype;
 
 /** Samples for UsageDetails List. */
@@ -1573,7 +1777,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1595,7 +1806,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1609,7 +1820,14 @@ public final class UsageDetailsListSamples {
     public static void usageDetailsListLegacy(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1631,7 +1849,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1646,7 +1864,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1668,7 +1893,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1683,7 +1908,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/Departments/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1698,7 +1930,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1720,7 +1959,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 Metrictype.AMORTIZEDCOST,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1742,7 +1981,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 Metrictype.USAGE,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1757,7 +1996,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1772,7 +2018,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/Departments/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1794,7 +2047,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 Metrictype.ACTUALCOST,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1809,7 +2062,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/EnrollmentAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/EnrollmentAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1824,7 +2084,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234:56789", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234:56789",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1846,7 +2113,7 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1867,7 +2134,7 @@ public final class UsageDetailsListSamples {
                 null,
                 1,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1882,7 +2149,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/EnrollmentAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/EnrollmentAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1897,7 +2171,14 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
