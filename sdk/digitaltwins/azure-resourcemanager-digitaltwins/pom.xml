@@ -13,7 +13,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for AzureDigitalTwins Management</name>
-  <description>This package contains Microsoft Azure SDK for AzureDigitalTwins Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure Digital Twins Client for managing DigitalTwinsInstance. Package tag package-2022-10.</description>
+  <description>This package contains Microsoft Azure SDK for AzureDigitalTwins Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure Digital Twins Client for managing DigitalTwinsInstance. Package tag package-2023-01.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>
@@ -39,9 +39,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jacoco.skip>true</jacoco.skip>
-    <javaModulesSurefireArgLine>
-      --add-exports com.azure.core/com.azure.core.implementation.util=ALL-UNNAMED
-    </javaModulesSurefireArgLine>
   </properties>
   <dependencies>
     <dependency>
