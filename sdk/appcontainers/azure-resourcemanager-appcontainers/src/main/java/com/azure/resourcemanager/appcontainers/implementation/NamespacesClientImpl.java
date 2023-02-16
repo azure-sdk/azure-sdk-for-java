@@ -52,7 +52,7 @@ public final class NamespacesClientImpl implements NamespacesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface NamespacesService {
+    public interface NamespacesService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
