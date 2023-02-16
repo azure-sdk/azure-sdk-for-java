@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.machinelearning.models.EncryptionUpdateProperties;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,6 +60,12 @@ public final class WorkspacePropertiesUpdateParameters {
      */
     @JsonProperty(value = "containerRegistry")
     private String containerRegistry;
+
+    /*
+     * The encryption settings of the workspace.
+     */
+    @JsonProperty(value = "encryption")
+    private EncryptionUpdateProperties encryption;
 
     /** Creates an instance of WorkspacePropertiesUpdateParameters class. */
     public WorkspacePropertiesUpdateParameters() {
@@ -228,6 +235,26 @@ public final class WorkspacePropertiesUpdateParameters {
     }
 
     /**
+     * Get the encryption property: The encryption settings of the workspace.
+     *
+     * @return the encryption value.
+     */
+    public EncryptionUpdateProperties encryption() {
+        return this.encryption;
+    }
+
+    /**
+     * Set the encryption property: The encryption settings of the workspace.
+     *
+     * @param encryption the encryption value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withEncryption(EncryptionUpdateProperties encryption) {
+        this.encryption = encryption;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -235,6 +262,9 @@ public final class WorkspacePropertiesUpdateParameters {
     public void validate() {
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (encryption() != null) {
+            encryption().validate();
         }
     }
 }
