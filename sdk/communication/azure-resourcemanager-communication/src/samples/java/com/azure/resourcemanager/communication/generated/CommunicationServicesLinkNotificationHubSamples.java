@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.communication.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.models.LinkNotificationHubParameters;
 
 /** Samples for CommunicationServices LinkNotificationHub. */
 public final class CommunicationServicesLinkNotificationHubSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2022-07-01-preview/examples/communicationServices/linkNotificationHub.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2022-10-01-preview/examples/communicationServices/linkNotificationHub.json
      */
     /**
      * Sample code: Link notification hub.
@@ -27,6 +26,6 @@ public final class CommunicationServicesLinkNotificationHubSamples {
                     .withResourceId(
                         "/subscriptions/12345/resourceGroups/MyOtherResourceGroup/providers/Microsoft.NotificationHubs/namespaces/MyNamespace/notificationHubs/MyHub")
                     .withConnectionString("Endpoint=sb://MyNamespace.servicebus.windows.net/;SharedAccessKey=abcd1234"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

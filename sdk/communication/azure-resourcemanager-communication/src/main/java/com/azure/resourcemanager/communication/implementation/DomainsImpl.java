@@ -11,8 +11,16 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.communication.fluent.DomainsClient;
 import com.azure.resourcemanager.communication.fluent.models.DomainResourceInner;
+import com.azure.resourcemanager.communication.fluent.models.SuppressionListRecordDtoInner;
+import com.azure.resourcemanager.communication.fluent.models.ValidSenderUsernameCollectionInner;
 import com.azure.resourcemanager.communication.models.DomainResource;
 import com.azure.resourcemanager.communication.models.Domains;
+import com.azure.resourcemanager.communication.models.RemoveValidSenderUsernameParameters;
+import com.azure.resourcemanager.communication.models.SuppressionListAddRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListRecordDto;
+import com.azure.resourcemanager.communication.models.SuppressionListRemoveRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListRequest;
+import com.azure.resourcemanager.communication.models.ValidSenderUsernameCollection;
 import com.azure.resourcemanager.communication.models.VerificationParameter;
 
 public final class DomainsImpl implements Domains {
@@ -28,15 +36,6 @@ public final class DomainsImpl implements Domains {
         this.serviceManager = serviceManager;
     }
 
-    public DomainResource get(String resourceGroupName, String emailServiceName, String domainName) {
-        DomainResourceInner inner = this.serviceClient().get(resourceGroupName, emailServiceName, domainName);
-        if (inner != null) {
-            return new DomainResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DomainResource> getWithResponse(
         String resourceGroupName, String emailServiceName, String domainName, Context context) {
         Response<DomainResourceInner> inner =
@@ -47,6 +46,15 @@ public final class DomainsImpl implements Domains {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new DomainResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DomainResource get(String resourceGroupName, String emailServiceName, String domainName) {
+        DomainResourceInner inner = this.serviceClient().get(resourceGroupName, emailServiceName, domainName);
+        if (inner != null) {
+            return new DomainResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -99,6 +107,138 @@ public final class DomainsImpl implements Domains {
         VerificationParameter parameters,
         Context context) {
         this.serviceClient().cancelVerification(resourceGroupName, emailServiceName, domainName, parameters, context);
+    }
+
+    public Response<ValidSenderUsernameCollection> listValidSenderUsernamesWithResponse(
+        String resourceGroupName, String emailServiceName, String domainName, Context context) {
+        Response<ValidSenderUsernameCollectionInner> inner =
+            this
+                .serviceClient()
+                .listValidSenderUsernamesWithResponse(resourceGroupName, emailServiceName, domainName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ValidSenderUsernameCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ValidSenderUsernameCollection listValidSenderUsernames(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        ValidSenderUsernameCollectionInner inner =
+            this.serviceClient().listValidSenderUsernames(resourceGroupName, emailServiceName, domainName);
+        if (inner != null) {
+            return new ValidSenderUsernameCollectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Void> addValidSenderUsernamesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection,
+        Context context) {
+        return this
+            .serviceClient()
+            .addValidSenderUsernamesWithResponse(
+                resourceGroupName, emailServiceName, domainName, validSenderCollection, context);
+    }
+
+    public void addValidSenderUsernames(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection) {
+        this
+            .serviceClient()
+            .addValidSenderUsernames(resourceGroupName, emailServiceName, domainName, validSenderCollection);
+    }
+
+    public Response<Void> removeValidSenderUsernamesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .removeValidSenderUsernamesWithResponse(
+                resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters, context);
+    }
+
+    public void removeValidSenderUsernames(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters) {
+        this
+            .serviceClient()
+            .removeValidSenderUsernames(
+                resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters);
+    }
+
+    public PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        PagedIterable<SuppressionListRecordDtoInner> inner =
+            this.serviceClient().listSuppressedEmailAddresses(resourceGroupName, emailServiceName, domainName);
+        return Utils.mapPage(inner, inner1 -> new SuppressionListRecordDtoImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters,
+        Context context) {
+        PagedIterable<SuppressionListRecordDtoInner> inner =
+            this
+                .serviceClient()
+                .listSuppressedEmailAddresses(
+                    resourceGroupName, emailServiceName, domainName, top, skipToken, parameters, context);
+        return Utils.mapPage(inner, inner1 -> new SuppressionListRecordDtoImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> addSuppressedEmailAddressesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListAddRequest parameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .addSuppressedEmailAddressesWithResponse(
+                resourceGroupName, emailServiceName, domainName, parameters, context);
+    }
+
+    public void addSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListAddRequest parameters) {
+        this.serviceClient().addSuppressedEmailAddresses(resourceGroupName, emailServiceName, domainName, parameters);
+    }
+
+    public Response<Void> removeSuppressedEmailAddressesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListRemoveRequest parameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .removeSuppressedEmailAddressesWithResponse(
+                resourceGroupName, emailServiceName, domainName, parameters, context);
+    }
+
+    public void removeSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListRemoveRequest parameters) {
+        this
+            .serviceClient()
+            .removeSuppressedEmailAddresses(resourceGroupName, emailServiceName, domainName, parameters);
     }
 
     public DomainResource getById(String id) {

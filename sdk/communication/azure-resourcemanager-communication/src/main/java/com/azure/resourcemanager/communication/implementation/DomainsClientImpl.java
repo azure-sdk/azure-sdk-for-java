@@ -35,7 +35,14 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.communication.fluent.DomainsClient;
 import com.azure.resourcemanager.communication.fluent.models.DomainResourceInner;
+import com.azure.resourcemanager.communication.fluent.models.SuppressionListRecordDtoInner;
+import com.azure.resourcemanager.communication.fluent.models.ValidSenderUsernameCollectionInner;
 import com.azure.resourcemanager.communication.models.DomainResourceList;
+import com.azure.resourcemanager.communication.models.RemoveValidSenderUsernameParameters;
+import com.azure.resourcemanager.communication.models.SuppressionListAddRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListRemoveRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListResponse;
 import com.azure.resourcemanager.communication.models.UpdateDomainRequestParameters;
 import com.azure.resourcemanager.communication.models.VerificationParameter;
 import java.nio.ByteBuffer;
@@ -66,7 +73,7 @@ public final class DomainsClientImpl implements DomainsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "CommunicationService")
-    private interface DomainsService {
+    public interface DomainsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
@@ -183,10 +190,123 @@ public final class DomainsClientImpl implements DomainsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
+                + "/emailServices/{emailServiceName}/domains/{domainName}/listValidSenderUsernames")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ValidSenderUsernameCollectionInner>> listValidSenderUsernames(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("emailServiceName") String emailServiceName,
+            @PathParam("domainName") String domainName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
+                + "/emailServices/{emailServiceName}/domains/{domainName}/addValidSenderUsernames")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> addValidSenderUsernames(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("emailServiceName") String emailServiceName,
+            @PathParam("domainName") String domainName,
+            @BodyParam("application/json") ValidSenderUsernameCollectionInner validSenderCollection,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
+                + "/emailServices/{emailServiceName}/domains/{domainName}/removeValidSenderUsernames")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> removeValidSenderUsernames(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("emailServiceName") String emailServiceName,
+            @PathParam("domainName") String domainName,
+            @BodyParam("application/json") RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
+                + "/emailServices/{emailServiceName}/domains/{domainName}/listSuppressedEmailAddresses")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SuppressionListResponse>> listSuppressedEmailAddresses(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("emailServiceName") String emailServiceName,
+            @PathParam("domainName") String domainName,
+            @QueryParam("$top") Integer top,
+            @QueryParam("$skipToken") String skipToken,
+            @BodyParam("application/json") SuppressionListRequest parameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
+                + "/emailServices/{emailServiceName}/domains/{domainName}/addSuppressedEmailAddresses")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> addSuppressedEmailAddresses(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("emailServiceName") String emailServiceName,
+            @PathParam("domainName") String domainName,
+            @BodyParam("application/json") SuppressionListAddRequest parameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
+                + "/emailServices/{emailServiceName}/domains/{domainName}/removeSuppressedEmailAddresses")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> removeSuppressedEmailAddresses(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("emailServiceName") String emailServiceName,
+            @PathParam("domainName") String domainName,
+            @BodyParam("application/json") SuppressionListRemoveRequest parameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DomainResourceList>> listByEmailServiceResourceNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SuppressionListResponse>> listSuppressedEmailAddressesNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -332,24 +452,6 @@ public final class DomainsClientImpl implements DomainsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param emailServiceName The name of the EmailService resource.
      * @param domainName The name of the Domains resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Domains resource and its properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DomainResourceInner get(String resourceGroupName, String emailServiceName, String domainName) {
-        return getAsync(resourceGroupName, emailServiceName, domainName).block();
-    }
-
-    /**
-     * Get
-     *
-     * <p>Get the Domains resource and its properties.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param emailServiceName The name of the EmailService resource.
-     * @param domainName The name of the Domains resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -360,6 +462,24 @@ public final class DomainsClientImpl implements DomainsClient {
     public Response<DomainResourceInner> getWithResponse(
         String resourceGroupName, String emailServiceName, String domainName, Context context) {
         return getWithResponseAsync(resourceGroupName, emailServiceName, domainName, context).block();
+    }
+
+    /**
+     * Get
+     *
+     * <p>Get the Domains resource and its properties.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Domains resource and its properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DomainResourceInner get(String resourceGroupName, String emailServiceName, String domainName) {
+        return getWithResponse(resourceGroupName, emailServiceName, domainName, Context.NONE).getValue();
     }
 
     /**
@@ -569,7 +689,9 @@ public final class DomainsClientImpl implements DomainsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DomainResourceInner>, DomainResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String emailServiceName, String domainName, DomainResourceInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters)
+            .getSyncPoller();
     }
 
     /**
@@ -594,7 +716,8 @@ public final class DomainsClientImpl implements DomainsClient {
         String domainName,
         DomainResourceInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
             .getSyncPoller();
     }
 
@@ -867,7 +990,7 @@ public final class DomainsClientImpl implements DomainsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String emailServiceName, String domainName) {
-        return beginDeleteAsync(resourceGroupName, emailServiceName, domainName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, emailServiceName, domainName).getSyncPoller();
     }
 
     /**
@@ -887,7 +1010,7 @@ public final class DomainsClientImpl implements DomainsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String emailServiceName, String domainName, Context context) {
-        return beginDeleteAsync(resourceGroupName, emailServiceName, domainName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, emailServiceName, domainName, context).getSyncPoller();
     }
 
     /**
@@ -1183,7 +1306,7 @@ public final class DomainsClientImpl implements DomainsClient {
         String emailServiceName,
         String domainName,
         UpdateDomainRequestParameters parameters) {
-        return beginUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters).getSyncPoller();
     }
 
     /**
@@ -1208,7 +1331,9 @@ public final class DomainsClientImpl implements DomainsClient {
         String domainName,
         UpdateDomainRequestParameters parameters,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters, context).getSyncPoller();
+        return this
+            .beginUpdateAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1713,7 +1838,8 @@ public final class DomainsClientImpl implements DomainsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginInitiateVerification(
         String resourceGroupName, String emailServiceName, String domainName, VerificationParameter parameters) {
-        return beginInitiateVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters)
+        return this
+            .beginInitiateVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters)
             .getSyncPoller();
     }
 
@@ -1739,7 +1865,8 @@ public final class DomainsClientImpl implements DomainsClient {
         String domainName,
         VerificationParameter parameters,
         Context context) {
-        return beginInitiateVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
+        return this
+            .beginInitiateVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
             .getSyncPoller();
     }
 
@@ -2035,7 +2162,8 @@ public final class DomainsClientImpl implements DomainsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCancelVerification(
         String resourceGroupName, String emailServiceName, String domainName, VerificationParameter parameters) {
-        return beginCancelVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters)
+        return this
+            .beginCancelVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters)
             .getSyncPoller();
     }
 
@@ -2061,7 +2189,8 @@ public final class DomainsClientImpl implements DomainsClient {
         String domainName,
         VerificationParameter parameters,
         Context context) {
-        return beginCancelVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
+        return this
+            .beginCancelVerificationAsync(resourceGroupName, emailServiceName, domainName, parameters, context)
             .getSyncPoller();
     }
 
@@ -2158,6 +2287,1314 @@ public final class DomainsClientImpl implements DomainsClient {
     }
 
     /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ValidSenderUsernameCollectionInner>> listValidSenderUsernamesWithResponseAsync(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listValidSenderUsernames(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            emailServiceName,
+                            domainName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ValidSenderUsernameCollectionInner>> listValidSenderUsernamesWithResponseAsync(
+        String resourceGroupName, String emailServiceName, String domainName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listValidSenderUsernames(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                emailServiceName,
+                domainName,
+                accept,
+                context);
+    }
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ValidSenderUsernameCollectionInner> listValidSenderUsernamesAsync(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        return listValidSenderUsernamesWithResponseAsync(resourceGroupName, emailServiceName, domainName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ValidSenderUsernameCollectionInner> listValidSenderUsernamesWithResponse(
+        String resourceGroupName, String emailServiceName, String domainName, Context context) {
+        return listValidSenderUsernamesWithResponseAsync(resourceGroupName, emailServiceName, domainName, context)
+            .block();
+    }
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidSenderUsernameCollectionInner listValidSenderUsernames(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        return listValidSenderUsernamesWithResponse(resourceGroupName, emailServiceName, domainName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> addValidSenderUsernamesWithResponseAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (validSenderCollection == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter validSenderCollection is required and cannot be null."));
+        } else {
+            validSenderCollection.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .addValidSenderUsernames(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            emailServiceName,
+                            domainName,
+                            validSenderCollection,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> addValidSenderUsernamesWithResponseAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (validSenderCollection == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter validSenderCollection is required and cannot be null."));
+        } else {
+            validSenderCollection.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .addValidSenderUsernames(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                emailServiceName,
+                domainName,
+                validSenderCollection,
+                accept,
+                context);
+    }
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> addValidSenderUsernamesAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection) {
+        return addValidSenderUsernamesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, validSenderCollection)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> addValidSenderUsernamesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection,
+        Context context) {
+        return addValidSenderUsernamesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, validSenderCollection, context)
+            .block();
+    }
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void addValidSenderUsernames(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection) {
+        addValidSenderUsernamesWithResponse(
+            resourceGroupName, emailServiceName, domainName, validSenderCollection, Context.NONE);
+    }
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> removeValidSenderUsernamesWithResponseAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (removeValidSenderUsernameParameters == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter removeValidSenderUsernameParameters is required and cannot be null."));
+        } else {
+            removeValidSenderUsernameParameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .removeValidSenderUsernames(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            emailServiceName,
+                            domainName,
+                            removeValidSenderUsernameParameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> removeValidSenderUsernamesWithResponseAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (removeValidSenderUsernameParameters == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter removeValidSenderUsernameParameters is required and cannot be null."));
+        } else {
+            removeValidSenderUsernameParameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .removeValidSenderUsernames(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                emailServiceName,
+                domainName,
+                removeValidSenderUsernameParameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> removeValidSenderUsernamesAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters) {
+        return removeValidSenderUsernamesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> removeValidSenderUsernamesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters,
+        Context context) {
+        return removeValidSenderUsernamesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters, context)
+            .block();
+    }
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void removeValidSenderUsernames(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters) {
+        removeValidSenderUsernamesWithResponse(
+            resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters, Context.NONE);
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SuppressionListRecordDtoInner>> listSuppressedEmailAddressesSinglePageAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (parameters != null) {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listSuppressedEmailAddresses(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            emailServiceName,
+                            domainName,
+                            top,
+                            skipToken,
+                            parameters,
+                            accept,
+                            context))
+            .<PagedResponse<SuppressionListRecordDtoInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SuppressionListRecordDtoInner>> listSuppressedEmailAddressesSinglePageAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (parameters != null) {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listSuppressedEmailAddresses(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                emailServiceName,
+                domainName,
+                top,
+                skipToken,
+                parameters,
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SuppressionListRecordDtoInner> listSuppressedEmailAddressesAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters) {
+        return new PagedFlux<>(
+            () ->
+                listSuppressedEmailAddressesSinglePageAsync(
+                    resourceGroupName, emailServiceName, domainName, top, skipToken, parameters),
+            nextLink -> listSuppressedEmailAddressesNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SuppressionListRecordDtoInner> listSuppressedEmailAddressesAsync(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        final Integer top = null;
+        final String skipToken = null;
+        final SuppressionListRequest parameters = null;
+        return new PagedFlux<>(
+            () ->
+                listSuppressedEmailAddressesSinglePageAsync(
+                    resourceGroupName, emailServiceName, domainName, top, skipToken, parameters),
+            nextLink -> listSuppressedEmailAddressesNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SuppressionListRecordDtoInner> listSuppressedEmailAddressesAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters,
+        Context context) {
+        return new PagedFlux<>(
+            () ->
+                listSuppressedEmailAddressesSinglePageAsync(
+                    resourceGroupName, emailServiceName, domainName, top, skipToken, parameters, context),
+            nextLink -> listSuppressedEmailAddressesNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SuppressionListRecordDtoInner> listSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName) {
+        final Integer top = null;
+        final String skipToken = null;
+        final SuppressionListRequest parameters = null;
+        return new PagedIterable<>(
+            listSuppressedEmailAddressesAsync(
+                resourceGroupName, emailServiceName, domainName, top, skipToken, parameters));
+    }
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SuppressionListRecordDtoInner> listSuppressedEmailAddresses(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters,
+        Context context) {
+        return new PagedIterable<>(
+            listSuppressedEmailAddressesAsync(
+                resourceGroupName, emailServiceName, domainName, top, skipToken, parameters, context));
+    }
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> addSuppressedEmailAddressesWithResponseAsync(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListAddRequest parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .addSuppressedEmailAddresses(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            emailServiceName,
+                            domainName,
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> addSuppressedEmailAddressesWithResponseAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListAddRequest parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .addSuppressedEmailAddresses(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                emailServiceName,
+                domainName,
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> addSuppressedEmailAddressesAsync(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListAddRequest parameters) {
+        return addSuppressedEmailAddressesWithResponseAsync(resourceGroupName, emailServiceName, domainName, parameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> addSuppressedEmailAddressesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListAddRequest parameters,
+        Context context) {
+        return addSuppressedEmailAddressesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, parameters, context)
+            .block();
+    }
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void addSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListAddRequest parameters) {
+        addSuppressedEmailAddressesWithResponse(
+            resourceGroupName, emailServiceName, domainName, parameters, Context.NONE);
+    }
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> removeSuppressedEmailAddressesWithResponseAsync(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListRemoveRequest parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .removeSuppressedEmailAddresses(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            emailServiceName,
+                            domainName,
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> removeSuppressedEmailAddressesWithResponseAsync(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListRemoveRequest parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (emailServiceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter emailServiceName is required and cannot be null."));
+        }
+        if (domainName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter domainName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .removeSuppressedEmailAddresses(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                emailServiceName,
+                domainName,
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> removeSuppressedEmailAddressesAsync(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListRemoveRequest parameters) {
+        return removeSuppressedEmailAddressesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, parameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> removeSuppressedEmailAddressesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListRemoveRequest parameters,
+        Context context) {
+        return removeSuppressedEmailAddressesWithResponseAsync(
+                resourceGroupName, emailServiceName, domainName, parameters, context)
+            .block();
+    }
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void removeSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListRemoveRequest parameters) {
+        removeSuppressedEmailAddressesWithResponse(
+            resourceGroupName, emailServiceName, domainName, parameters, Context.NONE);
+    }
+
+    /**
      * Get the next page of items.
      *
      * @param nextLink The URL to get the next list of items
@@ -2223,6 +3660,85 @@ public final class DomainsClientImpl implements DomainsClient {
         context = this.client.mergeContext(context);
         return service
             .listByEmailServiceResourceNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object that includes an array of suppressed email addresses and a possible link for next set along with
+     *     {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SuppressionListRecordDtoInner>> listSuppressedEmailAddressesNextSinglePageAsync(
+        String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service.listSuppressedEmailAddressesNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<SuppressionListRecordDtoInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object that includes an array of suppressed email addresses and a possible link for next set along with
+     *     {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SuppressionListRecordDtoInner>> listSuppressedEmailAddressesNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listSuppressedEmailAddressesNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

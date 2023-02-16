@@ -4,17 +4,26 @@
 
 package com.azure.resourcemanager.communication.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.fluent.models.DomainResourceInner;
+import com.azure.resourcemanager.communication.fluent.models.ValidSenderUsernameCollectionInner;
 import com.azure.resourcemanager.communication.models.DomainManagement;
 import com.azure.resourcemanager.communication.models.DomainPropertiesVerificationRecords;
 import com.azure.resourcemanager.communication.models.DomainPropertiesVerificationStates;
 import com.azure.resourcemanager.communication.models.DomainResource;
 import com.azure.resourcemanager.communication.models.DomainsProvisioningState;
+import com.azure.resourcemanager.communication.models.RemoveValidSenderUsernameParameters;
+import com.azure.resourcemanager.communication.models.SuppressionListAddRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListRecordDto;
+import com.azure.resourcemanager.communication.models.SuppressionListRemoveRequest;
+import com.azure.resourcemanager.communication.models.SuppressionListRequest;
 import com.azure.resourcemanager.communication.models.UpdateDomainRequestParameters;
 import com.azure.resourcemanager.communication.models.UserEngagementTracking;
+import com.azure.resourcemanager.communication.models.ValidSenderUsernameCollection;
 import com.azure.resourcemanager.communication.models.VerificationParameter;
 import java.util.Collections;
 import java.util.Map;
@@ -79,15 +88,6 @@ public final class DomainResourceImpl implements DomainResource, DomainResource.
 
     public DomainPropertiesVerificationRecords verificationRecords() {
         return this.innerModel().verificationRecords();
-    }
-
-    public Map<String, String> validSenderUsernames() {
-        Map<String, String> inner = this.innerModel().validSenderUsernames();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
     }
 
     public UserEngagementTracking userEngagementTracking() {
@@ -224,6 +224,85 @@ public final class DomainResourceImpl implements DomainResource, DomainResource.
             .cancelVerification(resourceGroupName, emailServiceName, domainName, parameters, context);
     }
 
+    public Response<ValidSenderUsernameCollection> listValidSenderUsernamesWithResponse(Context context) {
+        return serviceManager
+            .domains()
+            .listValidSenderUsernamesWithResponse(resourceGroupName, emailServiceName, domainName, context);
+    }
+
+    public ValidSenderUsernameCollection listValidSenderUsernames() {
+        return serviceManager.domains().listValidSenderUsernames(resourceGroupName, emailServiceName, domainName);
+    }
+
+    public Response<Void> addValidSenderUsernamesWithResponse(
+        ValidSenderUsernameCollectionInner validSenderCollection, Context context) {
+        return serviceManager
+            .domains()
+            .addValidSenderUsernamesWithResponse(
+                resourceGroupName, emailServiceName, domainName, validSenderCollection, context);
+    }
+
+    public void addValidSenderUsernames(ValidSenderUsernameCollectionInner validSenderCollection) {
+        serviceManager
+            .domains()
+            .addValidSenderUsernames(resourceGroupName, emailServiceName, domainName, validSenderCollection);
+    }
+
+    public Response<Void> removeValidSenderUsernamesWithResponse(
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters, Context context) {
+        return serviceManager
+            .domains()
+            .removeValidSenderUsernamesWithResponse(
+                resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters, context);
+    }
+
+    public void removeValidSenderUsernames(RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters) {
+        serviceManager
+            .domains()
+            .removeValidSenderUsernames(
+                resourceGroupName, emailServiceName, domainName, removeValidSenderUsernameParameters);
+    }
+
+    public PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses() {
+        return serviceManager.domains().listSuppressedEmailAddresses(resourceGroupName, emailServiceName, domainName);
+    }
+
+    public PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses(
+        Integer top, String skipToken, SuppressionListRequest parameters, Context context) {
+        return serviceManager
+            .domains()
+            .listSuppressedEmailAddresses(
+                resourceGroupName, emailServiceName, domainName, top, skipToken, parameters, context);
+    }
+
+    public Response<Void> addSuppressedEmailAddressesWithResponse(
+        SuppressionListAddRequest parameters, Context context) {
+        return serviceManager
+            .domains()
+            .addSuppressedEmailAddressesWithResponse(
+                resourceGroupName, emailServiceName, domainName, parameters, context);
+    }
+
+    public void addSuppressedEmailAddresses(SuppressionListAddRequest parameters) {
+        serviceManager
+            .domains()
+            .addSuppressedEmailAddresses(resourceGroupName, emailServiceName, domainName, parameters);
+    }
+
+    public Response<Void> removeSuppressedEmailAddressesWithResponse(
+        SuppressionListRemoveRequest parameters, Context context) {
+        return serviceManager
+            .domains()
+            .removeSuppressedEmailAddressesWithResponse(
+                resourceGroupName, emailServiceName, domainName, parameters, context);
+    }
+
+    public void removeSuppressedEmailAddresses(SuppressionListRemoveRequest parameters) {
+        serviceManager
+            .domains()
+            .removeSuppressedEmailAddresses(resourceGroupName, emailServiceName, domainName, parameters);
+    }
+
     public DomainResourceImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -247,16 +326,6 @@ public final class DomainResourceImpl implements DomainResource, DomainResource.
     public DomainResourceImpl withDomainManagement(DomainManagement domainManagement) {
         this.innerModel().withDomainManagement(domainManagement);
         return this;
-    }
-
-    public DomainResourceImpl withValidSenderUsernames(Map<String, String> validSenderUsernames) {
-        if (isInCreateMode()) {
-            this.innerModel().withValidSenderUsernames(validSenderUsernames);
-            return this;
-        } else {
-            this.updateParameters.withValidSenderUsernames(validSenderUsernames);
-            return this;
-        }
     }
 
     public DomainResourceImpl withUserEngagementTracking(UserEngagementTracking userEngagementTracking) {

@@ -7,24 +7,10 @@ package com.azure.resourcemanager.communication.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.communication.fluent.models.ValidSenderUsernameCollectionInner;
 
 /** Resource collection API of Domains. */
 public interface Domains {
-    /**
-     * Get
-     *
-     * <p>Get the Domains resource and its properties.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param emailServiceName The name of the EmailService resource.
-     * @param domainName The name of the Domains resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Domains resource and its properties.
-     */
-    DomainResource get(String resourceGroupName, String emailServiceName, String domainName);
-
     /**
      * Get
      *
@@ -41,6 +27,21 @@ public interface Domains {
      */
     Response<DomainResource> getWithResponse(
         String resourceGroupName, String emailServiceName, String domainName, Context context);
+
+    /**
+     * Get
+     *
+     * <p>Get the Domains resource and its properties.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Domains resource and its properties.
+     */
+    DomainResource get(String resourceGroupName, String emailServiceName, String domainName);
 
     /**
      * Delete
@@ -176,6 +177,243 @@ public interface Domains {
         String domainName,
         VerificationParameter parameters,
         Context context);
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names along with {@link Response}.
+     */
+    Response<ValidSenderUsernameCollection> listValidSenderUsernamesWithResponse(
+        String resourceGroupName, String emailServiceName, String domainName, Context context);
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names.
+     */
+    ValidSenderUsernameCollection listValidSenderUsernames(
+        String resourceGroupName, String emailServiceName, String domainName);
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> addValidSenderUsernamesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection,
+        Context context);
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param validSenderCollection Collection of valid sender user names.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addValidSenderUsernames(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        ValidSenderUsernameCollectionInner validSenderCollection);
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> removeValidSenderUsernamesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters,
+        Context context);
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removeValidSenderUsernames(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters);
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName);
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        Integer top,
+        String skipToken,
+        SuppressionListRequest parameters,
+        Context context);
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> addSuppressedEmailAddressesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListAddRequest parameters,
+        Context context);
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListAddRequest parameters);
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> removeSuppressedEmailAddressesWithResponse(
+        String resourceGroupName,
+        String emailServiceName,
+        String domainName,
+        SuppressionListRemoveRequest parameters,
+        Context context);
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @param domainName The name of the Domains resource.
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removeSuppressedEmailAddresses(
+        String resourceGroupName, String emailServiceName, String domainName, SuppressionListRemoveRequest parameters);
 
     /**
      * Get

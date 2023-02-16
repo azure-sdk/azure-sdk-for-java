@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.communication.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.models.KeyType;
 import com.azure.resourcemanager.communication.models.RegenerateKeyParameters;
 
 /** Samples for CommunicationServices RegenerateKey. */
 public final class CommunicationServicesRegenerateKeySamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2022-07-01-preview/examples/communicationServices/regenerateKey.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2022-10-01-preview/examples/communicationServices/regenerateKey.json
      */
     /**
      * Sample code: Regenerate key.
@@ -25,6 +24,6 @@ public final class CommunicationServicesRegenerateKeySamples {
                 "MyResourceGroup",
                 "MyCommunicationResource",
                 new RegenerateKeyParameters().withKeyType(KeyType.PRIMARY),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.communication.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.fluent.models.CommunicationServiceResourceInner;
 import java.util.List;
@@ -47,6 +48,13 @@ public interface CommunicationServiceResource {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Provisioning state of the resource.
@@ -287,17 +295,6 @@ public interface CommunicationServiceResource {
      *
      * <p>Links an Azure Notification Hub to this communication service.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a notification hub that has been linked to the communication service.
-     */
-    LinkedNotificationHub linkNotificationHub();
-
-    /**
-     * Link Notification Hub
-     *
-     * <p>Links an Azure Notification Hub to this communication service.
-     *
      * @param linkNotificationHubParameters Parameters supplied to the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -309,15 +306,15 @@ public interface CommunicationServiceResource {
         LinkNotificationHubParameters linkNotificationHubParameters, Context context);
 
     /**
-     * List Keys
+     * Link Notification Hub
      *
-     * <p>Get the access keys of the CommunicationService resource.
+     * <p>Links an Azure Notification Hub to this communication service.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the CommunicationService resource.
+     * @return a notification hub that has been linked to the communication service.
      */
-    CommunicationServiceKeys listKeys();
+    LinkedNotificationHub linkNotificationHub();
 
     /**
      * List Keys
@@ -331,6 +328,17 @@ public interface CommunicationServiceResource {
      * @return the access keys of the CommunicationService resource along with {@link Response}.
      */
     Response<CommunicationServiceKeys> listKeysWithResponse(Context context);
+
+    /**
+     * List Keys
+     *
+     * <p>Get the access keys of the CommunicationService resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the access keys of the CommunicationService resource.
+     */
+    CommunicationServiceKeys listKeys();
 
     /**
      * Regenerate Key

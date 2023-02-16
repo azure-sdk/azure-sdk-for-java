@@ -4,10 +4,13 @@
 
 package com.azure.resourcemanager.communication.models;
 
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.fluent.models.DomainResourceInner;
+import com.azure.resourcemanager.communication.fluent.models.ValidSenderUsernameCollectionInner;
 import java.util.Map;
 
 /** An immutable client-side representation of DomainResource. */
@@ -104,14 +107,6 @@ public interface DomainResource {
     DomainPropertiesVerificationRecords verificationRecords();
 
     /**
-     * Gets the validSenderUsernames property: Collection of valid sender usernames. This is a key-value pair where
-     * key=username and value=display name.
-     *
-     * @return the validSenderUsernames value.
-     */
-    Map<String, String> validSenderUsernames();
-
-    /**
      * Gets the userEngagementTracking property: Describes whether user engagement tracking is enabled or disabled.
      *
      * @return the userEngagementTracking value.
@@ -194,7 +189,6 @@ public interface DomainResource {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithDomainManagement,
-                DefinitionStages.WithValidSenderUsernames,
                 DefinitionStages.WithUserEngagementTracking {
             /**
              * Executes the create request.
@@ -231,18 +225,6 @@ public interface DomainResource {
              */
             WithCreate withDomainManagement(DomainManagement domainManagement);
         }
-        /** The stage of the DomainResource definition allowing to specify validSenderUsernames. */
-        interface WithValidSenderUsernames {
-            /**
-             * Specifies the validSenderUsernames property: Collection of valid sender usernames. This is a key-value
-             * pair where key=username and value=display name..
-             *
-             * @param validSenderUsernames Collection of valid sender usernames. This is a key-value pair where
-             *     key=username and value=display name.
-             * @return the next definition stage.
-             */
-            WithCreate withValidSenderUsernames(Map<String, String> validSenderUsernames);
-        }
         /** The stage of the DomainResource definition allowing to specify userEngagementTracking. */
         interface WithUserEngagementTracking {
             /**
@@ -263,8 +245,7 @@ public interface DomainResource {
     DomainResource.Update update();
 
     /** The template for DomainResource update. */
-    interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithValidSenderUsernames, UpdateStages.WithUserEngagementTracking {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithUserEngagementTracking {
         /**
          * Executes the update request.
          *
@@ -292,18 +273,6 @@ public interface DomainResource {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
-        }
-        /** The stage of the DomainResource update allowing to specify validSenderUsernames. */
-        interface WithValidSenderUsernames {
-            /**
-             * Specifies the validSenderUsernames property: Collection of valid sender usernames. This is a key-value
-             * pair where key=username and value=display name..
-             *
-             * @param validSenderUsernames Collection of valid sender usernames. This is a key-value pair where
-             *     key=username and value=display name.
-             * @return the next definition stage.
-             */
-            Update withValidSenderUsernames(Map<String, String> validSenderUsernames);
         }
         /** The stage of the DomainResource update allowing to specify userEngagementTracking. */
         interface WithUserEngagementTracking {
@@ -381,4 +350,166 @@ public interface DomainResource {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void cancelVerification(VerificationParameter parameters, Context context);
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names along with {@link Response}.
+     */
+    Response<ValidSenderUsernameCollection> listValidSenderUsernamesWithResponse(Context context);
+
+    /**
+     * List Valid Sender User Names
+     *
+     * <p>Get a list of valid sender user names.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of valid sender user names.
+     */
+    ValidSenderUsernameCollection listValidSenderUsernames();
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param validSenderCollection Collection of valid sender user names.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> addValidSenderUsernamesWithResponse(
+        ValidSenderUsernameCollectionInner validSenderCollection, Context context);
+
+    /**
+     * Add Valid Sender User Names
+     *
+     * <p>Add to the list of valid sender user names.
+     *
+     * @param validSenderCollection Collection of valid sender user names.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addValidSenderUsernames(ValidSenderUsernameCollectionInner validSenderCollection);
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> removeValidSenderUsernamesWithResponse(
+        RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters, Context context);
+
+    /**
+     * Remove Valid Sender User Names
+     *
+     * <p>Remove from the list of valid sender user names.
+     *
+     * @param removeValidSenderUsernameParameters Input parameters to remove valid sender user name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removeValidSenderUsernames(RemoveValidSenderUsernameParameters removeValidSenderUsernameParameters);
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses();
+
+    /**
+     * List Suppressed Email Addresses
+     *
+     * <p>Get a list of suppressed email addresses.
+     *
+     * @param top The maximum number of records to include in a single response. This value is honored if the specified
+     *     value is smaller than server's default page size.
+     * @param skipToken SkipToken is only used if a previous operation returned a partial result. If a previous response
+     *     contains a nextLink element, the value of the nextLink element will include a skipToken parameter that
+     *     specifies a starting point for subsequent calls.
+     * @param parameters Optional parameter to fetch suppression list associated with a valid sender user name. When
+     *     this parameter is not present, by default the domain level suppression list will be returned.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of suppressed email addresses as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SuppressionListRecordDto> listSuppressedEmailAddresses(
+        Integer top, String skipToken, SuppressionListRequest parameters, Context context);
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> addSuppressedEmailAddressesWithResponse(SuppressionListAddRequest parameters, Context context);
+
+    /**
+     * Add Suppressed Email Addresses
+     *
+     * <p>Add email addresses to the suppression list.
+     *
+     * @param parameters Input parameters for adding email addresses to a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addSuppressedEmailAddresses(SuppressionListAddRequest parameters);
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> removeSuppressedEmailAddressesWithResponse(SuppressionListRemoveRequest parameters, Context context);
+
+    /**
+     * Remove Suppressed Email Addresses
+     *
+     * <p>Remove email addresses from the suppression list.
+     *
+     * @param parameters Input parameters for removing email addresses from a suppression list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removeSuppressedEmailAddresses(SuppressionListRemoveRequest parameters);
 }
