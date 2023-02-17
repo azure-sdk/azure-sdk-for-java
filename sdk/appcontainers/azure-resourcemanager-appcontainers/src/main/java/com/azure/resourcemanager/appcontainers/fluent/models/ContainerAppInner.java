@@ -33,6 +33,14 @@ public final class ContainerAppInner extends Resource {
     private ManagedServiceIdentity identity;
 
     /*
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is
+     * managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if
+     * it is removed from the template since it is managed by another resource.
+     */
+    @JsonProperty(value = "managedBy")
+    private String managedBy;
+
+    /*
      * ContainerApp resource specific properties
      */
     @JsonProperty(value = "properties")
@@ -87,6 +95,30 @@ public final class ContainerAppInner extends Resource {
      */
     public ContainerAppInner withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
+     *
+     * @return the managedBy value.
+     */
+    public String managedBy() {
+        return this.managedBy;
+    }
+
+    /**
+     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
+     *
+     * @param managedBy the managedBy value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner withManagedBy(String managedBy) {
+        this.managedBy = managedBy;
         return this;
     }
 
@@ -207,6 +239,15 @@ public final class ContainerAppInner extends Resource {
      */
     public String latestRevisionName() {
         return this.innerProperties() == null ? null : this.innerProperties().latestRevisionName();
+    }
+
+    /**
+     * Get the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    public String latestReadyRevisionName() {
+        return this.innerProperties() == null ? null : this.innerProperties().latestReadyRevisionName();
     }
 
     /**
