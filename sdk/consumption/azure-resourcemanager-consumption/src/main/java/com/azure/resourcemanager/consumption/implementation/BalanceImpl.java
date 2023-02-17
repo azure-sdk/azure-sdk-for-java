@@ -89,6 +89,10 @@ public final class BalanceImpl implements Balance {
         return this.innerModel().totalUsage();
     }
 
+    public BigDecimal refundedOverageCredits() {
+        return this.innerModel().refundedOverageCredits();
+    }
+
     public BigDecimal azureMarketplaceServiceCharges() {
         return this.innerModel().azureMarketplaceServiceCharges();
     }

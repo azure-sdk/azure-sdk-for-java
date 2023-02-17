@@ -118,6 +118,13 @@ public interface Balance {
     BigDecimal totalUsage();
 
     /**
+     * Gets the refundedOverageCredits property: Refunded Overage Credits.
+     *
+     * @return the refundedOverageCredits value.
+     */
+    BigDecimal refundedOverageCredits();
+
+    /**
      * Gets the azureMarketplaceServiceCharges property: Total charges for Azure Marketplace.
      *
      * @return the azureMarketplaceServiceCharges value.
