@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for HealthcareApisManagementClient class. */
 public interface HealthcareApisManagementClient {
     /**
-     * Gets The subscription identifier.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -120,6 +120,13 @@ public interface HealthcareApisManagementClient {
      * @return the WorkspacePrivateLinkResourcesClient object.
      */
     WorkspacePrivateLinkResourcesClient getWorkspacePrivateLinkResources();
+
+    /**
+     * Gets the AnalyticsConnectorsClient object to access its operations.
+     *
+     * @return the AnalyticsConnectorsClient object.
+     */
+    AnalyticsConnectorsClient getAnalyticsConnectors();
 
     /**
      * Gets the OperationsClient object to access its operations.
