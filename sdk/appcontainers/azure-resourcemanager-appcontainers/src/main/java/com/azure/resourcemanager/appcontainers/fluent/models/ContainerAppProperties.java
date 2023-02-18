@@ -45,6 +45,12 @@ public final class ContainerAppProperties {
     private String latestRevisionName;
 
     /*
+     * Name of the latest ready revision of the Container App.
+     */
+    @JsonProperty(value = "latestReadyRevisionName", access = JsonProperty.Access.WRITE_ONLY)
+    private String latestReadyRevisionName;
+
+    /*
      * Fully Qualified Domain Name of the latest revision of the Container App.
      */
     @JsonProperty(value = "latestRevisionFqdn", access = JsonProperty.Access.WRITE_ONLY)
@@ -160,6 +166,15 @@ public final class ContainerAppProperties {
      */
     public String latestRevisionName() {
         return this.latestRevisionName;
+    }
+
+    /**
+     * Get the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    public String latestReadyRevisionName() {
+        return this.latestReadyRevisionName;
     }
 
     /**
