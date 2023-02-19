@@ -9,7 +9,7 @@ import com.azure.resourcemanager.databoxedge.models.UploadCertificateRequest;
 /** Samples for Devices UploadCertificate. */
 public final class DevicesUploadCertificateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/UploadCertificatePost.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/UploadCertificatePost.json
      */
     /**
      * Sample code: UploadCertificatePost.
