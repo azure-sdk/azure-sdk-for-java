@@ -36,6 +36,12 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
     @JsonProperty(value = "backupFilePaths")
     private List<String> backupFilePaths;
 
+    /*
+     * id of the database
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
     /** Creates an instance of MigrateSqlServerSqlMIDatabaseInput class. */
     public MigrateSqlServerSqlMIDatabaseInput() {
     }
@@ -117,6 +123,26 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
      */
     public MigrateSqlServerSqlMIDatabaseInput withBackupFilePaths(List<String> backupFilePaths) {
         this.backupFilePaths = backupFilePaths;
+        return this;
+    }
+
+    /**
+     * Get the id property: id of the database.
+     *
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: id of the database.
+     *
+     * @param id the id value to set.
+     * @return the MigrateSqlServerSqlMIDatabaseInput object itself.
+     */
+    public MigrateSqlServerSqlMIDatabaseInput withId(String id) {
+        this.id = id;
         return this;
     }
 

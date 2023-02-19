@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datamigration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.datamigration.models.AzureActiveDirectoryApp;
 import com.azure.resourcemanager.datamigration.models.ConnectionInfo;
 import com.azure.resourcemanager.datamigration.models.DatabaseInfo;
 import com.azure.resourcemanager.datamigration.models.ProjectProvisioningState;
@@ -23,6 +24,12 @@ public final class ProjectProperties {
      */
     @JsonProperty(value = "sourcePlatform", required = true)
     private ProjectSourcePlatform sourcePlatform;
+
+    /*
+     * Field that defines the Azure active directory application info, used to connect to the target Azure resource
+     */
+    @JsonProperty(value = "azureAuthenticationInfo")
+    private AzureActiveDirectoryApp azureAuthenticationInfo;
 
     /*
      * Target platform for the project
@@ -81,6 +88,28 @@ public final class ProjectProperties {
      */
     public ProjectProperties withSourcePlatform(ProjectSourcePlatform sourcePlatform) {
         this.sourcePlatform = sourcePlatform;
+        return this;
+    }
+
+    /**
+     * Get the azureAuthenticationInfo property: Field that defines the Azure active directory application info, used to
+     * connect to the target Azure resource.
+     *
+     * @return the azureAuthenticationInfo value.
+     */
+    public AzureActiveDirectoryApp azureAuthenticationInfo() {
+        return this.azureAuthenticationInfo;
+    }
+
+    /**
+     * Set the azureAuthenticationInfo property: Field that defines the Azure active directory application info, used to
+     * connect to the target Azure resource.
+     *
+     * @param azureAuthenticationInfo the azureAuthenticationInfo value to set.
+     * @return the ProjectProperties object itself.
+     */
+    public ProjectProperties withAzureAuthenticationInfo(AzureActiveDirectoryApp azureAuthenticationInfo) {
+        this.azureAuthenticationInfo = azureAuthenticationInfo;
         return this;
     }
 
@@ -193,6 +222,9 @@ public final class ProjectProperties {
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourcePlatform in model ProjectProperties"));
+        }
+        if (azureAuthenticationInfo() != null) {
+            azureAuthenticationInfo().validate();
         }
         if (targetPlatform() == null) {
             throw LOGGER
