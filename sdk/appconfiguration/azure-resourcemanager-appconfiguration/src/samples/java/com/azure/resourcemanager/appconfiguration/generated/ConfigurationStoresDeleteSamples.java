@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores Delete. */
 public final class ConfigurationStoresDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class ConfigurationStoresDeleteSamples {
      */
     public static void configurationStoresDelete(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().delete("myResourceGroup", "contoso", Context.NONE);
+        manager.configurationStores().delete("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
     }
 }

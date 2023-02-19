@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
@@ -18,6 +16,8 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void privateEndpointConnectionsDelete(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateEndpointConnections().delete("myResourceGroup", "contoso", "myConnection", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .delete("myResourceGroup", "contoso", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
