@@ -40,9 +40,6 @@ import com.azure.resourcemanager.mediaservices.fluent.models.LiveEventStatusInne
 import com.azure.resourcemanager.mediaservices.fluent.models.LiveEventStreamEventInner;
 import com.azure.resourcemanager.mediaservices.fluent.models.LiveEventTrackEventInner;
 import com.azure.resourcemanager.mediaservices.models.LiveEventActionInput;
-import com.azure.resourcemanager.mediaservices.models.LiveEventGetStatusResult;
-import com.azure.resourcemanager.mediaservices.models.LiveEventGetStreamEventsResult;
-import com.azure.resourcemanager.mediaservices.models.LiveEventGetTrackIngestHeartbeatsResult;
 import com.azure.resourcemanager.mediaservices.models.LiveEventListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
