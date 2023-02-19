@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.models.IotHubDescription;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public final class IotHubResourceUpdateSamples {
         IotHubDescription resource =
             manager
                 .iotHubResources()
-                .getByResourceGroupWithResponse("myResourceGroup", "myHub", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myHub", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("foo", "bar")).apply();
     }
