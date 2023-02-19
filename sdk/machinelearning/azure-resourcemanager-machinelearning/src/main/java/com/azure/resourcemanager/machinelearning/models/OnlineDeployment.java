@@ -297,7 +297,7 @@ public interface OnlineDeployment {
     OnlineDeployment refresh(Context context);
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param body The request containing parameters for retrieving logs.
      * @param context The context to associate with this operation.
@@ -309,7 +309,7 @@ public interface OnlineDeployment {
     Response<DeploymentLogs> getLogsWithResponse(DeploymentLogsRequest body, Context context);
 
     /**
-     * Polls an Endpoint operation.
+     * Retrieve online deployment logs.
      *
      * @param body The request containing parameters for retrieving logs.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
