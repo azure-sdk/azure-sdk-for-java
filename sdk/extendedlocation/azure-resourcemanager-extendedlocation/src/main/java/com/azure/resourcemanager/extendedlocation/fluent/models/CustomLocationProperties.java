@@ -14,15 +14,13 @@ import java.util.List;
 @Fluent
 public final class CustomLocationProperties {
     /*
-     * This is optional input that contains the authentication that should be
-     * used to generate the namespace.
+     * This is optional input that contains the authentication that should be used to generate the namespace.
      */
     @JsonProperty(value = "authentication")
     private CustomLocationPropertiesAuthentication authentication;
 
     /*
-     * Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * Contains the reference to the add-on that contains charts to deploy CRDs and operators.
      */
     @JsonProperty(value = "clusterExtensionIds")
     private List<String> clusterExtensionIds;
@@ -34,8 +32,8 @@ public final class CustomLocationProperties {
     private String displayName;
 
     /*
-     * Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Connected Cluster or AKS Cluster. The Custom Locations RP will perform a checkAccess API for
+     * listAdminCredentials permissions.
      */
     @JsonProperty(value = "hostResourceId")
     private String hostResourceId;
@@ -57,6 +55,10 @@ public final class CustomLocationProperties {
      */
     @JsonProperty(value = "provisioningState")
     private String provisioningState;
+
+    /** Creates an instance of CustomLocationProperties class. */
+    public CustomLocationProperties() {
+    }
 
     /**
      * Get the authentication property: This is optional input that contains the authentication that should be used to

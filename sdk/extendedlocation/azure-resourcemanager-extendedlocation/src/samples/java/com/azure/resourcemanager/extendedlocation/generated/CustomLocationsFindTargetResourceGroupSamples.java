@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +27,7 @@ public final class CustomLocationsFindTargetResourceGroupSamples {
                 "customLocation01",
                 new CustomLocationFindTargetResourceGroupProperties()
                     .withLabels(mapOf("key1", "value1", "key2", "value2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
