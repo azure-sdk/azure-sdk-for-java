@@ -22,7 +22,10 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.servicelinker.fluent.ConfigurationNamesOperationsClient;
+import com.azure.resourcemanager.servicelinker.fluent.ConnectorsClient;
 import com.azure.resourcemanager.servicelinker.fluent.LinkersClient;
+import com.azure.resourcemanager.servicelinker.fluent.LinkersOperationsClient;
 import com.azure.resourcemanager.servicelinker.fluent.OperationsClient;
 import com.azure.resourcemanager.servicelinker.fluent.ServiceLinkerManagementClient;
 import java.io.IOException;
@@ -97,6 +100,18 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
         return this.defaultPollInterval;
     }
 
+    /** The ConnectorsClient object to access its operations. */
+    private final ConnectorsClient connectors;
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     *
+     * @return the ConnectorsClient object.
+     */
+    public ConnectorsClient getConnectors() {
+        return this.connectors;
+    }
+
     /** The LinkersClient object to access its operations. */
     private final LinkersClient linkers;
 
@@ -109,6 +124,18 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
         return this.linkers;
     }
 
+    /** The LinkersOperationsClient object to access its operations. */
+    private final LinkersOperationsClient linkersOperations;
+
+    /**
+     * Gets the LinkersOperationsClient object to access its operations.
+     *
+     * @return the LinkersOperationsClient object.
+     */
+    public LinkersOperationsClient getLinkersOperations() {
+        return this.linkersOperations;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -119,6 +146,18 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /** The ConfigurationNamesOperationsClient object to access its operations. */
+    private final ConfigurationNamesOperationsClient configurationNamesOperations;
+
+    /**
+     * Gets the ConfigurationNamesOperationsClient object to access its operations.
+     *
+     * @return the ConfigurationNamesOperationsClient object.
+     */
+    public ConfigurationNamesOperationsClient getConfigurationNamesOperations() {
+        return this.configurationNamesOperations;
     }
 
     /**
@@ -140,9 +179,12 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-01";
+        this.apiVersion = "2022-11-01-preview";
+        this.connectors = new ConnectorsClientImpl(this);
         this.linkers = new LinkersClientImpl(this);
+        this.linkersOperations = new LinkersOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.configurationNamesOperations = new ConfigurationNamesOperationsClientImpl(this);
     }
 
     /**
