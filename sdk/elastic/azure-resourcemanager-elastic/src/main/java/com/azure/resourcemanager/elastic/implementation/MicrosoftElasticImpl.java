@@ -377,7 +377,7 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-07-01-preview";
+        this.apiVersion = "2022-09-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.monitoredResources = new MonitoredResourcesClientImpl(this);
