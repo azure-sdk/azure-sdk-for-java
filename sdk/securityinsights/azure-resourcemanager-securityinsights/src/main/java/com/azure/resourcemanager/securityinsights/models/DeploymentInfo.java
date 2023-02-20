@@ -28,6 +28,10 @@ public final class DeploymentInfo {
     @JsonProperty(value = "message")
     private String message;
 
+    /** Creates an instance of DeploymentInfo class. */
+    public DeploymentInfo() {
+    }
+
     /**
      * Get the deploymentFetchStatus property: Status while fetching the last deployment.
      *

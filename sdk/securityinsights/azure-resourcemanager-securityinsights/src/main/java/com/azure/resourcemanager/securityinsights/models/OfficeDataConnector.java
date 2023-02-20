@@ -22,6 +22,10 @@ public final class OfficeDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private OfficeDataConnectorProperties innerProperties;
 
+    /** Creates an instance of OfficeDataConnector class. */
+    public OfficeDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Office data connector properties.
      *

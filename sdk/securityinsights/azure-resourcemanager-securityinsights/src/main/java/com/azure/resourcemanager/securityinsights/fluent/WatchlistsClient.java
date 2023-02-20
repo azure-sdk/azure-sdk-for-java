@@ -52,20 +52,6 @@ public interface WatchlistsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param watchlistAlias Watchlist Alias.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    WatchlistInner get(String resourceGroupName, String workspaceName, String watchlistAlias);
-
-    /**
-     * Gets a watchlist, without its watchlist items.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -77,7 +63,7 @@ public interface WatchlistsClient {
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context);
 
     /**
-     * Delete a watchlist.
+     * Gets a watchlist, without its watchlist items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -85,9 +71,10 @@ public interface WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a watchlist, without its watchlist items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String watchlistAlias);
+    WatchlistInner get(String resourceGroupName, String workspaceName, String watchlistAlias);
 
     /**
      * Delete a watchlist.
@@ -106,24 +93,17 @@ public interface WatchlistsClient {
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context);
 
     /**
-     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
-     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
-     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
-     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * Delete a watchlist.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param watchlistAlias Watchlist Alias.
-     * @param watchlist The watchlist.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WatchlistInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String watchlistAlias, WatchlistInner watchlist);
+    void delete(String resourceGroupName, String workspaceName, String watchlistAlias);
 
     /**
      * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
@@ -149,4 +129,24 @@ public interface WatchlistsClient {
         String watchlistAlias,
         WatchlistInner watchlist,
         Context context);
+
+    /**
+     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
+     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
+     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
+     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @param watchlist The watchlist.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a Watchlist in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    WatchlistInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String watchlistAlias, WatchlistInner watchlist);
 }

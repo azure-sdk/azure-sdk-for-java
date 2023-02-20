@@ -79,6 +79,10 @@ public final class DataConnectorConnectBody {
     @JsonProperty(value = "requestConfigUserInputValues")
     private List<Object> requestConfigUserInputValues;
 
+    /** Creates an instance of DataConnectorConnectBody class. */
+    public DataConnectorConnectBody() {
+    }
+
     /**
      * Get the kind property: The authentication kind used to poll the data.
      *

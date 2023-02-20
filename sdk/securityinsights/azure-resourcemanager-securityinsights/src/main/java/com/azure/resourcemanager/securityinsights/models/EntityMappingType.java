@@ -65,6 +65,15 @@ public final class EntityMappingType extends ExpandableStringEnum<EntityMappingT
     public static final EntityMappingType SUBMISSION_MAIL = fromString("SubmissionMail");
 
     /**
+     * Creates a new instance of EntityMappingType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityMappingType() {
+    }
+
+    /**
      * Creates or finds a EntityMappingType from its string representation.
      *
      * @param name a name to look for.

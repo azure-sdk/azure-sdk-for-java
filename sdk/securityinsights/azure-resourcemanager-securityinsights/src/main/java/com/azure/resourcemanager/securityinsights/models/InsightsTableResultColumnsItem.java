@@ -22,6 +22,10 @@ public final class InsightsTableResultColumnsItem {
     @JsonProperty(value = "name")
     private String name;
 
+    /** Creates an instance of InsightsTableResultColumnsItem class. */
+    public InsightsTableResultColumnsItem() {
+    }
+
     /**
      * Get the type property: the type of the colum.
      *
