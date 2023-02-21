@@ -21,6 +21,10 @@ public final class Dynamics365CheckRequirements extends DataConnectorsCheckRequi
     @JsonProperty(value = "properties")
     private Dynamics365CheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of Dynamics365CheckRequirements class. */
+    public Dynamics365CheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: Dynamics365 requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class Dynamics365CheckRequirements extends DataConnectorsCheckRequi
      */
     private Dynamics365CheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the Dynamics365CheckRequirements object itself.
+     */
+    public Dynamics365CheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new Dynamics365CheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

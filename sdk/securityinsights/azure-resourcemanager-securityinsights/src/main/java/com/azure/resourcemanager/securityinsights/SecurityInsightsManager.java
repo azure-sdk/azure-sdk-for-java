@@ -25,12 +25,17 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
 import com.azure.resourcemanager.securityinsights.implementation.ActionsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.AlertRuleOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AlertRuleTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AlertRulesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AutomationRulesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.BookmarkOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.BookmarkRelationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.BookmarksImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentPackageOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentPackagesImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentTemplateOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ContentTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DataConnectorsCheckRequirementsOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DataConnectorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DomainWhoisImpl;
@@ -41,14 +46,22 @@ import com.azure.resourcemanager.securityinsights.implementation.EntityQueriesIm
 import com.azure.resourcemanager.securityinsights.implementation.EntityQueryTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntityRelationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.FileImportsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetRecommendationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetTriggeredAnalyticsRuleRunsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentCommentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.IncidentTasksImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IpGeodatasImpl;
 import com.azure.resourcemanager.securityinsights.implementation.MetadatasImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OfficeConsentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductPackageOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductPackagesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ProductSettingsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductTemplateOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.ProductTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityInsightsBuilder;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityMLAnalyticsSettingsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SentinelOnboardingStatesImpl;
@@ -57,15 +70,22 @@ import com.azure.resourcemanager.securityinsights.implementation.SourceControlsO
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorMetricsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.TriggeredAnalyticsRuleRunOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.UpdatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistItemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistsImpl;
 import com.azure.resourcemanager.securityinsights.models.Actions;
+import com.azure.resourcemanager.securityinsights.models.AlertRuleOperations;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplates;
 import com.azure.resourcemanager.securityinsights.models.AlertRules;
 import com.azure.resourcemanager.securityinsights.models.AutomationRules;
 import com.azure.resourcemanager.securityinsights.models.BookmarkOperations;
 import com.azure.resourcemanager.securityinsights.models.BookmarkRelations;
 import com.azure.resourcemanager.securityinsights.models.Bookmarks;
+import com.azure.resourcemanager.securityinsights.models.ContentPackageOperations;
+import com.azure.resourcemanager.securityinsights.models.ContentPackages;
+import com.azure.resourcemanager.securityinsights.models.ContentTemplateOperations;
+import com.azure.resourcemanager.securityinsights.models.ContentTemplates;
 import com.azure.resourcemanager.securityinsights.models.DataConnectors;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorsCheckRequirementsOperations;
 import com.azure.resourcemanager.securityinsights.models.DomainWhois;
@@ -76,14 +96,22 @@ import com.azure.resourcemanager.securityinsights.models.EntityQueries;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplates;
 import com.azure.resourcemanager.securityinsights.models.EntityRelations;
 import com.azure.resourcemanager.securityinsights.models.FileImports;
+import com.azure.resourcemanager.securityinsights.models.GetRecommendations;
+import com.azure.resourcemanager.securityinsights.models.GetTriggeredAnalyticsRuleRuns;
+import com.azure.resourcemanager.securityinsights.models.Gets;
 import com.azure.resourcemanager.securityinsights.models.IncidentComments;
 import com.azure.resourcemanager.securityinsights.models.IncidentRelations;
+import com.azure.resourcemanager.securityinsights.models.IncidentTasks;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
 import com.azure.resourcemanager.securityinsights.models.IpGeodatas;
 import com.azure.resourcemanager.securityinsights.models.Metadatas;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsents;
 import com.azure.resourcemanager.securityinsights.models.Operations;
+import com.azure.resourcemanager.securityinsights.models.ProductPackageOperations;
+import com.azure.resourcemanager.securityinsights.models.ProductPackages;
 import com.azure.resourcemanager.securityinsights.models.ProductSettings;
+import com.azure.resourcemanager.securityinsights.models.ProductTemplateOperations;
+import com.azure.resourcemanager.securityinsights.models.ProductTemplates;
 import com.azure.resourcemanager.securityinsights.models.SecurityMLAnalyticsSettings;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
@@ -91,6 +119,8 @@ import com.azure.resourcemanager.securityinsights.models.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorMetrics;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicators;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
+import com.azure.resourcemanager.securityinsights.models.TriggeredAnalyticsRuleRunOperations;
+import com.azure.resourcemanager.securityinsights.models.Updates;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
 import java.time.Duration;
@@ -121,6 +151,22 @@ public final class SecurityInsightsManager {
 
     private BookmarkOperations bookmarkOperations;
 
+    private ContentPackages contentPackages;
+
+    private ContentPackageOperations contentPackageOperations;
+
+    private ProductPackages productPackages;
+
+    private ProductPackageOperations productPackageOperations;
+
+    private ProductTemplates productTemplates;
+
+    private ProductTemplateOperations productTemplateOperations;
+
+    private ContentTemplates contentTemplates;
+
+    private ContentTemplateOperations contentTemplateOperations;
+
     private IpGeodatas ipGeodatas;
 
     private DomainWhois domainWhois;
@@ -143,11 +189,19 @@ public final class SecurityInsightsManager {
 
     private IncidentRelations incidentRelations;
 
+    private IncidentTasks incidentTasks;
+
     private Metadatas metadatas;
 
     private OfficeConsents officeConsents;
 
     private SentinelOnboardingStates sentinelOnboardingStates;
+
+    private GetRecommendations getRecommendations;
+
+    private Gets gets;
+
+    private Updates updates;
 
     private SecurityMLAnalyticsSettings securityMLAnalyticsSettings;
 
@@ -162,6 +216,12 @@ public final class SecurityInsightsManager {
     private ThreatIntelligenceIndicatorsOperations threatIntelligenceIndicatorsOperations;
 
     private ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics;
+
+    private TriggeredAnalyticsRuleRunOperations triggeredAnalyticsRuleRunOperations;
+
+    private GetTriggeredAnalyticsRuleRuns getTriggeredAnalyticsRuleRuns;
+
+    private AlertRuleOperations alertRuleOperations;
 
     private Watchlists watchlists;
 
@@ -338,7 +398,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -492,6 +552,106 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of ContentPackages.
+     *
+     * @return Resource collection API of ContentPackages.
+     */
+    public ContentPackages contentPackages() {
+        if (this.contentPackages == null) {
+            this.contentPackages = new ContentPackagesImpl(clientObject.getContentPackages(), this);
+        }
+        return contentPackages;
+    }
+
+    /**
+     * Gets the resource collection API of ContentPackageOperations. It manages PackageModel.
+     *
+     * @return Resource collection API of ContentPackageOperations.
+     */
+    public ContentPackageOperations contentPackageOperations() {
+        if (this.contentPackageOperations == null) {
+            this.contentPackageOperations =
+                new ContentPackageOperationsImpl(clientObject.getContentPackageOperations(), this);
+        }
+        return contentPackageOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ProductPackages.
+     *
+     * @return Resource collection API of ProductPackages.
+     */
+    public ProductPackages productPackages() {
+        if (this.productPackages == null) {
+            this.productPackages = new ProductPackagesImpl(clientObject.getProductPackages(), this);
+        }
+        return productPackages;
+    }
+
+    /**
+     * Gets the resource collection API of ProductPackageOperations.
+     *
+     * @return Resource collection API of ProductPackageOperations.
+     */
+    public ProductPackageOperations productPackageOperations() {
+        if (this.productPackageOperations == null) {
+            this.productPackageOperations =
+                new ProductPackageOperationsImpl(clientObject.getProductPackageOperations(), this);
+        }
+        return productPackageOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ProductTemplates.
+     *
+     * @return Resource collection API of ProductTemplates.
+     */
+    public ProductTemplates productTemplates() {
+        if (this.productTemplates == null) {
+            this.productTemplates = new ProductTemplatesImpl(clientObject.getProductTemplates(), this);
+        }
+        return productTemplates;
+    }
+
+    /**
+     * Gets the resource collection API of ProductTemplateOperations.
+     *
+     * @return Resource collection API of ProductTemplateOperations.
+     */
+    public ProductTemplateOperations productTemplateOperations() {
+        if (this.productTemplateOperations == null) {
+            this.productTemplateOperations =
+                new ProductTemplateOperationsImpl(clientObject.getProductTemplateOperations(), this);
+        }
+        return productTemplateOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ContentTemplates.
+     *
+     * @return Resource collection API of ContentTemplates.
+     */
+    public ContentTemplates contentTemplates() {
+        if (this.contentTemplates == null) {
+            this.contentTemplates = new ContentTemplatesImpl(clientObject.getContentTemplates(), this);
+        }
+        return contentTemplates;
+    }
+
+    /**
+     * Gets the resource collection API of ContentTemplateOperations. It manages TemplateModelAutoGenerated.
+     *
+     * @return Resource collection API of ContentTemplateOperations.
+     */
+    public ContentTemplateOperations contentTemplateOperations() {
+        if (this.contentTemplateOperations == null) {
+            this.contentTemplateOperations =
+                new ContentTemplateOperationsImpl(clientObject.getContentTemplateOperations(), this);
+        }
+        return contentTemplateOperations;
+    }
+
+    /**
      * Gets the resource collection API of IpGeodatas.
      *
      * @return Resource collection API of IpGeodatas.
@@ -624,6 +784,18 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of IncidentTasks. It manages IncidentTask.
+     *
+     * @return Resource collection API of IncidentTasks.
+     */
+    public IncidentTasks incidentTasks() {
+        if (this.incidentTasks == null) {
+            this.incidentTasks = new IncidentTasksImpl(clientObject.getIncidentTasks(), this);
+        }
+        return incidentTasks;
+    }
+
+    /**
      * Gets the resource collection API of Metadatas. It manages MetadataModel.
      *
      * @return Resource collection API of Metadatas.
@@ -658,6 +830,42 @@ public final class SecurityInsightsManager {
                 new SentinelOnboardingStatesImpl(clientObject.getSentinelOnboardingStates(), this);
         }
         return sentinelOnboardingStates;
+    }
+
+    /**
+     * Gets the resource collection API of GetRecommendations.
+     *
+     * @return Resource collection API of GetRecommendations.
+     */
+    public GetRecommendations getRecommendations() {
+        if (this.getRecommendations == null) {
+            this.getRecommendations = new GetRecommendationsImpl(clientObject.getGetRecommendations(), this);
+        }
+        return getRecommendations;
+    }
+
+    /**
+     * Gets the resource collection API of Gets.
+     *
+     * @return Resource collection API of Gets.
+     */
+    public Gets gets() {
+        if (this.gets == null) {
+            this.gets = new GetsImpl(clientObject.getGets(), this);
+        }
+        return gets;
+    }
+
+    /**
+     * Gets the resource collection API of Updates.
+     *
+     * @return Resource collection API of Updates.
+     */
+    public Updates updates() {
+        if (this.updates == null) {
+            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+        }
+        return updates;
     }
 
     /**
@@ -748,6 +956,45 @@ public final class SecurityInsightsManager {
                 new ThreatIntelligenceIndicatorMetricsImpl(clientObject.getThreatIntelligenceIndicatorMetrics(), this);
         }
         return threatIntelligenceIndicatorMetrics;
+    }
+
+    /**
+     * Gets the resource collection API of TriggeredAnalyticsRuleRunOperations.
+     *
+     * @return Resource collection API of TriggeredAnalyticsRuleRunOperations.
+     */
+    public TriggeredAnalyticsRuleRunOperations triggeredAnalyticsRuleRunOperations() {
+        if (this.triggeredAnalyticsRuleRunOperations == null) {
+            this.triggeredAnalyticsRuleRunOperations =
+                new TriggeredAnalyticsRuleRunOperationsImpl(
+                    clientObject.getTriggeredAnalyticsRuleRunOperations(), this);
+        }
+        return triggeredAnalyticsRuleRunOperations;
+    }
+
+    /**
+     * Gets the resource collection API of GetTriggeredAnalyticsRuleRuns.
+     *
+     * @return Resource collection API of GetTriggeredAnalyticsRuleRuns.
+     */
+    public GetTriggeredAnalyticsRuleRuns getTriggeredAnalyticsRuleRuns() {
+        if (this.getTriggeredAnalyticsRuleRuns == null) {
+            this.getTriggeredAnalyticsRuleRuns =
+                new GetTriggeredAnalyticsRuleRunsImpl(clientObject.getGetTriggeredAnalyticsRuleRuns(), this);
+        }
+        return getTriggeredAnalyticsRuleRuns;
+    }
+
+    /**
+     * Gets the resource collection API of AlertRuleOperations.
+     *
+     * @return Resource collection API of AlertRuleOperations.
+     */
+    public AlertRuleOperations alertRuleOperations() {
+        if (this.alertRuleOperations == null) {
+            this.alertRuleOperations = new AlertRuleOperationsImpl(clientObject.getAlertRuleOperations(), this);
+        }
+        return alertRuleOperations;
     }
 
     /**

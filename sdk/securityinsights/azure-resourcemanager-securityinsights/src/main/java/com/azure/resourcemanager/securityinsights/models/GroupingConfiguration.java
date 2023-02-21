@@ -58,6 +58,10 @@ public final class GroupingConfiguration {
     @JsonProperty(value = "groupByCustomDetails")
     private List<String> groupByCustomDetails;
 
+    /** Creates an instance of GroupingConfiguration class. */
+    public GroupingConfiguration() {
+    }
+
     /**
      * Get the enabled property: Grouping enabled.
      *

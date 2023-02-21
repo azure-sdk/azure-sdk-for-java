@@ -58,7 +58,7 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsInci")
-    private interface IncidentRelationsService {
+    public interface IncidentRelationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -581,23 +581,6 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident relation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RelationInner get(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
-        return getAsync(resourceGroupName, workspaceName, incidentId, relationName).block();
-    }
-
-    /**
-     * Gets an incident relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -608,6 +591,23 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
     public Response<RelationInner> getWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, String relationName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, incidentId, relationName, context).block();
+    }
+
+    /**
+     * Gets an incident relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an incident relation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RelationInner get(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
+        return getWithResponse(resourceGroupName, workspaceName, incidentId, relationName, Context.NONE).getValue();
     }
 
     /**
@@ -781,29 +781,6 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
      * @param incidentId Incident ID.
      * @param relationName Relation Name.
      * @param relation The relation model.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a relation between two resources.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RelationInner createOrUpdate(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentId,
-        String relationName,
-        RelationInner relation) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, incidentId, relationName, relation).block();
-    }
-
-    /**
-     * Creates or updates the incident relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param relationName Relation Name.
-     * @param relation The relation model.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -821,6 +798,31 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, incidentId, relationName, relation, context)
             .block();
+    }
+
+    /**
+     * Creates or updates the incident relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @param relationName Relation Name.
+     * @param relation The relation model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a relation between two resources.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RelationInner createOrUpdate(
+        String resourceGroupName,
+        String workspaceName,
+        String incidentId,
+        String relationName,
+        RelationInner relation) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, workspaceName, incidentId, relationName, relation, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -963,22 +965,6 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
-        deleteAsync(resourceGroupName, workspaceName, incidentId, relationName).block();
-    }
-
-    /**
-     * Delete the incident relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -989,6 +975,22 @@ public final class IncidentRelationsClientImpl implements IncidentRelationsClien
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, String relationName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, incidentId, relationName, context).block();
+    }
+
+    /**
+     * Delete the incident relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String incidentId, String relationName) {
+        deleteWithResponse(resourceGroupName, workspaceName, incidentId, relationName, Context.NONE);
     }
 
     /**
