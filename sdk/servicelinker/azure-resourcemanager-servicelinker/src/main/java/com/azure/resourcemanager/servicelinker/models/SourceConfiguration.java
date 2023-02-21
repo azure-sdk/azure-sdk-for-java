@@ -22,6 +22,10 @@ public final class SourceConfiguration {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of SourceConfiguration class. */
+    public SourceConfiguration() {
+    }
+
     /**
      * Get the name property: The name of setting.
      *
