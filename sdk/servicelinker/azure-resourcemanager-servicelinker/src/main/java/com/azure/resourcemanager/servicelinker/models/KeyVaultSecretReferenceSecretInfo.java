@@ -29,6 +29,10 @@ public final class KeyVaultSecretReferenceSecretInfo extends SecretInfoBase {
     @JsonProperty(value = "version")
     private String version;
 
+    /** Creates an instance of KeyVaultSecretReferenceSecretInfo class. */
+    public KeyVaultSecretReferenceSecretInfo() {
+    }
+
     /**
      * Get the name property: Name of the Key Vault secret.
      *
