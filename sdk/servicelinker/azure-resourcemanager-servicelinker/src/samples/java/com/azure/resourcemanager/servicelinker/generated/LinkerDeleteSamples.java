@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.servicelinker.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Linker Delete. */
 public final class LinkerDeleteSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/DeleteLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2018-05-01-preview/examples/DeleteLink.json
      */
     /**
      * Sample code: DeleteLink.
@@ -22,6 +20,6 @@ public final class LinkerDeleteSamples {
             .delete(
                 "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app",
                 "linkName",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
