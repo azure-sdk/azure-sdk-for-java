@@ -11,9 +11,11 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.ModelVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.PackageResponseInner;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
 import com.azure.resourcemanager.machinelearning.models.ModelVersion;
 import com.azure.resourcemanager.machinelearning.models.ModelVersions;
+import com.azure.resourcemanager.machinelearning.models.PackageResponse;
 
 public final class ModelVersionsImpl implements ModelVersions {
     private static final ClientLogger LOGGER = new ClientLogger(ModelVersionsImpl.class);
@@ -103,136 +105,59 @@ public final class ModelVersionsImpl implements ModelVersions {
         }
     }
 
-    public ModelVersion getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<ModelVersion> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        ModelVersionInner body,
+        Context context) {
+        Response<ModelVersionInner> inner =
+            this
+                .serviceClient()
+                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ModelVersionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE).getValue();
     }
 
-    public Response<ModelVersion> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public ModelVersion createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, String version, ModelVersionInner body) {
+        ModelVersionInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, version, body);
+        if (inner != null) {
+            return new ModelVersionImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public PackageResponse packageMethod(
+        String resourceGroupName, String workspaceName, String name, String version, Object body) {
+        PackageResponseInner inner =
+            this.serviceClient().packageMethod(resourceGroupName, workspaceName, name, version, body);
+        if (inner != null) {
+            return new PackageResponseImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE);
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public PackageResponse packageMethod(
+        String resourceGroupName, String workspaceName, String name, String version, Object body, Context context) {
+        PackageResponseInner inner =
+            this.serviceClient().packageMethod(resourceGroupName, workspaceName, name, version, body, context);
+        if (inner != null) {
+            return new PackageResponseImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
     private ModelVersionsClient serviceClient() {
@@ -241,9 +166,5 @@ public final class ModelVersionsImpl implements ModelVersions {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public ModelVersionImpl define(String name) {
-        return new ModelVersionImpl(name, this.manager());
     }
 }

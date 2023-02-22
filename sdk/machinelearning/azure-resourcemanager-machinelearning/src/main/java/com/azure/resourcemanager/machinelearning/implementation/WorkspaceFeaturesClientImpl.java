@@ -36,22 +36,22 @@ public final class WorkspaceFeaturesClientImpl implements WorkspaceFeaturesClien
     private final WorkspaceFeaturesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of WorkspaceFeaturesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspaceFeaturesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    WorkspaceFeaturesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(WorkspaceFeaturesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesWorkspaceFeatures to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesWorkspaceFeatures to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
