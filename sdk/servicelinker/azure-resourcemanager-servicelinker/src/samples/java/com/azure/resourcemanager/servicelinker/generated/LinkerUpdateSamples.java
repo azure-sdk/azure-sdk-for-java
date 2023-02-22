@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.servicelinker.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.servicelinker.models.AzureResource;
 import com.azure.resourcemanager.servicelinker.models.LinkerResource;
 import com.azure.resourcemanager.servicelinker.models.ServicePrincipalSecretAuthInfo;
@@ -26,7 +25,7 @@ public final class LinkerUpdateSamples {
                 .getWithResponse(
                     "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app",
                     "linkName",
-                    Context.NONE)
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -35,7 +34,10 @@ public final class LinkerUpdateSamples {
                     .withId(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DocumentDb/databaseAccounts/test-acc/mongodbDatabases/test-db"))
             .withAuthInfo(
-                new ServicePrincipalSecretAuthInfo().withClientId("name").withPrincipalId("id").withSecret("secret"))
+                new ServicePrincipalSecretAuthInfo()
+                    .withClientId("name")
+                    .withPrincipalId("id")
+                    .withSecret("fakeTokenPlaceholder"))
             .apply();
     }
 }
