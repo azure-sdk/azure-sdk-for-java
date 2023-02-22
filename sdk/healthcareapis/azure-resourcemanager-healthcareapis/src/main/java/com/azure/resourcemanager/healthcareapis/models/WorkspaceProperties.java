@@ -18,18 +18,20 @@ public final class WorkspaceProperties {
     private ProvisioningState provisioningState;
 
     /*
-     * The list of private endpoint connections that are set up for this
-     * resource.
+     * The list of private endpoint connections that are set up for this resource.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnection> privateEndpointConnections;
 
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
+
+    /** Creates an instance of WorkspaceProperties class. */
+    public WorkspaceProperties() {
+    }
 
     /**
      * Get the provisioningState property: The provisioning state.

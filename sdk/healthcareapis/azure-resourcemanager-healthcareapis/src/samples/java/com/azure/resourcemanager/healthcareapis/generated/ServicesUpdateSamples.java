@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthcareapis.models.ServicesDescription;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for Services Update. */
 public final class ServicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServicePatch.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServicePatch.json
      */
     /**
      * Sample code: Patch service.
@@ -21,7 +20,10 @@ public final class ServicesUpdateSamples {
      */
     public static void patchService(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
         ServicesDescription resource =
-            manager.services().getByResourceGroupWithResponse("rg1", "service1", Context.NONE).getValue();
+            manager
+                .services()
+                .getByResourceGroupWithResponse("rg1", "service1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

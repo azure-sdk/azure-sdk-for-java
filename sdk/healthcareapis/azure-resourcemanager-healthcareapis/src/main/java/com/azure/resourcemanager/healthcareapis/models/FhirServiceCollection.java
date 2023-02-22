@@ -24,6 +24,10 @@ public final class FhirServiceCollection {
     @JsonProperty(value = "value")
     private List<FhirServiceInner> value;
 
+    /** Creates an instance of FhirServiceCollection class. */
+    public FhirServiceCollection() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of Fhir Services.
      *
