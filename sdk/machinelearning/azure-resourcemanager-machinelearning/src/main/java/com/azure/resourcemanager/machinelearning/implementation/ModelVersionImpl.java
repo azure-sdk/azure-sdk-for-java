@@ -49,16 +49,16 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String modelName;
 
     private String version;
 
-    public ModelVersionImpl withExistingModel(String resourceGroupName, String workspaceName, String name) {
+    public ModelVersionImpl withExistingModel(String resourceGroupName, String registryName, String modelName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.modelName = modelName;
         return this;
     }
 
@@ -66,10 +66,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -77,9 +75,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), context);
         return this;
     }
 
@@ -97,10 +94,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -108,9 +103,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), context);
         return this;
     }
 
@@ -120,8 +114,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "models");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
+        this.modelName = Utils.getValueFromIdByName(innerObject.id(), "models");
         this.version = Utils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
@@ -129,8 +123,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+                .getRegistryModelVersions()
+                .getWithResponse(resourceGroupName, registryName, modelName, version, Context.NONE)
                 .getValue();
         return this;
     }
@@ -139,8 +133,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+                .getRegistryModelVersions()
+                .getWithResponse(resourceGroupName, registryName, modelName, version, context)
                 .getValue();
         return this;
     }
