@@ -41,6 +41,10 @@ public final class IncidentOwnerInfo {
     @JsonProperty(value = "ownerType")
     private OwnerType ownerType;
 
+    /** Creates an instance of IncidentOwnerInfo class. */
+    public IncidentOwnerInfo() {
+    }
+
     /**
      * Get the email property: The email of the user the incident is assigned to.
      *

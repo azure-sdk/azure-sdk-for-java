@@ -17,6 +17,10 @@ public final class MstiDataConnectorDataTypesBingSafetyPhishingUrl extends DataC
     @JsonProperty(value = "lookbackPeriod", required = true)
     private String lookbackPeriod;
 
+    /** Creates an instance of MstiDataConnectorDataTypesBingSafetyPhishingUrl class. */
+    public MstiDataConnectorDataTypesBingSafetyPhishingUrl() {
+    }
+
     /**
      * Get the lookbackPeriod property: lookback period.
      *

@@ -13,6 +13,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRuleCommonProperties;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
@@ -89,6 +90,10 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
      */
     @JsonProperty(value = "incidentConfiguration")
     private IncidentConfiguration incidentConfiguration;
+
+    /** Creates an instance of ScheduledAlertRuleProperties class. */
+    public ScheduledAlertRuleProperties() {
+    }
 
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
@@ -374,6 +379,14 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     @Override
     public ScheduledAlertRuleProperties withAlertDetailsOverride(AlertDetailsOverride alertDetailsOverride) {
         super.withAlertDetailsOverride(alertDetailsOverride);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ScheduledAlertRuleProperties withSentinelEntitiesMappings(
+        List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        super.withSentinelEntitiesMappings(sentinelEntitiesMappings);
         return this;
     }
 

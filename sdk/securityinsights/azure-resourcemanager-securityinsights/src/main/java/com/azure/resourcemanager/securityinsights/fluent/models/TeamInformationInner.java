@@ -41,6 +41,10 @@ public final class TeamInformationInner {
     @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
+    /** Creates an instance of TeamInformationInner class. */
+    public TeamInformationInner() {
+    }
+
     /**
      * Get the teamId property: Team ID.
      *

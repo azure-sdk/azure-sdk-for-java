@@ -25,6 +25,7 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
 import com.azure.resourcemanager.securityinsights.implementation.ActionsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.AlertRuleOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AlertRuleTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AlertRulesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.AutomationRulesImpl;
@@ -41,8 +42,15 @@ import com.azure.resourcemanager.securityinsights.implementation.EntityQueriesIm
 import com.azure.resourcemanager.securityinsights.implementation.EntityQueryTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntityRelationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.FileImportsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetRecommendationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetTriggeredAnalyticsRuleRunsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.HuntCommentsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.HuntRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.HuntsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentCommentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.IncidentTasksImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IpGeodatasImpl;
 import com.azure.resourcemanager.securityinsights.implementation.MetadatasImpl;
@@ -57,9 +65,12 @@ import com.azure.resourcemanager.securityinsights.implementation.SourceControlsO
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorMetricsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.TriggeredAnalyticsRuleRunOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.UpdatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistItemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistsImpl;
 import com.azure.resourcemanager.securityinsights.models.Actions;
+import com.azure.resourcemanager.securityinsights.models.AlertRuleOperations;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplates;
 import com.azure.resourcemanager.securityinsights.models.AlertRules;
 import com.azure.resourcemanager.securityinsights.models.AutomationRules;
@@ -76,8 +87,15 @@ import com.azure.resourcemanager.securityinsights.models.EntityQueries;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplates;
 import com.azure.resourcemanager.securityinsights.models.EntityRelations;
 import com.azure.resourcemanager.securityinsights.models.FileImports;
+import com.azure.resourcemanager.securityinsights.models.GetRecommendations;
+import com.azure.resourcemanager.securityinsights.models.GetTriggeredAnalyticsRuleRuns;
+import com.azure.resourcemanager.securityinsights.models.Gets;
+import com.azure.resourcemanager.securityinsights.models.HuntComments;
+import com.azure.resourcemanager.securityinsights.models.HuntRelations;
+import com.azure.resourcemanager.securityinsights.models.Hunts;
 import com.azure.resourcemanager.securityinsights.models.IncidentComments;
 import com.azure.resourcemanager.securityinsights.models.IncidentRelations;
+import com.azure.resourcemanager.securityinsights.models.IncidentTasks;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
 import com.azure.resourcemanager.securityinsights.models.IpGeodatas;
 import com.azure.resourcemanager.securityinsights.models.Metadatas;
@@ -91,6 +109,8 @@ import com.azure.resourcemanager.securityinsights.models.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorMetrics;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicators;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
+import com.azure.resourcemanager.securityinsights.models.TriggeredAnalyticsRuleRunOperations;
+import com.azure.resourcemanager.securityinsights.models.Updates;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
 import java.time.Duration;
@@ -139,15 +159,29 @@ public final class SecurityInsightsManager {
 
     private FileImports fileImports;
 
+    private Hunts hunts;
+
+    private HuntRelations huntRelations;
+
+    private HuntComments huntComments;
+
     private IncidentComments incidentComments;
 
     private IncidentRelations incidentRelations;
+
+    private IncidentTasks incidentTasks;
 
     private Metadatas metadatas;
 
     private OfficeConsents officeConsents;
 
     private SentinelOnboardingStates sentinelOnboardingStates;
+
+    private GetRecommendations getRecommendations;
+
+    private Gets gets;
+
+    private Updates updates;
 
     private SecurityMLAnalyticsSettings securityMLAnalyticsSettings;
 
@@ -162,6 +196,12 @@ public final class SecurityInsightsManager {
     private ThreatIntelligenceIndicatorsOperations threatIntelligenceIndicatorsOperations;
 
     private ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics;
+
+    private TriggeredAnalyticsRuleRunOperations triggeredAnalyticsRuleRunOperations;
+
+    private GetTriggeredAnalyticsRuleRuns getTriggeredAnalyticsRuleRuns;
+
+    private AlertRuleOperations alertRuleOperations;
 
     private Watchlists watchlists;
 
@@ -338,7 +378,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -600,6 +640,42 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of Hunts. It manages Hunt.
+     *
+     * @return Resource collection API of Hunts.
+     */
+    public Hunts hunts() {
+        if (this.hunts == null) {
+            this.hunts = new HuntsImpl(clientObject.getHunts(), this);
+        }
+        return hunts;
+    }
+
+    /**
+     * Gets the resource collection API of HuntRelations. It manages HuntRelation.
+     *
+     * @return Resource collection API of HuntRelations.
+     */
+    public HuntRelations huntRelations() {
+        if (this.huntRelations == null) {
+            this.huntRelations = new HuntRelationsImpl(clientObject.getHuntRelations(), this);
+        }
+        return huntRelations;
+    }
+
+    /**
+     * Gets the resource collection API of HuntComments. It manages HuntComment.
+     *
+     * @return Resource collection API of HuntComments.
+     */
+    public HuntComments huntComments() {
+        if (this.huntComments == null) {
+            this.huntComments = new HuntCommentsImpl(clientObject.getHuntComments(), this);
+        }
+        return huntComments;
+    }
+
+    /**
      * Gets the resource collection API of IncidentComments. It manages IncidentComment.
      *
      * @return Resource collection API of IncidentComments.
@@ -621,6 +697,18 @@ public final class SecurityInsightsManager {
             this.incidentRelations = new IncidentRelationsImpl(clientObject.getIncidentRelations(), this);
         }
         return incidentRelations;
+    }
+
+    /**
+     * Gets the resource collection API of IncidentTasks. It manages IncidentTask.
+     *
+     * @return Resource collection API of IncidentTasks.
+     */
+    public IncidentTasks incidentTasks() {
+        if (this.incidentTasks == null) {
+            this.incidentTasks = new IncidentTasksImpl(clientObject.getIncidentTasks(), this);
+        }
+        return incidentTasks;
     }
 
     /**
@@ -658,6 +746,42 @@ public final class SecurityInsightsManager {
                 new SentinelOnboardingStatesImpl(clientObject.getSentinelOnboardingStates(), this);
         }
         return sentinelOnboardingStates;
+    }
+
+    /**
+     * Gets the resource collection API of GetRecommendations.
+     *
+     * @return Resource collection API of GetRecommendations.
+     */
+    public GetRecommendations getRecommendations() {
+        if (this.getRecommendations == null) {
+            this.getRecommendations = new GetRecommendationsImpl(clientObject.getGetRecommendations(), this);
+        }
+        return getRecommendations;
+    }
+
+    /**
+     * Gets the resource collection API of Gets.
+     *
+     * @return Resource collection API of Gets.
+     */
+    public Gets gets() {
+        if (this.gets == null) {
+            this.gets = new GetsImpl(clientObject.getGets(), this);
+        }
+        return gets;
+    }
+
+    /**
+     * Gets the resource collection API of Updates.
+     *
+     * @return Resource collection API of Updates.
+     */
+    public Updates updates() {
+        if (this.updates == null) {
+            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+        }
+        return updates;
     }
 
     /**
@@ -748,6 +872,45 @@ public final class SecurityInsightsManager {
                 new ThreatIntelligenceIndicatorMetricsImpl(clientObject.getThreatIntelligenceIndicatorMetrics(), this);
         }
         return threatIntelligenceIndicatorMetrics;
+    }
+
+    /**
+     * Gets the resource collection API of TriggeredAnalyticsRuleRunOperations.
+     *
+     * @return Resource collection API of TriggeredAnalyticsRuleRunOperations.
+     */
+    public TriggeredAnalyticsRuleRunOperations triggeredAnalyticsRuleRunOperations() {
+        if (this.triggeredAnalyticsRuleRunOperations == null) {
+            this.triggeredAnalyticsRuleRunOperations =
+                new TriggeredAnalyticsRuleRunOperationsImpl(
+                    clientObject.getTriggeredAnalyticsRuleRunOperations(), this);
+        }
+        return triggeredAnalyticsRuleRunOperations;
+    }
+
+    /**
+     * Gets the resource collection API of GetTriggeredAnalyticsRuleRuns.
+     *
+     * @return Resource collection API of GetTriggeredAnalyticsRuleRuns.
+     */
+    public GetTriggeredAnalyticsRuleRuns getTriggeredAnalyticsRuleRuns() {
+        if (this.getTriggeredAnalyticsRuleRuns == null) {
+            this.getTriggeredAnalyticsRuleRuns =
+                new GetTriggeredAnalyticsRuleRunsImpl(clientObject.getGetTriggeredAnalyticsRuleRuns(), this);
+        }
+        return getTriggeredAnalyticsRuleRuns;
+    }
+
+    /**
+     * Gets the resource collection API of AlertRuleOperations.
+     *
+     * @return Resource collection API of AlertRuleOperations.
+     */
+    public AlertRuleOperations alertRuleOperations() {
+        if (this.alertRuleOperations == null) {
+            this.alertRuleOperations = new AlertRuleOperationsImpl(clientObject.getAlertRuleOperations(), this);
+        }
+        return alertRuleOperations;
     }
 
     /**

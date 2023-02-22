@@ -35,6 +35,10 @@ public class EntityQueryItemProperties {
     @JsonProperty(value = "entitiesFilter")
     private Object entitiesFilter;
 
+    /** Creates an instance of EntityQueryItemProperties class. */
+    public EntityQueryItemProperties() {
+    }
+
     /**
      * Get the dataTypes property: Data types for template.
      *
