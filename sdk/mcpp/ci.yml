@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/mcpp/ci.yml
+      - sdk/mcpp/azure-resourcemanager-mcpp/
+    exclude:
+      - sdk/mcpp/pom.xml
+      - sdk/mcpp/azure-resourcemanager-mcpp/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/mcpp/ci.yml
+      - sdk/mcpp/azure-resourcemanager-mcpp/
+    exclude:
+      - sdk/mcpp/pom.xml
+      - sdk/mcpp/azure-resourcemanager-mcpp/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagermcpp
+    displayName: azure-resourcemanager-mcpp
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: mcpp
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-mcpp
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermcpp
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermcpp }}
