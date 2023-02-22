@@ -26,7 +26,7 @@ public final class ValidationResultItem {
      * The result of validation
      */
     @JsonProperty(value = "result")
-    private ValidationResultStatus result;
+    private ValidationItemResult result;
 
     /*
      * The error message of validation result
@@ -39,6 +39,10 @@ public final class ValidationResultItem {
      */
     @JsonProperty(value = "errorCode")
     private String errorCode;
+
+    /** Creates an instance of ValidationResultItem class. */
+    public ValidationResultItem() {
+    }
 
     /**
      * Get the name property: The validation item name.
@@ -85,7 +89,7 @@ public final class ValidationResultItem {
      *
      * @return the result value.
      */
-    public ValidationResultStatus result() {
+    public ValidationItemResult result() {
         return this.result;
     }
 
@@ -95,7 +99,7 @@ public final class ValidationResultItem {
      * @param result the result value to set.
      * @return the ValidationResultItem object itself.
      */
-    public ValidationResultItem withResult(ValidationResultStatus result) {
+    public ValidationResultItem withResult(ValidationItemResult result) {
         this.result = result;
         return this;
     }

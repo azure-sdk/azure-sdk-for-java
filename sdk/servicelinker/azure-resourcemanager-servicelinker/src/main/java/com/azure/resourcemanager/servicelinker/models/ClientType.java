@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ClientType. */
+/** The application client type. */
 public final class ClientType extends ExpandableStringEnum<ClientType> {
     /** Static value none for ClientType. */
     public static final ClientType NONE = fromString("none");
@@ -39,6 +39,15 @@ public final class ClientType extends ExpandableStringEnum<ClientType> {
 
     /** Static value springBoot for ClientType. */
     public static final ClientType SPRING_BOOT = fromString("springBoot");
+
+    /**
+     * Creates a new instance of ClientType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ClientType() {
+    }
 
     /**
      * Creates or finds a ClientType from its string representation.
