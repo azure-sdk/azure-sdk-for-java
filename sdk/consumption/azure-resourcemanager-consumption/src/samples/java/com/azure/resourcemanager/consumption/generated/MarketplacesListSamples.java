@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Marketplaces List. */
 public final class MarketplacesListSamples {
     /*
@@ -20,7 +18,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -35,7 +38,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/enrollmentAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/enrollmentAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -49,7 +57,12 @@ public final class MarketplacesListSamples {
     public static void subscriptionMarketplacesList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -64,7 +77,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/enrollmentAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/enrollmentAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -77,7 +95,9 @@ public final class MarketplacesListSamples {
      */
     public static void departmentMarketplacesListForBillingPeriod(
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.marketplaces().list("providers/Microsoft.Billing/departments/123456", null, null, null, Context.NONE);
+        manager
+            .marketplaces()
+            .list("providers/Microsoft.Billing/departments/123456", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -92,7 +112,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -107,7 +132,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -119,7 +149,9 @@ public final class MarketplacesListSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void departmentMarketplacesList(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.marketplaces().list("providers/Microsoft.Billing/departments/123456", null, null, null, Context.NONE);
+        manager
+            .marketplaces()
+            .list("providers/Microsoft.Billing/departments/123456", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -134,7 +166,12 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -149,6 +186,11 @@ public final class MarketplacesListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .marketplaces()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456",
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
