@@ -21,15 +21,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.PriceSheetsClient;
-import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultInner;
+import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultV2Inner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PriceSheetsClient. */
 public final class PriceSheetsClientImpl implements PriceSheetsClient {
-    private final ClientLogger logger = new ClientLogger(PriceSheetsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final PriceSheetsService service;
 
@@ -53,12 +50,12 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConsumptionManagemen")
-    private interface PriceSheetsService {
+    public interface PriceSheetsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Consumption/pricesheets/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PriceSheetResultInner>> get(
+        Mono<Response<PriceSheetResultV2Inner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("$expand") String expand,
             @QueryParam("$skiptoken") String skiptoken,
@@ -74,7 +71,7 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
                 + "/Microsoft.Consumption/pricesheets/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PriceSheetResultInner>> getByBillingPeriod(
+        Mono<Response<PriceSheetResultV2Inner>> getByBillingPeriod(
             @HostParam("$host") String endpoint,
             @QueryParam("$expand") String expand,
             @QueryParam("$skiptoken") String skiptoken,
@@ -87,8 +84,9 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
     }
 
     /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
      *
+     * @param subscriptionId Azure Subscription ID.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
@@ -98,21 +96,19 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
+     * @return an pricesheet resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PriceSheetResultInner>> getWithResponseAsync(String expand, String skiptoken, Integer top) {
+    private Mono<Response<PriceSheetResultV2Inner>> getWithResponseAsync(
+        String subscriptionId, String expand, String skiptoken, Integer top) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -124,7 +120,7 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
                             expand,
                             skiptoken,
                             top,
-                            this.client.getSubscriptionId(),
+                            subscriptionId,
                             this.client.getApiVersion(),
                             accept,
                             context))
@@ -132,8 +128,9 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
     }
 
     /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
      *
+     * @param subscriptionId Azure Subscription ID.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
@@ -144,22 +141,19 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
+     * @return an pricesheet resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PriceSheetResultInner>> getWithResponseAsync(
-        String expand, String skiptoken, Integer top, Context context) {
+    private Mono<Response<PriceSheetResultV2Inner>> getWithResponseAsync(
+        String subscriptionId, String expand, String skiptoken, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -169,80 +163,34 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
                 expand,
                 skiptoken,
                 top,
-                this.client.getSubscriptionId(),
+                subscriptionId,
                 this.client.getApiVersion(),
                 accept,
                 context);
     }
 
     /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
      *
-     * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
-     *     are not included when returning price sheet.
-     * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
-     *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
-     *     specifies a starting point to use for subsequent calls.
-     * @param top May be used to limit the number of results to the top N results.
+     * @param subscriptionId Azure Subscription ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
+     * @return an pricesheet resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PriceSheetResultInner> getAsync(String expand, String skiptoken, Integer top) {
-        return getWithResponseAsync(expand, skiptoken, top)
-            .flatMap(
-                (Response<PriceSheetResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PriceSheetResultInner> getAsync() {
+    private Mono<PriceSheetResultV2Inner> getAsync(String subscriptionId) {
         final String expand = null;
         final String skiptoken = null;
         final Integer top = null;
-        return getWithResponseAsync(expand, skiptoken, top)
-            .flatMap(
-                (Response<PriceSheetResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getWithResponseAsync(subscriptionId, expand, skiptoken, top)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
      *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PriceSheetResultInner get() {
-        final String expand = null;
-        final String skiptoken = null;
-        final Integer top = null;
-        return getAsync(expand, skiptoken, top).block();
-    }
-
-    /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
-     *
+     * @param subscriptionId Azure Subscription ID.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
@@ -253,18 +201,36 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
+     * @return an pricesheet resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PriceSheetResultInner> getWithResponse(
-        String expand, String skiptoken, Integer top, Context context) {
-        return getWithResponseAsync(expand, skiptoken, top, context).block();
+    public Response<PriceSheetResultV2Inner> getWithResponse(
+        String subscriptionId, String expand, String skiptoken, Integer top, Context context) {
+        return getWithResponseAsync(subscriptionId, expand, skiptoken, top, context).block();
+    }
+
+    /**
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
+     *
+     * @param subscriptionId Azure Subscription ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an pricesheet resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PriceSheetResultV2Inner get(String subscriptionId) {
+        final String expand = null;
+        final String skiptoken = null;
+        final Integer top = null;
+        return getWithResponse(subscriptionId, expand, skiptoken, top, Context.NONE).getValue();
     }
 
     /**
      * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
      * for May 1, 2014 or later.
      *
+     * @param subscriptionId Azure Subscription ID.
      * @param billingPeriodName Billing Period Name.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
@@ -275,22 +241,20 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a scope by subscriptionId and billing period.
+     * @return the price sheet for a scope by subscriptionId and billing period along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PriceSheetResultInner>> getByBillingPeriodWithResponseAsync(
-        String billingPeriodName, String expand, String skiptoken, Integer top) {
+    private Mono<Response<PriceSheetResultV2Inner>> getByBillingPeriodWithResponseAsync(
+        String subscriptionId, String billingPeriodName, String expand, String skiptoken, Integer top) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         if (billingPeriodName == null) {
             return Mono
@@ -306,7 +270,7 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
                             expand,
                             skiptoken,
                             top,
-                            this.client.getSubscriptionId(),
+                            subscriptionId,
                             this.client.getApiVersion(),
                             billingPeriodName,
                             accept,
@@ -318,6 +282,7 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
      * for May 1, 2014 or later.
      *
+     * @param subscriptionId Azure Subscription ID.
      * @param billingPeriodName Billing Period Name.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
@@ -329,22 +294,25 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a scope by subscriptionId and billing period.
+     * @return the price sheet for a scope by subscriptionId and billing period along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PriceSheetResultInner>> getByBillingPeriodWithResponseAsync(
-        String billingPeriodName, String expand, String skiptoken, Integer top, Context context) {
+    private Mono<Response<PriceSheetResultV2Inner>> getByBillingPeriodWithResponseAsync(
+        String subscriptionId,
+        String billingPeriodName,
+        String expand,
+        String skiptoken,
+        Integer top,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         if (billingPeriodName == null) {
             return Mono
@@ -358,7 +326,7 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
                 expand,
                 skiptoken,
                 top,
-                this.client.getSubscriptionId(),
+                subscriptionId,
                 this.client.getApiVersion(),
                 billingPeriodName,
                 accept,
@@ -369,80 +337,28 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
      * for May 1, 2014 or later.
      *
-     * @param billingPeriodName Billing Period Name.
-     * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
-     *     are not included when returning price sheet.
-     * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
-     *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
-     *     specifies a starting point to use for subsequent calls.
-     * @param top May be used to limit the number of results to the top N results.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a scope by subscriptionId and billing period.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PriceSheetResultInner> getByBillingPeriodAsync(
-        String billingPeriodName, String expand, String skiptoken, Integer top) {
-        return getByBillingPeriodWithResponseAsync(billingPeriodName, expand, skiptoken, top)
-            .flatMap(
-                (Response<PriceSheetResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
-     * for May 1, 2014 or later.
-     *
+     * @param subscriptionId Azure Subscription ID.
      * @param billingPeriodName Billing Period Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a scope by subscriptionId and billing period.
+     * @return the price sheet for a scope by subscriptionId and billing period on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PriceSheetResultInner> getByBillingPeriodAsync(String billingPeriodName) {
+    private Mono<PriceSheetResultV2Inner> getByBillingPeriodAsync(String subscriptionId, String billingPeriodName) {
         final String expand = null;
         final String skiptoken = null;
         final Integer top = null;
-        return getByBillingPeriodWithResponseAsync(billingPeriodName, expand, skiptoken, top)
-            .flatMap(
-                (Response<PriceSheetResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getByBillingPeriodWithResponseAsync(subscriptionId, billingPeriodName, expand, skiptoken, top)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
      * for May 1, 2014 or later.
      *
-     * @param billingPeriodName Billing Period Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a scope by subscriptionId and billing period.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PriceSheetResultInner getByBillingPeriod(String billingPeriodName) {
-        final String expand = null;
-        final String skiptoken = null;
-        final Integer top = null;
-        return getByBillingPeriodAsync(billingPeriodName, expand, skiptoken, top).block();
-    }
-
-    /**
-     * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
-     * for May 1, 2014 or later.
-     *
+     * @param subscriptionId Azure Subscription ID.
      * @param billingPeriodName Billing Period Name.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
@@ -454,11 +370,37 @@ public final class PriceSheetsClientImpl implements PriceSheetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the price sheet for a scope by subscriptionId and billing period along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PriceSheetResultV2Inner> getByBillingPeriodWithResponse(
+        String subscriptionId,
+        String billingPeriodName,
+        String expand,
+        String skiptoken,
+        Integer top,
+        Context context) {
+        return getByBillingPeriodWithResponseAsync(subscriptionId, billingPeriodName, expand, skiptoken, top, context)
+            .block();
+    }
+
+    /**
+     * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
+     * for May 1, 2014 or later.
+     *
+     * @param subscriptionId Azure Subscription ID.
+     * @param billingPeriodName Billing Period Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the price sheet for a scope by subscriptionId and billing period.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PriceSheetResultInner> getByBillingPeriodWithResponse(
-        String billingPeriodName, String expand, String skiptoken, Integer top, Context context) {
-        return getByBillingPeriodWithResponseAsync(billingPeriodName, expand, skiptoken, top, context).block();
+    public PriceSheetResultV2Inner getByBillingPeriod(String subscriptionId, String billingPeriodName) {
+        final String expand = null;
+        final String skiptoken = null;
+        final Integer top = null;
+        return getByBillingPeriodWithResponse(subscriptionId, billingPeriodName, expand, skiptoken, top, Context.NONE)
+            .getValue();
     }
 }

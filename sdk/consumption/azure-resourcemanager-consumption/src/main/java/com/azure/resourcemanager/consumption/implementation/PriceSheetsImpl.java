@@ -9,13 +9,12 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.PriceSheetsClient;
-import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultInner;
-import com.azure.resourcemanager.consumption.models.PriceSheetResult;
+import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultV2Inner;
+import com.azure.resourcemanager.consumption.models.PriceSheetResultV2;
 import com.azure.resourcemanager.consumption.models.PriceSheets;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PriceSheetsImpl implements PriceSheets {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PriceSheetsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PriceSheetsImpl.class);
 
     private final PriceSheetsClient innerClient;
 
@@ -27,47 +26,56 @@ public final class PriceSheetsImpl implements PriceSheets {
         this.serviceManager = serviceManager;
     }
 
-    public PriceSheetResult get() {
-        PriceSheetResultInner inner = this.serviceClient().get();
-        if (inner != null) {
-            return new PriceSheetResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<PriceSheetResult> getWithResponse(String expand, String skiptoken, Integer top, Context context) {
-        Response<PriceSheetResultInner> inner = this.serviceClient().getWithResponse(expand, skiptoken, top, context);
+    public Response<PriceSheetResultV2> getWithResponse(
+        String subscriptionId, String expand, String skiptoken, Integer top, Context context) {
+        Response<PriceSheetResultV2Inner> inner =
+            this.serviceClient().getWithResponse(subscriptionId, expand, skiptoken, top, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new PriceSheetResultImpl(inner.getValue(), this.manager()));
+                new PriceSheetResultV2Impl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public PriceSheetResult getByBillingPeriod(String billingPeriodName) {
-        PriceSheetResultInner inner = this.serviceClient().getByBillingPeriod(billingPeriodName);
+    public PriceSheetResultV2 get(String subscriptionId) {
+        PriceSheetResultV2Inner inner = this.serviceClient().get(subscriptionId);
         if (inner != null) {
-            return new PriceSheetResultImpl(inner, this.manager());
+            return new PriceSheetResultV2Impl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<PriceSheetResult> getByBillingPeriodWithResponse(
-        String billingPeriodName, String expand, String skiptoken, Integer top, Context context) {
-        Response<PriceSheetResultInner> inner =
-            this.serviceClient().getByBillingPeriodWithResponse(billingPeriodName, expand, skiptoken, top, context);
+    public Response<PriceSheetResultV2> getByBillingPeriodWithResponse(
+        String subscriptionId,
+        String billingPeriodName,
+        String expand,
+        String skiptoken,
+        Integer top,
+        Context context) {
+        Response<PriceSheetResultV2Inner> inner =
+            this
+                .serviceClient()
+                .getByBillingPeriodWithResponse(subscriptionId, billingPeriodName, expand, skiptoken, top, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new PriceSheetResultImpl(inner.getValue(), this.manager()));
+                new PriceSheetResultV2Impl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PriceSheetResultV2 getByBillingPeriod(String subscriptionId, String billingPeriodName) {
+        PriceSheetResultV2Inner inner = this.serviceClient().getByBillingPeriod(subscriptionId, billingPeriodName);
+        if (inner != null) {
+            return new PriceSheetResultV2Impl(inner, this.manager());
         } else {
             return null;
         }

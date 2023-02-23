@@ -15,57 +15,28 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.consumption.fluent.AggregatedCostsClient;
-import com.azure.resourcemanager.consumption.fluent.BalancesClient;
-import com.azure.resourcemanager.consumption.fluent.BudgetsClient;
-import com.azure.resourcemanager.consumption.fluent.ChargesClient;
 import com.azure.resourcemanager.consumption.fluent.ConsumptionManagementClient;
-import com.azure.resourcemanager.consumption.fluent.CreditsClient;
-import com.azure.resourcemanager.consumption.fluent.EventsOperationsClient;
-import com.azure.resourcemanager.consumption.fluent.LotsOperationsClient;
-import com.azure.resourcemanager.consumption.fluent.MarketplacesClient;
-import com.azure.resourcemanager.consumption.fluent.OperationsClient;
+import com.azure.resourcemanager.consumption.fluent.OperationsResultsClient;
 import com.azure.resourcemanager.consumption.fluent.PriceSheetsClient;
-import com.azure.resourcemanager.consumption.fluent.ReservationRecommendationDetailsClient;
-import com.azure.resourcemanager.consumption.fluent.ReservationRecommendationsClient;
-import com.azure.resourcemanager.consumption.fluent.ReservationTransactionsClient;
-import com.azure.resourcemanager.consumption.fluent.ReservationsDetailsClient;
-import com.azure.resourcemanager.consumption.fluent.ReservationsSummariesClient;
-import com.azure.resourcemanager.consumption.fluent.TagsClient;
-import com.azure.resourcemanager.consumption.fluent.UsageDetailsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the ConsumptionManagementClientImpl type. */
 @ServiceClient(builder = ConsumptionManagementClientBuilder.class)
 public final class ConsumptionManagementClientImpl implements ConsumptionManagementClient {
-    private final ClientLogger logger = new ClientLogger(ConsumptionManagementClientImpl.class);
-
-    /** Azure Subscription ID. */
-    private final String subscriptionId;
-
-    /**
-     * Gets Azure Subscription ID.
-     *
-     * @return the subscriptionId value.
-     */
-    public String getSubscriptionId() {
-        return this.subscriptionId;
-    }
-
     /** server parameter. */
     private final String endpoint;
 
@@ -126,138 +97,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         return this.defaultPollInterval;
     }
 
-    /** The UsageDetailsClient object to access its operations. */
-    private final UsageDetailsClient usageDetails;
-
-    /**
-     * Gets the UsageDetailsClient object to access its operations.
-     *
-     * @return the UsageDetailsClient object.
-     */
-    public UsageDetailsClient getUsageDetails() {
-        return this.usageDetails;
-    }
-
-    /** The MarketplacesClient object to access its operations. */
-    private final MarketplacesClient marketplaces;
-
-    /**
-     * Gets the MarketplacesClient object to access its operations.
-     *
-     * @return the MarketplacesClient object.
-     */
-    public MarketplacesClient getMarketplaces() {
-        return this.marketplaces;
-    }
-
-    /** The BudgetsClient object to access its operations. */
-    private final BudgetsClient budgets;
-
-    /**
-     * Gets the BudgetsClient object to access its operations.
-     *
-     * @return the BudgetsClient object.
-     */
-    public BudgetsClient getBudgets() {
-        return this.budgets;
-    }
-
-    /** The TagsClient object to access its operations. */
-    private final TagsClient tags;
-
-    /**
-     * Gets the TagsClient object to access its operations.
-     *
-     * @return the TagsClient object.
-     */
-    public TagsClient getTags() {
-        return this.tags;
-    }
-
-    /** The ChargesClient object to access its operations. */
-    private final ChargesClient charges;
-
-    /**
-     * Gets the ChargesClient object to access its operations.
-     *
-     * @return the ChargesClient object.
-     */
-    public ChargesClient getCharges() {
-        return this.charges;
-    }
-
-    /** The BalancesClient object to access its operations. */
-    private final BalancesClient balances;
-
-    /**
-     * Gets the BalancesClient object to access its operations.
-     *
-     * @return the BalancesClient object.
-     */
-    public BalancesClient getBalances() {
-        return this.balances;
-    }
-
-    /** The ReservationsSummariesClient object to access its operations. */
-    private final ReservationsSummariesClient reservationsSummaries;
-
-    /**
-     * Gets the ReservationsSummariesClient object to access its operations.
-     *
-     * @return the ReservationsSummariesClient object.
-     */
-    public ReservationsSummariesClient getReservationsSummaries() {
-        return this.reservationsSummaries;
-    }
-
-    /** The ReservationsDetailsClient object to access its operations. */
-    private final ReservationsDetailsClient reservationsDetails;
-
-    /**
-     * Gets the ReservationsDetailsClient object to access its operations.
-     *
-     * @return the ReservationsDetailsClient object.
-     */
-    public ReservationsDetailsClient getReservationsDetails() {
-        return this.reservationsDetails;
-    }
-
-    /** The ReservationRecommendationsClient object to access its operations. */
-    private final ReservationRecommendationsClient reservationRecommendations;
-
-    /**
-     * Gets the ReservationRecommendationsClient object to access its operations.
-     *
-     * @return the ReservationRecommendationsClient object.
-     */
-    public ReservationRecommendationsClient getReservationRecommendations() {
-        return this.reservationRecommendations;
-    }
-
-    /** The ReservationRecommendationDetailsClient object to access its operations. */
-    private final ReservationRecommendationDetailsClient reservationRecommendationDetails;
-
-    /**
-     * Gets the ReservationRecommendationDetailsClient object to access its operations.
-     *
-     * @return the ReservationRecommendationDetailsClient object.
-     */
-    public ReservationRecommendationDetailsClient getReservationRecommendationDetails() {
-        return this.reservationRecommendationDetails;
-    }
-
-    /** The ReservationTransactionsClient object to access its operations. */
-    private final ReservationTransactionsClient reservationTransactions;
-
-    /**
-     * Gets the ReservationTransactionsClient object to access its operations.
-     *
-     * @return the ReservationTransactionsClient object.
-     */
-    public ReservationTransactionsClient getReservationTransactions() {
-        return this.reservationTransactions;
-    }
-
     /** The PriceSheetsClient object to access its operations. */
     private final PriceSheetsClient priceSheets;
 
@@ -270,64 +109,16 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         return this.priceSheets;
     }
 
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
+    /** The OperationsResultsClient object to access its operations. */
+    private final OperationsResultsClient operationsResults;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the OperationsResultsClient object to access its operations.
      *
-     * @return the OperationsClient object.
+     * @return the OperationsResultsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /** The AggregatedCostsClient object to access its operations. */
-    private final AggregatedCostsClient aggregatedCosts;
-
-    /**
-     * Gets the AggregatedCostsClient object to access its operations.
-     *
-     * @return the AggregatedCostsClient object.
-     */
-    public AggregatedCostsClient getAggregatedCosts() {
-        return this.aggregatedCosts;
-    }
-
-    /** The EventsOperationsClient object to access its operations. */
-    private final EventsOperationsClient eventsOperations;
-
-    /**
-     * Gets the EventsOperationsClient object to access its operations.
-     *
-     * @return the EventsOperationsClient object.
-     */
-    public EventsOperationsClient getEventsOperations() {
-        return this.eventsOperations;
-    }
-
-    /** The LotsOperationsClient object to access its operations. */
-    private final LotsOperationsClient lotsOperations;
-
-    /**
-     * Gets the LotsOperationsClient object to access its operations.
-     *
-     * @return the LotsOperationsClient object.
-     */
-    public LotsOperationsClient getLotsOperations() {
-        return this.lotsOperations;
-    }
-
-    /** The CreditsClient object to access its operations. */
-    private final CreditsClient credits;
-
-    /**
-     * Gets the CreditsClient object to access its operations.
-     *
-     * @return the CreditsClient object.
-     */
-    public CreditsClient getCredits() {
-        return this.credits;
+    public OperationsResultsClient getOperationsResults() {
+        return this.operationsResults;
     }
 
     /**
@@ -337,7 +128,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Azure Subscription ID.
      * @param endpoint server parameter.
      */
     ConsumptionManagementClientImpl(
@@ -345,31 +135,14 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
         AzureEnvironment environment,
-        String subscriptionId,
         String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
-        this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-10-01";
-        this.usageDetails = new UsageDetailsClientImpl(this);
-        this.marketplaces = new MarketplacesClientImpl(this);
-        this.budgets = new BudgetsClientImpl(this);
-        this.tags = new TagsClientImpl(this);
-        this.charges = new ChargesClientImpl(this);
-        this.balances = new BalancesClientImpl(this);
-        this.reservationsSummaries = new ReservationsSummariesClientImpl(this);
-        this.reservationsDetails = new ReservationsDetailsClientImpl(this);
-        this.reservationRecommendations = new ReservationRecommendationsClientImpl(this);
-        this.reservationRecommendationDetails = new ReservationRecommendationDetailsClientImpl(this);
-        this.reservationTransactions = new ReservationTransactionsClientImpl(this);
+        this.apiVersion = "2023-03-01";
         this.priceSheets = new PriceSheetsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
-        this.aggregatedCosts = new AggregatedCostsClientImpl(this);
-        this.eventsOperations = new EventsOperationsClientImpl(this);
-        this.lotsOperations = new LotsOperationsClientImpl(this);
-        this.credits = new CreditsClientImpl(this);
+        this.operationsResults = new OperationsResultsClientImpl(this);
     }
 
     /**
@@ -388,10 +161,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -455,7 +225,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -514,4 +284,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConsumptionManagementClientImpl.class);
 }

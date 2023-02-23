@@ -10,17 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of PriceSheets. */
 public interface PriceSheets {
     /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
-     */
-    PriceSheetResult get();
-
-    /**
-     * Gets the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
-     *
+     * @param subscriptionId Azure Subscription ID.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
@@ -31,26 +23,27 @@ public interface PriceSheets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a subscription.
+     * @return an pricesheet resource along with {@link Response}.
      */
-    Response<PriceSheetResult> getWithResponse(String expand, String skiptoken, Integer top, Context context);
+    Response<PriceSheetResultV2> getWithResponse(
+        String subscriptionId, String expand, String skiptoken, Integer top, Context context);
 
     /**
-     * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
-     * for May 1, 2014 or later.
+     * List the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
      *
-     * @param billingPeriodName Billing Period Name.
+     * @param subscriptionId Azure Subscription ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the price sheet for a scope by subscriptionId and billing period.
+     * @return an pricesheet resource.
      */
-    PriceSheetResult getByBillingPeriod(String billingPeriodName);
+    PriceSheetResultV2 get(String subscriptionId);
 
     /**
      * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
      * for May 1, 2014 or later.
      *
+     * @param subscriptionId Azure Subscription ID.
      * @param billingPeriodName Billing Period Name.
      * @param expand May be used to expand the properties/meterDetails within a price sheet. By default, these fields
      *     are not included when returning price sheet.
@@ -62,8 +55,21 @@ public interface PriceSheets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the price sheet for a scope by subscriptionId and billing period along with {@link Response}.
+     */
+    Response<PriceSheetResultV2> getByBillingPeriodWithResponse(
+        String subscriptionId, String billingPeriodName, String expand, String skiptoken, Integer top, Context context);
+
+    /**
+     * Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only
+     * for May 1, 2014 or later.
+     *
+     * @param subscriptionId Azure Subscription ID.
+     * @param billingPeriodName Billing Period Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the price sheet for a scope by subscriptionId and billing period.
      */
-    Response<PriceSheetResult> getByBillingPeriodWithResponse(
-        String billingPeriodName, String expand, String skiptoken, Integer top, Context context);
+    PriceSheetResultV2 getByBillingPeriod(String subscriptionId, String billingPeriodName);
 }
