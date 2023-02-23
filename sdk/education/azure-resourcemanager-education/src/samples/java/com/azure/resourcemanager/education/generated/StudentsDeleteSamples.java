@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Students Delete. */
 public final class StudentsDeleteSamples {
     /*
@@ -20,6 +18,10 @@ public final class StudentsDeleteSamples {
         manager
             .students()
             .deleteWithResponse(
-                "{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", "{studentAlias}", Context.NONE);
+                "{billingAccountName}",
+                "{billingProfileName}",
+                "{invoiceSectionName}",
+                "{studentAlias}",
+                com.azure.core.util.Context.NONE);
     }
 }

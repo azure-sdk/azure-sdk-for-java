@@ -54,7 +54,7 @@ public final class GrantsClientImpl implements GrantsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "EducationManagementC")
-    private interface GrantsService {
+    public interface GrantsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Education/grants")
         @ExpectedResponses({200})
@@ -270,8 +270,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -324,8 +324,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -376,8 +376,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -396,8 +396,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -415,8 +415,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -436,8 +436,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -453,8 +453,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -472,8 +472,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -517,8 +517,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -560,8 +560,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -578,8 +578,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -597,8 +597,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

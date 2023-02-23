@@ -34,8 +34,8 @@ public interface Grants {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -47,8 +47,8 @@ public interface Grants {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -63,8 +63,8 @@ public interface Grants {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -79,8 +79,8 @@ public interface Grants {
     /**
      * Get details for a specific grant linked to the provided billing account and billing profile.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

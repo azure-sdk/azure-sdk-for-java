@@ -17,6 +17,15 @@ public final class StudentRole extends ExpandableStringEnum<StudentRole> {
     public static final StudentRole ADMIN = fromString("Admin");
 
     /**
+     * Creates a new instance of StudentRole value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public StudentRole() {
+    }
+
+    /**
      * Creates or finds a StudentRole from its string representation.
      *
      * @param name a name to look for.

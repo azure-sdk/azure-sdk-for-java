@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Students Get. */
 public final class StudentsGetSamples {
     /*
@@ -20,6 +18,10 @@ public final class StudentsGetSamples {
         manager
             .students()
             .getWithResponse(
-                "{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", "{studentAlias}", Context.NONE);
+                "{billingAccountName}",
+                "{billingProfileName}",
+                "{invoiceSectionName}",
+                "{studentAlias}",
+                com.azure.core.util.Context.NONE);
     }
 }

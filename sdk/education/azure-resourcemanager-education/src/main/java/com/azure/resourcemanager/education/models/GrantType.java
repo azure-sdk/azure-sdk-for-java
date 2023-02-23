@@ -17,6 +17,15 @@ public final class GrantType extends ExpandableStringEnum<GrantType> {
     public static final GrantType ACADEMIC = fromString("Academic");
 
     /**
+     * Creates a new instance of GrantType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public GrantType() {
+    }
+
+    /**
      * Creates or finds a GrantType from its string representation.
      *
      * @param name a name to look for.

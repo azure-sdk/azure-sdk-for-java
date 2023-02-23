@@ -40,7 +40,7 @@ public interface StudentLabsClient {
     /**
      * Get the details for a specified lab associated with the student lab.
      *
-     * @param studentLabName Student lab name.
+     * @param studentLabName The ID that uniquely identifies a student lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -53,7 +53,7 @@ public interface StudentLabsClient {
     /**
      * Get the details for a specified lab associated with the student lab.
      *
-     * @param studentLabName Student lab name.
+     * @param studentLabName The ID that uniquely identifies a student lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
