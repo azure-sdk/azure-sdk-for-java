@@ -39,15 +39,6 @@ public final class DataConnectorsImpl implements DataConnectors {
         return Utils.mapPage(inner, inner1 -> new DataConnectorImpl(inner1, this.manager()));
     }
 
-    public DataConnector get(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        DataConnectorInner inner = this.serviceClient().get(resourceGroupName, workspaceName, dataConnectorId);
-        if (inner != null) {
-            return new DataConnectorImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DataConnector> getWithResponse(
         String resourceGroupName, String workspaceName, String dataConnectorId, Context context) {
         Response<DataConnectorInner> inner =
@@ -63,10 +54,8 @@ public final class DataConnectorsImpl implements DataConnectors {
         }
     }
 
-    public DataConnector createOrUpdate(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorInner dataConnector) {
-        DataConnectorInner inner =
-            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, dataConnectorId, dataConnector);
+    public DataConnector get(String resourceGroupName, String workspaceName, String dataConnectorId) {
+        DataConnectorInner inner = this.serviceClient().get(resourceGroupName, workspaceName, dataConnectorId);
         if (inner != null) {
             return new DataConnectorImpl(inner, this.manager());
         } else {
@@ -95,8 +84,15 @@ public final class DataConnectorsImpl implements DataConnectors {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, dataConnectorId);
+    public DataConnector createOrUpdate(
+        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorInner dataConnector) {
+        DataConnectorInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, dataConnectorId, dataConnector);
+        if (inner != null) {
+            return new DataConnectorImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -104,9 +100,8 @@ public final class DataConnectorsImpl implements DataConnectors {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, dataConnectorId, context);
     }
 
-    public void connect(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorConnectBody connectBody) {
-        this.serviceClient().connect(resourceGroupName, workspaceName, dataConnectorId, connectBody);
+    public void delete(String resourceGroupName, String workspaceName, String dataConnectorId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, dataConnectorId);
     }
 
     public Response<Void> connectWithResponse(
@@ -120,13 +115,18 @@ public final class DataConnectorsImpl implements DataConnectors {
             .connectWithResponse(resourceGroupName, workspaceName, dataConnectorId, connectBody, context);
     }
 
-    public void disconnect(String resourceGroupName, String workspaceName, String dataConnectorId) {
-        this.serviceClient().disconnect(resourceGroupName, workspaceName, dataConnectorId);
+    public void connect(
+        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorConnectBody connectBody) {
+        this.serviceClient().connect(resourceGroupName, workspaceName, dataConnectorId, connectBody);
     }
 
     public Response<Void> disconnectWithResponse(
         String resourceGroupName, String workspaceName, String dataConnectorId, Context context) {
         return this.serviceClient().disconnectWithResponse(resourceGroupName, workspaceName, dataConnectorId, context);
+    }
+
+    public void disconnect(String resourceGroupName, String workspaceName, String dataConnectorId) {
+        this.serviceClient().disconnect(resourceGroupName, workspaceName, dataConnectorId);
     }
 
     private DataConnectorsClient serviceClient() {

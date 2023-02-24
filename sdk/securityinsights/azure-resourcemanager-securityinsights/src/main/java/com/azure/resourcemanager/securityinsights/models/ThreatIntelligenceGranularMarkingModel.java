@@ -29,6 +29,10 @@ public final class ThreatIntelligenceGranularMarkingModel {
     @JsonProperty(value = "selectors")
     private List<String> selectors;
 
+    /** Creates an instance of ThreatIntelligenceGranularMarkingModel class. */
+    public ThreatIntelligenceGranularMarkingModel() {
+    }
+
     /**
      * Get the language property: Language granular marking model.
      *

@@ -41,15 +41,6 @@ public final class ActionsImpl implements Actions {
         return Utils.mapPage(inner, inner1 -> new ActionResponseImpl(inner1, this.manager()));
     }
 
-    public ActionResponse get(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
-        ActionResponseInner inner = this.serviceClient().get(resourceGroupName, workspaceName, ruleId, actionId);
-        if (inner != null) {
-            return new ActionResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ActionResponse> getWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, String actionId, Context context) {
         Response<ActionResponseInner> inner =
@@ -65,13 +56,22 @@ public final class ActionsImpl implements Actions {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, ruleId, actionId);
+    public ActionResponse get(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
+        ActionResponseInner inner = this.serviceClient().get(resourceGroupName, workspaceName, ruleId, actionId);
+        if (inner != null) {
+            return new ActionResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, String actionId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, ruleId, actionId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String ruleId, String actionId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, ruleId, actionId);
     }
 
     public ActionResponse getById(String id) {

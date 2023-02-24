@@ -19,6 +19,10 @@ public final class Office365ProjectDataConnectorProperties extends DataConnector
     @JsonProperty(value = "dataTypes", required = true)
     private Office365ProjectConnectorDataTypes dataTypes;
 
+    /** Creates an instance of Office365ProjectDataConnectorProperties class. */
+    public Office365ProjectDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *
