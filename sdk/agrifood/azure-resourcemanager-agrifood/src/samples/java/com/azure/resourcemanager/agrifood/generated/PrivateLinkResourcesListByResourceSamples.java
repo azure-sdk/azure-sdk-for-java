@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources ListByResource. */
 public final class PrivateLinkResourcesListByResourceSamples {
     /*
@@ -17,6 +15,8 @@ public final class PrivateLinkResourcesListByResourceSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.privateLinkResources().listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);
+        manager
+            .privateLinkResources()
+            .listByResource("examples-rg", "examples-farmbeatsResourceName", com.azure.core.util.Context.NONE);
     }
 }

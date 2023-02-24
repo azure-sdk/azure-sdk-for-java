@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FarmBeatsModels List. */
 public final class FarmBeatsModelsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class FarmBeatsModelsListSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void farmBeatsModelsListBySubscription(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().list(null, null, Context.NONE);
+        manager.farmBeatsModels().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
