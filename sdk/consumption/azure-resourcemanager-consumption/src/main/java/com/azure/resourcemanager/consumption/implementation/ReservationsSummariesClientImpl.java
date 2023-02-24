@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.ReservationsSummariesClient;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationSummaryInner;
 import com.azure.resourcemanager.consumption.models.Datagrain;
@@ -34,8 +33,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ReservationsSummariesClient. */
 public final class ReservationsSummariesClientImpl implements ReservationsSummariesClient {
-    private final ClientLogger logger = new ClientLogger(ReservationsSummariesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final ReservationsSummariesService service;
 
@@ -60,7 +57,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConsumptionManagemen")
-    private interface ReservationsSummariesService {
+    public interface ReservationsSummariesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/providers/Microsoft.Consumption"
@@ -93,12 +90,12 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get("/{scope}/providers/Microsoft.Consumption/reservationSummaries")
+        @Get("/{resourceScope}/providers/Microsoft.Consumption/reservationSummaries")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationSummariesListResult>> list(
             @HostParam("$host") String endpoint,
-            @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam(value = "resourceScope", encoded = true) String resourceScope,
             @QueryParam("grain") Datagrain grain,
             @QueryParam("startDate") String startDate,
             @QueryParam("endDate") String endDate,
@@ -150,7 +147,8 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderSinglePageAsync(
@@ -168,19 +166,14 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         if (grain == null) {
             return Mono.error(new IllegalArgumentException("Parameter grain is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByReservationOrder(
-                            this.client.getEndpoint(),
-                            reservationOrderId,
-                            grain,
-                            filter,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                            this.client.getEndpoint(), reservationOrderId, grain, filter, apiVersion, accept, context))
             .<PagedResponse<ReservationSummaryInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -204,7 +197,8 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderSinglePageAsync(
@@ -222,17 +216,12 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         if (grain == null) {
             return Mono.error(new IllegalArgumentException("Parameter grain is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByReservationOrder(
-                this.client.getEndpoint(),
-                reservationOrderId,
-                grain,
-                filter,
-                this.client.getApiVersion(),
-                accept,
-                context)
+                this.client.getEndpoint(), reservationOrderId, grain, filter, apiVersion, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -254,7 +243,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listByReservationOrderAsync(
@@ -272,7 +261,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listByReservationOrderAsync(String reservationOrderId, Datagrain grain) {
@@ -293,7 +282,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listByReservationOrderAsync(
@@ -311,7 +300,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationSummaryInner> listByReservationOrder(String reservationOrderId, Datagrain grain) {
@@ -330,7 +319,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationSummaryInner> listByReservationOrder(
@@ -349,7 +338,8 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderAndReservationSinglePageAsync(
@@ -370,6 +360,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         if (grain == null) {
             return Mono.error(new IllegalArgumentException("Parameter grain is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -381,7 +372,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
                             reservationId,
                             grain,
                             filter,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .<PagedResponse<ReservationSummaryInner>>map(
@@ -408,7 +399,8 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderAndReservationSinglePageAsync(
@@ -429,6 +421,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         if (grain == null) {
             return Mono.error(new IllegalArgumentException("Parameter grain is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -438,7 +431,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
                 reservationId,
                 grain,
                 filter,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context)
             .map(
@@ -463,7 +456,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listByReservationOrderAndReservationAsync(
@@ -482,7 +475,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listByReservationOrderAndReservationAsync(
@@ -505,7 +498,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listByReservationOrderAndReservationAsync(
@@ -526,7 +519,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationSummaryInner> listByReservationOrderAndReservation(
@@ -548,7 +541,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationSummaryInner> listByReservationOrderAndReservation(
@@ -560,7 +553,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -576,11 +569,12 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listSinglePageAsync(
-        String scope,
+        String resourceScope,
         Datagrain grain,
         String startDate,
         String endDate,
@@ -593,12 +587,13 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        if (resourceScope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
         }
         if (grain == null) {
             return Mono.error(new IllegalArgumentException("Parameter grain is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -606,14 +601,14 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
                     service
                         .list(
                             this.client.getEndpoint(),
-                            scope,
+                            resourceScope,
                             grain,
                             startDate,
                             endDate,
                             filter,
                             reservationId,
                             reservationOrderId,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .<PagedResponse<ReservationSummaryInner>>map(
@@ -631,7 +626,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -648,11 +643,12 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listSinglePageAsync(
-        String scope,
+        String resourceScope,
         Datagrain grain,
         String startDate,
         String endDate,
@@ -666,25 +662,26 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        if (resourceScope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
         }
         if (grain == null) {
             return Mono.error(new IllegalArgumentException("Parameter grain is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                scope,
+                resourceScope,
                 grain,
                 startDate,
                 endDate,
                 filter,
                 reservationId,
                 reservationOrderId,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context)
             .map(
@@ -701,7 +698,7 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -717,11 +714,11 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listAsync(
-        String scope,
+        String resourceScope,
         Datagrain grain,
         String startDate,
         String endDate,
@@ -729,14 +726,16 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         String reservationId,
         String reservationOrderId) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, grain, startDate, endDate, filter, reservationId, reservationOrderId),
+            () ->
+                listSinglePageAsync(
+                    resourceScope, grain, startDate, endDate, filter, reservationId, reservationOrderId),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -744,24 +743,26 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationSummaryInner> listAsync(String scope, Datagrain grain) {
+    private PagedFlux<ReservationSummaryInner> listAsync(String resourceScope, Datagrain grain) {
         final String startDate = null;
         final String endDate = null;
         final String filter = null;
         final String reservationId = null;
         final String reservationOrderId = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, grain, startDate, endDate, filter, reservationId, reservationOrderId),
+            () ->
+                listSinglePageAsync(
+                    resourceScope, grain, startDate, endDate, filter, reservationId, reservationOrderId),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -778,11 +779,11 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationSummaryInner> listAsync(
-        String scope,
+        String resourceScope,
         Datagrain grain,
         String startDate,
         String endDate,
@@ -793,14 +794,14 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         return new PagedFlux<>(
             () ->
                 listSinglePageAsync(
-                    scope, grain, startDate, endDate, filter, reservationId, reservationOrderId, context),
+                    resourceScope, grain, startDate, endDate, filter, reservationId, reservationOrderId, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -808,23 +809,23 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ReservationSummaryInner> list(String scope, Datagrain grain) {
+    public PagedIterable<ReservationSummaryInner> list(String resourceScope, Datagrain grain) {
         final String startDate = null;
         final String endDate = null;
         final String filter = null;
         final String reservationId = null;
         final String reservationOrderId = null;
         return new PagedIterable<>(
-            listAsync(scope, grain, startDate, endDate, filter, reservationId, reservationOrderId));
+            listAsync(resourceScope, grain, startDate, endDate, filter, reservationId, reservationOrderId));
     }
 
     /**
      * Lists the reservations summaries for the defined scope daily or monthly grain.
      *
-     * @param scope The scope associated with reservations summaries operations. This includes
+     * @param resourceScope The scope associated with reservations summaries operations. This includes
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     BillingProfile scope (modern).
@@ -841,11 +842,11 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationSummaryInner> list(
-        String scope,
+        String resourceScope,
         Datagrain grain,
         String startDate,
         String endDate,
@@ -854,17 +855,19 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
         String reservationOrderId,
         Context context) {
         return new PagedIterable<>(
-            listAsync(scope, grain, startDate, endDate, filter, reservationId, reservationOrderId, context));
+            listAsync(resourceScope, grain, startDate, endDate, filter, reservationId, reservationOrderId, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderNextSinglePageAsync(String nextLink) {
@@ -896,12 +899,14 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderNextSinglePageAsync(
@@ -933,11 +938,13 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderAndReservationNextSinglePageAsync(
@@ -972,12 +979,14 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listByReservationOrderAndReservationNextSinglePageAsync(
@@ -1009,11 +1018,13 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listNextSinglePageAsync(String nextLink) {
@@ -1044,12 +1055,14 @@ public final class ReservationsSummariesClientImpl implements ReservationsSummar
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation summaries.
+     * @return result of listing reservation summaries along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationSummaryInner>> listNextSinglePageAsync(String nextLink, Context context) {

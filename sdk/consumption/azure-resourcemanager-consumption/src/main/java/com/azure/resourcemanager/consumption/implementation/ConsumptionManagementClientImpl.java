@@ -15,6 +15,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
@@ -31,7 +32,9 @@ import com.azure.resourcemanager.consumption.fluent.EventsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.LotsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.MarketplacesClient;
 import com.azure.resourcemanager.consumption.fluent.OperationsClient;
+import com.azure.resourcemanager.consumption.fluent.OperationsResultsClient;
 import com.azure.resourcemanager.consumption.fluent.PriceSheetsClient;
+import com.azure.resourcemanager.consumption.fluent.PriceSheetsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.ReservationRecommendationDetailsClient;
 import com.azure.resourcemanager.consumption.fluent.ReservationRecommendationsClient;
 import com.azure.resourcemanager.consumption.fluent.ReservationTransactionsClient;
@@ -45,15 +48,12 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the ConsumptionManagementClientImpl type. */
 @ServiceClient(builder = ConsumptionManagementClientBuilder.class)
 public final class ConsumptionManagementClientImpl implements ConsumptionManagementClient {
-    private final ClientLogger logger = new ClientLogger(ConsumptionManagementClientImpl.class);
-
     /** Azure Subscription ID. */
     private final String subscriptionId;
 
@@ -76,18 +76,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -330,6 +318,30 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         return this.credits;
     }
 
+    /** The PriceSheetsOperationsClient object to access its operations. */
+    private final PriceSheetsOperationsClient priceSheetsOperations;
+
+    /**
+     * Gets the PriceSheetsOperationsClient object to access its operations.
+     *
+     * @return the PriceSheetsOperationsClient object.
+     */
+    public PriceSheetsOperationsClient getPriceSheetsOperations() {
+        return this.priceSheetsOperations;
+    }
+
+    /** The OperationsResultsClient object to access its operations. */
+    private final OperationsResultsClient operationsResults;
+
+    /**
+     * Gets the OperationsResultsClient object to access its operations.
+     *
+     * @return the OperationsResultsClient object.
+     */
+    public OperationsResultsClient getOperationsResults() {
+        return this.operationsResults;
+    }
+
     /**
      * Initializes an instance of ConsumptionManagementClient client.
      *
@@ -352,7 +364,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-10-01";
         this.usageDetails = new UsageDetailsClientImpl(this);
         this.marketplaces = new MarketplacesClientImpl(this);
         this.budgets = new BudgetsClientImpl(this);
@@ -370,6 +381,8 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.eventsOperations = new EventsOperationsClientImpl(this);
         this.lotsOperations = new LotsOperationsClientImpl(this);
         this.credits = new CreditsClientImpl(this);
+        this.priceSheetsOperations = new PriceSheetsOperationsClientImpl(this);
+        this.operationsResults = new OperationsResultsClientImpl(this);
     }
 
     /**
@@ -388,10 +401,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -455,7 +465,7 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -514,4 +524,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConsumptionManagementClientImpl.class);
 }

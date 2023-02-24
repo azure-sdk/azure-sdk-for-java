@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Balances GetForBillingPeriodByBillingAccount. */
 public final class BalancesGetForBillingPeriodByBillingAccountSamples {
     /*
@@ -17,6 +15,8 @@ public final class BalancesGetForBillingPeriodByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void balances(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.balances().getForBillingPeriodByBillingAccountWithResponse("123456", "201702", Context.NONE);
+        manager
+            .balances()
+            .getForBillingPeriodByBillingAccountWithResponse("123456", "201702", com.azure.core.util.Context.NONE);
     }
 }

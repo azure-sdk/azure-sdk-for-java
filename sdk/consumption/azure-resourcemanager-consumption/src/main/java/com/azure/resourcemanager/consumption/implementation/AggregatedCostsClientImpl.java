@@ -21,15 +21,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.AggregatedCostsClient;
 import com.azure.resourcemanager.consumption.fluent.models.ManagementGroupAggregatedCostResultInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AggregatedCostsClient. */
 public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
-    private final ClientLogger logger = new ClientLogger(AggregatedCostsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final AggregatedCostsService service;
 
@@ -53,7 +50,7 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConsumptionManagemen")
-    private interface AggregatedCostsService {
+    public interface AggregatedCostsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Consumption"
@@ -93,7 +90,8 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
+     * @return a management group aggregated cost resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagementGroupAggregatedCostResultInner>> getByManagementGroupWithResponseAsync(
@@ -108,18 +106,14 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter managementGroupId is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .getByManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupId,
-                            this.client.getApiVersion(),
-                            filter,
-                            accept,
-                            context))
+                            this.client.getEndpoint(), managementGroupId, apiVersion, filter, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -134,7 +128,8 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
+     * @return a management group aggregated cost resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagementGroupAggregatedCostResultInner>> getByManagementGroupWithResponseAsync(
@@ -149,11 +144,27 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter managementGroupId is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getByManagementGroup(
-                this.client.getEndpoint(), managementGroupId, this.client.getApiVersion(), filter, accept, context);
+            .getByManagementGroup(this.client.getEndpoint(), managementGroupId, apiVersion, filter, accept, context);
+    }
+
+    /**
+     * Provides the aggregate cost of a management group and all child management groups by current billing period.
+     *
+     * @param managementGroupId Azure Management Group ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a management group aggregated cost resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ManagementGroupAggregatedCostResultInner> getByManagementGroupAsync(String managementGroupId) {
+        final String filter = null;
+        return getByManagementGroupWithResponseAsync(managementGroupId, filter)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -163,46 +174,16 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      * @param filter May be used to filter aggregated cost by properties/usageStart (Utc time), properties/usageEnd (Utc
      *     time). The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or',
      *     or 'not'. Tag filter is a key value pair string where key and value is separated by a colon (:).
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
+     * @return a management group aggregated cost resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagementGroupAggregatedCostResultInner> getByManagementGroupAsync(
-        String managementGroupId, String filter) {
-        return getByManagementGroupWithResponseAsync(managementGroupId, filter)
-            .flatMap(
-                (Response<ManagementGroupAggregatedCostResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Provides the aggregate cost of a management group and all child management groups by current billing period.
-     *
-     * @param managementGroupId Azure Management Group ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagementGroupAggregatedCostResultInner> getByManagementGroupAsync(String managementGroupId) {
-        final String filter = null;
-        return getByManagementGroupWithResponseAsync(managementGroupId, filter)
-            .flatMap(
-                (Response<ManagementGroupAggregatedCostResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+    public Response<ManagementGroupAggregatedCostResultInner> getByManagementGroupWithResponse(
+        String managementGroupId, String filter, Context context) {
+        return getByManagementGroupWithResponseAsync(managementGroupId, filter, context).block();
     }
 
     /**
@@ -217,26 +198,7 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ManagementGroupAggregatedCostResultInner getByManagementGroup(String managementGroupId) {
         final String filter = null;
-        return getByManagementGroupAsync(managementGroupId, filter).block();
-    }
-
-    /**
-     * Provides the aggregate cost of a management group and all child management groups by current billing period.
-     *
-     * @param managementGroupId Azure Management Group ID.
-     * @param filter May be used to filter aggregated cost by properties/usageStart (Utc time), properties/usageEnd (Utc
-     *     time). The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or',
-     *     or 'not'. Tag filter is a key value pair string where key and value is separated by a colon (:).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ManagementGroupAggregatedCostResultInner> getByManagementGroupWithResponse(
-        String managementGroupId, String filter, Context context) {
-        return getByManagementGroupWithResponseAsync(managementGroupId, filter, context).block();
+        return getByManagementGroupWithResponse(managementGroupId, filter, Context.NONE).getValue();
     }
 
     /**
@@ -247,7 +209,8 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
+     * @return a management group aggregated cost resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagementGroupAggregatedCostResultInner>>
@@ -266,6 +229,7 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingPeriodName is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -275,7 +239,7 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
                             this.client.getEndpoint(),
                             managementGroupId,
                             billingPeriodName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -290,7 +254,8 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
+     * @return a management group aggregated cost resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagementGroupAggregatedCostResultInner>>
@@ -310,16 +275,12 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingPeriodName is required and cannot be null."));
         }
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getForBillingPeriodByManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupId,
-                billingPeriodName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+                this.client.getEndpoint(), managementGroupId, billingPeriodName, apiVersion, accept, context);
     }
 
     /**
@@ -330,20 +291,31 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
+     * @return a management group aggregated cost resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagementGroupAggregatedCostResultInner> getForBillingPeriodByManagementGroupAsync(
         String managementGroupId, String billingPeriodName) {
         return getForBillingPeriodByManagementGroupWithResponseAsync(managementGroupId, billingPeriodName)
-            .flatMap(
-                (Response<ManagementGroupAggregatedCostResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Provides the aggregate cost of a management group and all child management groups by specified billing period.
+     *
+     * @param managementGroupId Azure Management Group ID.
+     * @param billingPeriodName Billing Period Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a management group aggregated cost resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ManagementGroupAggregatedCostResultInner> getForBillingPeriodByManagementGroupWithResponse(
+        String managementGroupId, String billingPeriodName, Context context) {
+        return getForBillingPeriodByManagementGroupWithResponseAsync(managementGroupId, billingPeriodName, context)
+            .block();
     }
 
     /**
@@ -359,24 +331,7 @@ public final class AggregatedCostsClientImpl implements AggregatedCostsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ManagementGroupAggregatedCostResultInner getForBillingPeriodByManagementGroup(
         String managementGroupId, String billingPeriodName) {
-        return getForBillingPeriodByManagementGroupAsync(managementGroupId, billingPeriodName).block();
-    }
-
-    /**
-     * Provides the aggregate cost of a management group and all child management groups by specified billing period.
-     *
-     * @param managementGroupId Azure Management Group ID.
-     * @param billingPeriodName Billing Period Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a management group aggregated cost resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ManagementGroupAggregatedCostResultInner> getForBillingPeriodByManagementGroupWithResponse(
-        String managementGroupId, String billingPeriodName, Context context) {
-        return getForBillingPeriodByManagementGroupWithResponseAsync(managementGroupId, billingPeriodName, context)
-            .block();
+        return getForBillingPeriodByManagementGroupWithResponse(managementGroupId, billingPeriodName, Context.NONE)
+            .getValue();
     }
 }
