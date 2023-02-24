@@ -23,7 +23,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.dataprotection.fluent.ExportJobsOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.ExportJobsResultInner;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ExportJobsOperationResultsClient. */
@@ -63,7 +62,7 @@ public final class ExportJobsOperationResultsClientImpl implements ExportJobsOpe
         Mono<Response<ExportJobsResultInner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("operationId") String operationId,

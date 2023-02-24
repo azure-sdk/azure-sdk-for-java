@@ -35,7 +35,6 @@ import com.azure.resourcemanager.dataprotection.fluent.models.ResourceGuardResou
 import com.azure.resourcemanager.dataprotection.models.DppBaseResourceList;
 import com.azure.resourcemanager.dataprotection.models.PatchResourceGuardInput;
 import com.azure.resourcemanager.dataprotection.models.ResourceGuardResourceList;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ResourceGuardsClient. */
@@ -71,7 +70,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
         Mono<Response<ResourceGuardResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -84,7 +83,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
         Mono<Response<ResourceGuardResourceList>> listByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -99,7 +98,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @BodyParam("application/json") ResourceGuardResourceInner parameters,
             @HeaderParam("Accept") String accept,
@@ -115,7 +114,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -130,7 +129,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -145,7 +144,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @BodyParam("application/json") PatchResourceGuardInput parameters,
             @HeaderParam("Accept") String accept,
@@ -161,7 +160,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -176,7 +175,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -191,7 +190,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -206,7 +205,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -221,7 +220,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -236,7 +235,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -251,7 +250,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @PathParam("requestName") String requestName,
             @HeaderParam("Accept") String accept,
@@ -267,7 +266,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @PathParam("requestName") String requestName,
             @HeaderParam("Accept") String accept,
@@ -283,7 +282,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @PathParam("requestName") String requestName,
             @HeaderParam("Accept") String accept,
@@ -299,7 +298,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @PathParam("requestName") String requestName,
             @HeaderParam("Accept") String accept,
@@ -315,7 +314,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @PathParam("requestName") String requestName,
             @HeaderParam("Accept") String accept,
@@ -331,7 +330,7 @@ public final class ResourceGuardsClientImpl implements ResourceGuardsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGuardsName") String resourceGuardsName,
             @PathParam("requestName") String requestName,
             @HeaderParam("Accept") String accept,

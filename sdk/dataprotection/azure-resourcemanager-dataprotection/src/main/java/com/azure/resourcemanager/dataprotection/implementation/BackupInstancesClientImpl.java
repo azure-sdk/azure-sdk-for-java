@@ -43,7 +43,6 @@ import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObject;
 import java.nio.ByteBuffer;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -82,7 +81,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<BackupInstanceResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -97,7 +96,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<BackupInstanceResourceInner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -113,7 +112,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -130,7 +129,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -146,7 +145,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<Flux<ByteBuffer>>> adhocBackup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -163,7 +162,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<Flux<ByteBuffer>>> validateForBackup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @BodyParam("application/json") ValidateForBackupRequest parameters,
@@ -178,7 +177,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BackupInstanceResourceInner>> getBackupInstanceOperationResult(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -197,7 +196,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
             @BodyParam("application/json") AzureBackupRehydrationRequest parameters,
@@ -213,7 +212,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<Flux<ByteBuffer>>> triggerRestore(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -229,7 +228,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> resumeBackups(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -245,7 +244,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> resumeProtection(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -261,7 +260,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stopProtection(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -277,7 +276,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> suspendBackups(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -293,7 +292,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> syncBackupInstance(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -311,7 +310,7 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         Mono<Response<Flux<ByteBuffer>>> validateForRestore(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
