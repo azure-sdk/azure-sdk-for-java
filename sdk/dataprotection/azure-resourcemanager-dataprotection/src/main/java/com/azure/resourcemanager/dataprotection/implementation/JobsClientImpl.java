@@ -28,7 +28,6 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.dataprotection.fluent.JobsClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.AzureBackupJobResourceInner;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupJobResourceList;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in JobsClient. */
@@ -65,7 +64,7 @@ public final class JobsClientImpl implements JobsClient {
         Mono<Response<AzureBackupJobResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -80,7 +79,7 @@ public final class JobsClientImpl implements JobsClient {
         Mono<Response<AzureBackupJobResourceInner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("jobId") String jobId,

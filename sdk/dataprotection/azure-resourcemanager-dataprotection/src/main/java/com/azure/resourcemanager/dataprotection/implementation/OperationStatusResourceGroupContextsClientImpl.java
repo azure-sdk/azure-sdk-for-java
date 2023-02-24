@@ -23,7 +23,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.dataprotection.fluent.OperationStatusResourceGroupContextsClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.OperationResourceInner;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /**
@@ -70,7 +69,7 @@ public final class OperationStatusResourceGroupContextsClientImpl
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("operationId") String operationId,
             @HeaderParam("Accept") String accept,
             Context context);

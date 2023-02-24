@@ -26,7 +26,6 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.dataprotection.fluent.ExportJobsClient;
 import java.nio.ByteBuffer;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -65,7 +64,7 @@ public final class ExportJobsClientImpl implements ExportJobsClient {
         Mono<Response<Flux<ByteBuffer>>> trigger(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,

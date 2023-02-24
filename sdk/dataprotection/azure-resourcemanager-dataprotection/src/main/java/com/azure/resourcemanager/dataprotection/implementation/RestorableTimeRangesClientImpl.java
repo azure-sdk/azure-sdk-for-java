@@ -25,7 +25,6 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.dataprotection.fluent.RestorableTimeRangesClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.AzureBackupFindRestorableTimeRangesResponseResourceInner;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupFindRestorableTimeRangesRequest;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in RestorableTimeRangesClient. */
@@ -64,7 +63,7 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
         Mono<Response<AzureBackupFindRestorableTimeRangesResponseResourceInner>> find(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
