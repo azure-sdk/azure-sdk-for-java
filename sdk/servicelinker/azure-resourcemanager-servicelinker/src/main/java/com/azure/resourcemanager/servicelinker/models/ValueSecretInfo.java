@@ -20,6 +20,10 @@ public final class ValueSecretInfo extends SecretInfoBase {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of ValueSecretInfo class. */
+    public ValueSecretInfo() {
+    }
+
     /**
      * Get the value property: The actual value of the secret.
      *
