@@ -65,6 +65,10 @@ public final class CodelessConnectorPollingPagingProperties {
     @JsonProperty(value = "pageSize")
     private Integer pageSize;
 
+    /** Creates an instance of CodelessConnectorPollingPagingProperties class. */
+    public CodelessConnectorPollingPagingProperties() {
+    }
+
     /**
      * Get the pagingType property: Describes the type. could be 'None', 'PageToken', 'PageCount', 'TimeStamp'.
      *

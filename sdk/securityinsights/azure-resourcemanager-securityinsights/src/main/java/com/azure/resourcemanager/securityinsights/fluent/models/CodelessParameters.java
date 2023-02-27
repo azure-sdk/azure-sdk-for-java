@@ -17,6 +17,10 @@ public final class CodelessParameters {
     @JsonProperty(value = "connectorUiConfig")
     private CodelessUiConnectorConfigProperties connectorUiConfig;
 
+    /** Creates an instance of CodelessParameters class. */
+    public CodelessParameters() {
+    }
+
     /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
      *

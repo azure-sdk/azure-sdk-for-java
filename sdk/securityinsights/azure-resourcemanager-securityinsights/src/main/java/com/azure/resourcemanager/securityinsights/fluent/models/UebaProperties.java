@@ -18,6 +18,10 @@ public final class UebaProperties {
     @JsonProperty(value = "dataSources")
     private List<UebaDataSources> dataSources;
 
+    /** Creates an instance of UebaProperties class. */
+    public UebaProperties() {
+    }
+
     /**
      * Get the dataSources property: The relevant data sources that enriched by ueba.
      *

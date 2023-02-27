@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for OfficeConsents List. */
 public final class OfficeConsentsListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/officeConsents/GetOfficeConsents.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/officeConsents/GetOfficeConsents.json
      */
     /**
      * Sample code: Get all office consents.
@@ -18,6 +16,6 @@ public final class OfficeConsentsListSamples {
      */
     public static void getAllOfficeConsents(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.officeConsents().list("myRg", "myWorkspace", Context.NONE);
+        manager.officeConsents().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

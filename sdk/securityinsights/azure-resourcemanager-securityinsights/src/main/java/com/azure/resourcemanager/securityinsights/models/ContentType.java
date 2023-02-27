@@ -17,6 +17,15 @@ public final class ContentType extends ExpandableStringEnum<ContentType> {
     public static final ContentType WORKBOOK = fromString("Workbook");
 
     /**
+     * Creates a new instance of ContentType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ContentType() {
+    }
+
+    /**
      * Creates or finds a ContentType from its string representation.
      *
      * @param name a name to look for.

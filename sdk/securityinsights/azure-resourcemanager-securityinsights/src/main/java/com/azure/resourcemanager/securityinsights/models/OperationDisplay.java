@@ -34,6 +34,10 @@ public final class OperationDisplay {
     @JsonProperty(value = "resource")
     private String resource;
 
+    /** Creates an instance of OperationDisplay class. */
+    public OperationDisplay() {
+    }
+
     /**
      * Get the description property: Description of the operation.
      *

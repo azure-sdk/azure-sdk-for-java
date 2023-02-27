@@ -46,15 +46,6 @@ public final class EntitiesImpl implements Entities {
         return Utils.mapPage(inner, inner1 -> new EntityImpl(inner1, this.manager()));
     }
 
-    public Entity get(String resourceGroupName, String workspaceName, String entityId) {
-        EntityInner inner = this.serviceClient().get(resourceGroupName, workspaceName, entityId);
-        if (inner != null) {
-            return new EntityImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Entity> getWithResponse(
         String resourceGroupName, String workspaceName, String entityId, Context context) {
         Response<EntityInner> inner =
@@ -70,12 +61,10 @@ public final class EntitiesImpl implements Entities {
         }
     }
 
-    public EntityExpandResponse expand(
-        String resourceGroupName, String workspaceName, String entityId, EntityExpandParameters parameters) {
-        EntityExpandResponseInner inner =
-            this.serviceClient().expand(resourceGroupName, workspaceName, entityId, parameters);
+    public Entity get(String resourceGroupName, String workspaceName, String entityId) {
+        EntityInner inner = this.serviceClient().get(resourceGroupName, workspaceName, entityId);
         if (inner != null) {
-            return new EntityExpandResponseImpl(inner, this.manager());
+            return new EntityImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -100,11 +89,12 @@ public final class EntitiesImpl implements Entities {
         }
     }
 
-    public GetQueriesResponse queries(
-        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind) {
-        GetQueriesResponseInner inner = this.serviceClient().queries(resourceGroupName, workspaceName, entityId, kind);
+    public EntityExpandResponse expand(
+        String resourceGroupName, String workspaceName, String entityId, EntityExpandParameters parameters) {
+        EntityExpandResponseInner inner =
+            this.serviceClient().expand(resourceGroupName, workspaceName, entityId, parameters);
         if (inner != null) {
-            return new GetQueriesResponseImpl(inner, this.manager());
+            return new EntityExpandResponseImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -125,12 +115,11 @@ public final class EntitiesImpl implements Entities {
         }
     }
 
-    public EntityGetInsightsResponse getInsights(
-        String resourceGroupName, String workspaceName, String entityId, EntityGetInsightsParameters parameters) {
-        EntityGetInsightsResponseInner inner =
-            this.serviceClient().getInsights(resourceGroupName, workspaceName, entityId, parameters);
+    public GetQueriesResponse queries(
+        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind) {
+        GetQueriesResponseInner inner = this.serviceClient().queries(resourceGroupName, workspaceName, entityId, kind);
         if (inner != null) {
-            return new EntityGetInsightsResponseImpl(inner, this.manager());
+            return new GetQueriesResponseImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -152,6 +141,17 @@ public final class EntitiesImpl implements Entities {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EntityGetInsightsResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EntityGetInsightsResponse getInsights(
+        String resourceGroupName, String workspaceName, String entityId, EntityGetInsightsParameters parameters) {
+        EntityGetInsightsResponseInner inner =
+            this.serviceClient().getInsights(resourceGroupName, workspaceName, entityId, parameters);
+        if (inner != null) {
+            return new EntityGetInsightsResponseImpl(inner, this.manager());
         } else {
             return null;
         }

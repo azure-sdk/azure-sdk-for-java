@@ -20,6 +20,15 @@ public final class IncidentStatus extends ExpandableStringEnum<IncidentStatus> {
     public static final IncidentStatus CLOSED = fromString("Closed");
 
     /**
+     * Creates a new instance of IncidentStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IncidentStatus() {
+    }
+
+    /**
      * Creates or finds a IncidentStatus from its string representation.
      *
      * @param name a name to look for.
