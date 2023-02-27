@@ -55,7 +55,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsEnti")
-    private interface EntitiesRelationsService {
+    public interface EntitiesRelationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"

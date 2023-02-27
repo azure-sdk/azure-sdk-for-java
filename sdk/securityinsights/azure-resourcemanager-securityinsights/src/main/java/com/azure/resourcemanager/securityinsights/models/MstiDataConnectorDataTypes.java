@@ -14,34 +14,11 @@ public final class MstiDataConnectorDataTypes {
     /*
      * Data type for Microsoft Threat Intelligence Platforms data connector.
      */
-    @JsonProperty(value = "bingSafetyPhishingURL", required = true)
-    private MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl;
-
-    /*
-     * Data type for Microsoft Threat Intelligence Platforms data connector.
-     */
     @JsonProperty(value = "microsoftEmergingThreatFeed", required = true)
     private MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed microsoftEmergingThreatFeed;
 
-    /**
-     * Get the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
-     *
-     * @return the bingSafetyPhishingUrl value.
-     */
-    public MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl() {
-        return this.bingSafetyPhishingUrl;
-    }
-
-    /**
-     * Set the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
-     *
-     * @param bingSafetyPhishingUrl the bingSafetyPhishingUrl value to set.
-     * @return the MstiDataConnectorDataTypes object itself.
-     */
-    public MstiDataConnectorDataTypes withBingSafetyPhishingUrl(
-        MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl) {
-        this.bingSafetyPhishingUrl = bingSafetyPhishingUrl;
-        return this;
+    /** Creates an instance of MstiDataConnectorDataTypes class. */
+    public MstiDataConnectorDataTypes() {
     }
 
     /**
@@ -73,14 +50,6 @@ public final class MstiDataConnectorDataTypes {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (bingSafetyPhishingUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property bingSafetyPhishingUrl in model MstiDataConnectorDataTypes"));
-        } else {
-            bingSafetyPhishingUrl().validate();
-        }
         if (microsoftEmergingThreatFeed() == null) {
             throw LOGGER
                 .logExceptionAsError(

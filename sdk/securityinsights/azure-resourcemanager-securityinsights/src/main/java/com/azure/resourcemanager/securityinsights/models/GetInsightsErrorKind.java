@@ -29,6 +29,10 @@ public final class GetInsightsErrorKind {
     @JsonProperty(value = "errorMessage", required = true)
     private String errorMessage;
 
+    /** Creates an instance of GetInsightsErrorKind class. */
+    public GetInsightsErrorKind() {
+    }
+
     /**
      * Get the kind property: the query kind.
      *

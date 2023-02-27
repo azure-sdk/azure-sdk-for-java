@@ -22,6 +22,10 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private Office365ProjectDataConnectorProperties innerProperties;
 
+    /** Creates an instance of Office365ProjectDataConnector class. */
+    public Office365ProjectDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Office Microsoft Project data connector properties.
      *
