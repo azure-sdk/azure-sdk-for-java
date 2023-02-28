@@ -20,6 +20,10 @@ public final class ConfluentBootstrapServer extends TargetServiceBase {
     @JsonProperty(value = "endpoint")
     private String endpoint;
 
+    /** Creates an instance of ConfluentBootstrapServer class. */
+    public ConfluentBootstrapServer() {
+    }
+
     /**
      * Get the endpoint property: The endpoint of service.
      *
