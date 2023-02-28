@@ -65,6 +65,13 @@ public final class StorageAccount {
     @JsonProperty(value = "fileshare")
     private String fileshare;
 
+    /*
+     * Customer specify use secure channel or not. Only work when IsDefault is true. It will impact the setting of
+     * FS.defaultFS for ambari and could be null.
+     */
+    @JsonProperty(value = "enableSecureChannel")
+    private Boolean enableSecureChannel;
+
     /** Creates an instance of StorageAccount class. */
     public StorageAccount() {
     }
@@ -250,6 +257,28 @@ public final class StorageAccount {
      */
     public StorageAccount withFileshare(String fileshare) {
         this.fileshare = fileshare;
+        return this;
+    }
+
+    /**
+     * Get the enableSecureChannel property: Customer specify use secure channel or not. Only work when IsDefault is
+     * true. It will impact the setting of FS.defaultFS for ambari and could be null.
+     *
+     * @return the enableSecureChannel value.
+     */
+    public Boolean enableSecureChannel() {
+        return this.enableSecureChannel;
+    }
+
+    /**
+     * Set the enableSecureChannel property: Customer specify use secure channel or not. Only work when IsDefault is
+     * true. It will impact the setting of FS.defaultFS for ambari and could be null.
+     *
+     * @param enableSecureChannel the enableSecureChannel value to set.
+     * @return the StorageAccount object itself.
+     */
+    public StorageAccount withEnableSecureChannel(Boolean enableSecureChannel) {
+        this.enableSecureChannel = enableSecureChannel;
         return this;
     }
 

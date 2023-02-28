@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.UpdateClusterIdentityCertificateParameters;
 
 /** Samples for Clusters UpdateIdentityCertificate. */
@@ -27,6 +26,6 @@ public final class ClustersUpdateIdentityCertificateSamples {
                     .withApplicationId("applicationId")
                     .withCertificate("base64encodedcertificate")
                     .withCertificatePassword("fakeTokenPlaceholder"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

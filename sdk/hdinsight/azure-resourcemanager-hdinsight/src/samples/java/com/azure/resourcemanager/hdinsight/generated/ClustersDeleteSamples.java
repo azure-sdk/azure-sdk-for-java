@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clusters Delete. */
 public final class ClustersDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class ClustersDeleteSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void deleteHadoopOnLinuxCluster(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.clusters().delete("rg1", "cluster1", Context.NONE);
+        manager.clusters().delete("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Locations ListUsages. */
 public final class LocationsListUsagesSamples {
     /*
@@ -18,6 +16,6 @@ public final class LocationsListUsagesSamples {
      */
     public static void getTheSubscriptionUsagesForSpecificLocation(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.locations().listUsagesWithResponse("West US", Context.NONE);
+        manager.locations().listUsagesWithResponse("West US", com.azure.core.util.Context.NONE);
     }
 }
