@@ -60,7 +60,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface CertificatesService {
+    public interface CertificatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
