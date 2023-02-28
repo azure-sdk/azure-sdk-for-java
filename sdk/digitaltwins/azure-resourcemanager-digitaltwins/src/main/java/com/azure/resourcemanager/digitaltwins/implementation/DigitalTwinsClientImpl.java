@@ -530,7 +530,7 @@ public final class DigitalTwinsClientImpl implements DigitalTwinsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DigitalTwinsDescriptionInner>, DigitalTwinsDescriptionInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, DigitalTwinsDescriptionInner digitalTwinsCreate) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, digitalTwinsCreate).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, digitalTwinsCreate).getSyncPoller();
     }
 
     /**
@@ -553,7 +553,9 @@ public final class DigitalTwinsClientImpl implements DigitalTwinsClient {
         String resourceName,
         DigitalTwinsDescriptionInner digitalTwinsCreate,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, digitalTwinsCreate, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, digitalTwinsCreate, context)
+            .getSyncPoller();
     }
 
     /**
@@ -834,7 +836,7 @@ public final class DigitalTwinsClientImpl implements DigitalTwinsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DigitalTwinsDescriptionInner>, DigitalTwinsDescriptionInner> beginUpdate(
         String resourceGroupName, String resourceName, DigitalTwinsPatchDescription digitalTwinsPatchDescription) {
-        return beginUpdateAsync(resourceGroupName, resourceName, digitalTwinsPatchDescription).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, resourceName, digitalTwinsPatchDescription).getSyncPoller();
     }
 
     /**
@@ -855,7 +857,9 @@ public final class DigitalTwinsClientImpl implements DigitalTwinsClient {
         String resourceName,
         DigitalTwinsPatchDescription digitalTwinsPatchDescription,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, resourceName, digitalTwinsPatchDescription, context).getSyncPoller();
+        return this
+            .beginUpdateAsync(resourceGroupName, resourceName, digitalTwinsPatchDescription, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1096,7 +1100,7 @@ public final class DigitalTwinsClientImpl implements DigitalTwinsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DigitalTwinsDescriptionInner>, DigitalTwinsDescriptionInner> beginDelete(
         String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -1113,7 +1117,7 @@ public final class DigitalTwinsClientImpl implements DigitalTwinsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DigitalTwinsDescriptionInner>, DigitalTwinsDescriptionInner> beginDelete(
         String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
