@@ -22,6 +22,10 @@ public final class MtpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private MtpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of MtpDataConnector class. */
+    public MtpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: MTP (Microsoft Threat Protection) data connector properties.
      *

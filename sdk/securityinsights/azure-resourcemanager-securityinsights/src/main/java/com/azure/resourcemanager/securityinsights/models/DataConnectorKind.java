@@ -73,6 +73,15 @@ public final class DataConnectorKind extends ExpandableStringEnum<DataConnectorK
     public static final DataConnectorKind IOT = fromString("IOT");
 
     /**
+     * Creates a new instance of DataConnectorKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DataConnectorKind() {
+    }
+
+    /**
      * Creates or finds a DataConnectorKind from its string representation.
      *
      * @param name a name to look for.

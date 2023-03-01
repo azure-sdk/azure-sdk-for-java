@@ -262,6 +262,20 @@ public interface SecurityInsights {
     WatchlistItemsClient getWatchlistItems();
 
     /**
+     * Gets the WorkspaceManagerAssignmentsClient object to access its operations.
+     *
+     * @return the WorkspaceManagerAssignmentsClient object.
+     */
+    WorkspaceManagerAssignmentsClient getWorkspaceManagerAssignments();
+
+    /**
+     * Gets the WorkspaceManagerAssignmentJobsClient object to access its operations.
+     *
+     * @return the WorkspaceManagerAssignmentJobsClient object.
+     */
+    WorkspaceManagerAssignmentJobsClient getWorkspaceManagerAssignmentJobs();
+
+    /**
      * Gets the DataConnectorsClient object to access its operations.
      *
      * @return the DataConnectorsClient object.

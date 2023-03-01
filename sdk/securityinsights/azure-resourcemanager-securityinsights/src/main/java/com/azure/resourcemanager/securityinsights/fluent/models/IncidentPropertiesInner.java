@@ -140,6 +140,10 @@ public final class IncidentPropertiesInner {
     @JsonProperty(value = "title", required = true)
     private String title;
 
+    /** Creates an instance of IncidentPropertiesInner class. */
+    public IncidentPropertiesInner() {
+    }
+
     /**
      * Get the additionalData property: Additional data on the incident.
      *

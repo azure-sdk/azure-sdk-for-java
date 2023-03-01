@@ -57,6 +57,8 @@ import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndic
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerAssignmentJobsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerAssignmentsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -513,6 +515,30 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.watchlistItems;
     }
 
+    /** The WorkspaceManagerAssignmentsClient object to access its operations. */
+    private final WorkspaceManagerAssignmentsClient workspaceManagerAssignments;
+
+    /**
+     * Gets the WorkspaceManagerAssignmentsClient object to access its operations.
+     *
+     * @return the WorkspaceManagerAssignmentsClient object.
+     */
+    public WorkspaceManagerAssignmentsClient getWorkspaceManagerAssignments() {
+        return this.workspaceManagerAssignments;
+    }
+
+    /** The WorkspaceManagerAssignmentJobsClient object to access its operations. */
+    private final WorkspaceManagerAssignmentJobsClient workspaceManagerAssignmentJobs;
+
+    /**
+     * Gets the WorkspaceManagerAssignmentJobsClient object to access its operations.
+     *
+     * @return the WorkspaceManagerAssignmentJobsClient object.
+     */
+    public WorkspaceManagerAssignmentJobsClient getWorkspaceManagerAssignmentJobs() {
+        return this.workspaceManagerAssignmentJobs;
+    }
+
     /** The DataConnectorsClient object to access its operations. */
     private final DataConnectorsClient dataConnectors;
 
@@ -571,7 +597,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2023-03-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -603,6 +629,8 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.threatIntelligenceIndicatorMetrics = new ThreatIntelligenceIndicatorMetricsClientImpl(this);
         this.watchlists = new WatchlistsClientImpl(this);
         this.watchlistItems = new WatchlistItemsClientImpl(this);
+        this.workspaceManagerAssignments = new WorkspaceManagerAssignmentsClientImpl(this);
+        this.workspaceManagerAssignmentJobs = new WorkspaceManagerAssignmentJobsClientImpl(this);
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);

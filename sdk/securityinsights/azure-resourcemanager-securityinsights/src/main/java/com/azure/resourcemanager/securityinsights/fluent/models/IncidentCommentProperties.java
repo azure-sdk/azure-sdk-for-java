@@ -37,6 +37,10 @@ public final class IncidentCommentProperties {
     @JsonProperty(value = "author", access = JsonProperty.Access.WRITE_ONLY)
     private ClientInfo author;
 
+    /** Creates an instance of IncidentCommentProperties class. */
+    public IncidentCommentProperties() {
+    }
+
     /**
      * Get the createdTimeUtc property: The time the comment was created.
      *

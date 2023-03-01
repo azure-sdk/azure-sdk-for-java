@@ -35,6 +35,10 @@ public final class ExpansionResultAggregation {
     @JsonProperty(value = "entityKind", required = true)
     private EntityKind entityKind;
 
+    /** Creates an instance of ExpansionResultAggregation class. */
+    public ExpansionResultAggregation() {
+    }
+
     /**
      * Get the aggregationType property: The common type of the aggregation. (for e.g. entity field name).
      *

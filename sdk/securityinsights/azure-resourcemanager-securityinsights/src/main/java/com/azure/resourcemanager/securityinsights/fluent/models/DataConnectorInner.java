@@ -61,6 +61,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class DataConnectorInner extends ResourceWithEtag {
+    /** Creates an instance of DataConnectorInner class. */
+    public DataConnectorInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public DataConnectorInner withEtag(String etag) {

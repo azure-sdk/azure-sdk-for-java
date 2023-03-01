@@ -59,6 +59,8 @@ import com.azure.resourcemanager.securityinsights.implementation.ThreatIntellige
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistItemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerAssignmentJobsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerAssignmentsImpl;
 import com.azure.resourcemanager.securityinsights.models.Actions;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplates;
 import com.azure.resourcemanager.securityinsights.models.AlertRules;
@@ -93,6 +95,8 @@ import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndic
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerAssignmentJobs;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerAssignments;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -166,6 +170,10 @@ public final class SecurityInsightsManager {
     private Watchlists watchlists;
 
     private WatchlistItems watchlistItems;
+
+    private WorkspaceManagerAssignments workspaceManagerAssignments;
+
+    private WorkspaceManagerAssignmentJobs workspaceManagerAssignmentJobs;
 
     private DataConnectors dataConnectors;
 
@@ -338,7 +346,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -772,6 +780,32 @@ public final class SecurityInsightsManager {
             this.watchlistItems = new WatchlistItemsImpl(clientObject.getWatchlistItems(), this);
         }
         return watchlistItems;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerAssignments. It manages WorkspaceManagerAssignment.
+     *
+     * @return Resource collection API of WorkspaceManagerAssignments.
+     */
+    public WorkspaceManagerAssignments workspaceManagerAssignments() {
+        if (this.workspaceManagerAssignments == null) {
+            this.workspaceManagerAssignments =
+                new WorkspaceManagerAssignmentsImpl(clientObject.getWorkspaceManagerAssignments(), this);
+        }
+        return workspaceManagerAssignments;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerAssignmentJobs.
+     *
+     * @return Resource collection API of WorkspaceManagerAssignmentJobs.
+     */
+    public WorkspaceManagerAssignmentJobs workspaceManagerAssignmentJobs() {
+        if (this.workspaceManagerAssignmentJobs == null) {
+            this.workspaceManagerAssignmentJobs =
+                new WorkspaceManagerAssignmentJobsImpl(clientObject.getWorkspaceManagerAssignmentJobs(), this);
+        }
+        return workspaceManagerAssignmentJobs;
     }
 
     /**

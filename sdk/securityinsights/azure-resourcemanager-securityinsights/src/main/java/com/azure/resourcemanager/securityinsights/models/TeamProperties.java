@@ -37,6 +37,10 @@ public final class TeamProperties {
     @JsonProperty(value = "groupIds")
     private List<UUID> groupIds;
 
+    /** Creates an instance of TeamProperties class. */
+    public TeamProperties() {
+    }
+
     /**
      * Get the teamName property: The name of the team.
      *

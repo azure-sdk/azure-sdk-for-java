@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The PermissionsCustomsItem model. */
 @Fluent
 public final class PermissionsCustomsItem extends Customs {
+    /** Creates an instance of PermissionsCustomsItem class. */
+    public PermissionsCustomsItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public PermissionsCustomsItem withName(String name) {

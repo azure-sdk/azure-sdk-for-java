@@ -620,17 +620,6 @@ public interface Incident {
      * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
      *
      * @param teamProperties Team properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information.
-     */
-    TeamInformation createTeam(TeamProperties teamProperties);
-
-    /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param teamProperties Team properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -640,13 +629,15 @@ public interface Incident {
     Response<TeamInformation> createTeamWithResponse(TeamProperties teamProperties, Context context);
 
     /**
-     * Gets all incident alerts.
+     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
      *
+     * @param teamProperties Team properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts.
+     * @return describes team information.
      */
-    IncidentAlertList listAlerts();
+    TeamInformation createTeam(TeamProperties teamProperties);
 
     /**
      * Gets all incident alerts.
@@ -660,13 +651,13 @@ public interface Incident {
     Response<IncidentAlertList> listAlertsWithResponse(Context context);
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all incident alerts.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks.
+     * @return all incident alerts.
      */
-    IncidentBookmarkList listBookmarks();
+    IncidentAlertList listAlerts();
 
     /**
      * Gets all incident bookmarks.
@@ -680,13 +671,13 @@ public interface Incident {
     Response<IncidentBookmarkList> listBookmarksWithResponse(Context context);
 
     /**
-     * Gets all incident related entities.
+     * Gets all incident bookmarks.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities.
+     * @return all incident bookmarks.
      */
-    IncidentEntitiesResponse listEntities();
+    IncidentBookmarkList listBookmarks();
 
     /**
      * Gets all incident related entities.
@@ -698,4 +689,13 @@ public interface Incident {
      * @return all incident related entities along with {@link Response}.
      */
     Response<IncidentEntitiesResponse> listEntitiesWithResponse(Context context);
+
+    /**
+     * Gets all incident related entities.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all incident related entities.
+     */
+    IncidentEntitiesResponse listEntities();
 }

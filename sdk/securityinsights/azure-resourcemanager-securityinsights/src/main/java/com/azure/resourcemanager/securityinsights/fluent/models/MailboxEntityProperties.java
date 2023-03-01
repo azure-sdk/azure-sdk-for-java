@@ -37,6 +37,10 @@ public final class MailboxEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "externalDirectoryObjectId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID externalDirectoryObjectId;
 
+    /** Creates an instance of MailboxEntityProperties class. */
+    public MailboxEntityProperties() {
+    }
+
     /**
      * Get the mailboxPrimaryAddress property: The mailbox's primary address.
      *
