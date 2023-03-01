@@ -17,6 +17,15 @@ public final class Version extends ExpandableStringEnum<Version> {
     public static final Version V2 = fromString("V2");
 
     /**
+     * Creates a new instance of Version value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Version() {
+    }
+
+    /**
      * Creates or finds a Version from its string representation.
      *
      * @param name a name to look for.

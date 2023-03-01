@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.AzureResourceEntityProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,13 +15,17 @@ import java.util.Map;
 /** Represents an azure resource entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureResource")
-@Fluent
+@Immutable
 public final class AzureResourceEntity extends EntityInner {
     /*
      * AzureResource entity properties
      */
     @JsonProperty(value = "properties")
     private AzureResourceEntityProperties innerProperties;
+
+    /** Creates an instance of AzureResourceEntity class. */
+    public AzureResourceEntity() {
+    }
 
     /**
      * Get the innerProperties property: AzureResource entity properties.
