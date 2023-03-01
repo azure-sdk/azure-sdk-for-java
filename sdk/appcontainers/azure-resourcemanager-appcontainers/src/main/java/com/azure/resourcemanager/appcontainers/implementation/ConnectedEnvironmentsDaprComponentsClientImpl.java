@@ -66,7 +66,7 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ConnectedEnvironmentsDaprComponentsService {
+    public interface ConnectedEnvironmentsDaprComponentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
