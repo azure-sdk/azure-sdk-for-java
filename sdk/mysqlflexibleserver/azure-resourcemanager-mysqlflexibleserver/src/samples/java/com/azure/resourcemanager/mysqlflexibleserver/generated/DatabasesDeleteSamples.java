@@ -7,14 +7,14 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 /** Samples for Databases Delete. */
 public final class DatabasesDeleteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/DatabaseDelete.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/stable/2017-12-01/examples/DatabaseDelete.json
      */
     /**
-     * Sample code: Delete a database.
+     * Sample code: DatabaseDelete.
      *
      * @param manager Entry point to MySqlManager.
      */
-    public static void deleteADatabase(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+    public static void databaseDelete(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
         manager.databases().delete("TestGroup", "testserver", "db1", com.azure.core.util.Context.NONE);
     }
 }
