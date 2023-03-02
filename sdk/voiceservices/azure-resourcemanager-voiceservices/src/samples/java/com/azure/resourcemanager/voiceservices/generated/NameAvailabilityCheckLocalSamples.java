@@ -24,7 +24,7 @@ public final class NameAvailabilityCheckLocalSamples {
                 "useast",
                 new CheckNameAvailabilityRequest()
                     .withName("myname")
-                    .withType("Microsoft.VoiceServices/CommunicationsGateway"),
+                    .withType("Microsoft.VoiceServices/CommunicationsGateways"),
                 com.azure.core.util.Context.NONE);
     }
 }
