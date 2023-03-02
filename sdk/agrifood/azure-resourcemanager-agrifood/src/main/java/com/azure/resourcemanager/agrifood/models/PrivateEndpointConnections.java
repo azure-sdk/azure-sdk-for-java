@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -14,21 +13,7 @@ public interface PrivateEndpointConnections {
      * Get Private endpoint connection object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param privateEndpointConnectionName Private endpoint connection name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection object.
-     */
-    PrivateEndpointConnection get(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName);
-
-    /**
-     * Get Private endpoint connection object.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -37,25 +22,43 @@ public interface PrivateEndpointConnections {
      * @return private endpoint connection object along with {@link Response}.
      */
     Response<PrivateEndpointConnection> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context);
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context);
+
+    /**
+     * Get Private endpoint connection object.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param privateEndpointConnectionName Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection object.
+     */
+    PrivateEndpointConnection get(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName);
 
     /**
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName);
+    void delete(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName);
 
     /**
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -63,33 +66,37 @@ public interface PrivateEndpointConnections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context);
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context);
 
     /**
      * Get list of Private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<PrivateEndpointConnection> listByResource(String resourceGroupName, String farmBeatsResourceName);
-
-    /**
-     * Get list of Private endpoint connections.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections as paginated response with {@link PagedIterable}.
+     * @return list of Private endpoint connections along with {@link Response}.
      */
-    PagedIterable<PrivateEndpointConnection> listByResource(
-        String resourceGroupName, String farmBeatsResourceName, Context context);
+    Response<PrivateEndpointConnectionListResult> listByResourceWithResponse(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, Context context);
+
+    /**
+     * Get list of Private endpoint connections.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Private endpoint connections.
+     */
+    PrivateEndpointConnectionListResult listByResource(
+        String resourceGroupName, String dataManagerForAgricultureResourceName);
 
     /**
      * Get Private endpoint connection object.

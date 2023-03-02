@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections ListByResource. */
 public final class PrivateEndpointConnectionsListByResourceSamples {
     /*
@@ -20,6 +18,7 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
         com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .privateEndpointConnections()
-            .listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);
+            .listByResourceWithResponse(
+                "examples-rg", "examples-farmbeatsResourceName", com.azure.core.util.Context.NONE);
     }
 }

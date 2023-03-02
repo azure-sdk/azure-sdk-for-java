@@ -19,10 +19,6 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -33,7 +29,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.agrifood.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionInner;
-import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnectionListResult;
+import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionListResultInner;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -65,35 +61,37 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface PrivateEndpointConnectionsService {
+    public interface PrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
-        @ExpectedResponses({200})
+                + "/farmBeats/{dataManagerForAgricultureResourceName}/privateEndpointConnections"
+                + "/{privateEndpointConnectionName}")
+        @ExpectedResponses({200, 400})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") PrivateEndpointConnectionInner body,
+            @BodyParam("application/json") PrivateEndpointConnectionInner request,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+                + "/farmBeats/{dataManagerForAgricultureResourceName}/privateEndpointConnections"
+                + "/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -102,14 +100,15 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+                + "/farmBeats/{dataManagerForAgricultureResourceName}/privateEndpointConnections"
+                + "/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -118,14 +117,14 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections")
+                + "/farmBeats/{dataManagerForAgricultureResourceName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateEndpointConnectionListResult>> listByResource(
+        Mono<Response<PrivateEndpointConnectionListResultInner>> listByResource(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -135,21 +134,21 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Approves or Rejects a Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
+     * @param request Request object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of {@link
+     * @return the private endpoint connection resource along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String farmBeatsResourceName,
+        String dataManagerForAgricultureResourceName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body) {
+        PrivateEndpointConnectionInner request) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -166,9 +165,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -176,10 +177,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter privateEndpointConnectionName is required and cannot be null."));
         }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
         } else {
-            body.validate();
+            request.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -190,10 +191,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            farmBeatsResourceName,
+                            dataManagerForAgricultureResourceName,
                             privateEndpointConnectionName,
                             this.client.getApiVersion(),
-                            body,
+                            request,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -203,22 +204,22 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Approves or Rejects a Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
+     * @param request Request object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of {@link
+     * @return the private endpoint connection resource along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String farmBeatsResourceName,
+        String dataManagerForAgricultureResourceName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body,
+        PrivateEndpointConnectionInner request,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -236,9 +237,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -246,10 +249,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                     new IllegalArgumentException(
                         "Parameter privateEndpointConnectionName is required and cannot be null."));
         }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
         } else {
-            body.validate();
+            request.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -258,10 +261,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                farmBeatsResourceName,
+                dataManagerForAgricultureResourceName,
                 privateEndpointConnectionName,
                 this.client.getApiVersion(),
-                body,
+                request,
                 accept,
                 context);
     }
@@ -270,22 +273,22 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Approves or Rejects a Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
+     * @param request Request object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource on successful completion of {@link Mono}.
+     * @return the private endpoint connection resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> createOrUpdateAsync(
         String resourceGroupName,
-        String farmBeatsResourceName,
+        String dataManagerForAgricultureResourceName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body) {
+        PrivateEndpointConnectionInner request) {
         return createOrUpdateWithResponseAsync(
-                resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body)
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, request)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -293,21 +296,28 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Approves or Rejects a Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
+     * @param request Request object.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
+     * @return the private endpoint connection resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner createOrUpdate(
+    public Response<PrivateEndpointConnectionInner> createOrUpdateWithResponse(
         String resourceGroupName,
-        String farmBeatsResourceName,
+        String dataManagerForAgricultureResourceName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body) {
-        return createOrUpdateAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body)
+        PrivateEndpointConnectionInner request,
+        Context context) {
+        return createOrUpdateWithResponseAsync(
+                resourceGroupName,
+                dataManagerForAgricultureResourceName,
+                privateEndpointConnectionName,
+                request,
+                context)
             .block();
     }
 
@@ -315,32 +325,34 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Approves or Rejects a Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
-     * @param context The context to associate with this operation.
+     * @param request Request object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response}.
+     * @return the private endpoint connection resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PrivateEndpointConnectionInner> createOrUpdateWithResponse(
+    public PrivateEndpointConnectionInner createOrUpdate(
         String resourceGroupName,
-        String farmBeatsResourceName,
+        String dataManagerForAgricultureResourceName,
         String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body,
-        Context context) {
-        return createOrUpdateWithResponseAsync(
-                resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body, context)
-            .block();
+        PrivateEndpointConnectionInner request) {
+        return createOrUpdateWithResponse(
+                resourceGroupName,
+                dataManagerForAgricultureResourceName,
+                privateEndpointConnectionName,
+                request,
+                Context.NONE)
+            .getValue();
     }
 
     /**
      * Get Private endpoint connection object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -349,7 +361,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> getWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -366,9 +378,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -385,7 +399,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            farmBeatsResourceName,
+                            dataManagerForAgricultureResourceName,
                             privateEndpointConnectionName,
                             this.client.getApiVersion(),
                             accept,
@@ -397,7 +411,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Get Private endpoint connection object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -407,7 +421,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> getWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -424,9 +441,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -441,7 +460,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                farmBeatsResourceName,
+                dataManagerForAgricultureResourceName,
                 privateEndpointConnectionName,
                 this.client.getApiVersion(),
                 accept,
@@ -452,7 +471,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Get Private endpoint connection object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -461,8 +480,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> getAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName)
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
+        return getWithResponseAsync(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -470,24 +490,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Get Private endpoint connection object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param privateEndpointConnectionName Private endpoint connection name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName).block();
-    }
-
-    /**
-     * Get Private endpoint connection object.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -497,16 +500,39 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateEndpointConnectionInner> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
+        return getWithResponseAsync(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context)
             .block();
+    }
+
+    /**
+     * Get Private endpoint connection object.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param privateEndpointConnectionName Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner get(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
+        return getWithResponse(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, Context.NONE)
+            .getValue();
     }
 
     /**
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -515,7 +541,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -532,9 +558,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -551,7 +579,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            farmBeatsResourceName,
+                            dataManagerForAgricultureResourceName,
                             privateEndpointConnectionName,
                             this.client.getApiVersion(),
                             accept,
@@ -563,7 +591,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -573,7 +601,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -590,9 +621,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono
@@ -607,7 +640,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                farmBeatsResourceName,
+                dataManagerForAgricultureResourceName,
                 privateEndpointConnectionName,
                 this.client.getApiVersion(),
                 accept,
@@ -618,7 +651,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -627,9 +660,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName);
+            deleteWithResponseAsync(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -640,7 +674,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -650,10 +684,14 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context);
+            deleteWithResponseAsync(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
@@ -663,7 +701,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -672,8 +710,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName)
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
+        return this
+            .beginDeleteAsync(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName)
             .getSyncPoller();
     }
 
@@ -681,7 +720,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -691,8 +730,13 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
+        return this
+            .beginDeleteAsync(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context)
             .getSyncPoller();
     }
 
@@ -700,7 +744,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -709,8 +753,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName)
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
+        return beginDeleteAsync(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -719,7 +763,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -729,8 +773,12 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
+        return beginDeleteAsync(
+                resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -739,22 +787,23 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        deleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName).block();
+    public void delete(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String privateEndpointConnectionName) {
+        deleteAsync(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName).block();
     }
 
     /**
      * Delete Private endpoint connection request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -763,24 +812,28 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
-        deleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context).block();
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName,
+        Context context) {
+        deleteAsync(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context)
+            .block();
     }
 
     /**
      * Get list of Private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections along with {@link PagedResponse} on successful completion of {@link
+     * @return list of Private endpoint connections along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listByResourceSinglePageAsync(
-        String resourceGroupName, String farmBeatsResourceName) {
+    private Mono<Response<PrivateEndpointConnectionListResultInner>> listByResourceWithResponseAsync(
+        String resourceGroupName, String dataManagerForAgricultureResourceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -797,9 +850,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -810,14 +865,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            farmBeatsResourceName,
+                            dataManagerForAgricultureResourceName,
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .<PagedResponse<PrivateEndpointConnectionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -825,17 +876,17 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Get list of Private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections along with {@link PagedResponse} on successful completion of {@link
+     * @return list of Private endpoint connections along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionInner>> listByResourceSinglePageAsync(
-        String resourceGroupName, String farmBeatsResourceName, Context context) {
+    private Mono<Response<PrivateEndpointConnectionListResultInner>> listByResourceWithResponseAsync(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -852,9 +903,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -863,79 +916,61 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                farmBeatsResourceName,
+                dataManagerForAgricultureResourceName,
                 this.client.getApiVersion(),
                 accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null));
+                context);
     }
 
     /**
      * Get list of Private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections as paginated response with {@link PagedFlux}.
+     * @return list of Private endpoint connections on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateEndpointConnectionInner> listByResourceAsync(
-        String resourceGroupName, String farmBeatsResourceName) {
-        return new PagedFlux<>(() -> listByResourceSinglePageAsync(resourceGroupName, farmBeatsResourceName));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateEndpointConnectionListResultInner> listByResourceAsync(
+        String resourceGroupName, String dataManagerForAgricultureResourceName) {
+        return listByResourceWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get list of Private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections as paginated response with {@link PagedFlux}.
+     * @return list of Private endpoint connections along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateEndpointConnectionInner> listByResourceAsync(
-        String resourceGroupName, String farmBeatsResourceName, Context context) {
-        return new PagedFlux<>(() -> listByResourceSinglePageAsync(resourceGroupName, farmBeatsResourceName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PrivateEndpointConnectionListResultInner> listByResourceWithResponse(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, Context context) {
+        return listByResourceWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, context)
+            .block();
     }
 
     /**
      * Get list of Private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections as paginated response with {@link PagedIterable}.
+     * @return list of Private endpoint connections.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateEndpointConnectionInner> listByResource(
-        String resourceGroupName, String farmBeatsResourceName) {
-        return new PagedIterable<>(listByResourceAsync(resourceGroupName, farmBeatsResourceName));
-    }
-
-    /**
-     * Get list of Private endpoint connections.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private endpoint connections as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PrivateEndpointConnectionInner> listByResource(
-        String resourceGroupName, String farmBeatsResourceName, Context context) {
-        return new PagedIterable<>(listByResourceAsync(resourceGroupName, farmBeatsResourceName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionListResultInner listByResource(
+        String resourceGroupName, String dataManagerForAgricultureResourceName) {
+        return listByResourceWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, Context.NONE)
+            .getValue();
     }
 }
