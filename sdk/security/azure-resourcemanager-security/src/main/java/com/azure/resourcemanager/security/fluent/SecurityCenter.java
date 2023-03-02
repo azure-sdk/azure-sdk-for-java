@@ -388,41 +388,6 @@ public interface SecurityCenter {
     GovernanceRulesClient getGovernanceRules();
 
     /**
-     * Gets the GovernanceRulesOperationsClient object to access its operations.
-     *
-     * @return the GovernanceRulesOperationsClient object.
-     */
-    GovernanceRulesOperationsClient getGovernanceRulesOperations();
-
-    /**
-     * Gets the SecurityConnectorGovernanceRulesClient object to access its operations.
-     *
-     * @return the SecurityConnectorGovernanceRulesClient object.
-     */
-    SecurityConnectorGovernanceRulesClient getSecurityConnectorGovernanceRules();
-
-    /**
-     * Gets the SecurityConnectorGovernanceRulesOperationsClient object to access its operations.
-     *
-     * @return the SecurityConnectorGovernanceRulesOperationsClient object.
-     */
-    SecurityConnectorGovernanceRulesOperationsClient getSecurityConnectorGovernanceRulesOperations();
-
-    /**
-     * Gets the SubscriptionGovernanceRulesExecuteStatusClient object to access its operations.
-     *
-     * @return the SubscriptionGovernanceRulesExecuteStatusClient object.
-     */
-    SubscriptionGovernanceRulesExecuteStatusClient getSubscriptionGovernanceRulesExecuteStatus();
-
-    /**
-     * Gets the SecurityConnectorGovernanceRulesExecuteStatusClient object to access its operations.
-     *
-     * @return the SecurityConnectorGovernanceRulesExecuteStatusClient object.
-     */
-    SecurityConnectorGovernanceRulesExecuteStatusClient getSecurityConnectorGovernanceRulesExecuteStatus();
-
-    /**
      * Gets the GovernanceAssignmentsClient object to access its operations.
      *
      * @return the GovernanceAssignmentsClient object.
