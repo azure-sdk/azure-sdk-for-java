@@ -4,15 +4,13 @@
 
 package com.azure.resourcemanager.hybridcompute.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.hybridcompute.models.MachineExtensionProperties;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Samples for MachineExtensions CreateOrUpdate. */
 public final class MachineExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PUTExtension.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2022-12-27-preview/examples/PUTExtension.json
      */
     /**
      * Sample code: Create or Update a Machine Extension.
@@ -20,25 +18,28 @@ public final class MachineExtensionsCreateOrUpdateSamples {
      * @param manager Entry point to HybridComputeManager.
      */
     public static void createOrUpdateAMachineExtension(
-        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) throws IOException {
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
         manager
             .machineExtensions()
             .define("CustomScriptExtension")
             .withRegion("eastus2euap")
             .withExistingMachine("myResourceGroup", "myMachine")
-            .withProperties(
-                new MachineExtensionProperties()
-                    .withPublisher("Microsoft.Compute")
-                    .withType("CustomScriptExtension")
-                    .withTypeHandlerVersion("1.10")
-                    .withSettings(
-                        SerializerFactory
-                            .createDefaultManagementSerializerAdapter()
-                            .deserialize(
-                                "{\"commandToExecute\":\"powershell.exe -c \\\"Get-Process | Where-Object { $_.CPU -gt"
-                                    + " 10000 }\\\"\"}",
-                                Object.class,
-                                SerializerEncoding.JSON)))
+            .withPublisher("Microsoft.Compute")
+            .withTypePropertiesType("CustomScriptExtension")
+            .withTypeHandlerVersion("1.10")
+            .withSettings(
+                mapOf("commandToExecute", "powershell.exe -c \"Get-Process | Where-Object { $_.CPU -gt 10000 }\""))
             .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
