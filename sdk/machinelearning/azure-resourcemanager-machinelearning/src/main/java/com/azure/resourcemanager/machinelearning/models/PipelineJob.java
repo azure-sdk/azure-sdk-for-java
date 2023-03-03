@@ -197,6 +197,13 @@ public final class PipelineJob extends JobBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public PipelineJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public PipelineJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;

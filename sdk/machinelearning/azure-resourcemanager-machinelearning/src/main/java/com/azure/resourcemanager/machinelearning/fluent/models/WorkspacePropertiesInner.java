@@ -170,6 +170,24 @@ public final class WorkspacePropertiesInner {
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
 
+    /*
+     * The timestamp when the workspace was soft deleted
+     */
+    @JsonProperty(value = "softDeletedAt", access = JsonProperty.Access.WRITE_ONLY)
+    private String softDeletedAt;
+
+    /*
+     * The timestamp when the soft deleted workspace is going to be purged
+     */
+    @JsonProperty(value = "scheduledPurgeDate", access = JsonProperty.Access.WRITE_ONLY)
+    private String scheduledPurgeDate;
+
+    /*
+     * The auth mode used for accessing the system datastores of the workspace
+     */
+    @JsonProperty(value = "systemDatastoresAuthMode")
+    private String systemDatastoresAuthMode;
+
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
     }
@@ -592,6 +610,46 @@ public final class WorkspacePropertiesInner {
      */
     public WorkspacePropertiesInner withV1LegacyMode(Boolean v1LegacyMode) {
         this.v1LegacyMode = v1LegacyMode;
+        return this;
+    }
+
+    /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.softDeletedAt;
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.scheduledPurgeDate;
+    }
+
+    /**
+     * Get the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    public String systemDatastoresAuthMode() {
+        return this.systemDatastoresAuthMode;
+    }
+
+    /**
+     * Set the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @param systemDatastoresAuthMode the systemDatastoresAuthMode value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        this.systemDatastoresAuthMode = systemDatastoresAuthMode;
         return this;
     }
 

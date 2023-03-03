@@ -7,6 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /** The ResourceConfiguration model. */
@@ -23,6 +24,12 @@ public class ResourceConfiguration {
      */
     @JsonProperty(value = "instanceType")
     private String instanceType;
+
+    /*
+     * Locations where the job can run.
+     */
+    @JsonProperty(value = "locations")
+    private List<String> locations;
 
     /*
      * Additional properties bag.
@@ -72,6 +79,26 @@ public class ResourceConfiguration {
      */
     public ResourceConfiguration withInstanceType(String instanceType) {
         this.instanceType = instanceType;
+        return this;
+    }
+
+    /**
+     * Get the locations property: Locations where the job can run.
+     *
+     * @return the locations value.
+     */
+    public List<String> locations() {
+        return this.locations;
+    }
+
+    /**
+     * Set the locations property: Locations where the job can run.
+     *
+     * @param locations the locations value to set.
+     * @return the ResourceConfiguration object itself.
+     */
+    public ResourceConfiguration withLocations(List<String> locations) {
+        this.locations = locations;
         return this;
     }
 
