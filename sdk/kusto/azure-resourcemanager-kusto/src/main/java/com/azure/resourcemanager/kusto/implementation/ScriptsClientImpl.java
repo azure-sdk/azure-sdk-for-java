@@ -1188,7 +1188,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1246,7 +1246,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1302,7 +1302,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1325,7 +1325,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1349,7 +1349,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1367,7 +1367,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1386,7 +1386,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1406,7 +1406,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1427,7 +1427,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -1443,7 +1443,7 @@ public final class ScriptsClientImpl implements ScriptsClient {
     }
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
