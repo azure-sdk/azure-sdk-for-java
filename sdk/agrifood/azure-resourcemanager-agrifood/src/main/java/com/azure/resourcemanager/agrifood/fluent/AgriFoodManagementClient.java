@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for AgriFoodManagementClient class. */
 public interface AgriFoodManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -66,6 +66,13 @@ public interface AgriFoodManagementClient {
     FarmBeatsModelsClient getFarmBeatsModels();
 
     /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    OperationResultsClient getOperationResults();
+
+    /**
      * Gets the LocationsClient object to access its operations.
      *
      * @return the LocationsClient object.
@@ -92,4 +99,18 @@ public interface AgriFoodManagementClient {
      * @return the PrivateLinkResourcesClient object.
      */
     PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the SolutionsClient object to access its operations.
+     *
+     * @return the SolutionsClient object.
+     */
+    SolutionsClient getSolutions();
+
+    /**
+     * Gets the SolutionsDiscoverabilitiesClient object to access its operations.
+     *
+     * @return the SolutionsDiscoverabilitiesClient object.
+     */
+    SolutionsDiscoverabilitiesClient getSolutionsDiscoverabilities();
 }

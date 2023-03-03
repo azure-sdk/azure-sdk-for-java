@@ -37,7 +37,7 @@ public interface FarmBeatsProperties {
     PublicNetworkAccess publicNetworkAccess();
 
     /**
-     * Gets the privateEndpointConnections property: The Private Endpoint Connection resource.
+     * Gets the privateEndpointConnections property: The private endpoint connection resource.
      *
      * @return the privateEndpointConnections value.
      */
