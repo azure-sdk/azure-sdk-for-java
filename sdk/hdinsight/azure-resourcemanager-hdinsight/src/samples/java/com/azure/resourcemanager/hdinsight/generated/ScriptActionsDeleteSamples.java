@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ScriptActions Delete. */
 public final class ScriptActionsDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class ScriptActionsDeleteSamples {
      */
     public static void deleteAScriptActionOnHDInsightCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.scriptActions().deleteWithResponse("rg1", "cluster1", "scriptName", Context.NONE);
+        manager.scriptActions().deleteWithResponse("rg1", "cluster1", "scriptName", com.azure.core.util.Context.NONE);
     }
 }

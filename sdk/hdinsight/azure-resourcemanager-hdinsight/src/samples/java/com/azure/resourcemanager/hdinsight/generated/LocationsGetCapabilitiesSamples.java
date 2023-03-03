@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Locations GetCapabilities. */
 public final class LocationsGetCapabilitiesSamples {
     /*
@@ -18,6 +16,6 @@ public final class LocationsGetCapabilitiesSamples {
      */
     public static void getTheSubscriptionCapabilitiesForSpecificLocation(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.locations().getCapabilitiesWithResponse("West US", Context.NONE);
+        manager.locations().getCapabilitiesWithResponse("West US", com.azure.core.util.Context.NONE);
     }
 }

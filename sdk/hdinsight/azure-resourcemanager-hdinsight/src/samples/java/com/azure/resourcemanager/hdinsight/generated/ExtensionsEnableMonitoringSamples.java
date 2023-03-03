@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.ClusterMonitoringRequest;
 
 /** Samples for Extensions EnableMonitoring. */
@@ -26,6 +25,6 @@ public final class ExtensionsEnableMonitoringSamples {
                 new ClusterMonitoringRequest()
                     .withWorkspaceId("a2090ead-8c9f-4fba-b70e-533e3e003163")
                     .withPrimaryKey("fakeTokenPlaceholder"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

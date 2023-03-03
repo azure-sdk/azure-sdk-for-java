@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.ClusterResizeParameters;
 import com.azure.resourcemanager.hdinsight.models.RoleName;
 
@@ -27,6 +26,6 @@ public final class ClustersResizeSamples {
                 "cluster1",
                 RoleName.WORKERNODE,
                 new ClusterResizeParameters().withTargetInstanceCount(10),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

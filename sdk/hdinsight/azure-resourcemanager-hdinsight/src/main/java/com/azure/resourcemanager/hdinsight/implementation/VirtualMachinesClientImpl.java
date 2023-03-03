@@ -414,7 +414,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestartHosts(
         String resourceGroupName, String clusterName, List<String> hosts) {
-        return beginRestartHostsAsync(resourceGroupName, clusterName, hosts).getSyncPoller();
+        return this.beginRestartHostsAsync(resourceGroupName, clusterName, hosts).getSyncPoller();
     }
 
     /**
@@ -432,7 +432,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestartHosts(
         String resourceGroupName, String clusterName, List<String> hosts, Context context) {
-        return beginRestartHostsAsync(resourceGroupName, clusterName, hosts, context).getSyncPoller();
+        return this.beginRestartHostsAsync(resourceGroupName, clusterName, hosts, context).getSyncPoller();
     }
 
     /**

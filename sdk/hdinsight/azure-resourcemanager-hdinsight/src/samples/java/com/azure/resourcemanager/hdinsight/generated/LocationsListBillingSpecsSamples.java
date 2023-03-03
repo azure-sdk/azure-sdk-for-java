@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Locations ListBillingSpecs. */
 public final class LocationsListBillingSpecsSamples {
     /*
@@ -18,6 +16,6 @@ public final class LocationsListBillingSpecsSamples {
      */
     public static void getTheSubscriptionBillingSpecsForTheSpecifiedLocation(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.locations().listBillingSpecsWithResponse("East US 2", Context.NONE);
+        manager.locations().listBillingSpecsWithResponse("East US 2", com.azure.core.util.Context.NONE);
     }
 }

@@ -390,7 +390,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginEnableMonitoring(
         String resourceGroupName, String clusterName, ClusterMonitoringRequest parameters) {
-        return beginEnableMonitoringAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginEnableMonitoringAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -408,7 +408,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginEnableMonitoring(
         String resourceGroupName, String clusterName, ClusterMonitoringRequest parameters, Context context) {
-        return beginEnableMonitoringAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this.beginEnableMonitoringAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -776,7 +776,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDisableMonitoring(String resourceGroupName, String clusterName) {
-        return beginDisableMonitoringAsync(resourceGroupName, clusterName).getSyncPoller();
+        return this.beginDisableMonitoringAsync(resourceGroupName, clusterName).getSyncPoller();
     }
 
     /**
@@ -793,7 +793,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDisableMonitoring(
         String resourceGroupName, String clusterName, Context context) {
-        return beginDisableMonitoringAsync(resourceGroupName, clusterName, context).getSyncPoller();
+        return this.beginDisableMonitoringAsync(resourceGroupName, clusterName, context).getSyncPoller();
     }
 
     /**
@@ -1027,7 +1027,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginEnableAzureMonitor(
         String resourceGroupName, String clusterName, AzureMonitorRequest parameters) {
-        return beginEnableAzureMonitorAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginEnableAzureMonitorAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -1045,7 +1045,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginEnableAzureMonitor(
         String resourceGroupName, String clusterName, AzureMonitorRequest parameters, Context context) {
-        return beginEnableAzureMonitorAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this.beginEnableAzureMonitorAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -1411,7 +1411,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDisableAzureMonitor(String resourceGroupName, String clusterName) {
-        return beginDisableAzureMonitorAsync(resourceGroupName, clusterName).getSyncPoller();
+        return this.beginDisableAzureMonitorAsync(resourceGroupName, clusterName).getSyncPoller();
     }
 
     /**
@@ -1428,7 +1428,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDisableAzureMonitor(
         String resourceGroupName, String clusterName, Context context) {
-        return beginDisableAzureMonitorAsync(resourceGroupName, clusterName, context).getSyncPoller();
+        return this.beginDisableAzureMonitorAsync(resourceGroupName, clusterName, context).getSyncPoller();
     }
 
     /**
@@ -1675,7 +1675,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCreate(
         String resourceGroupName, String clusterName, String extensionName, Extension parameters) {
-        return beginCreateAsync(resourceGroupName, clusterName, extensionName, parameters).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, clusterName, extensionName, parameters).getSyncPoller();
     }
 
     /**
@@ -1694,7 +1694,9 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCreate(
         String resourceGroupName, String clusterName, String extensionName, Extension parameters, Context context) {
-        return beginCreateAsync(resourceGroupName, clusterName, extensionName, parameters, context).getSyncPoller();
+        return this
+            .beginCreateAsync(resourceGroupName, clusterName, extensionName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -2093,7 +2095,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, String extensionName) {
-        return beginDeleteAsync(resourceGroupName, clusterName, extensionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName, extensionName).getSyncPoller();
     }
 
     /**
@@ -2111,7 +2113,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, String extensionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, clusterName, extensionName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName, extensionName, context).getSyncPoller();
     }
 
     /**

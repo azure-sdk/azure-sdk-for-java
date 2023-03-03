@@ -479,7 +479,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(
         String resourceGroupName, String clusterName, ClusterCreateParametersExtended parameters) {
-        return beginCreateAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -497,7 +497,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(
         String resourceGroupName, String clusterName, ClusterCreateParametersExtended parameters, Context context) {
-        return beginCreateAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -879,7 +879,7 @@ public final class ClustersClientImpl implements ClustersClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName) {
-        return beginDeleteAsync(resourceGroupName, clusterName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName).getSyncPoller();
     }
 
     /**
@@ -896,7 +896,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, Context context) {
-        return beginDeleteAsync(resourceGroupName, clusterName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName, context).getSyncPoller();
     }
 
     /**
@@ -1456,7 +1456,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginResize(
         String resourceGroupName, String clusterName, RoleName roleName, ClusterResizeParameters parameters) {
-        return beginResizeAsync(resourceGroupName, clusterName, roleName, parameters).getSyncPoller();
+        return this.beginResizeAsync(resourceGroupName, clusterName, roleName, parameters).getSyncPoller();
     }
 
     /**
@@ -1479,7 +1479,7 @@ public final class ClustersClientImpl implements ClustersClient {
         RoleName roleName,
         ClusterResizeParameters parameters,
         Context context) {
-        return beginResizeAsync(resourceGroupName, clusterName, roleName, parameters, context).getSyncPoller();
+        return this.beginResizeAsync(resourceGroupName, clusterName, roleName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -1764,7 +1764,8 @@ public final class ClustersClientImpl implements ClustersClient {
         String clusterName,
         RoleName roleName,
         AutoscaleConfigurationUpdateParameter parameters) {
-        return beginUpdateAutoScaleConfigurationAsync(resourceGroupName, clusterName, roleName, parameters)
+        return this
+            .beginUpdateAutoScaleConfigurationAsync(resourceGroupName, clusterName, roleName, parameters)
             .getSyncPoller();
     }
 
@@ -1788,7 +1789,8 @@ public final class ClustersClientImpl implements ClustersClient {
         RoleName roleName,
         AutoscaleConfigurationUpdateParameter parameters,
         Context context) {
-        return beginUpdateAutoScaleConfigurationAsync(resourceGroupName, clusterName, roleName, parameters, context)
+        return this
+            .beginUpdateAutoScaleConfigurationAsync(resourceGroupName, clusterName, roleName, parameters, context)
             .getSyncPoller();
     }
 
@@ -2191,7 +2193,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRotateDiskEncryptionKey(
         String resourceGroupName, String clusterName, ClusterDiskEncryptionParameters parameters) {
-        return beginRotateDiskEncryptionKeyAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginRotateDiskEncryptionKeyAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -2209,7 +2211,9 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRotateDiskEncryptionKey(
         String resourceGroupName, String clusterName, ClusterDiskEncryptionParameters parameters, Context context) {
-        return beginRotateDiskEncryptionKeyAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this
+            .beginRotateDiskEncryptionKeyAsync(resourceGroupName, clusterName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -2595,7 +2599,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginUpdateGatewaySettings(
         String resourceGroupName, String clusterName, UpdateGatewaySettingsParameters parameters) {
-        return beginUpdateGatewaySettingsAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginUpdateGatewaySettingsAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -2613,7 +2617,9 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginUpdateGatewaySettings(
         String resourceGroupName, String clusterName, UpdateGatewaySettingsParameters parameters, Context context) {
-        return beginUpdateGatewaySettingsAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this
+            .beginUpdateGatewaySettingsAsync(resourceGroupName, clusterName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -3020,7 +3026,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginUpdateIdentityCertificate(
         String resourceGroupName, String clusterName, UpdateClusterIdentityCertificateParameters parameters) {
-        return beginUpdateIdentityCertificateAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginUpdateIdentityCertificateAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -3041,7 +3047,9 @@ public final class ClustersClientImpl implements ClustersClient {
         String clusterName,
         UpdateClusterIdentityCertificateParameters parameters,
         Context context) {
-        return beginUpdateIdentityCertificateAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this
+            .beginUpdateIdentityCertificateAsync(resourceGroupName, clusterName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -3289,7 +3297,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginExecuteScriptActions(
         String resourceGroupName, String clusterName, ExecuteScriptActionParameters parameters) {
-        return beginExecuteScriptActionsAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
+        return this.beginExecuteScriptActionsAsync(resourceGroupName, clusterName, parameters).getSyncPoller();
     }
 
     /**
@@ -3307,7 +3315,7 @@ public final class ClustersClientImpl implements ClustersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginExecuteScriptActions(
         String resourceGroupName, String clusterName, ExecuteScriptActionParameters parameters, Context context) {
-        return beginExecuteScriptActionsAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
+        return this.beginExecuteScriptActionsAsync(resourceGroupName, clusterName, parameters, context).getSyncPoller();
     }
 
     /**

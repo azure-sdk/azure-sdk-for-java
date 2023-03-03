@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clusters ListByResourceGroup. */
 public final class ClustersListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class ClustersListByResourceGroupSamples {
      */
     public static void getAllHadoopOnLinuxClustersInAResourceGroup(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.clusters().listByResourceGroup("rg1", Context.NONE);
+        manager.clusters().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
     }
 }

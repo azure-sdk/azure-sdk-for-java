@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections ListByCluster. */
 public final class PrivateEndpointConnectionsListByClusterSamples {
     /*
@@ -18,6 +16,6 @@ public final class PrivateEndpointConnectionsListByClusterSamples {
      */
     public static void getAllPrivateEndpointConnectionsForASpecificHDInsightCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.privateEndpointConnections().listByCluster("rg1", "cluster1", Context.NONE);
+        manager.privateEndpointConnections().listByCluster("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
