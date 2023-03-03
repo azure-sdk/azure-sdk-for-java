@@ -47,7 +47,6 @@ import com.azure.resourcemanager.security.fluent.DiscoveredSecuritySolutionsClie
 import com.azure.resourcemanager.security.fluent.ExternalSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceRulesClient;
-import com.azure.resourcemanager.security.fluent.GovernanceRulesOperationsClient;
 import com.azure.resourcemanager.security.fluent.InformationProtectionPoliciesClient;
 import com.azure.resourcemanager.security.fluent.IngestionSettingsClient;
 import com.azure.resourcemanager.security.fluent.IotSecuritySolutionAnalyticsClient;
@@ -68,9 +67,6 @@ import com.azure.resourcemanager.security.fluent.SecureScoresClient;
 import com.azure.resourcemanager.security.fluent.SecurityCenter;
 import com.azure.resourcemanager.security.fluent.SecurityConnectorApplicationOperationsClient;
 import com.azure.resourcemanager.security.fluent.SecurityConnectorApplicationsClient;
-import com.azure.resourcemanager.security.fluent.SecurityConnectorGovernanceRulesClient;
-import com.azure.resourcemanager.security.fluent.SecurityConnectorGovernanceRulesExecuteStatusClient;
-import com.azure.resourcemanager.security.fluent.SecurityConnectorGovernanceRulesOperationsClient;
 import com.azure.resourcemanager.security.fluent.SecurityConnectorsClient;
 import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsClient;
@@ -82,7 +78,6 @@ import com.azure.resourcemanager.security.fluent.SqlVulnerabilityAssessmentBasel
 import com.azure.resourcemanager.security.fluent.SqlVulnerabilityAssessmentScanResultsClient;
 import com.azure.resourcemanager.security.fluent.SqlVulnerabilityAssessmentScansClient;
 import com.azure.resourcemanager.security.fluent.SubAssessmentsClient;
-import com.azure.resourcemanager.security.fluent.SubscriptionGovernanceRulesExecuteStatusClient;
 import com.azure.resourcemanager.security.fluent.TasksClient;
 import com.azure.resourcemanager.security.fluent.TopologiesClient;
 import com.azure.resourcemanager.security.fluent.WorkspaceSettingsClient;
@@ -758,66 +753,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.governanceRules;
     }
 
-    /** The GovernanceRulesOperationsClient object to access its operations. */
-    private final GovernanceRulesOperationsClient governanceRulesOperations;
-
-    /**
-     * Gets the GovernanceRulesOperationsClient object to access its operations.
-     *
-     * @return the GovernanceRulesOperationsClient object.
-     */
-    public GovernanceRulesOperationsClient getGovernanceRulesOperations() {
-        return this.governanceRulesOperations;
-    }
-
-    /** The SecurityConnectorGovernanceRulesClient object to access its operations. */
-    private final SecurityConnectorGovernanceRulesClient securityConnectorGovernanceRules;
-
-    /**
-     * Gets the SecurityConnectorGovernanceRulesClient object to access its operations.
-     *
-     * @return the SecurityConnectorGovernanceRulesClient object.
-     */
-    public SecurityConnectorGovernanceRulesClient getSecurityConnectorGovernanceRules() {
-        return this.securityConnectorGovernanceRules;
-    }
-
-    /** The SecurityConnectorGovernanceRulesOperationsClient object to access its operations. */
-    private final SecurityConnectorGovernanceRulesOperationsClient securityConnectorGovernanceRulesOperations;
-
-    /**
-     * Gets the SecurityConnectorGovernanceRulesOperationsClient object to access its operations.
-     *
-     * @return the SecurityConnectorGovernanceRulesOperationsClient object.
-     */
-    public SecurityConnectorGovernanceRulesOperationsClient getSecurityConnectorGovernanceRulesOperations() {
-        return this.securityConnectorGovernanceRulesOperations;
-    }
-
-    /** The SubscriptionGovernanceRulesExecuteStatusClient object to access its operations. */
-    private final SubscriptionGovernanceRulesExecuteStatusClient subscriptionGovernanceRulesExecuteStatus;
-
-    /**
-     * Gets the SubscriptionGovernanceRulesExecuteStatusClient object to access its operations.
-     *
-     * @return the SubscriptionGovernanceRulesExecuteStatusClient object.
-     */
-    public SubscriptionGovernanceRulesExecuteStatusClient getSubscriptionGovernanceRulesExecuteStatus() {
-        return this.subscriptionGovernanceRulesExecuteStatus;
-    }
-
-    /** The SecurityConnectorGovernanceRulesExecuteStatusClient object to access its operations. */
-    private final SecurityConnectorGovernanceRulesExecuteStatusClient securityConnectorGovernanceRulesExecuteStatus;
-
-    /**
-     * Gets the SecurityConnectorGovernanceRulesExecuteStatusClient object to access its operations.
-     *
-     * @return the SecurityConnectorGovernanceRulesExecuteStatusClient object.
-     */
-    public SecurityConnectorGovernanceRulesExecuteStatusClient getSecurityConnectorGovernanceRulesExecuteStatus() {
-        return this.securityConnectorGovernanceRulesExecuteStatus;
-    }
-
     /** The GovernanceAssignmentsClient object to access its operations. */
     private final GovernanceAssignmentsClient governanceAssignments;
 
@@ -988,13 +923,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.softwareInventories = new SoftwareInventoriesClientImpl(this);
         this.securityConnectors = new SecurityConnectorsClientImpl(this);
         this.governanceRules = new GovernanceRulesClientImpl(this);
-        this.governanceRulesOperations = new GovernanceRulesOperationsClientImpl(this);
-        this.securityConnectorGovernanceRules = new SecurityConnectorGovernanceRulesClientImpl(this);
-        this.securityConnectorGovernanceRulesOperations =
-            new SecurityConnectorGovernanceRulesOperationsClientImpl(this);
-        this.subscriptionGovernanceRulesExecuteStatus = new SubscriptionGovernanceRulesExecuteStatusClientImpl(this);
-        this.securityConnectorGovernanceRulesExecuteStatus =
-            new SecurityConnectorGovernanceRulesExecuteStatusClientImpl(this);
         this.governanceAssignments = new GovernanceAssignmentsClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);
         this.applicationOperations = new ApplicationOperationsClientImpl(this);
