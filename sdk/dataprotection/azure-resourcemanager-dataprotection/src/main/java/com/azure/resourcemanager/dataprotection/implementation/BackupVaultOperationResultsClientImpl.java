@@ -23,7 +23,6 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.BackupVaultResourceInner;
 import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResultsGetResponse;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BackupVaultOperationResultsClient. */
@@ -63,7 +62,7 @@ public final class BackupVaultOperationResultsClientImpl implements BackupVaultO
         Mono<BackupVaultOperationResultsGetResponse> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("operationId") String operationId,
