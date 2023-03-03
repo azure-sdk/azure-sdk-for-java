@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Labs ListAll. */
 public final class LabsListAllSamples {
     /*
@@ -17,7 +15,9 @@ public final class LabsListAllSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void labList(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.labs().listAll("{billingAccountName}", "{billingProfileName}", false, null, Context.NONE);
+        manager
+            .labs()
+            .listAll("{billingAccountName}", "{billingProfileName}", false, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +29,8 @@ public final class LabsListAllSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void labListIncludeBudget(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.labs().listAll("{billingAccountName}", "{billingProfileName}", true, null, Context.NONE);
+        manager
+            .labs()
+            .listAll("{billingAccountName}", "{billingProfileName}", true, null, com.azure.core.util.Context.NONE);
     }
 }

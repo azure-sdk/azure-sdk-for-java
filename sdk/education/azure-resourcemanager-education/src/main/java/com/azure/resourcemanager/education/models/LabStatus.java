@@ -20,6 +20,15 @@ public final class LabStatus extends ExpandableStringEnum<LabStatus> {
     public static final LabStatus PENDING = fromString("Pending");
 
     /**
+     * Creates a new instance of LabStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public LabStatus() {
+    }
+
+    /**
      * Creates or finds a LabStatus from its string representation.
      *
      * @param name a name to look for.

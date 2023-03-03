@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Students List. */
 public final class StudentsListSamples {
     /*
@@ -19,6 +17,11 @@ public final class StudentsListSamples {
     public static void studentList(com.azure.resourcemanager.education.EducationManager manager) {
         manager
             .students()
-            .list("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", null, Context.NONE);
+            .list(
+                "{billingAccountName}",
+                "{billingProfileName}",
+                "{invoiceSectionName}",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }

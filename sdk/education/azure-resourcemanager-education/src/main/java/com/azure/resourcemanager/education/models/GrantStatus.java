@@ -17,6 +17,15 @@ public final class GrantStatus extends ExpandableStringEnum<GrantStatus> {
     public static final GrantStatus INACTIVE = fromString("Inactive");
 
     /**
+     * Creates a new instance of GrantStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public GrantStatus() {
+    }
+
+    /**
      * Creates or finds a GrantStatus from its string representation.
      *
      * @param name a name to look for.
