@@ -689,7 +689,8 @@ public final class DigitalTwinsEndpointsClientImpl implements DigitalTwinsEndpoi
             String resourceName,
             String endpointName,
             DigitalTwinsEndpointResourceInner endpointDescription) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, endpointName, endpointDescription)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, endpointName, endpointDescription)
             .getSyncPoller();
     }
 
@@ -714,7 +715,8 @@ public final class DigitalTwinsEndpointsClientImpl implements DigitalTwinsEndpoi
             String endpointName,
             DigitalTwinsEndpointResourceInner endpointDescription,
             Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, endpointName, endpointDescription, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, endpointName, endpointDescription, context)
             .getSyncPoller();
     }
 
@@ -983,7 +985,7 @@ public final class DigitalTwinsEndpointsClientImpl implements DigitalTwinsEndpoi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DigitalTwinsEndpointResourceInner>, DigitalTwinsEndpointResourceInner> beginDelete(
         String resourceGroupName, String resourceName, String endpointName) {
-        return beginDeleteAsync(resourceGroupName, resourceName, endpointName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, endpointName).getSyncPoller();
     }
 
     /**
@@ -1001,7 +1003,7 @@ public final class DigitalTwinsEndpointsClientImpl implements DigitalTwinsEndpoi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DigitalTwinsEndpointResourceInner>, DigitalTwinsEndpointResourceInner> beginDelete(
         String resourceGroupName, String resourceName, String endpointName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, endpointName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, endpointName, context).getSyncPoller();
     }
 
     /**
