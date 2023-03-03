@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.servicelinker.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Linker List. */
 public final class LinkerListSamples {
     /*
@@ -21,6 +19,6 @@ public final class LinkerListSamples {
             .linkers()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
