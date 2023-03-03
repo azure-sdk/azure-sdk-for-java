@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
@@ -17,6 +15,8 @@ public final class PrivateEndpointConnectionsListSamples {
      * @param manager Entry point to IotHubManager.
      */
     public static void privateEndpointConnectionsList(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.privateEndpointConnections().listWithResponse("myResourceGroup", "testHub", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .listWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }
