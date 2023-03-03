@@ -68,7 +68,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ConnectedEnvironmentsService {
+    public interface ConnectedEnvironmentsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.App/connectedEnvironments")
         @ExpectedResponses({200})
@@ -843,7 +843,8 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ConnectedEnvironmentInner>, ConnectedEnvironmentInner> beginCreateOrUpdate(
         String resourceGroupName, String connectedEnvironmentName, ConnectedEnvironmentInner environmentEnvelope) {
-        return beginCreateOrUpdateAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope)
             .getSyncPoller();
     }
 
@@ -866,7 +867,8 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
         String connectedEnvironmentName,
         ConnectedEnvironmentInner environmentEnvelope,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope, context)
             .getSyncPoller();
     }
 
@@ -1104,7 +1106,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String connectedEnvironmentName) {
-        return beginDeleteAsync(resourceGroupName, connectedEnvironmentName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, connectedEnvironmentName).getSyncPoller();
     }
 
     /**
@@ -1121,7 +1123,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String connectedEnvironmentName, Context context) {
-        return beginDeleteAsync(resourceGroupName, connectedEnvironmentName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, connectedEnvironmentName, context).getSyncPoller();
     }
 
     /**

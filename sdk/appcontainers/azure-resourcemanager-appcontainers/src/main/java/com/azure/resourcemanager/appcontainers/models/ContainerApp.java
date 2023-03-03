@@ -107,6 +107,13 @@ public interface ContainerApp {
     String latestRevisionName();
 
     /**
+     * Gets the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    String latestReadyRevisionName();
+
+    /**
      * Gets the latestRevisionFqdn property: Fully Qualified Domain Name of the latest revision of the Container App.
      *
      * @return the latestRevisionFqdn value.
