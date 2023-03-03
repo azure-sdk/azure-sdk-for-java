@@ -671,7 +671,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WebPubSubHubInner>, WebPubSubHubInner> beginCreateOrUpdate(
         String hubName, String resourceGroupName, String resourceName, WebPubSubHubInner parameters) {
-        return beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters).getSyncPoller();
     }
 
     /**
@@ -691,7 +691,9 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WebPubSubHubInner>, WebPubSubHubInner> beginCreateOrUpdate(
         String hubName, String resourceGroupName, String resourceName, WebPubSubHubInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -943,7 +945,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String hubName, String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(hubName, resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(hubName, resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -962,7 +964,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String hubName, String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(hubName, resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginDeleteAsync(hubName, resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
