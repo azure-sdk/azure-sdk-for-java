@@ -17,6 +17,10 @@ public final class LinkerPatch {
     @JsonProperty(value = "properties")
     private LinkerProperties innerProperties;
 
+    /** Creates an instance of LinkerPatch class. */
+    public LinkerPatch() {
+    }
+
     /**
      * Get the innerProperties property: Linker properties.
      *

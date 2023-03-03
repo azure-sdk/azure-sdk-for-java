@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("systemAssignedIdentity")
 @Immutable
 public final class SystemAssignedIdentityAuthInfo extends AuthInfoBase {
+    /** Creates an instance of SystemAssignedIdentityAuthInfo class. */
+    public SystemAssignedIdentityAuthInfo() {
+    }
+
     /**
      * Validates the instance.
      *
