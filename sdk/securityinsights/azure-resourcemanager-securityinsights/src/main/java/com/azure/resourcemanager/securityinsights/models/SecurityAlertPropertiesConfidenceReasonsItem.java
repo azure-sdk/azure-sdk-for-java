@@ -22,6 +22,10 @@ public final class SecurityAlertPropertiesConfidenceReasonsItem {
     @JsonProperty(value = "reasonType", access = JsonProperty.Access.WRITE_ONLY)
     private String reasonType;
 
+    /** Creates an instance of SecurityAlertPropertiesConfidenceReasonsItem class. */
+    public SecurityAlertPropertiesConfidenceReasonsItem() {
+    }
+
     /**
      * Get the reason property: The reason's description.
      *

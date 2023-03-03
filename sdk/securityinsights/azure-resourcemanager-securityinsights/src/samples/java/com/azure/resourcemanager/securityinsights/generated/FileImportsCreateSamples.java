@@ -12,7 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.IngestionMode;
 /** Samples for FileImports Create. */
 public final class FileImportsCreateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/fileImports/CreateFileImport.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/fileImports/CreateFileImport.json
      */
     /**
      * Sample code: Create a file import.

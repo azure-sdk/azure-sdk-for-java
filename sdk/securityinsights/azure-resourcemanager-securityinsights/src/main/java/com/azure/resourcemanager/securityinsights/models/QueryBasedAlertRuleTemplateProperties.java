@@ -56,6 +56,16 @@ public class QueryBasedAlertRuleTemplateProperties {
     @JsonProperty(value = "eventGroupingSettings")
     private EventGroupingSettings eventGroupingSettings;
 
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /** Creates an instance of QueryBasedAlertRuleTemplateProperties class. */
+    public QueryBasedAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the query property: The query that creates alerts for this rule.
      *
@@ -200,6 +210,27 @@ public class QueryBasedAlertRuleTemplateProperties {
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the QueryBasedAlertRuleTemplateProperties object itself.
+     */
+    public QueryBasedAlertRuleTemplateProperties withSentinelEntitiesMappings(
+        List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -213,6 +244,9 @@ public class QueryBasedAlertRuleTemplateProperties {
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 }

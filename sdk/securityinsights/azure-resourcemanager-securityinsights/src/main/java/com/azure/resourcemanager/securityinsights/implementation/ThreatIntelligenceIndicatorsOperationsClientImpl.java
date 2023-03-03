@@ -63,7 +63,7 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsThre")
-    private interface ThreatIntelligenceIndicatorsOperationsService {
+    public interface ThreatIntelligenceIndicatorsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
