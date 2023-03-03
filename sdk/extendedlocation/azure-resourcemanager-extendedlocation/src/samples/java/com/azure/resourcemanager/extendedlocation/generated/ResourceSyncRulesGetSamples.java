@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.extendedlocation.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ResourceSyncRules Get. */
 public final class ResourceSyncRulesGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class ResourceSyncRulesGetSamples {
     public static void getCustomLocation(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
         manager
             .resourceSyncRules()
-            .getWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01", Context.NONE);
+            .getWithResponse(
+                "testresourcegroup", "customLocation01", "resourceSyncRule01", com.azure.core.util.Context.NONE);
     }
 }
