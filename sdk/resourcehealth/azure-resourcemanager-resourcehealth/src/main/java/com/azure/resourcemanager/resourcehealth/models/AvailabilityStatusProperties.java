@@ -45,6 +45,20 @@ public final class AvailabilityStatusProperties {
     private String reasonType;
 
     /*
+     * When an event is created, it can either be triggered by a customer or the platform of the resource and this
+     * field will illustrate that. This field is connected to the category field in this object.
+     */
+    @JsonProperty(value = "context")
+    private String context;
+
+    /*
+     * When a context field is set to Platform, this field will reflect if the event was planned or unplanned. If the
+     * context field does not have a value of Platform, then this field will be ignored.
+     */
+    @JsonProperty(value = "category")
+    private String category;
+
+    /*
      * When the resource's availabilityState is Unavailable, it provides the Timestamp for when the health impacting
      * event was received.
      */
@@ -227,6 +241,50 @@ public final class AvailabilityStatusProperties {
      */
     public AvailabilityStatusProperties withReasonType(String reasonType) {
         this.reasonType = reasonType;
+        return this;
+    }
+
+    /**
+     * Get the context property: When an event is created, it can either be triggered by a customer or the platform of
+     * the resource and this field will illustrate that. This field is connected to the category field in this object.
+     *
+     * @return the context value.
+     */
+    public String context() {
+        return this.context;
+    }
+
+    /**
+     * Set the context property: When an event is created, it can either be triggered by a customer or the platform of
+     * the resource and this field will illustrate that. This field is connected to the category field in this object.
+     *
+     * @param context the context value to set.
+     * @return the AvailabilityStatusProperties object itself.
+     */
+    public AvailabilityStatusProperties withContext(String context) {
+        this.context = context;
+        return this;
+    }
+
+    /**
+     * Get the category property: When a context field is set to Platform, this field will reflect if the event was
+     * planned or unplanned. If the context field does not have a value of Platform, then this field will be ignored.
+     *
+     * @return the category value.
+     */
+    public String category() {
+        return this.category;
+    }
+
+    /**
+     * Set the category property: When a context field is set to Platform, this field will reflect if the event was
+     * planned or unplanned. If the context field does not have a value of Platform, then this field will be ignored.
+     *
+     * @param category the category value to set.
+     * @return the AvailabilityStatusProperties object itself.
+     */
+    public AvailabilityStatusProperties withCategory(String category) {
+        this.category = category;
         return this;
     }
 
