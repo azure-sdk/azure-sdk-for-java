@@ -22,6 +22,10 @@ public class MyWorkbookManagedIdentity {
     @JsonProperty(value = "type")
     private MyWorkbookManagedIdentityType type;
 
+    /** Creates an instance of MyWorkbookManagedIdentity class. */
+    public MyWorkbookManagedIdentity() {
+    }
+
     /**
      * Get the userAssignedIdentities property: Customer Managed Identity.
      *
