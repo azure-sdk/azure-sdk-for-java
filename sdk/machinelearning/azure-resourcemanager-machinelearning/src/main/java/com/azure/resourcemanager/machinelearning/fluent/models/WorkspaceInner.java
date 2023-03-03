@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
@@ -52,6 +53,12 @@ public final class WorkspaceInner extends ProxyResource {
      */
     @JsonProperty(value = "sku")
     private Sku sku;
+
+    /*
+     * The kind property.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -149,6 +156,26 @@ public final class WorkspaceInner extends ProxyResource {
      */
     public WorkspaceInner withSku(Sku sku) {
         this.sku = sku;
+        return this;
+    }
+
+    /**
+     * Get the kind property: The kind property.
+     *
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: The kind property.
+     *
+     * @param kind the kind value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withKind(String kind) {
+        this.kind = kind;
         return this;
     }
 
@@ -626,6 +653,72 @@ public final class WorkspaceInner extends ProxyResource {
             this.innerProperties = new WorkspacePropertiesInner();
         }
         this.innerProperties().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().softDeletedAt();
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().scheduledPurgeDate();
+    }
+
+    /**
+     * Get the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    public String systemDatastoresAuthMode() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemDatastoresAuthMode();
+    }
+
+    /**
+     * Set the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @param systemDatastoresAuthMode the systemDatastoresAuthMode value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withSystemDatastoresAuthMode(systemDatastoresAuthMode);
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().featureStoreSettings();
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withFeatureStoreSettings(featureStoreSettings);
         return this;
     }
 

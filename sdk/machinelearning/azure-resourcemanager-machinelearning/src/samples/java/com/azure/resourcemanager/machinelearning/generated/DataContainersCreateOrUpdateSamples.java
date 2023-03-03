@@ -12,14 +12,14 @@ import java.util.Map;
 /** Samples for DataContainers CreateOrUpdate. */
 public final class DataContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Data Container.
+     * Sample code: CreateOrUpdate Workspace Data Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateDataContainer(
+    public static void createOrUpdateWorkspaceDataContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .dataContainers()

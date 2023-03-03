@@ -16,15 +16,15 @@ import java.util.Map;
 /** Samples for BatchEndpoints Update. */
 public final class BatchEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/update.json
      */
     /**
-     * Sample code: Update Batch Endpoint.
+     * Sample code: Update Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager)
-        throws IOException {
+    public static void updateWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         BatchEndpoint resource =
             manager
                 .batchEndpoints()

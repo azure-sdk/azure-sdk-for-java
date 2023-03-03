@@ -39,21 +39,21 @@ public final class CodeContainersClientImpl implements CodeContainersClient {
     private final CodeContainersService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of CodeContainersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    CodeContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    CodeContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(CodeContainersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesCodeContainers to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesCodeContainers to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
