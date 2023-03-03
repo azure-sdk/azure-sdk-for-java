@@ -692,7 +692,9 @@ public final class SignalRCustomCertificatesClientImpl implements SignalRCustomC
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomCertificateInner>, CustomCertificateInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, String certificateName, CustomCertificateInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, certificateName, parameters).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, certificateName, parameters)
+            .getSyncPoller();
     }
 
     /**
@@ -716,7 +718,8 @@ public final class SignalRCustomCertificatesClientImpl implements SignalRCustomC
         String certificateName,
         CustomCertificateInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, certificateName, parameters, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, certificateName, parameters, context)
             .getSyncPoller();
     }
 

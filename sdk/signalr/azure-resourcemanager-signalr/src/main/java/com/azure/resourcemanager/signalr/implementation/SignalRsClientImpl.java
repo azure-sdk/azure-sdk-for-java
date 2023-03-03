@@ -1047,7 +1047,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, SignalRResourceInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
     }
 
     /**
@@ -1066,7 +1066,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, SignalRResourceInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -1297,7 +1297,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -1315,7 +1315,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
@@ -1560,7 +1560,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginUpdate(
         String resourceGroupName, String resourceName, SignalRResourceInner parameters) {
-        return beginUpdateAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
     }
 
     /**
@@ -1579,7 +1579,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginUpdate(
         String resourceGroupName, String resourceName, SignalRResourceInner parameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -1984,7 +1984,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRKeysInner>, SignalRKeysInner> beginRegenerateKey(
         String resourceGroupName, String resourceName, RegenerateKeyParameters parameters) {
-        return beginRegenerateKeyAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
+        return this.beginRegenerateKeyAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
     }
 
     /**
@@ -2003,7 +2003,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRKeysInner>, SignalRKeysInner> beginRegenerateKey(
         String resourceGroupName, String resourceName, RegenerateKeyParameters parameters, Context context) {
-        return beginRegenerateKeyAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
+        return this.beginRegenerateKeyAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -2234,7 +2234,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(String resourceGroupName, String resourceName) {
-        return beginRestartAsync(resourceGroupName, resourceName).getSyncPoller();
+        return this.beginRestartAsync(resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -2252,7 +2252,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(
         String resourceGroupName, String resourceName, Context context) {
-        return beginRestartAsync(resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginRestartAsync(resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
