@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ConfigurationStores PurgeDeleted. */
 public final class ConfigurationStoresPurgeDeletedSamples {
     /*
@@ -18,6 +16,6 @@ public final class ConfigurationStoresPurgeDeletedSamples {
      */
     public static void purgeADeletedConfigurationStore(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().purgeDeleted("westus", "contoso", Context.NONE);
+        manager.configurationStores().purgeDeleted("westus", "contoso", com.azure.core.util.Context.NONE);
     }
 }
