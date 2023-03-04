@@ -59,11 +59,39 @@ public interface HybridComputeManagementClient {
     MachineExtensionsClient getMachineExtensions();
 
     /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the ExtensionMetadatasClient object to access its operations.
+     *
+     * @return the ExtensionMetadatasClient object.
+     */
+    ExtensionMetadatasClient getExtensionMetadatas();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the NetworkProfilesClient object to access its operations.
+     *
+     * @return the NetworkProfilesClient object.
+     */
+    NetworkProfilesClient getNetworkProfiles();
+
+    /**
+     * Gets the HybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the HybridIdentityMetadatasClient object.
+     */
+    HybridIdentityMetadatasClient getHybridIdentityMetadatas();
 
     /**
      * Gets the PrivateLinkScopesClient object to access its operations.

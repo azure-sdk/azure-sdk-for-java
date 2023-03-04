@@ -135,7 +135,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -182,7 +182,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -228,7 +228,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -243,7 +243,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -259,7 +259,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
