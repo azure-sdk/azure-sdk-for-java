@@ -884,7 +884,7 @@ public final class WebPubSubPrivateEndpointConnectionsClientImpl implements WebP
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String privateEndpointConnectionName, String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -903,7 +903,8 @@ public final class WebPubSubPrivateEndpointConnectionsClientImpl implements WebP
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String privateEndpointConnectionName, String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName, context)
+        return this
+            .beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName, context)
             .getSyncPoller();
     }
 

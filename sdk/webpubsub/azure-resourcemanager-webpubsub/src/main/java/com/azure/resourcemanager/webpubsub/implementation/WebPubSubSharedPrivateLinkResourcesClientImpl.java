@@ -724,7 +724,8 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
         String resourceGroupName,
         String resourceName,
         SharedPrivateLinkResourceInner parameters) {
-        return beginCreateOrUpdateAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters)
+        return this
+            .beginCreateOrUpdateAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters)
             .getSyncPoller();
     }
 
@@ -749,7 +750,8 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
         String resourceName,
         SharedPrivateLinkResourceInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters, context)
             .getSyncPoller();
     }
@@ -1026,7 +1028,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String sharedPrivateLinkResourceName, String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -1045,7 +1047,8 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String sharedPrivateLinkResourceName, String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context)
+        return this
+            .beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context)
             .getSyncPoller();
     }
 

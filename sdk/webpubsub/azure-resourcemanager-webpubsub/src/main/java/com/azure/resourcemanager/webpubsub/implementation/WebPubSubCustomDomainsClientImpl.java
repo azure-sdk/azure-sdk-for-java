@@ -672,7 +672,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomDomainInner>, CustomDomainInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, String name, CustomDomainInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters).getSyncPoller();
     }
 
     /**
@@ -692,7 +692,9 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomDomainInner>, CustomDomainInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, String name, CustomDomainInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters, context)
+            .getSyncPoller();
     }
 
     /**
@@ -942,7 +944,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName, String name) {
-        return beginDeleteAsync(resourceGroupName, resourceName, name).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, name).getSyncPoller();
     }
 
     /**
@@ -961,7 +963,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, String name, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, name, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, name, context).getSyncPoller();
     }
 
     /**
