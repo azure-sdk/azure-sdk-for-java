@@ -53,7 +53,7 @@ import java.util.stream.Collectors;
 /**
  * Entry point to WorkloadsManager. Workloads client provides access to various workload operations.&lt;br&gt;Azure
  * Center for SAP solutions is currently in PREVIEW. See the [Azure Center for SAP solutions - Legal
- * Terms](https://learn.microsoft.com/en-us/legal/azure-center-for-sap-solutions/azure-center-for-sap-solutions-legal-terms)
+ * Terms](https://learn.microsoft.com/legal/azure-center-for-sap-solutions/azure-center-for-sap-solutions-legal-terms)
  * for legal notices applicable to Azure Center for SAP solutions.
  */
 public final class WorkloadsManager {
@@ -240,7 +240,7 @@ public final class WorkloadsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.workloads")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
