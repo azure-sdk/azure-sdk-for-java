@@ -40,7 +40,6 @@ import com.azure.resourcemanager.dataprotection.models.BackupVaultResourceList;
 import com.azure.resourcemanager.dataprotection.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.dataprotection.models.PatchResourceRequestInput;
 import java.nio.ByteBuffer;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -77,7 +76,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<BackupVaultResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -91,7 +90,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -104,7 +103,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<BackupVaultResourceInner>> getByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -119,7 +118,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @BodyParam("application/json") BackupVaultResourceInner parameters,
@@ -135,7 +134,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -150,7 +149,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @BodyParam("application/json") PatchResourceRequestInput parameters,
@@ -167,7 +166,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("location") String location,
             @BodyParam("application/json") CheckNameAvailabilityRequest parameters,
             @HeaderParam("Accept") String accept,

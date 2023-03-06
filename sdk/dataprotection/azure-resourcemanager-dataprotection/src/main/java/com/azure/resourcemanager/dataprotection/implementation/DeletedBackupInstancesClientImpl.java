@@ -33,7 +33,6 @@ import com.azure.resourcemanager.dataprotection.fluent.DeletedBackupInstancesCli
 import com.azure.resourcemanager.dataprotection.fluent.models.DeletedBackupInstanceResourceInner;
 import com.azure.resourcemanager.dataprotection.models.DeletedBackupInstanceResourceList;
 import java.nio.ByteBuffer;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -73,7 +72,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
         Mono<Response<DeletedBackupInstanceResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -88,7 +87,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
         Mono<Response<DeletedBackupInstanceResourceInner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -104,7 +103,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
         Mono<Response<Flux<ByteBuffer>>> undelete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
