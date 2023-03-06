@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** OfficeIRM (Microsoft Insider Risk Management) requirements check properties. */
 @Fluent
 public final class OfficeIrmCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of OfficeIrmCheckRequirementsProperties class. */
+    public OfficeIrmCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public OfficeIrmCheckRequirementsProperties withTenantId(String tenantId) {

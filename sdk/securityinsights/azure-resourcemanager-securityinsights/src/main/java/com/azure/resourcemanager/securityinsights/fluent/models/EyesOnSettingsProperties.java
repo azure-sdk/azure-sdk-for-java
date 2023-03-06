@@ -16,6 +16,10 @@ public final class EyesOnSettingsProperties {
     @JsonProperty(value = "isEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isEnabled;
 
+    /** Creates an instance of EyesOnSettingsProperties class. */
+    public EyesOnSettingsProperties() {
+    }
+
     /**
      * Get the isEnabled property: Determines whether the setting is enable or disabled.
      *

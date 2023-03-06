@@ -17,6 +17,10 @@ public final class Office365ProjectConnectorDataTypes {
     @JsonProperty(value = "logs", required = true)
     private Office365ProjectConnectorDataTypesLogs logs;
 
+    /** Creates an instance of Office365ProjectConnectorDataTypes class. */
+    public Office365ProjectConnectorDataTypes() {
+    }
+
     /**
      * Get the logs property: Logs data type.
      *

@@ -46,15 +46,6 @@ public final class FileImportsImpl implements FileImports {
         return Utils.mapPage(inner, inner1 -> new FileImportImpl(inner1, this.manager()));
     }
 
-    public FileImport get(String resourceGroupName, String workspaceName, String fileImportId) {
-        FileImportInner inner = this.serviceClient().get(resourceGroupName, workspaceName, fileImportId);
-        if (inner != null) {
-            return new FileImportImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FileImport> getWithResponse(
         String resourceGroupName, String workspaceName, String fileImportId, Context context) {
         Response<FileImportInner> inner =
@@ -65,6 +56,15 @@ public final class FileImportsImpl implements FileImports {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new FileImportImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public FileImport get(String resourceGroupName, String workspaceName, String fileImportId) {
+        FileImportInner inner = this.serviceClient().get(resourceGroupName, workspaceName, fileImportId);
+        if (inner != null) {
+            return new FileImportImpl(inner, this.manager());
         } else {
             return null;
         }

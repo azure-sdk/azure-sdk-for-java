@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.EntityGetInsightsParameters;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -13,7 +12,7 @@ import java.util.UUID;
 /** Samples for Entities GetInsights. */
 public final class EntitiesGetInsightsSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entities/insights/PostGetInsights.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/entities/insights/PostGetInsights.json
      */
     /**
      * Sample code: Entity Insight.
@@ -32,6 +31,6 @@ public final class EntitiesGetInsightsSamples {
                     .withEndTime(OffsetDateTime.parse("2021-10-01T00:00:00.000Z"))
                     .withAddDefaultExtendedTimeRange(false)
                     .withInsightQueryIds(Arrays.asList(UUID.fromString("cae8d0aa-aa45-4d53-8d88-17dd64ffd4e4"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

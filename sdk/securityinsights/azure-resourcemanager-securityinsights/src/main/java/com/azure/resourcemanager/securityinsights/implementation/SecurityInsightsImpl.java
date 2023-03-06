@@ -23,6 +23,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.securityinsights.fluent.ActionsClient;
+import com.azure.resourcemanager.securityinsights.fluent.AlertRuleOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.AlertRuleTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.AlertRulesClient;
 import com.azure.resourcemanager.securityinsights.fluent.AutomationRulesClient;
@@ -39,8 +40,12 @@ import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.FileImportsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetRecommendationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetTriggeredAnalyticsRuleRunsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentRelationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.IncidentTasksClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IpGeodatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.MetadatasClient;
@@ -55,6 +60,8 @@ import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorMetricsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.TriggeredAnalyticsRuleRunOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.UpdatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
 import java.io.IOException;
@@ -175,6 +182,42 @@ public final class SecurityInsightsImpl implements SecurityInsights {
      */
     public AlertRuleTemplatesClient getAlertRuleTemplates() {
         return this.alertRuleTemplates;
+    }
+
+    /** The TriggeredAnalyticsRuleRunOperationsClient object to access its operations. */
+    private final TriggeredAnalyticsRuleRunOperationsClient triggeredAnalyticsRuleRunOperations;
+
+    /**
+     * Gets the TriggeredAnalyticsRuleRunOperationsClient object to access its operations.
+     *
+     * @return the TriggeredAnalyticsRuleRunOperationsClient object.
+     */
+    public TriggeredAnalyticsRuleRunOperationsClient getTriggeredAnalyticsRuleRunOperations() {
+        return this.triggeredAnalyticsRuleRunOperations;
+    }
+
+    /** The GetTriggeredAnalyticsRuleRunsClient object to access its operations. */
+    private final GetTriggeredAnalyticsRuleRunsClient getTriggeredAnalyticsRuleRuns;
+
+    /**
+     * Gets the GetTriggeredAnalyticsRuleRunsClient object to access its operations.
+     *
+     * @return the GetTriggeredAnalyticsRuleRunsClient object.
+     */
+    public GetTriggeredAnalyticsRuleRunsClient getGetTriggeredAnalyticsRuleRuns() {
+        return this.getTriggeredAnalyticsRuleRuns;
+    }
+
+    /** The AlertRuleOperationsClient object to access its operations. */
+    private final AlertRuleOperationsClient alertRuleOperations;
+
+    /**
+     * Gets the AlertRuleOperationsClient object to access its operations.
+     *
+     * @return the AlertRuleOperationsClient object.
+     */
+    public AlertRuleOperationsClient getAlertRuleOperations() {
+        return this.alertRuleOperations;
     }
 
     /** The AutomationRulesClient object to access its operations. */
@@ -369,6 +412,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.incidentRelations;
     }
 
+    /** The IncidentTasksClient object to access its operations. */
+    private final IncidentTasksClient incidentTasks;
+
+    /**
+     * Gets the IncidentTasksClient object to access its operations.
+     *
+     * @return the IncidentTasksClient object.
+     */
+    public IncidentTasksClient getIncidentTasks() {
+        return this.incidentTasks;
+    }
+
     /** The MetadatasClient object to access its operations. */
     private final MetadatasClient metadatas;
 
@@ -403,6 +458,42 @@ public final class SecurityInsightsImpl implements SecurityInsights {
      */
     public SentinelOnboardingStatesClient getSentinelOnboardingStates() {
         return this.sentinelOnboardingStates;
+    }
+
+    /** The GetRecommendationsClient object to access its operations. */
+    private final GetRecommendationsClient getRecommendations;
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    public GetRecommendationsClient getGetRecommendations() {
+        return this.getRecommendations;
+    }
+
+    /** The GetsClient object to access its operations. */
+    private final GetsClient gets;
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    public GetsClient getGets() {
+        return this.gets;
+    }
+
+    /** The UpdatesClient object to access its operations. */
+    private final UpdatesClient updates;
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    public UpdatesClient getUpdates() {
+        return this.updates;
     }
 
     /** The SecurityMLAnalyticsSettingsClient object to access its operations. */
@@ -571,10 +662,13 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2023-02-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
+        this.triggeredAnalyticsRuleRunOperations = new TriggeredAnalyticsRuleRunOperationsClientImpl(this);
+        this.getTriggeredAnalyticsRuleRuns = new GetTriggeredAnalyticsRuleRunsClientImpl(this);
+        this.alertRuleOperations = new AlertRuleOperationsClientImpl(this);
         this.automationRules = new AutomationRulesClientImpl(this);
         this.incidents = new IncidentsClientImpl(this);
         this.bookmarks = new BookmarksClientImpl(this);
@@ -591,9 +685,13 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.fileImports = new FileImportsClientImpl(this);
         this.incidentComments = new IncidentCommentsClientImpl(this);
         this.incidentRelations = new IncidentRelationsClientImpl(this);
+        this.incidentTasks = new IncidentTasksClientImpl(this);
         this.metadatas = new MetadatasClientImpl(this);
         this.officeConsents = new OfficeConsentsClientImpl(this);
         this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
+        this.getRecommendations = new GetRecommendationsClientImpl(this);
+        this.gets = new GetsClientImpl(this);
+        this.updates = new UpdatesClientImpl(this);
         this.securityMLAnalyticsSettings = new SecurityMLAnalyticsSettingsClientImpl(this);
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);
