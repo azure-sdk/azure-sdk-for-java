@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.education.fluent.models.Amount;
 import com.azure.resourcemanager.education.fluent.models.LabDetailsInner;
 import java.time.OffsetDateTime;
@@ -31,6 +30,6 @@ public final class LabsCreateOrUpdateSamples {
                     .withBudgetPerStudent(new Amount().withCurrency("USD").withValue(100.0F))
                     .withDescription("example lab description")
                     .withExpirationDate(OffsetDateTime.parse("2021-12-09T22:11:29.422Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

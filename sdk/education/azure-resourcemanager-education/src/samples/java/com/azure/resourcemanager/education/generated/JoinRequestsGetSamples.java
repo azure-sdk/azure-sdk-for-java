@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for JoinRequests Get. */
 public final class JoinRequestsGetSamples {
     /*
@@ -24,6 +22,6 @@ public final class JoinRequestsGetSamples {
                 "{billingProfileName}",
                 "{invoiceSectionName}",
                 "{joinRequestName}",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

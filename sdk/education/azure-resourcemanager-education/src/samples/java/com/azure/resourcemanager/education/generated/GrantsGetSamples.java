@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Grants Get. */
 public final class GrantsGetSamples {
     /*
@@ -17,7 +15,9 @@ public final class GrantsGetSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void grant(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.grants().getWithResponse("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
+        manager
+            .grants()
+            .getWithResponse("{billingAccountName}", "{billingProfileName}", false, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +29,8 @@ public final class GrantsGetSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void grantIncludeAllocatedBudget(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.grants().getWithResponse("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
+        manager
+            .grants()
+            .getWithResponse("{billingAccountName}", "{billingProfileName}", false, com.azure.core.util.Context.NONE);
     }
 }
