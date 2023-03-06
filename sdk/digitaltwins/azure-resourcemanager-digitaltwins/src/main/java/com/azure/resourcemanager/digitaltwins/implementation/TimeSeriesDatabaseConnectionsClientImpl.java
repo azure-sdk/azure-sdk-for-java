@@ -33,6 +33,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.digitaltwins.fluent.TimeSeriesDatabaseConnectionsClient;
 import com.azure.resourcemanager.digitaltwins.fluent.models.TimeSeriesDatabaseConnectionInner;
+import com.azure.resourcemanager.digitaltwins.models.CleanupConnectionArtifacts;
 import com.azure.resourcemanager.digitaltwins.models.TimeSeriesDatabaseConnectionListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -132,6 +133,7 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("resourceName") String resourceName,
             @PathParam("timeSeriesDatabaseConnectionName") String timeSeriesDatabaseConnectionName,
+            @QueryParam("cleanupConnectionArtifacts") CleanupConnectionArtifacts cleanupConnectionArtifacts,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -729,7 +731,8 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
             String resourceName,
             String timeSeriesDatabaseConnectionName,
             TimeSeriesDatabaseConnectionInner timeSeriesDatabaseConnectionDescription) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName,
                 resourceName,
                 timeSeriesDatabaseConnectionName,
@@ -758,7 +761,8 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
             String timeSeriesDatabaseConnectionName,
             TimeSeriesDatabaseConnectionInner timeSeriesDatabaseConnectionDescription,
             Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName,
                 resourceName,
                 timeSeriesDatabaseConnectionName,
@@ -885,6 +889,9 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -893,7 +900,10 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        CleanupConnectionArtifacts cleanupConnectionArtifacts) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -931,6 +941,7 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
                             resourceGroupName,
                             resourceName,
                             timeSeriesDatabaseConnectionName,
+                            cleanupConnectionArtifacts,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -942,6 +953,9 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -951,7 +965,11 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context) {
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        CleanupConnectionArtifacts cleanupConnectionArtifacts,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -987,6 +1005,7 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
                 resourceGroupName,
                 resourceName,
                 timeSeriesDatabaseConnectionName,
+                cleanupConnectionArtifacts,
                 accept,
                 context);
     }
@@ -997,6 +1016,9 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1004,9 +1026,14 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner>
-        beginDeleteAsync(String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
+        beginDeleteAsync(
+            String resourceGroupName,
+            String resourceName,
+            String timeSeriesDatabaseConnectionName,
+            CleanupConnectionArtifacts cleanupConnectionArtifacts) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName);
+            deleteWithResponseAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts);
         return this
             .client
             .<TimeSeriesDatabaseConnectionInner, TimeSeriesDatabaseConnectionInner>getLroResult(
@@ -1023,6 +1050,37 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of describes a time series database connection resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner>
+        beginDeleteAsync(String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
+        final CleanupConnectionArtifacts cleanupConnectionArtifacts = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts);
+        return this
+            .client
+            .<TimeSeriesDatabaseConnectionInner, TimeSeriesDatabaseConnectionInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                TimeSeriesDatabaseConnectionInner.class,
+                TimeSeriesDatabaseConnectionInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Delete a time series database connection.
+     *
+     * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
+     * @param resourceName The name of the DigitalTwinsInstance.
+     * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1032,10 +1090,15 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner>
         beginDeleteAsync(
-            String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context) {
+            String resourceGroupName,
+            String resourceName,
+            String timeSeriesDatabaseConnectionName,
+            CleanupConnectionArtifacts cleanupConnectionArtifacts,
+            Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, context);
+            deleteWithResponseAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts, context);
         return this
             .client
             .<TimeSeriesDatabaseConnectionInner, TimeSeriesDatabaseConnectionInner>getLroResult(
@@ -1060,25 +1123,10 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner> beginDelete(
         String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
-        return beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName).getSyncPoller();
-    }
-
-    /**
-     * Delete a time series database connection.
-     *
-     * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
-     * @param resourceName The name of the DigitalTwinsInstance.
-     * @param timeSeriesDatabaseConnectionName Name of time series database connection.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes a time series database connection resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner> beginDelete(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, context)
+        final CleanupConnectionArtifacts cleanupConnectionArtifacts = null;
+        return this
+            .beginDeleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts)
             .getSyncPoller();
     }
 
@@ -1088,6 +1136,37 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of describes a time series database connection resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner> beginDelete(
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        CleanupConnectionArtifacts cleanupConnectionArtifacts,
+        Context context) {
+        return this
+            .beginDeleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Delete a time series database connection.
+     *
+     * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
+     * @param resourceName The name of the DigitalTwinsInstance.
+     * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1095,8 +1174,12 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TimeSeriesDatabaseConnectionInner> deleteAsync(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
-        return beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName)
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        CleanupConnectionArtifacts cleanupConnectionArtifacts) {
+        return beginDeleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1107,6 +1190,30 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a time series database connection resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<TimeSeriesDatabaseConnectionInner> deleteAsync(
+        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
+        final CleanupConnectionArtifacts cleanupConnectionArtifacts = null;
+        return beginDeleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete a time series database connection.
+     *
+     * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
+     * @param resourceName The name of the DigitalTwinsInstance.
+     * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1115,8 +1222,13 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TimeSeriesDatabaseConnectionInner> deleteAsync(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, context)
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        CleanupConnectionArtifacts cleanupConnectionArtifacts,
+        Context context) {
+        return beginDeleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1135,7 +1247,10 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
     @ServiceMethod(returns = ReturnType.SINGLE)
     public TimeSeriesDatabaseConnectionInner delete(
         String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName) {
-        return deleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName).block();
+        final CleanupConnectionArtifacts cleanupConnectionArtifacts = null;
+        return deleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts)
+            .block();
     }
 
     /**
@@ -1144,6 +1259,9 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1152,8 +1270,14 @@ public final class TimeSeriesDatabaseConnectionsClientImpl implements TimeSeries
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public TimeSeriesDatabaseConnectionInner delete(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context) {
-        return deleteAsync(resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, context).block();
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        CleanupConnectionArtifacts cleanupConnectionArtifacts,
+        Context context) {
+        return deleteAsync(
+                resourceGroupName, resourceName, timeSeriesDatabaseConnectionName, cleanupConnectionArtifacts, context)
+            .block();
     }
 
     /**
