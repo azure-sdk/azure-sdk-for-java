@@ -35,6 +35,12 @@ public final class ElasticMonitorResourceInner extends Resource {
     private IdentityProperties identity;
 
     /*
+     * Flag to determine if User API Key has to be generated and shared.
+     */
+    @JsonProperty(value = "generateApiKey", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean generateApiKey;
+
+    /*
      * The system metadata relating to this resource
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
@@ -102,6 +108,15 @@ public final class ElasticMonitorResourceInner extends Resource {
     public ElasticMonitorResourceInner withIdentity(IdentityProperties identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
+     *
+     * @return the generateApiKey value.
+     */
+    public Boolean generateApiKey() {
+        return this.generateApiKey;
     }
 
     /**

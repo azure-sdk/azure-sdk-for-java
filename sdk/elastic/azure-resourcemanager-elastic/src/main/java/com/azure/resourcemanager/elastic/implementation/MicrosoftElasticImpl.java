@@ -36,6 +36,7 @@ import com.azure.resourcemanager.elastic.fluent.MonitorOperationsClient;
 import com.azure.resourcemanager.elastic.fluent.MonitoredResourcesClient;
 import com.azure.resourcemanager.elastic.fluent.MonitorsClient;
 import com.azure.resourcemanager.elastic.fluent.OperationsClient;
+import com.azure.resourcemanager.elastic.fluent.OrganizationsClient;
 import com.azure.resourcemanager.elastic.fluent.TagRulesClient;
 import com.azure.resourcemanager.elastic.fluent.TrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.UpgradableVersionsClient;
@@ -354,6 +355,18 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         return this.trafficFilters;
     }
 
+    /** The OrganizationsClient object to access its operations. */
+    private final OrganizationsClient organizations;
+
+    /**
+     * Gets the OrganizationsClient object to access its operations.
+     *
+     * @return the OrganizationsClient object.
+     */
+    public OrganizationsClient getOrganizations() {
+        return this.organizations;
+    }
+
     /**
      * Initializes an instance of MicrosoftElastic client.
      *
@@ -377,7 +390,7 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-07-01-preview";
+        this.apiVersion = "2023-02-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.monitoredResources = new MonitoredResourcesClientImpl(this);
@@ -397,6 +410,7 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         this.detachAndDeleteTrafficFilters = new DetachAndDeleteTrafficFiltersClientImpl(this);
         this.detachTrafficFilters = new DetachTrafficFiltersClientImpl(this);
         this.trafficFilters = new TrafficFiltersClientImpl(this);
+        this.organizations = new OrganizationsClientImpl(this);
     }
 
     /**
