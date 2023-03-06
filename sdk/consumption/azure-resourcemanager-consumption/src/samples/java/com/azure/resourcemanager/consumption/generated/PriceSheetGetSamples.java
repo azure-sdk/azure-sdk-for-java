@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PriceSheet Get. */
 public final class PriceSheetGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class PriceSheetGetSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void priceSheet(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.priceSheets().getWithResponse(null, null, null, Context.NONE);
+        manager.priceSheets().getWithResponse(null, null, null, com.azure.core.util.Context.NONE);
     }
 }
