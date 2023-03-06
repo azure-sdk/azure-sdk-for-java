@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.ConfigurationInner;
 
@@ -32,13 +31,6 @@ public interface Configuration {
     String type();
 
     /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the value property: Value of the configuration.
      *
      * @return the value value.
@@ -64,7 +56,7 @@ public interface Configuration {
      *
      * @return the dataType value.
      */
-    ConfigurationDataType dataType();
+    String dataType();
 
     /**
      * Gets the allowedValues property: Allowed values of the configuration.
@@ -79,41 +71,6 @@ public interface Configuration {
      * @return the source value.
      */
     String source();
-
-    /**
-     * Gets the isDynamicConfig property: Configuration dynamic or static.
-     *
-     * @return the isDynamicConfig value.
-     */
-    Boolean isDynamicConfig();
-
-    /**
-     * Gets the isReadOnly property: Configuration read-only or not.
-     *
-     * @return the isReadOnly value.
-     */
-    Boolean isReadOnly();
-
-    /**
-     * Gets the isConfigPendingRestart property: Configuration is pending restart or not.
-     *
-     * @return the isConfigPendingRestart value.
-     */
-    Boolean isConfigPendingRestart();
-
-    /**
-     * Gets the unit property: Configuration unit.
-     *
-     * @return the unit value.
-     */
-    String unit();
-
-    /**
-     * Gets the documentationLink property: Configuration documentation link.
-     *
-     * @return the documentationLink value.
-     */
-    String documentationLink();
 
     /**
      * Gets the name of the resource group.
@@ -147,7 +104,7 @@ public interface Configuration {
              * @param serverName The name of the server.
              * @return the next definition stage.
              */
-            WithCreate withExistingFlexibleServer(String resourceGroupName, String serverName);
+            WithCreate withExistingServer(String resourceGroupName, String serverName);
         }
         /**
          * The stage of the Configuration definition which contains all the minimum required properties for the resource
