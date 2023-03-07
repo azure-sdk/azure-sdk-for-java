@@ -22,6 +22,14 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     private String compute;
 
     /*
+     * Percentage of traffic to be mirrored to each deployment without using returned scoring. Traffic values need to
+     * sum to utmost 50.
+     */
+    @JsonProperty(value = "mirrorTraffic")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Integer> mirrorTraffic;
+
+    /*
      * Provisioning state for the endpoint.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
@@ -61,6 +69,28 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
      */
     public OnlineEndpointProperties withCompute(String compute) {
         this.compute = compute;
+        return this;
+    }
+
+    /**
+     * Get the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
+     * scoring. Traffic values need to sum to utmost 50.
+     *
+     * @return the mirrorTraffic value.
+     */
+    public Map<String, Integer> mirrorTraffic() {
+        return this.mirrorTraffic;
+    }
+
+    /**
+     * Set the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
+     * scoring. Traffic values need to sum to utmost 50.
+     *
+     * @param mirrorTraffic the mirrorTraffic value to set.
+     * @return the OnlineEndpointProperties object itself.
+     */
+    public OnlineEndpointProperties withMirrorTraffic(Map<String, Integer> mirrorTraffic) {
+        this.mirrorTraffic = mirrorTraffic;
         return this;
     }
 

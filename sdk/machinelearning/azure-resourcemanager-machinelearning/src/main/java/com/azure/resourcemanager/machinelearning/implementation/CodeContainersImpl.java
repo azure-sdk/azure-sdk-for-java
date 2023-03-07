@@ -73,108 +73,29 @@ public final class CodeContainersImpl implements CodeContainers {
         }
     }
 
-    public CodeContainer getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<CodeContainer> createOrUpdateWithResponse(
+        String resourceGroupName, String workspaceName, String name, CodeContainerInner body, Context context) {
+        Response<CodeContainerInner> inner =
+            this.serviceClient().createOrUpdateWithResponse(resourceGroupName, workspaceName, name, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new CodeContainerImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "codes");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
     }
 
-    public Response<CodeContainer> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public CodeContainer createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, CodeContainerInner body) {
+        CodeContainerInner inner = this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, body);
+        if (inner != null) {
+            return new CodeContainerImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "codes");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "codes");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "codes");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
     private CodeContainersClient serviceClient() {
@@ -183,9 +104,5 @@ public final class CodeContainersImpl implements CodeContainers {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public CodeContainerImpl define(String name) {
-        return new CodeContainerImpl(name, this.manager());
     }
 }

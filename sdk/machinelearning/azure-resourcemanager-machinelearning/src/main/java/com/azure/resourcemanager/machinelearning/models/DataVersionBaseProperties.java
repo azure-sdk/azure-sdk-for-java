@@ -27,8 +27,7 @@ import java.util.Map;
 @Fluent
 public class DataVersionBaseProperties extends AssetBase {
     /*
-     * [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType
+     * [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330
      */
     @JsonProperty(value = "dataUri", required = true)
     private String dataUri;
@@ -38,8 +37,7 @@ public class DataVersionBaseProperties extends AssetBase {
     }
 
     /**
-     * Get the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
+     * Get the dataUri property: [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330.
      *
      * @return the dataUri value.
      */
@@ -48,8 +46,7 @@ public class DataVersionBaseProperties extends AssetBase {
     }
 
     /**
-     * Set the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
+     * Set the dataUri property: [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330.
      *
      * @param dataUri the dataUri value to set.
      * @return the DataVersionBaseProperties object itself.

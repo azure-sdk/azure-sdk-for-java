@@ -17,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = AssetReferenceBase.class)
 @JsonTypeName("AssetReferenceBase")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "DataPath", value = DataPathAssetReference.class),
     @JsonSubTypes.Type(name = "Id", value = IdAssetReference.class),
+    @JsonSubTypes.Type(name = "DataPath", value = DataPathAssetReference.class),
     @JsonSubTypes.Type(name = "OutputPath", value = OutputPathAssetReference.class)
 })
 @Immutable
