@@ -4,16 +4,17 @@
 
 package com.azure.resourcemanager.synapse.fluent.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.management.ProxyResource;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
 /** Class representing a Private Link Resources. */
-@Immutable
-public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
+@Fluent
+public final class KustoPoolPrivateLinkResourcesInner extends Resource {
     /*
      * The Private Link Resources.
      */
@@ -46,6 +47,20 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public KustoPoolPrivateLinkResourcesInner withLocation(String location) {
+        super.withLocation(location);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public KustoPoolPrivateLinkResourcesInner withTags(Map<String, String> tags) {
+        super.withTags(tags);
+        return this;
     }
 
     /**

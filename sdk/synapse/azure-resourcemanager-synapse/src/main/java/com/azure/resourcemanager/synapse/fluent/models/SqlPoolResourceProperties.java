@@ -95,6 +95,24 @@ public final class SqlPoolResourceProperties {
     @JsonProperty(value = "sourceDatabaseDeletionDate")
     private OffsetDateTime sourceDatabaseDeletionDate;
 
+    /*
+     * currentServiceObjectiveName
+     */
+    @JsonProperty(value = "currentServiceObjectiveName")
+    private String currentServiceObjectiveName;
+
+    /*
+     * defaultSecondaryLocation
+     */
+    @JsonProperty(value = "defaultSecondaryLocation")
+    private String defaultSecondaryLocation;
+
+    /*
+     * catalogCollation
+     */
+    @JsonProperty(value = "catalogCollation")
+    private String catalogCollation;
+
     /** Creates an instance of SqlPoolResourceProperties class. */
     public SqlPoolResourceProperties() {
     }
@@ -318,6 +336,66 @@ public final class SqlPoolResourceProperties {
      */
     public SqlPoolResourceProperties withSourceDatabaseDeletionDate(OffsetDateTime sourceDatabaseDeletionDate) {
         this.sourceDatabaseDeletionDate = sourceDatabaseDeletionDate;
+        return this;
+    }
+
+    /**
+     * Get the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @return the currentServiceObjectiveName value.
+     */
+    public String currentServiceObjectiveName() {
+        return this.currentServiceObjectiveName;
+    }
+
+    /**
+     * Set the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @param currentServiceObjectiveName the currentServiceObjectiveName value to set.
+     * @return the SqlPoolResourceProperties object itself.
+     */
+    public SqlPoolResourceProperties withCurrentServiceObjectiveName(String currentServiceObjectiveName) {
+        this.currentServiceObjectiveName = currentServiceObjectiveName;
+        return this;
+    }
+
+    /**
+     * Get the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @return the defaultSecondaryLocation value.
+     */
+    public String defaultSecondaryLocation() {
+        return this.defaultSecondaryLocation;
+    }
+
+    /**
+     * Set the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @param defaultSecondaryLocation the defaultSecondaryLocation value to set.
+     * @return the SqlPoolResourceProperties object itself.
+     */
+    public SqlPoolResourceProperties withDefaultSecondaryLocation(String defaultSecondaryLocation) {
+        this.defaultSecondaryLocation = defaultSecondaryLocation;
+        return this;
+    }
+
+    /**
+     * Get the catalogCollation property: catalogCollation.
+     *
+     * @return the catalogCollation value.
+     */
+    public String catalogCollation() {
+        return this.catalogCollation;
+    }
+
+    /**
+     * Set the catalogCollation property: catalogCollation.
+     *
+     * @param catalogCollation the catalogCollation value to set.
+     * @return the SqlPoolResourceProperties object itself.
+     */
+    public SqlPoolResourceProperties withCatalogCollation(String catalogCollation) {
+        this.catalogCollation = catalogCollation;
         return this;
     }
 

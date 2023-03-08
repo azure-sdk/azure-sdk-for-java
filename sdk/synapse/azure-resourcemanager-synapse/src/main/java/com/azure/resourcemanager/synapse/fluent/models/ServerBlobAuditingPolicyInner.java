@@ -270,31 +270,6 @@ public final class ServerBlobAuditingPolicyInner extends ProxyResource {
     }
 
     /**
-     * Get the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the storage's
-     * secondary key.
-     *
-     * @return the isStorageSecondaryKeyInUse value.
-     */
-    public Boolean isStorageSecondaryKeyInUse() {
-        return this.innerProperties() == null ? null : this.innerProperties().isStorageSecondaryKeyInUse();
-    }
-
-    /**
-     * Set the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the storage's
-     * secondary key.
-     *
-     * @param isStorageSecondaryKeyInUse the isStorageSecondaryKeyInUse value to set.
-     * @return the ServerBlobAuditingPolicyInner object itself.
-     */
-    public ServerBlobAuditingPolicyInner withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerBlobAuditingPolicyProperties();
-        }
-        this.innerProperties().withIsStorageSecondaryKeyInUse(isStorageSecondaryKeyInUse);
-        return this;
-    }
-
-    /**
      * Get the isAzureMonitorTargetEnabled property: Specifies whether audit events are sent to Azure Monitor. In order
      * to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
      *

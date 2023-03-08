@@ -5989,7 +5989,6 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesCreateOrUpdateSa
                         "FAILED_DATABASE_AUTHENTICATION_GROUP",
                         "BATCH_COMPLETED_GROUP"))
             .withStorageAccountSubscriptionId(UUID.fromString("00000000-1234-0000-5678-000000000000"))
-            .withIsStorageSecondaryKeyInUse(false)
             .withIsAzureMonitorTargetEnabled(true)
             .withQueueDelayMs(4000)
             .create();
@@ -6841,7 +6840,6 @@ public final class WorkspacesCreateOrUpdateSamples {
             .withManagedVirtualNetworkSettings(
                 new ManagedVirtualNetworkSettings()
                     .withPreventDataExfiltration(false)
-                    .withLinkedAccessCheckOnTargetResource(false)
                     .withAllowedAadTenantIdsForLinking(Arrays.asList("740239CE-A25B-485B-86A0-262F29F6EBDB")))
             .withWorkspaceRepositoryConfiguration(
                 new WorkspaceRepositoryConfiguration()
@@ -6995,7 +6993,6 @@ public final class WorkspacesUpdateSamples {
             .withManagedVirtualNetworkSettings(
                 new ManagedVirtualNetworkSettings()
                     .withPreventDataExfiltration(false)
-                    .withLinkedAccessCheckOnTargetResource(false)
                     .withAllowedAadTenantIdsForLinking(Arrays.asList("740239CE-A25B-485B-86A0-262F29F6EBDB")))
             .withWorkspaceRepositoryConfiguration(
                 new WorkspaceRepositoryConfiguration()

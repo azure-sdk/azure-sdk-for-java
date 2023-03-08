@@ -124,14 +124,6 @@ public interface ServerBlobAuditingPolicy {
     UUID storageAccountSubscriptionId();
 
     /**
-     * Gets the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the storage's
-     * secondary key.
-     *
-     * @return the isStorageSecondaryKeyInUse value.
-     */
-    Boolean isStorageSecondaryKeyInUse();
-
-    /**
      * Gets the isAzureMonitorTargetEnabled property: Specifies whether audit events are sent to Azure Monitor. In order
      * to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
      *
@@ -220,7 +212,6 @@ public interface ServerBlobAuditingPolicy {
                 DefinitionStages.WithRetentionDays,
                 DefinitionStages.WithAuditActionsAndGroups,
                 DefinitionStages.WithStorageAccountSubscriptionId,
-                DefinitionStages.WithIsStorageSecondaryKeyInUse,
                 DefinitionStages.WithIsAzureMonitorTargetEnabled,
                 DefinitionStages.WithQueueDelayMs,
                 DefinitionStages.WithIsDevopsAuditEnabled {
@@ -392,18 +383,6 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId);
         }
-        /** The stage of the ServerBlobAuditingPolicy definition allowing to specify isStorageSecondaryKeyInUse. */
-        interface WithIsStorageSecondaryKeyInUse {
-            /**
-             * Specifies the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the
-             * storage's secondary key..
-             *
-             * @param isStorageSecondaryKeyInUse Specifies whether storageAccountAccessKey value is the storage's
-             *     secondary key.
-             * @return the next definition stage.
-             */
-            WithCreate withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse);
-        }
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify isAzureMonitorTargetEnabled. */
         interface WithIsAzureMonitorTargetEnabled {
             /**
@@ -494,7 +473,6 @@ public interface ServerBlobAuditingPolicy {
         extends UpdateStages.WithState,
             UpdateStages.WithStorageEndpoint,
             UpdateStages.WithStorageAccountAccessKey,
-            UpdateStages.WithIsStorageSecondaryKeyInUse,
             UpdateStages.WithIsAzureMonitorTargetEnabled,
             UpdateStages.WithQueueDelayMs,
             UpdateStages.WithIsDevopsAuditEnabled {
@@ -562,18 +540,6 @@ public interface ServerBlobAuditingPolicy {
              * @return the next definition stage.
              */
             Update withStorageAccountAccessKey(String storageAccountAccessKey);
-        }
-        /** The stage of the ServerBlobAuditingPolicy update allowing to specify isStorageSecondaryKeyInUse. */
-        interface WithIsStorageSecondaryKeyInUse {
-            /**
-             * Specifies the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the
-             * storage's secondary key..
-             *
-             * @param isStorageSecondaryKeyInUse Specifies whether storageAccountAccessKey value is the storage's
-             *     secondary key.
-             * @return the next definition stage.
-             */
-            Update withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse);
         }
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify isAzureMonitorTargetEnabled. */
         interface WithIsAzureMonitorTargetEnabled {

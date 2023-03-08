@@ -372,6 +372,75 @@ public final class SqlPoolPatchInfo {
     }
 
     /**
+     * Get the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @return the currentServiceObjectiveName value.
+     */
+    public String currentServiceObjectiveName() {
+        return this.innerProperties() == null ? null : this.innerProperties().currentServiceObjectiveName();
+    }
+
+    /**
+     * Set the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @param currentServiceObjectiveName the currentServiceObjectiveName value to set.
+     * @return the SqlPoolPatchInfo object itself.
+     */
+    public SqlPoolPatchInfo withCurrentServiceObjectiveName(String currentServiceObjectiveName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlPoolResourceProperties();
+        }
+        this.innerProperties().withCurrentServiceObjectiveName(currentServiceObjectiveName);
+        return this;
+    }
+
+    /**
+     * Get the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @return the defaultSecondaryLocation value.
+     */
+    public String defaultSecondaryLocation() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultSecondaryLocation();
+    }
+
+    /**
+     * Set the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @param defaultSecondaryLocation the defaultSecondaryLocation value to set.
+     * @return the SqlPoolPatchInfo object itself.
+     */
+    public SqlPoolPatchInfo withDefaultSecondaryLocation(String defaultSecondaryLocation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlPoolResourceProperties();
+        }
+        this.innerProperties().withDefaultSecondaryLocation(defaultSecondaryLocation);
+        return this;
+    }
+
+    /**
+     * Get the catalogCollation property: catalogCollation.
+     *
+     * @return the catalogCollation value.
+     */
+    public String catalogCollation() {
+        return this.innerProperties() == null ? null : this.innerProperties().catalogCollation();
+    }
+
+    /**
+     * Set the catalogCollation property: catalogCollation.
+     *
+     * @param catalogCollation the catalogCollation value to set.
+     * @return the SqlPoolPatchInfo object itself.
+     */
+    public SqlPoolPatchInfo withCatalogCollation(String catalogCollation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlPoolResourceProperties();
+        }
+        this.innerProperties().withCatalogCollation(catalogCollation);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

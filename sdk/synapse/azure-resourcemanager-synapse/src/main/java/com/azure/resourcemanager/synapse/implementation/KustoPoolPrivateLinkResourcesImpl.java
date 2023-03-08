@@ -10,6 +10,7 @@ import com.azure.resourcemanager.synapse.models.KustoPoolPrivateLinkResources;
 import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public final class KustoPoolPrivateLinkResourcesImpl implements KustoPoolPrivateLinkResources {
     private KustoPoolPrivateLinkResourcesInner innerObject;
@@ -33,6 +34,19 @@ public final class KustoPoolPrivateLinkResourcesImpl implements KustoPoolPrivate
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public SystemData systemData() {

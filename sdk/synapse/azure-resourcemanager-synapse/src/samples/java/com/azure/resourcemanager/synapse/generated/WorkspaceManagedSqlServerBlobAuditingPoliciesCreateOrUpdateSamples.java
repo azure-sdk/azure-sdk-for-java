@@ -37,7 +37,6 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesCreateOrUpdateSa
                         "FAILED_DATABASE_AUTHENTICATION_GROUP",
                         "BATCH_COMPLETED_GROUP"))
             .withStorageAccountSubscriptionId(UUID.fromString("00000000-1234-0000-5678-000000000000"))
-            .withIsStorageSecondaryKeyInUse(false)
             .withIsAzureMonitorTargetEnabled(true)
             .withQueueDelayMs(4000)
             .create();

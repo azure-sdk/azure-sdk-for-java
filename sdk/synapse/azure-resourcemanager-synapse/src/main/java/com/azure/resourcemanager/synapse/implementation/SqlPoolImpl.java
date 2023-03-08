@@ -48,6 +48,10 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         }
     }
 
+    public String kind() {
+        return this.innerModel().kind();
+    }
+
     public Sku sku() {
         return this.innerModel().sku();
     }
@@ -94,6 +98,18 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
 
     public OffsetDateTime sourceDatabaseDeletionDate() {
         return this.innerModel().sourceDatabaseDeletionDate();
+    }
+
+    public String currentServiceObjectiveName() {
+        return this.innerModel().currentServiceObjectiveName();
+    }
+
+    public String defaultSecondaryLocation() {
+        return this.innerModel().defaultSecondaryLocation();
+    }
+
+    public String catalogCollation() {
+        return this.innerModel().catalogCollation();
     }
 
     public Region region() {
@@ -251,6 +267,11 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         }
     }
 
+    public SqlPoolImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
+        return this;
+    }
+
     public SqlPoolImpl withSku(Sku sku) {
         if (isInCreateMode()) {
             this.innerModel().withSku(sku);
@@ -334,6 +355,36 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
     public SqlPoolImpl withSourceDatabaseDeletionDate(OffsetDateTime sourceDatabaseDeletionDate) {
         this.innerModel().withSourceDatabaseDeletionDate(sourceDatabaseDeletionDate);
         return this;
+    }
+
+    public SqlPoolImpl withCurrentServiceObjectiveName(String currentServiceObjectiveName) {
+        if (isInCreateMode()) {
+            this.innerModel().withCurrentServiceObjectiveName(currentServiceObjectiveName);
+            return this;
+        } else {
+            this.updateSqlPoolInfo.withCurrentServiceObjectiveName(currentServiceObjectiveName);
+            return this;
+        }
+    }
+
+    public SqlPoolImpl withDefaultSecondaryLocation(String defaultSecondaryLocation) {
+        if (isInCreateMode()) {
+            this.innerModel().withDefaultSecondaryLocation(defaultSecondaryLocation);
+            return this;
+        } else {
+            this.updateSqlPoolInfo.withDefaultSecondaryLocation(defaultSecondaryLocation);
+            return this;
+        }
+    }
+
+    public SqlPoolImpl withCatalogCollation(String catalogCollation) {
+        if (isInCreateMode()) {
+            this.innerModel().withCatalogCollation(catalogCollation);
+            return this;
+        } else {
+            this.updateSqlPoolInfo.withCatalogCollation(catalogCollation);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

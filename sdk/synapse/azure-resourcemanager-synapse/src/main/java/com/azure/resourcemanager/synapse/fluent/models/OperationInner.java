@@ -16,19 +16,19 @@ public final class OperationInner {
      *
      * This is of the format {provider}/{resource}/{operation}.
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "Name")
     private String name;
 
     /*
      * The object that describes the operation.
      */
-    @JsonProperty(value = "display")
+    @JsonProperty(value = "Display")
     private OperationDisplay display;
 
     /*
      * The intended executor of the operation.
      */
-    @JsonProperty(value = "origin")
+    @JsonProperty(value = "Origin")
     private String origin;
 
     /*

@@ -18,12 +18,6 @@ public final class ManagedVirtualNetworkSettings {
     private Boolean preventDataExfiltration;
 
     /*
-     * Linked Access Check On Target Resource
-     */
-    @JsonProperty(value = "linkedAccessCheckOnTargetResource")
-    private Boolean linkedAccessCheckOnTargetResource;
-
-    /*
      * Allowed Aad Tenant Ids For Linking
      */
     @JsonProperty(value = "allowedAadTenantIdsForLinking")
@@ -50,27 +44,6 @@ public final class ManagedVirtualNetworkSettings {
      */
     public ManagedVirtualNetworkSettings withPreventDataExfiltration(Boolean preventDataExfiltration) {
         this.preventDataExfiltration = preventDataExfiltration;
-        return this;
-    }
-
-    /**
-     * Get the linkedAccessCheckOnTargetResource property: Linked Access Check On Target Resource.
-     *
-     * @return the linkedAccessCheckOnTargetResource value.
-     */
-    public Boolean linkedAccessCheckOnTargetResource() {
-        return this.linkedAccessCheckOnTargetResource;
-    }
-
-    /**
-     * Set the linkedAccessCheckOnTargetResource property: Linked Access Check On Target Resource.
-     *
-     * @param linkedAccessCheckOnTargetResource the linkedAccessCheckOnTargetResource value to set.
-     * @return the ManagedVirtualNetworkSettings object itself.
-     */
-    public ManagedVirtualNetworkSettings withLinkedAccessCheckOnTargetResource(
-        Boolean linkedAccessCheckOnTargetResource) {
-        this.linkedAccessCheckOnTargetResource = linkedAccessCheckOnTargetResource;
         return this;
     }
 

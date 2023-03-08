@@ -49,6 +49,13 @@ public interface SqlPool {
     Map<String, String> tags();
 
     /**
+     * Gets the kind property: kind.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the sku property: Sku
      *
      * <p>SQL pool SKU.
@@ -147,6 +154,27 @@ public interface SqlPool {
     OffsetDateTime sourceDatabaseDeletionDate();
 
     /**
+     * Gets the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @return the currentServiceObjectiveName value.
+     */
+    String currentServiceObjectiveName();
+
+    /**
+     * Gets the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @return the defaultSecondaryLocation value.
+     */
+    String defaultSecondaryLocation();
+
+    /**
+     * Gets the catalogCollation property: catalogCollation.
+     *
+     * @return the catalogCollation value.
+     */
+    String catalogCollation();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -221,6 +249,7 @@ public interface SqlPool {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithMaxSizeBytes,
                 DefinitionStages.WithCollation,
@@ -230,7 +259,10 @@ public interface SqlPool {
                 DefinitionStages.WithRestorePointInTime,
                 DefinitionStages.WithCreateMode,
                 DefinitionStages.WithStorageAccountType,
-                DefinitionStages.WithSourceDatabaseDeletionDate {
+                DefinitionStages.WithSourceDatabaseDeletionDate,
+                DefinitionStages.WithCurrentServiceObjectiveName,
+                DefinitionStages.WithDefaultSecondaryLocation,
+                DefinitionStages.WithCatalogCollation {
             /**
              * Executes the create request.
              *
@@ -255,6 +287,16 @@ public interface SqlPool {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the SqlPool definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: kind.
+             *
+             * @param kind kind.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
         }
         /** The stage of the SqlPool definition allowing to specify sku. */
         interface WithSku {
@@ -381,6 +423,36 @@ public interface SqlPool {
              */
             WithCreate withSourceDatabaseDeletionDate(OffsetDateTime sourceDatabaseDeletionDate);
         }
+        /** The stage of the SqlPool definition allowing to specify currentServiceObjectiveName. */
+        interface WithCurrentServiceObjectiveName {
+            /**
+             * Specifies the currentServiceObjectiveName property: currentServiceObjectiveName.
+             *
+             * @param currentServiceObjectiveName currentServiceObjectiveName.
+             * @return the next definition stage.
+             */
+            WithCreate withCurrentServiceObjectiveName(String currentServiceObjectiveName);
+        }
+        /** The stage of the SqlPool definition allowing to specify defaultSecondaryLocation. */
+        interface WithDefaultSecondaryLocation {
+            /**
+             * Specifies the defaultSecondaryLocation property: defaultSecondaryLocation.
+             *
+             * @param defaultSecondaryLocation defaultSecondaryLocation.
+             * @return the next definition stage.
+             */
+            WithCreate withDefaultSecondaryLocation(String defaultSecondaryLocation);
+        }
+        /** The stage of the SqlPool definition allowing to specify catalogCollation. */
+        interface WithCatalogCollation {
+            /**
+             * Specifies the catalogCollation property: catalogCollation.
+             *
+             * @param catalogCollation catalogCollation.
+             * @return the next definition stage.
+             */
+            WithCreate withCatalogCollation(String catalogCollation);
+        }
     }
     /**
      * Begins update for the SqlPool resource.
@@ -398,7 +470,10 @@ public interface SqlPool {
             UpdateStages.WithRecoverableDatabaseId,
             UpdateStages.WithProvisioningState,
             UpdateStages.WithCreateMode,
-            UpdateStages.WithStorageAccountType {
+            UpdateStages.WithStorageAccountType,
+            UpdateStages.WithCurrentServiceObjectiveName,
+            UpdateStages.WithDefaultSecondaryLocation,
+            UpdateStages.WithCatalogCollation {
         /**
          * Executes the update request.
          *
@@ -520,6 +595,36 @@ public interface SqlPool {
              * @return the next definition stage.
              */
             Update withStorageAccountType(StorageAccountType storageAccountType);
+        }
+        /** The stage of the SqlPool update allowing to specify currentServiceObjectiveName. */
+        interface WithCurrentServiceObjectiveName {
+            /**
+             * Specifies the currentServiceObjectiveName property: currentServiceObjectiveName.
+             *
+             * @param currentServiceObjectiveName currentServiceObjectiveName.
+             * @return the next definition stage.
+             */
+            Update withCurrentServiceObjectiveName(String currentServiceObjectiveName);
+        }
+        /** The stage of the SqlPool update allowing to specify defaultSecondaryLocation. */
+        interface WithDefaultSecondaryLocation {
+            /**
+             * Specifies the defaultSecondaryLocation property: defaultSecondaryLocation.
+             *
+             * @param defaultSecondaryLocation defaultSecondaryLocation.
+             * @return the next definition stage.
+             */
+            Update withDefaultSecondaryLocation(String defaultSecondaryLocation);
+        }
+        /** The stage of the SqlPool update allowing to specify catalogCollation. */
+        interface WithCatalogCollation {
+            /**
+             * Specifies the catalogCollation property: catalogCollation.
+             *
+             * @param catalogCollation catalogCollation.
+             * @return the next definition stage.
+             */
+            Update withCatalogCollation(String catalogCollation);
         }
     }
     /**

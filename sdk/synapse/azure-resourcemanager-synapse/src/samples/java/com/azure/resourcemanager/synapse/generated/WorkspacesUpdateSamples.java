@@ -42,7 +42,6 @@ public final class WorkspacesUpdateSamples {
             .withManagedVirtualNetworkSettings(
                 new ManagedVirtualNetworkSettings()
                     .withPreventDataExfiltration(false)
-                    .withLinkedAccessCheckOnTargetResource(false)
                     .withAllowedAadTenantIdsForLinking(Arrays.asList("740239CE-A25B-485B-86A0-262F29F6EBDB")))
             .withWorkspaceRepositoryConfiguration(
                 new WorkspaceRepositoryConfiguration()

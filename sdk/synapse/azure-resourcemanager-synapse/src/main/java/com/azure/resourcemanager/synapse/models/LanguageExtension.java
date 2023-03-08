@@ -16,6 +16,13 @@ public interface LanguageExtension {
     LanguageExtensionName languageExtensionName();
 
     /**
+     * Gets the languageExtensionImageName property: languageExtensionImageName.
+     *
+     * @return the languageExtensionImageName value.
+     */
+    String languageExtensionImageName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.synapse.fluent.models.LanguageExtensionInner object.
      *
      * @return the inner object.

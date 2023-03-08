@@ -21,6 +21,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.rest.PagedFlux;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.PagedResponse;
@@ -105,6 +106,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
                 + "/{workspaceName}/sqlPools/{sqlPoolName}")
         @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(
+            value = HttpResponseException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
             @HostParam("$host") String endpoint,
@@ -710,6 +714,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -774,6 +779,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -834,6 +840,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of sQL pool.
      */
@@ -860,6 +867,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of sQL pool.
      */
@@ -886,6 +894,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of sQL pool.
      */
@@ -907,6 +916,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of sQL pool.
      */
@@ -929,6 +939,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool on successful completion of {@link Mono}.
      */
@@ -952,6 +963,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool on successful completion of {@link Mono}.
      */
@@ -974,6 +986,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool.
      */
@@ -995,6 +1008,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool.
      */

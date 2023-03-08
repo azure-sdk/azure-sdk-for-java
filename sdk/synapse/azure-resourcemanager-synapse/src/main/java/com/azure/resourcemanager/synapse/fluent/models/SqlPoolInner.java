@@ -21,6 +21,12 @@ import java.util.Map;
 @Fluent
 public final class SqlPoolInner extends Resource {
     /*
+     * kind
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
+    /*
      * Sku
      *
      * SQL pool SKU
@@ -36,6 +42,26 @@ public final class SqlPoolInner extends Resource {
 
     /** Creates an instance of SqlPoolInner class. */
     public SqlPoolInner() {
+    }
+
+    /**
+     * Get the kind property: kind.
+     *
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: kind.
+     *
+     * @param kind the kind value to set.
+     * @return the SqlPoolInner object itself.
+     */
+    public SqlPoolInner withKind(String kind) {
+        this.kind = kind;
+        return this;
     }
 
     /**
@@ -331,6 +357,75 @@ public final class SqlPoolInner extends Resource {
             this.innerProperties = new SqlPoolResourceProperties();
         }
         this.innerProperties().withSourceDatabaseDeletionDate(sourceDatabaseDeletionDate);
+        return this;
+    }
+
+    /**
+     * Get the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @return the currentServiceObjectiveName value.
+     */
+    public String currentServiceObjectiveName() {
+        return this.innerProperties() == null ? null : this.innerProperties().currentServiceObjectiveName();
+    }
+
+    /**
+     * Set the currentServiceObjectiveName property: currentServiceObjectiveName.
+     *
+     * @param currentServiceObjectiveName the currentServiceObjectiveName value to set.
+     * @return the SqlPoolInner object itself.
+     */
+    public SqlPoolInner withCurrentServiceObjectiveName(String currentServiceObjectiveName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlPoolResourceProperties();
+        }
+        this.innerProperties().withCurrentServiceObjectiveName(currentServiceObjectiveName);
+        return this;
+    }
+
+    /**
+     * Get the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @return the defaultSecondaryLocation value.
+     */
+    public String defaultSecondaryLocation() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultSecondaryLocation();
+    }
+
+    /**
+     * Set the defaultSecondaryLocation property: defaultSecondaryLocation.
+     *
+     * @param defaultSecondaryLocation the defaultSecondaryLocation value to set.
+     * @return the SqlPoolInner object itself.
+     */
+    public SqlPoolInner withDefaultSecondaryLocation(String defaultSecondaryLocation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlPoolResourceProperties();
+        }
+        this.innerProperties().withDefaultSecondaryLocation(defaultSecondaryLocation);
+        return this;
+    }
+
+    /**
+     * Get the catalogCollation property: catalogCollation.
+     *
+     * @return the catalogCollation value.
+     */
+    public String catalogCollation() {
+        return this.innerProperties() == null ? null : this.innerProperties().catalogCollation();
+    }
+
+    /**
+     * Set the catalogCollation property: catalogCollation.
+     *
+     * @param catalogCollation the catalogCollation value to set.
+     * @return the SqlPoolInner object itself.
+     */
+    public SqlPoolInner withCatalogCollation(String catalogCollation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlPoolResourceProperties();
+        }
+        this.innerProperties().withCatalogCollation(catalogCollation);
         return this;
     }
 

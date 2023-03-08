@@ -120,6 +120,29 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     }
 
     /**
+     * Get the provisioningState property: provisioningState.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().provisioningState();
+    }
+
+    /**
+     * Set the provisioningState property: provisioningState.
+     *
+     * @param provisioningState the provisioningState value to set.
+     * @return the ManagedIntegrationRuntime object itself.
+     */
+    public ManagedIntegrationRuntime withProvisioningState(String provisioningState) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new ManagedIntegrationRuntimeTypeProperties();
+        }
+        this.innerTypeProperties().withProvisioningState(provisioningState);
+        return this;
+    }
+
+    /**
      * Get the referenceName property: The reference name of the managed virtual network.
      *
      * @return the referenceName value.

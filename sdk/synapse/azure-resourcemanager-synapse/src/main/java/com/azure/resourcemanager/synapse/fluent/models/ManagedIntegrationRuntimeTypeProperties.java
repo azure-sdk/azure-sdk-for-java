@@ -24,6 +24,12 @@ public final class ManagedIntegrationRuntimeTypeProperties {
     @JsonProperty(value = "ssisProperties")
     private IntegrationRuntimeSsisProperties ssisProperties;
 
+    /*
+     * provisioningState
+     */
+    @JsonProperty(value = "provisioningState")
+    private String provisioningState;
+
     /** Creates an instance of ManagedIntegrationRuntimeTypeProperties class. */
     public ManagedIntegrationRuntimeTypeProperties() {
     }
@@ -66,6 +72,26 @@ public final class ManagedIntegrationRuntimeTypeProperties {
      */
     public ManagedIntegrationRuntimeTypeProperties withSsisProperties(IntegrationRuntimeSsisProperties ssisProperties) {
         this.ssisProperties = ssisProperties;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: provisioningState.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: provisioningState.
+     *
+     * @param provisioningState the provisioningState value to set.
+     * @return the ManagedIntegrationRuntimeTypeProperties object itself.
+     */
+    public ManagedIntegrationRuntimeTypeProperties withProvisioningState(String provisioningState) {
+        this.provisioningState = provisioningState;
         return this;
     }
 

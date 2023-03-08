@@ -126,12 +126,6 @@ public final class ServerBlobAuditingPolicyProperties {
     private UUID storageAccountSubscriptionId;
 
     /*
-     * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-     */
-    @JsonProperty(value = "isStorageSecondaryKeyInUse")
-    private Boolean isStorageSecondaryKeyInUse;
-
-    /*
      * Specifies whether audit events are sent to Azure Monitor.
      * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as
      * true.
@@ -396,28 +390,6 @@ public final class ServerBlobAuditingPolicyProperties {
      */
     public ServerBlobAuditingPolicyProperties withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId) {
         this.storageAccountSubscriptionId = storageAccountSubscriptionId;
-        return this;
-    }
-
-    /**
-     * Get the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the storage's
-     * secondary key.
-     *
-     * @return the isStorageSecondaryKeyInUse value.
-     */
-    public Boolean isStorageSecondaryKeyInUse() {
-        return this.isStorageSecondaryKeyInUse;
-    }
-
-    /**
-     * Set the isStorageSecondaryKeyInUse property: Specifies whether storageAccountAccessKey value is the storage's
-     * secondary key.
-     *
-     * @param isStorageSecondaryKeyInUse the isStorageSecondaryKeyInUse value to set.
-     * @return the ServerBlobAuditingPolicyProperties object itself.
-     */
-    public ServerBlobAuditingPolicyProperties withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse) {
-        this.isStorageSecondaryKeyInUse = isStorageSecondaryKeyInUse;
         return this;
     }
 

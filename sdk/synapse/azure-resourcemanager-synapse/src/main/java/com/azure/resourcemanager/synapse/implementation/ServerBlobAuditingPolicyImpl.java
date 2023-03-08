@@ -60,10 +60,6 @@ public final class ServerBlobAuditingPolicyImpl
         return this.innerModel().storageAccountSubscriptionId();
     }
 
-    public Boolean isStorageSecondaryKeyInUse() {
-        return this.innerModel().isStorageSecondaryKeyInUse();
-    }
-
     public Boolean isAzureMonitorTargetEnabled() {
         return this.innerModel().isAzureMonitorTargetEnabled();
     }
@@ -206,11 +202,6 @@ public final class ServerBlobAuditingPolicyImpl
 
     public ServerBlobAuditingPolicyImpl withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId) {
         this.innerModel().withStorageAccountSubscriptionId(storageAccountSubscriptionId);
-        return this;
-    }
-
-    public ServerBlobAuditingPolicyImpl withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse) {
-        this.innerModel().withIsStorageSecondaryKeyInUse(isStorageSecondaryKeyInUse);
         return this;
     }
 

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.synapse.fluent.models.KustoPoolPrivateLinkResourcesInner;
 import java.util.List;
+import java.util.Map;
 
 /** An immutable client-side representation of KustoPoolPrivateLinkResources. */
 public interface KustoPoolPrivateLinkResources {
@@ -30,6 +31,20 @@ public interface KustoPoolPrivateLinkResources {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the location property: The geo-location where the resource lives.
+     *
+     * @return the location value.
+     */
+    String location();
+
+    /**
+     * Gets the tags property: Resource tags.
+     *
+     * @return the tags value.
+     */
+    Map<String, String> tags();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
