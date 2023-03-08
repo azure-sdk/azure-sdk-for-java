@@ -17,6 +17,10 @@ public final class ActionRequest extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private ActionRequestProperties innerProperties;
 
+    /** Creates an instance of ActionRequest class. */
+    public ActionRequest() {
+    }
+
     /**
      * Get the innerProperties property: Action properties for put request.
      *

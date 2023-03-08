@@ -27,15 +27,6 @@ public final class IpGeodatasImpl implements IpGeodatas {
         this.serviceManager = serviceManager;
     }
 
-    public EnrichmentIpGeodata get(String resourceGroupName, String ipAddress) {
-        EnrichmentIpGeodataInner inner = this.serviceClient().get(resourceGroupName, ipAddress);
-        if (inner != null) {
-            return new EnrichmentIpGeodataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EnrichmentIpGeodata> getWithResponse(String resourceGroupName, String ipAddress, Context context) {
         Response<EnrichmentIpGeodataInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, ipAddress, context);
@@ -45,6 +36,15 @@ public final class IpGeodatasImpl implements IpGeodatas {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EnrichmentIpGeodataImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EnrichmentIpGeodata get(String resourceGroupName, String ipAddress) {
+        EnrichmentIpGeodataInner inner = this.serviceClient().get(resourceGroupName, ipAddress);
+        if (inner != null) {
+            return new EnrichmentIpGeodataImpl(inner, this.manager());
         } else {
             return null;
         }
