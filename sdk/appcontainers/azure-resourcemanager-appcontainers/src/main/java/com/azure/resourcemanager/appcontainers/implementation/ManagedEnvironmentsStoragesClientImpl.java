@@ -56,7 +56,7 @@ public final class ManagedEnvironmentsStoragesClientImpl implements ManagedEnvir
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ManagedEnvironmentsStoragesService {
+    public interface ManagedEnvironmentsStoragesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"

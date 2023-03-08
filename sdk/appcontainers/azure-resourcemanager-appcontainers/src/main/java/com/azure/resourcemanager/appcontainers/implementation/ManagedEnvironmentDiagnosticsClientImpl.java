@@ -55,7 +55,7 @@ public final class ManagedEnvironmentDiagnosticsClientImpl implements ManagedEnv
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ManagedEnvironmentDiagnosticsService {
+    public interface ManagedEnvironmentDiagnosticsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
