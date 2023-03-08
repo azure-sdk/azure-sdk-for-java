@@ -61,20 +61,6 @@ public interface FileImportsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a file import.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    FileImportInner get(String resourceGroupName, String workspaceName, String fileImportId);
-
-    /**
-     * Gets a file import.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param fileImportId File import ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -86,20 +72,18 @@ public interface FileImportsClient {
         String resourceGroupName, String workspaceName, String fileImportId, Context context);
 
     /**
-     * Creates the file import.
+     * Gets a file import.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
-     * @param fileImport The file import.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a file import in Azure Security Insights.
+     * @return a file import.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FileImportInner create(
-        String resourceGroupName, String workspaceName, String fileImportId, FileImportInner fileImport);
+    FileImportInner get(String resourceGroupName, String workspaceName, String fileImportId);
 
     /**
      * Creates the file import.
@@ -121,6 +105,22 @@ public interface FileImportsClient {
         String fileImportId,
         FileImportInner fileImport,
         Context context);
+
+    /**
+     * Creates the file import.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param fileImportId File import ID.
+     * @param fileImport The file import.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a file import in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    FileImportInner create(
+        String resourceGroupName, String workspaceName, String fileImportId, FileImportInner fileImport);
 
     /**
      * Delete the file import.

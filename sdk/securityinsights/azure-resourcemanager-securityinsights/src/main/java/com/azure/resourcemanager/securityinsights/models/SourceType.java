@@ -17,6 +17,15 @@ public final class SourceType extends ExpandableStringEnum<SourceType> {
     public static final SourceType REMOTE_STORAGE = fromString("Remote storage");
 
     /**
+     * Creates a new instance of SourceType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SourceType() {
+    }
+
+    /**
      * Creates or finds a SourceType from its string representation.
      *
      * @param name a name to look for.
