@@ -18,63 +18,6 @@ import com.azure.resourcemanager.billing.models.TransferBillingSubscriptionReque
 /** An instance of this class provides access to all the operations defined in BillingSubscriptionsClient. */
 public interface BillingSubscriptionsClient {
     /**
-     * Lists the subscriptions for a customer. The operation is supported only for billing accounts with agreement type
-     * Microsoft Partner Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByCustomer(String billingAccountName, String customerName);
-
-    /**
-     * Lists the subscriptions for a customer. The operation is supported only for billing accounts with agreement type
-     * Microsoft Partner Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByCustomer(
-        String billingAccountName, String customerName, Context context);
-
-    /**
-     * Lists the subscriptions for a billing account. The operation is supported for billing accounts with agreement
-     * type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByBillingAccount(String billingAccountName);
-
-    /**
-     * Lists the subscriptions for a billing account. The operation is supported for billing accounts with agreement
-     * type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByBillingAccount(String billingAccountName, Context context);
-
-    /**
      * Lists the subscriptions that are billed to a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
      *
@@ -136,6 +79,33 @@ public interface BillingSubscriptionsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BillingSubscriptionInner> listByInvoiceSection(
         String billingAccountName, String billingProfileName, String invoiceSectionName, Context context);
+
+    /**
+     * Lists the subscriptions for a billing account. The operation is supported for billing accounts with agreement
+     * type Microsoft Customer Agreement or Microsoft Partner Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BillingSubscriptionInner> listByBillingAccount(String billingAccountName);
+
+    /**
+     * Lists the subscriptions for a billing account. The operation is supported for billing accounts with agreement
+     * type Microsoft Customer Agreement or Microsoft Partner Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BillingSubscriptionInner> listByBillingAccount(String billingAccountName, Context context);
 
     /**
      * Gets a subscription by its ID. The operation is supported for billing accounts with agreement type Microsoft
@@ -289,4 +259,34 @@ public interface BillingSubscriptionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     ValidateSubscriptionTransferEligibilityResultInner validateMove(
         String billingAccountName, TransferBillingSubscriptionRequestProperties parameters);
+
+    /**
+     * Lists the subscriptions for a customer. The operation is supported only for billing accounts with agreement type
+     * Microsoft Partner Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BillingSubscriptionInner> listByCustomer(String billingAccountName, String customerName);
+
+    /**
+     * Lists the subscriptions for a customer. The operation is supported only for billing accounts with agreement type
+     * Microsoft Partner Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BillingSubscriptionInner> listByCustomer(
+        String billingAccountName, String customerName, Context context);
 }

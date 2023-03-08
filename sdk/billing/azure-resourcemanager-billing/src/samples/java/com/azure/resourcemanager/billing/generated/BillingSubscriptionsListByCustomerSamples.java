@@ -7,10 +7,10 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for BillingSubscriptions ListByCustomer. */
 public final class BillingSubscriptionsListByCustomerSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionsListByCustomer.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsListByCustomer.json
      */
     /**
-     * Sample code: BillingSubscriptionsListByCustomer.
+     * Sample code: billingSubscriptionsListByCustomer.
      *
      * @param manager Entry point to BillingManager.
      */

@@ -142,7 +142,6 @@ public final class InstructionsClientImpl implements InstructionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -152,7 +151,7 @@ public final class InstructionsClientImpl implements InstructionsClient {
                             this.client.getEndpoint(),
                             billingAccountName,
                             billingProfileName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .<PagedResponse<InstructionInner>>map(
@@ -196,12 +195,16 @@ public final class InstructionsClientImpl implements InstructionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfile(
-                this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept, context)
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -318,7 +321,6 @@ public final class InstructionsClientImpl implements InstructionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter instructionName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -326,7 +328,7 @@ public final class InstructionsClientImpl implements InstructionsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             instructionName,
@@ -368,13 +370,12 @@ public final class InstructionsClientImpl implements InstructionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter instructionName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 instructionName,
@@ -473,7 +474,6 @@ public final class InstructionsClientImpl implements InstructionsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -481,7 +481,7 @@ public final class InstructionsClientImpl implements InstructionsClient {
                     service
                         .put(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             instructionName,
@@ -535,13 +535,12 @@ public final class InstructionsClientImpl implements InstructionsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .put(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 instructionName,

@@ -11,19 +11,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class AzurePlan {
     /*
-     * The sku id.
-     */
-    @JsonProperty(value = "skuId")
-    private String skuId;
-
-    /*
      * The sku description.
      */
     @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
     private String skuDescription;
 
+    /*
+     * The sku id.
+     */
+    @JsonProperty(value = "skuId")
+    private String skuId;
+
     /** Creates an instance of AzurePlan class. */
     public AzurePlan() {
+    }
+
+    /**
+     * Get the skuDescription property: The sku description.
+     *
+     * @return the skuDescription value.
+     */
+    public String skuDescription() {
+        return this.skuDescription;
     }
 
     /**
@@ -44,15 +53,6 @@ public final class AzurePlan {
     public AzurePlan withSkuId(String skuId) {
         this.skuId = skuId;
         return this;
-    }
-
-    /**
-     * Get the skuDescription property: The sku description.
-     *
-     * @return the skuDescription value.
-     */
-    public String skuDescription() {
-        return this.skuDescription;
     }
 
     /**

@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.billing.models.AcceptanceMode;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.BillingProfileInfo;
 import com.azure.resourcemanager.billing.models.Category;
 import com.azure.resourcemanager.billing.models.Participants;
@@ -16,7 +16,7 @@ import java.util.List;
 
 /** An agreement. */
 @Fluent
-public final class AgreementInner extends ProxyResource {
+public final class AgreementInner extends ArmResource {
     /*
      * The properties of an agreement.
      */
@@ -37,30 +37,21 @@ public final class AgreementInner extends ProxyResource {
     }
 
     /**
-     * Get the agreementLink property: The URL to download the agreement.
-     *
-     * @return the agreementLink value.
-     */
-    public String agreementLink() {
-        return this.innerProperties() == null ? null : this.innerProperties().agreementLink();
-    }
-
-    /**
-     * Get the category property: The category of the agreement signed by a customer.
-     *
-     * @return the category value.
-     */
-    public Category category() {
-        return this.innerProperties() == null ? null : this.innerProperties().category();
-    }
-
-    /**
      * Get the acceptanceMode property: The mode of acceptance for an agreement.
      *
      * @return the acceptanceMode value.
      */
     public AcceptanceMode acceptanceMode() {
         return this.innerProperties() == null ? null : this.innerProperties().acceptanceMode();
+    }
+
+    /**
+     * Get the agreementLink property: The URL to download the agreement.
+     *
+     * @return the agreementLink value.
+     */
+    public String agreementLink() {
+        return this.innerProperties() == null ? null : this.innerProperties().agreementLink();
     }
 
     /**
@@ -71,6 +62,15 @@ public final class AgreementInner extends ProxyResource {
      */
     public BillingProfileInfo billingProfileInfo() {
         return this.innerProperties() == null ? null : this.innerProperties().billingProfileInfo();
+    }
+
+    /**
+     * Get the category property: The category of the agreement signed by a customer.
+     *
+     * @return the category value.
+     */
+    public Category category() {
+        return this.innerProperties() == null ? null : this.innerProperties().category();
     }
 
     /**
@@ -128,7 +128,9 @@ public final class AgreementInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

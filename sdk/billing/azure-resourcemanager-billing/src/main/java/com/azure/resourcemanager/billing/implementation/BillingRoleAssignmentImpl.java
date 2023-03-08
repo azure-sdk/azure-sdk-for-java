@@ -30,20 +30,20 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
         return this.innerModel().type();
     }
 
-    public String createdOn() {
-        return this.innerModel().createdOn();
+    public String createdByPrincipalId() {
+        return this.innerModel().createdByPrincipalId();
     }
 
     public String createdByPrincipalTenantId() {
         return this.innerModel().createdByPrincipalTenantId();
     }
 
-    public String createdByPrincipalId() {
-        return this.innerModel().createdByPrincipalId();
-    }
-
     public String createdByUserEmailAddress() {
         return this.innerModel().createdByUserEmailAddress();
+    }
+
+    public String createdOn() {
+        return this.innerModel().createdOn();
     }
 
     public String principalId() {

@@ -14,16 +14,16 @@ import java.util.List;
 @Fluent
 public final class CustomerProperties {
     /*
-     * The ID of the billing profile for the invoice section.
-     */
-    @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileId;
-
-    /*
      * The name of the billing profile for the invoice section.
      */
     @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
     private String billingProfileDisplayName;
+
+    /*
+     * The ID of the billing profile for the invoice section.
+     */
+    @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileId;
 
     /*
      * The name of the customer.
@@ -48,21 +48,21 @@ public final class CustomerProperties {
     }
 
     /**
-     * Get the billingProfileId property: The ID of the billing profile for the invoice section.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.billingProfileId;
-    }
-
-    /**
      * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
      *
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
         return this.billingProfileDisplayName;
+    }
+
+    /**
+     * Get the billingProfileId property: The ID of the billing profile for the invoice section.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.billingProfileId;
     }
 
     /**

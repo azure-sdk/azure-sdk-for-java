@@ -21,12 +21,12 @@ public final class ValidateSubscriptionTransferEligibilityResultImpl
         this.serviceManager = serviceManager;
     }
 
-    public Boolean isMoveEligible() {
-        return this.innerModel().isMoveEligible();
-    }
-
     public ValidateSubscriptionTransferEligibilityError errorDetails() {
         return this.innerModel().errorDetails();
+    }
+
+    public Boolean isMoveEligible() {
+        return this.innerModel().isMoveEligible();
     }
 
     public ValidateSubscriptionTransferEligibilityResultInner innerModel() {

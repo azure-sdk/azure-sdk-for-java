@@ -22,6 +22,9 @@ public final class PaymentMethodFamily extends ExpandableStringEnum<PaymentMetho
     /** Static value None for PaymentMethodFamily. */
     public static final PaymentMethodFamily NONE = fromString("None");
 
+    /** Static value Unknown for PaymentMethodFamily. */
+    public static final PaymentMethodFamily UNKNOWN = fromString("Unknown");
+
     /**
      * Creates a new instance of PaymentMethodFamily value.
      *

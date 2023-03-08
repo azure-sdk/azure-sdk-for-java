@@ -17,16 +17,16 @@ public final class Document {
     private DocumentType kind;
 
     /*
-     * Document URL.
-     */
-    @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
-    private String url;
-
-    /*
      * The source of the document. ENF for Brazil and DRS for rest of the world.
      */
     @JsonProperty(value = "source", access = JsonProperty.Access.WRITE_ONLY)
     private DocumentSource source;
+
+    /*
+     * Document URL.
+     */
+    @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
+    private String url;
 
     /** Creates an instance of Document class. */
     public Document() {
@@ -42,21 +42,21 @@ public final class Document {
     }
 
     /**
-     * Get the url property: Document URL.
-     *
-     * @return the url value.
-     */
-    public String url() {
-        return this.url;
-    }
-
-    /**
      * Get the source property: The source of the document. ENF for Brazil and DRS for rest of the world.
      *
      * @return the source value.
      */
     public DocumentSource source() {
         return this.source;
+    }
+
+    /**
+     * Get the url property: Document URL.
+     *
+     * @return the url value.
+     */
+    public String url() {
+        return this.url;
     }
 
     /**

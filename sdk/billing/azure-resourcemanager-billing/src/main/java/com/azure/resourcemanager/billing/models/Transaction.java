@@ -10,7 +10,8 @@ import java.time.OffsetDateTime;
 /** An immutable client-side representation of Transaction. */
 public interface Transaction {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,128 +25,32 @@ public interface Transaction {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: Resource type.
      *
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the kind property: The kind of transaction. Options are all or reservation.
+     * Gets the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
      *
-     * @return the kind value.
+     * @return the azureCreditApplied value.
      */
-    TransactionTypeKind kind();
+    Amount azureCreditApplied();
 
     /**
-     * Gets the date property: The date of transaction.
+     * Gets the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
      *
-     * @return the date value.
+     * @return the azurePlan value.
      */
-    OffsetDateTime date();
+    String azurePlan();
 
     /**
-     * Gets the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
-     * billed.
+     * Gets the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
      *
-     * @return the invoice value.
+     * @return the billingCurrency value.
      */
-    String invoice();
-
-    /**
-     * Gets the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
-     * applicable for transactions which are billed.
-     *
-     * @return the invoiceId value.
-     */
-    String invoiceId();
-
-    /**
-     * Gets the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
-     * reservation.
-     *
-     * @return the orderId value.
-     */
-    String orderId();
-
-    /**
-     * Gets the orderName property: The name of the reservation order. The field is only applicable for transactions of
-     * kind reservation.
-     *
-     * @return the orderName value.
-     */
-    String orderName();
-
-    /**
-     * Gets the productFamily property: The family of the product for which the transaction took place.
-     *
-     * @return the productFamily value.
-     */
-    String productFamily();
-
-    /**
-     * Gets the productTypeId property: The ID of the product type for which the transaction took place.
-     *
-     * @return the productTypeId value.
-     */
-    String productTypeId();
-
-    /**
-     * Gets the productType property: The type of the product for which the transaction took place.
-     *
-     * @return the productType value.
-     */
-    String productType();
-
-    /**
-     * Gets the productDescription property: The description of the product for which the transaction took place.
-     *
-     * @return the productDescription value.
-     */
-    String productDescription();
-
-    /**
-     * Gets the transactionType property: The type of transaction.
-     *
-     * @return the transactionType value.
-     */
-    ReservationType transactionType();
-
-    /**
-     * Gets the transactionAmount property: The charge associated with the transaction.
-     *
-     * @return the transactionAmount value.
-     */
-    Amount transactionAmount();
-
-    /**
-     * Gets the quantity property: The quantity purchased in the transaction.
-     *
-     * @return the quantity value.
-     */
-    Integer quantity();
-
-    /**
-     * Gets the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
-     *
-     * @return the invoiceSectionId value.
-     */
-    String invoiceSectionId();
-
-    /**
-     * Gets the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
-     * transaction.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    String invoiceSectionDisplayName();
-
-    /**
-     * Gets the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
-     *
-     * @return the billingProfileId value.
-     */
-    String billingProfileId();
+    String billingCurrency();
 
     /**
      * Gets the billingProfileDisplayName property: The name of the billing profile which will be billed for the
@@ -156,12 +61,11 @@ public interface Transaction {
     String billingProfileDisplayName();
 
     /**
-     * Gets the customerId property: The ID of the customer for which the transaction took place. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
+     * Gets the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
      *
-     * @return the customerId value.
+     * @return the billingProfileId value.
      */
-    String customerId();
+    String billingProfileId();
 
     /**
      * Gets the customerDisplayName property: The name of the customer for which the transaction took place. The field
@@ -172,41 +76,19 @@ public interface Transaction {
     String customerDisplayName();
 
     /**
-     * Gets the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
-     * applicable for transaction of kind reservation.
+     * Gets the customerId property: The ID of the customer for which the transaction took place. The field is
+     * applicable only for Microsoft Partner Agreement billing account.
      *
-     * @return the subscriptionId value.
+     * @return the customerId value.
      */
-    String subscriptionId();
+    String customerId();
 
     /**
-     * Gets the subscriptionName property: The name of the subscription that was used for the transaction. The field is
-     * only applicable for transaction of kind reservation.
+     * Gets the date property: The date of transaction.
      *
-     * @return the subscriptionName value.
+     * @return the date value.
      */
-    String subscriptionName();
-
-    /**
-     * Gets the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
-     *
-     * @return the azurePlan value.
-     */
-    String azurePlan();
-
-    /**
-     * Gets the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
-     *
-     * @return the azureCreditApplied value.
-     */
-    Amount azureCreditApplied();
-
-    /**
-     * Gets the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
-     *
-     * @return the billingCurrency value.
-     */
-    String billingCurrency();
+    OffsetDateTime date();
 
     /**
      * Gets the discount property: The percentage discount, if any, applied to this transaction.
@@ -231,6 +113,44 @@ public interface Transaction {
     Float exchangeRate();
 
     /**
+     * Gets the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
+     * billed.
+     *
+     * @return the invoice value.
+     */
+    String invoice();
+
+    /**
+     * Gets the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
+     * applicable for transactions which are billed.
+     *
+     * @return the invoiceId value.
+     */
+    String invoiceId();
+
+    /**
+     * Gets the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
+     * transaction.
+     *
+     * @return the invoiceSectionDisplayName value.
+     */
+    String invoiceSectionDisplayName();
+
+    /**
+     * Gets the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
+     *
+     * @return the invoiceSectionId value.
+     */
+    String invoiceSectionId();
+
+    /**
+     * Gets the kind property: The kind of transaction. Options are all or reservation.
+     *
+     * @return the kind value.
+     */
+    TransactionTypeKind kind();
+
+    /**
      * Gets the marketPrice property: The retail price of the product.
      *
      * @return the marketPrice value.
@@ -238,11 +158,70 @@ public interface Transaction {
     Amount marketPrice();
 
     /**
+     * Gets the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
+     * reservation.
+     *
+     * @return the orderId value.
+     */
+    String orderId();
+
+    /**
+     * Gets the orderName property: The name of the reservation order. The field is only applicable for transactions of
+     * kind reservation.
+     *
+     * @return the orderName value.
+     */
+    String orderName();
+
+    /**
      * Gets the pricingCurrency property: The ISO 4217 code for the currency in which the product is priced.
      *
      * @return the pricingCurrency value.
      */
     String pricingCurrency();
+
+    /**
+     * Gets the productDescription property: The description of the product for which the transaction took place.
+     *
+     * @return the productDescription value.
+     */
+    String productDescription();
+
+    /**
+     * Gets the productFamily property: The family of the product for which the transaction took place.
+     *
+     * @return the productFamily value.
+     */
+    String productFamily();
+
+    /**
+     * Gets the productType property: The type of the product for which the transaction took place.
+     *
+     * @return the productType value.
+     */
+    String productType();
+
+    /**
+     * Gets the productTypeId property: The ID of the product type for which the transaction took place.
+     *
+     * @return the productTypeId value.
+     */
+    String productTypeId();
+
+    /**
+     * Gets the quantity property: The quantity purchased in the transaction.
+     *
+     * @return the quantity value.
+     */
+    Integer quantity();
+
+    /**
+     * Gets the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
+     * usage ended.
+     *
+     * @return the servicePeriodEndDate value.
+     */
+    OffsetDateTime servicePeriodEndDate();
 
     /**
      * Gets the servicePeriodStartDate property: The date of the purchase of the product, or the start date of the month
@@ -253,12 +232,20 @@ public interface Transaction {
     OffsetDateTime servicePeriodStartDate();
 
     /**
-     * Gets the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
-     * usage ended.
+     * Gets the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
+     * applicable for transaction of kind reservation.
      *
-     * @return the servicePeriodEndDate value.
+     * @return the subscriptionId value.
      */
-    OffsetDateTime servicePeriodEndDate();
+    String subscriptionId();
+
+    /**
+     * Gets the subscriptionName property: The name of the subscription that was used for the transaction. The field is
+     * only applicable for transaction of kind reservation.
+     *
+     * @return the subscriptionName value.
+     */
+    String subscriptionName();
 
     /**
      * Gets the subTotal property: The pre-tax charged amount for the transaction.
@@ -273,6 +260,20 @@ public interface Transaction {
      * @return the tax value.
      */
     Amount tax();
+
+    /**
+     * Gets the transactionAmount property: The charge associated with the transaction.
+     *
+     * @return the transactionAmount value.
+     */
+    Amount transactionAmount();
+
+    /**
+     * Gets the transactionType property: The type of transaction.
+     *
+     * @return the transactionType value.
+     */
+    ReservationType transactionType();
 
     /**
      * Gets the unitOfMeasure property: The unit of measure used to bill for the product. For example, compute services
