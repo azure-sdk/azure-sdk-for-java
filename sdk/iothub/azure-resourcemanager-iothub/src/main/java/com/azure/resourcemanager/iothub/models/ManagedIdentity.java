@@ -16,6 +16,10 @@ public class ManagedIdentity {
     @JsonProperty(value = "userAssignedIdentity")
     private String userAssignedIdentity;
 
+    /** Creates an instance of ManagedIdentity class. */
+    public ManagedIdentity() {
+    }
+
     /**
      * Get the userAssignedIdentity property: The user assigned identity.
      *
