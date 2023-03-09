@@ -23,6 +23,15 @@ public final class EntityTimelineKind extends ExpandableStringEnum<EntityTimelin
     public static final EntityTimelineKind ANOMALY = fromString("Anomaly");
 
     /**
+     * Creates a new instance of EntityTimelineKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityTimelineKind() {
+    }
+
+    /**
      * Creates or finds a EntityTimelineKind from its string representation.
      *
      * @param name a name to look for.

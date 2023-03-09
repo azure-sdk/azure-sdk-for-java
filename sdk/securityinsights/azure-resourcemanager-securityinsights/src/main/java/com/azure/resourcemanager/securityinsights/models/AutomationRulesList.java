@@ -24,6 +24,10 @@ public final class AutomationRulesList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of AutomationRulesList class. */
+    public AutomationRulesList() {
+    }
+
     /**
      * Get the value property: The value property.
      *

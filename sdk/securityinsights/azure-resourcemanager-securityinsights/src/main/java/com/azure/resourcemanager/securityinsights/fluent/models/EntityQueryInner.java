@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class EntityQueryInner extends ResourceWithEtag {
+    /** Creates an instance of EntityQueryInner class. */
+    public EntityQueryInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public EntityQueryInner withEtag(String etag) {

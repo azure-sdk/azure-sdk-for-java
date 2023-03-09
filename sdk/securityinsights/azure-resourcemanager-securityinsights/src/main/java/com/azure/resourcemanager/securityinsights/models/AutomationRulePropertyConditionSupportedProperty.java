@@ -221,6 +221,15 @@ public final class AutomationRulePropertyConditionSupportedProperty
     public static final AutomationRulePropertyConditionSupportedProperty URL = fromString("Url");
 
     /**
+     * Creates a new instance of AutomationRulePropertyConditionSupportedProperty value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyConditionSupportedProperty() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyConditionSupportedProperty from its string representation.
      *
      * @param name a name to look for.

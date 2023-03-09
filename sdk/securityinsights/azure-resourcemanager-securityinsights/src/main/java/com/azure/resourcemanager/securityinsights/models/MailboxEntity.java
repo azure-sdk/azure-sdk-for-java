@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailboxEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,13 +16,17 @@ import java.util.UUID;
 /** Represents a mailbox entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Mailbox")
-@Fluent
+@Immutable
 public final class MailboxEntity extends EntityInner {
     /*
      * Mailbox entity properties
      */
     @JsonProperty(value = "properties")
     private MailboxEntityProperties innerProperties;
+
+    /** Creates an instance of MailboxEntity class. */
+    public MailboxEntity() {
+    }
 
     /**
      * Get the innerProperties property: Mailbox entity properties.

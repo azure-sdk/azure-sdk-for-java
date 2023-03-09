@@ -41,19 +41,6 @@ public interface SourceControlsOperations {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sourceControlId Source control Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a source control byt its identifier.
-     */
-    SourceControl get(String resourceGroupName, String workspaceName, String sourceControlId);
-
-    /**
-     * Gets a source control byt its identifier.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -64,7 +51,7 @@ public interface SourceControlsOperations {
         String resourceGroupName, String workspaceName, String sourceControlId, Context context);
 
     /**
-     * Delete a source control.
+     * Gets a source control byt its identifier.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -72,8 +59,9 @@ public interface SourceControlsOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a source control byt its identifier.
      */
-    void delete(String resourceGroupName, String workspaceName, String sourceControlId);
+    SourceControl get(String resourceGroupName, String workspaceName, String sourceControlId);
 
     /**
      * Delete a source control.
@@ -89,6 +77,18 @@ public interface SourceControlsOperations {
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String sourceControlId, Context context);
+
+    /**
+     * Delete a source control.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String workspaceName, String sourceControlId);
 
     /**
      * Gets a source control byt its identifier.
