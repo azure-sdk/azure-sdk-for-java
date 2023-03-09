@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 /** Samples for Servers Start. */
 public final class ServersStartSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/ServerStart.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Flexible/stable/2022-09-01/examples/ServerStart.json
      */
     /**
      * Sample code: Start a server.

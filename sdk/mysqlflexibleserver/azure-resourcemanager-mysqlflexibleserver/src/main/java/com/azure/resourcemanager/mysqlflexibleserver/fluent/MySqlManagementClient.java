@@ -45,6 +45,13 @@ public interface MySqlManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the AzureADAdministratorsClient object to access its operations.
+     *
+     * @return the AzureADAdministratorsClient object.
+     */
+    AzureADAdministratorsClient getAzureADAdministrators();
+
+    /**
      * Gets the BackupsClient object to access its operations.
      *
      * @return the BackupsClient object.
@@ -134,11 +141,4 @@ public interface MySqlManagementClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
-
-    /**
-     * Gets the AzureADAdministratorsClient object to access its operations.
-     *
-     * @return the AzureADAdministratorsClient object.
-     */
-    AzureADAdministratorsClient getAzureADAdministrators();
 }

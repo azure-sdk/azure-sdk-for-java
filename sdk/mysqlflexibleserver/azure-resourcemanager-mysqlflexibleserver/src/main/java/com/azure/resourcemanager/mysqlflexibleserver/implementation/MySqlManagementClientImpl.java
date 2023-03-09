@@ -121,6 +121,18 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         return this.defaultPollInterval;
     }
 
+    /** The AzureADAdministratorsClient object to access its operations. */
+    private final AzureADAdministratorsClient azureADAdministrators;
+
+    /**
+     * Gets the AzureADAdministratorsClient object to access its operations.
+     *
+     * @return the AzureADAdministratorsClient object.
+     */
+    public AzureADAdministratorsClient getAzureADAdministrators() {
+        return this.azureADAdministrators;
+    }
+
     /** The BackupsClient object to access its operations. */
     private final BackupsClient backups;
 
@@ -277,18 +289,6 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         return this.operations;
     }
 
-    /** The AzureADAdministratorsClient object to access its operations. */
-    private final AzureADAdministratorsClient azureADAdministrators;
-
-    /**
-     * Gets the AzureADAdministratorsClient object to access its operations.
-     *
-     * @return the AzureADAdministratorsClient object.
-     */
-    public AzureADAdministratorsClient getAzureADAdministrators() {
-        return this.azureADAdministrators;
-    }
-
     /**
      * Initializes an instance of MySqlManagementClient client.
      *
@@ -311,7 +311,8 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-12-01-preview";
+        this.apiVersion = "2022-09-01";
+        this.azureADAdministrators = new AzureADAdministratorsClientImpl(this);
         this.backups = new BackupsClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);
         this.databases = new DatabasesClientImpl(this);
@@ -325,7 +326,6 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.checkNameAvailabilityWithoutLocations = new CheckNameAvailabilityWithoutLocationsClientImpl(this);
         this.getPrivateDnsZoneSuffixes = new GetPrivateDnsZoneSuffixesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
-        this.azureADAdministrators = new AzureADAdministratorsClientImpl(this);
     }
 
     /**
