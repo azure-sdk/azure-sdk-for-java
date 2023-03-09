@@ -10,6 +10,7 @@ import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
 import com.azure.resourcemanager.elasticsan.models.IscsiTargetInfo;
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
 import com.azure.resourcemanager.elasticsan.models.Volume;
+import com.azure.resourcemanager.elasticsan.models.VolumeCreateParameter;
 import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
 import java.util.Collections;
 import java.util.Map;
@@ -52,7 +53,7 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
         return this.innerModel().creationData();
     }
 
-    public Long sizeGiB() {
+    public long sizeGiB() {
         return this.innerModel().sizeGiB();
     }
 
@@ -80,6 +81,8 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
 
     private String volumeName;
 
+    private VolumeCreateParameter createParameters;
+
     private VolumeUpdate updateParameters;
 
     public VolumeImpl withExistingVolumegroup(String resourceGroupName, String elasticSanName, String volumeGroupName) {
@@ -94,8 +97,7 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
             serviceManager
                 .serviceClient()
                 .getVolumes()
-                .create(
-                    resourceGroupName, elasticSanName, volumeGroupName, volumeName, this.innerModel(), Context.NONE);
+                .create(resourceGroupName, elasticSanName, volumeGroupName, volumeName, createParameters, Context.NONE);
         return this;
     }
 
@@ -104,7 +106,7 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
             serviceManager
                 .serviceClient()
                 .getVolumes()
-                .create(resourceGroupName, elasticSanName, volumeGroupName, volumeName, this.innerModel(), context);
+                .create(resourceGroupName, elasticSanName, volumeGroupName, volumeName, createParameters, context);
         return this;
     }
 
@@ -112,6 +114,7 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
         this.innerObject = new VolumeInner();
         this.serviceManager = serviceManager;
         this.volumeName = name;
+        this.createParameters = new VolumeCreateParameter();
     }
 
     public VolumeImpl update() {
@@ -166,9 +169,14 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
         return this;
     }
 
+    public VolumeImpl withSizeGiB(long sizeGiB) {
+        this.createParameters.withSizeGiB(sizeGiB);
+        return this;
+    }
+
     public VolumeImpl withTags(Map<String, String> tags) {
         if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
+            this.createParameters.withTags(tags);
             return this;
         } else {
             this.updateParameters.withTags(tags);
@@ -177,18 +185,13 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
     }
 
     public VolumeImpl withCreationData(SourceCreationData creationData) {
-        this.innerModel().withCreationData(creationData);
+        this.createParameters.withCreationData(creationData);
         return this;
     }
 
     public VolumeImpl withSizeGiB(Long sizeGiB) {
-        if (isInCreateMode()) {
-            this.innerModel().withSizeGiB(sizeGiB);
-            return this;
-        } else {
-            this.updateParameters.withSizeGiB(sizeGiB);
-            return this;
-        }
+        this.updateParameters.withSizeGiB(sizeGiB);
+        return this;
     }
 
     private boolean isInCreateMode() {

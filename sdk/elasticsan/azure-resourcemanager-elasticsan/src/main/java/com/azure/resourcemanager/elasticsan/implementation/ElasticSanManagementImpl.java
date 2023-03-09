@@ -26,6 +26,7 @@ import com.azure.resourcemanager.elasticsan.fluent.ElasticSanManagement;
 import com.azure.resourcemanager.elasticsan.fluent.ElasticSansClient;
 import com.azure.resourcemanager.elasticsan.fluent.OperationsClient;
 import com.azure.resourcemanager.elasticsan.fluent.SkusClient;
+import com.azure.resourcemanager.elasticsan.fluent.SnapshotsClient;
 import com.azure.resourcemanager.elasticsan.fluent.VolumeGroupsClient;
 import com.azure.resourcemanager.elasticsan.fluent.VolumesClient;
 import java.io.IOException;
@@ -172,6 +173,18 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
         return this.volumes;
     }
 
+    /** The SnapshotsClient object to access its operations. */
+    private final SnapshotsClient snapshots;
+
+    /**
+     * Gets the SnapshotsClient object to access its operations.
+     *
+     * @return the SnapshotsClient object.
+     */
+    public SnapshotsClient getSnapshots() {
+        return this.snapshots;
+    }
+
     /**
      * Initializes an instance of ElasticSanManagement client.
      *
@@ -194,12 +207,13 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-11-20-preview";
+        this.apiVersion = "2023-01-01";
         this.operations = new OperationsClientImpl(this);
         this.skus = new SkusClientImpl(this);
         this.elasticSans = new ElasticSansClientImpl(this);
         this.volumeGroups = new VolumeGroupsClientImpl(this);
         this.volumes = new VolumesClientImpl(this);
+        this.snapshots = new SnapshotsClientImpl(this);
     }
 
     /**

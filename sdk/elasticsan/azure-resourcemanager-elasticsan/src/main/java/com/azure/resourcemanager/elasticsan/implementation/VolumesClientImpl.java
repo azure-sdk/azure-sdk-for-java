@@ -34,6 +34,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elasticsan.fluent.VolumesClient;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
+import com.azure.resourcemanager.elasticsan.models.VolumeCreateParameter;
 import com.azure.resourcemanager.elasticsan.models.VolumeList;
 import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
 import java.nio.ByteBuffer;
@@ -64,12 +65,12 @@ public final class VolumesClientImpl implements VolumesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ElasticSanManagement")
-    private interface VolumesService {
+    public interface VolumesService {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
                 + "/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
             @HostParam("$host") String endpoint,
@@ -79,7 +80,7 @@ public final class VolumesClientImpl implements VolumesClient {
             @PathParam("volumeGroupName") String volumeGroupName,
             @PathParam("volumeName") String volumeName,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") VolumeInner parameters,
+            @BodyParam("application/json") VolumeCreateParameter parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -181,7 +182,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters) {
+        VolumeCreateParameter parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -252,7 +253,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -320,7 +321,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters) {
+        VolumeCreateParameter parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             createWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters);
         return this
@@ -349,7 +350,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -380,8 +381,9 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters) {
-        return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters)
+        VolumeCreateParameter parameters) {
+        return this
+            .beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters)
             .getSyncPoller();
     }
 
@@ -405,9 +407,10 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context) {
-        return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
+        return this
+            .beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
             .getSyncPoller();
     }
 
@@ -430,7 +433,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters) {
+        VolumeCreateParameter parameters) {
         return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -456,7 +459,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context) {
         return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
             .last()
@@ -482,7 +485,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters) {
+        VolumeCreateParameter parameters) {
         return createAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters).block();
     }
 
@@ -506,7 +509,7 @@ public final class VolumesClientImpl implements VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context) {
         return createAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context).block();
     }
@@ -730,7 +733,8 @@ public final class VolumesClientImpl implements VolumesClient {
         String volumeGroupName,
         String volumeName,
         VolumeUpdate parameters) {
-        return beginUpdateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters)
+        return this
+            .beginUpdateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters)
             .getSyncPoller();
     }
 
@@ -756,7 +760,8 @@ public final class VolumesClientImpl implements VolumesClient {
         String volumeName,
         VolumeUpdate parameters,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
             .getSyncPoller();
     }
 
@@ -1038,7 +1043,7 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName) {
-        return beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName).getSyncPoller();
     }
 
     /**
@@ -1057,7 +1062,8 @@ public final class VolumesClientImpl implements VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName, Context context) {
-        return beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context)
             .getSyncPoller();
     }
 

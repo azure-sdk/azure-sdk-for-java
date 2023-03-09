@@ -5,18 +5,18 @@
 package com.azure.resourcemanager.elasticsan.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.elasticsan.fluent.models.VolumeGroupInner;
+import com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Volume Groups. */
+/** List of Snapshots. */
 @Fluent
-public final class VolumeGroupList {
+public final class SnapshotList {
     /*
-     * An array of Volume Groups objects.
+     * An array of Snapshot objects.
      */
     @JsonProperty(value = "value")
-    private List<VolumeGroupInner> value;
+    private List<SnapshotInner> value;
 
     /*
      * URI to fetch the next section of the paginated response.
@@ -24,26 +24,26 @@ public final class VolumeGroupList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of VolumeGroupList class. */
-    public VolumeGroupList() {
+    /** Creates an instance of SnapshotList class. */
+    public SnapshotList() {
     }
 
     /**
-     * Get the value property: An array of Volume Groups objects.
+     * Get the value property: An array of Snapshot objects.
      *
      * @return the value value.
      */
-    public List<VolumeGroupInner> value() {
+    public List<SnapshotInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: An array of Volume Groups objects.
+     * Set the value property: An array of Snapshot objects.
      *
      * @param value the value value to set.
-     * @return the VolumeGroupList object itself.
+     * @return the SnapshotList object itself.
      */
-    public VolumeGroupList withValue(List<VolumeGroupInner> value) {
+    public SnapshotList withValue(List<SnapshotInner> value) {
         this.value = value;
         return this;
     }

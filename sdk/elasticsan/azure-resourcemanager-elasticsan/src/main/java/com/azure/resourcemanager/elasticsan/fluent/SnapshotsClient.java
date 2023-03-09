@@ -11,199 +11,199 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.elasticsan.fluent.models.ElasticSanInner;
-import com.azure.resourcemanager.elasticsan.models.ElasticSanCreateParameter;
-import com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate;
+import com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner;
+import com.azure.resourcemanager.elasticsan.models.SnapshotCreateParameter;
+import com.azure.resourcemanager.elasticsan.models.SnapshotUpdate;
 
-/** An instance of this class provides access to all the operations defined in ElasticSansClient. */
-public interface ElasticSansClient {
+/** An instance of this class provides access to all the operations defined in SnapshotsClient. */
+public interface SnapshotsClient {
     /**
-     * Gets a list of ElasticSans in a subscription.
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
      *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription as paginated response with {@link PagedIterable}.
+     * @return list of Snapshots as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ElasticSanInner> list();
+    PagedIterable<SnapshotInner> listByVolumeGroup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName);
 
     /**
-     * Gets a list of ElasticSans in a subscription.
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
      *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param filter Specify $filter='volumeName eq &lt;volume name&gt;' to filter on volume.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription as paginated response with {@link PagedIterable}.
+     * @return list of Snapshots as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ElasticSanInner> list(Context context);
+    PagedIterable<SnapshotInner> listByVolumeGroup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter, Context context);
 
     /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ElasticSanInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ElasticSanInner> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
+     * @return the {@link SyncPoller} for polling of response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginCreate(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters);
+    SyncPoller<PollResult<SnapshotInner>, SnapshotInner> beginCreate(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters);
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
+     * @return the {@link SyncPoller} for polling of response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginCreate(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context);
+    SyncPoller<PollResult<SnapshotInner>, SnapshotInner> beginCreate(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context);
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
+     * @return response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner create(String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters);
+    SnapshotInner create(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters);
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
+     * @return response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner create(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context);
+    SnapshotInner create(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context);
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginUpdate(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters);
-
-    /**
-     * Update a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
+     * @return response for Volume Snapshot request along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginUpdate(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SnapshotInner> updateWithResponse(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters,
+        Context context);
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
+     * @return response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner update(String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters);
+    SnapshotInner update(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters);
 
     /**
-     * Update a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner update(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context);
-
-    /**
-     * Delete a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String elasticSanName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -211,58 +211,68 @@ public interface ElasticSansClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String elasticSanName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context);
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String elasticSanName);
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String elasticSanName, Context context);
+    void delete(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context);
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response}.
+     * @return a Volume Snapshot along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ElasticSanInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String elasticSanName, Context context);
+    Response<SnapshotInner> getWithResponse(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context);
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan.
+     * @return a Volume Snapshot.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner getByResourceGroup(String resourceGroupName, String elasticSanName);
+    SnapshotInner get(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.StorageTargetType;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroup;
@@ -14,7 +13,7 @@ import java.util.Map;
 /** Samples for VolumeGroups Update. */
 public final class VolumeGroupsUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/VolumeGroups_Update_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/VolumeGroups_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Update_MaximumSet_Gen.
@@ -25,18 +24,19 @@ public final class VolumeGroupsUpdateSamples {
         VolumeGroup resource =
             manager
                 .volumeGroups()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE)
+                .getWithResponse(
+                    "rgelasticsan", "f4L_0O89-l11", "az_614w67_h4s2b_742-2434", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key7542", "aaaaaaaaaaaaaaaaaaaa"))
+            .withTags(mapOf("key5454", "x"))
             .withProtocolType(StorageTargetType.ISCSI)
             .withEncryption(EncryptionType.ENCRYPTION_AT_REST_WITH_PLATFORM_KEY)
             .apply();
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/VolumeGroups_Update_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/VolumeGroups_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Update_MinimumSet_Gen.
@@ -47,7 +47,8 @@ public final class VolumeGroupsUpdateSamples {
         VolumeGroup resource =
             manager
                 .volumeGroups()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE)
+                .getWithResponse(
+                    "rgelasticsan", "f4L_0O89-l11", "az_614w67_h4s2b_742-2434", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

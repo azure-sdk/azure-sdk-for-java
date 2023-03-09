@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for ElasticSans Create. */
 public final class ElasticSansCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/ElasticSans_Create_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/ElasticSans_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Create_MaximumSet_Gen.
@@ -24,19 +24,19 @@ public final class ElasticSansCreateSamples {
     public static void elasticSansCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .elasticSans()
-            .define("ti7q-k952-1qB3J_5")
-            .withRegion("aaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            .define("f4L_0O89-l11")
+            .withRegion("hkxxuijpxftqjgijppiwlo")
             .withExistingResourceGroup("rgelasticsan")
             .withSku(new Sku().withName(SkuName.PREMIUM_LRS).withTier(SkuTier.PREMIUM))
-            .withBaseSizeTiB(26L)
-            .withExtendedCapacitySizeTiB(7L)
-            .withTags(mapOf("key896", "aaaaaaaaaaaaaaaaaa"))
-            .withAvailabilityZones(Arrays.asList("aaaaaaaaaaaaaaaaa"))
+            .withBaseSizeTiB(7L)
+            .withExtendedCapacitySizeTiB(22L)
+            .withTags(mapOf("key4046", "eyfpoohyuknmrawpd"))
+            .withAvailabilityZones(Arrays.asList("s"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/ElasticSans_Create_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/ElasticSans_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Create_MinimumSet_Gen.
@@ -46,12 +46,12 @@ public final class ElasticSansCreateSamples {
     public static void elasticSansCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .elasticSans()
-            .define("ti7q-k952-1qB3J_5")
+            .define("f4L_0O89-l11")
             .withRegion((String) null)
             .withExistingResourceGroup("rgelasticsan")
             .withSku(new Sku().withName(SkuName.PREMIUM_LRS))
-            .withBaseSizeTiB(26L)
-            .withExtendedCapacitySizeTiB(7L)
+            .withBaseSizeTiB(7L)
+            .withExtendedCapacitySizeTiB(22L)
             .create();
     }
 

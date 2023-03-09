@@ -78,4 +78,11 @@ public interface ElasticSanManagement {
      * @return the VolumesClient object.
      */
     VolumesClient getVolumes();
+
+    /**
+     * Gets the SnapshotsClient object to access its operations.
+     *
+     * @return the SnapshotsClient object.
+     */
+    SnapshotsClient getSnapshots();
 }

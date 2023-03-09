@@ -32,62 +32,54 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.elasticsan.fluent.ElasticSansClient;
-import com.azure.resourcemanager.elasticsan.fluent.models.ElasticSanInner;
-import com.azure.resourcemanager.elasticsan.models.ElasticSanCreateParameter;
-import com.azure.resourcemanager.elasticsan.models.ElasticSanList;
-import com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate;
+import com.azure.resourcemanager.elasticsan.fluent.SnapshotsClient;
+import com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner;
+import com.azure.resourcemanager.elasticsan.models.SnapshotCreateParameter;
+import com.azure.resourcemanager.elasticsan.models.SnapshotList;
+import com.azure.resourcemanager.elasticsan.models.SnapshotUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ElasticSansClient. */
-public final class ElasticSansClientImpl implements ElasticSansClient {
+/** An instance of this class provides access to all the operations defined in SnapshotsClient. */
+public final class SnapshotsClientImpl implements SnapshotsClient {
     /** The proxy service used to perform REST calls. */
-    private final ElasticSansService service;
+    private final SnapshotsService service;
 
     /** The service client containing this operation class. */
     private final ElasticSanManagementImpl client;
 
     /**
-     * Initializes an instance of ElasticSansClientImpl.
+     * Initializes an instance of SnapshotsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ElasticSansClientImpl(ElasticSanManagementImpl client) {
+    SnapshotsClientImpl(ElasticSanManagementImpl client) {
         this.service =
-            RestProxy.create(ElasticSansService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+            RestProxy.create(SnapshotsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for ElasticSanManagementElasticSans to be used by the proxy service to
+     * The interface defining all the services for ElasticSanManagementSnapshots to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "ElasticSanManagement")
-    public interface ElasticSansService {
-        @Headers({"Content-Type: application/json"})
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ElasticSan/elasticSans")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ElasticSanList>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
+    public interface SnapshotsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
-                + "/elasticSans")
+                + "/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ElasticSanList>> listByResourceGroup(
+        Mono<Response<SnapshotList>> listByVolumeGroup(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("elasticSanName") String elasticSanName,
+            @PathParam("volumeGroupName") String volumeGroupName,
+            @QueryParam("$filter") String filter,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -95,7 +87,7 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
-                + "/elasticSans/{elasticSanName}")
+                + "/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -103,31 +95,35 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("elasticSanName") String elasticSanName,
+            @PathParam("volumeGroupName") String volumeGroupName,
+            @PathParam("snapshotName") String snapshotName,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") ElasticSanCreateParameter parameters,
+            @BodyParam("application/json") SnapshotCreateParameter parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
-                + "/elasticSans/{elasticSanName}")
-        @ExpectedResponses({200, 202})
+                + "/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}")
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
+        Mono<Response<SnapshotInner>> update(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("elasticSanName") String elasticSanName,
+            @PathParam("volumeGroupName") String volumeGroupName,
+            @PathParam("snapshotName") String snapshotName,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") ElasticSanUpdate parameters,
+            @BodyParam("application/json") SnapshotUpdate parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
-                + "/elasticSans/{elasticSanName}")
+                + "/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -135,6 +131,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("elasticSanName") String elasticSanName,
+            @PathParam("volumeGroupName") String volumeGroupName,
+            @PathParam("snapshotName") String snapshotName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -142,14 +140,16 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
-                + "/elasticSans/{elasticSanName}")
+                + "/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ElasticSanInner>> getByResourceGroup(
+        Mono<Response<SnapshotInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("elasticSanName") String elasticSanName,
+            @PathParam("volumeGroupName") String volumeGroupName,
+            @PathParam("snapshotName") String snapshotName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -158,17 +158,7 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ElasticSanList>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ElasticSanList>> listByResourceGroupNext(
+        Mono<Response<SnapshotList>> listByVolumeGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -176,327 +166,20 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Gets a list of ElasticSans in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listSinglePageAsync() {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<ElasticSanInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a list of ElasticSans in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Gets a list of ElasticSans in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ElasticSanInner> listAsync() {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Gets a list of ElasticSans in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ElasticSanInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Gets a list of ElasticSans in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ElasticSanInner> list() {
-        return new PagedIterable<>(listAsync());
-    }
-
-    /**
-     * Gets a list of ElasticSans in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSans in a subscription as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ElasticSanInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
-    }
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<ElasticSanInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ElasticSanInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ElasticSanInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ElasticSanInner> listByResourceGroup(String resourceGroupName) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
-    }
-
-    /**
-     * Gets a list of ElasticSan in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ElasticSan in a resource group as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ElasticSanInner> listByResourceGroup(String resourceGroupName, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
-    }
-
-    /**
-     * Create ElasticSan.
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param filter Specify $filter='volumeName eq &lt;volume name&gt;' to filter on volume.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request along with {@link Response} on successful completion of {@link Mono}.
+     * @return list of Snapshots along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters) {
+    private Mono<PagedResponse<SnapshotInner>> listByVolumeGroupSinglePageAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -515,6 +198,246 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByVolumeGroup(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            elasticSanName,
+                            volumeGroupName,
+                            filter,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<SnapshotInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param filter Specify $filter='volumeName eq &lt;volume name&gt;' to filter on volume.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Snapshots along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SnapshotInner>> listByVolumeGroupSinglePageAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (elasticSanName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByVolumeGroup(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                elasticSanName,
+                volumeGroupName,
+                filter,
+                this.client.getApiVersion(),
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param filter Specify $filter='volumeName eq &lt;volume name&gt;' to filter on volume.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Snapshots as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SnapshotInner> listByVolumeGroupAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter) {
+        return new PagedFlux<>(
+            () -> listByVolumeGroupSinglePageAsync(resourceGroupName, elasticSanName, volumeGroupName, filter),
+            nextLink -> listByVolumeGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Snapshots as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SnapshotInner> listByVolumeGroupAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName) {
+        final String filter = null;
+        return new PagedFlux<>(
+            () -> listByVolumeGroupSinglePageAsync(resourceGroupName, elasticSanName, volumeGroupName, filter),
+            nextLink -> listByVolumeGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param filter Specify $filter='volumeName eq &lt;volume name&gt;' to filter on volume.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Snapshots as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SnapshotInner> listByVolumeGroupAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter, Context context) {
+        return new PagedFlux<>(
+            () -> listByVolumeGroupSinglePageAsync(resourceGroupName, elasticSanName, volumeGroupName, filter, context),
+            nextLink -> listByVolumeGroupNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Snapshots as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SnapshotInner> listByVolumeGroup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName) {
+        final String filter = null;
+        return new PagedIterable<>(listByVolumeGroupAsync(resourceGroupName, elasticSanName, volumeGroupName, filter));
+    }
+
+    /**
+     * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param filter Specify $filter='volumeName eq &lt;volume name&gt;' to filter on volume.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Snapshots as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SnapshotInner> listByVolumeGroup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter, Context context) {
+        return new PagedIterable<>(
+            listByVolumeGroupAsync(resourceGroupName, elasticSanName, volumeGroupName, filter, context));
+    }
+
+    /**
+     * Create a Volume Snapshot.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response for Volume Snapshot request along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (elasticSanName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
         }
         if (parameters == null) {
             return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
@@ -531,6 +454,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             elasticSanName,
+                            volumeGroupName,
+                            snapshotName,
                             this.client.getApiVersion(),
                             parameters,
                             accept,
@@ -539,20 +464,28 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request along with {@link Response} on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context) {
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -571,6 +504,13 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
         }
         if (parameters == null) {
             return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
@@ -585,6 +525,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 elasticSanName,
+                volumeGroupName,
+                snapshotName,
                 this.client.getApiVersion(),
                 parameters,
                 accept,
@@ -592,177 +534,243 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response for ElasticSan request.
+     * @return the {@link PollerFlux} for polling of response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ElasticSanInner>, ElasticSanInner> beginCreateAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, elasticSanName, parameters);
+    private PollerFlux<PollResult<SnapshotInner>, SnapshotInner> beginCreateAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters);
         return this
             .client
-            .<ElasticSanInner, ElasticSanInner>getLroResult(
+            .<SnapshotInner, SnapshotInner>getLroResult(
                 mono,
                 this.client.getHttpPipeline(),
-                ElasticSanInner.class,
-                ElasticSanInner.class,
+                SnapshotInner.class,
+                SnapshotInner.class,
                 this.client.getContext());
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response for ElasticSan request.
+     * @return the {@link PollerFlux} for polling of response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ElasticSanInner>, ElasticSanInner> beginCreateAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context) {
+    private PollerFlux<PollResult<SnapshotInner>, SnapshotInner> beginCreateAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createWithResponseAsync(resourceGroupName, elasticSanName, parameters, context);
+            createWithResponseAsync(
+                resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, context);
         return this
             .client
-            .<ElasticSanInner, ElasticSanInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ElasticSanInner.class, ElasticSanInner.class, context);
+            .<SnapshotInner, SnapshotInner>getLroResult(
+                mono, this.client.getHttpPipeline(), SnapshotInner.class, SnapshotInner.class, context);
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
+     * @return the {@link SyncPoller} for polling of response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginCreate(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters) {
-        return this.beginCreateAsync(resourceGroupName, elasticSanName, parameters).getSyncPoller();
+    public SyncPoller<PollResult<SnapshotInner>, SnapshotInner> beginCreate(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters) {
+        return this
+            .beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters)
+            .getSyncPoller();
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
+     * @return the {@link SyncPoller} for polling of response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginCreate(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context) {
-        return this.beginCreateAsync(resourceGroupName, elasticSanName, parameters, context).getSyncPoller();
+    public SyncPoller<PollResult<SnapshotInner>, SnapshotInner> beginCreate(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context) {
+        return this
+            .beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ElasticSanInner> createAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters) {
-        return beginCreateAsync(resourceGroupName, elasticSanName, parameters)
+    private Mono<SnapshotInner> createAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters) {
+        return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ElasticSanInner> createAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context) {
-        return beginCreateAsync(resourceGroupName, elasticSanName, parameters, context)
+    private Mono<SnapshotInner> createAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context) {
+        return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
+     * @return response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElasticSanInner create(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters) {
-        return createAsync(resourceGroupName, elasticSanName, parameters).block();
+    public SnapshotInner create(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters) {
+        return createAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters).block();
     }
 
     /**
-     * Create ElasticSan.
+     * Create a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
+     * @return response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElasticSanInner create(
-        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context) {
-        return createAsync(resourceGroupName, elasticSanName, parameters, context).block();
+    public SnapshotInner create(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotCreateParameter parameters,
+        Context context) {
+        return createAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, context)
+            .block();
     }
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request along with {@link Response} on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters) {
+    private Mono<Response<SnapshotInner>> updateWithResponseAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -781,6 +789,13 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
         }
         if (parameters == null) {
             return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
@@ -797,6 +812,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             elasticSanName,
+                            volumeGroupName,
+                            snapshotName,
                             this.client.getApiVersion(),
                             parameters,
                             accept,
@@ -805,20 +822,28 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request along with {@link Response} on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context) {
+    private Mono<Response<SnapshotInner>> updateWithResponseAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -837,6 +862,13 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
         }
         if (parameters == null) {
             return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
@@ -851,6 +883,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 elasticSanName,
+                volumeGroupName,
+                snapshotName,
                 this.client.getApiVersion(),
                 parameters,
                 accept,
@@ -858,174 +892,96 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response for ElasticSan request.
+     * @return response for Volume Snapshot request on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ElasticSanInner>, ElasticSanInner> beginUpdateAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, elasticSanName, parameters);
-        return this
-            .client
-            .<ElasticSanInner, ElasticSanInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ElasticSanInner.class,
-                ElasticSanInner.class,
-                this.client.getContext());
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SnapshotInner> updateAsync(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters) {
+        return updateWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ElasticSanInner>, ElasticSanInner> beginUpdateAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, elasticSanName, parameters, context);
-        return this
-            .client
-            .<ElasticSanInner, ElasticSanInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ElasticSanInner.class, ElasticSanInner.class, context);
-    }
-
-    /**
-     * Update a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginUpdate(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters) {
-        return this.beginUpdateAsync(resourceGroupName, elasticSanName, parameters).getSyncPoller();
-    }
-
-    /**
-     * Update a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginUpdate(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context) {
-        return this.beginUpdateAsync(resourceGroupName, elasticSanName, parameters, context).getSyncPoller();
-    }
-
-    /**
-     * Update a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ElasticSanInner> updateAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters) {
-        return beginUpdateAsync(resourceGroupName, elasticSanName, parameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    public Response<SnapshotInner> updateWithResponse(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters,
+        Context context) {
+        return updateWithResponseAsync(
+                resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, context)
+            .block();
     }
 
     /**
-     * Update a Elastic San.
+     * Update a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @param context The context to associate with this operation.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param parameters Snapshot object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request on successful completion of {@link Mono}.
+     * @return response for Volume Snapshot request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ElasticSanInner> updateAsync(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, elasticSanName, parameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    public SnapshotInner update(
+        String resourceGroupName,
+        String elasticSanName,
+        String volumeGroupName,
+        String snapshotName,
+        SnapshotUpdate parameters) {
+        return updateWithResponse(
+                resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
-     * Update a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElasticSanInner update(String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters) {
-        return updateAsync(resourceGroupName, elasticSanName, parameters).block();
-    }
-
-    /**
-     * Update a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param parameters Elastic San object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ElasticSan request.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElasticSanInner update(
-        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context) {
-        return updateAsync(resourceGroupName, elasticSanName, parameters, context).block();
-    }
-
-    /**
-     * Delete a Elastic San.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String elasticSanName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1044,6 +1000,13 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -1055,6 +1018,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             elasticSanName,
+                            volumeGroupName,
+                            snapshotName,
                             this.client.getApiVersion(),
                             accept,
                             context))
@@ -1062,10 +1027,12 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1074,7 +1041,7 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String elasticSanName, Context context) {
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1093,6 +1060,13 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
+        }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -1102,24 +1076,30 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 elasticSanName,
+                volumeGroupName,
+                snapshotName,
                 this.client.getApiVersion(),
                 accept,
                 context);
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String elasticSanName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, elasticSanName);
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -1127,10 +1107,12 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1139,34 +1121,40 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String elasticSanName, Context context) {
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, elasticSanName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String elasticSanName) {
-        return this.beginDeleteAsync(resourceGroupName, elasticSanName).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        return this.beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName).getSyncPoller();
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1175,32 +1163,39 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String elasticSanName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, elasticSanName, context).getSyncPoller();
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
+        return this
+            .beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context)
+            .getSyncPoller();
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String elasticSanName) {
-        return beginDeleteAsync(resourceGroupName, elasticSanName)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        return beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1208,54 +1203,62 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String elasticSanName, Context context) {
-        return beginDeleteAsync(resourceGroupName, elasticSanName, context)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
+        return beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String elasticSanName) {
-        deleteAsync(resourceGroupName, elasticSanName).block();
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        deleteAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName).block();
     }
 
     /**
-     * Delete a Elastic San.
+     * Delete a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String elasticSanName, Context context) {
-        deleteAsync(resourceGroupName, elasticSanName, context).block();
+    public void delete(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
+        deleteAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context).block();
     }
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Volume Snapshot along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ElasticSanInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String elasticSanName) {
+    private Mono<Response<SnapshotInner>> getWithResponseAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1275,16 +1278,25 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
         }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .getByResourceGroup(
+                        .get(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             elasticSanName,
+                            volumeGroupName,
+                            snapshotName,
                             this.client.getApiVersion(),
                             accept,
                             context))
@@ -1292,19 +1304,21 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
     }
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Volume Snapshot along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ElasticSanInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String elasticSanName, Context context) {
+    private Mono<Response<SnapshotInner>> getWithResponseAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1324,65 +1338,83 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         if (elasticSanName == null) {
             return Mono.error(new IllegalArgumentException("Parameter elasticSanName is required and cannot be null."));
         }
+        if (volumeGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter volumeGroupName is required and cannot be null."));
+        }
+        if (snapshotName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter snapshotName is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getByResourceGroup(
+            .get(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 elasticSanName,
+                volumeGroupName,
+                snapshotName,
                 this.client.getApiVersion(),
                 accept,
                 context);
     }
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan on successful completion of {@link Mono}.
+     * @return a Volume Snapshot on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ElasticSanInner> getByResourceGroupAsync(String resourceGroupName, String elasticSanName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, elasticSanName)
+    private Mono<SnapshotInner> getAsync(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        return getWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response}.
+     * @return a Volume Snapshot along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElasticSanInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String elasticSanName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, elasticSanName, context).block();
+    public Response<SnapshotInner> getWithResponse(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context) {
+        return getWithResponseAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context).block();
     }
 
     /**
-     * Get a ElasticSan.
+     * Get a Volume Snapshot.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan.
+     * @return a Volume Snapshot.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElasticSanInner getByResourceGroup(String resourceGroupName, String elasticSanName) {
-        return getByResourceGroupWithResponse(resourceGroupName, elasticSanName, Context.NONE).getValue();
+    public SnapshotInner get(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        return getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1393,10 +1425,10 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Elastic Sans along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of Snapshots along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<SnapshotInner>> listByVolumeGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1408,9 +1440,8 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ElasticSanInner>>map(
+            .withContext(context -> service.listByVolumeGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<SnapshotInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1431,11 +1462,10 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Elastic Sans along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of Snapshots along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listBySubscriptionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<SnapshotInner>> listByVolumeGroupNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1448,82 +1478,7 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Elastic Sans along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ElasticSanInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Elastic Sans along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ElasticSanInner>> listByResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByVolumeGroupNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

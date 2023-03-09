@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Volumes Create. */
 public final class VolumesCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Create_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MaximumSet_Gen.
@@ -22,17 +22,19 @@ public final class VolumesCreateSamples {
     public static void volumesCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .volumes()
-            .define("9132y")
-            .withExistingVolumegroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3")
-            .withTags(mapOf("key7423", "aaaa"))
+            .define("vy2jp1-487929-7W")
+            .withExistingVolumegroup("rgelasticsan", "f4L_0O89-l11", "az_614w67_h4s2b_742-2434")
+            .withSizeGiB(29L)
+            .withTags(mapOf("key5986", "td"))
             .withCreationData(
-                new SourceCreationData().withCreateSource(VolumeCreateOption.NONE).withSourceUri("aaaaaa"))
-            .withSizeGiB(22L)
+                new SourceCreationData()
+                    .withCreateSource(VolumeCreateOption.NONE)
+                    .withSourceUri("xtxgirmjqaxvkrhhownvfjafsepyg"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Create_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MinimumSet_Gen.
@@ -42,8 +44,9 @@ public final class VolumesCreateSamples {
     public static void volumesCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .volumes()
-            .define("9132y")
-            .withExistingVolumegroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3")
+            .define("vy2jp1-487929-7W")
+            .withExistingVolumegroup("rgelasticsan", "f4L_0O89-l11", "az_614w67_h4s2b_742-2434")
+            .withSizeGiB(29L)
             .create();
     }
 

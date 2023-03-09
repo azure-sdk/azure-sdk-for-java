@@ -6,11 +6,11 @@ package com.azure.resourcemanager.elasticsan.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
+import com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner;
 import java.util.Map;
 
-/** An immutable client-side representation of Volume. */
-public interface Volume {
+/** An immutable client-side representation of Snapshot. */
+public interface Snapshot {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      *
@@ -47,32 +47,25 @@ public interface Volume {
     Map<String, String> tags();
 
     /**
-     * Gets the volumeId property: Unique Id of the volume in GUID format.
-     *
-     * @return the volumeId value.
-     */
-    String volumeId();
-
-    /**
-     * Gets the creationData property: State of the operation on the resource.
+     * Gets the creationData property: Data used when creating a volume snapshot.
      *
      * @return the creationData value.
      */
-    SourceCreationData creationData();
+    SnapshotCreationData creationData();
 
     /**
-     * Gets the sizeGiB property: Volume size.
+     * Gets the provisioningState property: State of the operation on the resource.
      *
-     * @return the sizeGiB value.
+     * @return the provisioningState value.
      */
-    long sizeGiB();
+    ProvisioningStates provisioningState();
 
     /**
-     * Gets the storageTarget property: Storage target information.
+     * Gets the sourceVolumeSizeGiB property: Size of Source Volume.
      *
-     * @return the storageTarget value.
+     * @return the sourceVolumeSizeGiB value.
      */
-    IscsiTargetInfo storageTarget();
+    Long sourceVolumeSizeGiB();
 
     /**
      * Gets the name of the resource group.
@@ -82,25 +75,25 @@ public interface Volume {
     String resourceGroupName();
 
     /**
-     * Gets the inner com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner object.
+     * Gets the inner com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner object.
      *
      * @return the inner object.
      */
-    VolumeInner innerModel();
+    SnapshotInner innerModel();
 
-    /** The entirety of the Volume definition. */
+    /** The entirety of the Snapshot definition. */
     interface Definition
         extends DefinitionStages.Blank,
             DefinitionStages.WithParentResource,
-            DefinitionStages.WithSizeGiB,
+            DefinitionStages.WithCreationData,
             DefinitionStages.WithCreate {
     }
-    /** The Volume definition stages. */
+    /** The Snapshot definition stages. */
     interface DefinitionStages {
-        /** The first stage of the Volume definition. */
+        /** The first stage of the Snapshot definition. */
         interface Blank extends WithParentResource {
         }
-        /** The stage of the Volume definition allowing to specify parent resource. */
+        /** The stage of the Snapshot definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, elasticSanName, volumeGroupName.
@@ -110,30 +103,30 @@ public interface Volume {
              * @param volumeGroupName The name of the VolumeGroup.
              * @return the next definition stage.
              */
-            WithSizeGiB withExistingVolumegroup(
+            WithCreationData withExistingVolumegroup(
                 String resourceGroupName, String elasticSanName, String volumeGroupName);
         }
-        /** The stage of the Volume definition allowing to specify sizeGiB. */
-        interface WithSizeGiB {
+        /** The stage of the Snapshot definition allowing to specify creationData. */
+        interface WithCreationData {
             /**
-             * Specifies the sizeGiB property: Volume size..
+             * Specifies the creationData property: Data used when creating a volume snapshot..
              *
-             * @param sizeGiB Volume size.
+             * @param creationData Data used when creating a volume snapshot.
              * @return the next definition stage.
              */
-            WithCreate withSizeGiB(long sizeGiB);
+            WithCreate withCreationData(SnapshotCreationData creationData);
         }
         /**
-         * The stage of the Volume definition which contains all the minimum required properties for the resource to be
-         * created, but also allows for any other optional properties to be specified.
+         * The stage of the Snapshot definition which contains all the minimum required properties for the resource to
+         * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithCreationData {
+        interface WithCreate extends DefinitionStages.WithTags {
             /**
              * Executes the create request.
              *
              * @return the created resource.
              */
-            Volume create();
+            Snapshot create();
 
             /**
              * Executes the create request.
@@ -141,9 +134,9 @@ public interface Volume {
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
-            Volume create(Context context);
+            Snapshot create(Context context);
         }
-        /** The stage of the Volume definition allowing to specify tags. */
+        /** The stage of the Snapshot definition allowing to specify tags. */
         interface WithTags {
             /**
              * Specifies the tags property: Azure resource tags..
@@ -153,32 +146,22 @@ public interface Volume {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the Volume definition allowing to specify creationData. */
-        interface WithCreationData {
-            /**
-             * Specifies the creationData property: State of the operation on the resource..
-             *
-             * @param creationData State of the operation on the resource.
-             * @return the next definition stage.
-             */
-            WithCreate withCreationData(SourceCreationData creationData);
-        }
     }
     /**
-     * Begins update for the Volume resource.
+     * Begins update for the Snapshot resource.
      *
      * @return the stage of resource update.
      */
-    Volume.Update update();
+    Snapshot.Update update();
 
-    /** The template for Volume update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithSizeGiB {
+    /** The template for Snapshot update. */
+    interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
          *
          * @return the updated resource.
          */
-        Volume apply();
+        Snapshot apply();
 
         /**
          * Executes the update request.
@@ -186,11 +169,11 @@ public interface Volume {
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
-        Volume apply(Context context);
+        Snapshot apply(Context context);
     }
-    /** The Volume update stages. */
+    /** The Snapshot update stages. */
     interface UpdateStages {
-        /** The stage of the Volume update allowing to specify tags. */
+        /** The stage of the Snapshot update allowing to specify tags. */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
@@ -200,23 +183,13 @@ public interface Volume {
              */
             Update withTags(Map<String, String> tags);
         }
-        /** The stage of the Volume update allowing to specify sizeGiB. */
-        interface WithSizeGiB {
-            /**
-             * Specifies the sizeGiB property: Volume size..
-             *
-             * @param sizeGiB Volume size.
-             * @return the next definition stage.
-             */
-            Update withSizeGiB(Long sizeGiB);
-        }
     }
     /**
      * Refreshes the resource to sync with Azure.
      *
      * @return the refreshed resource.
      */
-    Volume refresh();
+    Snapshot refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
@@ -224,5 +197,5 @@ public interface Volume {
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
-    Volume refresh(Context context);
+    Snapshot refresh(Context context);
 }

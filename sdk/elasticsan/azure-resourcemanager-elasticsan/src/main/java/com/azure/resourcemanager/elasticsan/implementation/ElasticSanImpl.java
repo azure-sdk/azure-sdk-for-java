@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.fluent.models.ElasticSanInner;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
+import com.azure.resourcemanager.elasticsan.models.ElasticSanCreateParameter;
 import com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.Sku;
@@ -119,6 +120,8 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
 
     private String elasticSanName;
 
+    private ElasticSanCreateParameter createParameters;
+
     private ElasticSanUpdate updateParameters;
 
     public ElasticSanImpl withExistingResourceGroup(String resourceGroupName) {
@@ -131,7 +134,7 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
             serviceManager
                 .serviceClient()
                 .getElasticSans()
-                .create(resourceGroupName, elasticSanName, this.innerModel(), Context.NONE);
+                .create(resourceGroupName, elasticSanName, createParameters, Context.NONE);
         return this;
     }
 
@@ -140,7 +143,7 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
             serviceManager
                 .serviceClient()
                 .getElasticSans()
-                .create(resourceGroupName, elasticSanName, this.innerModel(), context);
+                .create(resourceGroupName, elasticSanName, createParameters, context);
         return this;
     }
 
@@ -148,6 +151,7 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
         this.innerObject = new ElasticSanInner();
         this.serviceManager = serviceManager;
         this.elasticSanName = name;
+        this.createParameters = new ElasticSanCreateParameter();
     }
 
     public ElasticSanImpl update() {
@@ -201,33 +205,33 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
     }
 
     public ElasticSanImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
+        this.createParameters.withLocation(location.toString());
         return this;
     }
 
     public ElasticSanImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
+        this.createParameters.withLocation(location);
         return this;
     }
 
     public ElasticSanImpl withSku(Sku sku) {
-        this.innerModel().withSku(sku);
+        this.createParameters.withSku(sku);
         return this;
     }
 
     public ElasticSanImpl withBaseSizeTiB(long baseSizeTiB) {
-        this.innerModel().withBaseSizeTiB(baseSizeTiB);
+        this.createParameters.withBaseSizeTiB(baseSizeTiB);
         return this;
     }
 
     public ElasticSanImpl withExtendedCapacitySizeTiB(long extendedCapacitySizeTiB) {
-        this.innerModel().withExtendedCapacitySizeTiB(extendedCapacitySizeTiB);
+        this.createParameters.withExtendedCapacitySizeTiB(extendedCapacitySizeTiB);
         return this;
     }
 
     public ElasticSanImpl withTags(Map<String, String> tags) {
         if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
+            this.createParameters.withTags(tags);
             return this;
         } else {
             this.updateParameters.withTags(tags);
@@ -236,7 +240,7 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
     }
 
     public ElasticSanImpl withAvailabilityZones(List<String> availabilityZones) {
-        this.innerModel().withAvailabilityZones(availabilityZones);
+        this.createParameters.withAvailabilityZones(availabilityZones);
         return this;
     }
 
