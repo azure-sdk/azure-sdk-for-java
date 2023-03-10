@@ -7,15 +7,14 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 /** Samples for LogFiles ListByServer. */
 public final class LogFilesListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/LogFilesListByServer.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2017-12-01/examples/LogFileListByServer.json
      */
     /**
-     * Sample code: List all server log files for a server.
+     * Sample code: LogFileList.
      *
      * @param manager Entry point to MySqlManager.
      */
-    public static void listAllServerLogFilesForAServer(
-        com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
-        manager.logFiles().listByServer("testrg", "mysqltestsvc1", com.azure.core.util.Context.NONE);
+    public static void logFileList(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+        manager.logFiles().listByServer("TestGroup", "testserver", com.azure.core.util.Context.NONE);
     }
 }
