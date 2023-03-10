@@ -8,17 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
 /** Linked service reference type. */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeName("LinkedServiceReference")
 @Fluent
-public final class LinkedServiceReference {
-    /*
-     * Linked service reference type.
-     */
-    @JsonProperty(value = "type", required = true)
-    private String type = "LinkedServiceReference";
-
+public final class LinkedServiceReference extends Reference {
     /*
      * Reference LinkedService name.
      */
@@ -34,27 +32,6 @@ public final class LinkedServiceReference {
 
     /** Creates an instance of LinkedServiceReference class. */
     public LinkedServiceReference() {
-        type = "LinkedServiceReference";
-    }
-
-    /**
-     * Get the type property: Linked service reference type.
-     *
-     * @return the type value.
-     */
-    public String type() {
-        return this.type;
-    }
-
-    /**
-     * Set the type property: Linked service reference type.
-     *
-     * @param type the type value to set.
-     * @return the LinkedServiceReference object itself.
-     */
-    public LinkedServiceReference withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**
@@ -102,7 +79,9 @@ public final class LinkedServiceReference {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (referenceName() == null) {
             throw LOGGER
                 .logExceptionAsError(
