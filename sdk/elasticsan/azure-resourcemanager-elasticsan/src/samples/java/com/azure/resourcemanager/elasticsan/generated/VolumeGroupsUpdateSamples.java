@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.StorageTargetType;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroup;
@@ -25,7 +24,7 @@ public final class VolumeGroupsUpdateSamples {
         VolumeGroup resource =
             manager
                 .volumeGroups()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE)
+                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -47,7 +46,7 @@ public final class VolumeGroupsUpdateSamples {
         VolumeGroup resource =
             manager
                 .volumeGroups()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE)
+                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

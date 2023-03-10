@@ -103,8 +103,6 @@ public final class ElasticSansCreateSamples {
 ### ElasticSans_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ElasticSans Delete. */
 public final class ElasticSansDeleteSamples {
     /*
@@ -116,7 +114,7 @@ public final class ElasticSansDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -128,7 +126,7 @@ public final class ElasticSansDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -136,8 +134,6 @@ public final class ElasticSansDeleteSamples {
 ### ElasticSans_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ElasticSans GetByResourceGroup. */
 public final class ElasticSansGetByResourceGroupSamples {
     /*
@@ -149,7 +145,9 @@ public final class ElasticSansGetByResourceGroupSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager
+            .elasticSans()
+            .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -161,7 +159,9 @@ public final class ElasticSansGetByResourceGroupSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager
+            .elasticSans()
+            .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -169,8 +169,6 @@ public final class ElasticSansGetByResourceGroupSamples {
 ### ElasticSans_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ElasticSans List. */
 public final class ElasticSansListSamples {
     /*
@@ -183,7 +181,7 @@ public final class ElasticSansListSamples {
      */
     public static void elasticSansListBySubscriptionMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().list(Context.NONE);
+        manager.elasticSans().list(com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -196,7 +194,7 @@ public final class ElasticSansListSamples {
      */
     public static void elasticSansListBySubscriptionMinimumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().list(Context.NONE);
+        manager.elasticSans().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -204,8 +202,6 @@ public final class ElasticSansListSamples {
 ### ElasticSans_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ElasticSans ListByResourceGroup. */
 public final class ElasticSansListByResourceGroupSamples {
     /*
@@ -218,7 +214,7 @@ public final class ElasticSansListByResourceGroupSamples {
      */
     public static void elasticSansListByResourceGroupMinimumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().listByResourceGroup("rgelasticsan", Context.NONE);
+        manager.elasticSans().listByResourceGroup("rgelasticsan", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -231,7 +227,7 @@ public final class ElasticSansListByResourceGroupSamples {
      */
     public static void elasticSansListByResourceGroupMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().listByResourceGroup("rgelasticsan", Context.NONE);
+        manager.elasticSans().listByResourceGroup("rgelasticsan", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -239,7 +235,6 @@ public final class ElasticSansListByResourceGroupSamples {
 ### ElasticSans_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
 import java.util.HashMap;
 import java.util.Map;
@@ -258,7 +253,7 @@ public final class ElasticSansUpdateSamples {
         ElasticSan resource =
             manager
                 .elasticSans()
-                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE)
+                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -275,7 +270,7 @@ public final class ElasticSansUpdateSamples {
         ElasticSan resource =
             manager
                 .elasticSans()
-                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE)
+                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("key3137", "aaaaaaaaaaaaaaa")).apply();
     }
@@ -296,8 +291,6 @@ public final class ElasticSansUpdateSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -309,7 +302,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void operationsListMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -321,7 +314,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void operationsListMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -329,8 +322,6 @@ public final class OperationsListSamples {
 ### Skus_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
@@ -342,7 +333,7 @@ public final class SkusListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void skusListMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list(null, Context.NONE);
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -354,7 +345,7 @@ public final class SkusListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void skusListMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list("aaaa", Context.NONE);
+        manager.skus().list("aaaa", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -432,8 +423,6 @@ public final class VolumeGroupsCreateSamples {
 ### VolumeGroups_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VolumeGroups Delete. */
 public final class VolumeGroupsDeleteSamples {
     /*
@@ -445,7 +434,9 @@ public final class VolumeGroupsDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE);
+        manager
+            .volumeGroups()
+            .delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -457,7 +448,9 @@ public final class VolumeGroupsDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE);
+        manager
+            .volumeGroups()
+            .delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -465,8 +458,6 @@ public final class VolumeGroupsDeleteSamples {
 ### VolumeGroups_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VolumeGroups Get. */
 public final class VolumeGroupsGetSamples {
     /*
@@ -478,7 +469,9 @@ public final class VolumeGroupsGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE);
+        manager
+            .volumeGroups()
+            .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -490,7 +483,9 @@ public final class VolumeGroupsGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE);
+        manager
+            .volumeGroups()
+            .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -498,8 +493,6 @@ public final class VolumeGroupsGetSamples {
 ### VolumeGroups_ListByElasticSan
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VolumeGroups ListByElasticSan. */
 public final class VolumeGroupsListByElasticSanSamples {
     /*
@@ -512,7 +505,7 @@ public final class VolumeGroupsListByElasticSanSamples {
      */
     public static void volumeGroupsListByElasticSanMinimumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -525,7 +518,7 @@ public final class VolumeGroupsListByElasticSanSamples {
      */
     public static void volumeGroupsListByElasticSanMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -533,7 +526,6 @@ public final class VolumeGroupsListByElasticSanSamples {
 ### VolumeGroups_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.StorageTargetType;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroup;
@@ -554,7 +546,7 @@ public final class VolumeGroupsUpdateSamples {
         VolumeGroup resource =
             manager
                 .volumeGroups()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE)
+                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -576,7 +568,7 @@ public final class VolumeGroupsUpdateSamples {
         VolumeGroup resource =
             manager
                 .volumeGroups()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE)
+                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -656,8 +648,6 @@ public final class VolumesCreateSamples {
 ### Volumes_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Volumes Delete. */
 public final class VolumesDeleteSamples {
     /*
@@ -669,7 +659,9 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -681,7 +673,9 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -689,8 +683,6 @@ public final class VolumesDeleteSamples {
 ### Volumes_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Volumes Get. */
 public final class VolumesGetSamples {
     /*
@@ -702,7 +694,10 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .getWithResponse(
+                "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -714,7 +709,10 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .getWithResponse(
+                "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -722,8 +720,6 @@ public final class VolumesGetSamples {
 ### Volumes_ListByVolumeGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Volumes ListByVolumeGroup. */
 public final class VolumesListByVolumeGroupSamples {
     /*
@@ -736,7 +732,9 @@ public final class VolumesListByVolumeGroupSamples {
      */
     public static void volumesListByVolumeGroupMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().listByVolumeGroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE);
+        manager
+            .volumes()
+            .listByVolumeGroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -749,7 +747,9 @@ public final class VolumesListByVolumeGroupSamples {
      */
     public static void volumesListByVolumeGroupMinimumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().listByVolumeGroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", Context.NONE);
+        manager
+            .volumes()
+            .listByVolumeGroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -757,7 +757,6 @@ public final class VolumesListByVolumeGroupSamples {
 ### Volumes_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.Volume;
 import java.util.HashMap;
 import java.util.Map;
@@ -776,7 +775,8 @@ public final class VolumesUpdateSamples {
         Volume resource =
             manager
                 .volumes()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE)
+                .getWithResponse(
+                    "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -793,7 +793,8 @@ public final class VolumesUpdateSamples {
         Volume resource =
             manager
                 .volumes()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE)
+                .getWithResponse(
+                    "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("key1864", "aaaaaaaaa")).withSizeGiB(9L).apply();
     }

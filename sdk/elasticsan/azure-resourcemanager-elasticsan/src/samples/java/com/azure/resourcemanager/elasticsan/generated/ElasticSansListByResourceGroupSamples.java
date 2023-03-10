@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ElasticSans ListByResourceGroup. */
 public final class ElasticSansListByResourceGroupSamples {
     /*
@@ -18,7 +16,7 @@ public final class ElasticSansListByResourceGroupSamples {
      */
     public static void elasticSansListByResourceGroupMinimumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().listByResourceGroup("rgelasticsan", Context.NONE);
+        manager.elasticSans().listByResourceGroup("rgelasticsan", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class ElasticSansListByResourceGroupSamples {
      */
     public static void elasticSansListByResourceGroupMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().listByResourceGroup("rgelasticsan", Context.NONE);
+        manager.elasticSans().listByResourceGroup("rgelasticsan", com.azure.core.util.Context.NONE);
     }
 }

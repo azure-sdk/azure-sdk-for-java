@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.Volume;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,8 @@ public final class VolumesUpdateSamples {
         Volume resource =
             manager
                 .volumes()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE)
+                .getWithResponse(
+                    "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -40,7 +40,8 @@ public final class VolumesUpdateSamples {
         Volume resource =
             manager
                 .volumes()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE)
+                .getWithResponse(
+                    "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("key1864", "aaaaaaaaa")).withSizeGiB(9L).apply();
     }

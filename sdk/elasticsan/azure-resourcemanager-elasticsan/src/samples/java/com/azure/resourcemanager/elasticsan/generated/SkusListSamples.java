@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
@@ -17,7 +15,7 @@ public final class SkusListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void skusListMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list(null, Context.NONE);
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +27,6 @@ public final class SkusListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void skusListMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list("aaaa", Context.NONE);
+        manager.skus().list("aaaa", com.azure.core.util.Context.NONE);
     }
 }

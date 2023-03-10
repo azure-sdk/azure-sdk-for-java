@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VolumeGroups ListByElasticSan. */
 public final class VolumeGroupsListByElasticSanSamples {
     /*
@@ -18,7 +16,7 @@ public final class VolumeGroupsListByElasticSanSamples {
      */
     public static void volumeGroupsListByElasticSanMinimumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class VolumeGroupsListByElasticSanSamples {
      */
     public static void volumeGroupsListByElasticSanMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.volumeGroups().listByElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 }

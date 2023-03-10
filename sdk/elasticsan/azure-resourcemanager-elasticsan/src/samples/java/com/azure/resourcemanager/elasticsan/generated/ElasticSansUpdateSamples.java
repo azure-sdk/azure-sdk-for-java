@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public final class ElasticSansUpdateSamples {
         ElasticSan resource =
             manager
                 .elasticSans()
-                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE)
+                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -40,7 +39,7 @@ public final class ElasticSansUpdateSamples {
         ElasticSan resource =
             manager
                 .elasticSans()
-                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE)
+                .getByResourceGroupWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("key3137", "aaaaaaaaaaaaaaa")).apply();
     }

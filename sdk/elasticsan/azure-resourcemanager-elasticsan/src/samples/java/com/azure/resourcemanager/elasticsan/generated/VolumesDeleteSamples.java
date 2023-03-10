@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes Delete. */
 public final class VolumesDeleteSamples {
     /*
@@ -17,7 +15,9 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +29,8 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 }

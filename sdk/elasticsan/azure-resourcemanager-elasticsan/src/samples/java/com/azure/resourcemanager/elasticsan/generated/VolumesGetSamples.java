@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes Get. */
 public final class VolumesGetSamples {
     /*
@@ -17,7 +15,10 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .getWithResponse(
+                "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +30,9 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .getWithResponse(
+                "rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", com.azure.core.util.Context.NONE);
     }
 }

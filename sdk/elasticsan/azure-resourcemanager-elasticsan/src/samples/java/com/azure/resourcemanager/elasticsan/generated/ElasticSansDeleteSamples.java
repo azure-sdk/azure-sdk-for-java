@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ElasticSans Delete. */
 public final class ElasticSansDeleteSamples {
     /*
@@ -17,7 +15,7 @@ public final class ElasticSansDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +27,6 @@ public final class ElasticSansDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", Context.NONE);
+        manager.elasticSans().delete("rgelasticsan", "ti7q-k952-1qB3J_5", com.azure.core.util.Context.NONE);
     }
 }
