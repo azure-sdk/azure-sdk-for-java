@@ -15,7 +15,7 @@ public final class ApiCollectionProperties {
     /*
      * The display name of the Azure API Management API.
      */
-    @JsonProperty(value = "displayName")
+    @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
 
     /*
@@ -36,17 +36,6 @@ public final class ApiCollectionProperties {
      */
     public String displayName() {
         return this.displayName;
-    }
-
-    /**
-     * Set the displayName property: The display name of the Azure API Management API.
-     *
-     * @param displayName the displayName value to set.
-     * @return the ApiCollectionProperties object itself.
-     */
-    public ApiCollectionProperties withDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
     }
 
     /**

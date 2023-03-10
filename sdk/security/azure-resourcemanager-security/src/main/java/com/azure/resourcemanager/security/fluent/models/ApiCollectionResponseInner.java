@@ -41,20 +41,6 @@ public final class ApiCollectionResponseInner extends ProxyResource {
     }
 
     /**
-     * Set the displayName property: The display name of the Azure API Management API.
-     *
-     * @param displayName the displayName value to set.
-     * @return the ApiCollectionResponseInner object itself.
-     */
-    public ApiCollectionResponseInner withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ApiCollectionProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
-    }
-
-    /**
      * Get the additionalData property: Additional data regarding the API collection.
      *
      * @return the additionalData value.
