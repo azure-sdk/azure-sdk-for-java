@@ -58,7 +58,7 @@ public final class ConnectedEnvironmentsStoragesClientImpl implements ConnectedE
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ConnectedEnvironmentsStoragesService {
+    public interface ConnectedEnvironmentsStoragesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App"
