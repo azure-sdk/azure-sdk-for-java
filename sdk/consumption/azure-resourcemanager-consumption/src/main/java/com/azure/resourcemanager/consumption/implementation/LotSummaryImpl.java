@@ -92,6 +92,10 @@ public final class LotSummaryImpl implements LotSummary {
         return this.innerModel().reseller();
     }
 
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
+    }
+
     public String etagPropertiesEtag() {
         return this.innerModel().etagPropertiesEtag();
     }
