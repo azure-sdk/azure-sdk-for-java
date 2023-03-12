@@ -20,6 +20,15 @@ public final class SupportTier extends ExpandableStringEnum<SupportTier> {
     public static final SupportTier COMMUNITY = fromString("Community");
 
     /**
+     * Creates a new instance of SupportTier value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SupportTier() {
+    }
+
+    /**
      * Creates or finds a SupportTier from its string representation.
      *
      * @param name a name to look for.

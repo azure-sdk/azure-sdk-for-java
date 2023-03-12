@@ -59,6 +59,10 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
     @JsonProperty(value = "referenceTimeRange")
     private InsightQueryItemPropertiesReferenceTimeRange referenceTimeRange;
 
+    /** Creates an instance of InsightQueryItemProperties class. */
+    public InsightQueryItemProperties() {
+    }
+
     /**
      * Get the displayName property: The insight display name.
      *

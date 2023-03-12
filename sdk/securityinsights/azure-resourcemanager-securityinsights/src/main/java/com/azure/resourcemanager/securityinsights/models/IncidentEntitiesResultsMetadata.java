@@ -12,35 +12,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class IncidentEntitiesResultsMetadata {
     /*
-     * Total number of aggregations of the given kind in the incident related entities result.
-     */
-    @JsonProperty(value = "count", required = true)
-    private int count;
-
-    /*
      * The kind of the aggregated entity.
      */
     @JsonProperty(value = "entityKind", required = true)
     private EntityKind entityKind;
 
-    /**
-     * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
-     *
-     * @return the count value.
+    /*
+     * Total number of aggregations of the given kind in the incident related entities result.
      */
-    public int count() {
-        return this.count;
-    }
+    @JsonProperty(value = "count", required = true)
+    private int count;
 
-    /**
-     * Set the count property: Total number of aggregations of the given kind in the incident related entities result.
-     *
-     * @param count the count value to set.
-     * @return the IncidentEntitiesResultsMetadata object itself.
-     */
-    public IncidentEntitiesResultsMetadata withCount(int count) {
-        this.count = count;
-        return this;
+    /** Creates an instance of IncidentEntitiesResultsMetadata class. */
+    public IncidentEntitiesResultsMetadata() {
     }
 
     /**
@@ -60,6 +44,26 @@ public final class IncidentEntitiesResultsMetadata {
      */
     public IncidentEntitiesResultsMetadata withEntityKind(EntityKind entityKind) {
         this.entityKind = entityKind;
+        return this;
+    }
+
+    /**
+     * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
+     *
+     * @return the count value.
+     */
+    public int count() {
+        return this.count;
+    }
+
+    /**
+     * Set the count property: Total number of aggregations of the given kind in the incident related entities result.
+     *
+     * @param count the count value to set.
+     * @return the IncidentEntitiesResultsMetadata object itself.
+     */
+    public IncidentEntitiesResultsMetadata withCount(int count) {
+        this.count = count;
         return this;
     }
 

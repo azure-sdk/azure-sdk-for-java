@@ -35,6 +35,15 @@ public final class ProviderName extends ExpandableStringEnum<ProviderName> {
         fromString("Microsoft.Authorization/policyAssignments");
 
     /**
+     * Creates a new instance of ProviderName value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ProviderName() {
+    }
+
+    /**
      * Creates or finds a ProviderName from its string representation.
      *
      * @param name a name to look for.

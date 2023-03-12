@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Data type for indicators connection. */
 @Fluent
 public final class TIDataConnectorDataTypesIndicators extends DataConnectorDataTypeCommon {
+    /** Creates an instance of TIDataConnectorDataTypesIndicators class. */
+    public TIDataConnectorDataTypesIndicators() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public TIDataConnectorDataTypesIndicators withState(DataTypeState state) {

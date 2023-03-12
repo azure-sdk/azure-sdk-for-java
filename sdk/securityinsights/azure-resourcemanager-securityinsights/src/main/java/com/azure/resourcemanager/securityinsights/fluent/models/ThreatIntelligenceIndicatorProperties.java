@@ -187,6 +187,10 @@ public final class ThreatIntelligenceIndicatorProperties extends EntityCommonPro
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> extensions;
 
+    /** Creates an instance of ThreatIntelligenceIndicatorProperties class. */
+    public ThreatIntelligenceIndicatorProperties() {
+    }
+
     /**
      * Get the threatIntelligenceTags property: List of tags.
      *
