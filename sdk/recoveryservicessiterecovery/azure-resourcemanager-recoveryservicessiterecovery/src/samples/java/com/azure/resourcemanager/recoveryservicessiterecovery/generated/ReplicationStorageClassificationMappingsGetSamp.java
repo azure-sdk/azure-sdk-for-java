@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 
-/** Samples for StorageClassificationMappings Get. */
-public final class StorageClassificationMappingsGetSamples {
+/** Samples for ReplicationStorageClassificationMappings Get. */
+public final class ReplicationStorageClassificationMappingsGetSamp {
     /*
      * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2022-10-01/examples/ReplicationStorageClassificationMappings_Get.json
      */
@@ -17,7 +17,7 @@ public final class StorageClassificationMappingsGetSamples {
     public static void getsTheDetailsOfAStorageClassificationMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         manager
-            .storageClassificationMappings()
+            .replicationStorageClassificationMappings()
             .getWithResponse(
                 "vault1",
                 "resourceGroupPS1",

@@ -9,20 +9,20 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.StorageClassificationMappingsClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationStorageClassificationMappingsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.StorageClassificationMappingInner;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationStorageClassificationMappings;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassificationMapping;
-import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageClassificationMappings;
 
-public final class StorageClassificationMappingsImpl implements StorageClassificationMappings {
-    private static final ClientLogger LOGGER = new ClientLogger(StorageClassificationMappingsImpl.class);
+public final class ReplicationStorageClassificationMappingsImpl implements ReplicationStorageClassificationMappings {
+    private static final ClientLogger LOGGER = new ClientLogger(ReplicationStorageClassificationMappingsImpl.class);
 
-    private final StorageClassificationMappingsClient innerClient;
+    private final ReplicationStorageClassificationMappingsClient innerClient;
 
     private final com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager;
 
-    public StorageClassificationMappingsImpl(
-        StorageClassificationMappingsClient innerClient,
+    public ReplicationStorageClassificationMappingsImpl(
+        ReplicationStorageClassificationMappingsClient innerClient,
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -382,7 +382,7 @@ public final class StorageClassificationMappingsImpl implements StorageClassific
                 context);
     }
 
-    private StorageClassificationMappingsClient serviceClient() {
+    private ReplicationStorageClassificationMappingsClient serviceClient() {
         return this.innerClient;
     }
 

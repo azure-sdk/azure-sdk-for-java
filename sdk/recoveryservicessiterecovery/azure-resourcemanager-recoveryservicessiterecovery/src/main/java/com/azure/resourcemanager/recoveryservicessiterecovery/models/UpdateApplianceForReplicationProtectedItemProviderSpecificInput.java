@@ -14,15 +14,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = UpdateReplicationProtectedItemProviderSpecificInput.class)
+    defaultImpl = UpdateApplianceForReplicationProtectedItemProviderSpecificInput.class)
 @JsonTypeName("UpdateApplianceForReplicationProtectedItemProviderSpecificInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "InMageRcm", value = InMageRcmUpdateApplianceForReplicationProtectedItemInput.class)
 })
 @Immutable
-public class UpdateReplicationProtectedItemProviderSpecificInput {
-    /** Creates an instance of UpdateReplicationProtectedItemProviderSpecificInput class. */
-    public UpdateReplicationProtectedItemProviderSpecificInput() {
+public class UpdateApplianceForReplicationProtectedItemProviderSpecificInput {
+    /** Creates an instance of UpdateApplianceForReplicationProtectedItemProviderSpecificInput class. */
+    public UpdateApplianceForReplicationProtectedItemProviderSpecificInput() {
     }
 
     /**

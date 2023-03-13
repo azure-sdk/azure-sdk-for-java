@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmUpdateApplianceForReplicationProtectedItemInput
-    extends UpdateReplicationProtectedItemProviderSpecificInput {
+    extends UpdateApplianceForReplicationProtectedItemProviderSpecificInput {
     /*
      * The run as account Id.
      */

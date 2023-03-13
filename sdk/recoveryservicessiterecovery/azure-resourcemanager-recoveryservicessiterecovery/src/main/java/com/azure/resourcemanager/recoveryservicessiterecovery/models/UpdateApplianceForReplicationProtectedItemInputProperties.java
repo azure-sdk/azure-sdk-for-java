@@ -21,7 +21,7 @@ public final class UpdateApplianceForReplicationProtectedItemInputProperties {
      * The provider specific input to update replication protected item.
      */
     @JsonProperty(value = "providerSpecificDetails", required = true)
-    private UpdateReplicationProtectedItemProviderSpecificInput providerSpecificDetails;
+    private UpdateApplianceForReplicationProtectedItemProviderSpecificInput providerSpecificDetails;
 
     /** Creates an instance of UpdateApplianceForReplicationProtectedItemInputProperties class. */
     public UpdateApplianceForReplicationProtectedItemInputProperties() {
@@ -52,7 +52,7 @@ public final class UpdateApplianceForReplicationProtectedItemInputProperties {
      *
      * @return the providerSpecificDetails value.
      */
-    public UpdateReplicationProtectedItemProviderSpecificInput providerSpecificDetails() {
+    public UpdateApplianceForReplicationProtectedItemProviderSpecificInput providerSpecificDetails() {
         return this.providerSpecificDetails;
     }
 
@@ -63,7 +63,7 @@ public final class UpdateApplianceForReplicationProtectedItemInputProperties {
      * @return the UpdateApplianceForReplicationProtectedItemInputProperties object itself.
      */
     public UpdateApplianceForReplicationProtectedItemInputProperties withProviderSpecificDetails(
-        UpdateReplicationProtectedItemProviderSpecificInput providerSpecificDetails) {
+        UpdateApplianceForReplicationProtectedItemProviderSpecificInput providerSpecificDetails) {
         this.providerSpecificDetails = providerSpecificDetails;
         return this;
     }
