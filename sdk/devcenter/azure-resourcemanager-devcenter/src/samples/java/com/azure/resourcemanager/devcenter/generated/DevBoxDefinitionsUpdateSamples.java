@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.models.DevBoxDefinition;
 import com.azure.resourcemanager.devcenter.models.ImageReference;
 
@@ -20,7 +19,10 @@ public final class DevBoxDefinitionsUpdateSamples {
      */
     public static void devBoxDefinitionsPatch(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
         DevBoxDefinition resource =
-            manager.devBoxDefinitions().getWithResponse("rg1", "Contoso", "WebDevBox", Context.NONE).getValue();
+            manager
+                .devBoxDefinitions()
+                .getWithResponse("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withImageReference(

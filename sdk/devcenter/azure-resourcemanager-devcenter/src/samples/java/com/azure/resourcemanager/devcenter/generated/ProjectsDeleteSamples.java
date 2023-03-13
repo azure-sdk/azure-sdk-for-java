@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Projects Delete. */
 public final class ProjectsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class ProjectsDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void projectsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projects().delete("rg1", "DevProject", Context.NONE);
+        manager.projects().delete("rg1", "DevProject", com.azure.core.util.Context.NONE);
     }
 }

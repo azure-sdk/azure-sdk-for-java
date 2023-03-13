@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ProjectEnvironmentTypes Delete. */
 public final class ProjectEnvironmentTypesDeleteSamples {
     /*
@@ -17,6 +15,8 @@ public final class ProjectEnvironmentTypesDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void projectEnvironmentTypesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectEnvironmentTypes().deleteWithResponse("rg1", "ContosoProj", "DevTest", Context.NONE);
+        manager
+            .projectEnvironmentTypes()
+            .deleteWithResponse("rg1", "ContosoProj", "DevTest", com.azure.core.util.Context.NONE);
     }
 }

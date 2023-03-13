@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DevBoxDefinitions Delete. */
 public final class DevBoxDefinitionsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class DevBoxDefinitionsDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void devBoxDefinitionsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().delete("rg1", "Contoso", "WebDevBox", Context.NONE);
+        manager.devBoxDefinitions().delete("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE);
     }
 }

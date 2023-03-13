@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ProjectAllowedEnvironmentTypes List. */
 public final class ProjectAllowedEnvironmentTypesListSamples {
     /*
@@ -18,6 +16,6 @@ public final class ProjectAllowedEnvironmentTypesListSamples {
      */
     public static void projectAllowedEnvironmentTypesList(
         com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectAllowedEnvironmentTypes().list("rg1", "Contoso", null, Context.NONE);
+        manager.projectAllowedEnvironmentTypes().list("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
     }
 }

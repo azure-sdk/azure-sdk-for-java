@@ -765,7 +765,9 @@ public final class DevBoxDefinitionsClientImpl implements DevBoxDefinitionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DevBoxDefinitionInner>, DevBoxDefinitionInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, String devBoxDefinitionName, DevBoxDefinitionInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body)
+            .getSyncPoller();
     }
 
     /**
@@ -788,7 +790,8 @@ public final class DevBoxDefinitionsClientImpl implements DevBoxDefinitionsClien
         String devBoxDefinitionName,
         DevBoxDefinitionInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body, context)
             .getSyncPoller();
     }
 
@@ -1075,7 +1078,7 @@ public final class DevBoxDefinitionsClientImpl implements DevBoxDefinitionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DevBoxDefinitionInner>, DevBoxDefinitionInner> beginUpdate(
         String resourceGroupName, String devCenterName, String devBoxDefinitionName, DevBoxDefinitionUpdate body) {
-        return beginUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body).getSyncPoller();
     }
 
     /**
@@ -1098,7 +1101,9 @@ public final class DevBoxDefinitionsClientImpl implements DevBoxDefinitionsClien
         String devBoxDefinitionName,
         DevBoxDefinitionUpdate body,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body, context).getSyncPoller();
+        return this
+            .beginUpdateAsync(resourceGroupName, devCenterName, devBoxDefinitionName, body, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1352,7 +1357,7 @@ public final class DevBoxDefinitionsClientImpl implements DevBoxDefinitionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String devBoxDefinitionName) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, devBoxDefinitionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, devBoxDefinitionName).getSyncPoller();
     }
 
     /**
@@ -1370,7 +1375,7 @@ public final class DevBoxDefinitionsClientImpl implements DevBoxDefinitionsClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String devBoxDefinitionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, devBoxDefinitionName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, devBoxDefinitionName, context).getSyncPoller();
     }
 
     /**

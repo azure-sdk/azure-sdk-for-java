@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Schedules ListByPool. */
 public final class SchedulesListByPoolSamples {
     /*
@@ -17,6 +15,6 @@ public final class SchedulesListByPoolSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void schedulesListByPool(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.schedules().listByPool("rg1", "TestProject", "DevPool", null, Context.NONE);
+        manager.schedules().listByPool("rg1", "TestProject", "DevPool", null, com.azure.core.util.Context.NONE);
     }
 }

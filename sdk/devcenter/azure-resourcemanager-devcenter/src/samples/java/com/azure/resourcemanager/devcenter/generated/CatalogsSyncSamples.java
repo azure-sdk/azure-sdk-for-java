@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Catalogs Sync. */
 public final class CatalogsSyncSamples {
     /*
@@ -17,6 +15,6 @@ public final class CatalogsSyncSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void catalogsSync(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().sync("rg1", "Contoso", "CentralCatalog", Context.NONE);
+        manager.catalogs().sync("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
     }
 }

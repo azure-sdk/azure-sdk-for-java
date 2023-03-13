@@ -684,7 +684,7 @@ public final class GalleriesClientImpl implements GalleriesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GalleryInner>, GalleryInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, String galleryName, GalleryInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, galleryName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, devCenterName, galleryName, body).getSyncPoller();
     }
 
     /**
@@ -703,7 +703,9 @@ public final class GalleriesClientImpl implements GalleriesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GalleryInner>, GalleryInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, String galleryName, GalleryInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, galleryName, body, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, devCenterName, galleryName, body, context)
+            .getSyncPoller();
     }
 
     /**
@@ -946,7 +948,7 @@ public final class GalleriesClientImpl implements GalleriesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String galleryName) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, galleryName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, galleryName).getSyncPoller();
     }
 
     /**
@@ -964,7 +966,7 @@ public final class GalleriesClientImpl implements GalleriesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String galleryName, Context context) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, galleryName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, galleryName, context).getSyncPoller();
     }
 
     /**

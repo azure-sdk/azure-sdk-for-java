@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class OperationsListSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void operationsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

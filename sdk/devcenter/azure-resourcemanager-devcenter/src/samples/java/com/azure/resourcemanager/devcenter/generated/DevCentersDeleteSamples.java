@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DevCenters Delete. */
 public final class DevCentersDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class DevCentersDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void devCentersDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devCenters().delete("rg1", "Contoso", Context.NONE);
+        manager.devCenters().delete("rg1", "Contoso", com.azure.core.util.Context.NONE);
     }
 }

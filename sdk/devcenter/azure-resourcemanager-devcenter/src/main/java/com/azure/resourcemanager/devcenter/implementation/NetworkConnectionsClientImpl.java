@@ -919,7 +919,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginCreateOrUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
     }
 
     /**
@@ -937,7 +937,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginCreateOrUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
     }
 
     /**
@@ -1191,7 +1191,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionUpdate body) {
-        return beginUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
     }
 
     /**
@@ -1209,7 +1209,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
     }
 
     /**
@@ -1436,7 +1436,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String networkConnectionName) {
-        return beginDeleteAsync(resourceGroupName, networkConnectionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, networkConnectionName).getSyncPoller();
     }
 
     /**
@@ -1453,7 +1453,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String networkConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
     }
 
     /**
@@ -2035,7 +2035,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRunHealthChecks(
         String resourceGroupName, String networkConnectionName) {
-        return beginRunHealthChecksAsync(resourceGroupName, networkConnectionName).getSyncPoller();
+        return this.beginRunHealthChecksAsync(resourceGroupName, networkConnectionName).getSyncPoller();
     }
 
     /**
@@ -2053,7 +2053,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRunHealthChecks(
         String resourceGroupName, String networkConnectionName, Context context) {
-        return beginRunHealthChecksAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
+        return this.beginRunHealthChecksAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
     }
 
     /**

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Pools Delete. */
 public final class PoolsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class PoolsDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void poolsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().delete("rg1", "DevProject", "poolName", Context.NONE);
+        manager.pools().delete("rg1", "DevProject", "poolName", com.azure.core.util.Context.NONE);
     }
 }

@@ -17,6 +17,15 @@ public final class EnableStatus extends ExpandableStringEnum<EnableStatus> {
     public static final EnableStatus DISABLED = fromString("Disabled");
 
     /**
+     * Creates a new instance of EnableStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EnableStatus() {
+    }
+
+    /**
      * Creates or finds a EnableStatus from its string representation.
      *
      * @param name a name to look for.

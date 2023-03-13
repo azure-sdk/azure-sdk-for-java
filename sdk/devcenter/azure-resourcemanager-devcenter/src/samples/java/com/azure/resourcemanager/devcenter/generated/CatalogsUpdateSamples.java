@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.models.Catalog;
 import com.azure.resourcemanager.devcenter.models.GitCatalog;
 
@@ -20,7 +19,10 @@ public final class CatalogsUpdateSamples {
      */
     public static void catalogsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
         Catalog resource =
-            manager.catalogs().getWithResponse("rg1", "Contoso", "CentralCatalog", Context.NONE).getValue();
+            manager
+                .catalogs()
+                .getWithResponse("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withGitHub(new GitCatalog().withPath("/environments")).apply();
     }
 }

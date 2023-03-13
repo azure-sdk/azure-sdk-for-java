@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ProjectEnvironmentTypes List. */
 public final class ProjectEnvironmentTypesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class ProjectEnvironmentTypesListSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void projectEnvironmentTypesList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectEnvironmentTypes().list("rg1", "ContosoProj", null, Context.NONE);
+        manager.projectEnvironmentTypes().list("rg1", "ContosoProj", null, com.azure.core.util.Context.NONE);
     }
 }

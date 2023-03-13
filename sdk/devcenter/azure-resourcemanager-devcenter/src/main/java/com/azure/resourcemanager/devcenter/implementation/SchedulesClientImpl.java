@@ -836,7 +836,8 @@ public final class SchedulesClientImpl implements SchedulesClient {
     public SyncPoller<PollResult<ScheduleInner>, ScheduleInner> beginCreateOrUpdate(
         String resourceGroupName, String projectName, String poolName, String scheduleName, ScheduleInner body) {
         final Integer top = null;
-        return beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top)
             .getSyncPoller();
     }
 
@@ -864,7 +865,8 @@ public final class SchedulesClientImpl implements SchedulesClient {
         ScheduleInner body,
         Integer top,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top, context)
             .getSyncPoller();
     }
 
@@ -1251,7 +1253,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
     public SyncPoller<PollResult<ScheduleInner>, ScheduleInner> beginUpdate(
         String resourceGroupName, String projectName, String poolName, String scheduleName, ScheduleUpdate body) {
         final Integer top = null;
-        return beginUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top).getSyncPoller();
     }
 
     /**
@@ -1278,7 +1280,8 @@ public final class SchedulesClientImpl implements SchedulesClient {
         ScheduleUpdate body,
         Integer top,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, projectName, poolName, scheduleName, body, top, context)
             .getSyncPoller();
     }
 
@@ -1624,7 +1627,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String projectName, String poolName, String scheduleName) {
         final Integer top = null;
-        return beginDeleteAsync(resourceGroupName, projectName, poolName, scheduleName, top).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, projectName, poolName, scheduleName, top).getSyncPoller();
     }
 
     /**
@@ -1649,7 +1652,9 @@ public final class SchedulesClientImpl implements SchedulesClient {
         String scheduleName,
         Integer top,
         Context context) {
-        return beginDeleteAsync(resourceGroupName, projectName, poolName, scheduleName, top, context).getSyncPoller();
+        return this
+            .beginDeleteAsync(resourceGroupName, projectName, poolName, scheduleName, top, context)
+            .getSyncPoller();
     }
 
     /**

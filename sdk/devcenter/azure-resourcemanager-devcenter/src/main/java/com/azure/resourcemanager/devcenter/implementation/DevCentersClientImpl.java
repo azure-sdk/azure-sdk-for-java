@@ -848,7 +848,7 @@ public final class DevCentersClientImpl implements DevCentersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DevCenterInner>, DevCenterInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, DevCenterInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, devCenterName, body).getSyncPoller();
     }
 
     /**
@@ -866,7 +866,7 @@ public final class DevCentersClientImpl implements DevCentersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DevCenterInner>, DevCenterInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, DevCenterInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, devCenterName, body, context).getSyncPoller();
     }
 
     /**
@@ -1113,7 +1113,7 @@ public final class DevCentersClientImpl implements DevCentersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DevCenterInner>, DevCenterInner> beginUpdate(
         String resourceGroupName, String devCenterName, DevCenterUpdate body) {
-        return beginUpdateAsync(resourceGroupName, devCenterName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, devCenterName, body).getSyncPoller();
     }
 
     /**
@@ -1131,7 +1131,7 @@ public final class DevCentersClientImpl implements DevCentersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DevCenterInner>, DevCenterInner> beginUpdate(
         String resourceGroupName, String devCenterName, DevCenterUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, devCenterName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, devCenterName, body, context).getSyncPoller();
     }
 
     /**
@@ -1351,7 +1351,7 @@ public final class DevCentersClientImpl implements DevCentersClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String devCenterName) {
-        return beginDeleteAsync(resourceGroupName, devCenterName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName).getSyncPoller();
     }
 
     /**
@@ -1368,7 +1368,7 @@ public final class DevCentersClientImpl implements DevCentersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, Context context) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, context).getSyncPoller();
     }
 
     /**

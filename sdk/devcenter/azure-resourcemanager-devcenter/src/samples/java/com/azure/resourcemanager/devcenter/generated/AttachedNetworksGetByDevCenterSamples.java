@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AttachedNetworks GetByDevCenter. */
 public final class AttachedNetworksGetByDevCenterSamples {
     /*
@@ -17,6 +15,8 @@ public final class AttachedNetworksGetByDevCenterSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void attachedNetworksGetByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.attachedNetworks().getByDevCenterWithResponse("rg1", "Contoso", "network-uswest3", Context.NONE);
+        manager
+            .attachedNetworks()
+            .getByDevCenterWithResponse("rg1", "Contoso", "network-uswest3", com.azure.core.util.Context.NONE);
     }
 }

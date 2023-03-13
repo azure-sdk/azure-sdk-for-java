@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Schedules Get. */
 public final class SchedulesGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class SchedulesGetSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void schedulesGetByPool(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.schedules().getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, Context.NONE);
+        manager
+            .schedules()
+            .getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE);
     }
 }

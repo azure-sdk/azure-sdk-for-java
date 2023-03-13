@@ -719,7 +719,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, String catalogName, CatalogInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, catalogName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, devCenterName, catalogName, body).getSyncPoller();
     }
 
     /**
@@ -738,7 +738,9 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdate(
         String resourceGroupName, String devCenterName, String catalogName, CatalogInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, catalogName, body, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, devCenterName, catalogName, body, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1000,7 +1002,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginUpdate(
         String resourceGroupName, String devCenterName, String catalogName, CatalogUpdate body) {
-        return beginUpdateAsync(resourceGroupName, devCenterName, catalogName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, devCenterName, catalogName, body).getSyncPoller();
     }
 
     /**
@@ -1019,7 +1021,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginUpdate(
         String resourceGroupName, String devCenterName, String catalogName, CatalogUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, devCenterName, catalogName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, devCenterName, catalogName, body, context).getSyncPoller();
     }
 
     /**
@@ -1261,7 +1263,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String catalogName) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, catalogName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, catalogName).getSyncPoller();
     }
 
     /**
@@ -1279,7 +1281,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String catalogName, Context context) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, catalogName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, catalogName, context).getSyncPoller();
     }
 
     /**
@@ -1513,7 +1515,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSync(
         String resourceGroupName, String devCenterName, String catalogName) {
-        return beginSyncAsync(resourceGroupName, devCenterName, catalogName).getSyncPoller();
+        return this.beginSyncAsync(resourceGroupName, devCenterName, catalogName).getSyncPoller();
     }
 
     /**
@@ -1531,7 +1533,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSync(
         String resourceGroupName, String devCenterName, String catalogName, Context context) {
-        return beginSyncAsync(resourceGroupName, devCenterName, catalogName, context).getSyncPoller();
+        return this.beginSyncAsync(resourceGroupName, devCenterName, catalogName, context).getSyncPoller();
     }
 
     /**

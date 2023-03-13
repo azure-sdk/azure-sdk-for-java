@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
@@ -17,6 +15,6 @@ public final class SkusListSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void skusListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.skus().list(null, Context.NONE);
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
     }
 }

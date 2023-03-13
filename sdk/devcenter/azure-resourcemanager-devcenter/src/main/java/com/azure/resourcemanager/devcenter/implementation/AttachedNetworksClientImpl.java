@@ -1149,7 +1149,8 @@ public final class AttachedNetworksClientImpl implements AttachedNetworksClient 
         String devCenterName,
         String attachedNetworkConnectionName,
         AttachedNetworkConnectionInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName, body)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName, body)
             .getSyncPoller();
     }
 
@@ -1173,7 +1174,8 @@ public final class AttachedNetworksClientImpl implements AttachedNetworksClient 
         String attachedNetworkConnectionName,
         AttachedNetworkConnectionInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName, body, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName, body, context)
             .getSyncPoller();
     }
 
@@ -1439,7 +1441,7 @@ public final class AttachedNetworksClientImpl implements AttachedNetworksClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String attachedNetworkConnectionName) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName).getSyncPoller();
     }
 
     /**
@@ -1457,7 +1459,8 @@ public final class AttachedNetworksClientImpl implements AttachedNetworksClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String devCenterName, String attachedNetworkConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, devCenterName, attachedNetworkConnectionName, context)
             .getSyncPoller();
     }
 

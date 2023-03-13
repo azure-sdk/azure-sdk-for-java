@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Catalogs Delete. */
 public final class CatalogsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class CatalogsDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void catalogsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().delete("rg1", "Contoso", "CentralCatalog", Context.NONE);
+        manager.catalogs().delete("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
     }
 }

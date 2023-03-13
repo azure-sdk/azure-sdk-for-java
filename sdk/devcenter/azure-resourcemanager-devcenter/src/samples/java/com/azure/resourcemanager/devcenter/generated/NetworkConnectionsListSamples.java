@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetworkConnections List. */
 public final class NetworkConnectionsListSamples {
     /*
@@ -18,6 +16,6 @@ public final class NetworkConnectionsListSamples {
      */
     public static void networkConnectionsListBySubscription(
         com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().list(null, Context.NONE);
+        manager.networkConnections().list(null, com.azure.core.util.Context.NONE);
     }
 }
