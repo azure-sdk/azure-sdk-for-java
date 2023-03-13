@@ -100,69 +100,6 @@ public interface SapApplicationServerInstances {
         String resourceGroupName, String sapVirtualInstanceName, Context context);
 
     /**
-     * Starts the SAP Application Server Instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName);
-
-    /**
-     * Starts the SAP Application Server Instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context);
-
-    /**
-     * Stops the SAP Application Server Instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName);
-
-    /**
-     * Stops the SAP Application Server Instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param body SAP Application server instance stop request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String applicationInstanceName,
-        StopRequest body,
-        Context context);
-
-    /**
      * Gets the SAP Application Server Instance corresponding to the Virtual Instance for SAP solutions resource.
      *
      * @param id the resource ID.

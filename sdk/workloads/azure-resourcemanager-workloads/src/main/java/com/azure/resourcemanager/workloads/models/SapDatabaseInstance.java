@@ -271,45 +271,4 @@ public interface SapDatabaseInstance {
      * @return the refreshed resource.
      */
     SapDatabaseInstance refresh(Context context);
-
-    /**
-     * Starts the database instance of the SAP system.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance();
-
-    /**
-     * Starts the database instance of the SAP system.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance(Context context);
-
-    /**
-     * Stops the database instance of the SAP system.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance();
-
-    /**
-     * Stops the database instance of the SAP system.
-     *
-     * @param body Stop request for the database instance of the SAP system.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance(StopRequest body, Context context);
 }

@@ -5,12 +5,11 @@
 package com.azure.resourcemanager.workloads.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.workloads.models.ApplicationServerVmDetails;
-import com.azure.resourcemanager.workloads.models.LoadBalancerDetails;
 import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StorageInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -72,22 +71,23 @@ public final class SapApplicationServerProperties {
     private Long icmHttpsPort;
 
     /*
-     * The Load Balancer details such as LoadBalancer ID attached to Application Server Virtual Machines
+     * The virtual machine.
      */
-    @JsonProperty(value = "loadBalancerDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private LoadBalancerDetails loadBalancerDetails;
-
-    /*
-     * The list of virtual machines.
-     */
-    @JsonProperty(value = "vmDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ApplicationServerVmDetails> vmDetails;
+    @JsonProperty(value = "virtualMachineId", access = JsonProperty.Access.WRITE_ONLY)
+    private String virtualMachineId;
 
     /*
      * Defines the SAP Instance status.
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private SapVirtualInstanceStatus status;
+
+    /*
+     * Storage details of all the Storage Accounts attached to the App Virtual Machine. For e.g. NFS on AFS Shared
+     * Storage.
+     */
+    @JsonProperty(value = "storageDetails", access = JsonProperty.Access.WRITE_ONLY)
+    private List<StorageInformation> storageDetails;
 
     /*
      * Defines the health of SAP Instances.
@@ -193,22 +193,12 @@ public final class SapApplicationServerProperties {
     }
 
     /**
-     * Get the loadBalancerDetails property: The Load Balancer details such as LoadBalancer ID attached to Application
-     * Server Virtual Machines.
+     * Get the virtualMachineId property: The virtual machine.
      *
-     * @return the loadBalancerDetails value.
+     * @return the virtualMachineId value.
      */
-    public LoadBalancerDetails loadBalancerDetails() {
-        return this.loadBalancerDetails;
-    }
-
-    /**
-     * Get the vmDetails property: The list of virtual machines.
-     *
-     * @return the vmDetails value.
-     */
-    public List<ApplicationServerVmDetails> vmDetails() {
-        return this.vmDetails;
+    public String virtualMachineId() {
+        return this.virtualMachineId;
     }
 
     /**
@@ -218,6 +208,16 @@ public final class SapApplicationServerProperties {
      */
     public SapVirtualInstanceStatus status() {
         return this.status;
+    }
+
+    /**
+     * Get the storageDetails property: Storage details of all the Storage Accounts attached to the App Virtual Machine.
+     * For e.g. NFS on AFS Shared Storage.
+     *
+     * @return the storageDetails value.
+     */
+    public List<StorageInformation> storageDetails() {
+        return this.storageDetails;
     }
 
     /**
@@ -253,11 +253,8 @@ public final class SapApplicationServerProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (loadBalancerDetails() != null) {
-            loadBalancerDetails().validate();
-        }
-        if (vmDetails() != null) {
-            vmDetails().forEach(e -> e.validate());
+        if (storageDetails() != null) {
+            storageDetails().forEach(e -> e.validate());
         }
         if (errors() != null) {
             errors().validate();

@@ -45,6 +45,20 @@ public interface WorkloadsClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the PhpWorkloadsClient object to access its operations.
+     *
+     * @return the PhpWorkloadsClient object.
+     */
+    PhpWorkloadsClient getPhpWorkloads();
+
+    /**
+     * Gets the WordpressInstancesClient object to access its operations.
+     *
+     * @return the WordpressInstancesClient object.
+     */
+    WordpressInstancesClient getWordpressInstances();
+
+    /**
      * Gets the ResourceProvidersClient object to access its operations.
      *
      * @return the ResourceProvidersClient object.
@@ -80,6 +94,13 @@ public interface WorkloadsClient {
     SapApplicationServerInstancesClient getSapApplicationServerInstances();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
      * Gets the MonitorsClient object to access its operations.
      *
      * @return the MonitorsClient object.
@@ -94,16 +115,9 @@ public interface WorkloadsClient {
     ProviderInstancesClient getProviderInstances();
 
     /**
-     * Gets the SapLandscapeMonitorsClient object to access its operations.
+     * Gets the SkusClient object to access its operations.
      *
-     * @return the SapLandscapeMonitorsClient object.
+     * @return the SkusClient object.
      */
-    SapLandscapeMonitorsClient getSapLandscapeMonitors();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
+    SkusClient getSkus();
 }

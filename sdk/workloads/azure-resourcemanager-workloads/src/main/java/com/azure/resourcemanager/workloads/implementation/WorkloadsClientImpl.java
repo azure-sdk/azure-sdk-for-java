@@ -24,13 +24,15 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.workloads.fluent.MonitorsClient;
 import com.azure.resourcemanager.workloads.fluent.OperationsClient;
+import com.azure.resourcemanager.workloads.fluent.PhpWorkloadsClient;
 import com.azure.resourcemanager.workloads.fluent.ProviderInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.workloads.fluent.SapApplicationServerInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.SapCentralInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.SapDatabaseInstancesClient;
-import com.azure.resourcemanager.workloads.fluent.SapLandscapeMonitorsClient;
 import com.azure.resourcemanager.workloads.fluent.SapVirtualInstancesClient;
+import com.azure.resourcemanager.workloads.fluent.SkusClient;
+import com.azure.resourcemanager.workloads.fluent.WordpressInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.WorkloadsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -116,6 +118,30 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
         return this.defaultPollInterval;
     }
 
+    /** The PhpWorkloadsClient object to access its operations. */
+    private final PhpWorkloadsClient phpWorkloads;
+
+    /**
+     * Gets the PhpWorkloadsClient object to access its operations.
+     *
+     * @return the PhpWorkloadsClient object.
+     */
+    public PhpWorkloadsClient getPhpWorkloads() {
+        return this.phpWorkloads;
+    }
+
+    /** The WordpressInstancesClient object to access its operations. */
+    private final WordpressInstancesClient wordpressInstances;
+
+    /**
+     * Gets the WordpressInstancesClient object to access its operations.
+     *
+     * @return the WordpressInstancesClient object.
+     */
+    public WordpressInstancesClient getWordpressInstances() {
+        return this.wordpressInstances;
+    }
+
     /** The ResourceProvidersClient object to access its operations. */
     private final ResourceProvidersClient resourceProviders;
 
@@ -176,6 +202,18 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
         return this.sapApplicationServerInstances;
     }
 
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
     /** The MonitorsClient object to access its operations. */
     private final MonitorsClient monitors;
 
@@ -200,28 +238,16 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
         return this.providerInstances;
     }
 
-    /** The SapLandscapeMonitorsClient object to access its operations. */
-    private final SapLandscapeMonitorsClient sapLandscapeMonitors;
+    /** The SkusClient object to access its operations. */
+    private final SkusClient skus;
 
     /**
-     * Gets the SapLandscapeMonitorsClient object to access its operations.
+     * Gets the SkusClient object to access its operations.
      *
-     * @return the SapLandscapeMonitorsClient object.
+     * @return the SkusClient object.
      */
-    public SapLandscapeMonitorsClient getSapLandscapeMonitors() {
-        return this.sapLandscapeMonitors;
-    }
-
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public SkusClient getSkus() {
+        return this.skus;
     }
 
     /**
@@ -246,16 +272,18 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-01";
+        this.apiVersion = "2021-12-01-preview";
+        this.phpWorkloads = new PhpWorkloadsClientImpl(this);
+        this.wordpressInstances = new WordpressInstancesClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.sapVirtualInstances = new SapVirtualInstancesClientImpl(this);
         this.sapCentralInstances = new SapCentralInstancesClientImpl(this);
         this.sapDatabaseInstances = new SapDatabaseInstancesClientImpl(this);
         this.sapApplicationServerInstances = new SapApplicationServerInstancesClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.providerInstances = new ProviderInstancesClientImpl(this);
-        this.sapLandscapeMonitors = new SapLandscapeMonitorsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
+        this.skus = new SkusClientImpl(this);
     }
 
     /**

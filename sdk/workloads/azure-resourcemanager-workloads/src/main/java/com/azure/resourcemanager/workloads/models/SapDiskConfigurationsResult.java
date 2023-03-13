@@ -5,17 +5,16 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.resourcemanager.workloads.fluent.models.SapDiskConfigurationsResultInner;
-import java.util.Map;
+import java.util.List;
 
 /** An immutable client-side representation of SapDiskConfigurationsResult. */
 public interface SapDiskConfigurationsResult {
     /**
-     * Gets the volumeConfigurations property: The disk configuration for the db volume. For HANA, Required volumes are:
-     * ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os'], Optional volume : ['backup'].
+     * Gets the diskConfigurations property: Gets the list of Disk Configurations.
      *
-     * @return the volumeConfigurations value.
+     * @return the diskConfigurations value.
      */
-    Map<String, SapDiskConfiguration> volumeConfigurations();
+    List<SapDiskConfiguration> diskConfigurations();
 
     /**
      * Gets the inner com.azure.resourcemanager.workloads.fluent.models.SapDiskConfigurationsResultInner object.

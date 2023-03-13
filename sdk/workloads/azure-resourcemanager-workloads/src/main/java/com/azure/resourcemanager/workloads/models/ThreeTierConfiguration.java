@@ -10,10 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/**
- * Gets or sets the three tier SAP configuration. For prerequisites for creating the infrastructure, please see
- * [here](https://go.microsoft.com/fwlink/?linkid=2212611&amp;clcid=0x409).
- */
+/** Gets or sets the three tier SAP configuration. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "deploymentType")
 @JsonTypeName("ThreeTier")
 @Fluent
@@ -53,12 +50,6 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
      */
     @JsonProperty(value = "storageConfiguration")
     private StorageConfiguration storageConfiguration;
-
-    /*
-     * The set of custom names to be used for underlying azure resources that are part of the SAP system.
-     */
-    @JsonProperty(value = "customResourceNames")
-    private ThreeTierCustomResourceNames customResourceNames;
 
     /** Creates an instance of ThreeTierConfiguration class. */
     public ThreeTierConfiguration() {
@@ -184,28 +175,6 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
         return this;
     }
 
-    /**
-     * Get the customResourceNames property: The set of custom names to be used for underlying azure resources that are
-     * part of the SAP system.
-     *
-     * @return the customResourceNames value.
-     */
-    public ThreeTierCustomResourceNames customResourceNames() {
-        return this.customResourceNames;
-    }
-
-    /**
-     * Set the customResourceNames property: The set of custom names to be used for underlying azure resources that are
-     * part of the SAP system.
-     *
-     * @param customResourceNames the customResourceNames value to set.
-     * @return the ThreeTierConfiguration object itself.
-     */
-    public ThreeTierConfiguration withCustomResourceNames(ThreeTierCustomResourceNames customResourceNames) {
-        this.customResourceNames = customResourceNames;
-        return this;
-    }
-
     /** {@inheritDoc} */
     @Override
     public ThreeTierConfiguration withAppResourceGroup(String appResourceGroup) {
@@ -253,9 +222,6 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
         }
         if (storageConfiguration() != null) {
             storageConfiguration().validate();
-        }
-        if (customResourceNames() != null) {
-            customResourceNames().validate();
         }
     }
 

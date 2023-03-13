@@ -72,6 +72,12 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
     /*
      * Gets or sets the blob URI to SSL certificate for the SAP system.
      */
+    @JsonProperty(value = "sapSslCertificateUri")
+    private String sapSslCertificateUri;
+
+    /*
+     * Gets or sets the blob URI to SSL certificate for the SAP system.
+     */
     @JsonProperty(value = "sslCertificateUri")
     private String sslCertificateUri;
 
@@ -262,6 +268,26 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
      */
     public SapNetWeaverProviderInstanceProperties withSapPortNumber(String sapPortNumber) {
         this.sapPortNumber = sapPortNumber;
+        return this;
+    }
+
+    /**
+     * Get the sapSslCertificateUri property: Gets or sets the blob URI to SSL certificate for the SAP system.
+     *
+     * @return the sapSslCertificateUri value.
+     */
+    public String sapSslCertificateUri() {
+        return this.sapSslCertificateUri;
+    }
+
+    /**
+     * Set the sapSslCertificateUri property: Gets or sets the blob URI to SSL certificate for the SAP system.
+     *
+     * @param sapSslCertificateUri the sapSslCertificateUri value to set.
+     * @return the SapNetWeaverProviderInstanceProperties object itself.
+     */
+    public SapNetWeaverProviderInstanceProperties withSapSslCertificateUri(String sapSslCertificateUri) {
+        this.sapSslCertificateUri = sapSslCertificateUri;
         return this;
     }
 

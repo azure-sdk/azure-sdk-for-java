@@ -119,19 +119,11 @@ public interface SapApplicationServerInstance {
     Long icmHttpsPort();
 
     /**
-     * Gets the loadBalancerDetails property: The Load Balancer details such as LoadBalancer ID attached to Application
-     * Server Virtual Machines.
+     * Gets the virtualMachineId property: The virtual machine.
      *
-     * @return the loadBalancerDetails value.
+     * @return the virtualMachineId value.
      */
-    LoadBalancerDetails loadBalancerDetails();
-
-    /**
-     * Gets the vmDetails property: The list of virtual machines.
-     *
-     * @return the vmDetails value.
-     */
-    List<ApplicationServerVmDetails> vmDetails();
+    String virtualMachineId();
 
     /**
      * Gets the status property: Defines the SAP Instance status.
@@ -139,6 +131,14 @@ public interface SapApplicationServerInstance {
      * @return the status value.
      */
     SapVirtualInstanceStatus status();
+
+    /**
+     * Gets the storageDetails property: Storage details of all the Storage Accounts attached to the App Virtual
+     * Machine. For e.g. NFS on AFS Shared Storage.
+     *
+     * @return the storageDetails value.
+     */
+    List<StorageInformation> storageDetails();
 
     /**
      * Gets the health property: Defines the health of SAP Instances.
@@ -312,45 +312,4 @@ public interface SapApplicationServerInstance {
      * @return the refreshed resource.
      */
     SapApplicationServerInstance refresh(Context context);
-
-    /**
-     * Starts the SAP Application Server Instance.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance();
-
-    /**
-     * Starts the SAP Application Server Instance.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance(Context context);
-
-    /**
-     * Stops the SAP Application Server Instance.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance();
-
-    /**
-     * Stops the SAP Application Server Instance.
-     *
-     * @param body SAP Application server instance stop request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance(StopRequest body, Context context);
 }

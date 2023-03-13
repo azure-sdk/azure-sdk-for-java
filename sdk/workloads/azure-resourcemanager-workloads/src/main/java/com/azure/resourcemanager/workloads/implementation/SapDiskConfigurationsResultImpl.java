@@ -8,7 +8,7 @@ import com.azure.resourcemanager.workloads.fluent.models.SapDiskConfigurationsRe
 import com.azure.resourcemanager.workloads.models.SapDiskConfiguration;
 import com.azure.resourcemanager.workloads.models.SapDiskConfigurationsResult;
 import java.util.Collections;
-import java.util.Map;
+import java.util.List;
 
 public final class SapDiskConfigurationsResultImpl implements SapDiskConfigurationsResult {
     private SapDiskConfigurationsResultInner innerObject;
@@ -22,12 +22,12 @@ public final class SapDiskConfigurationsResultImpl implements SapDiskConfigurati
         this.serviceManager = serviceManager;
     }
 
-    public Map<String, SapDiskConfiguration> volumeConfigurations() {
-        Map<String, SapDiskConfiguration> inner = this.innerModel().volumeConfigurations();
+    public List<SapDiskConfiguration> diskConfigurations() {
+        List<SapDiskConfiguration> inner = this.innerModel().diskConfigurations();
         if (inner != null) {
-            return Collections.unmodifiableMap(inner);
+            return Collections.unmodifiableList(inner);
         } else {
-            return Collections.emptyMap();
+            return Collections.emptyList();
         }
     }
 

@@ -32,12 +32,6 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
     @JsonProperty(value = "sslCertificateUri")
     private String sslCertificateUri;
 
-    /*
-     * Gets or sets the SAP System Identifier
-     */
-    @JsonProperty(value = "sapSid")
-    private String sapSid;
-
     /** Creates an instance of PrometheusOSProviderInstanceProperties class. */
     public PrometheusOSProviderInstanceProperties() {
     }
@@ -101,26 +95,6 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
      */
     public PrometheusOSProviderInstanceProperties withSslCertificateUri(String sslCertificateUri) {
         this.sslCertificateUri = sslCertificateUri;
-        return this;
-    }
-
-    /**
-     * Get the sapSid property: Gets or sets the SAP System Identifier.
-     *
-     * @return the sapSid value.
-     */
-    public String sapSid() {
-        return this.sapSid;
-    }
-
-    /**
-     * Set the sapSid property: Gets or sets the SAP System Identifier.
-     *
-     * @param sapSid the sapSid value to set.
-     * @return the PrometheusOSProviderInstanceProperties object itself.
-     */
-    public PrometheusOSProviderInstanceProperties withSapSid(String sapSid) {
-        this.sapSid = sapSid;
         return this;
     }
 

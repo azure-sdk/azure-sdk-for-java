@@ -26,7 +26,7 @@ public final class ProviderInstanceProperties {
     private ProviderInstancePropertiesErrors errors;
 
     /*
-     * Defines the provider specific properties.
+     * Defines the provider instance errors.
      */
     @JsonProperty(value = "providerSettings")
     private ProviderSpecificProperties providerSettings;
@@ -54,7 +54,7 @@ public final class ProviderInstanceProperties {
     }
 
     /**
-     * Get the providerSettings property: Defines the provider specific properties.
+     * Get the providerSettings property: Defines the provider instance errors.
      *
      * @return the providerSettings value.
      */
@@ -63,7 +63,7 @@ public final class ProviderInstanceProperties {
     }
 
     /**
-     * Set the providerSettings property: Defines the provider specific properties.
+     * Set the providerSettings property: Defines the provider instance errors.
      *
      * @param providerSettings the providerSettings value to set.
      * @return the ProviderInstanceProperties object itself.

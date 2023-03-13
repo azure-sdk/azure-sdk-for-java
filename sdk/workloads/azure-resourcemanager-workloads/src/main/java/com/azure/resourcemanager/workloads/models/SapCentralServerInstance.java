@@ -355,45 +355,4 @@ public interface SapCentralServerInstance {
      * @return the refreshed resource.
      */
     SapCentralServerInstance refresh(Context context);
-
-    /**
-     * Starts the SAP Central Services Instance.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance();
-
-    /**
-     * Starts the SAP Central Services Instance.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult startInstance(Context context);
-
-    /**
-     * Stops the SAP Central Services Instance.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance();
-
-    /**
-     * Stops the SAP Central Services Instance.
-     *
-     * @param body SAP Central Services instance stop request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult stopInstance(StopRequest body, Context context);
 }

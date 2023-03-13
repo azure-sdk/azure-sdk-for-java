@@ -7,7 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The type of disk sku. For example, Standard_LRS, Standard_ZRS, Premium_LRS, Premium_ZRS. */
+/** The disk sku. */
 @Fluent
 public final class DiskSku {
     /*

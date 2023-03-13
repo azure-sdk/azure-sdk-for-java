@@ -28,9 +28,6 @@ public final class SapVirtualInstanceStatus extends ExpandableStringEnum<SapVirt
     /** Static value Unavailable for SapVirtualInstanceStatus. */
     public static final SapVirtualInstanceStatus UNAVAILABLE = fromString("Unavailable");
 
-    /** Static value SoftShutdown for SapVirtualInstanceStatus. */
-    public static final SapVirtualInstanceStatus SOFT_SHUTDOWN = fromString("SoftShutdown");
-
     /**
      * Creates a new instance of SapVirtualInstanceStatus value.
      *

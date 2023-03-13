@@ -7,42 +7,36 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Stop SAP instance(s) request body. */
+/** Stop SAP Request. */
 @Fluent
 public final class StopRequest {
     /*
-     * This parameter defines how long (in seconds) the soft shutdown waits until the RFC/HTTP clients no longer
-     * consider the server for calls with load balancing. Value 0 means that the kernel does not wait, but goes
-     * directly into the next shutdown state, i.e. hard stop.
+     * A boolean to specify if the SAP system should be hard-stopped.
      */
-    @JsonProperty(value = "softStopTimeoutSeconds")
-    private Long softStopTimeoutSeconds;
+    @JsonProperty(value = "hardStop")
+    private Boolean hardStop;
 
     /** Creates an instance of StopRequest class. */
     public StopRequest() {
     }
 
     /**
-     * Get the softStopTimeoutSeconds property: This parameter defines how long (in seconds) the soft shutdown waits
-     * until the RFC/HTTP clients no longer consider the server for calls with load balancing. Value 0 means that the
-     * kernel does not wait, but goes directly into the next shutdown state, i.e. hard stop.
+     * Get the hardStop property: A boolean to specify if the SAP system should be hard-stopped.
      *
-     * @return the softStopTimeoutSeconds value.
+     * @return the hardStop value.
      */
-    public Long softStopTimeoutSeconds() {
-        return this.softStopTimeoutSeconds;
+    public Boolean hardStop() {
+        return this.hardStop;
     }
 
     /**
-     * Set the softStopTimeoutSeconds property: This parameter defines how long (in seconds) the soft shutdown waits
-     * until the RFC/HTTP clients no longer consider the server for calls with load balancing. Value 0 means that the
-     * kernel does not wait, but goes directly into the next shutdown state, i.e. hard stop.
+     * Set the hardStop property: A boolean to specify if the SAP system should be hard-stopped.
      *
-     * @param softStopTimeoutSeconds the softStopTimeoutSeconds value to set.
+     * @param hardStop the hardStop value to set.
      * @return the StopRequest object itself.
      */
-    public StopRequest withSoftStopTimeoutSeconds(Long softStopTimeoutSeconds) {
-        this.softStopTimeoutSeconds = softStopTimeoutSeconds;
+    public StopRequest withHardStop(Boolean hardStop) {
+        this.hardStop = hardStop;
         return this;
     }
 

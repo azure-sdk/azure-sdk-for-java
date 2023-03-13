@@ -6,45 +6,39 @@ package com.azure.resourcemanager.workloads.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.workloads.models.SapDiskConfiguration;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
+import java.util.List;
 
 /** The list of disk configuration for vmSku which are part of SAP deployment. */
 @Fluent
 public final class SapDiskConfigurationsResultInner {
     /*
-     * The disk configuration for the db volume. For HANA, Required volumes are: ['hana/data', 'hana/log',
-     * hana/shared', 'usr/sap', 'os'], Optional volume : ['backup'].
+     * Gets the list of Disk Configurations.
      */
-    @JsonProperty(value = "volumeConfigurations")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, SapDiskConfiguration> volumeConfigurations;
+    @JsonProperty(value = "diskConfigurations")
+    private List<SapDiskConfiguration> diskConfigurations;
 
     /** Creates an instance of SapDiskConfigurationsResultInner class. */
     public SapDiskConfigurationsResultInner() {
     }
 
     /**
-     * Get the volumeConfigurations property: The disk configuration for the db volume. For HANA, Required volumes are:
-     * ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os'], Optional volume : ['backup'].
+     * Get the diskConfigurations property: Gets the list of Disk Configurations.
      *
-     * @return the volumeConfigurations value.
+     * @return the diskConfigurations value.
      */
-    public Map<String, SapDiskConfiguration> volumeConfigurations() {
-        return this.volumeConfigurations;
+    public List<SapDiskConfiguration> diskConfigurations() {
+        return this.diskConfigurations;
     }
 
     /**
-     * Set the volumeConfigurations property: The disk configuration for the db volume. For HANA, Required volumes are:
-     * ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os'], Optional volume : ['backup'].
+     * Set the diskConfigurations property: Gets the list of Disk Configurations.
      *
-     * @param volumeConfigurations the volumeConfigurations value to set.
+     * @param diskConfigurations the diskConfigurations value to set.
      * @return the SapDiskConfigurationsResultInner object itself.
      */
-    public SapDiskConfigurationsResultInner withVolumeConfigurations(
-        Map<String, SapDiskConfiguration> volumeConfigurations) {
-        this.volumeConfigurations = volumeConfigurations;
+    public SapDiskConfigurationsResultInner withDiskConfigurations(List<SapDiskConfiguration> diskConfigurations) {
+        this.diskConfigurations = diskConfigurations;
         return this;
     }
 
@@ -54,15 +48,8 @@ public final class SapDiskConfigurationsResultInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (volumeConfigurations() != null) {
-            volumeConfigurations()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+        if (diskConfigurations() != null) {
+            diskConfigurations().forEach(e -> e.validate());
         }
     }
 }

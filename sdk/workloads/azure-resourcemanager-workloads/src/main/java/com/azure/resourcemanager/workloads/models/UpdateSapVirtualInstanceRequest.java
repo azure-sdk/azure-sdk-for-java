@@ -20,8 +20,7 @@ public final class UpdateSapVirtualInstanceRequest {
     private Map<String, String> tags;
 
     /*
-     * A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles
-     * required, visit the ACSS how-to-guide.
+     * Managed service identity (user assigned identities)
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
@@ -51,8 +50,7 @@ public final class UpdateSapVirtualInstanceRequest {
     }
 
     /**
-     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
+     * Get the identity property: Managed service identity (user assigned identities).
      *
      * @return the identity value.
      */
@@ -61,8 +59,7 @@ public final class UpdateSapVirtualInstanceRequest {
     }
 
     /**
-     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
+     * Set the identity property: Managed service identity (user assigned identities).
      *
      * @param identity the identity value to set.
      * @return the UpdateSapVirtualInstanceRequest object itself.

@@ -10,12 +10,10 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.SapDatabaseInstanceInner;
 import com.azure.resourcemanager.workloads.models.DatabaseVmDetails;
 import com.azure.resourcemanager.workloads.models.LoadBalancerDetails;
-import com.azure.resourcemanager.workloads.models.OperationStatusResult;
 import com.azure.resourcemanager.workloads.models.SapDatabaseInstance;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
-import com.azure.resourcemanager.workloads.models.StopRequest;
 import com.azure.resourcemanager.workloads.models.UpdateSapDatabaseInstanceRequest;
 import java.util.Collections;
 import java.util.List;
@@ -207,30 +205,6 @@ public final class SapDatabaseInstanceImpl
                 .getWithResponse(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context)
                 .getValue();
         return this;
-    }
-
-    public OperationStatusResult startInstance() {
-        return serviceManager
-            .sapDatabaseInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
-    }
-
-    public OperationStatusResult startInstance(Context context) {
-        return serviceManager
-            .sapDatabaseInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
-    }
-
-    public OperationStatusResult stopInstance() {
-        return serviceManager
-            .sapDatabaseInstances()
-            .stopInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
-    }
-
-    public OperationStatusResult stopInstance(StopRequest body, Context context) {
-        return serviceManager
-            .sapDatabaseInstances()
-            .stopInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body, context);
     }
 
     public SapDatabaseInstanceImpl withRegion(Region location) {

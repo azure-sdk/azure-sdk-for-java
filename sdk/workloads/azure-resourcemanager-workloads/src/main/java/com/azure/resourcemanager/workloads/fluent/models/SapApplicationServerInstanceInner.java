@@ -7,12 +7,11 @@ package com.azure.resourcemanager.workloads.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.workloads.models.ApplicationServerVmDetails;
-import com.azure.resourcemanager.workloads.models.LoadBalancerDetails;
 import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StorageInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -150,22 +149,12 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the loadBalancerDetails property: The Load Balancer details such as LoadBalancer ID attached to Application
-     * Server Virtual Machines.
+     * Get the virtualMachineId property: The virtual machine.
      *
-     * @return the loadBalancerDetails value.
+     * @return the virtualMachineId value.
      */
-    public LoadBalancerDetails loadBalancerDetails() {
-        return this.innerProperties() == null ? null : this.innerProperties().loadBalancerDetails();
-    }
-
-    /**
-     * Get the vmDetails property: The list of virtual machines.
-     *
-     * @return the vmDetails value.
-     */
-    public List<ApplicationServerVmDetails> vmDetails() {
-        return this.innerProperties() == null ? null : this.innerProperties().vmDetails();
+    public String virtualMachineId() {
+        return this.innerProperties() == null ? null : this.innerProperties().virtualMachineId();
     }
 
     /**
@@ -175,6 +164,16 @@ public final class SapApplicationServerInstanceInner extends Resource {
      */
     public SapVirtualInstanceStatus status() {
         return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the storageDetails property: Storage details of all the Storage Accounts attached to the App Virtual Machine.
+     * For e.g. NFS on AFS Shared Storage.
+     *
+     * @return the storageDetails value.
+     */
+    public List<StorageInformation> storageDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageDetails();
     }
 
     /**

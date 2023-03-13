@@ -8,15 +8,12 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.SapApplicationServerInstanceInner;
-import com.azure.resourcemanager.workloads.models.ApplicationServerVmDetails;
-import com.azure.resourcemanager.workloads.models.LoadBalancerDetails;
-import com.azure.resourcemanager.workloads.models.OperationStatusResult;
 import com.azure.resourcemanager.workloads.models.SapApplicationServerInstance;
 import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
-import com.azure.resourcemanager.workloads.models.StopRequest;
+import com.azure.resourcemanager.workloads.models.StorageInformation;
 import com.azure.resourcemanager.workloads.models.UpdateSapApplicationInstanceRequest;
 import java.util.Collections;
 import java.util.List;
@@ -95,21 +92,21 @@ public final class SapApplicationServerInstanceImpl
         return this.innerModel().icmHttpsPort();
     }
 
-    public LoadBalancerDetails loadBalancerDetails() {
-        return this.innerModel().loadBalancerDetails();
+    public String virtualMachineId() {
+        return this.innerModel().virtualMachineId();
     }
 
-    public List<ApplicationServerVmDetails> vmDetails() {
-        List<ApplicationServerVmDetails> inner = this.innerModel().vmDetails();
+    public SapVirtualInstanceStatus status() {
+        return this.innerModel().status();
+    }
+
+    public List<StorageInformation> storageDetails() {
+        List<StorageInformation> inner = this.innerModel().storageDetails();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public SapVirtualInstanceStatus status() {
-        return this.innerModel().status();
     }
 
     public SapHealthState health() {
@@ -239,30 +236,6 @@ public final class SapApplicationServerInstanceImpl
                 .getWithResponse(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context)
                 .getValue();
         return this;
-    }
-
-    public OperationStatusResult startInstance() {
-        return serviceManager
-            .sapApplicationServerInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
-    }
-
-    public OperationStatusResult startInstance(Context context) {
-        return serviceManager
-            .sapApplicationServerInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
-    }
-
-    public OperationStatusResult stopInstance() {
-        return serviceManager
-            .sapApplicationServerInstances()
-            .stopInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
-    }
-
-    public OperationStatusResult stopInstance(StopRequest body, Context context) {
-        return serviceManager
-            .sapApplicationServerInstances()
-            .stopInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context);
     }
 
     public SapApplicationServerInstanceImpl withRegion(Region location) {
