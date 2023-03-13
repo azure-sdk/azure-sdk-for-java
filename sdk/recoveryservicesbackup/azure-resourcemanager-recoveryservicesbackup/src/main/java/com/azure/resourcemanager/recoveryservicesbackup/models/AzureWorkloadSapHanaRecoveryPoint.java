@@ -50,14 +50,6 @@ public final class AzureWorkloadSapHanaRecoveryPoint extends AzureWorkloadRecove
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureWorkloadSapHanaRecoveryPoint withRecoveryPointProperties(
-        RecoveryPointProperties recoveryPointProperties) {
-        super.withRecoveryPointProperties(recoveryPointProperties);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

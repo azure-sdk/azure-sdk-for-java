@@ -93,13 +93,6 @@ public class AzureWorkloadSqlRecoveryPoint extends AzureWorkloadRecoveryPoint {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureWorkloadSqlRecoveryPoint withRecoveryPointProperties(RecoveryPointProperties recoveryPointProperties) {
-        super.withRecoveryPointProperties(recoveryPointProperties);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

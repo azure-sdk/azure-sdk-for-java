@@ -85,14 +85,6 @@ public final class AzureWorkloadSqlPointInTimeRecoveryPoint extends AzureWorkloa
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureWorkloadSqlPointInTimeRecoveryPoint withRecoveryPointProperties(
-        RecoveryPointProperties recoveryPointProperties) {
-        super.withRecoveryPointProperties(recoveryPointProperties);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
