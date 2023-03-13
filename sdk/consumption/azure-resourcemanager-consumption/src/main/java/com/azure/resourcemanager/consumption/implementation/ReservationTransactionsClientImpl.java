@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.ReservationTransactionsClient;
 import com.azure.resourcemanager.consumption.fluent.models.ModernReservationTransactionInner;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationTransactionInner;
@@ -35,8 +34,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ReservationTransactionsClient. */
 public final class ReservationTransactionsClientImpl implements ReservationTransactionsClient {
-    private final ClientLogger logger = new ClientLogger(ReservationTransactionsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final ReservationTransactionsService service;
 
@@ -61,7 +58,7 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConsumptionManagemen")
-    private interface ReservationTransactionsService {
+    public interface ReservationTransactionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/providers/Microsoft.Consumption"
@@ -113,15 +110,22 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for the entire December 2020 month (i.e. will contain records for dates December 30 and
+     *     31).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationTransactionInner>> listSinglePageAsync(
@@ -161,16 +165,23 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for the entire December 2020 month (i.e. will contain records for dates December 30 and
+     *     31).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationTransactionInner>> listSinglePageAsync(
@@ -201,15 +212,21 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for the entire December 2020 month (i.e. will contain records for dates December 30 and
+     *     31).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationTransactionInner> listAsync(String billingAccountId, String filter) {
@@ -218,13 +235,16 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationTransactionInner> listAsync(String billingAccountId) {
@@ -234,16 +254,22 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for the entire December 2020 month (i.e. will contain records for dates December 30 and
+     *     31).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ReservationTransactionInner> listAsync(String billingAccountId, String filter, Context context) {
@@ -253,13 +279,16 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationTransactionInner> list(String billingAccountId) {
@@ -268,16 +297,22 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted
+     * along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in
+     * May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for the entire December 2020 month (i.e. will contain records for dates December 30 and
+     *     31).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationTransactionInner> list(String billingAccountId, String filter, Context context) {
@@ -285,16 +320,22 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for entire December 2020 month (i.e. will contain records for dates December 30 and 31).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ModernReservationTransactionInner>> listByBillingProfileSinglePageAsync(
@@ -339,17 +380,23 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for entire December 2020 month (i.e. will contain records for dates December 30 and 31).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ModernReservationTransactionInner>> listByBillingProfileSinglePageAsync(
@@ -391,16 +438,21 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for entire December 2020 month (i.e. will contain records for dates December 30 and 31).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ModernReservationTransactionInner> listByBillingProfileAsync(
@@ -411,14 +463,17 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ModernReservationTransactionInner> listByBillingProfileAsync(
@@ -430,17 +485,22 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for entire December 2020 month (i.e. will contain records for dates December 30 and 31).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ModernReservationTransactionInner> listByBillingProfileAsync(
@@ -451,14 +511,17 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ModernReservationTransactionInner> listByBillingProfile(
@@ -468,17 +531,22 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     }
 
     /**
-     * List of transactions for reserved instances on billing account scope.
+     * List of transactions for reserved instances on billing profile scope. The refund transactions are posted along
+     * with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May
+     * 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the
+     * reservation purchase was made.
      *
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
      * @param filter Filter reservation transactions by date range. The properties/EventDate for start date and end
-     *     date. The filter supports 'le' and 'ge'.
+     *     date. The filter supports 'le' and 'ge'. Note: API returns data for the entire start date's and end date's
+     *     billing month. For example, filter properties/eventDate+ge+2020-01-01+AND+properties/eventDate+le+2020-12-29
+     *     will include data for entire December 2020 month (i.e. will contain records for dates December 30 and 31).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ModernReservationTransactionInner> listByBillingProfile(
@@ -489,11 +557,13 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationTransactionInner>> listNextSinglePageAsync(String nextLink) {
@@ -524,12 +594,14 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReservationTransactionInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -560,11 +632,13 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ModernReservationTransactionInner>> listByBillingProfileNextSinglePageAsync(
@@ -597,12 +671,14 @@ public final class ReservationTransactionsClientImpl implements ReservationTrans
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations.
+     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ModernReservationTransactionInner>> listByBillingProfileNextSinglePageAsync(

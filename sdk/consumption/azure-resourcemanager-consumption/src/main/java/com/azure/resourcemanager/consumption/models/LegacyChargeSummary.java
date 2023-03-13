@@ -4,10 +4,9 @@
 
 package com.azure.resourcemanager.consumption.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.LegacyChargeSummaryProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,15 +15,17 @@ import java.math.BigDecimal;
 /** Legacy charge summary. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("legacy")
-@Fluent
+@Immutable
 public final class LegacyChargeSummary extends ChargeSummary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyChargeSummary.class);
-
     /*
      * Properties for legacy charge summary
      */
     @JsonProperty(value = "properties", required = true)
     private LegacyChargeSummaryProperties innerProperties = new LegacyChargeSummaryProperties();
+
+    /** Creates an instance of LegacyChargeSummary class. */
+    public LegacyChargeSummary() {
+    }
 
     /**
      * Get the innerProperties property: Properties for legacy charge summary.
@@ -33,13 +34,6 @@ public final class LegacyChargeSummary extends ChargeSummary {
      */
     private LegacyChargeSummaryProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public LegacyChargeSummary withEtag(String etag) {
-        super.withEtag(etag);
-        return this;
     }
 
     /**
@@ -88,12 +82,12 @@ public final class LegacyChargeSummary extends ChargeSummary {
     }
 
     /**
-     * Get the marketplaceCharges property: Marketplace Charges.
+     * Get the azureMarketplaceCharges property: Marketplace Charges.
      *
-     * @return the marketplaceCharges value.
+     * @return the azureMarketplaceCharges value.
      */
-    public BigDecimal marketplaceCharges() {
-        return this.innerProperties() == null ? null : this.innerProperties().marketplaceCharges();
+    public BigDecimal azureMarketplaceCharges() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureMarketplaceCharges();
     }
 
     /**
@@ -114,7 +108,7 @@ public final class LegacyChargeSummary extends ChargeSummary {
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model LegacyChargeSummary"));
@@ -122,4 +116,6 @@ public final class LegacyChargeSummary extends ChargeSummary {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LegacyChargeSummary.class);
 }
