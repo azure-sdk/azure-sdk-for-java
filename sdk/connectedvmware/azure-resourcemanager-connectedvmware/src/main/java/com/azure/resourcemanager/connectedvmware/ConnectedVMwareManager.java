@@ -34,6 +34,7 @@ import com.azure.resourcemanager.connectedvmware.implementation.InventoryItemsIm
 import com.azure.resourcemanager.connectedvmware.implementation.MachineExtensionsImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.OperationsImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.ResourcePoolsImpl;
+import com.azure.resourcemanager.connectedvmware.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VCentersImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VirtualMachineTemplatesImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VirtualMachinesImpl;
@@ -47,6 +48,7 @@ import com.azure.resourcemanager.connectedvmware.models.InventoryItems;
 import com.azure.resourcemanager.connectedvmware.models.MachineExtensions;
 import com.azure.resourcemanager.connectedvmware.models.Operations;
 import com.azure.resourcemanager.connectedvmware.models.ResourcePools;
+import com.azure.resourcemanager.connectedvmware.models.ResourceProviders;
 import com.azure.resourcemanager.connectedvmware.models.VCenters;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachineTemplates;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachines;
@@ -83,6 +85,8 @@ public final class ConnectedVMwareManager {
     private HybridIdentityMetadatas hybridIdentityMetadatas;
 
     private MachineExtensions machineExtensions;
+
+    private ResourceProviders resourceProviders;
 
     private GuestAgents guestAgents;
 
@@ -452,6 +456,18 @@ public final class ConnectedVMwareManager {
             this.machineExtensions = new MachineExtensionsImpl(clientObject.getMachineExtensions(), this);
         }
         return machineExtensions;
+    }
+
+    /**
+     * Gets the resource collection API of ResourceProviders.
+     *
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
     }
 
     /**

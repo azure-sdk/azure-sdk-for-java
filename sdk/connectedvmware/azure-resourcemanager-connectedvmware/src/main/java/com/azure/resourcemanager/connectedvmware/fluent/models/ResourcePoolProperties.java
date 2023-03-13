@@ -9,7 +9,7 @@ import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/** Describes the properties of a Resource Pool. */
 @Fluent
 public final class ResourcePoolProperties {
     /*
@@ -91,6 +91,18 @@ public final class ResourcePoolProperties {
     private String customResourceName;
 
     /*
+     * Gets or sets the datastore ARM ids.
+     */
+    @JsonProperty(value = "datastoreIds", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> datastoreIds;
+
+    /*
+     * Gets or sets the network ARM ids.
+     */
+    @JsonProperty(value = "networkIds", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> networkIds;
+
+    /*
      * The resource status information.
      */
     @JsonProperty(value = "statuses", access = JsonProperty.Access.WRITE_ONLY)
@@ -101,6 +113,10 @@ public final class ResourcePoolProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of ResourcePoolProperties class. */
+    public ResourcePoolProperties() {
+    }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
@@ -247,6 +263,24 @@ public final class ResourcePoolProperties {
      */
     public String customResourceName() {
         return this.customResourceName;
+    }
+
+    /**
+     * Get the datastoreIds property: Gets or sets the datastore ARM ids.
+     *
+     * @return the datastoreIds value.
+     */
+    public List<String> datastoreIds() {
+        return this.datastoreIds;
+    }
+
+    /**
+     * Get the networkIds property: Gets or sets the network ARM ids.
+     *
+     * @return the networkIds value.
+     */
+    public List<String> networkIds() {
+        return this.networkIds;
     }
 
     /**

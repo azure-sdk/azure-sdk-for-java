@@ -59,7 +59,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConnectedVMwareClien")
-    private interface HybridIdentityMetadatasService {
+    public interface HybridIdentityMetadatasService {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -118,7 +118,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
                 + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/hybridIdentityMetadata")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataList>> listByVm(
+        Mono<Response<HybridIdentityMetadataList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -131,7 +131,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataList>> listByVmNext(
+        Mono<Response<HybridIdentityMetadataList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -270,27 +270,6 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param metadataName Name of the hybridIdentityMetadata.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the HybridIdentityMetadata on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<HybridIdentityMetadataInner> createAsync(
-        String resourceGroupName, String virtualMachineName, String metadataName, HybridIdentityMetadataInner body) {
-        return createWithResponseAsync(resourceGroupName, virtualMachineName, metadataName, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Implements HybridIdentityMetadata PUT method.
-     *
-     * <p>Create Or Update HybridIdentityMetadata.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param metadataName Name of the hybridIdentityMetadata.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -302,26 +281,6 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         final HybridIdentityMetadataInner body = null;
         return createWithResponseAsync(resourceGroupName, virtualMachineName, metadataName, body)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Implements HybridIdentityMetadata PUT method.
-     *
-     * <p>Create Or Update HybridIdentityMetadata.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param metadataName Name of the hybridIdentityMetadata.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the HybridIdentityMetadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public HybridIdentityMetadataInner create(
-        String resourceGroupName, String virtualMachineName, String metadataName) {
-        final HybridIdentityMetadataInner body = null;
-        return createAsync(resourceGroupName, virtualMachineName, metadataName, body).block();
     }
 
     /**
@@ -347,6 +306,26 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         HybridIdentityMetadataInner body,
         Context context) {
         return createWithResponseAsync(resourceGroupName, virtualMachineName, metadataName, body, context).block();
+    }
+
+    /**
+     * Implements HybridIdentityMetadata PUT method.
+     *
+     * <p>Create Or Update HybridIdentityMetadata.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param metadataName Name of the hybridIdentityMetadata.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the HybridIdentityMetadata.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HybridIdentityMetadataInner create(
+        String resourceGroupName, String virtualMachineName, String metadataName) {
+        final HybridIdentityMetadataInner body = null;
+        return createWithResponse(resourceGroupName, virtualMachineName, metadataName, body, Context.NONE).getValue();
     }
 
     /**
@@ -487,24 +466,6 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param metadataName Name of the HybridIdentityMetadata.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the HybridIdentityMetadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public HybridIdentityMetadataInner get(String resourceGroupName, String virtualMachineName, String metadataName) {
-        return getAsync(resourceGroupName, virtualMachineName, metadataName).block();
-    }
-
-    /**
-     * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param metadataName Name of the HybridIdentityMetadata.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -515,6 +476,24 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
     public Response<HybridIdentityMetadataInner> getWithResponse(
         String resourceGroupName, String virtualMachineName, String metadataName, Context context) {
         return getWithResponseAsync(resourceGroupName, virtualMachineName, metadataName, context).block();
+    }
+
+    /**
+     * Gets HybridIdentityMetadata.
+     *
+     * <p>Implements HybridIdentityMetadata GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param metadataName Name of the HybridIdentityMetadata.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the HybridIdentityMetadata.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HybridIdentityMetadataInner get(String resourceGroupName, String virtualMachineName, String metadataName) {
+        return getWithResponse(resourceGroupName, virtualMachineName, metadataName, Context.NONE).getValue();
     }
 
     /**
@@ -654,23 +633,6 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param metadataName Name of the HybridIdentityMetadata.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineName, String metadataName) {
-        deleteAsync(resourceGroupName, virtualMachineName, metadataName).block();
-    }
-
-    /**
-     * Deletes an HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata DELETE method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param metadataName Name of the HybridIdentityMetadata.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -681,6 +643,23 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String virtualMachineName, String metadataName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, virtualMachineName, metadataName, context).block();
+    }
+
+    /**
+     * Deletes an HybridIdentityMetadata.
+     *
+     * <p>Implements HybridIdentityMetadata DELETE method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param metadataName Name of the HybridIdentityMetadata.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String virtualMachineName, String metadataName) {
+        deleteWithResponse(resourceGroupName, virtualMachineName, metadataName, Context.NONE);
     }
 
     /**
@@ -696,7 +675,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByVmSinglePageAsync(
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listSinglePageAsync(
         String resourceGroupName, String virtualMachineName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -723,7 +702,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
             .withContext(
                 context ->
                     service
-                        .listByVm(
+                        .list(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
@@ -757,7 +736,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByVmSinglePageAsync(
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listSinglePageAsync(
         String resourceGroupName, String virtualMachineName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -782,7 +761,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByVm(
+            .list(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
@@ -814,10 +793,10 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HybridIdentityMetadataInner> listByVmAsync(String resourceGroupName, String virtualMachineName) {
+    private PagedFlux<HybridIdentityMetadataInner> listAsync(String resourceGroupName, String virtualMachineName) {
         return new PagedFlux<>(
-            () -> listByVmSinglePageAsync(resourceGroupName, virtualMachineName),
-            nextLink -> listByVmNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -834,11 +813,11 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HybridIdentityMetadataInner> listByVmAsync(
+    private PagedFlux<HybridIdentityMetadataInner> listAsync(
         String resourceGroupName, String virtualMachineName, Context context) {
         return new PagedFlux<>(
-            () -> listByVmSinglePageAsync(resourceGroupName, virtualMachineName, context),
-            nextLink -> listByVmNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(resourceGroupName, virtualMachineName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -854,8 +833,8 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HybridIdentityMetadataInner> listByVm(String resourceGroupName, String virtualMachineName) {
-        return new PagedIterable<>(listByVmAsync(resourceGroupName, virtualMachineName));
+    public PagedIterable<HybridIdentityMetadataInner> list(String resourceGroupName, String virtualMachineName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, virtualMachineName));
     }
 
     /**
@@ -872,22 +851,23 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HybridIdentityMetadataInner> listByVm(
+    public PagedIterable<HybridIdentityMetadataInner> list(
         String resourceGroupName, String virtualMachineName, Context context) {
-        return new PagedIterable<>(listByVmAsync(resourceGroupName, virtualMachineName, context));
+        return new PagedIterable<>(listAsync(resourceGroupName, virtualMachineName, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByVmNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -899,7 +879,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByVmNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<HybridIdentityMetadataInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -915,7 +895,8 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -923,8 +904,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByVmNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -937,7 +917,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByVmNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

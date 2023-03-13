@@ -34,8 +34,9 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         this.serviceManager = serviceManager;
     }
 
-    public VirtualMachineAssessPatchesResult assessPatches(String resourceGroupName, String name) {
-        VirtualMachineAssessPatchesResultInner inner = this.serviceClient().assessPatches(resourceGroupName, name);
+    public VirtualMachineAssessPatchesResult assessPatches(String resourceGroupName, String virtualMachineName) {
+        VirtualMachineAssessPatchesResultInner inner =
+            this.serviceClient().assessPatches(resourceGroupName, virtualMachineName);
         if (inner != null) {
             return new VirtualMachineAssessPatchesResultImpl(inner, this.manager());
         } else {
@@ -43,9 +44,10 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         }
     }
 
-    public VirtualMachineAssessPatchesResult assessPatches(String resourceGroupName, String name, Context context) {
+    public VirtualMachineAssessPatchesResult assessPatches(
+        String resourceGroupName, String virtualMachineName, Context context) {
         VirtualMachineAssessPatchesResultInner inner =
-            this.serviceClient().assessPatches(resourceGroupName, name, context);
+            this.serviceClient().assessPatches(resourceGroupName, virtualMachineName, context);
         if (inner != null) {
             return new VirtualMachineAssessPatchesResultImpl(inner, this.manager());
         } else {
@@ -54,9 +56,11 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     }
 
     public VirtualMachineInstallPatchesResult installPatches(
-        String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput) {
+        String resourceGroupName,
+        String virtualMachineName,
+        VirtualMachineInstallPatchesParameters installPatchesInput) {
         VirtualMachineInstallPatchesResultInner inner =
-            this.serviceClient().installPatches(resourceGroupName, name, installPatchesInput);
+            this.serviceClient().installPatches(resourceGroupName, virtualMachineName, installPatchesInput);
         if (inner != null) {
             return new VirtualMachineInstallPatchesResultImpl(inner, this.manager());
         } else {
@@ -66,22 +70,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
 
     public VirtualMachineInstallPatchesResult installPatches(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         VirtualMachineInstallPatchesParameters installPatchesInput,
         Context context) {
         VirtualMachineInstallPatchesResultInner inner =
-            this.serviceClient().installPatches(resourceGroupName, name, installPatchesInput, context);
+            this.serviceClient().installPatches(resourceGroupName, virtualMachineName, installPatchesInput, context);
         if (inner != null) {
             return new VirtualMachineInstallPatchesResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName) {
-        VirtualMachineInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new VirtualMachineImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -102,8 +97,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         }
     }
 
-    public void delete(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
-        this.serviceClient().delete(resourceGroupName, virtualMachineName, force, retain);
+    public VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        VirtualMachineInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, virtualMachineName);
+        if (inner != null) {
+            return new VirtualMachineImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String virtualMachineName) {
@@ -111,12 +111,8 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     }
 
     public void delete(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
-        this.serviceClient().delete(resourceGroupName, virtualMachineName, force, retain, context);
-    }
-
-    public void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        this.serviceClient().stop(resourceGroupName, virtualMachineName, body);
+        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
+        this.serviceClient().delete(resourceGroupName, virtualMachineName, retain, force, context);
     }
 
     public void stop(String resourceGroupName, String virtualMachineName) {
@@ -221,12 +217,12 @@ public final class VirtualMachinesImpl implements VirtualMachines {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
         }
-        Boolean localForce = null;
         Boolean localRetain = null;
-        this.delete(resourceGroupName, virtualMachineName, localForce, localRetain, Context.NONE);
+        Boolean localForce = null;
+        this.delete(resourceGroupName, virtualMachineName, localRetain, localForce, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Boolean force, Boolean retain, Context context) {
+    public void deleteByIdWithResponse(String id, Boolean retain, Boolean force, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -243,7 +239,7 @@ public final class VirtualMachinesImpl implements VirtualMachines {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
         }
-        this.delete(resourceGroupName, virtualMachineName, force, retain, context);
+        this.delete(resourceGroupName, virtualMachineName, retain, force, context);
     }
 
     private VirtualMachinesClient serviceClient() {

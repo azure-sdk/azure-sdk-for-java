@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.connectedvmware.models.VMGuestPatchClassificationWindows;
 import com.azure.resourcemanager.connectedvmware.models.VMGuestPatchRebootSetting;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachineInstallPatchesParameters;
@@ -15,7 +14,7 @@ import java.util.Arrays;
 /** Samples for VirtualMachines InstallPatches. */
 public final class VirtualMachinesInstallPatchesSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/VirtualMachineInstallPatches.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/VirtualMachineInstallPatches.json
      */
     /**
      * Sample code: Install patch state of a machine.
@@ -40,6 +39,6 @@ public final class VirtualMachinesInstallPatchesSamples {
                                         VMGuestPatchClassificationWindows.CRITICAL,
                                         VMGuestPatchClassificationWindows.SECURITY))
                             .withMaxPatchPublishDate(OffsetDateTime.parse("2022-01-15T02:36:43.0539904+00:00"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -129,6 +129,13 @@ public interface ConnectedVMwareClient {
     MachineExtensionsClient getMachineExtensions();
 
     /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
      * Gets the GuestAgentsClient object to access its operations.
      *
      * @return the GuestAgentsClient object.

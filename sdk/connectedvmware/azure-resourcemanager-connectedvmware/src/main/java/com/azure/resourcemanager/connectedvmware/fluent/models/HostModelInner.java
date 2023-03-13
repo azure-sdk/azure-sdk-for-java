@@ -43,6 +43,10 @@ public final class HostModelInner extends Resource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of HostModelInner class. */
+    public HostModelInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
@@ -222,6 +226,24 @@ public final class HostModelInner extends Resource {
      */
     public String customResourceName() {
         return this.innerProperties() == null ? null : this.innerProperties().customResourceName();
+    }
+
+    /**
+     * Get the datastoreIds property: Gets or sets the datastore ARM ids.
+     *
+     * @return the datastoreIds value.
+     */
+    public List<String> datastoreIds() {
+        return this.innerProperties() == null ? null : this.innerProperties().datastoreIds();
+    }
+
+    /**
+     * Get the networkIds property: Gets or sets the network ARM ids.
+     *
+     * @return the networkIds value.
+     */
+    public List<String> networkIds() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkIds();
     }
 
     /**

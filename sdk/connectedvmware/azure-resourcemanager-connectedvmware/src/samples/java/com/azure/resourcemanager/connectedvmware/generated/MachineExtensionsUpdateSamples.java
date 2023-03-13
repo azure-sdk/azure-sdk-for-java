@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.connectedvmware.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.connectedvmware.models.MachineExtension;
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.io.IOException;
 /** Samples for MachineExtensions Update. */
 public final class MachineExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateExtension.json
      */
     /**
      * Sample code: Create or Update a Machine Extension (PATCH).
@@ -25,7 +24,8 @@ public final class MachineExtensionsUpdateSamples {
         MachineExtension resource =
             manager
                 .machineExtensions()
-                .getWithResponse("myResourceGroup", "myMachine", "CustomScriptExtension", Context.NONE)
+                .getWithResponse(
+                    "myResourceGroup", "myMachine", "CustomScriptExtension", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

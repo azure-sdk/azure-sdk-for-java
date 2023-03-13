@@ -11,7 +11,7 @@ import com.azure.resourcemanager.connectedvmware.models.VICredential;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/** Describes the properties of a VCenter. */
 @Fluent
 public final class VCenterProperties {
     /*
@@ -73,6 +73,10 @@ public final class VCenterProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of VCenterProperties class. */
+    public VCenterProperties() {
+    }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.

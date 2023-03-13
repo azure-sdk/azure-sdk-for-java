@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.connectedvmware.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the inventory item. */
@@ -17,7 +18,7 @@ public final class InventoryItemInner extends ProxyResource {
      * Resource properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private InventoryItemProperties innerProperties = new InventoryItemProperties();
+    private InventoryItemProperties properties;
 
     /*
      * The system data.
@@ -33,13 +34,28 @@ public final class InventoryItemInner extends ProxyResource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of InventoryItemInner class. */
+    public InventoryItemInner() {
+    }
+
     /**
-     * Get the innerProperties property: Resource properties.
+     * Get the properties property: Resource properties.
      *
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private InventoryItemProperties innerProperties() {
-        return this.innerProperties;
+    public InventoryItemProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Resource properties.
+     *
+     * @param properties the properties value to set.
+     * @return the InventoryItemInner object itself.
+     */
+    public InventoryItemInner withProperties(InventoryItemProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -76,96 +92,17 @@ public final class InventoryItemInner extends ProxyResource {
     }
 
     /**
-     * Get the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory resource.
-     *
-     * @return the managedResourceId value.
-     */
-    public String managedResourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().managedResourceId();
-    }
-
-    /**
-     * Set the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory resource.
-     *
-     * @param managedResourceId the managedResourceId value to set.
-     * @return the InventoryItemInner object itself.
-     */
-    public InventoryItemInner withManagedResourceId(String managedResourceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new InventoryItemProperties();
-        }
-        this.innerProperties().withManagedResourceId(managedResourceId);
-        return this;
-    }
-
-    /**
-     * Get the moRefId property: Gets or sets the MoRef (Managed Object Reference) ID for the inventory item.
-     *
-     * @return the moRefId value.
-     */
-    public String moRefId() {
-        return this.innerProperties() == null ? null : this.innerProperties().moRefId();
-    }
-
-    /**
-     * Set the moRefId property: Gets or sets the MoRef (Managed Object Reference) ID for the inventory item.
-     *
-     * @param moRefId the moRefId value to set.
-     * @return the InventoryItemInner object itself.
-     */
-    public InventoryItemInner withMoRefId(String moRefId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new InventoryItemProperties();
-        }
-        this.innerProperties().withMoRefId(moRefId);
-        return this;
-    }
-
-    /**
-     * Get the moName property: Gets or sets the vCenter Managed Object name for the inventory item.
-     *
-     * @return the moName value.
-     */
-    public String moName() {
-        return this.innerProperties() == null ? null : this.innerProperties().moName();
-    }
-
-    /**
-     * Set the moName property: Gets or sets the vCenter Managed Object name for the inventory item.
-     *
-     * @param moName the moName value to set.
-     * @return the InventoryItemInner object itself.
-     */
-    public InventoryItemInner withMoName(String moName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new InventoryItemProperties();
-        }
-        this.innerProperties().withMoName(moName);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
+        if (properties() == null) {
             throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model InventoryItemInner"));
+                    new IllegalArgumentException("Missing required property properties in model InventoryItemInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
     }
 

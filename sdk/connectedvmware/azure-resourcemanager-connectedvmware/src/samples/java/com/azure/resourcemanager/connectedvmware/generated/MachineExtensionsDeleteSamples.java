@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for MachineExtensions Delete. */
 public final class MachineExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DELETEExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DELETEExtension.json
      */
     /**
      * Sample code: Delete a Machine Extension.
@@ -18,6 +16,6 @@ public final class MachineExtensionsDeleteSamples {
      */
     public static void deleteAMachineExtension(
         com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.machineExtensions().delete("myResourceGroup", "myMachine", "MMA", Context.NONE);
+        manager.machineExtensions().delete("myResourceGroup", "myMachine", "MMA", com.azure.core.util.Context.NONE);
     }
 }

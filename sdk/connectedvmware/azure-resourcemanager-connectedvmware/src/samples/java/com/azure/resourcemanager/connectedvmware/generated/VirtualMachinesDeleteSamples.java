@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Delete. */
 public final class VirtualMachinesDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteVirtualMachine.json
      */
     /**
      * Sample code: DeleteVirtualMachine.
@@ -17,6 +15,6 @@ public final class VirtualMachinesDeleteSamples {
      * @param manager Entry point to ConnectedVMwareManager.
      */
     public static void deleteVirtualMachine(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.virtualMachines().delete("testrg", "DemoVM", null, null, Context.NONE);
+        manager.virtualMachines().delete("testrg", "DemoVM", null, null, com.azure.core.util.Context.NONE);
     }
 }

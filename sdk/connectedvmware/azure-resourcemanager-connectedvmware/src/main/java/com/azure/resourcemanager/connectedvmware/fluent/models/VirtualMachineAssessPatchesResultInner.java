@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.connectedvmware.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.connectedvmware.models.AvailablePatchCountByClassification;
-import com.azure.resourcemanager.connectedvmware.models.ErrorDetail;
 import com.azure.resourcemanager.connectedvmware.models.OsTypeUM;
 import com.azure.resourcemanager.connectedvmware.models.PatchOperationStartedBy;
 import com.azure.resourcemanager.connectedvmware.models.PatchOperationStatus;
@@ -74,12 +74,14 @@ public final class VirtualMachineAssessPatchesResultInner {
     private OsTypeUM osType;
 
     /*
-     * Error details.
-     *
      * The errors that were encountered during execution of the operation. The details array contains the list of them.
      */
     @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private ErrorDetail errorDetails;
+    private ManagementError errorDetails;
+
+    /** Creates an instance of VirtualMachineAssessPatchesResultInner class. */
+    public VirtualMachineAssessPatchesResultInner() {
+    }
 
     /**
      * Get the status property: The overall success or failure status of the operation. It remains "InProgress" until
@@ -180,14 +182,12 @@ public final class VirtualMachineAssessPatchesResultInner {
     }
 
     /**
-     * Get the errorDetails property: Error details.
-     *
-     * <p>The errors that were encountered during execution of the operation. The details array contains the list of
-     * them.
+     * Get the errorDetails property: The errors that were encountered during execution of the operation. The details
+     * array contains the list of them.
      *
      * @return the errorDetails value.
      */
-    public ErrorDetail errorDetails() {
+    public ManagementError errorDetails() {
         return this.errorDetails;
     }
 
@@ -199,9 +199,6 @@ public final class VirtualMachineAssessPatchesResultInner {
     public void validate() {
         if (availablePatchCountByClassification() != null) {
             availablePatchCountByClassification().validate();
-        }
-        if (errorDetails() != null) {
-            errorDetails().validate();
         }
     }
 }

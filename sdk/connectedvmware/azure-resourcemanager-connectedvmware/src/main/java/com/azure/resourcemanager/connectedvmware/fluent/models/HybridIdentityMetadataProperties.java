@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.connectedvmware.models.Identity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/** Describes the properties of Hybrid Identity Metadata for a Virtual Machine. */
 @Fluent
 public final class HybridIdentityMetadataProperties {
     /*
@@ -34,6 +34,10 @@ public final class HybridIdentityMetadataProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of HybridIdentityMetadataProperties class. */
+    public HybridIdentityMetadataProperties() {
+    }
 
     /**
      * Get the vmId property: Gets or sets the Vm Id.

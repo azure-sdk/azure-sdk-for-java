@@ -5,17 +5,18 @@
 package com.azure.resourcemanager.connectedvmware.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.connectedvmware.models.GuestAgentProfileUpdate;
 import com.azure.resourcemanager.connectedvmware.models.HardwareProfile;
 import com.azure.resourcemanager.connectedvmware.models.NetworkProfileUpdate;
 import com.azure.resourcemanager.connectedvmware.models.OsProfileUpdate;
 import com.azure.resourcemanager.connectedvmware.models.StorageProfileUpdate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/** Describes the properties of a Virtual Machine. */
 @Fluent
 public final class VirtualMachineUpdateProperties {
     /*
-     * Defines the resource properties.
+     * Specifies the hardware settings for the virtual machine.
      */
     @JsonProperty(value = "hardwareProfile")
     private HardwareProfile hardwareProfile;
@@ -27,19 +28,29 @@ public final class VirtualMachineUpdateProperties {
     private OsProfileUpdate osProfile;
 
     /*
-     * Defines the resource update properties.
+     * Specifies the storage settings for the virtual machine disks.
      */
     @JsonProperty(value = "storageProfile")
     private StorageProfileUpdate storageProfile;
 
     /*
-     * Defines the update resource properties.
+     * Specifies the network interfaces of the virtual machine.
      */
     @JsonProperty(value = "networkProfile")
     private NetworkProfileUpdate networkProfile;
 
+    /*
+     * Specifies the guest agent settings for the virtual machine.
+     */
+    @JsonProperty(value = "guestAgentProfile")
+    private GuestAgentProfileUpdate guestAgentProfile;
+
+    /** Creates an instance of VirtualMachineUpdateProperties class. */
+    public VirtualMachineUpdateProperties() {
+    }
+
     /**
-     * Get the hardwareProfile property: Defines the resource properties.
+     * Get the hardwareProfile property: Specifies the hardware settings for the virtual machine.
      *
      * @return the hardwareProfile value.
      */
@@ -48,7 +59,7 @@ public final class VirtualMachineUpdateProperties {
     }
 
     /**
-     * Set the hardwareProfile property: Defines the resource properties.
+     * Set the hardwareProfile property: Specifies the hardware settings for the virtual machine.
      *
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineUpdateProperties object itself.
@@ -79,7 +90,7 @@ public final class VirtualMachineUpdateProperties {
     }
 
     /**
-     * Get the storageProfile property: Defines the resource update properties.
+     * Get the storageProfile property: Specifies the storage settings for the virtual machine disks.
      *
      * @return the storageProfile value.
      */
@@ -88,7 +99,7 @@ public final class VirtualMachineUpdateProperties {
     }
 
     /**
-     * Set the storageProfile property: Defines the resource update properties.
+     * Set the storageProfile property: Specifies the storage settings for the virtual machine disks.
      *
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineUpdateProperties object itself.
@@ -99,7 +110,7 @@ public final class VirtualMachineUpdateProperties {
     }
 
     /**
-     * Get the networkProfile property: Defines the update resource properties.
+     * Get the networkProfile property: Specifies the network interfaces of the virtual machine.
      *
      * @return the networkProfile value.
      */
@@ -108,13 +119,33 @@ public final class VirtualMachineUpdateProperties {
     }
 
     /**
-     * Set the networkProfile property: Defines the update resource properties.
+     * Set the networkProfile property: Specifies the network interfaces of the virtual machine.
      *
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineUpdateProperties object itself.
      */
     public VirtualMachineUpdateProperties withNetworkProfile(NetworkProfileUpdate networkProfile) {
         this.networkProfile = networkProfile;
+        return this;
+    }
+
+    /**
+     * Get the guestAgentProfile property: Specifies the guest agent settings for the virtual machine.
+     *
+     * @return the guestAgentProfile value.
+     */
+    public GuestAgentProfileUpdate guestAgentProfile() {
+        return this.guestAgentProfile;
+    }
+
+    /**
+     * Set the guestAgentProfile property: Specifies the guest agent settings for the virtual machine.
+     *
+     * @param guestAgentProfile the guestAgentProfile value to set.
+     * @return the VirtualMachineUpdateProperties object itself.
+     */
+    public VirtualMachineUpdateProperties withGuestAgentProfile(GuestAgentProfileUpdate guestAgentProfile) {
+        this.guestAgentProfile = guestAgentProfile;
         return this;
     }
 
@@ -135,6 +166,9 @@ public final class VirtualMachineUpdateProperties {
         }
         if (networkProfile() != null) {
             networkProfile().validate();
+        }
+        if (guestAgentProfile() != null) {
+            guestAgentProfile().validate();
         }
     }
 }

@@ -8,13 +8,22 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OsTypeUM. */
+/** The operating system type of the machine. */
 public final class OsTypeUM extends ExpandableStringEnum<OsTypeUM> {
     /** Static value Windows for OsTypeUM. */
     public static final OsTypeUM WINDOWS = fromString("Windows");
 
     /** Static value Linux for OsTypeUM. */
     public static final OsTypeUM LINUX = fromString("Linux");
+
+    /**
+     * Creates a new instance of OsTypeUM value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public OsTypeUM() {
+    }
 
     /**
      * Creates or finds a OsTypeUM from its string representation.

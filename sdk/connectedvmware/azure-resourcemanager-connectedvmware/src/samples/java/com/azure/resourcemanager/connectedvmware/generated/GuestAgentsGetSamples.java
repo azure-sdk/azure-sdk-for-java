@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GuestAgents Get. */
 public final class GuestAgentsGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetGuestAgent.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetGuestAgent.json
      */
     /**
      * Sample code: GetGuestAgent.
@@ -17,6 +15,6 @@ public final class GuestAgentsGetSamples {
      * @param manager Entry point to ConnectedVMwareManager.
      */
     public static void getGuestAgent(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.guestAgents().getWithResponse("testrg", "ContosoVm", "default", Context.NONE);
+        manager.guestAgents().getWithResponse("testrg", "ContosoVm", "default", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.connectedvmware.models.Cluster;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for Clusters Update. */
 public final class ClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateCluster.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateCluster.json
      */
     /**
      * Sample code: UpdateCluster.
@@ -21,7 +20,10 @@ public final class ClustersUpdateSamples {
      */
     public static void updateCluster(com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
         Cluster resource =
-            manager.clusters().getByResourceGroupWithResponse("testrg", "HRCluster", Context.NONE).getValue();
+            manager
+                .clusters()
+                .getByResourceGroupWithResponse("testrg", "HRCluster", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

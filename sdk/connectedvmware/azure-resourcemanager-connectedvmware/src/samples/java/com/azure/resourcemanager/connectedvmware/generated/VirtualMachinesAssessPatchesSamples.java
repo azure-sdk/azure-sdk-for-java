@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.connectedvmware.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines AssessPatches. */
 public final class VirtualMachinesAssessPatchesSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/VirtualMachineAssessPatches.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/VirtualMachineAssessPatches.json
      */
     /**
      * Sample code: Assess patch state of a machine.
@@ -18,6 +16,8 @@ public final class VirtualMachinesAssessPatchesSamples {
      */
     public static void assessPatchStateOfAMachine(
         com.azure.resourcemanager.connectedvmware.ConnectedVMwareManager manager) {
-        manager.virtualMachines().assessPatches("myResourceGroupName", "myMachineName", Context.NONE);
+        manager
+            .virtualMachines()
+            .assessPatches("myResourceGroupName", "myMachineName", com.azure.core.util.Context.NONE);
     }
 }

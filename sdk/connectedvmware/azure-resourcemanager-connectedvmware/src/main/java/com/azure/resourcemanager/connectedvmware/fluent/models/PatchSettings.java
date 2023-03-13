@@ -22,6 +22,10 @@ public final class PatchSettings {
     @JsonProperty(value = "patchMode")
     private String patchMode;
 
+    /** Creates an instance of PatchSettings class. */
+    public PatchSettings() {
+    }
+
     /**
      * Get the assessmentMode property: Specifies the assessment mode.
      *

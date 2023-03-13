@@ -7,10 +7,10 @@ package com.azure.resourcemanager.connectedvmware.generated;
 import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 import com.azure.resourcemanager.connectedvmware.models.HardwareProfile;
 
-/** Samples for VirtualMachines Create. */
-public final class VirtualMachinesCreateSamples {
+/** Samples for VirtualMachines CreateOrUpdate. */
+public final class VirtualMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/CreateVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/CreateVirtualMachine.json
      */
     /**
      * Sample code: CreateVirtualMachine.

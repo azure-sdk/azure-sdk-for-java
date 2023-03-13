@@ -91,6 +91,24 @@ public final class HostModelImpl implements HostModel, HostModel.Definition, Hos
         return this.innerModel().customResourceName();
     }
 
+    public List<String> datastoreIds() {
+        List<String> inner = this.innerModel().datastoreIds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> networkIds() {
+        List<String> inner = this.innerModel().networkIds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
