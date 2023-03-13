@@ -4,10 +4,9 @@
 
 package com.azure.resourcemanager.consumption.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.ModernChargeSummaryProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -15,15 +14,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Modern charge summary. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("modern")
-@Fluent
+@Immutable
 public final class ModernChargeSummary extends ChargeSummary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernChargeSummary.class);
-
     /*
      * Properties for modern charge summary
      */
     @JsonProperty(value = "properties", required = true)
     private ModernChargeSummaryProperties innerProperties = new ModernChargeSummaryProperties();
+
+    /** Creates an instance of ModernChargeSummary class. */
+    public ModernChargeSummary() {
+    }
 
     /**
      * Get the innerProperties property: Properties for modern charge summary.
@@ -32,13 +33,6 @@ public final class ModernChargeSummary extends ChargeSummary {
      */
     private ModernChargeSummaryProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ModernChargeSummary withEtag(String etag) {
-        super.withEtag(etag);
-        return this;
     }
 
     /**
@@ -141,6 +135,15 @@ public final class ModernChargeSummary extends ChargeSummary {
     }
 
     /**
+     * Get the subscriptionId property: Subscription guid.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().subscriptionId();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -149,7 +152,7 @@ public final class ModernChargeSummary extends ChargeSummary {
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model ModernChargeSummary"));
@@ -157,4 +160,6 @@ public final class ModernChargeSummary extends ChargeSummary {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ModernChargeSummary.class);
 }

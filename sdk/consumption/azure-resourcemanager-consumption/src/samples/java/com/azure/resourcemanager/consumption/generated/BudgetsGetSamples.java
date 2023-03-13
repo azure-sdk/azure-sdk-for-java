@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Budgets Get. */
 public final class BudgetsGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class BudgetsGetSamples {
     public static void budget(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .budgets()
-            .getWithResponse("subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", com.azure.core.util.Context.NONE);
     }
 }
