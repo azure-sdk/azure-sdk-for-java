@@ -10,7 +10,7 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryTemplateInner;
-import com.azure.resourcemanager.securityinsights.models.Constant88;
+import com.azure.resourcemanager.securityinsights.models.Constant93;
 
 /** An instance of this class provides access to all the operations defined in EntityQueryTemplatesClient. */
 public interface EntityQueryTemplatesClient {
@@ -41,21 +41,7 @@ public interface EntityQueryTemplatesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EntityQueryTemplateInner> list(
-        String resourceGroupName, String workspaceName, Constant88 kind, Context context);
-
-    /**
-     * Gets an entity query.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityQueryTemplateId entity query template ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity query.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    EntityQueryTemplateInner get(String resourceGroupName, String workspaceName, String entityQueryTemplateId);
+        String resourceGroupName, String workspaceName, Constant93 kind, Context context);
 
     /**
      * Gets an entity query.
@@ -72,4 +58,18 @@ public interface EntityQueryTemplatesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<EntityQueryTemplateInner> getWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryTemplateId, Context context);
+
+    /**
+     * Gets an entity query.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityQueryTemplateId entity query template ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entity query.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    EntityQueryTemplateInner get(String resourceGroupName, String workspaceName, String entityQueryTemplateId);
 }

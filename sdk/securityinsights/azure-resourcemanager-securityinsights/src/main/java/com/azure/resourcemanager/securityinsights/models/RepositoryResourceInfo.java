@@ -28,6 +28,10 @@ public final class RepositoryResourceInfo {
     @JsonProperty(value = "azureDevOpsResourceInfo")
     private AzureDevOpsResourceInfo azureDevOpsResourceInfo;
 
+    /** Creates an instance of RepositoryResourceInfo class. */
+    public RepositoryResourceInfo() {
+    }
+
     /**
      * Get the webhook property: The webhook object created for the source-control.
      *

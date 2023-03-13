@@ -19,6 +19,10 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
     @JsonProperty(value = "dataTypes", required = true)
     private MtpDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of MtpDataConnectorProperties class. */
+    public MtpDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

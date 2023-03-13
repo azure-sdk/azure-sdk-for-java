@@ -251,26 +251,22 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this;
     }
 
-    public TeamInformation createTeam(TeamProperties teamProperties) {
-        return serviceManager.incidents().createTeam(resourceGroupName, workspaceName, incidentId, teamProperties);
-    }
-
     public Response<TeamInformation> createTeamWithResponse(TeamProperties teamProperties, Context context) {
         return serviceManager
             .incidents()
             .createTeamWithResponse(resourceGroupName, workspaceName, incidentId, teamProperties, context);
     }
 
-    public IncidentAlertList listAlerts() {
-        return serviceManager.incidents().listAlerts(resourceGroupName, workspaceName, incidentId);
+    public TeamInformation createTeam(TeamProperties teamProperties) {
+        return serviceManager.incidents().createTeam(resourceGroupName, workspaceName, incidentId, teamProperties);
     }
 
     public Response<IncidentAlertList> listAlertsWithResponse(Context context) {
         return serviceManager.incidents().listAlertsWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
-    public IncidentBookmarkList listBookmarks() {
-        return serviceManager.incidents().listBookmarks(resourceGroupName, workspaceName, incidentId);
+    public IncidentAlertList listAlerts() {
+        return serviceManager.incidents().listAlerts(resourceGroupName, workspaceName, incidentId);
     }
 
     public Response<IncidentBookmarkList> listBookmarksWithResponse(Context context) {
@@ -279,14 +275,18 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
             .listBookmarksWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
-    public IncidentEntitiesResponse listEntities() {
-        return serviceManager.incidents().listEntities(resourceGroupName, workspaceName, incidentId);
+    public IncidentBookmarkList listBookmarks() {
+        return serviceManager.incidents().listBookmarks(resourceGroupName, workspaceName, incidentId);
     }
 
     public Response<IncidentEntitiesResponse> listEntitiesWithResponse(Context context) {
         return serviceManager
             .incidents()
             .listEntitiesWithResponse(resourceGroupName, workspaceName, incidentId, context);
+    }
+
+    public IncidentEntitiesResponse listEntities() {
+        return serviceManager.incidents().listEntities(resourceGroupName, workspaceName, incidentId);
     }
 
     public IncidentImpl withEtag(String etag) {

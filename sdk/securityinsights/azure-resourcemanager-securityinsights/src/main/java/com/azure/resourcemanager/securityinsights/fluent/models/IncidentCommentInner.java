@@ -19,6 +19,10 @@ public final class IncidentCommentInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private IncidentCommentProperties innerProperties;
 
+    /** Creates an instance of IncidentCommentInner class. */
+    public IncidentCommentInner() {
+    }
+
     /**
      * Get the innerProperties property: Incident comment properties.
      *

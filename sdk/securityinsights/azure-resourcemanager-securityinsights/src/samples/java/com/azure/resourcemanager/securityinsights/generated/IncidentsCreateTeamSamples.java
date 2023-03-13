@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 
 /** Samples for Incidents CreateTeam. */
 public final class IncidentsCreateTeamSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/incidents/CreateTeam.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-11-01-preview/examples/incidents/CreateTeam.json
      */
     /**
      * Sample code: Creates incident teams group.
@@ -26,6 +25,6 @@ public final class IncidentsCreateTeamSamples {
                 "AmbaE5WestCentralUS",
                 "69a30280-6a4c-4aa7-9af0-5d63f335d600",
                 new TeamProperties().withTeamName("Team name").withTeamDescription("Team description"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

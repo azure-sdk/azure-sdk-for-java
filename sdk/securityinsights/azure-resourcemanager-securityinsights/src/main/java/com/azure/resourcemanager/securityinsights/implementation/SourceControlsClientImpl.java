@@ -58,7 +58,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSour")
-    private interface SourceControlsService {
+    public interface SourceControlsService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"

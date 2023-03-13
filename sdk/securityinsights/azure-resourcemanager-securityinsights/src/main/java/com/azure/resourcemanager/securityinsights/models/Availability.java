@@ -22,6 +22,10 @@ public final class Availability {
     @JsonProperty(value = "isPreview")
     private Boolean isPreview;
 
+    /** Creates an instance of Availability class. */
+    public Availability() {
+    }
+
     /**
      * Get the status property: The connector Availability Status.
      *

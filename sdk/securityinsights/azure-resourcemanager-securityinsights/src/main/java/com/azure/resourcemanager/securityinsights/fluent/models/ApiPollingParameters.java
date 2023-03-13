@@ -24,6 +24,10 @@ public final class ApiPollingParameters {
     @JsonProperty(value = "pollingConfig")
     private CodelessConnectorPollingConfigProperties pollingConfig;
 
+    /** Creates an instance of ApiPollingParameters class. */
+    public ApiPollingParameters() {
+    }
+
     /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
      *

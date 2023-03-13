@@ -20,6 +20,15 @@ public final class SettingType extends ExpandableStringEnum<SettingType> {
     public static final SettingType INFO_MESSAGE = fromString("InfoMessage");
 
     /**
+     * Creates a new instance of SettingType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SettingType() {
+    }
+
+    /**
      * Creates or finds a SettingType from its string representation.
      *
      * @param name a name to look for.
