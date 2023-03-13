@@ -16,62 +16,62 @@ import com.azure.resourcemanager.security.models.ExecuteGovernanceRuleParams;
 /** An instance of this class provides access to all the operations defined in GovernanceRulesOperationsClient. */
 public interface GovernanceRulesOperationsClient {
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId along with {@link Response}.
+     * @return a specific governance rule for the requested scope by ruleId along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<GovernanceRuleInner> getWithResponse(String ruleId, Context context);
 
     /**
-     * Get a specific governanceRule for the requested scope by ruleId.
+     * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule for the requested scope by ruleId.
+     * @return a specific governance rule for the requested scope by ruleId.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     GovernanceRuleInner get(String ruleId);
 
     /**
-     * Creates or update a security GovernanceRule on the given subscription.
+     * Creates or updates a governance rule on a subscription.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope along with {@link Response}.
+     * @return governance rule over a given scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<GovernanceRuleInner> createOrUpdateWithResponse(
         String ruleId, GovernanceRuleInner governanceRule, Context context);
 
     /**
-     * Creates or update a security GovernanceRule on the given subscription.
+     * Creates or updates a governance rule on a subscription.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param governanceRule GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param governanceRule Governance rule over a given scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security GovernanceRule over a given scope.
+     * @return governance rule over a given scope.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     GovernanceRuleInner createOrUpdate(String ruleId, GovernanceRuleInner governanceRule);
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -82,9 +82,9 @@ public interface GovernanceRulesOperationsClient {
     Response<Void> deleteWithResponse(String ruleId, Context context);
 
     /**
-     * Delete a GovernanceRule over a given scope.
+     * Delete a Governance rule over a given scope.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -93,9 +93,9 @@ public interface GovernanceRulesOperationsClient {
     void delete(String ruleId);
 
     /**
-     * Execute a security GovernanceRule on the given subscription.
+     * Execute a governance rule on a subscription.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -105,10 +105,10 @@ public interface GovernanceRulesOperationsClient {
     SyncPoller<PollResult<Void>, Void> beginRuleIdExecuteSingleSubscription(String ruleId);
 
     /**
-     * Execute a security GovernanceRule on the given subscription.
+     * Execute a governance rule on a subscription.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param executeGovernanceRuleParams GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param executeGovernanceRuleParams Execute governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -120,9 +120,9 @@ public interface GovernanceRulesOperationsClient {
         String ruleId, ExecuteGovernanceRuleParams executeGovernanceRuleParams, Context context);
 
     /**
-     * Execute a security GovernanceRule on the given subscription.
+     * Execute a governance rule on a subscription.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -131,10 +131,10 @@ public interface GovernanceRulesOperationsClient {
     void ruleIdExecuteSingleSubscription(String ruleId);
 
     /**
-     * Execute a security GovernanceRule on the given subscription.
+     * Execute a governance rule on a subscription.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param executeGovernanceRuleParams GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param executeGovernanceRuleParams Execute governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -145,12 +145,12 @@ public interface GovernanceRulesOperationsClient {
         String ruleId, ExecuteGovernanceRuleParams executeGovernanceRuleParams, Context context);
 
     /**
-     * Execute a security GovernanceRule on the given security connector.
+     * Execute a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -161,13 +161,13 @@ public interface GovernanceRulesOperationsClient {
         String resourceGroupName, String securityConnectorName, String ruleId);
 
     /**
-     * Execute a security GovernanceRule on the given security connector.
+     * Execute a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param executeGovernanceRuleParams GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param executeGovernanceRuleParams Execute governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -183,12 +183,12 @@ public interface GovernanceRulesOperationsClient {
         Context context);
 
     /**
-     * Execute a security GovernanceRule on the given security connector.
+     * Execute a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -197,13 +197,13 @@ public interface GovernanceRulesOperationsClient {
     void ruleIdExecuteSingleSecurityConnector(String resourceGroupName, String securityConnectorName, String ruleId);
 
     /**
-     * Execute a security GovernanceRule on the given security connector.
+     * Execute a governance rule on the given security connector.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
      * @param securityConnectorName The security connector name.
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param executeGovernanceRuleParams GovernanceRule over a subscription scope.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param executeGovernanceRuleParams Execute governance rule over a given scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -213,6 +213,68 @@ public interface GovernanceRulesOperationsClient {
     void ruleIdExecuteSingleSecurityConnector(
         String resourceGroupName,
         String securityConnectorName,
+        String ruleId,
+        ExecuteGovernanceRuleParams executeGovernanceRuleParams,
+        Context context);
+
+    /**
+     * Execute governance rule on the given management group.
+     *
+     * @param managementGroupId Azure Management Group ID.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginRuleIdExecuteSingleManagementGroup(String managementGroupId, String ruleId);
+
+    /**
+     * Execute governance rule on the given management group.
+     *
+     * @param managementGroupId Azure Management Group ID.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param executeGovernanceRuleParams Execute governance rule over a given scope.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginRuleIdExecuteSingleManagementGroup(
+        String managementGroupId,
+        String ruleId,
+        ExecuteGovernanceRuleParams executeGovernanceRuleParams,
+        Context context);
+
+    /**
+     * Execute governance rule on the given management group.
+     *
+     * @param managementGroupId Azure Management Group ID.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void ruleIdExecuteSingleManagementGroup(String managementGroupId, String ruleId);
+
+    /**
+     * Execute governance rule on the given management group.
+     *
+     * @param managementGroupId Azure Management Group ID.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param executeGovernanceRuleParams Execute governance rule over a given scope.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void ruleIdExecuteSingleManagementGroup(
+        String managementGroupId,
         String ruleId,
         ExecuteGovernanceRuleParams executeGovernanceRuleParams,
         Context context);

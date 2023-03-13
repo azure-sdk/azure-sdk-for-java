@@ -16,18 +16,13 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.polling.PollerFlux;
-import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.security.fluent.SubscriptionGovernanceRulesExecuteStatusClient;
 import com.azure.resourcemanager.security.fluent.models.ExecuteRuleStatusInner;
-import java.nio.ByteBuffer;
-import reactor.core.publisher.Flux;
+import com.azure.resourcemanager.security.models.SubscriptionGovernanceRulesExecuteStatusGetResponse;
 import reactor.core.publisher.Mono;
 
 /**
@@ -70,7 +65,7 @@ public final class SubscriptionGovernanceRulesExecuteStatusClientImpl
                 + "/{operationId}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> get(
+        Mono<SubscriptionGovernanceRulesExecuteStatusGetResponse> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -81,18 +76,19 @@ public final class SubscriptionGovernanceRulesExecuteStatusClientImpl
     }
 
     /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
+     * Get a specific governance rule execution status for the requested scope by ruleId and operationId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param operationId The governance rule execution key - unique key for the execution of governance rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule execution status for the requested scope by ruleId and operationId along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return a specific governance rule execution status for the requested scope by ruleId and operationId on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> getWithResponseAsync(String ruleId, String operationId) {
+    private Mono<SubscriptionGovernanceRulesExecuteStatusGetResponse> getWithResponseAsync(
+        String ruleId, String operationId) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -129,19 +125,20 @@ public final class SubscriptionGovernanceRulesExecuteStatusClientImpl
     }
 
     /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
+     * Get a specific governance rule execution status for the requested scope by ruleId and operationId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param operationId The governance rule execution key - unique key for the execution of governance rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule execution status for the requested scope by ruleId and operationId along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return a specific governance rule execution status for the requested scope by ruleId and operationId on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> getWithResponseAsync(String ruleId, String operationId, Context context) {
+    private Mono<SubscriptionGovernanceRulesExecuteStatusGetResponse> getWithResponseAsync(
+        String ruleId, String operationId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -175,153 +172,50 @@ public final class SubscriptionGovernanceRulesExecuteStatusClientImpl
     }
 
     /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
+     * Get a specific governance rule execution status for the requested scope by ruleId and operationId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param operationId The governance rule execution key - unique key for the execution of governance rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a specific governanceRule execution status for the requested scope
-     *     by ruleId and operationId.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ExecuteRuleStatusInner>, ExecuteRuleStatusInner> beginGetAsync(
-        String ruleId, String operationId) {
-        Mono<Response<Flux<ByteBuffer>>> mono = getWithResponseAsync(ruleId, operationId);
-        return this
-            .client
-            .<ExecuteRuleStatusInner, ExecuteRuleStatusInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ExecuteRuleStatusInner.class,
-                ExecuteRuleStatusInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
-     *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a specific governanceRule execution status for the requested scope
-     *     by ruleId and operationId.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ExecuteRuleStatusInner>, ExecuteRuleStatusInner> beginGetAsync(
-        String ruleId, String operationId, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = getWithResponseAsync(ruleId, operationId, context);
-        return this
-            .client
-            .<ExecuteRuleStatusInner, ExecuteRuleStatusInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ExecuteRuleStatusInner.class,
-                ExecuteRuleStatusInner.class,
-                context);
-    }
-
-    /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
-     *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a specific governanceRule execution status for the requested scope
-     *     by ruleId and operationId.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ExecuteRuleStatusInner>, ExecuteRuleStatusInner> beginGet(
-        String ruleId, String operationId) {
-        return beginGetAsync(ruleId, operationId).getSyncPoller();
-    }
-
-    /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
-     *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a specific governanceRule execution status for the requested scope
-     *     by ruleId and operationId.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ExecuteRuleStatusInner>, ExecuteRuleStatusInner> beginGet(
-        String ruleId, String operationId, Context context) {
-        return beginGetAsync(ruleId, operationId, context).getSyncPoller();
-    }
-
-    /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
-     *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule execution status for the requested scope by ruleId and operationId on
+     * @return a specific governance rule execution status for the requested scope by ruleId and operationId on
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExecuteRuleStatusInner> getAsync(String ruleId, String operationId) {
-        return beginGetAsync(ruleId, operationId).last().flatMap(this.client::getLroFinalResultOrError);
+        return getWithResponseAsync(ruleId, operationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
+     * Get a specific governance rule execution status for the requested scope by ruleId and operationId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param operationId The governance rule execution key - unique key for the execution of governance rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule execution status for the requested scope by ruleId and operationId on
-     *     successful completion of {@link Mono}.
+     * @return a specific governance rule execution status for the requested scope by ruleId and operationId.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExecuteRuleStatusInner> getAsync(String ruleId, String operationId, Context context) {
-        return beginGetAsync(ruleId, operationId, context).last().flatMap(this.client::getLroFinalResultOrError);
+    public SubscriptionGovernanceRulesExecuteStatusGetResponse getWithResponse(
+        String ruleId, String operationId, Context context) {
+        return getWithResponseAsync(ruleId, operationId, context).block();
     }
 
     /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
+     * Get a specific governance rule execution status for the requested scope by ruleId and operationId.
      *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
+     * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
+     * @param operationId The governance rule execution key - unique key for the execution of governance rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule execution status for the requested scope by ruleId and operationId.
+     * @return a specific governance rule execution status for the requested scope by ruleId and operationId.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ExecuteRuleStatusInner get(String ruleId, String operationId) {
-        return getAsync(ruleId, operationId).block();
-    }
-
-    /**
-     * Get a specific governanceRule execution status for the requested scope by ruleId and operationId.
-     *
-     * @param ruleId The security GovernanceRule key - unique key for the standard GovernanceRule.
-     * @param operationId The security GovernanceRule execution key - unique key for the execution of GovernanceRule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific governanceRule execution status for the requested scope by ruleId and operationId.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExecuteRuleStatusInner get(String ruleId, String operationId, Context context) {
-        return getAsync(ruleId, operationId, context).block();
+        return getWithResponse(ruleId, operationId, Context.NONE).getValue();
     }
 }

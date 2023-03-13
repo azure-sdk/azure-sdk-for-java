@@ -79,12 +79,12 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     }
 
     /**
-     * Get a list of all relevant governanceRules over a subscription level scope.
+     * Get a list of the governance rules on the subscription level scope.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a subscription level scope along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return a list of the governance rules on the subscription level scope along with {@link PagedResponse} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceRuleInner>> listSinglePageAsync() {
@@ -120,14 +120,14 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     }
 
     /**
-     * Get a list of all relevant governanceRules over a subscription level scope.
+     * Get a list of the governance rules on the subscription level scope.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a subscription level scope along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return a list of the governance rules on the subscription level scope along with {@link PagedResponse} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceRuleInner>> listSinglePageAsync(Context context) {
@@ -160,11 +160,11 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     }
 
     /**
-     * Get a list of all relevant governanceRules over a subscription level scope.
+     * Get a list of the governance rules on the subscription level scope.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a subscription level scope as paginated response with {@link
+     * @return a list of the governance rules on the subscription level scope as paginated response with {@link
      *     PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -173,13 +173,13 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     }
 
     /**
-     * Get a list of all relevant governanceRules over a subscription level scope.
+     * Get a list of the governance rules on the subscription level scope.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a subscription level scope as paginated response with {@link
+     * @return a list of the governance rules on the subscription level scope as paginated response with {@link
      *     PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -189,11 +189,11 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     }
 
     /**
-     * Get a list of all relevant governanceRules over a subscription level scope.
+     * Get a list of the governance rules on the subscription level scope.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a subscription level scope as paginated response with {@link
+     * @return a list of the governance rules on the subscription level scope as paginated response with {@link
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -202,13 +202,13 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     }
 
     /**
-     * Get a list of all relevant governanceRules over a subscription level scope.
+     * Get a list of the governance rules on the subscription level scope.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a subscription level scope as paginated response with {@link
+     * @return a list of the governance rules on the subscription level scope as paginated response with {@link
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -224,8 +224,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a security governanceRules list along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return page of a governance rules list along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceRuleInner>> listNextSinglePageAsync(String nextLink) {
@@ -262,8 +262,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a security governanceRules list along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return page of a governance rules list along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceRuleInner>> listNextSinglePageAsync(String nextLink, Context context) {

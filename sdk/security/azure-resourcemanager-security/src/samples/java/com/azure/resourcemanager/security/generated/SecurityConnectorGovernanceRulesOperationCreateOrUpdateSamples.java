@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.security.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.security.fluent.models.GovernanceRuleInner;
 import com.azure.resourcemanager.security.models.GovernanceRuleEmailNotification;
@@ -61,6 +60,6 @@ public final class SecurityConnectorGovernanceRulesOperationCreateOrUpdateSample
                         new GovernanceRuleEmailNotification()
                             .withDisableManagerEmailNotification(true)
                             .withDisableOwnerEmailNotification(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

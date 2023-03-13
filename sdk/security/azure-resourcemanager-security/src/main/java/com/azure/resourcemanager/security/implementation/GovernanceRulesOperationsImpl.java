@@ -84,6 +84,20 @@ public final class GovernanceRulesOperationsImpl implements GovernanceRulesOpera
                 resourceGroupName, securityConnectorName, ruleId, executeGovernanceRuleParams, context);
     }
 
+    public void ruleIdExecuteSingleManagementGroup(String managementGroupId, String ruleId) {
+        this.serviceClient().ruleIdExecuteSingleManagementGroup(managementGroupId, ruleId);
+    }
+
+    public void ruleIdExecuteSingleManagementGroup(
+        String managementGroupId,
+        String ruleId,
+        ExecuteGovernanceRuleParams executeGovernanceRuleParams,
+        Context context) {
+        this
+            .serviceClient()
+            .ruleIdExecuteSingleManagementGroup(managementGroupId, ruleId, executeGovernanceRuleParams, context);
+    }
+
     public GovernanceRule getById(String id) {
         String ruleId = Utils.getValueFromIdByName(id, "governanceRules");
         if (ruleId == null) {

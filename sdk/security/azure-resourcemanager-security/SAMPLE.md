@@ -172,6 +172,7 @@
 - [CreateOrUpdate](#governancerulesoperation_createorupdate)
 - [Delete](#governancerulesoperation_delete)
 - [Get](#governancerulesoperation_get)
+- [RuleIdExecuteSingleManagementGroup](#governancerulesoperation_ruleidexecutesinglemanagementgroup)
 - [RuleIdExecuteSingleSecurityConnector](#governancerulesoperation_ruleidexecutesinglesecurityconnector)
 - [RuleIdExecuteSingleSubscription](#governancerulesoperation_ruleidexecutesinglesubscription)
 
@@ -230,6 +231,24 @@
 
 - [Get](#locations_get)
 - [List](#locations_list)
+
+## ManagementGroupGovernanceRule
+
+- [List](#managementgroupgovernancerule_list)
+
+## ManagementGroupGovernanceRulesDeleteStatus
+
+- [Get](#managementgroupgovernancerulesdeletestatus_get)
+
+## ManagementGroupGovernanceRulesExecuteStatus
+
+- [Get](#managementgroupgovernancerulesexecutestatus_get)
+
+## ManagementGroupGovernanceRulesOperation
+
+- [CreateOrUpdate](#managementgroupgovernancerulesoperation_createorupdate)
+- [Delete](#managementgroupgovernancerulesoperation_delete)
+- [Get](#managementgroupgovernancerulesoperation_get)
 
 ## MdeOnboardings
 
@@ -395,8 +414,6 @@
 ### AdaptiveApplicationControls_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AdaptiveApplicationControls Delete. */
 public final class AdaptiveApplicationControlsDeleteSamples {
     /*
@@ -409,7 +426,9 @@ public final class AdaptiveApplicationControlsDeleteSamples {
      */
     public static void deleteAnApplicationControlMachineGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.adaptiveApplicationControls().deleteByResourceGroupWithResponse("centralus", "GROUP1", Context.NONE);
+        manager
+            .adaptiveApplicationControls()
+            .deleteByResourceGroupWithResponse("centralus", "GROUP1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -417,8 +436,6 @@ public final class AdaptiveApplicationControlsDeleteSamples {
 ### AdaptiveApplicationControls_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AdaptiveApplicationControls Get. */
 public final class AdaptiveApplicationControlsGetSamples {
     /*
@@ -431,7 +448,9 @@ public final class AdaptiveApplicationControlsGetSamples {
      */
     public static void getsAConfiguredApplicationControlVMServerGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.adaptiveApplicationControls().getWithResponse("centralus", "ERELGROUP1", Context.NONE);
+        manager
+            .adaptiveApplicationControls()
+            .getWithResponse("centralus", "ERELGROUP1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -439,8 +458,6 @@ public final class AdaptiveApplicationControlsGetSamples {
 ### AdaptiveApplicationControls_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AdaptiveApplicationControls List. */
 public final class AdaptiveApplicationControlsListSamples {
     /*
@@ -453,7 +470,7 @@ public final class AdaptiveApplicationControlsListSamples {
      */
     public static void getsAListOfApplicationControlGroupsOfMachinesForTheSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.adaptiveApplicationControls().listWithResponse(true, false, Context.NONE);
+        manager.adaptiveApplicationControls().listWithResponse(true, false, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -461,7 +478,6 @@ public final class AdaptiveApplicationControlsListSamples {
 ### AdaptiveApplicationControls_Put
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.AdaptiveApplicationControlGroup;
 import com.azure.resourcemanager.security.models.ConfigurationStatus;
 import com.azure.resourcemanager.security.models.EnforcementMode;
@@ -489,7 +505,10 @@ public final class AdaptiveApplicationControlsPutSamples {
     public static void updateAnApplicationControlMachineGroupByAddingANewApplication(
         com.azure.resourcemanager.security.SecurityManager manager) {
         AdaptiveApplicationControlGroup resource =
-            manager.adaptiveApplicationControls().getWithResponse("centralus", "ERELGROUP1", Context.NONE).getValue();
+            manager
+                .adaptiveApplicationControls()
+                .getWithResponse("centralus", "ERELGROUP1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withEnforcementMode(EnforcementMode.AUDIT)
@@ -589,7 +608,6 @@ public final class AdaptiveApplicationControlsPutSamples {
 ### AdaptiveNetworkHardenings_Enforce
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.AdaptiveNetworkHardeningEnforceRequest;
 import com.azure.resourcemanager.security.models.Direction;
 import com.azure.resourcemanager.security.models.Rule;
@@ -637,7 +655,7 @@ public final class AdaptiveNetworkHardeningsEnforceSamples {
                             .asList(
                                 "/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1",
                                 "/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/rg2/providers/Microsoft.Network/networkSecurityGroups/nsg2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -645,8 +663,6 @@ public final class AdaptiveNetworkHardeningsEnforceSamples {
 ### AdaptiveNetworkHardenings_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AdaptiveNetworkHardenings Get. */
 public final class AdaptiveNetworkHardeningsGetSamples {
     /*
@@ -661,7 +677,8 @@ public final class AdaptiveNetworkHardeningsGetSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .adaptiveNetworkHardenings()
-            .getWithResponse("rg1", "Microsoft.Compute", "virtualMachines", "vm1", "default", Context.NONE);
+            .getWithResponse(
+                "rg1", "Microsoft.Compute", "virtualMachines", "vm1", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -669,8 +686,6 @@ public final class AdaptiveNetworkHardeningsGetSamples {
 ### AdaptiveNetworkHardenings_ListByExtendedResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AdaptiveNetworkHardenings ListByExtendedResource. */
 public final class AdaptiveNetworkHardeningsListByExtendedResourceSamples {
     /*
@@ -685,7 +700,8 @@ public final class AdaptiveNetworkHardeningsListByExtendedResourceSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .adaptiveNetworkHardenings()
-            .listByExtendedResource("rg1", "Microsoft.Compute", "virtualMachines", "vm1", Context.NONE);
+            .listByExtendedResource(
+                "rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -719,8 +735,6 @@ public final class AdvancedThreatProtectionCreateSamples {
 ### AdvancedThreatProtection_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AdvancedThreatProtection Get. */
 public final class AdvancedThreatProtectionGetSamples {
     /*
@@ -737,7 +751,7 @@ public final class AdvancedThreatProtectionGetSamples {
             .advancedThreatProtections()
             .getWithResponse(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Storage/storageAccounts/samplestorageaccount",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -745,8 +759,6 @@ public final class AdvancedThreatProtectionGetSamples {
 ### Alerts_GetResourceGroupLevel
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts GetResourceGroupLevel. */
 public final class AlertsGetResourceGroupLevelSamples {
     /*
@@ -762,7 +774,10 @@ public final class AlertsGetResourceGroupLevelSamples {
         manager
             .alerts()
             .getResourceGroupLevelWithResponse(
-                "myRg1", "westeurope", "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a", Context.NONE);
+                "myRg1",
+                "westeurope",
+                "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -770,8 +785,6 @@ public final class AlertsGetResourceGroupLevelSamples {
 ### Alerts_GetSubscriptionLevel
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts GetSubscriptionLevel. */
 public final class AlertsGetSubscriptionLevelSamples {
     /*
@@ -787,7 +800,9 @@ public final class AlertsGetSubscriptionLevelSamples {
         manager
             .alerts()
             .getSubscriptionLevelWithResponse(
-                "westeurope", "2518770965529163669_F144EE95-A3E5-42DA-A279-967D115809AA", Context.NONE);
+                "westeurope",
+                "2518770965529163669_F144EE95-A3E5-42DA-A279-967D115809AA",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -795,8 +810,6 @@ public final class AlertsGetSubscriptionLevelSamples {
 ### Alerts_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts List. */
 public final class AlertsListSamples {
     /*
@@ -808,7 +821,7 @@ public final class AlertsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityAlertsOnASubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alerts().list(Context.NONE);
+        manager.alerts().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -816,8 +829,6 @@ public final class AlertsListSamples {
 ### Alerts_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts ListByResourceGroup. */
 public final class AlertsListByResourceGroupSamples {
     /*
@@ -829,7 +840,7 @@ public final class AlertsListByResourceGroupSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityAlertsOnAResourceGroup(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alerts().listByResourceGroup("myRg1", Context.NONE);
+        manager.alerts().listByResourceGroup("myRg1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -837,8 +848,6 @@ public final class AlertsListByResourceGroupSamples {
 ### Alerts_ListResourceGroupLevelByRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts ListResourceGroupLevelByRegion. */
 public final class AlertsListResourceGroupLevelByRegionSamples {
     /*
@@ -851,7 +860,7 @@ public final class AlertsListResourceGroupLevelByRegionSamples {
      */
     public static void getSecurityAlertsOnAResourceGroupFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alerts().listResourceGroupLevelByRegion("westeurope", "myRg1", Context.NONE);
+        manager.alerts().listResourceGroupLevelByRegion("westeurope", "myRg1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -859,8 +868,6 @@ public final class AlertsListResourceGroupLevelByRegionSamples {
 ### Alerts_ListSubscriptionLevelByRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts ListSubscriptionLevelByRegion. */
 public final class AlertsListSubscriptionLevelByRegionSamples {
     /*
@@ -873,7 +880,7 @@ public final class AlertsListSubscriptionLevelByRegionSamples {
      */
     public static void getSecurityAlertsOnASubscriptionFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alerts().listSubscriptionLevelByRegion("westeurope", Context.NONE);
+        manager.alerts().listSubscriptionLevelByRegion("westeurope", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -881,7 +888,6 @@ public final class AlertsListSubscriptionLevelByRegionSamples {
 ### Alerts_Simulate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.AlertSimulatorBundlesRequestProperties;
 import com.azure.resourcemanager.security.models.AlertSimulatorRequestBody;
 import com.azure.resourcemanager.security.models.BundleType;
@@ -918,7 +924,7 @@ public final class AlertsSimulateSamples {
                                         BundleType.STORAGE_ACCOUNTS,
                                         BundleType.VIRTUAL_MACHINES,
                                         BundleType.COSMOS_DBS))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -926,8 +932,6 @@ public final class AlertsSimulateSamples {
 ### Alerts_UpdateResourceGroupLevelStateToActivate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateResourceGroupLevelStateToActivate. */
 public final class AlertsUpdateResourceGroupLevelStateToActivateSamples {
     /*
@@ -943,7 +947,10 @@ public final class AlertsUpdateResourceGroupLevelStateToActivateSamples {
         manager
             .alerts()
             .updateResourceGroupLevelStateToActivateWithResponse(
-                "myRg2", "westeurope", "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22", Context.NONE);
+                "myRg2",
+                "westeurope",
+                "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -951,8 +958,6 @@ public final class AlertsUpdateResourceGroupLevelStateToActivateSamples {
 ### Alerts_UpdateResourceGroupLevelStateToDismiss
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateResourceGroupLevelStateToDismiss. */
 public final class AlertsUpdateResourceGroupLevelStateToDismissSamples {
     /*
@@ -968,7 +973,10 @@ public final class AlertsUpdateResourceGroupLevelStateToDismissSamples {
         manager
             .alerts()
             .updateResourceGroupLevelStateToDismissWithResponse(
-                "myRg2", "westeurope", "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22", Context.NONE);
+                "myRg2",
+                "westeurope",
+                "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -976,8 +984,6 @@ public final class AlertsUpdateResourceGroupLevelStateToDismissSamples {
 ### Alerts_UpdateResourceGroupLevelStateToInProgress
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateResourceGroupLevelStateToInProgress. */
 public final class AlertsUpdateResourceGroupLevelStateToInProgressSamples {
     /*
@@ -993,7 +999,10 @@ public final class AlertsUpdateResourceGroupLevelStateToInProgressSamples {
         manager
             .alerts()
             .updateResourceGroupLevelStateToInProgressWithResponse(
-                "myRg2", "westeurope", "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22", Context.NONE);
+                "myRg2",
+                "westeurope",
+                "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1001,8 +1010,6 @@ public final class AlertsUpdateResourceGroupLevelStateToInProgressSamples {
 ### Alerts_UpdateResourceGroupLevelStateToResolve
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateResourceGroupLevelStateToResolve. */
 public final class AlertsUpdateResourceGroupLevelStateToResolveSamples {
     /*
@@ -1018,7 +1025,10 @@ public final class AlertsUpdateResourceGroupLevelStateToResolveSamples {
         manager
             .alerts()
             .updateResourceGroupLevelStateToResolveWithResponse(
-                "myRg2", "westeurope", "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22", Context.NONE);
+                "myRg2",
+                "westeurope",
+                "2518765996949954086_2325cf9e-42a2-4f72-ae7f-9b863cba2d22",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1026,8 +1036,6 @@ public final class AlertsUpdateResourceGroupLevelStateToResolveSamples {
 ### Alerts_UpdateSubscriptionLevelStateToActivate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateSubscriptionLevelStateToActivate. */
 public final class AlertsUpdateSubscriptionLevelStateToActivateSamples {
     /*
@@ -1043,7 +1051,9 @@ public final class AlertsUpdateSubscriptionLevelStateToActivateSamples {
         manager
             .alerts()
             .updateSubscriptionLevelStateToActivateWithResponse(
-                "westeurope", "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a", Context.NONE);
+                "westeurope",
+                "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1051,8 +1061,6 @@ public final class AlertsUpdateSubscriptionLevelStateToActivateSamples {
 ### Alerts_UpdateSubscriptionLevelStateToDismiss
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateSubscriptionLevelStateToDismiss. */
 public final class AlertsUpdateSubscriptionLevelStateToDismissSamples {
     /*
@@ -1068,7 +1076,9 @@ public final class AlertsUpdateSubscriptionLevelStateToDismissSamples {
         manager
             .alerts()
             .updateSubscriptionLevelStateToDismissWithResponse(
-                "westeurope", "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a", Context.NONE);
+                "westeurope",
+                "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1076,8 +1086,6 @@ public final class AlertsUpdateSubscriptionLevelStateToDismissSamples {
 ### Alerts_UpdateSubscriptionLevelStateToInProgress
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateSubscriptionLevelStateToInProgress. */
 public final class AlertsUpdateSubscriptionLevelStateToInProgressSamples {
     /*
@@ -1093,7 +1101,9 @@ public final class AlertsUpdateSubscriptionLevelStateToInProgressSamples {
         manager
             .alerts()
             .updateSubscriptionLevelStateToInProgressWithResponse(
-                "westeurope", "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a", Context.NONE);
+                "westeurope",
+                "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1101,8 +1111,6 @@ public final class AlertsUpdateSubscriptionLevelStateToInProgressSamples {
 ### Alerts_UpdateSubscriptionLevelStateToResolve
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Alerts UpdateSubscriptionLevelStateToResolve. */
 public final class AlertsUpdateSubscriptionLevelStateToResolveSamples {
     /*
@@ -1118,7 +1126,9 @@ public final class AlertsUpdateSubscriptionLevelStateToResolveSamples {
         manager
             .alerts()
             .updateSubscriptionLevelStateToResolveWithResponse(
-                "westeurope", "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a", Context.NONE);
+                "westeurope",
+                "2518298467986649999_4d25bfef-2d77-4a08-adc0-3e35715cc92a",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1126,8 +1136,6 @@ public final class AlertsUpdateSubscriptionLevelStateToResolveSamples {
 ### AlertsSuppressionRules_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AlertsSuppressionRules Delete. */
 public final class AlertsSuppressionRulesDeleteSamples {
     /*
@@ -1140,7 +1148,7 @@ public final class AlertsSuppressionRulesDeleteSamples {
      */
     public static void deleteSuppressionRuleDataForASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alertsSuppressionRules().deleteWithResponse("dismissIpAnomalyAlerts", Context.NONE);
+        manager.alertsSuppressionRules().deleteWithResponse("dismissIpAnomalyAlerts", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1148,8 +1156,6 @@ public final class AlertsSuppressionRulesDeleteSamples {
 ### AlertsSuppressionRules_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AlertsSuppressionRules Get. */
 public final class AlertsSuppressionRulesGetSamples {
     /*
@@ -1162,7 +1168,7 @@ public final class AlertsSuppressionRulesGetSamples {
      */
     public static void getSuppressionAlertRuleForSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alertsSuppressionRules().getWithResponse("dismissIpAnomalyAlerts", Context.NONE);
+        manager.alertsSuppressionRules().getWithResponse("dismissIpAnomalyAlerts", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1170,8 +1176,6 @@ public final class AlertsSuppressionRulesGetSamples {
 ### AlertsSuppressionRules_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AlertsSuppressionRules List. */
 public final class AlertsSuppressionRulesListSamples {
     /*
@@ -1183,7 +1187,7 @@ public final class AlertsSuppressionRulesListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSuppressionRulesForSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alertsSuppressionRules().list(null, Context.NONE);
+        manager.alertsSuppressionRules().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1196,7 +1200,7 @@ public final class AlertsSuppressionRulesListSamples {
      */
     public static void getSuppressionAlertRuleForSubscriptionFilteredByAlertType(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.alertsSuppressionRules().list("IpAnomaly", Context.NONE);
+        manager.alertsSuppressionRules().list("IpAnomaly", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1205,7 +1209,6 @@ public final class AlertsSuppressionRulesListSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.security.fluent.models.AlertsSuppressionRuleInner;
 import com.azure.resourcemanager.security.models.RuleState;
@@ -1258,7 +1261,7 @@ public final class AlertsSuppressionRulesUpdateSamples {
                                         new ScopeElement()
                                             .withField("entities.process.commandline")
                                             .withAdditionalProperties(mapOf("contains", "POWERSHELL.EXE"))))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -1277,7 +1280,6 @@ public final class AlertsSuppressionRulesUpdateSamples {
 ### AllowedConnections_Get
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.ConnectionType;
 
 /** Samples for AllowedConnections Get. */
@@ -1293,7 +1295,7 @@ public final class AllowedConnectionsGetSamples {
     public static void getAllowedConnections(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .allowedConnections()
-            .getWithResponse("myResourceGroup", "centralus", ConnectionType.INTERNAL, Context.NONE);
+            .getWithResponse("myResourceGroup", "centralus", ConnectionType.INTERNAL, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1301,8 +1303,6 @@ public final class AllowedConnectionsGetSamples {
 ### AllowedConnections_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AllowedConnections List. */
 public final class AllowedConnectionsListSamples {
     /*
@@ -1315,7 +1315,7 @@ public final class AllowedConnectionsListSamples {
      */
     public static void getAllowedConnectionsOnASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.allowedConnections().list(Context.NONE);
+        manager.allowedConnections().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1323,8 +1323,6 @@ public final class AllowedConnectionsListSamples {
 ### AllowedConnections_ListByHomeRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AllowedConnections ListByHomeRegion. */
 public final class AllowedConnectionsListByHomeRegionSamples {
     /*
@@ -1337,7 +1335,7 @@ public final class AllowedConnectionsListByHomeRegionSamples {
      */
     public static void getAllowedConnectionsOnASubscriptionFromSecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.allowedConnections().listByHomeRegion("centralus", Context.NONE);
+        manager.allowedConnections().listByHomeRegion("centralus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1345,8 +1343,6 @@ public final class AllowedConnectionsListByHomeRegionSamples {
 ### ApiCollection_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ApiCollection Get. */
 public final class ApiCollectionGetSamples {
     /*
@@ -1359,7 +1355,7 @@ public final class ApiCollectionGetSamples {
      */
     public static void getsAnAzureAPIManagementAPIIfItHasBeenOnboardedToDefenderForAPIs(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.apiCollections().getWithResponse("rg1", "apimService1", "echo-api", Context.NONE);
+        manager.apiCollections().getWithResponse("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1367,8 +1363,6 @@ public final class ApiCollectionGetSamples {
 ### ApiCollection_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ApiCollection List. */
 public final class ApiCollectionListSamples {
     /*
@@ -1381,7 +1375,7 @@ public final class ApiCollectionListSamples {
      */
     public static void getsAListOfAzureAPIManagementAPIsThatHaveBeenOnboardedToDefenderForAPIs(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.apiCollections().list("rg1", "apimService1", Context.NONE);
+        manager.apiCollections().list("rg1", "apimService1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1389,8 +1383,6 @@ public final class ApiCollectionListSamples {
 ### ApiCollectionOffboarding_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ApiCollectionOffboarding Delete. */
 public final class ApiCollectionOffboardingDeleteSamples {
     /*
@@ -1403,7 +1395,9 @@ public final class ApiCollectionOffboardingDeleteSamples {
      */
     public static void deleteASecurityRecommendationTaskOnAResource(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.apiCollectionOffboardings().deleteWithResponse("rg1", "apimService1", "echo-api", Context.NONE);
+        manager
+            .apiCollectionOffboardings()
+            .deleteWithResponse("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1411,8 +1405,6 @@ public final class ApiCollectionOffboardingDeleteSamples {
 ### ApiCollectionOnboarding_Create
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ApiCollectionOnboarding Create. */
 public final class ApiCollectionOnboardingCreateSamples {
     /*
@@ -1425,7 +1417,9 @@ public final class ApiCollectionOnboardingCreateSamples {
      */
     public static void onboardAnAzureAPIManagementAPIToDefenderForAPIs(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.apiCollectionOnboardings().createWithResponse("rg1", "apimService1", "echo-api", Context.NONE);
+        manager
+            .apiCollectionOnboardings()
+            .createWithResponse("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1474,8 +1468,6 @@ public final class ApplicationOperationCreateOrUpdateSamples {
 ### ApplicationOperation_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ApplicationOperation Delete. */
 public final class ApplicationOperationDeleteSamples {
     /*
@@ -1487,7 +1479,9 @@ public final class ApplicationOperationDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteSecurityApplication(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.applicationOperations().deleteWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+        manager
+            .applicationOperations()
+            .deleteWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1495,8 +1489,6 @@ public final class ApplicationOperationDeleteSamples {
 ### ApplicationOperation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ApplicationOperation Get. */
 public final class ApplicationOperationGetSamples {
     /*
@@ -1509,7 +1501,9 @@ public final class ApplicationOperationGetSamples {
      */
     public static void getSecurityApplicationBySpecificApplicationId(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.applicationOperations().getWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+        manager
+            .applicationOperations()
+            .getWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1517,8 +1511,6 @@ public final class ApplicationOperationGetSamples {
 ### Applications_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Applications List. */
 public final class ApplicationsListSamples {
     /*
@@ -1531,7 +1523,7 @@ public final class ApplicationsListSamples {
      */
     public static void listApplicationsSecurityBySubscriptionLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.applications().list(Context.NONE);
+        manager.applications().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1570,8 +1562,6 @@ public final class AssessmentsCreateOrUpdateSamples {
 ### Assessments_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Assessments Delete. */
 public final class AssessmentsDeleteSamples {
     /*
@@ -1589,7 +1579,7 @@ public final class AssessmentsDeleteSamples {
             .deleteByResourceGroupWithResponse(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/myRg/providers/Microsoft.Compute/virtualMachineScaleSets/vmss2",
                 "8bb8be0a-6010-4789-812f-e4d661c4ed0e",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1597,7 +1587,6 @@ public final class AssessmentsDeleteSamples {
 ### Assessments_Get
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.ExpandEnum;
 
 /** Samples for Assessments Get. */
@@ -1618,7 +1607,7 @@ public final class AssessmentsGetSamples {
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/myRg/providers/Microsoft.Compute/virtualMachineScaleSets/vmss2",
                 "21300918-b2e3-0346-785f-c77ff57d243b",
                 ExpandEnum.LINKS,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1637,7 +1626,7 @@ public final class AssessmentsGetSamples {
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/myRg/providers/Microsoft.Compute/virtualMachineScaleSets/vmss2",
                 "21300918-b2e3-0346-785f-c77ff57d243b",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1645,8 +1634,6 @@ public final class AssessmentsGetSamples {
 ### Assessments_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Assessments List. */
 public final class AssessmentsListSamples {
     /*
@@ -1658,7 +1645,9 @@ public final class AssessmentsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecurityAssessments(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.assessments().list("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", Context.NONE);
+        manager
+            .assessments()
+            .list("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1711,8 +1700,6 @@ public final class AssessmentsMetadataCreateInSubscriptionSamples {
 ### AssessmentsMetadata_DeleteInSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AssessmentsMetadata DeleteInSubscription. */
 public final class AssessmentsMetadataDeleteInSubscriptionSamples {
     /*
@@ -1727,7 +1714,7 @@ public final class AssessmentsMetadataDeleteInSubscriptionSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .assessmentsMetadatas()
-            .deleteInSubscriptionWithResponse("ca039e75-a276-4175-aebc-bcd41e4b14b7", Context.NONE);
+            .deleteInSubscriptionWithResponse("ca039e75-a276-4175-aebc-bcd41e4b14b7", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1735,8 +1722,6 @@ public final class AssessmentsMetadataDeleteInSubscriptionSamples {
 ### AssessmentsMetadata_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AssessmentsMetadata Get. */
 public final class AssessmentsMetadataGetSamples {
     /*
@@ -1748,7 +1733,9 @@ public final class AssessmentsMetadataGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityAssessmentMetadata(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.assessmentsMetadatas().getWithResponse("21300918-b2e3-0346-785f-c77ff57d243b", Context.NONE);
+        manager
+            .assessmentsMetadatas()
+            .getWithResponse("21300918-b2e3-0346-785f-c77ff57d243b", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1756,8 +1743,6 @@ public final class AssessmentsMetadataGetSamples {
 ### AssessmentsMetadata_GetInSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AssessmentsMetadata GetInSubscription. */
 public final class AssessmentsMetadataGetInSubscriptionSamples {
     /*
@@ -1772,7 +1757,7 @@ public final class AssessmentsMetadataGetInSubscriptionSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .assessmentsMetadatas()
-            .getInSubscriptionWithResponse("21300918-b2e3-0346-785f-c77ff57d243b", Context.NONE);
+            .getInSubscriptionWithResponse("21300918-b2e3-0346-785f-c77ff57d243b", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1780,8 +1765,6 @@ public final class AssessmentsMetadataGetInSubscriptionSamples {
 ### AssessmentsMetadata_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AssessmentsMetadata List. */
 public final class AssessmentsMetadataListSamples {
     /*
@@ -1793,7 +1776,7 @@ public final class AssessmentsMetadataListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecurityAssessmentMetadata(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.assessmentsMetadatas().list(Context.NONE);
+        manager.assessmentsMetadatas().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1801,8 +1784,6 @@ public final class AssessmentsMetadataListSamples {
 ### AssessmentsMetadata_ListBySubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AssessmentsMetadata ListBySubscription. */
 public final class AssessmentsMetadataListBySubscriptionSamples {
     /*
@@ -1815,7 +1796,7 @@ public final class AssessmentsMetadataListBySubscriptionSamples {
      */
     public static void listSecurityAssessmentMetadataForSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.assessmentsMetadatas().listBySubscription(Context.NONE);
+        manager.assessmentsMetadatas().listBySubscription(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1845,8 +1826,6 @@ public final class AutoProvisioningSettingsCreateSamples {
 ### AutoProvisioningSettings_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AutoProvisioningSettings Get. */
 public final class AutoProvisioningSettingsGetSamples {
     /*
@@ -1859,7 +1838,7 @@ public final class AutoProvisioningSettingsGetSamples {
      */
     public static void getAnAutoProvisioningSettingForSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.autoProvisioningSettings().getWithResponse("default", Context.NONE);
+        manager.autoProvisioningSettings().getWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1867,8 +1846,6 @@ public final class AutoProvisioningSettingsGetSamples {
 ### AutoProvisioningSettings_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AutoProvisioningSettings List. */
 public final class AutoProvisioningSettingsListSamples {
     /*
@@ -1881,7 +1858,7 @@ public final class AutoProvisioningSettingsListSamples {
      */
     public static void getAutoProvisioningSettingsForSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.autoProvisioningSettings().list(Context.NONE);
+        manager.autoProvisioningSettings().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1897,8 +1874,6 @@ import com.azure.resourcemanager.security.models.AutomationTriggeringRule;
 import com.azure.resourcemanager.security.models.EventSource;
 import com.azure.resourcemanager.security.models.Operator;
 import com.azure.resourcemanager.security.models.PropertyType;
-import java.io.IOException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -1914,7 +1889,7 @@ public final class AutomationsCreateOrUpdateSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void createOrUpdateASecurityAutomationForAllAssessmentsIncludingAllSeverities(
-        com.azure.resourcemanager.security.SecurityManager manager) throws IOException {
+        com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .automations()
             .define("exampleAutomation")
@@ -1942,7 +1917,7 @@ public final class AutomationsCreateOrUpdateSamples {
                         new AutomationActionLogicApp()
                             .withLogicAppResourceId(
                                 "/subscriptions/e54a4a18-5b94-4f90-9471-bd3decad8a2e/resourceGroups/sample/providers/Microsoft.Logic/workflows/MyTest1")
-                            .withUri(new URL("https://exampleTriggerUri1.com"))))
+                            .withUri("https://exampleTriggerUri1.com")))
             .create();
     }
 
@@ -1954,8 +1929,7 @@ public final class AutomationsCreateOrUpdateSamples {
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void disableOrEnableASecurityAutomation(com.azure.resourcemanager.security.SecurityManager manager)
-        throws IOException {
+    public static void disableOrEnableASecurityAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .automations()
             .define("exampleAutomation")
@@ -1999,7 +1973,7 @@ public final class AutomationsCreateOrUpdateSamples {
                         new AutomationActionLogicApp()
                             .withLogicAppResourceId(
                                 "/subscriptions/e54a4a18-5b94-4f90-9471-bd3decad8a2e/resourceGroups/sample/providers/Microsoft.Logic/workflows/MyTest1")
-                            .withUri(new URL("https://exampleTriggerUri1.com"))))
+                            .withUri("https://exampleTriggerUri1.com")))
             .create();
     }
 
@@ -2012,7 +1986,7 @@ public final class AutomationsCreateOrUpdateSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void createOrUpdateASecurityAutomationForAllHighSeverityAssessments(
-        com.azure.resourcemanager.security.SecurityManager manager) throws IOException {
+        com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .automations()
             .define("exampleAutomation")
@@ -2056,7 +2030,7 @@ public final class AutomationsCreateOrUpdateSamples {
                         new AutomationActionLogicApp()
                             .withLogicAppResourceId(
                                 "/subscriptions/e54a4a18-5b94-4f90-9471-bd3decad8a2e/resourceGroups/sample/providers/Microsoft.Logic/workflows/MyTest1")
-                            .withUri(new URL("https://exampleTriggerUri1.com"))))
+                            .withUri("https://exampleTriggerUri1.com")))
             .create();
     }
 
@@ -2076,8 +2050,6 @@ public final class AutomationsCreateOrUpdateSamples {
 ### Automations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Automations Delete. */
 public final class AutomationsDeleteSamples {
     /*
@@ -2089,7 +2061,9 @@ public final class AutomationsDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteASecurityAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.automations().deleteByResourceGroupWithResponse("myRg", "myAutomationName", Context.NONE);
+        manager
+            .automations()
+            .deleteByResourceGroupWithResponse("myRg", "myAutomationName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2097,8 +2071,6 @@ public final class AutomationsDeleteSamples {
 ### Automations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Automations GetByResourceGroup. */
 public final class AutomationsGetByResourceGroupSamples {
     /*
@@ -2110,7 +2082,10 @@ public final class AutomationsGetByResourceGroupSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void retrieveASecurityAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.automations().getByResourceGroupWithResponse("exampleResourceGroup", "exampleAutomation", Context.NONE);
+        manager
+            .automations()
+            .getByResourceGroupWithResponse(
+                "exampleResourceGroup", "exampleAutomation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2118,8 +2093,6 @@ public final class AutomationsGetByResourceGroupSamples {
 ### Automations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Automations List. */
 public final class AutomationsListSamples {
     /*
@@ -2132,7 +2105,7 @@ public final class AutomationsListSamples {
      */
     public static void listAllSecurityAutomationsOfASpecifiedSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.automations().list(Context.NONE);
+        manager.automations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2140,8 +2113,6 @@ public final class AutomationsListSamples {
 ### Automations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Automations ListByResourceGroup. */
 public final class AutomationsListByResourceGroupSamples {
     /*
@@ -2154,7 +2125,7 @@ public final class AutomationsListByResourceGroupSamples {
      */
     public static void listAllSecurityAutomationsOfASpecifiedResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.automations().listByResourceGroup("exampleResourceGroup", Context.NONE);
+        manager.automations().listByResourceGroup("exampleResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2162,7 +2133,6 @@ public final class AutomationsListByResourceGroupSamples {
 ### Automations_Validate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.AutomationInner;
 import com.azure.resourcemanager.security.models.AutomationActionLogicApp;
 import com.azure.resourcemanager.security.models.AutomationRuleSet;
@@ -2172,8 +2142,6 @@ import com.azure.resourcemanager.security.models.AutomationTriggeringRule;
 import com.azure.resourcemanager.security.models.EventSource;
 import com.azure.resourcemanager.security.models.Operator;
 import com.azure.resourcemanager.security.models.PropertyType;
-import java.io.IOException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -2189,7 +2157,7 @@ public final class AutomationsValidateSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void validateTheSecurityAutomationModelBeforeCreateOrUpdate(
-        com.azure.resourcemanager.security.SecurityManager manager) throws IOException {
+        com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .automations()
             .validateWithResponse(
@@ -2235,8 +2203,8 @@ public final class AutomationsValidateSamples {
                                 new AutomationActionLogicApp()
                                     .withLogicAppResourceId(
                                         "/subscriptions/e54a4a18-5b94-4f90-9471-bd3decad8a2e/resourceGroups/sample/providers/Microsoft.Logic/workflows/MyTest1")
-                                    .withUri(new URL("https://exampleTriggerUri1.com")))),
-                Context.NONE);
+                                    .withUri("https://exampleTriggerUri1.com"))),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -2255,8 +2223,6 @@ public final class AutomationsValidateSamples {
 ### ComplianceResults_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ComplianceResults Get. */
 public final class ComplianceResultsGetSamples {
     /*
@@ -2271,7 +2237,9 @@ public final class ComplianceResultsGetSamples {
         manager
             .complianceResults()
             .getWithResponse(
-                "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", "DesignateMoreThanOneOwner", Context.NONE);
+                "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23",
+                "DesignateMoreThanOneOwner",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2279,8 +2247,6 @@ public final class ComplianceResultsGetSamples {
 ### ComplianceResults_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ComplianceResults List. */
 public final class ComplianceResultsListSamples {
     /*
@@ -2292,7 +2258,9 @@ public final class ComplianceResultsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getComplianceResultsOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.complianceResults().list("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", Context.NONE);
+        manager
+            .complianceResults()
+            .list("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2300,8 +2268,6 @@ public final class ComplianceResultsListSamples {
 ### Compliances_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Compliances Get. */
 public final class CompliancesGetSamples {
     /*
@@ -2315,7 +2281,8 @@ public final class CompliancesGetSamples {
     public static void getSecurityComplianceDataForADay(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .compliances()
-            .getWithResponse("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", "2018-01-01Z", Context.NONE);
+            .getWithResponse(
+                "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", "2018-01-01Z", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2323,8 +2290,6 @@ public final class CompliancesGetSamples {
 ### Compliances_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Compliances List. */
 public final class CompliancesListSamples {
     /*
@@ -2336,7 +2301,9 @@ public final class CompliancesListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityComplianceDataOverTime(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.compliances().list("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", Context.NONE);
+        manager
+            .compliances()
+            .list("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2450,8 +2417,6 @@ public final class ConnectorsCreateOrUpdateSamples {
 ### Connectors_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Connectors Delete. */
 public final class ConnectorsDeleteSamples {
     /*
@@ -2464,7 +2429,7 @@ public final class ConnectorsDeleteSamples {
      */
     public static void deleteACloudAccountConnectorFromASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.connectors().deleteWithResponse("aws_dev1", Context.NONE);
+        manager.connectors().deleteWithResponse("aws_dev1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2472,8 +2437,6 @@ public final class ConnectorsDeleteSamples {
 ### Connectors_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Connectors Get. */
 public final class ConnectorsGetSamples {
     /*
@@ -2486,7 +2449,7 @@ public final class ConnectorsGetSamples {
      */
     public static void detailsOfASpecificCloudAccountConnector(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.connectors().getWithResponse("aws_dev1", Context.NONE);
+        manager.connectors().getWithResponse("aws_dev1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2494,8 +2457,6 @@ public final class ConnectorsGetSamples {
 ### Connectors_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Connectors List. */
 public final class ConnectorsListSamples {
     /*
@@ -2508,7 +2469,7 @@ public final class ConnectorsListSamples {
      */
     public static void getAllCloudAccountsConnectorsOfASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.connectors().list(Context.NONE);
+        manager.connectors().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2549,8 +2510,6 @@ public final class CustomAssessmentAutomationsCreateSamples {
 ### CustomAssessmentAutomations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomAssessmentAutomations Delete. */
 public final class CustomAssessmentAutomationsDeleteSamples {
     /*
@@ -2564,7 +2523,8 @@ public final class CustomAssessmentAutomationsDeleteSamples {
     public static void deleteACustomAssessmentAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .customAssessmentAutomations()
-            .deleteByResourceGroupWithResponse("TestResourceGroup", "MyCustomAssessmentAutomation", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "TestResourceGroup", "MyCustomAssessmentAutomation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2572,8 +2532,6 @@ public final class CustomAssessmentAutomationsDeleteSamples {
 ### CustomAssessmentAutomations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomAssessmentAutomations GetByResourceGroup. */
 public final class CustomAssessmentAutomationsGetByResourceGroupSamples {
     /*
@@ -2587,7 +2545,8 @@ public final class CustomAssessmentAutomationsGetByResourceGroupSamples {
     public static void getACustomAssessmentAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .customAssessmentAutomations()
-            .getByResourceGroupWithResponse("TestResourceGroup", "MyCustomAssessmentAutomation", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "TestResourceGroup", "MyCustomAssessmentAutomation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2595,8 +2554,6 @@ public final class CustomAssessmentAutomationsGetByResourceGroupSamples {
 ### CustomAssessmentAutomations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomAssessmentAutomations List. */
 public final class CustomAssessmentAutomationsListSamples {
     /*
@@ -2609,7 +2566,7 @@ public final class CustomAssessmentAutomationsListSamples {
      */
     public static void listCustomAssessmentAutomationsInASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.customAssessmentAutomations().list(Context.NONE);
+        manager.customAssessmentAutomations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2617,8 +2574,6 @@ public final class CustomAssessmentAutomationsListSamples {
 ### CustomAssessmentAutomations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomAssessmentAutomations ListByResourceGroup. */
 public final class CustomAssessmentAutomationsListByResourceGroupSamples {
     /*
@@ -2631,7 +2586,9 @@ public final class CustomAssessmentAutomationsListByResourceGroupSamples {
      */
     public static void listCustomAssessmentAutomationsInASubscriptionAndAResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.customAssessmentAutomations().listByResourceGroup("TestResourceGroup", Context.NONE);
+        manager
+            .customAssessmentAutomations()
+            .listByResourceGroup("TestResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2663,8 +2620,6 @@ public final class CustomEntityStoreAssignmentsCreateSamples {
 ### CustomEntityStoreAssignments_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomEntityStoreAssignments Delete. */
 public final class CustomEntityStoreAssignmentsDeleteSamples {
     /*
@@ -2679,7 +2634,7 @@ public final class CustomEntityStoreAssignmentsDeleteSamples {
         manager
             .customEntityStoreAssignments()
             .deleteByResourceGroupWithResponse(
-                "TestResourceGroup", "33e7cc6e-a139-4723-a0e5-76993aee0771", Context.NONE);
+                "TestResourceGroup", "33e7cc6e-a139-4723-a0e5-76993aee0771", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2687,8 +2642,6 @@ public final class CustomEntityStoreAssignmentsDeleteSamples {
 ### CustomEntityStoreAssignments_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomEntityStoreAssignments GetByResourceGroup. */
 public final class CustomEntityStoreAssignmentsGetByResourceGroupSamples {
     /*
@@ -2702,7 +2655,8 @@ public final class CustomEntityStoreAssignmentsGetByResourceGroupSamples {
     public static void getACustomEntityStoreAssignment(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .customEntityStoreAssignments()
-            .getByResourceGroupWithResponse("TestResourceGroup", "33e7cc6e-a139-4723-a0e5-76993aee0771", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "TestResourceGroup", "33e7cc6e-a139-4723-a0e5-76993aee0771", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2710,8 +2664,6 @@ public final class CustomEntityStoreAssignmentsGetByResourceGroupSamples {
 ### CustomEntityStoreAssignments_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomEntityStoreAssignments List. */
 public final class CustomEntityStoreAssignmentsListSamples {
     /*
@@ -2724,7 +2676,7 @@ public final class CustomEntityStoreAssignmentsListSamples {
      */
     public static void listCustomEntityStoreAssignmentsInASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.customEntityStoreAssignments().list(Context.NONE);
+        manager.customEntityStoreAssignments().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2732,8 +2684,6 @@ public final class CustomEntityStoreAssignmentsListSamples {
 ### CustomEntityStoreAssignments_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CustomEntityStoreAssignments ListByResourceGroup. */
 public final class CustomEntityStoreAssignmentsListByResourceGroupSamples {
     /*
@@ -2746,7 +2696,9 @@ public final class CustomEntityStoreAssignmentsListByResourceGroupSamples {
      */
     public static void listCustomEntityStoreAssignmentsInASubscriptionAndAResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.customEntityStoreAssignments().listByResourceGroup("TestResourceGroup", Context.NONE);
+        manager
+            .customEntityStoreAssignments()
+            .listByResourceGroup("TestResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2791,8 +2743,6 @@ public final class DeviceSecurityGroupsCreateOrUpdateSamples {
 ### DeviceSecurityGroups_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DeviceSecurityGroups Delete. */
 public final class DeviceSecurityGroupsDeleteSamples {
     /*
@@ -2810,7 +2760,7 @@ public final class DeviceSecurityGroupsDeleteSamples {
             .deleteByResourceGroupWithResponse(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Devices/iotHubs/sampleiothub",
                 "samplesecuritygroup",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2818,8 +2768,6 @@ public final class DeviceSecurityGroupsDeleteSamples {
 ### DeviceSecurityGroups_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DeviceSecurityGroups Get. */
 public final class DeviceSecurityGroupsGetSamples {
     /*
@@ -2837,7 +2785,7 @@ public final class DeviceSecurityGroupsGetSamples {
             .getWithResponse(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Devices/iotHubs/sampleiothub",
                 "samplesecuritygroup",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2845,8 +2793,6 @@ public final class DeviceSecurityGroupsGetSamples {
 ### DeviceSecurityGroups_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DeviceSecurityGroups List. */
 public final class DeviceSecurityGroupsListSamples {
     /*
@@ -2863,7 +2809,7 @@ public final class DeviceSecurityGroupsListSamples {
             .deviceSecurityGroups()
             .list(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Devices/iotHubs/sampleiothub",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2871,8 +2817,6 @@ public final class DeviceSecurityGroupsListSamples {
 ### DiscoveredSecuritySolutions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DiscoveredSecuritySolutions Get. */
 public final class DiscoveredSecuritySolutionsGetSamples {
     /*
@@ -2885,7 +2829,9 @@ public final class DiscoveredSecuritySolutionsGetSamples {
      */
     public static void getDiscoveredSecuritySolutionFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.discoveredSecuritySolutions().getWithResponse("myRg2", "centralus", "paloalto7", Context.NONE);
+        manager
+            .discoveredSecuritySolutions()
+            .getWithResponse("myRg2", "centralus", "paloalto7", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2893,8 +2839,6 @@ public final class DiscoveredSecuritySolutionsGetSamples {
 ### DiscoveredSecuritySolutions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DiscoveredSecuritySolutions List. */
 public final class DiscoveredSecuritySolutionsListSamples {
     /*
@@ -2906,7 +2850,7 @@ public final class DiscoveredSecuritySolutionsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getDiscoveredSecuritySolutions(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.discoveredSecuritySolutions().list(Context.NONE);
+        manager.discoveredSecuritySolutions().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2914,8 +2858,6 @@ public final class DiscoveredSecuritySolutionsListSamples {
 ### DiscoveredSecuritySolutions_ListByHomeRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DiscoveredSecuritySolutions ListByHomeRegion. */
 public final class DiscoveredSecuritySolutionsListByHomeRegionSamples {
     /*
@@ -2928,7 +2870,7 @@ public final class DiscoveredSecuritySolutionsListByHomeRegionSamples {
      */
     public static void getDiscoveredSecuritySolutionsFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.discoveredSecuritySolutions().listByHomeRegion("centralus", Context.NONE);
+        manager.discoveredSecuritySolutions().listByHomeRegion("centralus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2936,8 +2878,6 @@ public final class DiscoveredSecuritySolutionsListByHomeRegionSamples {
 ### ExternalSecuritySolutions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ExternalSecuritySolutions Get. */
 public final class ExternalSecuritySolutionsGetSamples {
     /*
@@ -2955,7 +2895,7 @@ public final class ExternalSecuritySolutionsGetSamples {
                 "defaultresourcegroup-eus",
                 "centralus",
                 "aad_defaultworkspace-20ff7fc3-e762-44dd-bd96-b71116dcdc23-eus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2963,8 +2903,6 @@ public final class ExternalSecuritySolutionsGetSamples {
 ### ExternalSecuritySolutions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ExternalSecuritySolutions List. */
 public final class ExternalSecuritySolutionsListSamples {
     /*
@@ -2977,7 +2915,7 @@ public final class ExternalSecuritySolutionsListSamples {
      */
     public static void getExternalSecuritySolutionsOnASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.externalSecuritySolutions().list(Context.NONE);
+        manager.externalSecuritySolutions().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2985,8 +2923,6 @@ public final class ExternalSecuritySolutionsListSamples {
 ### ExternalSecuritySolutions_ListByHomeRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ExternalSecuritySolutions ListByHomeRegion. */
 public final class ExternalSecuritySolutionsListByHomeRegionSamples {
     /*
@@ -2999,7 +2935,7 @@ public final class ExternalSecuritySolutionsListByHomeRegionSamples {
      */
     public static void getExternalSecuritySolutionsOnASubscriptionFromSecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.externalSecuritySolutions().listByHomeRegion("centralus", Context.NONE);
+        manager.externalSecuritySolutions().listByHomeRegion("centralus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3053,8 +2989,6 @@ public final class GovernanceAssignmentsCreateOrUpdateSamples {
 ### GovernanceAssignments_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceAssignments Delete. */
 public final class GovernanceAssignmentsDeleteSamples {
     /*
@@ -3072,7 +3006,7 @@ public final class GovernanceAssignmentsDeleteSamples {
                 "subscriptions/c32e05d9-7207-4e22-bdf4-4f7d9c72e5fd/resourceGroups/compute_servers/providers/Microsoft.Compute/virtualMachines/win2012",
                 "6b9421dd-5555-2251-9b3d-2be58e2f82cd",
                 "6634ff9f-127b-4bf2-8e6e-b1737f5e789c",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3080,19 +3014,17 @@ public final class GovernanceAssignmentsDeleteSamples {
 ### GovernanceAssignments_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceAssignments Get. */
 public final class GovernanceAssignmentsGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/GetGovernanceAssignment_example.json
      */
     /**
-     * Sample code: Get security governanceAssignment by specific governanceAssignmentKey.
+     * Sample code: Get governanceAssignment by specific governanceAssignmentKey.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceAssignmentBySpecificGovernanceAssignmentKey(
+    public static void getGovernanceAssignmentBySpecificGovernanceAssignmentKey(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceAssignments()
@@ -3100,7 +3032,7 @@ public final class GovernanceAssignmentsGetSamples {
                 "subscriptions/c32e05d9-7207-4e22-bdf4-4f7d9c72e5fd/resourceGroups/compute_servers/providers/Microsoft.Compute/virtualMachines/win2012",
                 "6b9421dd-5555-2251-9b3d-2be58e2f82cd",
                 "6634ff9f-127b-4bf2-8e6e-b1737f5e789c",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3108,25 +3040,23 @@ public final class GovernanceAssignmentsGetSamples {
 ### GovernanceAssignments_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceAssignments List. */
 public final class GovernanceAssignmentsListSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/ListGovernanceAssignments_example.json
      */
     /**
-     * Sample code: List security governanceAssignments.
+     * Sample code: List governance assignments.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceAssignments(com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void listGovernanceAssignments(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceAssignments()
             .list(
                 "subscriptions/c32e05d9-7207-4e22-bdf4-4f7d9c72e5fd",
                 "6b9421dd-5555-2251-9b3d-2be58e2f82cd",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3134,21 +3064,19 @@ public final class GovernanceAssignmentsListSamples {
 ### GovernanceRule_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceRule List. */
 public final class GovernanceRuleListSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListBySubscriptionGovernanceRules_example.json
      */
     /**
-     * Sample code: List security governanceRules by subscription level scope.
+     * Sample code: List governance rules by subscription level scope.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceRulesBySubscriptionLevelScope(
+    public static void listGovernanceRulesBySubscriptionLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.governanceRules().list(Context.NONE);
+        manager.governanceRules().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3172,7 +3100,7 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutGovernanceRule_example.json
      */
     /**
-     * Sample code: Create Governance rule.
+     * Sample code: Create governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
@@ -3182,7 +3110,7 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
             .governanceRulesOperations()
             .define("ad9a8e26-29d9-4829-bb30-e597a58cdbb8")
             .withDisplayName("Admin's rule")
-            .withDescription("A rule on critical recommendations")
+            .withDescription("A rule for critical recommendations")
             .withRemediationTimeframe("7.00:00:00")
             .withIsGracePeriod(true)
             .withRulePriority(200)
@@ -3215,20 +3143,20 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
 ### GovernanceRulesOperation_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceRulesOperation Delete. */
 public final class GovernanceRulesOperationDeleteSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteGovernanceRule_example.json
      */
     /**
-     * Sample code: Delete security GovernanceRule.
+     * Sample code: Delete governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void deleteSecurityGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.governanceRulesOperations().deleteWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+    public static void deleteGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .governanceRulesOperations()
+            .deleteWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3236,21 +3164,42 @@ public final class GovernanceRulesOperationDeleteSamples {
 ### GovernanceRulesOperation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceRulesOperation Get. */
 public final class GovernanceRulesOperationGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetGovernanceRule_example.json
      */
     /**
-     * Sample code: Get security governanceRules by specific governanceRuleId.
+     * Sample code: Get a governance rule by its' ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesBySpecificGovernanceRuleId(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.governanceRulesOperations().getWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+    public static void getAGovernanceRuleByItsID(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .governanceRulesOperations()
+            .getWithResponse("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GovernanceRulesOperation_RuleIdExecuteSingleManagementGroup
+
+```java
+/** Samples for GovernanceRulesOperation RuleIdExecuteSingleManagementGroup. */
+public final class GovernanceRulesOperationRuleIdExecuteSingleManagementGroupSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Execute governance rule.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void executeGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .governanceRulesOperations()
+            .ruleIdExecuteSingleManagementGroup(
+                "contoso", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3258,15 +3207,13 @@ public final class GovernanceRulesOperationGetSamples {
 ### GovernanceRulesOperation_RuleIdExecuteSingleSecurityConnector
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceRulesOperation RuleIdExecuteSingleSecurityConnector. */
 public final class GovernanceRulesOperationRuleIdExecuteSingleSecurityConnectorSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Execute Governance rule.
+     * Sample code: Execute governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
@@ -3274,7 +3221,11 @@ public final class GovernanceRulesOperationRuleIdExecuteSingleSecurityConnectorS
         manager
             .governanceRulesOperations()
             .ruleIdExecuteSingleSecurityConnector(
-                "gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, Context.NONE);
+                "gcpResourceGroup",
+                "gcpconnector",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3282,8 +3233,6 @@ public final class GovernanceRulesOperationRuleIdExecuteSingleSecurityConnectorS
 ### GovernanceRulesOperation_RuleIdExecuteSingleSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceRulesOperation RuleIdExecuteSingleSubscription. */
 public final class GovernanceRulesOperationRuleIdExecuteSingleSubscriptionSamples {
     /*
@@ -3297,7 +3246,8 @@ public final class GovernanceRulesOperationRuleIdExecuteSingleSubscriptionSample
     public static void executeGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceRulesOperations()
-            .ruleIdExecuteSingleSubscription("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, Context.NONE);
+            .ruleIdExecuteSingleSubscription(
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3387,7 +3337,6 @@ public final class InformationProtectionPoliciesCreateOrUpdateSamples {
 ### InformationProtectionPolicies_Get
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.InformationProtectionPolicyName;
 
 /** Samples for InformationProtectionPolicies Get. */
@@ -3407,7 +3356,7 @@ public final class InformationProtectionPoliciesGetSamples {
             .getWithResponse(
                 "providers/Microsoft.Management/managementGroups/148059f7-faf3-49a6-ba35-85122112291e",
                 InformationProtectionPolicyName.CUSTOM,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3425,7 +3374,7 @@ public final class InformationProtectionPoliciesGetSamples {
             .getWithResponse(
                 "providers/Microsoft.Management/managementGroups/148059f7-faf3-49a6-ba35-85122112291e",
                 InformationProtectionPolicyName.EFFECTIVE,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3433,8 +3382,6 @@ public final class InformationProtectionPoliciesGetSamples {
 ### InformationProtectionPolicies_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for InformationProtectionPolicies List. */
 public final class InformationProtectionPoliciesListSamples {
     /*
@@ -3448,7 +3395,9 @@ public final class InformationProtectionPoliciesListSamples {
     public static void getInformationProtectionPolicies(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .informationProtectionPolicies()
-            .list("providers/Microsoft.Management/managementGroups/148059f7-faf3-49a6-ba35-85122112291e", Context.NONE);
+            .list(
+                "providers/Microsoft.Management/managementGroups/148059f7-faf3-49a6-ba35-85122112291e",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3476,8 +3425,6 @@ public final class IngestionSettingsCreateSamples {
 ### IngestionSettings_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IngestionSettings Delete. */
 public final class IngestionSettingsDeleteSamples {
     /*
@@ -3490,7 +3437,7 @@ public final class IngestionSettingsDeleteSamples {
      */
     public static void deleteAnIngestionSettingForTheSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().deleteWithResponse("default", Context.NONE);
+        manager.ingestionSettings().deleteWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3498,8 +3445,6 @@ public final class IngestionSettingsDeleteSamples {
 ### IngestionSettings_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IngestionSettings Get. */
 public final class IngestionSettingsGetSamples {
     /*
@@ -3511,7 +3456,7 @@ public final class IngestionSettingsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getAIngestionSettingOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().getWithResponse("default", Context.NONE);
+        manager.ingestionSettings().getWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3519,8 +3464,6 @@ public final class IngestionSettingsGetSamples {
 ### IngestionSettings_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IngestionSettings List. */
 public final class IngestionSettingsListSamples {
     /*
@@ -3532,7 +3475,7 @@ public final class IngestionSettingsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getIngestionSettingsOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().list(Context.NONE);
+        manager.ingestionSettings().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3540,8 +3483,6 @@ public final class IngestionSettingsListSamples {
 ### IngestionSettings_ListConnectionStrings
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IngestionSettings ListConnectionStrings. */
 public final class IngestionSettingsListConnectionStringsSamples {
     /*
@@ -3554,7 +3495,7 @@ public final class IngestionSettingsListConnectionStringsSamples {
      */
     public static void listConnectionStringsForIngestingSecurityDataAndLogs(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().listConnectionStringsWithResponse("default", Context.NONE);
+        manager.ingestionSettings().listConnectionStringsWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3562,8 +3503,6 @@ public final class IngestionSettingsListConnectionStringsSamples {
 ### IngestionSettings_ListTokens
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IngestionSettings ListTokens. */
 public final class IngestionSettingsListTokensSamples {
     /*
@@ -3575,7 +3514,7 @@ public final class IngestionSettingsListTokensSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listIngestionSettingTokens(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().listTokensWithResponse("default", Context.NONE);
+        manager.ingestionSettings().listTokensWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3653,8 +3592,6 @@ public final class IotSecuritySolutionCreateOrUpdateSamples {
 ### IotSecuritySolution_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolution Delete. */
 public final class IotSecuritySolutionDeleteSamples {
     /*
@@ -3666,7 +3603,9 @@ public final class IotSecuritySolutionDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteAnIoTSecuritySolution(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutions().deleteByResourceGroupWithResponse("MyGroup", "default", Context.NONE);
+        manager
+            .iotSecuritySolutions()
+            .deleteByResourceGroupWithResponse("MyGroup", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3674,8 +3613,6 @@ public final class IotSecuritySolutionDeleteSamples {
 ### IotSecuritySolution_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolution GetByResourceGroup. */
 public final class IotSecuritySolutionGetByResourceGroupSamples {
     /*
@@ -3687,7 +3624,9 @@ public final class IotSecuritySolutionGetByResourceGroupSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getAIoTSecuritySolution(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutions().getByResourceGroupWithResponse("MyGroup", "default", Context.NONE);
+        manager
+            .iotSecuritySolutions()
+            .getByResourceGroupWithResponse("MyGroup", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3695,8 +3634,6 @@ public final class IotSecuritySolutionGetByResourceGroupSamples {
 ### IotSecuritySolution_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolution List. */
 public final class IotSecuritySolutionListSamples {
     /*
@@ -3709,7 +3646,7 @@ public final class IotSecuritySolutionListSamples {
      */
     public static void listIoTSecuritySolutionsBySubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutions().list(null, Context.NONE);
+        manager.iotSecuritySolutions().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3726,7 +3663,7 @@ public final class IotSecuritySolutionListSamples {
             .list(
                 "properties.iotHubs/any(i eq"
                     + " \"/subscriptions/075423e9-7d33-4166-8bdf-3920b04e3735/resourceGroups/myRg/providers/Microsoft.Devices/IotHubs/FirstIotHub\")",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3734,8 +3671,6 @@ public final class IotSecuritySolutionListSamples {
 ### IotSecuritySolution_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolution ListByResourceGroup. */
 public final class IotSecuritySolutionListByResourceGroupSamples {
     /*
@@ -3754,7 +3689,7 @@ public final class IotSecuritySolutionListByResourceGroupSamples {
                 "MyRg",
                 "properties.iotHubs/any(i eq"
                     + " \"/subscriptions/075423e9-7d33-4166-8bdf-3920b04e3735/resourceGroups/myRg/providers/Microsoft.Devices/IotHubs/FirstIotHub\")",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3767,7 +3702,7 @@ public final class IotSecuritySolutionListByResourceGroupSamples {
      */
     public static void listIoTSecuritySolutionsByResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutions().listByResourceGroup("MyGroup", null, Context.NONE);
+        manager.iotSecuritySolutions().listByResourceGroup("MyGroup", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3775,7 +3710,6 @@ public final class IotSecuritySolutionListByResourceGroupSamples {
 ### IotSecuritySolution_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.IoTSecuritySolutionModel;
 import com.azure.resourcemanager.security.models.RecommendationConfigStatus;
 import com.azure.resourcemanager.security.models.RecommendationConfigurationProperties;
@@ -3798,7 +3732,10 @@ public final class IotSecuritySolutionUpdateSamples {
     public static void useThisMethodToUpdateExistingIoTSecuritySolution(
         com.azure.resourcemanager.security.SecurityManager manager) {
         IoTSecuritySolutionModel resource =
-            manager.iotSecuritySolutions().getByResourceGroupWithResponse("myRg", "default", Context.NONE).getValue();
+            manager
+                .iotSecuritySolutions()
+                .getByResourceGroupWithResponse("myRg", "default", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("foo", "bar"))
@@ -3834,8 +3771,6 @@ public final class IotSecuritySolutionUpdateSamples {
 ### IotSecuritySolutionAnalytics_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionAnalytics Get. */
 public final class IotSecuritySolutionAnalyticsGetSamples {
     /*
@@ -3847,7 +3782,7 @@ public final class IotSecuritySolutionAnalyticsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecuritySolutionAnalytics(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutionAnalytics().getWithResponse("MyGroup", "default", Context.NONE);
+        manager.iotSecuritySolutionAnalytics().getWithResponse("MyGroup", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3855,8 +3790,6 @@ public final class IotSecuritySolutionAnalyticsGetSamples {
 ### IotSecuritySolutionAnalytics_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionAnalytics List. */
 public final class IotSecuritySolutionAnalyticsListSamples {
     /*
@@ -3868,7 +3801,7 @@ public final class IotSecuritySolutionAnalyticsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecuritySolutionAnalytics(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutionAnalytics().listWithResponse("MyGroup", "default", Context.NONE);
+        manager.iotSecuritySolutionAnalytics().listWithResponse("MyGroup", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3876,8 +3809,6 @@ public final class IotSecuritySolutionAnalyticsListSamples {
 ### IotSecuritySolutionsAnalyticsAggregatedAlert_Dismiss
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionsAnalyticsAggregatedAlert Dismiss. */
 public final class IotSecuritySolutionsAnalyticsAggregatedAlertDismissSamples {
     /*
@@ -3892,7 +3823,11 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertDismissSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .iotSecuritySolutionsAnalyticsAggregatedAlerts()
-            .dismissWithResponse("IoTEdgeResources", "default", "IoT_Bruteforce_Fail/2019-02-02/dismiss", Context.NONE);
+            .dismissWithResponse(
+                "IoTEdgeResources",
+                "default",
+                "IoT_Bruteforce_Fail/2019-02-02/dismiss",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3900,8 +3835,6 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertDismissSamples {
 ### IotSecuritySolutionsAnalyticsAggregatedAlert_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionsAnalyticsAggregatedAlert Get. */
 public final class IotSecuritySolutionsAnalyticsAggregatedAlertGetSamples {
     /*
@@ -3918,7 +3851,7 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertGetSamples {
             com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .iotSecuritySolutionsAnalyticsAggregatedAlerts()
-            .getWithResponse("MyGroup", "default", "IoT_Bruteforce_Fail/2019-02-02", Context.NONE);
+            .getWithResponse("MyGroup", "default", "IoT_Bruteforce_Fail/2019-02-02", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3926,8 +3859,6 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertGetSamples {
 ### IotSecuritySolutionsAnalyticsAggregatedAlert_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionsAnalyticsAggregatedAlert List. */
 public final class IotSecuritySolutionsAnalyticsAggregatedAlertListSamples {
     /*
@@ -3940,7 +3871,9 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertListSamples {
      */
     public static void getTheAggregatedAlertListOfYoursIoTSecuritySolution(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutionsAnalyticsAggregatedAlerts().list("MyGroup", "default", null, Context.NONE);
+        manager
+            .iotSecuritySolutionsAnalyticsAggregatedAlerts()
+            .list("MyGroup", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3948,8 +3881,6 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertListSamples {
 ### IotSecuritySolutionsAnalyticsRecommendation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionsAnalyticsRecommendation Get. */
 public final class IotSecuritySolutionsAnalyticsRecommendationGetSamples {
     /*
@@ -3964,7 +3895,7 @@ public final class IotSecuritySolutionsAnalyticsRecommendationGetSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .iotSecuritySolutionsAnalyticsRecommendations()
-            .getWithResponse("IoTEdgeResources", "default", "OpenPortsOnDevice", Context.NONE);
+            .getWithResponse("IoTEdgeResources", "default", "OpenPortsOnDevice", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3972,8 +3903,6 @@ public final class IotSecuritySolutionsAnalyticsRecommendationGetSamples {
 ### IotSecuritySolutionsAnalyticsRecommendation_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for IotSecuritySolutionsAnalyticsRecommendation List. */
 public final class IotSecuritySolutionsAnalyticsRecommendationListSamples {
     /*
@@ -3986,7 +3915,9 @@ public final class IotSecuritySolutionsAnalyticsRecommendationListSamples {
      */
     public static void getTheListOfAggregatedSecurityAnalyticsRecommendationsOfYoursIoTSecuritySolution(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutionsAnalyticsRecommendations().list("IoTEdgeResources", "default", null, Context.NONE);
+        manager
+            .iotSecuritySolutionsAnalyticsRecommendations()
+            .list("IoTEdgeResources", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4070,8 +4001,6 @@ public final class JitNetworkAccessPoliciesCreateOrUpdateSamples {
 ### JitNetworkAccessPolicies_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for JitNetworkAccessPolicies Delete. */
 public final class JitNetworkAccessPoliciesDeleteSamples {
     /*
@@ -4083,7 +4012,9 @@ public final class JitNetworkAccessPoliciesDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteAJITNetworkAccessPolicy(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.jitNetworkAccessPolicies().deleteWithResponse("myRg1", "westeurope", "default", Context.NONE);
+        manager
+            .jitNetworkAccessPolicies()
+            .deleteWithResponse("myRg1", "westeurope", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4091,8 +4022,6 @@ public final class JitNetworkAccessPoliciesDeleteSamples {
 ### JitNetworkAccessPolicies_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for JitNetworkAccessPolicies Get. */
 public final class JitNetworkAccessPoliciesGetSamples {
     /*
@@ -4104,7 +4033,9 @@ public final class JitNetworkAccessPoliciesGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getJITNetworkAccessPolicy(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.jitNetworkAccessPolicies().getWithResponse("myRg1", "westeurope", "default", Context.NONE);
+        manager
+            .jitNetworkAccessPolicies()
+            .getWithResponse("myRg1", "westeurope", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4112,7 +4043,6 @@ public final class JitNetworkAccessPoliciesGetSamples {
 ### JitNetworkAccessPolicies_Initiate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.JitNetworkAccessPolicyInitiatePort;
 import com.azure.resourcemanager.security.models.JitNetworkAccessPolicyInitiateRequest;
 import com.azure.resourcemanager.security.models.JitNetworkAccessPolicyInitiateVirtualMachine;
@@ -4150,7 +4080,7 @@ public final class JitNetworkAccessPoliciesInitiateSamples {
                                                     .withNumber(3389)
                                                     .withAllowedSourceAddressPrefix("192.127.0.2")))))
                     .withJustification("testing a new version of the product"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4158,8 +4088,6 @@ public final class JitNetworkAccessPoliciesInitiateSamples {
 ### JitNetworkAccessPolicies_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for JitNetworkAccessPolicies List. */
 public final class JitNetworkAccessPoliciesListSamples {
     /*
@@ -4172,7 +4100,7 @@ public final class JitNetworkAccessPoliciesListSamples {
      */
     public static void getJITNetworkAccessPoliciesOnASubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.jitNetworkAccessPolicies().list(Context.NONE);
+        manager.jitNetworkAccessPolicies().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4180,8 +4108,6 @@ public final class JitNetworkAccessPoliciesListSamples {
 ### JitNetworkAccessPolicies_ListByRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for JitNetworkAccessPolicies ListByRegion. */
 public final class JitNetworkAccessPoliciesListByRegionSamples {
     /*
@@ -4194,7 +4120,7 @@ public final class JitNetworkAccessPoliciesListByRegionSamples {
      */
     public static void getJITNetworkAccessPoliciesOnASubscriptionFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.jitNetworkAccessPolicies().listByRegion("westeurope", Context.NONE);
+        manager.jitNetworkAccessPolicies().listByRegion("westeurope", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4202,8 +4128,6 @@ public final class JitNetworkAccessPoliciesListByRegionSamples {
 ### JitNetworkAccessPolicies_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for JitNetworkAccessPolicies ListByResourceGroup. */
 public final class JitNetworkAccessPoliciesListByResourceGroupSamples {
     /*
@@ -4216,7 +4140,7 @@ public final class JitNetworkAccessPoliciesListByResourceGroupSamples {
      */
     public static void getJITNetworkAccessPoliciesOnAResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.jitNetworkAccessPolicies().listByResourceGroup("myRg1", Context.NONE);
+        manager.jitNetworkAccessPolicies().listByResourceGroup("myRg1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4224,8 +4148,6 @@ public final class JitNetworkAccessPoliciesListByResourceGroupSamples {
 ### JitNetworkAccessPolicies_ListByResourceGroupAndRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for JitNetworkAccessPolicies ListByResourceGroupAndRegion. */
 public final class JitNetworkAccessPoliciesListByResourceGroupAndRegionSamples {
     /*
@@ -4238,7 +4160,9 @@ public final class JitNetworkAccessPoliciesListByResourceGroupAndRegionSamples {
      */
     public static void getJITNetworkAccessPoliciesOnAResourceGroupFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.jitNetworkAccessPolicies().listByResourceGroupAndRegion("myRg1", "westeurope", Context.NONE);
+        manager
+            .jitNetworkAccessPolicies()
+            .listByResourceGroupAndRegion("myRg1", "westeurope", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4246,8 +4170,6 @@ public final class JitNetworkAccessPoliciesListByResourceGroupAndRegionSamples {
 ### Locations_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Locations Get. */
 public final class LocationsGetSamples {
     /*
@@ -4259,7 +4181,7 @@ public final class LocationsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityDataLocation(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.locations().getWithResponse("centralus", Context.NONE);
+        manager.locations().getWithResponse("centralus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4267,8 +4189,6 @@ public final class LocationsGetSamples {
 ### Locations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Locations List. */
 public final class LocationsListSamples {
     /*
@@ -4280,7 +4200,186 @@ public final class LocationsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityDataLocations(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.locations().list(Context.NONE);
+        manager.locations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRule_List
+
+```java
+/** Samples for ManagementGroupGovernanceRule List. */
+public final class ManagementGroupGovernanceRuleListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListByManagementGroupGovernanceRules_example.json
+     */
+    /**
+     * Sample code: List governance rules by management group level scope.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGovernanceRulesByManagementGroupLevelScope(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.managementGroupGovernanceRules().list("contoso", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesDeleteStatus_Get
+
+```java
+/** Samples for ManagementGroupGovernanceRulesDeleteStatus Get. */
+public final class ManagementGroupGovernanceRulesDeleteStatusGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRuleDeleteStatus_example.json
+     */
+    /**
+     * Sample code: Get governance rules deletion status by specific governance rule ID.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGovernanceRulesDeletionStatusBySpecificGovernanceRuleID(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesDeleteStatus()
+            .getWithResponse(
+                "contoso",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesExecuteStatus_Get
+
+```java
+/** Samples for ManagementGroupGovernanceRulesExecuteStatus Get. */
+public final class ManagementGroupGovernanceRulesExecuteStatusGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRuleExecuteStatus_example.json
+     */
+    /**
+     * Sample code: Get governance rules execution status by specific governance rule ID.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGovernanceRulesExecutionStatusBySpecificGovernanceRuleID(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesExecuteStatus()
+            .getWithResponse(
+                "contoso",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperation_CreateOrUpdate
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.security.fluent.models.GovernanceRuleInner;
+import com.azure.resourcemanager.security.models.GovernanceRuleEmailNotification;
+import com.azure.resourcemanager.security.models.GovernanceRuleOwnerSource;
+import com.azure.resourcemanager.security.models.GovernanceRuleOwnerSourceType;
+import com.azure.resourcemanager.security.models.GovernanceRuleSourceResourceType;
+import com.azure.resourcemanager.security.models.GovernanceRuleType;
+import java.io.IOException;
+import java.util.Arrays;
+
+/** Samples for ManagementGroupGovernanceRulesOperation CreateOrUpdate. */
+public final class ManagementGroupGovernanceRulesOperationCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Create Governance rule.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager)
+        throws IOException {
+        manager
+            .managementGroupGovernanceRulesOperations()
+            .createOrUpdateWithResponse(
+                "contoso",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                new GovernanceRuleInner()
+                    .withDisplayName("Management group rule")
+                    .withDescription("A rule for a management group")
+                    .withRemediationTimeframe("7.00:00:00")
+                    .withIsGracePeriod(true)
+                    .withRulePriority(200)
+                    .withIsDisabled(false)
+                    .withRuleType(GovernanceRuleType.INTEGRATED)
+                    .withSourceResourceType(GovernanceRuleSourceResourceType.ASSESSMENTS)
+                    .withExcludedScopes(Arrays.asList("/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23"))
+                    .withConditionSets(
+                        Arrays
+                            .asList(
+                                SerializerFactory
+                                    .createDefaultManagementSerializerAdapter()
+                                    .deserialize(
+                                        "{\"conditions\":[{\"operator\":\"In\",\"property\":\"$.AssessmentKey\",\"value\":\"[\\\"b1cd27e0-4ecc-4246-939f-49c426d9d72f\\\","
+                                            + " \\\"fe83f80b-073d-4ccf-93d9-6797eb870201\\\"]\"}]}",
+                                        Object.class,
+                                        SerializerEncoding.JSON)))
+                    .withOwnerSource(
+                        new GovernanceRuleOwnerSource()
+                            .withType(GovernanceRuleOwnerSourceType.MANUALLY)
+                            .withValue("user@contoso.com"))
+                    .withGovernanceEmailNotification(
+                        new GovernanceRuleEmailNotification()
+                            .withDisableManagerEmailNotification(true)
+                            .withDisableOwnerEmailNotification(false)),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperation_Delete
+
+```java
+/** Samples for ManagementGroupGovernanceRulesOperation Delete. */
+public final class ManagementGroupGovernanceRulesOperationDeleteSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Delete Governance rule.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void deleteGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesOperations()
+            .delete("contoso", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroupGovernanceRulesOperation_Get
+
+```java
+/** Samples for ManagementGroupGovernanceRulesOperation Get. */
+public final class ManagementGroupGovernanceRulesOperationGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRule_example.json
+     */
+    /**
+     * Sample code: Get governance rules by specific governanceRuleId.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGovernanceRulesBySpecificGovernanceRuleId(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .managementGroupGovernanceRulesOperations()
+            .getWithResponse("contoso", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4288,8 +4387,6 @@ public final class LocationsListSamples {
 ### MdeOnboardings_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for MdeOnboardings Get. */
 public final class MdeOnboardingsGetSamples {
     /*
@@ -4302,7 +4399,7 @@ public final class MdeOnboardingsGetSamples {
      */
     public static void theDefaultConfigurationOrDataNeededToOnboardTheMachineToMDE(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.mdeOnboardings().getWithResponse(Context.NONE);
+        manager.mdeOnboardings().getWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4310,8 +4407,6 @@ public final class MdeOnboardingsGetSamples {
 ### MdeOnboardings_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for MdeOnboardings List. */
 public final class MdeOnboardingsListSamples {
     /*
@@ -4324,7 +4419,7 @@ public final class MdeOnboardingsListSamples {
      */
     public static void theConfigurationOrDataNeededToOnboardTheMachineToMDE(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.mdeOnboardings().listWithResponse(Context.NONE);
+        manager.mdeOnboardings().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4332,8 +4427,6 @@ public final class MdeOnboardingsListSamples {
 ### Pricings_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Pricings Get. */
 public final class PricingsGetSamples {
     /*
@@ -4345,7 +4438,7 @@ public final class PricingsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getPricingsOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.pricings().getWithResponse("VirtualMachines", Context.NONE);
+        manager.pricings().getWithResponse("VirtualMachines", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4353,8 +4446,6 @@ public final class PricingsGetSamples {
 ### Pricings_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Pricings List. */
 public final class PricingsListSamples {
     /*
@@ -4366,7 +4457,7 @@ public final class PricingsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getPricingsOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.pricings().listWithResponse(Context.NONE);
+        manager.pricings().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4374,7 +4465,6 @@ public final class PricingsListSamples {
 ### Pricings_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.PricingInner;
 import com.azure.resourcemanager.security.models.PricingTier;
 
@@ -4394,7 +4484,7 @@ public final class PricingsUpdateSamples {
             .updateWithResponse(
                 "VirtualMachines",
                 new PricingInner().withPricingTier(PricingTier.STANDARD).withSubPlan("P2"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4402,8 +4492,6 @@ public final class PricingsUpdateSamples {
 ### RegulatoryComplianceAssessments_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for RegulatoryComplianceAssessments Get. */
 public final class RegulatoryComplianceAssessmentsGetSamples {
     /*
@@ -4418,7 +4506,8 @@ public final class RegulatoryComplianceAssessmentsGetSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .regulatoryComplianceAssessments()
-            .getWithResponse("PCI-DSS-3.2", "1.1", "968548cb-02b3-8cd2-11f8-0cf64ab1a347", Context.NONE);
+            .getWithResponse(
+                "PCI-DSS-3.2", "1.1", "968548cb-02b3-8cd2-11f8-0cf64ab1a347", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4426,8 +4515,6 @@ public final class RegulatoryComplianceAssessmentsGetSamples {
 ### RegulatoryComplianceAssessments_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for RegulatoryComplianceAssessments List. */
 public final class RegulatoryComplianceAssessmentsListSamples {
     /*
@@ -4440,7 +4527,7 @@ public final class RegulatoryComplianceAssessmentsListSamples {
      */
     public static void getAllAssessmentsMappedToSelectedRegulatoryComplianceControl(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.regulatoryComplianceAssessments().list("PCI-DSS-3.2", "1.1", null, Context.NONE);
+        manager.regulatoryComplianceAssessments().list("PCI-DSS-3.2", "1.1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4448,8 +4535,6 @@ public final class RegulatoryComplianceAssessmentsListSamples {
 ### RegulatoryComplianceControls_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for RegulatoryComplianceControls Get. */
 public final class RegulatoryComplianceControlsGetSamples {
     /*
@@ -4462,7 +4547,7 @@ public final class RegulatoryComplianceControlsGetSamples {
      */
     public static void getSelectedRegulatoryComplianceControlDetailsAndState(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.regulatoryComplianceControls().getWithResponse("PCI-DSS-3.2", "1.1", Context.NONE);
+        manager.regulatoryComplianceControls().getWithResponse("PCI-DSS-3.2", "1.1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4470,8 +4555,6 @@ public final class RegulatoryComplianceControlsGetSamples {
 ### RegulatoryComplianceControls_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for RegulatoryComplianceControls List. */
 public final class RegulatoryComplianceControlsListSamples {
     /*
@@ -4484,7 +4567,7 @@ public final class RegulatoryComplianceControlsListSamples {
      */
     public static void getAllRegulatoryComplianceControlsDetailsAndStateForSelectedStandard(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.regulatoryComplianceControls().list("PCI-DSS-3.2", null, Context.NONE);
+        manager.regulatoryComplianceControls().list("PCI-DSS-3.2", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4492,8 +4575,6 @@ public final class RegulatoryComplianceControlsListSamples {
 ### RegulatoryComplianceStandards_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for RegulatoryComplianceStandards Get. */
 public final class RegulatoryComplianceStandardsGetSamples {
     /*
@@ -4506,7 +4587,7 @@ public final class RegulatoryComplianceStandardsGetSamples {
      */
     public static void getSelectedRegulatoryComplianceStandardDetailsAndState(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.regulatoryComplianceStandards().getWithResponse("PCI-DSS-3.2", Context.NONE);
+        manager.regulatoryComplianceStandards().getWithResponse("PCI-DSS-3.2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4514,8 +4595,6 @@ public final class RegulatoryComplianceStandardsGetSamples {
 ### RegulatoryComplianceStandards_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for RegulatoryComplianceStandards List. */
 public final class RegulatoryComplianceStandardsListSamples {
     /*
@@ -4528,7 +4607,7 @@ public final class RegulatoryComplianceStandardsListSamples {
      */
     public static void getAllSupportedRegulatoryComplianceStandardsDetailsAndState(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.regulatoryComplianceStandards().list(null, Context.NONE);
+        manager.regulatoryComplianceStandards().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4536,8 +4615,6 @@ public final class RegulatoryComplianceStandardsListSamples {
 ### SecureScoreControlDefinitions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecureScoreControlDefinitions List. */
 public final class SecureScoreControlDefinitionsListSamples {
     /*
@@ -4549,7 +4626,7 @@ public final class SecureScoreControlDefinitionsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecurityControlsDefinition(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScoreControlDefinitions().list(Context.NONE);
+        manager.secureScoreControlDefinitions().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4557,8 +4634,6 @@ public final class SecureScoreControlDefinitionsListSamples {
 ### SecureScoreControlDefinitions_ListBySubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecureScoreControlDefinitions ListBySubscription. */
 public final class SecureScoreControlDefinitionsListBySubscriptionSamples {
     /*
@@ -4571,7 +4646,7 @@ public final class SecureScoreControlDefinitionsListBySubscriptionSamples {
      */
     public static void listSecurityControlsDefinitionBySubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScoreControlDefinitions().listBySubscription(Context.NONE);
+        manager.secureScoreControlDefinitions().listBySubscription(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4579,8 +4654,6 @@ public final class SecureScoreControlDefinitionsListBySubscriptionSamples {
 ### SecureScoreControls_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecureScoreControls List. */
 public final class SecureScoreControlsListSamples {
     /*
@@ -4592,7 +4665,7 @@ public final class SecureScoreControlsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listAllSecureScoresControls(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScoreControls().list(null, Context.NONE);
+        manager.secureScoreControls().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4600,7 +4673,6 @@ public final class SecureScoreControlsListSamples {
 ### SecureScoreControls_ListBySecureScore
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.ExpandControlsEnum;
 
 /** Samples for SecureScoreControls ListBySecureScore. */
@@ -4616,7 +4688,9 @@ public final class SecureScoreControlsListBySecureScoreSamples {
      */
     public static void getSecurityControlsAndTheirCurrentScoreForTheSpecifiedInitiativeWithTheExpandParameter(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScoreControls().listBySecureScore("ascScore", ExpandControlsEnum.DEFINITION, Context.NONE);
+        manager
+            .secureScoreControls()
+            .listBySecureScore("ascScore", ExpandControlsEnum.DEFINITION, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -4629,7 +4703,7 @@ public final class SecureScoreControlsListBySecureScoreSamples {
      */
     public static void getSecurityControlsAndTheirCurrentScoreForTheSpecifiedInitiative(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScoreControls().listBySecureScore("ascScore", null, Context.NONE);
+        manager.secureScoreControls().listBySecureScore("ascScore", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4637,8 +4711,6 @@ public final class SecureScoreControlsListBySecureScoreSamples {
 ### SecureScores_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecureScores Get. */
 public final class SecureScoresGetSamples {
     /*
@@ -4650,7 +4722,7 @@ public final class SecureScoresGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSingleSecureScore(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScores().getWithResponse("ascScore", Context.NONE);
+        manager.secureScores().getWithResponse("ascScore", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4658,8 +4730,6 @@ public final class SecureScoresGetSamples {
 ### SecureScores_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecureScores List. */
 public final class SecureScoresListSamples {
     /*
@@ -4671,7 +4741,7 @@ public final class SecureScoresListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecureScores(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.secureScores().list(Context.NONE);
+        manager.secureScores().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4680,7 +4750,6 @@ public final class SecureScoresListSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.security.fluent.models.ApplicationInner;
 import com.azure.resourcemanager.security.models.ApplicationSourceResourceType;
@@ -4718,7 +4787,7 @@ public final class SecurityConnectorApplicationOperationCreateOrUpdateSamples {
                                         "{\"conditions\":[{\"operator\":\"contains\",\"property\":\"$.Id\",\"value\":\"-prod-\"}]}",
                                         Object.class,
                                         SerializerEncoding.JSON))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4726,8 +4795,6 @@ public final class SecurityConnectorApplicationOperationCreateOrUpdateSamples {
 ### SecurityConnectorApplicationOperation_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorApplicationOperation Delete. */
 public final class SecurityConnectorApplicationOperationDeleteSamples {
     /*
@@ -4742,7 +4809,10 @@ public final class SecurityConnectorApplicationOperationDeleteSamples {
         manager
             .securityConnectorApplicationOperations()
             .deleteWithResponse(
-                "gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+                "gcpResourceGroup",
+                "gcpconnector",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4750,8 +4820,6 @@ public final class SecurityConnectorApplicationOperationDeleteSamples {
 ### SecurityConnectorApplicationOperation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorApplicationOperation Get. */
 public final class SecurityConnectorApplicationOperationGetSamples {
     /*
@@ -4766,7 +4834,11 @@ public final class SecurityConnectorApplicationOperationGetSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectorApplicationOperations()
-            .getWithResponse("gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+            .getWithResponse(
+                "gcpResourceGroup",
+                "gcpconnector",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4774,8 +4846,6 @@ public final class SecurityConnectorApplicationOperationGetSamples {
 ### SecurityConnectorApplications_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorApplications List. */
 public final class SecurityConnectorApplicationsListSamples {
     /*
@@ -4788,7 +4858,9 @@ public final class SecurityConnectorApplicationsListSamples {
      */
     public static void listSecurityApplicationsBySecurityConnectorLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityConnectorApplications().list("gcpResourceGroup", "gcpconnector", Context.NONE);
+        manager
+            .securityConnectorApplications()
+            .list("gcpResourceGroup", "gcpconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4796,21 +4868,21 @@ public final class SecurityConnectorApplicationsListSamples {
 ### SecurityConnectorGovernanceRule_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorGovernanceRule List. */
 public final class SecurityConnectorGovernanceRuleListSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/ListBySecurityConnectorGovernanceRules_example.json
      */
     /**
-     * Sample code: List security governanceRules by security connector level scope.
+     * Sample code: List governance rules by security connector level scope.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceRulesBySecurityConnectorLevelScope(
+    public static void listGovernanceRulesBySecurityConnectorLevelScope(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityConnectorGovernanceRules().list("gcpResourceGroup", "gcpconnector", Context.NONE);
+        manager
+            .securityConnectorGovernanceRules()
+            .list("gcpResourceGroup", "gcpconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4818,28 +4890,26 @@ public final class SecurityConnectorGovernanceRuleListSamples {
 ### SecurityConnectorGovernanceRulesExecuteStatus_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorGovernanceRulesExecuteStatus Get. */
 public final class SecurityConnectorGovernanceRulesExecuteStatusGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRuleExecuteStatus_example.json
      */
     /**
-     * Sample code: Get security governanceRules execution status by specific governanceRuleId.
+     * Sample code: Get governance rules execution status by specific governanceRuleId.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
+    public static void getGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectorGovernanceRulesExecuteStatus()
-            .get(
+            .getWithResponse(
                 "gcpResourceGroup",
                 "gcpconnector",
                 "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
                 "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4848,7 +4918,6 @@ public final class SecurityConnectorGovernanceRulesExecuteStatusGetSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.security.fluent.models.GovernanceRuleInner;
 import com.azure.resourcemanager.security.models.GovernanceRuleEmailNotification;
@@ -4904,7 +4973,7 @@ public final class SecurityConnectorGovernanceRulesOperationCreateOrUpdateSample
                         new GovernanceRuleEmailNotification()
                             .withDisableManagerEmailNotification(true)
                             .withDisableOwnerEmailNotification(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4912,23 +4981,24 @@ public final class SecurityConnectorGovernanceRulesOperationCreateOrUpdateSample
 ### SecurityConnectorGovernanceRulesOperation_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorGovernanceRulesOperation Delete. */
 public final class SecurityConnectorGovernanceRulesOperationDeleteSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Delete security GovernanceRule.
+     * Sample code: Delete governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void deleteSecurityGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void deleteGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectorGovernanceRulesOperations()
-            .deleteWithResponse(
-                "gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+            .delete(
+                "gcpResourceGroup",
+                "gcpconnector",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4936,23 +5006,24 @@ public final class SecurityConnectorGovernanceRulesOperationDeleteSamples {
 ### SecurityConnectorGovernanceRulesOperation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectorGovernanceRulesOperation Get. */
 public final class SecurityConnectorGovernanceRulesOperationGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRule_example.json
      */
     /**
-     * Sample code: Get security governanceRules by specific governanceRuleId.
+     * Sample code: Get a governance rule by its' ID.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesBySpecificGovernanceRuleId(
-        com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void getAGovernanceRuleByItsID(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectorGovernanceRulesOperations()
-            .getWithResponse("gcpResourceGroup", "gcpconnector", "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", Context.NONE);
+            .getWithResponse(
+                "gcpResourceGroup",
+                "gcpconnector",
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5014,8 +5085,6 @@ public final class SecurityConnectorsCreateOrUpdateSamples {
 ### SecurityConnectors_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectors Delete. */
 public final class SecurityConnectorsDeleteSamples {
     /*
@@ -5027,7 +5096,9 @@ public final class SecurityConnectorsDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteASecurityConnector(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityConnectors().deleteByResourceGroupWithResponse("myRg", "mySecurityConnectorName", Context.NONE);
+        manager
+            .securityConnectors()
+            .deleteByResourceGroupWithResponse("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5035,8 +5106,6 @@ public final class SecurityConnectorsDeleteSamples {
 ### SecurityConnectors_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectors GetByResourceGroup. */
 public final class SecurityConnectorsGetByResourceGroupSamples {
     /*
@@ -5050,7 +5119,8 @@ public final class SecurityConnectorsGetByResourceGroupSamples {
     public static void retrieveASecurityConnector(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .securityConnectors()
-            .getByResourceGroupWithResponse("exampleResourceGroup", "exampleSecurityConnectorName", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "exampleResourceGroup", "exampleSecurityConnectorName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5058,8 +5128,6 @@ public final class SecurityConnectorsGetByResourceGroupSamples {
 ### SecurityConnectors_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectors List. */
 public final class SecurityConnectorsListSamples {
     /*
@@ -5072,7 +5140,7 @@ public final class SecurityConnectorsListSamples {
      */
     public static void listAllSecurityConnectorsOfASpecifiedSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityConnectors().list(Context.NONE);
+        manager.securityConnectors().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5080,8 +5148,6 @@ public final class SecurityConnectorsListSamples {
 ### SecurityConnectors_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityConnectors ListByResourceGroup. */
 public final class SecurityConnectorsListByResourceGroupSamples {
     /*
@@ -5094,7 +5160,7 @@ public final class SecurityConnectorsListByResourceGroupSamples {
      */
     public static void listAllSecurityConnectorsOfASpecifiedResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityConnectors().listByResourceGroup("exampleResourceGroup", Context.NONE);
+        manager.securityConnectors().listByResourceGroup("exampleResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5102,7 +5168,6 @@ public final class SecurityConnectorsListByResourceGroupSamples {
 ### SecurityConnectors_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.AwsEnvironmentData;
 import com.azure.resourcemanager.security.models.CloudName;
 import com.azure.resourcemanager.security.models.CspmMonitorAwsOffering;
@@ -5126,7 +5191,8 @@ public final class SecurityConnectorsUpdateSamples {
         SecurityConnector resource =
             manager
                 .securityConnectors()
-                .getByResourceGroupWithResponse("exampleResourceGroup", "exampleSecurityConnectorName", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "exampleResourceGroup", "exampleSecurityConnectorName", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -5199,8 +5265,6 @@ public final class SecurityContactsCreateSamples {
 ### SecurityContacts_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityContacts Delete. */
 public final class SecurityContactsDeleteSamples {
     /*
@@ -5212,7 +5276,7 @@ public final class SecurityContactsDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deletesASecurityContactData(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityContacts().deleteWithResponse("default", Context.NONE);
+        manager.securityContacts().deleteWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5220,8 +5284,6 @@ public final class SecurityContactsDeleteSamples {
 ### SecurityContacts_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityContacts Get. */
 public final class SecurityContactsGetSamples {
     /*
@@ -5233,7 +5295,7 @@ public final class SecurityContactsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getASecurityContact(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityContacts().getWithResponse("default", Context.NONE);
+        manager.securityContacts().getWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5241,8 +5303,6 @@ public final class SecurityContactsGetSamples {
 ### SecurityContacts_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecurityContacts List. */
 public final class SecurityContactsListSamples {
     /*
@@ -5254,7 +5314,7 @@ public final class SecurityContactsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecurityContactData(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityContacts().list(Context.NONE);
+        manager.securityContacts().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5262,8 +5322,6 @@ public final class SecurityContactsListSamples {
 ### SecuritySolutions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecuritySolutions Get. */
 public final class SecuritySolutionsGetSamples {
     /*
@@ -5276,7 +5334,9 @@ public final class SecuritySolutionsGetSamples {
      */
     public static void getASecuritySolutionFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securitySolutions().getWithResponse("myRg2", "centralus", "paloalto7", Context.NONE);
+        manager
+            .securitySolutions()
+            .getWithResponse("myRg2", "centralus", "paloalto7", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5284,8 +5344,6 @@ public final class SecuritySolutionsGetSamples {
 ### SecuritySolutions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecuritySolutions List. */
 public final class SecuritySolutionsListSamples {
     /*
@@ -5297,7 +5355,7 @@ public final class SecuritySolutionsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecuritySolutions(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securitySolutions().list(Context.NONE);
+        manager.securitySolutions().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5305,8 +5363,6 @@ public final class SecuritySolutionsListSamples {
 ### SecuritySolutionsReferenceData_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecuritySolutionsReferenceData List. */
 public final class SecuritySolutionsReferenceDataListSamples {
     /*
@@ -5318,7 +5374,7 @@ public final class SecuritySolutionsReferenceDataListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecuritySolutions(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securitySolutionsReferenceDatas().listWithResponse(Context.NONE);
+        manager.securitySolutionsReferenceDatas().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5326,8 +5382,6 @@ public final class SecuritySolutionsReferenceDataListSamples {
 ### SecuritySolutionsReferenceData_ListByHomeRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SecuritySolutionsReferenceData ListByHomeRegion. */
 public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
     /*
@@ -5340,7 +5394,9 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
      */
     public static void getSecuritySolutionsFromASecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securitySolutionsReferenceDatas().listByHomeRegionWithResponse("westcentralus", Context.NONE);
+        manager
+            .securitySolutionsReferenceDatas()
+            .listByHomeRegionWithResponse("westcentralus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5348,8 +5404,6 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
 ### ServerVulnerabilityAssessment_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ServerVulnerabilityAssessment CreateOrUpdate. */
 public final class ServerVulnerabilityAssessmentCreateOrUpdateSamples {
     /*
@@ -5366,7 +5420,8 @@ public final class ServerVulnerabilityAssessmentCreateOrUpdateSamples {
             com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .serverVulnerabilityAssessments()
-            .createOrUpdateWithResponse("rg1", "Microsoft.Compute", "virtualMachines", "vm1", Context.NONE);
+            .createOrUpdateWithResponse(
+                "rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5374,8 +5429,6 @@ public final class ServerVulnerabilityAssessmentCreateOrUpdateSamples {
 ### ServerVulnerabilityAssessment_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ServerVulnerabilityAssessment Delete. */
 public final class ServerVulnerabilityAssessmentDeleteSamples {
     /*
@@ -5392,7 +5445,7 @@ public final class ServerVulnerabilityAssessmentDeleteSamples {
             com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .serverVulnerabilityAssessments()
-            .delete("rg1", "Microsoft.Compute", "virtualMachines", "vm1", Context.NONE);
+            .delete("rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5400,8 +5453,6 @@ public final class ServerVulnerabilityAssessmentDeleteSamples {
 ### ServerVulnerabilityAssessment_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ServerVulnerabilityAssessment Get. */
 public final class ServerVulnerabilityAssessmentGetSamples {
     /*
@@ -5418,7 +5469,7 @@ public final class ServerVulnerabilityAssessmentGetSamples {
             com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .serverVulnerabilityAssessments()
-            .getWithResponse("rg1", "Microsoft.Compute", "virtualMachines", "vm1", Context.NONE);
+            .getWithResponse("rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5426,8 +5477,6 @@ public final class ServerVulnerabilityAssessmentGetSamples {
 ### ServerVulnerabilityAssessment_ListByExtendedResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ServerVulnerabilityAssessment ListByExtendedResource. */
 public final class ServerVulnerabilityAssessmentListByExtendedResourceSamples {
     /*
@@ -5444,7 +5493,8 @@ public final class ServerVulnerabilityAssessmentListByExtendedResourceSamples {
             com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .serverVulnerabilityAssessments()
-            .listByExtendedResourceWithResponse("rg1", "Microsoft.Compute", "virtualMachines", "vm1", Context.NONE);
+            .listByExtendedResourceWithResponse(
+                "rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5452,7 +5502,6 @@ public final class ServerVulnerabilityAssessmentListByExtendedResourceSamples {
 ### Settings_Get
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.SettingName;
 
 /** Samples for Settings Get. */
@@ -5466,7 +5515,7 @@ public final class SettingsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getASettingOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.settings().getWithResponse(SettingName.MCAS, Context.NONE);
+        manager.settings().getWithResponse(SettingName.MCAS, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5474,8 +5523,6 @@ public final class SettingsGetSamples {
 ### Settings_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Settings List. */
 public final class SettingsListSamples {
     /*
@@ -5487,7 +5534,7 @@ public final class SettingsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSettingsOfSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.settings().list(Context.NONE);
+        manager.settings().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5495,7 +5542,6 @@ public final class SettingsListSamples {
 ### Settings_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.DataExportSettings;
 import com.azure.resourcemanager.security.models.SettingName;
 
@@ -5512,7 +5558,8 @@ public final class SettingsUpdateSamples {
     public static void updateASettingForSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .settings()
-            .updateWithResponse(SettingName.MCAS, new DataExportSettings().withEnabled(true), Context.NONE);
+            .updateWithResponse(
+                SettingName.MCAS, new DataExportSettings().withEnabled(true), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5520,8 +5567,6 @@ public final class SettingsUpdateSamples {
 ### SoftwareInventories_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SoftwareInventories Get. */
 public final class SoftwareInventoriesGetSamples {
     /*
@@ -5542,7 +5587,7 @@ public final class SoftwareInventoriesGetSamples {
                 "virtualMachines",
                 "Eitan-Test1",
                 "outlook_16.0.10371.20060",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5550,8 +5595,6 @@ public final class SoftwareInventoriesGetSamples {
 ### SoftwareInventories_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SoftwareInventories List. */
 public final class SoftwareInventoriesListSamples {
     /*
@@ -5564,7 +5607,7 @@ public final class SoftwareInventoriesListSamples {
      */
     public static void getsTheSoftwareInventoryOfAllVirtualMachinesInTheSubscriptions(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.softwareInventories().list(Context.NONE);
+        manager.softwareInventories().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5572,8 +5615,6 @@ public final class SoftwareInventoriesListSamples {
 ### SoftwareInventories_ListByExtendedResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SoftwareInventories ListByExtendedResource. */
 public final class SoftwareInventoriesListByExtendedResourceSamples {
     /*
@@ -5588,7 +5629,8 @@ public final class SoftwareInventoriesListByExtendedResourceSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .softwareInventories()
-            .listByExtendedResource("EITAN-TESTS", "Microsoft.Compute", "virtualMachines", "Eitan-Test1", Context.NONE);
+            .listByExtendedResource(
+                "EITAN-TESTS", "Microsoft.Compute", "virtualMachines", "Eitan-Test1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5596,7 +5638,6 @@ public final class SoftwareInventoriesListByExtendedResourceSamples {
 ### SqlVulnerabilityAssessmentBaselineRules_Add
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.RulesResultsInput;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -5626,7 +5667,7 @@ public final class SqlVulnerabilityAssessmentBaselineRulesAddSamples {
                             Arrays.asList(Arrays.asList("userA", "SELECT"), Arrays.asList("userB", "SELECT")),
                             "VA5678",
                             Arrays.asList(Arrays.asList("Test", "0.0.0.0", "125.125.125.125")))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -5645,7 +5686,7 @@ public final class SqlVulnerabilityAssessmentBaselineRulesAddSamples {
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
                 new RulesResultsInput().withLatestScan(true).withResults(mapOf()),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -5714,8 +5755,6 @@ public final class SqlVulnerabilityAssessmentBaselineRulesCreateOrUpdateSamples 
 ### SqlVulnerabilityAssessmentBaselineRules_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentBaselineRules Delete. */
 public final class SqlVulnerabilityAssessmentBaselineRulesDeleteSamples {
     /*
@@ -5733,7 +5772,7 @@ public final class SqlVulnerabilityAssessmentBaselineRulesDeleteSamples {
                 "VA1234",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5741,8 +5780,6 @@ public final class SqlVulnerabilityAssessmentBaselineRulesDeleteSamples {
 ### SqlVulnerabilityAssessmentBaselineRules_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentBaselineRules Get. */
 public final class SqlVulnerabilityAssessmentBaselineRulesGetSamples {
     /*
@@ -5760,7 +5797,7 @@ public final class SqlVulnerabilityAssessmentBaselineRulesGetSamples {
                 "VA1234",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5768,8 +5805,6 @@ public final class SqlVulnerabilityAssessmentBaselineRulesGetSamples {
 ### SqlVulnerabilityAssessmentBaselineRules_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentBaselineRules List. */
 public final class SqlVulnerabilityAssessmentBaselineRulesListSamples {
     /*
@@ -5786,7 +5821,7 @@ public final class SqlVulnerabilityAssessmentBaselineRulesListSamples {
             .listWithResponse(
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5794,8 +5829,6 @@ public final class SqlVulnerabilityAssessmentBaselineRulesListSamples {
 ### SqlVulnerabilityAssessmentScanResults_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentScanResults Get. */
 public final class SqlVulnerabilityAssessmentScanResultsGetSamples {
     /*
@@ -5814,7 +5847,7 @@ public final class SqlVulnerabilityAssessmentScanResultsGetSamples {
                 "VA2063",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -5833,7 +5866,7 @@ public final class SqlVulnerabilityAssessmentScanResultsGetSamples {
                 "VA2063",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5841,8 +5874,6 @@ public final class SqlVulnerabilityAssessmentScanResultsGetSamples {
 ### SqlVulnerabilityAssessmentScanResults_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentScanResults List. */
 public final class SqlVulnerabilityAssessmentScanResultsListSamples {
     /*
@@ -5860,7 +5891,7 @@ public final class SqlVulnerabilityAssessmentScanResultsListSamples {
                 "latest",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -5878,7 +5909,7 @@ public final class SqlVulnerabilityAssessmentScanResultsListSamples {
                 "Scheduled-20200623",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5886,8 +5917,6 @@ public final class SqlVulnerabilityAssessmentScanResultsListSamples {
 ### SqlVulnerabilityAssessmentScans_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentScans Get. */
 public final class SqlVulnerabilityAssessmentScansGetSamples {
     /*
@@ -5905,7 +5934,7 @@ public final class SqlVulnerabilityAssessmentScansGetSamples {
                 "Scheduled-20200623",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -5923,7 +5952,7 @@ public final class SqlVulnerabilityAssessmentScansGetSamples {
                 "latest",
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5931,8 +5960,6 @@ public final class SqlVulnerabilityAssessmentScansGetSamples {
 ### SqlVulnerabilityAssessmentScans_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SqlVulnerabilityAssessmentScans List. */
 public final class SqlVulnerabilityAssessmentScansListSamples {
     /*
@@ -5949,7 +5976,7 @@ public final class SqlVulnerabilityAssessmentScansListSamples {
             .listWithResponse(
                 "55555555-6666-7777-8888-999999999999",
                 "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Rg/providers/Microsoft.HybridCompute/machines/MyMachine/sqlServers/server1/databases/master",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5957,8 +5984,6 @@ public final class SqlVulnerabilityAssessmentScansListSamples {
 ### SubAssessments_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SubAssessments Get. */
 public final class SubAssessmentsGetSamples {
     /*
@@ -5977,7 +6002,7 @@ public final class SubAssessmentsGetSamples {
                 "subscriptions/212f9889-769e-45ae-ab43-6da33674bd26/resourceGroups/DEMORG/providers/Microsoft.Compute/virtualMachines/vm2",
                 "1195afff-c881-495e-9bc5-1486211ae03f",
                 "95f7da9c-a2a4-1322-0758-fcd24ef09b85",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5985,8 +6010,6 @@ public final class SubAssessmentsGetSamples {
 ### SubAssessments_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SubAssessments List. */
 public final class SubAssessmentsListSamples {
     /*
@@ -6003,7 +6026,7 @@ public final class SubAssessmentsListSamples {
             .list(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23",
                 "82e20e14-edc5-4373-bfc4-f13121257c37",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6011,8 +6034,6 @@ public final class SubAssessmentsListSamples {
 ### SubAssessments_ListAll
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SubAssessments ListAll. */
 public final class SubAssessmentsListAllSamples {
     /*
@@ -6024,7 +6045,9 @@ public final class SubAssessmentsListAllSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecuritySubAssessments(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.subAssessments().listAll("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", Context.NONE);
+        manager
+            .subAssessments()
+            .listAll("subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6032,23 +6055,24 @@ public final class SubAssessmentsListAllSamples {
 ### SubscriptionGovernanceRulesExecuteStatus_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SubscriptionGovernanceRulesExecuteStatus Get. */
 public final class SubscriptionGovernanceRulesExecuteStatusGetSamples {
     /*
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetGovernanceRuleExecuteStatus_example.json
      */
     /**
-     * Sample code: Get security governanceRules execution status by specific governanceRuleId.
+     * Sample code: Get governance rules execution status by specific governanceRuleId.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getSecurityGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
+    public static void getGovernanceRulesExecutionStatusBySpecificGovernanceRuleId(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .subscriptionGovernanceRulesExecuteStatus()
-            .get("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", "58b33f4f-c8c7-4b01-99cc-d437db4d40dd", Context.NONE);
+            .getWithResponse(
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8",
+                "58b33f4f-c8c7-4b01-99cc-d437db4d40dd",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6056,8 +6080,6 @@ public final class SubscriptionGovernanceRulesExecuteStatusGetSamples {
 ### Tasks_GetResourceGroupLevelTask
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Tasks GetResourceGroupLevelTask. */
 public final class TasksGetResourceGroupLevelTaskSamples {
     /*
@@ -6073,7 +6095,7 @@ public final class TasksGetResourceGroupLevelTaskSamples {
         manager
             .tasks()
             .getResourceGroupLevelTaskWithResponse(
-                "myRg", "westeurope", "d55b4dc0-779c-c66c-33e5-d7bce24c4222", Context.NONE);
+                "myRg", "westeurope", "d55b4dc0-779c-c66c-33e5-d7bce24c4222", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6081,8 +6103,6 @@ public final class TasksGetResourceGroupLevelTaskSamples {
 ### Tasks_GetSubscriptionLevelTask
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Tasks GetSubscriptionLevelTask. */
 public final class TasksGetSubscriptionLevelTaskSamples {
     /*
@@ -6097,7 +6117,8 @@ public final class TasksGetSubscriptionLevelTaskSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .tasks()
-            .getSubscriptionLevelTaskWithResponse("westeurope", "62609ee7-d0a5-8616-9fe4-1df5cca7758d", Context.NONE);
+            .getSubscriptionLevelTaskWithResponse(
+                "westeurope", "62609ee7-d0a5-8616-9fe4-1df5cca7758d", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6105,8 +6126,6 @@ public final class TasksGetSubscriptionLevelTaskSamples {
 ### Tasks_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Tasks List. */
 public final class TasksListSamples {
     /*
@@ -6118,7 +6137,7 @@ public final class TasksListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getSecurityRecommendationsTasks(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.tasks().list(null, Context.NONE);
+        manager.tasks().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6126,8 +6145,6 @@ public final class TasksListSamples {
 ### Tasks_ListByHomeRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Tasks ListByHomeRegion. */
 public final class TasksListByHomeRegionSamples {
     /*
@@ -6140,7 +6157,7 @@ public final class TasksListByHomeRegionSamples {
      */
     public static void getSecurityRecommendationsTasksFromSecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.tasks().listByHomeRegion("westeurope", null, Context.NONE);
+        manager.tasks().listByHomeRegion("westeurope", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6148,8 +6165,6 @@ public final class TasksListByHomeRegionSamples {
 ### Tasks_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Tasks ListByResourceGroup. */
 public final class TasksListByResourceGroupSamples {
     /*
@@ -6162,7 +6177,7 @@ public final class TasksListByResourceGroupSamples {
      */
     public static void getSecurityRecommendationTasksInAResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.tasks().listByResourceGroup("myRg", "westeurope", null, Context.NONE);
+        manager.tasks().listByResourceGroup("myRg", "westeurope", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6170,7 +6185,6 @@ public final class TasksListByResourceGroupSamples {
 ### Tasks_UpdateResourceGroupLevelTaskState
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.TaskUpdateActionType;
 
 /** Samples for Tasks UpdateResourceGroupLevelTaskState. */
@@ -6192,7 +6206,7 @@ public final class TasksUpdateResourceGroupLevelTaskStateSamples {
                 "westeurope",
                 "d55b4dc0-779c-c66c-33e5-d7bce24c4222",
                 TaskUpdateActionType.DISMISS,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6200,7 +6214,6 @@ public final class TasksUpdateResourceGroupLevelTaskStateSamples {
 ### Tasks_UpdateSubscriptionLevelTaskState
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.TaskUpdateActionType;
 
 /** Samples for Tasks UpdateSubscriptionLevelTaskState. */
@@ -6218,7 +6231,10 @@ public final class TasksUpdateSubscriptionLevelTaskStateSamples {
         manager
             .tasks()
             .updateSubscriptionLevelTaskStateWithResponse(
-                "westeurope", "62609ee7-d0a5-8616-9fe4-1df5cca7758d", TaskUpdateActionType.DISMISS, Context.NONE);
+                "westeurope",
+                "62609ee7-d0a5-8616-9fe4-1df5cca7758d",
+                TaskUpdateActionType.DISMISS,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6226,8 +6242,6 @@ public final class TasksUpdateSubscriptionLevelTaskStateSamples {
 ### Topology_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topology Get. */
 public final class TopologyGetSamples {
     /*
@@ -6239,7 +6253,7 @@ public final class TopologyGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getTopology(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.topologies().getWithResponse("myservers", "centralus", "vnets", Context.NONE);
+        manager.topologies().getWithResponse("myservers", "centralus", "vnets", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6247,8 +6261,6 @@ public final class TopologyGetSamples {
 ### Topology_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topology List. */
 public final class TopologyListSamples {
     /*
@@ -6260,7 +6272,7 @@ public final class TopologyListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getTopologyOnASubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.topologies().list(Context.NONE);
+        manager.topologies().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6268,8 +6280,6 @@ public final class TopologyListSamples {
 ### Topology_ListByHomeRegion
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topology ListByHomeRegion. */
 public final class TopologyListByHomeRegionSamples {
     /*
@@ -6282,7 +6292,7 @@ public final class TopologyListByHomeRegionSamples {
      */
     public static void getTopologyOnASubscriptionFromSecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.topologies().listByHomeRegion("centralus", Context.NONE);
+        manager.topologies().listByHomeRegion("centralus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6316,8 +6326,6 @@ public final class WorkspaceSettingsCreateSamples {
 ### WorkspaceSettings_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for WorkspaceSettings Delete. */
 public final class WorkspaceSettingsDeleteSamples {
     /*
@@ -6330,7 +6338,7 @@ public final class WorkspaceSettingsDeleteSamples {
      */
     public static void deleteAWorkspaceSettingDataForResourceGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.workspaceSettings().deleteWithResponse("default", Context.NONE);
+        manager.workspaceSettings().deleteWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6338,8 +6346,6 @@ public final class WorkspaceSettingsDeleteSamples {
 ### WorkspaceSettings_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for WorkspaceSettings Get. */
 public final class WorkspaceSettingsGetSamples {
     /*
@@ -6351,7 +6357,7 @@ public final class WorkspaceSettingsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getAWorkspaceSettingOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.workspaceSettings().getWithResponse("default", Context.NONE);
+        manager.workspaceSettings().getWithResponse("default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6359,8 +6365,6 @@ public final class WorkspaceSettingsGetSamples {
 ### WorkspaceSettings_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for WorkspaceSettings List. */
 public final class WorkspaceSettingsListSamples {
     /*
@@ -6372,7 +6376,7 @@ public final class WorkspaceSettingsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getWorkspaceSettingsOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.workspaceSettings().list(Context.NONE);
+        manager.workspaceSettings().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -6380,7 +6384,6 @@ public final class WorkspaceSettingsListSamples {
 ### WorkspaceSettings_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.models.WorkspaceSetting;
 
 /** Samples for WorkspaceSettings Update. */
@@ -6395,7 +6398,8 @@ public final class WorkspaceSettingsUpdateSamples {
      */
     public static void updateAWorkspaceSettingDataForSubscription(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        WorkspaceSetting resource = manager.workspaceSettings().getWithResponse("default", Context.NONE).getValue();
+        WorkspaceSetting resource =
+            manager.workspaceSettings().getWithResponse("default", com.azure.core.util.Context.NONE).getValue();
         resource
             .update()
             .withWorkspaceId(

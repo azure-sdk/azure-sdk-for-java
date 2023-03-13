@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.security.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GovernanceRulesOperation RuleIdExecuteSingleSubscription. */
 public final class GovernanceRulesOperationRuleIdExecuteSingleSubscriptionSamples {
     /*
@@ -19,6 +17,7 @@ public final class GovernanceRulesOperationRuleIdExecuteSingleSubscriptionSample
     public static void executeGovernanceRule(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceRulesOperations()
-            .ruleIdExecuteSingleSubscription("ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, Context.NONE);
+            .ruleIdExecuteSingleSubscription(
+                "ad9a8e26-29d9-4829-bb30-e597a58cdbb8", null, com.azure.core.util.Context.NONE);
     }
 }

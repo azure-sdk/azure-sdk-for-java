@@ -89,7 +89,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
     }
 
     /**
-     * Get a list of all relevant governanceRules over a security connector level scope.
+     * Get a list of all relevant governance rules over a security connector level scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
@@ -97,7 +97,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a security connector level scope along with {@link
+     * @return a list of all relevant governance rules over a security connector level scope along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -150,7 +150,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
     }
 
     /**
-     * Get a list of all relevant governanceRules over a security connector level scope.
+     * Get a list of all relevant governance rules over a security connector level scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
@@ -159,7 +159,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a security connector level scope along with {@link
+     * @return a list of all relevant governance rules over a security connector level scope along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -209,7 +209,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
     }
 
     /**
-     * Get a list of all relevant governanceRules over a security connector level scope.
+     * Get a list of all relevant governance rules over a security connector level scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
@@ -217,7 +217,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a security connector level scope as paginated response with
+     * @return a list of all relevant governance rules over a security connector level scope as paginated response with
      *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -228,7 +228,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
     }
 
     /**
-     * Get a list of all relevant governanceRules over a security connector level scope.
+     * Get a list of all relevant governance rules over a security connector level scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
@@ -237,7 +237,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a security connector level scope as paginated response with
+     * @return a list of all relevant governance rules over a security connector level scope as paginated response with
      *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -249,7 +249,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
     }
 
     /**
-     * Get a list of all relevant governanceRules over a security connector level scope.
+     * Get a list of all relevant governance rules over a security connector level scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
@@ -257,7 +257,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a security connector level scope as paginated response with
+     * @return a list of all relevant governance rules over a security connector level scope as paginated response with
      *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -266,7 +266,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
     }
 
     /**
-     * Get a list of all relevant governanceRules over a security connector level scope.
+     * Get a list of all relevant governance rules over a security connector level scope.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      *     insensitive.
@@ -275,7 +275,7 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant governanceRules over a security connector level scope as paginated response with
+     * @return a list of all relevant governance rules over a security connector level scope as paginated response with
      *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -292,8 +292,8 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a security governanceRules list along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return page of a governance rules list along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceRuleInner>> listNextSinglePageAsync(String nextLink) {
@@ -330,8 +330,8 @@ public final class SecurityConnectorGovernanceRulesClientImpl implements Securit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a security governanceRules list along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return page of a governance rules list along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceRuleInner>> listNextSinglePageAsync(String nextLink, Context context) {

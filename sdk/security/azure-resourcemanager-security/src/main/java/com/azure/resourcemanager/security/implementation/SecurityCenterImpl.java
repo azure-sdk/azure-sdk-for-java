@@ -56,6 +56,10 @@ import com.azure.resourcemanager.security.fluent.IotSecuritySolutionsAnalyticsRe
 import com.azure.resourcemanager.security.fluent.IotSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.JitNetworkAccessPoliciesClient;
 import com.azure.resourcemanager.security.fluent.LocationsClient;
+import com.azure.resourcemanager.security.fluent.ManagementGroupGovernanceRulesClient;
+import com.azure.resourcemanager.security.fluent.ManagementGroupGovernanceRulesDeleteStatusClient;
+import com.azure.resourcemanager.security.fluent.ManagementGroupGovernanceRulesExecuteStatusClient;
+import com.azure.resourcemanager.security.fluent.ManagementGroupGovernanceRulesOperationsClient;
 import com.azure.resourcemanager.security.fluent.MdeOnboardingsClient;
 import com.azure.resourcemanager.security.fluent.OperationsClient;
 import com.azure.resourcemanager.security.fluent.PricingsClient;
@@ -794,6 +798,30 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.securityConnectorGovernanceRulesOperations;
     }
 
+    /** The ManagementGroupGovernanceRulesClient object to access its operations. */
+    private final ManagementGroupGovernanceRulesClient managementGroupGovernanceRules;
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesClient object.
+     */
+    public ManagementGroupGovernanceRulesClient getManagementGroupGovernanceRules() {
+        return this.managementGroupGovernanceRules;
+    }
+
+    /** The ManagementGroupGovernanceRulesOperationsClient object to access its operations. */
+    private final ManagementGroupGovernanceRulesOperationsClient managementGroupGovernanceRulesOperations;
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesOperationsClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesOperationsClient object.
+     */
+    public ManagementGroupGovernanceRulesOperationsClient getManagementGroupGovernanceRulesOperations() {
+        return this.managementGroupGovernanceRulesOperations;
+    }
+
     /** The SubscriptionGovernanceRulesExecuteStatusClient object to access its operations. */
     private final SubscriptionGovernanceRulesExecuteStatusClient subscriptionGovernanceRulesExecuteStatus;
 
@@ -816,6 +844,30 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public SecurityConnectorGovernanceRulesExecuteStatusClient getSecurityConnectorGovernanceRulesExecuteStatus() {
         return this.securityConnectorGovernanceRulesExecuteStatus;
+    }
+
+    /** The ManagementGroupGovernanceRulesExecuteStatusClient object to access its operations. */
+    private final ManagementGroupGovernanceRulesExecuteStatusClient managementGroupGovernanceRulesExecuteStatus;
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesExecuteStatusClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesExecuteStatusClient object.
+     */
+    public ManagementGroupGovernanceRulesExecuteStatusClient getManagementGroupGovernanceRulesExecuteStatus() {
+        return this.managementGroupGovernanceRulesExecuteStatus;
+    }
+
+    /** The ManagementGroupGovernanceRulesDeleteStatusClient object to access its operations. */
+    private final ManagementGroupGovernanceRulesDeleteStatusClient managementGroupGovernanceRulesDeleteStatus;
+
+    /**
+     * Gets the ManagementGroupGovernanceRulesDeleteStatusClient object to access its operations.
+     *
+     * @return the ManagementGroupGovernanceRulesDeleteStatusClient object.
+     */
+    public ManagementGroupGovernanceRulesDeleteStatusClient getManagementGroupGovernanceRulesDeleteStatus() {
+        return this.managementGroupGovernanceRulesDeleteStatus;
     }
 
     /** The GovernanceAssignmentsClient object to access its operations. */
@@ -992,9 +1044,15 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.securityConnectorGovernanceRules = new SecurityConnectorGovernanceRulesClientImpl(this);
         this.securityConnectorGovernanceRulesOperations =
             new SecurityConnectorGovernanceRulesOperationsClientImpl(this);
+        this.managementGroupGovernanceRules = new ManagementGroupGovernanceRulesClientImpl(this);
+        this.managementGroupGovernanceRulesOperations = new ManagementGroupGovernanceRulesOperationsClientImpl(this);
         this.subscriptionGovernanceRulesExecuteStatus = new SubscriptionGovernanceRulesExecuteStatusClientImpl(this);
         this.securityConnectorGovernanceRulesExecuteStatus =
             new SecurityConnectorGovernanceRulesExecuteStatusClientImpl(this);
+        this.managementGroupGovernanceRulesExecuteStatus =
+            new ManagementGroupGovernanceRulesExecuteStatusClientImpl(this);
+        this.managementGroupGovernanceRulesDeleteStatus =
+            new ManagementGroupGovernanceRulesDeleteStatusClientImpl(this);
         this.governanceAssignments = new GovernanceAssignmentsClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);
         this.applicationOperations = new ApplicationOperationsClientImpl(this);

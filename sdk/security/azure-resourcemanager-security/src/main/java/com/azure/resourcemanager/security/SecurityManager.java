@@ -58,6 +58,10 @@ import com.azure.resourcemanager.security.implementation.IotSecuritySolutionsAna
 import com.azure.resourcemanager.security.implementation.IotSecuritySolutionsImpl;
 import com.azure.resourcemanager.security.implementation.JitNetworkAccessPoliciesImpl;
 import com.azure.resourcemanager.security.implementation.LocationsImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesDeleteStatusImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesExecuteStatusImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesImpl;
+import com.azure.resourcemanager.security.implementation.ManagementGroupGovernanceRulesOperationsImpl;
 import com.azure.resourcemanager.security.implementation.MdeOnboardingsImpl;
 import com.azure.resourcemanager.security.implementation.OperationsImpl;
 import com.azure.resourcemanager.security.implementation.PricingsImpl;
@@ -122,6 +126,10 @@ import com.azure.resourcemanager.security.models.IotSecuritySolutionsAnalyticsAg
 import com.azure.resourcemanager.security.models.IotSecuritySolutionsAnalyticsRecommendations;
 import com.azure.resourcemanager.security.models.JitNetworkAccessPolicies;
 import com.azure.resourcemanager.security.models.Locations;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRules;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRulesDeleteStatus;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRulesExecuteStatus;
+import com.azure.resourcemanager.security.models.ManagementGroupGovernanceRulesOperations;
 import com.azure.resourcemanager.security.models.MdeOnboardings;
 import com.azure.resourcemanager.security.models.Operations;
 import com.azure.resourcemanager.security.models.Pricings;
@@ -266,9 +274,17 @@ public final class SecurityManager {
 
     private SecurityConnectorGovernanceRulesOperations securityConnectorGovernanceRulesOperations;
 
+    private ManagementGroupGovernanceRules managementGroupGovernanceRules;
+
+    private ManagementGroupGovernanceRulesOperations managementGroupGovernanceRulesOperations;
+
     private SubscriptionGovernanceRulesExecuteStatus subscriptionGovernanceRulesExecuteStatus;
 
     private SecurityConnectorGovernanceRulesExecuteStatus securityConnectorGovernanceRulesExecuteStatus;
+
+    private ManagementGroupGovernanceRulesExecuteStatus managementGroupGovernanceRulesExecuteStatus;
+
+    private ManagementGroupGovernanceRulesDeleteStatus managementGroupGovernanceRulesDeleteStatus;
 
     private GovernanceAssignments governanceAssignments;
 
@@ -451,7 +467,7 @@ public final class SecurityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.security")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1176,6 +1192,33 @@ public final class SecurityManager {
     }
 
     /**
+     * Gets the resource collection API of ManagementGroupGovernanceRules.
+     *
+     * @return Resource collection API of ManagementGroupGovernanceRules.
+     */
+    public ManagementGroupGovernanceRules managementGroupGovernanceRules() {
+        if (this.managementGroupGovernanceRules == null) {
+            this.managementGroupGovernanceRules =
+                new ManagementGroupGovernanceRulesImpl(clientObject.getManagementGroupGovernanceRules(), this);
+        }
+        return managementGroupGovernanceRules;
+    }
+
+    /**
+     * Gets the resource collection API of ManagementGroupGovernanceRulesOperations.
+     *
+     * @return Resource collection API of ManagementGroupGovernanceRulesOperations.
+     */
+    public ManagementGroupGovernanceRulesOperations managementGroupGovernanceRulesOperations() {
+        if (this.managementGroupGovernanceRulesOperations == null) {
+            this.managementGroupGovernanceRulesOperations =
+                new ManagementGroupGovernanceRulesOperationsImpl(
+                    clientObject.getManagementGroupGovernanceRulesOperations(), this);
+        }
+        return managementGroupGovernanceRulesOperations;
+    }
+
+    /**
      * Gets the resource collection API of SubscriptionGovernanceRulesExecuteStatus.
      *
      * @return Resource collection API of SubscriptionGovernanceRulesExecuteStatus.
@@ -1201,6 +1244,34 @@ public final class SecurityManager {
                     clientObject.getSecurityConnectorGovernanceRulesExecuteStatus(), this);
         }
         return securityConnectorGovernanceRulesExecuteStatus;
+    }
+
+    /**
+     * Gets the resource collection API of ManagementGroupGovernanceRulesExecuteStatus.
+     *
+     * @return Resource collection API of ManagementGroupGovernanceRulesExecuteStatus.
+     */
+    public ManagementGroupGovernanceRulesExecuteStatus managementGroupGovernanceRulesExecuteStatus() {
+        if (this.managementGroupGovernanceRulesExecuteStatus == null) {
+            this.managementGroupGovernanceRulesExecuteStatus =
+                new ManagementGroupGovernanceRulesExecuteStatusImpl(
+                    clientObject.getManagementGroupGovernanceRulesExecuteStatus(), this);
+        }
+        return managementGroupGovernanceRulesExecuteStatus;
+    }
+
+    /**
+     * Gets the resource collection API of ManagementGroupGovernanceRulesDeleteStatus.
+     *
+     * @return Resource collection API of ManagementGroupGovernanceRulesDeleteStatus.
+     */
+    public ManagementGroupGovernanceRulesDeleteStatus managementGroupGovernanceRulesDeleteStatus() {
+        if (this.managementGroupGovernanceRulesDeleteStatus == null) {
+            this.managementGroupGovernanceRulesDeleteStatus =
+                new ManagementGroupGovernanceRulesDeleteStatusImpl(
+                    clientObject.getManagementGroupGovernanceRulesDeleteStatus(), this);
+        }
+        return managementGroupGovernanceRulesDeleteStatus;
     }
 
     /**

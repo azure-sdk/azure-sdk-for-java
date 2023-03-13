@@ -7,11 +7,11 @@ package com.azure.resourcemanager.security.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Execute status of Security GovernanceRule over a given scope. */
+/** Execute status of governance rule over a given scope. */
 @Immutable
 public final class ExecuteRuleStatusInner {
     /*
-     * Unique key for the execution of GovernanceRule
+     * Unique key for the execution of governance rule
      */
     @JsonProperty(value = "operationId", access = JsonProperty.Access.WRITE_ONLY)
     private String operationId;
@@ -21,7 +21,7 @@ public final class ExecuteRuleStatusInner {
     }
 
     /**
-     * Get the operationId property: Unique key for the execution of GovernanceRule.
+     * Get the operationId property: Unique key for the execution of governance rule.
      *
      * @return the operationId value.
      */

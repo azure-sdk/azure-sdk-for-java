@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.security.implementation;
 
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.SecurityConnectorGovernanceRulesExecuteStatusClient;
 import com.azure.resourcemanager.security.fluent.models.ExecuteRuleStatusInner;
 import com.azure.resourcemanager.security.models.ExecuteRuleStatus;
 import com.azure.resourcemanager.security.models.SecurityConnectorGovernanceRulesExecuteStatus;
+import com.azure.resourcemanager.security.models.SecurityConnectorGovernanceRulesExecuteStatusGetResponse;
 
 public final class SecurityConnectorGovernanceRulesExecuteStatusImpl
     implements SecurityConnectorGovernanceRulesExecuteStatus {
@@ -27,21 +30,27 @@ public final class SecurityConnectorGovernanceRulesExecuteStatusImpl
         this.serviceManager = serviceManager;
     }
 
-    public ExecuteRuleStatus get(
-        String resourceGroupName, String securityConnectorName, String ruleId, String operationId) {
-        ExecuteRuleStatusInner inner =
-            this.serviceClient().get(resourceGroupName, securityConnectorName, ruleId, operationId);
+    public Response<ExecuteRuleStatus> getWithResponse(
+        String resourceGroupName, String securityConnectorName, String ruleId, String operationId, Context context) {
+        SecurityConnectorGovernanceRulesExecuteStatusGetResponse inner =
+            this
+                .serviceClient()
+                .getWithResponse(resourceGroupName, securityConnectorName, ruleId, operationId, context);
         if (inner != null) {
-            return new ExecuteRuleStatusImpl(inner, this.manager());
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ExecuteRuleStatusImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
     public ExecuteRuleStatus get(
-        String resourceGroupName, String securityConnectorName, String ruleId, String operationId, Context context) {
+        String resourceGroupName, String securityConnectorName, String ruleId, String operationId) {
         ExecuteRuleStatusInner inner =
-            this.serviceClient().get(resourceGroupName, securityConnectorName, ruleId, operationId, context);
+            this.serviceClient().get(resourceGroupName, securityConnectorName, ruleId, operationId);
         if (inner != null) {
             return new ExecuteRuleStatusImpl(inner, this.manager());
         } else {

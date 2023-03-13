@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.security.implementation;
 
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.SubscriptionGovernanceRulesExecuteStatusClient;
 import com.azure.resourcemanager.security.fluent.models.ExecuteRuleStatusInner;
 import com.azure.resourcemanager.security.models.ExecuteRuleStatus;
 import com.azure.resourcemanager.security.models.SubscriptionGovernanceRulesExecuteStatus;
+import com.azure.resourcemanager.security.models.SubscriptionGovernanceRulesExecuteStatusGetResponse;
 
 public final class SubscriptionGovernanceRulesExecuteStatusImpl implements SubscriptionGovernanceRulesExecuteStatus {
     private static final ClientLogger LOGGER = new ClientLogger(SubscriptionGovernanceRulesExecuteStatusImpl.class);
@@ -25,17 +28,22 @@ public final class SubscriptionGovernanceRulesExecuteStatusImpl implements Subsc
         this.serviceManager = serviceManager;
     }
 
-    public ExecuteRuleStatus get(String ruleId, String operationId) {
-        ExecuteRuleStatusInner inner = this.serviceClient().get(ruleId, operationId);
+    public Response<ExecuteRuleStatus> getWithResponse(String ruleId, String operationId, Context context) {
+        SubscriptionGovernanceRulesExecuteStatusGetResponse inner =
+            this.serviceClient().getWithResponse(ruleId, operationId, context);
         if (inner != null) {
-            return new ExecuteRuleStatusImpl(inner, this.manager());
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ExecuteRuleStatusImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ExecuteRuleStatus get(String ruleId, String operationId, Context context) {
-        ExecuteRuleStatusInner inner = this.serviceClient().get(ruleId, operationId, context);
+    public ExecuteRuleStatus get(String ruleId, String operationId) {
+        ExecuteRuleStatusInner inner = this.serviceClient().get(ruleId, operationId);
         if (inner != null) {
             return new ExecuteRuleStatusImpl(inner, this.manager());
         } else {

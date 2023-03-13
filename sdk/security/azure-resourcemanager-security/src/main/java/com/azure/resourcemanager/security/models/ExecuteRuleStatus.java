@@ -9,7 +9,7 @@ import com.azure.resourcemanager.security.fluent.models.ExecuteRuleStatusInner;
 /** An immutable client-side representation of ExecuteRuleStatus. */
 public interface ExecuteRuleStatus {
     /**
-     * Gets the operationId property: Unique key for the execution of GovernanceRule.
+     * Gets the operationId property: Unique key for the execution of governance rule.
      *
      * @return the operationId value.
      */
