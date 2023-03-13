@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkfunction.models.AzureTrafficCollector;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +21,10 @@ public final class AzureTrafficCollectorsUpdateTagsSamples {
     public static void updateTrafficCollectorTags(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         AzureTrafficCollector resource =
-            manager.azureTrafficCollectors().getByResourceGroupWithResponse("rg1", "atc", Context.NONE).getValue();
+            manager
+                .azureTrafficCollectors()
+                .getByResourceGroupWithResponse("rg1", "atc", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("key1", "value1", "key2", "value2")).apply();
     }
 

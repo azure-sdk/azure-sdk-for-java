@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkfunction.models.CollectorPolicy;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +21,10 @@ public final class CollectorPoliciesUpdateTagsSamples {
     public static void updateCollectorPolicyTags(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         CollectorPolicy resource =
-            manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", Context.NONE).getValue();
+            manager
+                .collectorPolicies()
+                .getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("key1", "value1", "key2", "value2")).apply();
     }
 

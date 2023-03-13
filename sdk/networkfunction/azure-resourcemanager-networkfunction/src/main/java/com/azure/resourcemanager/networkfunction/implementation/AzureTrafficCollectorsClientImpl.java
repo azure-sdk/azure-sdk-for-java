@@ -465,7 +465,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AzureTrafficCollectorInner>, AzureTrafficCollectorInner> beginCreateOrUpdate(
         String resourceGroupName, String azureTrafficCollectorName, AzureTrafficCollectorInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters).getSyncPoller();
     }
 
     /**
@@ -486,7 +486,8 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
         String azureTrafficCollectorName,
         AzureTrafficCollectorInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters, context)
             .getSyncPoller();
     }
 
@@ -724,7 +725,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String azureTrafficCollectorName) {
-        return beginDeleteAsync(resourceGroupName, azureTrafficCollectorName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureTrafficCollectorName).getSyncPoller();
     }
 
     /**
@@ -741,7 +742,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String azureTrafficCollectorName, Context context) {
-        return beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, context).getSyncPoller();
     }
 
     /**
