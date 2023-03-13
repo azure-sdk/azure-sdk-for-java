@@ -19,6 +19,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.rest.PagedFlux;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.PagedResponse;
@@ -108,6 +109,9 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
         @Patch(
             "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}")
         @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(
+            value = HttpResponseException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<SavingsPlansUpdateResponse> update(
             @HostParam("$host") String endpoint,
@@ -687,6 +691,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan on successful completion of {@link Mono}.
      */
@@ -736,6 +741,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan on successful completion of {@link Mono}.
      */
@@ -781,6 +787,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan on successful completion of {@link Mono}.
      */
@@ -800,6 +807,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan.
      */
@@ -817,6 +825,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws HttpResponseException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan.
      */

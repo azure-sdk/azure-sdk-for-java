@@ -14,7 +14,7 @@ import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.ExtendedStatusInfo;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
-import com.azure.resourcemanager.billingbenefits.models.RenewProperties;
+import com.azure.resourcemanager.billingbenefits.models.SavingsPlanModelPropertiesRenewProperties;
 import com.azure.resourcemanager.billingbenefits.models.Sku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import com.azure.resourcemanager.billingbenefits.models.Utilization;
@@ -402,57 +402,11 @@ public final class SavingsPlanModelInner extends ProxyResource {
     }
 
     /**
-     * Get the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
-     * @return the renewSource value.
-     */
-    public String renewSource() {
-        return this.innerProperties() == null ? null : this.innerProperties().renewSource();
-    }
-
-    /**
-     * Set the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
-     * @param renewSource the renewSource value to set.
-     * @return the SavingsPlanModelInner object itself.
-     */
-    public SavingsPlanModelInner withRenewSource(String renewSource) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SavingsPlanModelProperties();
-        }
-        this.innerProperties().withRenewSource(renewSource);
-        return this;
-    }
-
-    /**
-     * Get the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
-     * @return the renewDestination value.
-     */
-    public String renewDestination() {
-        return this.innerProperties() == null ? null : this.innerProperties().renewDestination();
-    }
-
-    /**
-     * Set the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
-     * @param renewDestination the renewDestination value to set.
-     * @return the SavingsPlanModelInner object itself.
-     */
-    public SavingsPlanModelInner withRenewDestination(String renewDestination) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SavingsPlanModelProperties();
-        }
-        this.innerProperties().withRenewDestination(renewDestination);
-        return this;
-    }
-
-    /**
      * Get the renewProperties property: The renewProperties property.
      *
      * @return the renewProperties value.
      */
-    public RenewProperties renewProperties() {
+    public SavingsPlanModelPropertiesRenewProperties renewProperties() {
         return this.innerProperties() == null ? null : this.innerProperties().renewProperties();
     }
 
@@ -462,7 +416,7 @@ public final class SavingsPlanModelInner extends ProxyResource {
      * @param renewProperties the renewProperties value to set.
      * @return the SavingsPlanModelInner object itself.
      */
-    public SavingsPlanModelInner withRenewProperties(RenewProperties renewProperties) {
+    public SavingsPlanModelInner withRenewProperties(SavingsPlanModelPropertiesRenewProperties renewProperties) {
         if (this.innerProperties() == null) {
             this.innerProperties = new SavingsPlanModelProperties();
         }

@@ -12,8 +12,8 @@ import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.ExtendedStatusInfo;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
-import com.azure.resourcemanager.billingbenefits.models.RenewProperties;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanModel;
+import com.azure.resourcemanager.billingbenefits.models.SavingsPlanModelPropertiesRenewProperties;
 import com.azure.resourcemanager.billingbenefits.models.Sku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import com.azure.resourcemanager.billingbenefits.models.Utilization;
@@ -131,15 +131,7 @@ public final class SavingsPlanModelImpl implements SavingsPlanModel {
         return this.innerModel().utilization();
     }
 
-    public String renewSource() {
-        return this.innerModel().renewSource();
-    }
-
-    public String renewDestination() {
-        return this.innerModel().renewDestination();
-    }
-
-    public RenewProperties renewProperties() {
+    public SavingsPlanModelPropertiesRenewProperties renewProperties() {
         return this.innerModel().renewProperties();
     }
 

@@ -11,7 +11,7 @@ import com.azure.resourcemanager.billingbenefits.models.BillingPlan;
 import com.azure.resourcemanager.billingbenefits.models.Commitment;
 import com.azure.resourcemanager.billingbenefits.models.ExtendedStatusInfo;
 import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
-import com.azure.resourcemanager.billingbenefits.models.RenewProperties;
+import com.azure.resourcemanager.billingbenefits.models.SavingsPlanModelPropertiesRenewProperties;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import com.azure.resourcemanager.billingbenefits.models.Utilization;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -144,22 +144,10 @@ public final class SavingsPlanModelProperties {
     private Utilization utilization;
 
     /*
-     * SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     */
-    @JsonProperty(value = "renewSource")
-    private String renewSource;
-
-    /*
-     * SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     */
-    @JsonProperty(value = "renewDestination")
-    private String renewDestination;
-
-    /*
      * The renewProperties property.
      */
     @JsonProperty(value = "renewProperties")
-    private RenewProperties renewProperties;
+    private SavingsPlanModelPropertiesRenewProperties renewProperties;
 
     /** Creates an instance of SavingsPlanModelProperties class. */
     public SavingsPlanModelProperties() {
@@ -456,51 +444,11 @@ public final class SavingsPlanModelProperties {
     }
 
     /**
-     * Get the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
-     * @return the renewSource value.
-     */
-    public String renewSource() {
-        return this.renewSource;
-    }
-
-    /**
-     * Set the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
-     * @param renewSource the renewSource value to set.
-     * @return the SavingsPlanModelProperties object itself.
-     */
-    public SavingsPlanModelProperties withRenewSource(String renewSource) {
-        this.renewSource = renewSource;
-        return this;
-    }
-
-    /**
-     * Get the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
-     * @return the renewDestination value.
-     */
-    public String renewDestination() {
-        return this.renewDestination;
-    }
-
-    /**
-     * Set the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
-     * @param renewDestination the renewDestination value to set.
-     * @return the SavingsPlanModelProperties object itself.
-     */
-    public SavingsPlanModelProperties withRenewDestination(String renewDestination) {
-        this.renewDestination = renewDestination;
-        return this;
-    }
-
-    /**
      * Get the renewProperties property: The renewProperties property.
      *
      * @return the renewProperties value.
      */
-    public RenewProperties renewProperties() {
+    public SavingsPlanModelPropertiesRenewProperties renewProperties() {
         return this.renewProperties;
     }
 
@@ -510,7 +458,7 @@ public final class SavingsPlanModelProperties {
      * @param renewProperties the renewProperties value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
-    public SavingsPlanModelProperties withRenewProperties(RenewProperties renewProperties) {
+    public SavingsPlanModelProperties withRenewProperties(SavingsPlanModelPropertiesRenewProperties renewProperties) {
         this.renewProperties = renewProperties;
         return this;
     }

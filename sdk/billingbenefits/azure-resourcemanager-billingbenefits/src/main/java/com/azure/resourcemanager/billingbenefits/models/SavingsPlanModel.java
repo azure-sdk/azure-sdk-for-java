@@ -194,25 +194,11 @@ public interface SavingsPlanModel {
     Utilization utilization();
 
     /**
-     * Gets the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
-     * @return the renewSource value.
-     */
-    String renewSource();
-
-    /**
-     * Gets the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
-     * @return the renewDestination value.
-     */
-    String renewDestination();
-
-    /**
      * Gets the renewProperties property: The renewProperties property.
      *
      * @return the renewProperties value.
      */
-    RenewProperties renewProperties();
+    SavingsPlanModelPropertiesRenewProperties renewProperties();
 
     /**
      * Gets the inner com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanModelInner object.
