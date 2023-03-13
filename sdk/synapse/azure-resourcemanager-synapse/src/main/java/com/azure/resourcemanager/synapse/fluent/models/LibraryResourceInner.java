@@ -115,6 +115,20 @@ public final class LibraryResourceInner extends EntityResource {
     }
 
     /**
+     * Set the uploadedTimestamp property: The last update time of the library.
+     *
+     * @param uploadedTimestamp the uploadedTimestamp value to set.
+     * @return the LibraryResourceInner object itself.
+     */
+    public LibraryResourceInner withUploadedTimestamp(OffsetDateTime uploadedTimestamp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LibraryInfo();
+        }
+        this.innerProperties().withUploadedTimestamp(uploadedTimestamp);
+        return this;
+    }
+
+    /**
      * Get the type property: Type of the library.
      *
      * @return the type value.

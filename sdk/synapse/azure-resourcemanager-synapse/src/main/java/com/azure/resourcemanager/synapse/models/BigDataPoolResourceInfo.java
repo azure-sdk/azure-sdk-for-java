@@ -273,6 +273,7 @@ public interface BigDataPoolResourceInfo {
                 DefinitionStages.WithIsComputeIsolationEnabled,
                 DefinitionStages.WithIsAutotuneEnabled,
                 DefinitionStages.WithSessionLevelPackagesEnabled,
+                DefinitionStages.WithCacheSize,
                 DefinitionStages.WithDynamicExecutorAllocation,
                 DefinitionStages.WithSparkEventsFolder,
                 DefinitionStages.WithNodeCount,
@@ -377,6 +378,16 @@ public interface BigDataPoolResourceInfo {
              * @return the next definition stage.
              */
             WithCreate withSessionLevelPackagesEnabled(Boolean sessionLevelPackagesEnabled);
+        }
+        /** The stage of the BigDataPoolResourceInfo definition allowing to specify cacheSize. */
+        interface WithCacheSize {
+            /**
+             * Specifies the cacheSize property: The cache size.
+             *
+             * @param cacheSize The cache size.
+             * @return the next definition stage.
+             */
+            WithCreate withCacheSize(Integer cacheSize);
         }
         /** The stage of the BigDataPoolResourceInfo definition allowing to specify dynamicExecutorAllocation. */
         interface WithDynamicExecutorAllocation {

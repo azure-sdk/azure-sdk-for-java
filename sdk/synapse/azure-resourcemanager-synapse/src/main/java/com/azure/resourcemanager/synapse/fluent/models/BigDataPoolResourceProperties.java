@@ -74,7 +74,7 @@ public final class BigDataPoolResourceProperties {
     /*
      * The cache size
      */
-    @JsonProperty(value = "cacheSize", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "cacheSize")
     private Integer cacheSize;
 
     /*
@@ -299,6 +299,17 @@ public final class BigDataPoolResourceProperties {
      */
     public Integer cacheSize() {
         return this.cacheSize;
+    }
+
+    /**
+     * Set the cacheSize property: The cache size.
+     *
+     * @param cacheSize the cacheSize value to set.
+     * @return the BigDataPoolResourceProperties object itself.
+     */
+    public BigDataPoolResourceProperties withCacheSize(Integer cacheSize) {
+        this.cacheSize = cacheSize;
+        return this;
     }
 
     /**

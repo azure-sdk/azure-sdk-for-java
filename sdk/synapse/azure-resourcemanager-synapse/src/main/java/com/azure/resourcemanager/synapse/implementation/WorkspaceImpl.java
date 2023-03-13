@@ -119,8 +119,13 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().workspaceUid();
     }
 
-    public Object extraProperties() {
-        return this.innerModel().extraProperties();
+    public Map<String, Object> extraProperties() {
+        Map<String, Object> inner = this.innerModel().extraProperties();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public ManagedVirtualNetworkSettings managedVirtualNetworkSettings() {
@@ -326,6 +331,11 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public WorkspaceImpl withVirtualNetworkProfile(VirtualNetworkProfile virtualNetworkProfile) {
         this.innerModel().withVirtualNetworkProfile(virtualNetworkProfile);
+        return this;
+    }
+
+    public WorkspaceImpl withConnectivityEndpoints(Map<String, String> connectivityEndpoints) {
+        this.innerModel().withConnectivityEndpoints(connectivityEndpoints);
         return this;
     }
 

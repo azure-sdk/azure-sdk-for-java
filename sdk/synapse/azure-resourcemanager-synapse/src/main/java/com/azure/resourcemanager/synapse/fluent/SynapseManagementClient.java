@@ -481,13 +481,6 @@ public interface SynapseManagementClient {
     IntegrationRuntimeStatusOperationsClient getIntegrationRuntimeStatusOperations();
 
     /**
-     * Gets the GetsClient object to access its operations.
-     *
-     * @return the GetsClient object.
-     */
-    GetsClient getGets();
-
-    /**
      * Gets the SparkConfigurationsClient object to access its operations.
      *
      * @return the SparkConfigurationsClient object.

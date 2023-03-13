@@ -142,7 +142,7 @@ public interface Workspace {
      *
      * @return the extraProperties value.
      */
-    Object extraProperties();
+    Map<String, Object> extraProperties();
 
     /**
      * Gets the managedVirtualNetworkSettings property: Managed Virtual Network Settings.
@@ -288,6 +288,7 @@ public interface Workspace {
                 DefinitionStages.WithManagedResourceGroupName,
                 DefinitionStages.WithSqlAdministratorLogin,
                 DefinitionStages.WithVirtualNetworkProfile,
+                DefinitionStages.WithConnectivityEndpoints,
                 DefinitionStages.WithManagedVirtualNetwork,
                 DefinitionStages.WithPrivateEndpointConnections,
                 DefinitionStages.WithEncryption,
@@ -388,6 +389,16 @@ public interface Workspace {
              * @return the next definition stage.
              */
             WithCreate withVirtualNetworkProfile(VirtualNetworkProfile virtualNetworkProfile);
+        }
+        /** The stage of the Workspace definition allowing to specify connectivityEndpoints. */
+        interface WithConnectivityEndpoints {
+            /**
+             * Specifies the connectivityEndpoints property: Connectivity endpoints.
+             *
+             * @param connectivityEndpoints Connectivity endpoints.
+             * @return the next definition stage.
+             */
+            WithCreate withConnectivityEndpoints(Map<String, String> connectivityEndpoints);
         }
         /** The stage of the Workspace definition allowing to specify managedVirtualNetwork. */
         interface WithManagedVirtualNetwork {

@@ -29,7 +29,6 @@ import com.azure.resourcemanager.synapse.implementation.BigDataPoolsImpl;
 import com.azure.resourcemanager.synapse.implementation.DataMaskingPoliciesImpl;
 import com.azure.resourcemanager.synapse.implementation.DataMaskingRulesImpl;
 import com.azure.resourcemanager.synapse.implementation.ExtendedSqlPoolBlobAuditingPoliciesImpl;
-import com.azure.resourcemanager.synapse.implementation.GetsImpl;
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeAuthKeysOperationsImpl;
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeConnectionInfosImpl;
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeCredentialsImpl;
@@ -105,7 +104,6 @@ import com.azure.resourcemanager.synapse.models.BigDataPools;
 import com.azure.resourcemanager.synapse.models.DataMaskingPolicies;
 import com.azure.resourcemanager.synapse.models.DataMaskingRules;
 import com.azure.resourcemanager.synapse.models.ExtendedSqlPoolBlobAuditingPolicies;
-import com.azure.resourcemanager.synapse.models.Gets;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeAuthKeysOperations;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeConnectionInfos;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeCredentials;
@@ -311,8 +309,6 @@ public final class SynapseManager {
 
     private IntegrationRuntimeStatusOperations integrationRuntimeStatusOperations;
 
-    private Gets gets;
-
     private SparkConfigurations sparkConfigurations;
 
     private SparkConfigurationsOperations sparkConfigurationsOperations;
@@ -500,7 +496,7 @@ public final class SynapseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.synapse")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1376,18 +1372,6 @@ public final class SynapseManager {
                 new IntegrationRuntimeStatusOperationsImpl(clientObject.getIntegrationRuntimeStatusOperations(), this);
         }
         return integrationRuntimeStatusOperations;
-    }
-
-    /**
-     * Gets the resource collection API of Gets.
-     *
-     * @return Resource collection API of Gets.
-     */
-    public Gets gets() {
-        if (this.gets == null) {
-            this.gets = new GetsImpl(clientObject.getGets(), this);
-        }
-        return gets;
     }
 
     /**

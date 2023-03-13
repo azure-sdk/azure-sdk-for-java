@@ -61,7 +61,7 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
                 + "/{workspaceName}/sqlPools/{sqlPoolName}/operationResults/{operationId}")
-        @ExpectedResponses({200, 201, 202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> getLocationHeaderResult(
             @HostParam("$host") String endpoint,

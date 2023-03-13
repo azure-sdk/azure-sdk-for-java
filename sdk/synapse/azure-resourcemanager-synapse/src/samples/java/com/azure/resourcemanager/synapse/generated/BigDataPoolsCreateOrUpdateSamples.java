@@ -35,7 +35,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .withSparkEventsFolder("/events")
             .withNodeCount(4)
             .withLibraryRequirements(new LibraryRequirements().withContent("").withFilename("requirements.txt"))
-            .withSparkVersion("3.3")
+            .withSparkVersion("2.4")
             .withDefaultSparkLogFolder("/logs")
             .withNodeSize(NodeSize.MEDIUM)
             .withNodeSizeFamily(NodeSizeFamily.MEMORY_OPTIMIZED)

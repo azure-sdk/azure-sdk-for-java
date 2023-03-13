@@ -27,7 +27,6 @@ import com.azure.resourcemanager.synapse.fluent.BigDataPoolsClient;
 import com.azure.resourcemanager.synapse.fluent.DataMaskingPoliciesClient;
 import com.azure.resourcemanager.synapse.fluent.DataMaskingRulesClient;
 import com.azure.resourcemanager.synapse.fluent.ExtendedSqlPoolBlobAuditingPoliciesClient;
-import com.azure.resourcemanager.synapse.fluent.GetsClient;
 import com.azure.resourcemanager.synapse.fluent.IntegrationRuntimeAuthKeysOperationsClient;
 import com.azure.resourcemanager.synapse.fluent.IntegrationRuntimeConnectionInfosClient;
 import com.azure.resourcemanager.synapse.fluent.IntegrationRuntimeCredentialsClient;
@@ -932,18 +931,6 @@ public final class SynapseManagementClientImpl implements SynapseManagementClien
         return this.integrationRuntimeStatusOperations;
     }
 
-    /** The GetsClient object to access its operations. */
-    private final GetsClient gets;
-
-    /**
-     * Gets the GetsClient object to access its operations.
-     *
-     * @return the GetsClient object.
-     */
-    public GetsClient getGets() {
-        return this.gets;
-    }
-
     /** The SparkConfigurationsClient object to access its operations. */
     private final SparkConfigurationsClient sparkConfigurations;
 
@@ -1170,7 +1157,6 @@ public final class SynapseManagementClientImpl implements SynapseManagementClien
         this.integrationRuntimeAuthKeysOperations = new IntegrationRuntimeAuthKeysOperationsClientImpl(this);
         this.integrationRuntimeMonitoringDatas = new IntegrationRuntimeMonitoringDatasClientImpl(this);
         this.integrationRuntimeStatusOperations = new IntegrationRuntimeStatusOperationsClientImpl(this);
-        this.gets = new GetsClientImpl(this);
         this.sparkConfigurations = new SparkConfigurationsClientImpl(this);
         this.sparkConfigurationsOperations = new SparkConfigurationsOperationsClientImpl(this);
         this.kustoOperations = new KustoOperationsClientImpl(this);

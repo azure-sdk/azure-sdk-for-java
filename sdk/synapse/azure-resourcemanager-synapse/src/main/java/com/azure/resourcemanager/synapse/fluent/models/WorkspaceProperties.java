@@ -63,7 +63,7 @@ public final class WorkspaceProperties {
     /*
      * Connectivity endpoints
      */
-    @JsonProperty(value = "connectivityEndpoints", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "connectivityEndpoints")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> connectivityEndpoints;
 
@@ -96,7 +96,8 @@ public final class WorkspaceProperties {
      * Workspace level configs and feature flags
      */
     @JsonProperty(value = "extraProperties", access = JsonProperty.Access.WRITE_ONLY)
-    private Object extraProperties;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> extraProperties;
 
     /*
      * Managed Virtual Network Settings
@@ -282,6 +283,17 @@ public final class WorkspaceProperties {
     }
 
     /**
+     * Set the connectivityEndpoints property: Connectivity endpoints.
+     *
+     * @param connectivityEndpoints the connectivityEndpoints value to set.
+     * @return the WorkspaceProperties object itself.
+     */
+    public WorkspaceProperties withConnectivityEndpoints(Map<String, String> connectivityEndpoints) {
+        this.connectivityEndpoints = connectivityEndpoints;
+        return this;
+    }
+
+    /**
      * Get the managedVirtualNetwork property: Setting this to 'default' will ensure that all compute for this workspace
      * is in a virtual network managed on behalf of the user.
      *
@@ -358,7 +370,7 @@ public final class WorkspaceProperties {
      *
      * @return the extraProperties value.
      */
-    public Object extraProperties() {
+    public Map<String, Object> extraProperties() {
         return this.extraProperties;
     }
 

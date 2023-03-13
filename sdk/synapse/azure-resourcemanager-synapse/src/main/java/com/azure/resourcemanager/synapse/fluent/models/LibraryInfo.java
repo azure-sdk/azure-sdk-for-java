@@ -36,7 +36,7 @@ public final class LibraryInfo {
     /*
      * The last update time of the library.
      */
-    @JsonProperty(value = "uploadedTimestamp", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "uploadedTimestamp")
     private OffsetDateTime uploadedTimestamp;
 
     /*
@@ -128,6 +128,17 @@ public final class LibraryInfo {
      */
     public OffsetDateTime uploadedTimestamp() {
         return this.uploadedTimestamp;
+    }
+
+    /**
+     * Set the uploadedTimestamp property: The last update time of the library.
+     *
+     * @param uploadedTimestamp the uploadedTimestamp value to set.
+     * @return the LibraryInfo object itself.
+     */
+    public LibraryInfo withUploadedTimestamp(OffsetDateTime uploadedTimestamp) {
+        this.uploadedTimestamp = uploadedTimestamp;
+        return this;
     }
 
     /**

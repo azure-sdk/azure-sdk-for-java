@@ -133,18 +133,6 @@ public final class SelfHostedIntegrationRuntimeStatusTypeProperties {
     @JsonProperty(value = "newerVersions")
     private List<String> newerVersions;
 
-    /*
-     * The osType property.
-     */
-    @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer osType;
-
-    /*
-     * The targetFramework property.
-     */
-    @JsonProperty(value = "targetFramework", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer targetFramework;
-
     /** Creates an instance of SelfHostedIntegrationRuntimeStatusTypeProperties class. */
     public SelfHostedIntegrationRuntimeStatusTypeProperties() {
     }
@@ -368,24 +356,6 @@ public final class SelfHostedIntegrationRuntimeStatusTypeProperties {
     public SelfHostedIntegrationRuntimeStatusTypeProperties withNewerVersions(List<String> newerVersions) {
         this.newerVersions = newerVersions;
         return this;
-    }
-
-    /**
-     * Get the osType property: The osType property.
-     *
-     * @return the osType value.
-     */
-    public Integer osType() {
-        return this.osType;
-    }
-
-    /**
-     * Get the targetFramework property: The targetFramework property.
-     *
-     * @return the targetFramework value.
-     */
-    public Integer targetFramework() {
-        return this.targetFramework;
     }
 
     /**

@@ -275,24 +275,6 @@ public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntime
     }
 
     /**
-     * Get the osType property: The osType property.
-     *
-     * @return the osType value.
-     */
-    public Integer osType() {
-        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().osType();
-    }
-
-    /**
-     * Get the targetFramework property: The targetFramework property.
-     *
-     * @return the targetFramework value.
-     */
-    public Integer targetFramework() {
-        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().targetFramework();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
