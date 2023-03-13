@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.loadtesting.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -26,7 +25,6 @@ public class EncryptionPropertiesIdentity {
      * group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId
      */
     @JsonProperty(value = "resourceId")
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     private String resourceId;
 
     /** Creates an instance of EncryptionPropertiesIdentity class. */
