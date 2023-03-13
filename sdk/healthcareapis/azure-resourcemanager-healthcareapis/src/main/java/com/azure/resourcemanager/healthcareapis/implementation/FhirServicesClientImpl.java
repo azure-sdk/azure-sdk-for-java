@@ -65,7 +65,7 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface FhirServicesService {
+    public interface FhirServicesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
@@ -460,30 +460,7 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FhirServiceInner> getAsync(String resourceGroupName, String workspaceName, String fhirServiceName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, fhirServiceName)
-            .flatMap(
-                (Response<FhirServiceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the properties of the specified FHIR Service.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param fhirServiceName The name of FHIR Service resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified FHIR Service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FhirServiceInner get(String resourceGroupName, String workspaceName, String fhirServiceName) {
-        return getAsync(resourceGroupName, workspaceName, fhirServiceName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -502,6 +479,22 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     public Response<FhirServiceInner> getWithResponse(
         String resourceGroupName, String workspaceName, String fhirServiceName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, fhirServiceName, context).block();
+    }
+
+    /**
+     * Gets the properties of the specified FHIR Service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param fhirServiceName The name of FHIR Service resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified FHIR Service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FhirServiceInner get(String resourceGroupName, String workspaceName, String fhirServiceName) {
+        return getWithResponse(resourceGroupName, workspaceName, fhirServiceName, Context.NONE).getValue();
     }
 
     /**
@@ -699,7 +692,9 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FhirServiceInner>, FhirServiceInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String fhirServiceName, FhirServiceInner fhirservice) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, fhirServiceName, fhirservice).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, workspaceName, fhirServiceName, fhirservice)
+            .getSyncPoller();
     }
 
     /**
@@ -722,7 +717,8 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
         String fhirServiceName,
         FhirServiceInner fhirservice,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, fhirServiceName, fhirservice, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, workspaceName, fhirServiceName, fhirservice, context)
             .getSyncPoller();
     }
 
@@ -1021,7 +1017,8 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
         String fhirServiceName,
         String workspaceName,
         FhirServicePatchResource fhirservicePatchResource) {
-        return beginUpdateAsync(resourceGroupName, fhirServiceName, workspaceName, fhirservicePatchResource)
+        return this
+            .beginUpdateAsync(resourceGroupName, fhirServiceName, workspaceName, fhirservicePatchResource)
             .getSyncPoller();
     }
 
@@ -1045,7 +1042,8 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
         String workspaceName,
         FhirServicePatchResource fhirservicePatchResource,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, fhirServiceName, workspaceName, fhirservicePatchResource, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, fhirServiceName, workspaceName, fhirservicePatchResource, context)
             .getSyncPoller();
     }
 
@@ -1307,7 +1305,7 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String fhirServiceName, String workspaceName) {
-        return beginDeleteAsync(resourceGroupName, fhirServiceName, workspaceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, fhirServiceName, workspaceName).getSyncPoller();
     }
 
     /**
@@ -1325,7 +1323,7 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String fhirServiceName, String workspaceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, fhirServiceName, workspaceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, fhirServiceName, workspaceName, context).getSyncPoller();
     }
 
     /**
@@ -1400,7 +1398,8 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1435,7 +1434,8 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

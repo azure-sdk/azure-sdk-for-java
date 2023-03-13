@@ -12,11 +12,14 @@ import java.util.Map;
 @Fluent
 public final class FhirServicePatchResource extends ResourceTags {
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServiceManagedIdentityIdentity identity;
+
+    /** Creates an instance of FhirServicePatchResource class. */
+    public FhirServicePatchResource() {
+    }
 
     /**
      * Get the identity property: Setting indicating whether the service has a managed identity associated with it.

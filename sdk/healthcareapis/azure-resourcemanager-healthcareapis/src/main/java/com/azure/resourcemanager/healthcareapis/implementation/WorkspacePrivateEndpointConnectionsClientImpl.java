@@ -69,7 +69,7 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface WorkspacePrivateEndpointConnectionsService {
+    public interface WorkspacePrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
@@ -440,32 +440,7 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
     private Mono<PrivateEndpointConnectionDescriptionInner> getAsync(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName)
-            .flatMap(
-                (Response<PrivateEndpointConnectionDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the specified private endpoint connection associated with the workspace.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionDescriptionInner get(
-        String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
-        return getAsync(resourceGroupName, workspaceName, privateEndpointConnectionName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -485,6 +460,25 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
     public Response<PrivateEndpointConnectionDescriptionInner> getWithResponse(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName, context).block();
+    }
+
+    /**
+     * Gets the specified private endpoint connection associated with the workspace.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private endpoint connection associated with the workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionDescriptionInner get(
+        String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
+        return getWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -711,7 +705,8 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
             String workspaceName,
             String privateEndpointConnectionName,
             PrivateEndpointConnectionDescriptionInner properties) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, privateEndpointConnectionName, properties)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, workspaceName, privateEndpointConnectionName, properties)
             .getSyncPoller();
     }
 
@@ -737,7 +732,8 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
             String privateEndpointConnectionName,
             PrivateEndpointConnectionDescriptionInner properties,
             Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName, workspaceName, privateEndpointConnectionName, properties, context)
             .getSyncPoller();
     }
@@ -1014,7 +1010,7 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, privateEndpointConnectionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, privateEndpointConnectionName).getSyncPoller();
     }
 
     /**
@@ -1033,7 +1029,8 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, privateEndpointConnectionName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, workspaceName, privateEndpointConnectionName, context)
             .getSyncPoller();
     }
 
