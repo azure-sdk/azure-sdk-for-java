@@ -66,7 +66,7 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
      */
     @Host("{$host}")
     @ServiceInterface(name = "SqlVirtualMachineMan")
-    private interface SqlVirtualMachineGroupsService {
+    public interface SqlVirtualMachineGroupsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine"
@@ -300,22 +300,6 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
      * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
      *     the Azure Resource Manager API or the portal.
      * @param sqlVirtualMachineGroupName Name of the SQL virtual machine group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SQL virtual machine group.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SqlVirtualMachineGroupInner getByResourceGroup(String resourceGroupName, String sqlVirtualMachineGroupName) {
-        return getByResourceGroupAsync(resourceGroupName, sqlVirtualMachineGroupName).block();
-    }
-
-    /**
-     * Gets a SQL virtual machine group.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineGroupName Name of the SQL virtual machine group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -326,6 +310,22 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
     public Response<SqlVirtualMachineGroupInner> getByResourceGroupWithResponse(
         String resourceGroupName, String sqlVirtualMachineGroupName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, sqlVirtualMachineGroupName, context).block();
+    }
+
+    /**
+     * Gets a SQL virtual machine group.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineGroupName Name of the SQL virtual machine group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SQL virtual machine group.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlVirtualMachineGroupInner getByResourceGroup(String resourceGroupName, String sqlVirtualMachineGroupName) {
+        return getByResourceGroupWithResponse(resourceGroupName, sqlVirtualMachineGroupName, Context.NONE).getValue();
     }
 
     /**
@@ -521,7 +521,7 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SqlVirtualMachineGroupInner>, SqlVirtualMachineGroupInner> beginCreateOrUpdate(
         String resourceGroupName, String sqlVirtualMachineGroupName, SqlVirtualMachineGroupInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters).getSyncPoller();
     }
 
     /**
@@ -543,7 +543,8 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
         String sqlVirtualMachineGroupName,
         SqlVirtualMachineGroupInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters, context)
             .getSyncPoller();
     }
 
@@ -786,7 +787,7 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String sqlVirtualMachineGroupName) {
-        return beginDeleteAsync(resourceGroupName, sqlVirtualMachineGroupName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, sqlVirtualMachineGroupName).getSyncPoller();
     }
 
     /**
@@ -804,7 +805,7 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String sqlVirtualMachineGroupName, Context context) {
-        return beginDeleteAsync(resourceGroupName, sqlVirtualMachineGroupName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, sqlVirtualMachineGroupName, context).getSyncPoller();
     }
 
     /**
@@ -1068,7 +1069,7 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SqlVirtualMachineGroupInner>, SqlVirtualMachineGroupInner> beginUpdate(
         String resourceGroupName, String sqlVirtualMachineGroupName, SqlVirtualMachineGroupUpdate parameters) {
-        return beginUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters).getSyncPoller();
     }
 
     /**
@@ -1090,7 +1091,9 @@ public final class SqlVirtualMachineGroupsClientImpl implements SqlVirtualMachin
         String sqlVirtualMachineGroupName,
         SqlVirtualMachineGroupUpdate parameters,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters, context).getSyncPoller();
+        return this
+            .beginUpdateAsync(resourceGroupName, sqlVirtualMachineGroupName, parameters, context)
+            .getSyncPoller();
     }
 
     /**

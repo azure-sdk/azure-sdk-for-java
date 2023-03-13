@@ -68,16 +68,6 @@ public final class SqlVirtualMachinesImpl implements SqlVirtualMachines {
         this.serviceClient().redeploy(resourceGroupName, sqlVirtualMachineName, context);
     }
 
-    public SqlVirtualMachine getByResourceGroup(String resourceGroupName, String sqlVirtualMachineName) {
-        SqlVirtualMachineInner inner =
-            this.serviceClient().getByResourceGroup(resourceGroupName, sqlVirtualMachineName);
-        if (inner != null) {
-            return new SqlVirtualMachineImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SqlVirtualMachine> getByResourceGroupWithResponse(
         String resourceGroupName, String sqlVirtualMachineName, String expand, Context context) {
         Response<SqlVirtualMachineInner> inner =
@@ -90,6 +80,16 @@ public final class SqlVirtualMachinesImpl implements SqlVirtualMachines {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SqlVirtualMachineImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SqlVirtualMachine getByResourceGroup(String resourceGroupName, String sqlVirtualMachineName) {
+        SqlVirtualMachineInner inner =
+            this.serviceClient().getByResourceGroup(resourceGroupName, sqlVirtualMachineName);
+        if (inner != null) {
+            return new SqlVirtualMachineImpl(inner, this.manager());
         } else {
             return null;
         }

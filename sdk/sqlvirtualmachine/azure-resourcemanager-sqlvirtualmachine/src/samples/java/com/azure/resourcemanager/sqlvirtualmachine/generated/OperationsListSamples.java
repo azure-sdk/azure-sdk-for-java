@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -18,6 +16,6 @@ public final class OperationsListSamples {
      */
     public static void listsAllOfTheAvailableSQLVirtualMachineRestAPIOperations(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

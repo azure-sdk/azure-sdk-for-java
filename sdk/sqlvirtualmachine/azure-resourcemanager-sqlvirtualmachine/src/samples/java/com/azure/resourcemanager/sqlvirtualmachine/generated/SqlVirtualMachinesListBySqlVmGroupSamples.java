@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SqlVirtualMachines ListBySqlVmGroup. */
 public final class SqlVirtualMachinesListBySqlVmGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class SqlVirtualMachinesListBySqlVmGroupSamples {
      */
     public static void getsTheListOfSqlVirtualMachinesInASQLVirtualMachineGroup(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
-        manager.sqlVirtualMachines().listBySqlVmGroup("testrg", "testvm", Context.NONE);
+        manager.sqlVirtualMachines().listBySqlVmGroup("testrg", "testvm", com.azure.core.util.Context.NONE);
     }
 }

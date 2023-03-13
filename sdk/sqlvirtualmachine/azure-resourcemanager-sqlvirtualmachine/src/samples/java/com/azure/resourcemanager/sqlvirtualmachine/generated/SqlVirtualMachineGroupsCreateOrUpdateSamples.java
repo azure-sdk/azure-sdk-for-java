@@ -38,7 +38,7 @@ public final class SqlVirtualMachineGroupsCreateOrUpdateSamples {
                     .withClusterOperatorAccount("testrp@testdomain.com")
                     .withSqlServiceAccount("sqlservice@testdomain.com")
                     .withStorageAccountUrl("https://storgact.blob.core.windows.net/")
-                    .withStorageAccountPrimaryKey("<primary storage access key>")
+                    .withStorageAccountPrimaryKey("fakeTokenPlaceholder")
                     .withClusterSubnetType(ClusterSubnetType.MULTI_SUBNET))
             .create();
     }

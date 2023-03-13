@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SqlVirtualMachines Redeploy. */
 public final class SqlVirtualMachinesRedeploySamples {
     /*
@@ -18,6 +16,6 @@ public final class SqlVirtualMachinesRedeploySamples {
      */
     public static void uninstallsAndReinstallsTheSQLIaasExtension(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
-        manager.sqlVirtualMachines().redeploy("testrg", "testvm", Context.NONE);
+        manager.sqlVirtualMachines().redeploy("testrg", "testvm", com.azure.core.util.Context.NONE);
     }
 }

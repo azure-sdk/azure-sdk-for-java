@@ -81,9 +81,9 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm2")
             .withWsfcDomainCredentials(
                 new WsfcDomainCredentials()
-                    .withClusterBootstrapAccountPassword("<Password>")
-                    .withClusterOperatorAccountPassword("<Password>")
-                    .withSqlServiceAccountPassword("<Password>"))
+                    .withClusterBootstrapAccountPassword("fakeTokenPlaceholder")
+                    .withClusterOperatorAccountPassword("fakeTokenPlaceholder")
+                    .withSqlServiceAccountPassword("fakeTokenPlaceholder"))
             .withWsfcStaticIp("10.0.0.7")
             .create();
     }
@@ -123,8 +123,8 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                     .withRetentionPeriod(17)
                     .withStorageAccountUrl("https://teststorage.blob.core.windows.net/")
                     .withStorageContainerName("testcontainer")
-                    .withStorageAccessKey("<primary storage access key>")
-                    .withPassword("<Password>")
+                    .withStorageAccessKey("fakeTokenPlaceholder")
+                    .withPassword("fakeTokenPlaceholder")
                     .withBackupSystemDbs(true)
                     .withBackupScheduleType(BackupScheduleType.MANUAL)
                     .withFullBackupFrequency(FullBackupFrequencyType.WEEKLY)
@@ -140,7 +140,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                             .withConnectivityType(ConnectivityType.PRIVATE)
                             .withPort(1433)
                             .withSqlAuthUpdateUsername("sqllogin")
-                            .withSqlAuthUpdatePassword("<password>"))
+                            .withSqlAuthUpdatePassword("fakeTokenPlaceholder"))
                     .withSqlWorkloadTypeUpdateSettings(
                         new SqlWorkloadTypeUpdateSettings().withSqlWorkloadType(SqlWorkloadType.OLTP))
                     .withSqlStorageUpdateSettings(
@@ -226,8 +226,8 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                     .withRetentionPeriod(17)
                     .withStorageAccountUrl("https://teststorage.blob.core.windows.net/")
                     .withStorageContainerName("testcontainer")
-                    .withStorageAccessKey("<primary storage access key>")
-                    .withPassword("<Password>")
+                    .withStorageAccessKey("fakeTokenPlaceholder")
+                    .withPassword("fakeTokenPlaceholder")
                     .withBackupSystemDbs(true)
                     .withBackupScheduleType(BackupScheduleType.MANUAL)
                     .withFullBackupFrequency(FullBackupFrequencyType.DAILY)
@@ -242,7 +242,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                             .withConnectivityType(ConnectivityType.PRIVATE)
                             .withPort(1433)
                             .withSqlAuthUpdateUsername("sqllogin")
-                            .withSqlAuthUpdatePassword("<password>"))
+                            .withSqlAuthUpdatePassword("fakeTokenPlaceholder"))
                     .withSqlWorkloadTypeUpdateSettings(
                         new SqlWorkloadTypeUpdateSettings().withSqlWorkloadType(SqlWorkloadType.OLTP))
                     .withSqlStorageUpdateSettings(

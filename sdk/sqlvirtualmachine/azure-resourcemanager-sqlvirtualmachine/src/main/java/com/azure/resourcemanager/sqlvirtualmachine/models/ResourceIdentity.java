@@ -30,6 +30,10 @@ public class ResourceIdentity {
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID tenantId;
 
+    /** Creates an instance of ResourceIdentity class. */
+    public ResourceIdentity() {
+    }
+
     /**
      * Get the principalId property: The Azure Active Directory principal id.
      *

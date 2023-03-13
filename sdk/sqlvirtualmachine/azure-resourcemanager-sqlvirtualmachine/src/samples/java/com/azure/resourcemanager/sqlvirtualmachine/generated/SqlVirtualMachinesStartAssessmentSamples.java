@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SqlVirtualMachines StartAssessment. */
 public final class SqlVirtualMachinesStartAssessmentSamples {
     /*
@@ -18,6 +16,6 @@ public final class SqlVirtualMachinesStartAssessmentSamples {
      */
     public static void startsAssessmentOnSQLVirtualMachine(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
-        manager.sqlVirtualMachines().startAssessment("testrg", "testvm", Context.NONE);
+        manager.sqlVirtualMachines().startAssessment("testrg", "testvm", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlVirtualMachine;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +23,7 @@ public final class SqlVirtualMachinesUpdateSamples {
         SqlVirtualMachine resource =
             manager
                 .sqlVirtualMachines()
-                .getByResourceGroupWithResponse("testrg", "testvm", null, Context.NONE)
+                .getByResourceGroupWithResponse("testrg", "testvm", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("mytag", "myval")).apply();
     }

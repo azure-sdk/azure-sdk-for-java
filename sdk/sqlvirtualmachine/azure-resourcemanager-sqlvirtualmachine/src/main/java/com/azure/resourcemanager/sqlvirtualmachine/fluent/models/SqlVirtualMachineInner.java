@@ -43,6 +43,10 @@ public final class SqlVirtualMachineInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of SqlVirtualMachineInner class. */
+    public SqlVirtualMachineInner() {
+    }
+
     /**
      * Get the identity property: Azure Active Directory identity of the server.
      *

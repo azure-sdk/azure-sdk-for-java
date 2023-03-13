@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SqlVirtualMachines Delete. */
 public final class SqlVirtualMachinesDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class SqlVirtualMachinesDeleteSamples {
      */
     public static void deletesASQLVirtualMachine(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
-        manager.sqlVirtualMachines().delete("testrg", "testvm1", Context.NONE);
+        manager.sqlVirtualMachines().delete("testrg", "testvm1", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilityGroupListeners ListByGroup. */
 public final class AvailabilityGroupListenersListByGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class AvailabilityGroupListenersListByGroupSamples {
      */
     public static void listsAllAvailabilityGroupListenersInASQLVirtualMachineGroup(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
-        manager.availabilityGroupListeners().listByGroup("testrg", "testvmgroup", Context.NONE);
+        manager.availabilityGroupListeners().listByGroup("testrg", "testvmgroup", com.azure.core.util.Context.NONE);
     }
 }
