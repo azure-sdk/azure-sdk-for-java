@@ -9,6 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /** The authentication info when authType is servicePrincipal certificate. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
@@ -32,6 +33,22 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
      */
     @JsonProperty(value = "certificate", required = true)
     private String certificate;
+
+    /*
+     * Indicates whether to clean up previous operation when Linker is updating or deleting
+     */
+    @JsonProperty(value = "deleteOrUpdateBehavior")
+    private DeleteOrUpdateBehavior deleteOrUpdateBehavior;
+
+    /*
+     * Optional, this value specifies the Azure roles to be assigned. Automatically
+     */
+    @JsonProperty(value = "roles")
+    private List<String> roles;
+
+    /** Creates an instance of ServicePrincipalCertificateAuthInfo class. */
+    public ServicePrincipalCertificateAuthInfo() {
+    }
 
     /**
      * Get the clientId property: Application clientId for servicePrincipal auth.
@@ -90,6 +107,49 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
      */
     public ServicePrincipalCertificateAuthInfo withCertificate(String certificate) {
         this.certificate = certificate;
+        return this;
+    }
+
+    /**
+     * Get the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     *
+     * @return the deleteOrUpdateBehavior value.
+     */
+    public DeleteOrUpdateBehavior deleteOrUpdateBehavior() {
+        return this.deleteOrUpdateBehavior;
+    }
+
+    /**
+     * Set the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     *
+     * @param deleteOrUpdateBehavior the deleteOrUpdateBehavior value to set.
+     * @return the ServicePrincipalCertificateAuthInfo object itself.
+     */
+    public ServicePrincipalCertificateAuthInfo withDeleteOrUpdateBehavior(
+        DeleteOrUpdateBehavior deleteOrUpdateBehavior) {
+        this.deleteOrUpdateBehavior = deleteOrUpdateBehavior;
+        return this;
+    }
+
+    /**
+     * Get the roles property: Optional, this value specifies the Azure roles to be assigned. Automatically.
+     *
+     * @return the roles value.
+     */
+    public List<String> roles() {
+        return this.roles;
+    }
+
+    /**
+     * Set the roles property: Optional, this value specifies the Azure roles to be assigned. Automatically.
+     *
+     * @param roles the roles value to set.
+     * @return the ServicePrincipalCertificateAuthInfo object itself.
+     */
+    public ServicePrincipalCertificateAuthInfo withRoles(List<String> roles) {
+        this.roles = roles;
         return this;
     }
 
