@@ -33,7 +33,6 @@ import com.azure.resourcemanager.dataprotection.fluent.DeletedBackupInstancesCli
 import com.azure.resourcemanager.dataprotection.fluent.models.DeletedBackupInstanceResourceInner;
 import com.azure.resourcemanager.dataprotection.models.DeletedBackupInstanceResourceList;
 import java.nio.ByteBuffer;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -73,7 +72,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
         Mono<Response<DeletedBackupInstanceResourceList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @HeaderParam("Accept") String accept,
@@ -88,7 +87,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
         Mono<Response<DeletedBackupInstanceResourceInner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -104,7 +103,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
         Mono<Response<Flux<ByteBuffer>>> undelete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("backupInstanceName") String backupInstanceName,
@@ -125,7 +124,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets deleted backup instances belonging to a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -183,7 +182,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets deleted backup instances belonging to a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -239,7 +238,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets deleted backup instances belonging to a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -255,7 +254,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets deleted backup instances belonging to a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -274,7 +273,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets deleted backup instances belonging to a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -289,7 +288,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets deleted backup instances belonging to a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -306,7 +305,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets a deleted backup instance with name in a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -361,7 +360,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets a deleted backup instance with name in a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.
@@ -414,7 +413,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets a deleted backup instance with name in a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -432,7 +431,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets a deleted backup instance with name in a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.
@@ -450,7 +449,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * Gets a deleted backup instance with name in a backup vault.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -467,7 +466,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -521,7 +520,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.
@@ -573,7 +572,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -595,7 +594,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.
@@ -618,7 +617,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -635,7 +634,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.
@@ -653,7 +652,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -671,7 +670,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.
@@ -691,7 +690,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -706,7 +705,7 @@ public final class DeletedBackupInstancesClientImpl implements DeletedBackupInst
     /**
      * The undelete operation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param backupInstanceName The name of the deleted backup instance.
      * @param context The context to associate with this operation.

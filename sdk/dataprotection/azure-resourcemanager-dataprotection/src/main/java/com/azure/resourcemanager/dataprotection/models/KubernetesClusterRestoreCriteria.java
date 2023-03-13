@@ -58,8 +58,7 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     private List<String> labelSelectors;
 
     /*
-     * Gets or sets the PV (Persistent Volume) Restore Mode property. This property sets whether volumes needs to be
-     * restored.
+     * Gets or sets the PV Restore Mode property. This property sets whether volumes needs to be restored.
      */
     @JsonProperty(value = "persistentVolumeRestoreMode")
     private PersistentVolumeRestoreMode persistentVolumeRestoreMode;
@@ -215,8 +214,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Get the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property. This
-     * property sets whether volumes needs to be restored.
+     * Get the persistentVolumeRestoreMode property: Gets or sets the PV Restore Mode property. This property sets
+     * whether volumes needs to be restored.
      *
      * @return the persistentVolumeRestoreMode value.
      */
@@ -225,8 +224,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Set the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property. This
-     * property sets whether volumes needs to be restored.
+     * Set the persistentVolumeRestoreMode property: Gets or sets the PV Restore Mode property. This property sets
+     * whether volumes needs to be restored.
      *
      * @param persistentVolumeRestoreMode the persistentVolumeRestoreMode value to set.
      * @return the KubernetesClusterRestoreCriteria object itself.

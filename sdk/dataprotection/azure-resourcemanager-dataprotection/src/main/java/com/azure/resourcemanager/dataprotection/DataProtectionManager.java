@@ -24,6 +24,7 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionClient;
+import com.azure.resourcemanager.dataprotection.implementation.BackupInstancesExtensionRoutingsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.BackupInstancesImpl;
 import com.azure.resourcemanager.dataprotection.implementation.BackupPoliciesImpl;
 import com.azure.resourcemanager.dataprotection.implementation.BackupVaultOperationResultsImpl;
@@ -32,6 +33,7 @@ import com.azure.resourcemanager.dataprotection.implementation.DataProtectionCli
 import com.azure.resourcemanager.dataprotection.implementation.DataProtectionOperationsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.DataProtectionsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.DeletedBackupInstancesImpl;
+import com.azure.resourcemanager.dataprotection.implementation.DppResourceGuardProxiesImpl;
 import com.azure.resourcemanager.dataprotection.implementation.ExportJobsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.ExportJobsOperationResultsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.JobsImpl;
@@ -43,12 +45,14 @@ import com.azure.resourcemanager.dataprotection.implementation.RecoveryPointsImp
 import com.azure.resourcemanager.dataprotection.implementation.ResourceGuardsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.RestorableTimeRangesImpl;
 import com.azure.resourcemanager.dataprotection.models.BackupInstances;
+import com.azure.resourcemanager.dataprotection.models.BackupInstancesExtensionRoutings;
 import com.azure.resourcemanager.dataprotection.models.BackupPolicies;
 import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResults;
 import com.azure.resourcemanager.dataprotection.models.BackupVaults;
 import com.azure.resourcemanager.dataprotection.models.DataProtectionOperations;
 import com.azure.resourcemanager.dataprotection.models.DataProtections;
 import com.azure.resourcemanager.dataprotection.models.DeletedBackupInstances;
+import com.azure.resourcemanager.dataprotection.models.DppResourceGuardProxies;
 import com.azure.resourcemanager.dataprotection.models.ExportJobs;
 import com.azure.resourcemanager.dataprotection.models.ExportJobsOperationResults;
 import com.azure.resourcemanager.dataprotection.models.Jobs;
@@ -64,7 +68,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Entry point to DataProtectionManager. Open API 2.0 Specs for Azure Data Protection service. */
@@ -89,6 +92,8 @@ public final class DataProtectionManager {
 
     private BackupInstances backupInstances;
 
+    private BackupInstancesExtensionRoutings backupInstancesExtensionRoutings;
+
     private RecoveryPoints recoveryPoints;
 
     private Jobs jobs;
@@ -103,6 +108,8 @@ public final class DataProtectionManager {
 
     private ResourceGuards resourceGuards;
 
+    private DppResourceGuardProxies dppResourceGuardProxies;
+
     private final DataProtectionClient clientObject;
 
     private DataProtectionManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
@@ -112,7 +119,7 @@ public final class DataProtectionManager {
             new DataProtectionClientBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(UUID.fromString(profile.getSubscriptionId()))
+                .subscriptionId(profile.getSubscriptionId())
                 .defaultPollInterval(defaultPollInterval)
                 .buildClient();
     }
@@ -268,7 +275,7 @@ public final class DataProtectionManager {
                 .append("-")
                 .append("com.azure.resourcemanager.dataprotection")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -451,6 +458,19 @@ public final class DataProtectionManager {
     }
 
     /**
+     * Gets the resource collection API of BackupInstancesExtensionRoutings.
+     *
+     * @return Resource collection API of BackupInstancesExtensionRoutings.
+     */
+    public BackupInstancesExtensionRoutings backupInstancesExtensionRoutings() {
+        if (this.backupInstancesExtensionRoutings == null) {
+            this.backupInstancesExtensionRoutings =
+                new BackupInstancesExtensionRoutingsImpl(clientObject.getBackupInstancesExtensionRoutings(), this);
+        }
+        return backupInstancesExtensionRoutings;
+    }
+
+    /**
      * Gets the resource collection API of RecoveryPoints.
      *
      * @return Resource collection API of RecoveryPoints.
@@ -534,6 +554,19 @@ public final class DataProtectionManager {
             this.resourceGuards = new ResourceGuardsImpl(clientObject.getResourceGuards(), this);
         }
         return resourceGuards;
+    }
+
+    /**
+     * Gets the resource collection API of DppResourceGuardProxies. It manages ResourceGuardProxyBaseResource.
+     *
+     * @return Resource collection API of DppResourceGuardProxies.
+     */
+    public DppResourceGuardProxies dppResourceGuardProxies() {
+        if (this.dppResourceGuardProxies == null) {
+            this.dppResourceGuardProxies =
+                new DppResourceGuardProxiesImpl(clientObject.getDppResourceGuardProxies(), this);
+        }
+        return dppResourceGuardProxies;
     }
 
     /**

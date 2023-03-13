@@ -75,12 +75,13 @@ public final class BackupVaultsImpl implements BackupVaults {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String vaultName) {
-        this.serviceClient().delete(resourceGroupName, vaultName);
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String vaultName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, vaultName, context);
     }
 
-    public void delete(String resourceGroupName, String vaultName, Context context) {
-        this.serviceClient().delete(resourceGroupName, vaultName, context);
+    public void deleteByResourceGroup(String resourceGroupName, String vaultName) {
+        this.serviceClient().delete(resourceGroupName, vaultName);
     }
 
     public Response<CheckNameAvailabilityResult> checkNameAvailabilityWithResponse(
@@ -163,10 +164,10 @@ public final class BackupVaultsImpl implements BackupVaults {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'backupVaults'.", id)));
         }
-        this.delete(resourceGroupName, vaultName, Context.NONE);
+        this.deleteByResourceGroupWithResponse(resourceGroupName, vaultName, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Context context) {
+    public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -182,7 +183,7 @@ public final class BackupVaultsImpl implements BackupVaults {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'backupVaults'.", id)));
         }
-        this.delete(resourceGroupName, vaultName, context);
+        return this.deleteByResourceGroupWithResponse(resourceGroupName, vaultName, context);
     }
 
     private BackupVaultsClient serviceClient() {

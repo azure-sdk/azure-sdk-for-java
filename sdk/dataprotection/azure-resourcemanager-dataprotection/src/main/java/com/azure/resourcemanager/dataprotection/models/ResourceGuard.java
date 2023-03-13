@@ -15,7 +15,7 @@ public final class ResourceGuard {
      * Provisioning state of the BackupVault resource
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
+    private ResourceGuardProvisioningState provisioningState;
 
     /*
      * This flag indicates whether auto approval is allowed or not.
@@ -50,7 +50,7 @@ public final class ResourceGuard {
      *
      * @return the provisioningState value.
      */
-    public ProvisioningState provisioningState() {
+    public ResourceGuardProvisioningState provisioningState() {
         return this.provisioningState;
     }
 

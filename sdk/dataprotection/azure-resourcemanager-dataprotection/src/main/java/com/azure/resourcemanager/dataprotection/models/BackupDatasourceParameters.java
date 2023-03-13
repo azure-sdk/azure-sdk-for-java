@@ -19,8 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(
         name = "KubernetesClusterBackupDatasourceParameters",
-        value = KubernetesClusterBackupDatasourceParameters.class),
-    @JsonSubTypes.Type(name = "BlobBackupDatasourceParameters", value = BlobBackupDatasourceParameters.class)
+        value = KubernetesClusterBackupDatasourceParameters.class)
 })
 @Immutable
 public class BackupDatasourceParameters {

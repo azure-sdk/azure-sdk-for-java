@@ -23,7 +23,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.dataprotection.fluent.OperationStatusBackupVaultContextsClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.OperationResourceInner;
-import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /**
@@ -66,7 +65,7 @@ public final class OperationStatusBackupVaultContextsClientImpl implements Opera
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OperationResourceInner>> get(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") UUID subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("vaultName") String vaultName,
             @PathParam("operationId") String operationId,
@@ -78,7 +77,7 @@ public final class OperationStatusBackupVaultContextsClientImpl implements Opera
     /**
      * Gets the operation status for an operation over a BackupVault's context.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param operationId The operationId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -132,7 +131,7 @@ public final class OperationStatusBackupVaultContextsClientImpl implements Opera
     /**
      * Gets the operation status for an operation over a BackupVault's context.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param operationId The operationId parameter.
      * @param context The context to associate with this operation.
@@ -184,7 +183,7 @@ public final class OperationStatusBackupVaultContextsClientImpl implements Opera
     /**
      * Gets the operation status for an operation over a BackupVault's context.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param operationId The operationId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -202,7 +201,7 @@ public final class OperationStatusBackupVaultContextsClientImpl implements Opera
     /**
      * Gets the operation status for an operation over a BackupVault's context.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param operationId The operationId parameter.
      * @param context The context to associate with this operation.
@@ -220,7 +219,7 @@ public final class OperationStatusBackupVaultContextsClientImpl implements Opera
     /**
      * Gets the operation status for an operation over a BackupVault's context.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param vaultName The name of the backup vault.
      * @param operationId The operationId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

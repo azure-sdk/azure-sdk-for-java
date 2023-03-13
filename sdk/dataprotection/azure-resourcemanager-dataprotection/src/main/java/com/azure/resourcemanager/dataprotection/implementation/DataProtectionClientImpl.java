@@ -23,6 +23,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.dataprotection.fluent.BackupInstancesClient;
+import com.azure.resourcemanager.dataprotection.fluent.BackupInstancesExtensionRoutingsClient;
 import com.azure.resourcemanager.dataprotection.fluent.BackupPoliciesClient;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultsClient;
@@ -30,6 +31,7 @@ import com.azure.resourcemanager.dataprotection.fluent.DataProtectionClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionOperationsClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionsClient;
 import com.azure.resourcemanager.dataprotection.fluent.DeletedBackupInstancesClient;
+import com.azure.resourcemanager.dataprotection.fluent.DppResourceGuardProxiesClient;
 import com.azure.resourcemanager.dataprotection.fluent.ExportJobsClient;
 import com.azure.resourcemanager.dataprotection.fluent.ExportJobsOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.JobsClient;
@@ -46,22 +48,21 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the DataProtectionClientImpl type. */
 @ServiceClient(builder = DataProtectionClientBuilder.class)
 public final class DataProtectionClientImpl implements DataProtectionClient {
-    /** The ID of the target subscription. The value must be an UUID. */
-    private final UUID subscriptionId;
+    /** The subscription Id. */
+    private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription. The value must be an UUID.
+     * Gets The subscription Id.
      *
      * @return the subscriptionId value.
      */
-    public UUID getSubscriptionId() {
+    public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
@@ -245,6 +246,18 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         return this.backupInstances;
     }
 
+    /** The BackupInstancesExtensionRoutingsClient object to access its operations. */
+    private final BackupInstancesExtensionRoutingsClient backupInstancesExtensionRoutings;
+
+    /**
+     * Gets the BackupInstancesExtensionRoutingsClient object to access its operations.
+     *
+     * @return the BackupInstancesExtensionRoutingsClient object.
+     */
+    public BackupInstancesExtensionRoutingsClient getBackupInstancesExtensionRoutings() {
+        return this.backupInstancesExtensionRoutings;
+    }
+
     /** The RecoveryPointsClient object to access its operations. */
     private final RecoveryPointsClient recoveryPoints;
 
@@ -329,6 +342,18 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         return this.resourceGuards;
     }
 
+    /** The DppResourceGuardProxiesClient object to access its operations. */
+    private final DppResourceGuardProxiesClient dppResourceGuardProxies;
+
+    /**
+     * Gets the DppResourceGuardProxiesClient object to access its operations.
+     *
+     * @return the DppResourceGuardProxiesClient object.
+     */
+    public DppResourceGuardProxiesClient getDppResourceGuardProxies() {
+        return this.dppResourceGuardProxies;
+    }
+
     /**
      * Initializes an instance of DataProtectionClient client.
      *
@@ -336,7 +361,7 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
+     * @param subscriptionId The subscription Id.
      * @param endpoint server parameter.
      */
     DataProtectionClientImpl(
@@ -344,14 +369,14 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
         AzureEnvironment environment,
-        UUID subscriptionId,
+        String subscriptionId,
         String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-01";
+        this.apiVersion = "2022-10-01-preview";
         this.backupVaults = new BackupVaultsClientImpl(this);
         this.operationResults = new OperationResultsClientImpl(this);
         this.operationStatus = new OperationStatusClientImpl(this);
@@ -362,6 +387,7 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         this.dataProtectionOperations = new DataProtectionOperationsClientImpl(this);
         this.backupPolicies = new BackupPoliciesClientImpl(this);
         this.backupInstances = new BackupInstancesClientImpl(this);
+        this.backupInstancesExtensionRoutings = new BackupInstancesExtensionRoutingsClientImpl(this);
         this.recoveryPoints = new RecoveryPointsClientImpl(this);
         this.jobs = new JobsClientImpl(this);
         this.restorableTimeRanges = new RestorableTimeRangesClientImpl(this);
@@ -369,6 +395,7 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         this.exportJobsOperationResults = new ExportJobsOperationResultsClientImpl(this);
         this.deletedBackupInstances = new DeletedBackupInstancesClientImpl(this);
         this.resourceGuards = new ResourceGuardsClientImpl(this);
+        this.dppResourceGuardProxies = new DppResourceGuardProxiesClientImpl(this);
     }
 
     /**
