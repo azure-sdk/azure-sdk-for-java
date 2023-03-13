@@ -63,28 +63,28 @@ public final class LoadTestingClientImpl {
         return this.serializerAdapter;
     }
 
-    /** The LoadTestAdministrationsImpl object to access its operations. */
-    private final LoadTestAdministrationsImpl loadTestAdministrations;
+    /** The TestsImpl object to access its operations. */
+    private final TestsImpl tests;
 
     /**
-     * Gets the LoadTestAdministrationsImpl object to access its operations.
+     * Gets the TestsImpl object to access its operations.
      *
-     * @return the LoadTestAdministrationsImpl object.
+     * @return the TestsImpl object.
      */
-    public LoadTestAdministrationsImpl getLoadTestAdministrations() {
-        return this.loadTestAdministrations;
+    public TestsImpl getTests() {
+        return this.tests;
     }
 
-    /** The LoadTestRunsImpl object to access its operations. */
-    private final LoadTestRunsImpl loadTestRuns;
+    /** The TestRunsImpl object to access its operations. */
+    private final TestRunsImpl testRuns;
 
     /**
-     * Gets the LoadTestRunsImpl object to access its operations.
+     * Gets the TestRunsImpl object to access its operations.
      *
-     * @return the LoadTestRunsImpl object.
+     * @return the TestRunsImpl object.
      */
-    public LoadTestRunsImpl getLoadTestRuns() {
-        return this.loadTestRuns;
+    public TestRunsImpl getTestRuns() {
+        return this.testRuns;
     }
 
     /**
@@ -131,7 +131,7 @@ public final class LoadTestingClientImpl {
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;
         this.serviceVersion = serviceVersion;
-        this.loadTestAdministrations = new LoadTestAdministrationsImpl(this);
-        this.loadTestRuns = new LoadTestRunsImpl(this);
+        this.tests = new TestsImpl(this);
+        this.testRuns = new TestRunsImpl(this);
     }
 }
