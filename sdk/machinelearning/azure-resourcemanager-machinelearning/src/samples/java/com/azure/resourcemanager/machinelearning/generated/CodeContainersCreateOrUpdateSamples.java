@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for CodeContainers CreateOrUpdate. */
 public final class CodeContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Code Container.

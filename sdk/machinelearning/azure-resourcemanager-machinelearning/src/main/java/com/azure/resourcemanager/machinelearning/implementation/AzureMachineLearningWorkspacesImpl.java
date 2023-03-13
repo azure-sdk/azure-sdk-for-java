@@ -480,7 +480,7 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-10-01";
+        this.apiVersion = "2023-04-01";
         this.operations = new OperationsClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.usages = new UsagesClientImpl(this);

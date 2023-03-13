@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for ModelContainers CreateOrUpdate. */
 public final class ModelContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Model Container.

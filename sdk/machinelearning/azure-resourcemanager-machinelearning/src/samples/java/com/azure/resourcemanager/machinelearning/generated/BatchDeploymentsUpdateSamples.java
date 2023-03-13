@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for BatchDeployments Update. */
 public final class BatchDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/update.json
      */
     /**
      * Sample code: Update Batch Deployment.
