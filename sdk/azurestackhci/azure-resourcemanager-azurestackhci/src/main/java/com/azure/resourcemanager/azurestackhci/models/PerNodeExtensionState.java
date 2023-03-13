@@ -17,8 +17,7 @@ public final class PerNodeExtensionState {
     private String name;
 
     /*
-     * Fully qualified resource ID for the particular Arc Extension on this
-     * node.
+     * Fully qualified resource ID for the particular Arc Extension on this node.
      */
     @JsonProperty(value = "extension", access = JsonProperty.Access.WRITE_ONLY)
     private String extension;
@@ -28,6 +27,10 @@ public final class PerNodeExtensionState {
      */
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private NodeExtensionState state;
+
+    /** Creates an instance of PerNodeExtensionState class. */
+    public PerNodeExtensionState() {
+    }
 
     /**
      * Get the name property: Name of the node in HCI Cluster.

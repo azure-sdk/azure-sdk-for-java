@@ -38,6 +38,10 @@ public final class ExtensionProperties {
     @JsonProperty(value = "perNodeExtensionDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<PerNodeExtensionState> perNodeExtensionDetails;
 
+    /** Creates an instance of ExtensionProperties class. */
+    public ExtensionProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the Extension proxy resource.
      *
@@ -240,6 +244,33 @@ public final class ExtensionProperties {
             this.innerExtensionParameters = new ExtensionParameters();
         }
         this.innerExtensionParameters().withProtectedSettings(protectedSettings);
+        return this;
+    }
+
+    /**
+     * Get the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @return the enableAutomaticUpgrade value.
+     */
+    public Boolean enableAutomaticUpgrade() {
+        return this.innerExtensionParameters() == null
+            ? null
+            : this.innerExtensionParameters().enableAutomaticUpgrade();
+    }
+
+    /**
+     * Set the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @param enableAutomaticUpgrade the enableAutomaticUpgrade value to set.
+     * @return the ExtensionProperties object itself.
+     */
+    public ExtensionProperties withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade) {
+        if (this.innerExtensionParameters() == null) {
+            this.innerExtensionParameters = new ExtensionParameters();
+        }
+        this.innerExtensionParameters().withEnableAutomaticUpgrade(enableAutomaticUpgrade);
         return this;
     }
 

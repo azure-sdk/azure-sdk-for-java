@@ -64,7 +64,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientE")
-    private interface ExtensionsService {
+    public interface ExtensionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI"
@@ -502,24 +502,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @param clusterName The name of the cluster.
      * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
      * @param extensionName The name of the machine extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return particular Arc Extension of HCI Cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner get(
-        String resourceGroupName, String clusterName, String arcSettingName, String extensionName) {
-        return getAsync(resourceGroupName, clusterName, arcSettingName, extensionName).block();
-    }
-
-    /**
-     * Get particular Arc Extension of HCI Cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the cluster.
-     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
-     * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -530,6 +512,24 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     public Response<ExtensionInner> getWithResponse(
         String resourceGroupName, String clusterName, String arcSettingName, String extensionName, Context context) {
         return getWithResponseAsync(resourceGroupName, clusterName, arcSettingName, extensionName, context).block();
+    }
+
+    /**
+     * Get particular Arc Extension of HCI Cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param arcSettingName The name of the proxy resource holding details of HCI ArcSetting information.
+     * @param extensionName The name of the machine extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return particular Arc Extension of HCI Cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner get(
+        String resourceGroupName, String clusterName, String arcSettingName, String extensionName) {
+        return getWithResponse(resourceGroupName, clusterName, arcSettingName, extensionName, Context.NONE).getValue();
     }
 
     /**
@@ -754,7 +754,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String arcSettingName,
         String extensionName,
         ExtensionInner extension) {
-        return beginCreateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension)
+        return this
+            .beginCreateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension)
             .getSyncPoller();
     }
 
@@ -780,7 +781,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String extensionName,
         ExtensionInner extension,
         Context context) {
-        return beginCreateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension, context)
+        return this
+            .beginCreateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension, context)
             .getSyncPoller();
     }
 
@@ -1106,7 +1108,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String arcSettingName,
         String extensionName,
         ExtensionInner extension) {
-        return beginUpdateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension)
+        return this
+            .beginUpdateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension)
             .getSyncPoller();
     }
 
@@ -1132,7 +1135,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String extensionName,
         ExtensionInner extension,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, clusterName, arcSettingName, extensionName, extension, context)
             .getSyncPoller();
     }
 
@@ -1412,7 +1416,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, String arcSettingName, String extensionName) {
-        return beginDeleteAsync(resourceGroupName, clusterName, arcSettingName, extensionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, clusterName, arcSettingName, extensionName).getSyncPoller();
     }
 
     /**
@@ -1431,7 +1435,9 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String clusterName, String arcSettingName, String extensionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, clusterName, arcSettingName, extensionName, context).getSyncPoller();
+        return this
+            .beginDeleteAsync(resourceGroupName, clusterName, arcSettingName, extensionName, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1512,7 +1518,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1548,7 +1555,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
