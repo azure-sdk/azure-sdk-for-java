@@ -59,20 +59,6 @@ public interface MetadatasClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Metadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MetadataModelInner get(String resourceGroupName, String workspaceName, String metadataName);
-
-    /**
-     * Get a Metadata.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param metadataName The Metadata name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -84,7 +70,7 @@ public interface MetadatasClient {
         String resourceGroupName, String workspaceName, String metadataName, Context context);
 
     /**
-     * Delete a Metadata.
+     * Get a Metadata.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -92,9 +78,10 @@ public interface MetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Metadata.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String metadataName);
+    MetadataModelInner get(String resourceGroupName, String workspaceName, String metadataName);
 
     /**
      * Delete a Metadata.
@@ -113,20 +100,17 @@ public interface MetadatasClient {
         String resourceGroupName, String workspaceName, String metadataName, Context context);
 
     /**
-     * Create a Metadata.
+     * Delete a Metadata.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
-     * @param metadata Metadata resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MetadataModelInner create(
-        String resourceGroupName, String workspaceName, String metadataName, MetadataModelInner metadata);
+    void delete(String resourceGroupName, String workspaceName, String metadataName);
 
     /**
      * Create a Metadata.
@@ -150,20 +134,20 @@ public interface MetadatasClient {
         Context context);
 
     /**
-     * Update an existing Metadata.
+     * Create a Metadata.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
-     * @param metadataPatch Partial metadata request.
+     * @param metadata Metadata resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return metadata resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MetadataModelInner update(
-        String resourceGroupName, String workspaceName, String metadataName, MetadataPatch metadataPatch);
+    MetadataModelInner create(
+        String resourceGroupName, String workspaceName, String metadataName, MetadataModelInner metadata);
 
     /**
      * Update an existing Metadata.
@@ -185,4 +169,20 @@ public interface MetadatasClient {
         String metadataName,
         MetadataPatch metadataPatch,
         Context context);
+
+    /**
+     * Update an existing Metadata.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param metadataName The Metadata name.
+     * @param metadataPatch Partial metadata request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return metadata resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MetadataModelInner update(
+        String resourceGroupName, String workspaceName, String metadataName, MetadataPatch metadataPatch);
 }

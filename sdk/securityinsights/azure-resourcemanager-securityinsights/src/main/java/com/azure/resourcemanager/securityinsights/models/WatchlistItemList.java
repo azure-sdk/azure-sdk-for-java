@@ -14,7 +14,7 @@ import java.util.List;
 @Fluent
 public final class WatchlistItemList {
     /*
-     * URL to fetch the next set of watchlist item.
+     * URL to fetch the next set of watchlist items.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
@@ -25,8 +25,12 @@ public final class WatchlistItemList {
     @JsonProperty(value = "value", required = true)
     private List<WatchlistItemInner> value;
 
+    /** Creates an instance of WatchlistItemList class. */
+    public WatchlistItemList() {
+    }
+
     /**
-     * Get the nextLink property: URL to fetch the next set of watchlist item.
+     * Get the nextLink property: URL to fetch the next set of watchlist items.
      *
      * @return the nextLink value.
      */

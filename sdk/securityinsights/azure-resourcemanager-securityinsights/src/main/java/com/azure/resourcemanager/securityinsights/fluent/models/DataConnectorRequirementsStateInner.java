@@ -24,6 +24,10 @@ public final class DataConnectorRequirementsStateInner {
     @JsonProperty(value = "licenseState")
     private DataConnectorLicenseState licenseState;
 
+    /** Creates an instance of DataConnectorRequirementsStateInner class. */
+    public DataConnectorRequirementsStateInner() {
+    }
+
     /**
      * Get the authorizationState property: Authorization state for this connector.
      *

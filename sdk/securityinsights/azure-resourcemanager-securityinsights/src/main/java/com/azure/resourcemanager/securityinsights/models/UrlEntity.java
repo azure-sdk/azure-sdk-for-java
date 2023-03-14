@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.UrlEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -15,13 +14,17 @@ import java.util.Map;
 /** Represents a url entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Url")
-@Fluent
-public final class UrlEntity extends EntityInner {
+@Immutable
+public final class UrlEntity extends Entity {
     /*
      * Url entity properties
      */
     @JsonProperty(value = "properties")
     private UrlEntityProperties innerProperties;
+
+    /** Creates an instance of UrlEntity class. */
+    public UrlEntity() {
+    }
 
     /**
      * Get the innerProperties property: Url entity properties.

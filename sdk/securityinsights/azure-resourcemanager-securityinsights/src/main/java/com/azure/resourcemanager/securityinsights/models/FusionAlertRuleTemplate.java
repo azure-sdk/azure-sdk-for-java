@@ -24,6 +24,10 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     @JsonProperty(value = "properties")
     private FusionAlertRuleTemplateProperties innerProperties;
 
+    /** Creates an instance of FusionAlertRuleTemplate class. */
+    public FusionAlertRuleTemplate() {
+    }
+
     /**
      * Get the innerProperties property: Fusion alert rule template properties.
      *
@@ -214,7 +218,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
+     * Get the techniques property: The techniques of the alert rule template.
      *
      * @return the techniques value.
      */
@@ -223,7 +227,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule.
+     * Set the techniques property: The techniques of the alert rule template.
      *
      * @param techniques the techniques value to set.
      * @return the FusionAlertRuleTemplate object itself.
@@ -233,29 +237,6 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new FusionAlertRuleTemplateProperties();
         }
         this.innerProperties().withTechniques(techniques);
-        return this;
-    }
-
-    /**
-     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionTemplateSourceSetting> sourceSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
-    }
-
-    /**
-     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withSourceSettings(sourceSettings);
         return this;
     }
 

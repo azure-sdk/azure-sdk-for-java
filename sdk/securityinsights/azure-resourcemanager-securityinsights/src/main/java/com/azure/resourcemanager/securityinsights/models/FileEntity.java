@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.FileEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -16,13 +15,17 @@ import java.util.Map;
 /** Represents a file entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("File")
-@Fluent
-public final class FileEntity extends EntityInner {
+@Immutable
+public final class FileEntity extends Entity {
     /*
      * File entity properties
      */
     @JsonProperty(value = "properties")
     private FileEntityProperties innerProperties;
+
+    /** Creates an instance of FileEntity class. */
+    public FileEntity() {
+    }
 
     /**
      * Get the innerProperties property: File entity properties.

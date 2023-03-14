@@ -78,7 +78,7 @@ public interface MetadataModel {
      *
      * @return the kind value.
      */
-    Kind kind();
+    String kind();
 
     /**
      * Gets the source property: Source of the content. This is where/how it was created.
@@ -322,7 +322,7 @@ public interface MetadataModel {
              * @param kind The kind of content the metadata is for.
              * @return the next definition stage.
              */
-            WithCreate withKind(Kind kind);
+            WithCreate withKind(String kind);
         }
         /** The stage of the MetadataModel definition allowing to specify source. */
         interface WithSource {
@@ -496,8 +496,7 @@ public interface MetadataModel {
 
     /** The template for MetadataModel update. */
     interface Update
-        extends UpdateStages.WithEtag,
-            UpdateStages.WithContentId,
+        extends UpdateStages.WithContentId,
             UpdateStages.WithParentId,
             UpdateStages.WithVersion,
             UpdateStages.WithKind,
@@ -533,16 +532,6 @@ public interface MetadataModel {
     }
     /** The MetadataModel update stages. */
     interface UpdateStages {
-        /** The stage of the MetadataModel update allowing to specify etag. */
-        interface WithEtag {
-            /**
-             * Specifies the etag property: Etag of the azure resource.
-             *
-             * @param etag Etag of the azure resource.
-             * @return the next definition stage.
-             */
-            Update withEtag(String etag);
-        }
         /** The stage of the MetadataModel update allowing to specify contentId. */
         interface WithContentId {
             /**
@@ -591,7 +580,7 @@ public interface MetadataModel {
              * @param kind The kind of content the metadata is for.
              * @return the next definition stage.
              */
-            Update withKind(Kind kind);
+            Update withKind(String kind);
         }
         /** The stage of the MetadataModel update allowing to specify source. */
         interface WithSource {

@@ -36,12 +36,12 @@ public final class ThreatIntelligenceIndicatorsOperationsImpl implements ThreatI
         String resourceGroupName,
         String workspaceName,
         String filter,
-        String orderby,
         Integer top,
         String skipToken,
+        String orderby,
         Context context) {
         PagedIterable<ThreatIntelligenceInformationInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, filter, orderby, top, skipToken, context);
+            this.serviceClient().list(resourceGroupName, workspaceName, filter, top, skipToken, orderby, context);
         return Utils.mapPage(inner, inner1 -> new ThreatIntelligenceInformationImpl(inner1, this.manager()));
     }
 

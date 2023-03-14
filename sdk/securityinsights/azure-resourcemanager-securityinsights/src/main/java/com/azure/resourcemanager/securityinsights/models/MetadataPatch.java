@@ -12,12 +12,16 @@ import java.util.List;
 
 /** Metadata patch request body. */
 @Fluent
-public final class MetadataPatch extends ResourceWithEtag {
+public final class MetadataPatch {
     /*
      * Metadata patch request body
      */
     @JsonProperty(value = "properties")
     private MetadataPropertiesPatch innerProperties;
+
+    /** Creates an instance of MetadataPatch class. */
+    public MetadataPatch() {
+    }
 
     /**
      * Get the innerProperties property: Metadata patch request body.
@@ -26,13 +30,6 @@ public final class MetadataPatch extends ResourceWithEtag {
      */
     private MetadataPropertiesPatch innerProperties() {
         return this.innerProperties;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MetadataPatch withEtag(String etag) {
-        super.withEtag(etag);
-        return this;
     }
 
     /**
@@ -119,7 +116,7 @@ public final class MetadataPatch extends ResourceWithEtag {
      *
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.innerProperties() == null ? null : this.innerProperties().kind();
     }
 
@@ -129,7 +126,7 @@ public final class MetadataPatch extends ResourceWithEtag {
      * @param kind the kind value to set.
      * @return the MetadataPatch object itself.
      */
-    public MetadataPatch withKind(Kind kind) {
+    public MetadataPatch withKind(String kind) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MetadataPropertiesPatch();
         }
@@ -497,9 +494,7 @@ public final class MetadataPatch extends ResourceWithEtag {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

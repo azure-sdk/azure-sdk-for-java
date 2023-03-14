@@ -66,14 +66,14 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
 
     private String workspaceName;
 
-    private String bookmarkId;
+    private String incidentId;
 
     private String relationName;
 
-    public RelationImpl withExistingBookmark(String resourceGroupName, String workspaceName, String bookmarkId) {
+    public RelationImpl withExistingIncident(String resourceGroupName, String workspaceName, String incidentId) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
-        this.bookmarkId = bookmarkId;
+        this.incidentId = incidentId;
         return this;
     }
 
@@ -81,9 +81,9 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getBookmarkRelations()
+                .getIncidentRelations()
                 .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, bookmarkId, relationName, this.innerModel(), Context.NONE)
+                    resourceGroupName, workspaceName, incidentId, relationName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
     }
@@ -92,9 +92,9 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getBookmarkRelations()
+                .getIncidentRelations()
                 .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, bookmarkId, relationName, this.innerModel(), context)
+                    resourceGroupName, workspaceName, incidentId, relationName, this.innerModel(), context)
                 .getValue();
         return this;
     }
@@ -113,9 +113,9 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getBookmarkRelations()
+                .getIncidentRelations()
                 .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, bookmarkId, relationName, this.innerModel(), Context.NONE)
+                    resourceGroupName, workspaceName, incidentId, relationName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
     }
@@ -124,9 +124,9 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getBookmarkRelations()
+                .getIncidentRelations()
                 .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, bookmarkId, relationName, this.innerModel(), context)
+                    resourceGroupName, workspaceName, incidentId, relationName, this.innerModel(), context)
                 .getValue();
         return this;
     }
@@ -137,7 +137,7 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
         this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.bookmarkId = Utils.getValueFromIdByName(innerObject.id(), "bookmarks");
+        this.incidentId = Utils.getValueFromIdByName(innerObject.id(), "incidents");
         this.relationName = Utils.getValueFromIdByName(innerObject.id(), "relations");
     }
 
@@ -145,8 +145,8 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getBookmarkRelations()
-                .getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, Context.NONE)
+                .getIncidentRelations()
+                .getWithResponse(resourceGroupName, workspaceName, incidentId, relationName, Context.NONE)
                 .getValue();
         return this;
     }
@@ -155,8 +155,8 @@ public final class RelationImpl implements Relation, Relation.Definition, Relati
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getBookmarkRelations()
-                .getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context)
+                .getIncidentRelations()
+                .getWithResponse(resourceGroupName, workspaceName, incidentId, relationName, context)
                 .getValue();
         return this;
     }

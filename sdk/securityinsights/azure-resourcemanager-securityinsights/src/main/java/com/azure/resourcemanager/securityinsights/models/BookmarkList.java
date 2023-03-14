@@ -14,7 +14,7 @@ import java.util.List;
 @Fluent
 public final class BookmarkList {
     /*
-     * URL to fetch the next set of bookmarks.
+     * URL to fetch the next set of cases.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
@@ -25,8 +25,12 @@ public final class BookmarkList {
     @JsonProperty(value = "value", required = true)
     private List<BookmarkInner> value;
 
+    /** Creates an instance of BookmarkList class. */
+    public BookmarkList() {
+    }
+
     /**
-     * Get the nextLink property: URL to fetch the next set of bookmarks.
+     * Get the nextLink property: URL to fetch the next set of cases.
      *
      * @return the nextLink value.
      */

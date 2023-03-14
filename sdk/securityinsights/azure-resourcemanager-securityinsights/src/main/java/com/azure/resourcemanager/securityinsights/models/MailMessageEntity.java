@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailMessageEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -19,12 +18,16 @@ import java.util.UUID;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MailMessage")
 @Fluent
-public final class MailMessageEntity extends EntityInner {
+public final class MailMessageEntity extends Entity {
     /*
      * Mail message entity properties
      */
     @JsonProperty(value = "properties")
     private MailMessageEntityProperties innerProperties;
+
+    /** Creates an instance of MailMessageEntity class. */
+    public MailMessageEntity() {
+    }
 
     /**
      * Get the innerProperties property: Mail message entity properties.

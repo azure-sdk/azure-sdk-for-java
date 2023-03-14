@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.SubmissionMailEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -17,13 +16,17 @@ import java.util.UUID;
 /** Represents a submission mail entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("SubmissionMail")
-@Fluent
-public final class SubmissionMailEntity extends EntityInner {
+@Immutable
+public final class SubmissionMailEntity extends Entity {
     /*
      * Submission mail entity properties
      */
     @JsonProperty(value = "properties")
     private SubmissionMailEntityProperties innerProperties;
+
+    /** Creates an instance of SubmissionMailEntity class. */
+    public SubmissionMailEntity() {
+    }
 
     /**
      * Get the innerProperties property: Submission mail entity properties.

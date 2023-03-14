@@ -53,6 +53,15 @@ public final class KillChainIntent extends ExpandableStringEnum<KillChainIntent>
     public static final KillChainIntent IMPACT = fromString("Impact");
 
     /**
+     * Creates a new instance of KillChainIntent value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public KillChainIntent() {
+    }
+
+    /**
      * Creates or finds a KillChainIntent from its string representation.
      *
      * @param name a name to look for.

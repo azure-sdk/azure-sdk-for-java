@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.FileHashEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -15,13 +14,17 @@ import java.util.Map;
 /** Represents a file hash entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("FileHash")
-@Fluent
-public final class FileHashEntity extends EntityInner {
+@Immutable
+public final class FileHashEntity extends Entity {
     /*
      * FileHash entity properties
      */
     @JsonProperty(value = "properties")
     private FileHashEntityProperties innerProperties;
+
+    /** Creates an instance of FileHashEntity class. */
+    public FileHashEntity() {
+    }
 
     /**
      * Get the innerProperties property: FileHash entity properties.

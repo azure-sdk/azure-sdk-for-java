@@ -5,17 +5,54 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Action for alert rule. */
 @Fluent
-public final class ActionResponseInner extends ResourceWithEtag {
+public final class ActionResponseInner extends ProxyResource {
+    /*
+     * Etag of the action.
+     */
+    @JsonProperty(value = "etag")
+    private String etag;
+
     /*
      * Action properties for get request
      */
     @JsonProperty(value = "properties")
     private ActionResponseProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ActionResponseInner class. */
+    public ActionResponseInner() {
+    }
+
+    /**
+     * Get the etag property: Etag of the action.
+     *
+     * @return the etag value.
+     */
+    public String etag() {
+        return this.etag;
+    }
+
+    /**
+     * Set the etag property: Etag of the action.
+     *
+     * @param etag the etag value to set.
+     * @return the ActionResponseInner object itself.
+     */
+    public ActionResponseInner withEtag(String etag) {
+        this.etag = etag;
+        return this;
+    }
 
     /**
      * Get the innerProperties property: Action properties for get request.
@@ -26,11 +63,13 @@ public final class ActionResponseInner extends ResourceWithEtag {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public ActionResponseInner withEtag(String etag) {
-        super.withEtag(etag);
-        return this;
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -86,9 +125,7 @@ public final class ActionResponseInner extends ResourceWithEtag {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }
