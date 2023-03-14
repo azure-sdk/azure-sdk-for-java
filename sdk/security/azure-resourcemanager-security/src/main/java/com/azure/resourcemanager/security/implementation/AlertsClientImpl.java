@@ -2729,7 +2729,7 @@ public final class AlertsClientImpl implements AlertsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSimulate(
         String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody).getSyncPoller();
+        return this.beginSimulateAsync(ascLocation, alertSimulatorRequestBody).getSyncPoller();
     }
 
     /**
@@ -2747,7 +2747,7 @@ public final class AlertsClientImpl implements AlertsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSimulate(
         String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody, context).getSyncPoller();
+        return this.beginSimulateAsync(ascLocation, alertSimulatorRequestBody, context).getSyncPoller();
     }
 
     /**
