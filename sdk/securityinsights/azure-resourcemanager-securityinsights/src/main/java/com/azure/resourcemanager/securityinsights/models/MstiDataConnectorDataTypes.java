@@ -23,6 +23,10 @@ public final class MstiDataConnectorDataTypes {
     @JsonProperty(value = "microsoftEmergingThreatFeed", required = true)
     private MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed microsoftEmergingThreatFeed;
 
+    /** Creates an instance of MstiDataConnectorDataTypes class. */
+    public MstiDataConnectorDataTypes() {
+    }
+
     /**
      * Get the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
      *

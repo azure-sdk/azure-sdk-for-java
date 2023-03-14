@@ -22,6 +22,10 @@ public final class AadDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private AadDataConnectorProperties innerProperties;
 
+    /** Creates an instance of AadDataConnector class. */
+    public AadDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: AAD (Azure Active Directory) data connector properties.
      *

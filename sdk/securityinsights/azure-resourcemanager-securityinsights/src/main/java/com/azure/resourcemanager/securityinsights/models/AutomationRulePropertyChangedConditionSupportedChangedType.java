@@ -19,6 +19,15 @@ public final class AutomationRulePropertyChangedConditionSupportedChangedType
     public static final AutomationRulePropertyChangedConditionSupportedChangedType CHANGED_TO = fromString("ChangedTo");
 
     /**
+     * Creates a new instance of AutomationRulePropertyChangedConditionSupportedChangedType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyChangedConditionSupportedChangedType() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyChangedConditionSupportedChangedType from its string representation.
      *
      * @param name a name to look for.

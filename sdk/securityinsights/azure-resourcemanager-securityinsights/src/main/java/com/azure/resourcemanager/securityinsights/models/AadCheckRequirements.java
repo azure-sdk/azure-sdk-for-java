@@ -21,6 +21,10 @@ public final class AadCheckRequirements extends DataConnectorsCheckRequirements 
     @JsonProperty(value = "properties")
     private AadCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of AadCheckRequirements class. */
+    public AadCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: AAD (Azure Active Directory) requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class AadCheckRequirements extends DataConnectorsCheckRequirements 
      */
     private AadCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the AadCheckRequirements object itself.
+     */
+    public AadCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AadCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

@@ -28,17 +28,6 @@ public final class EntitiesGetTimelinesImpl implements EntitiesGetTimelines {
         this.serviceManager = serviceManager;
     }
 
-    public EntityTimelineResponse list(
-        String resourceGroupName, String workspaceName, String entityId, EntityTimelineParameters parameters) {
-        EntityTimelineResponseInner inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, entityId, parameters);
-        if (inner != null) {
-            return new EntityTimelineResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EntityTimelineResponse> listWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -53,6 +42,17 @@ public final class EntitiesGetTimelinesImpl implements EntitiesGetTimelines {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EntityTimelineResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EntityTimelineResponse list(
+        String resourceGroupName, String workspaceName, String entityId, EntityTimelineParameters parameters) {
+        EntityTimelineResponseInner inner =
+            this.serviceClient().list(resourceGroupName, workspaceName, entityId, parameters);
+        if (inner != null) {
+            return new EntityTimelineResponseImpl(inner, this.manager());
         } else {
             return null;
         }
