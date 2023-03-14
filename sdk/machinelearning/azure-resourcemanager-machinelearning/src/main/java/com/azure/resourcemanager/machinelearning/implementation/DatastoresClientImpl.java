@@ -44,21 +44,21 @@ public final class DatastoresClientImpl implements DatastoresClient {
     private final DatastoresService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of DatastoresClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    DatastoresClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    DatastoresClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(DatastoresService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesDatastores to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesDatastores to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
