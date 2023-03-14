@@ -7,7 +7,7 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 /** Samples for Replicas ListByServer. */
 public final class ReplicasListByServerSamples {
     /*
-     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2022-12-01/examples/ReplicasListByServer.json
+     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2017-12-01/examples/ReplicasListByServer.json
      */
     /**
      * Sample code: ReplicasListByServer.
@@ -16,6 +16,8 @@ public final class ReplicasListByServerSamples {
      */
     public static void replicasListByServer(
         com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
-        manager.replicas().listByServer("testrg", "sourcepgservername", com.azure.core.util.Context.NONE);
+        manager
+            .replicas()
+            .listByServer("TestGroup_WestCentralUS", "testserver-master", com.azure.core.util.Context.NONE);
     }
 }
