@@ -49,16 +49,16 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String codeName;
 
     private String version;
 
-    public CodeVersionImpl withExistingCode(String resourceGroupName, String workspaceName, String name) {
+    public CodeVersionImpl withExistingCode(String resourceGroupName, String registryName, String codeName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.codeName = codeName;
         return this;
     }
 
@@ -66,10 +66,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getCodeVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryCodeVersions()
+                .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -77,9 +75,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getCodeVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryCodeVersions()
+                .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), context);
         return this;
     }
 
@@ -97,10 +94,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getCodeVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryCodeVersions()
+                .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -108,9 +103,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getCodeVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryCodeVersions()
+                .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), context);
         return this;
     }
 
@@ -119,8 +113,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "codes");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
+        this.codeName = Utils.getValueFromIdByName(innerObject.id(), "codes");
         this.version = Utils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
@@ -128,8 +122,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getCodeVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+                .getRegistryCodeVersions()
+                .getWithResponse(resourceGroupName, registryName, codeName, version, Context.NONE)
                 .getValue();
         return this;
     }
@@ -138,8 +132,8 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getCodeVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+                .getRegistryCodeVersions()
+                .getWithResponse(resourceGroupName, registryName, codeName, version, context)
                 .getValue();
         return this;
     }

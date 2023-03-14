@@ -52,21 +52,21 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     private final OnlineEndpointsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of OnlineEndpointsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OnlineEndpointsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    OnlineEndpointsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(OnlineEndpointsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesOnlineEndpoints to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesOnlineEndpoints to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -2047,7 +2047,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2100,7 +2100,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2151,7 +2151,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2169,7 +2169,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2187,7 +2187,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.

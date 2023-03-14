@@ -20,6 +20,12 @@ public final class ModelVersionProperties extends AssetBase {
     private Map<String, FlavorData> flavors;
 
     /*
+     * Intellectual Property details. Used if model is an Intellectual Property.
+     */
+    @JsonProperty(value = "intellectualProperty")
+    private IntellectualProperty intellectualProperty;
+
+    /*
      * Name of the training job which produced this model
      */
     @JsonProperty(value = "jobName")
@@ -36,6 +42,18 @@ public final class ModelVersionProperties extends AssetBase {
      */
     @JsonProperty(value = "modelUri")
     private String modelUri;
+
+    /*
+     * Provisioning state for the model version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the model lifecycle assigned to this model
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
 
     /** Creates an instance of ModelVersionProperties class. */
     public ModelVersionProperties() {
@@ -58,6 +76,26 @@ public final class ModelVersionProperties extends AssetBase {
      */
     public ModelVersionProperties withFlavors(Map<String, FlavorData> flavors) {
         this.flavors = flavors;
+        return this;
+    }
+
+    /**
+     * Get the intellectualProperty property: Intellectual Property details. Used if model is an Intellectual Property.
+     *
+     * @return the intellectualProperty value.
+     */
+    public IntellectualProperty intellectualProperty() {
+        return this.intellectualProperty;
+    }
+
+    /**
+     * Set the intellectualProperty property: Intellectual Property details. Used if model is an Intellectual Property.
+     *
+     * @param intellectualProperty the intellectualProperty value to set.
+     * @return the ModelVersionProperties object itself.
+     */
+    public ModelVersionProperties withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        this.intellectualProperty = intellectualProperty;
         return this;
     }
 
@@ -121,6 +159,42 @@ public final class ModelVersionProperties extends AssetBase {
         return this;
     }
 
+    /**
+     * Get the provisioningState property: Provisioning state for the model version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the model lifecycle assigned to this model.
+     *
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the model lifecycle assigned to this model.
+     *
+     * @param stage the stage value to set.
+     * @return the ModelVersionProperties object itself.
+     */
+    public ModelVersionProperties withStage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ModelVersionProperties withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public ModelVersionProperties withIsAnonymous(Boolean isAnonymous) {
@@ -173,6 +247,9 @@ public final class ModelVersionProperties extends AssetBase {
                             e.validate();
                         }
                     });
+        }
+        if (intellectualProperty() != null) {
+            intellectualProperty().validate();
         }
     }
 }

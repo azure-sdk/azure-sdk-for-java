@@ -42,12 +42,13 @@ public final class DataVersionsImpl implements DataVersions {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType,
         Context context) {
         PagedIterable<DataVersionBaseInner> inner =
             this
                 .serviceClient()
-                .list(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, context);
+                .list(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, stage, listViewType, context);
         return Utils.mapPage(inner, inner1 -> new DataVersionBaseImpl(inner1, this.manager()));
     }
 

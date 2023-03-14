@@ -57,10 +57,28 @@ public final class EnvironmentVersionProperties extends AssetBase {
     private InferenceContainerProperties inferenceConfig;
 
     /*
+     * Intellectual Property details. Used if environment is an Intellectual Property.
+     */
+    @JsonProperty(value = "intellectualProperty")
+    private IntellectualProperty intellectualProperty;
+
+    /*
      * The OS type of the environment.
      */
     @JsonProperty(value = "osType")
     private OperatingSystemType osType;
+
+    /*
+     * Provisioning state for the environment version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the environment lifecycle assigned to this environment
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
 
     /** Creates an instance of EnvironmentVersionProperties class. */
     public EnvironmentVersionProperties() {
@@ -189,6 +207,28 @@ public final class EnvironmentVersionProperties extends AssetBase {
     }
 
     /**
+     * Get the intellectualProperty property: Intellectual Property details. Used if environment is an Intellectual
+     * Property.
+     *
+     * @return the intellectualProperty value.
+     */
+    public IntellectualProperty intellectualProperty() {
+        return this.intellectualProperty;
+    }
+
+    /**
+     * Set the intellectualProperty property: Intellectual Property details. Used if environment is an Intellectual
+     * Property.
+     *
+     * @param intellectualProperty the intellectualProperty value to set.
+     * @return the EnvironmentVersionProperties object itself.
+     */
+    public EnvironmentVersionProperties withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        this.intellectualProperty = intellectualProperty;
+        return this;
+    }
+
+    /**
      * Get the osType property: The OS type of the environment.
      *
      * @return the osType value.
@@ -205,6 +245,42 @@ public final class EnvironmentVersionProperties extends AssetBase {
      */
     public EnvironmentVersionProperties withOsType(OperatingSystemType osType) {
         this.osType = osType;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the environment version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the environment lifecycle assigned to this environment.
+     *
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the environment lifecycle assigned to this environment.
+     *
+     * @param stage the stage value to set.
+     * @return the EnvironmentVersionProperties object itself.
+     */
+    public EnvironmentVersionProperties withStage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public EnvironmentVersionProperties withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
         return this;
     }
 
@@ -256,6 +332,9 @@ public final class EnvironmentVersionProperties extends AssetBase {
         }
         if (inferenceConfig() != null) {
             inferenceConfig().validate();
+        }
+        if (intellectualProperty() != null) {
+            intellectualProperty().validate();
         }
     }
 }

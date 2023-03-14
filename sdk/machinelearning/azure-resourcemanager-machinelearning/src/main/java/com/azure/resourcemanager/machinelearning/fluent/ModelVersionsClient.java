@@ -8,9 +8,13 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.PackageResponseInner;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
+import com.azure.resourcemanager.machinelearning.models.PackageRequest;
 
 /** An instance of this class provides access to all the operations defined in ModelVersionsClient. */
 public interface ModelVersionsClient {
@@ -43,6 +47,7 @@ public interface ModelVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param feed Name of the feed.
+     * @param stage Model stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -64,6 +69,7 @@ public interface ModelVersionsClient {
         String tags,
         String properties,
         String feed,
+        String stage,
         ListViewType listViewType,
         Context context);
 
@@ -169,4 +175,86 @@ public interface ModelVersionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     ModelVersionInner createOrUpdate(
         String resourceGroupName, String workspaceName, String name, String version, ModelVersionInner body);
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of package response returned after async package operation completes
+     *     successfully.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PackageResponseInner>, PackageResponseInner> beginPackageMethod(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body);
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of package response returned after async package operation completes
+     *     successfully.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PackageResponseInner>, PackageResponseInner> beginPackageMethod(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context);
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PackageResponseInner packageMethod(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body);
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PackageResponseInner packageMethod(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context);
 }

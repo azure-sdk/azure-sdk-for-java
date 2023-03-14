@@ -34,6 +34,7 @@ public interface DataVersions {
      *     results with be default page size count will be returned.
      * @param skip Continuation token for pagination.
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param stage data stage.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
@@ -50,6 +51,7 @@ public interface DataVersions {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType,
         Context context);
 

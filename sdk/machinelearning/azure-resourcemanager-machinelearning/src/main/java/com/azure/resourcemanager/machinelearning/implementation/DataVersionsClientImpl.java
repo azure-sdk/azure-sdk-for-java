@@ -40,21 +40,21 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
     private final DataVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of DataVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    DataVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    DataVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(DataVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesDataVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesDataVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -77,6 +77,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
             @QueryParam("$top") Integer top,
             @QueryParam("$skip") String skip,
             @QueryParam("$tags") String tags,
+            @QueryParam("stage") String stage,
             @QueryParam("listViewType") ListViewType listViewType,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -155,6 +156,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      *     results with be default page size count will be returned.
      * @param skip Continuation token for pagination.
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param stage data stage.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -172,6 +174,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -211,6 +214,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
                             top,
                             skip,
                             tags,
+                            stage,
                             listViewType,
                             accept,
                             context))
@@ -237,6 +241,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      *     results with be default page size count will be returned.
      * @param skip Continuation token for pagination.
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param stage data stage.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
@@ -255,6 +260,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType,
         Context context) {
         if (this.client.getEndpoint() == null) {
@@ -293,6 +299,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
                 top,
                 skip,
                 tags,
+                stage,
                 listViewType,
                 accept,
                 context)
@@ -318,6 +325,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      *     results with be default page size count will be returned.
      * @param skip Continuation token for pagination.
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param stage data stage.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -334,9 +342,12 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, stage, listViewType),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -357,9 +368,12 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         final Integer top = null;
         final String skip = null;
         final String tags = null;
+        final String stage = null;
         final ListViewType listViewType = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, stage, listViewType),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -374,6 +388,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      *     results with be default page size count will be returned.
      * @param skip Continuation token for pagination.
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param stage data stage.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
@@ -391,12 +406,13 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType,
         Context context) {
         return new PagedFlux<>(
             () ->
                 listSinglePageAsync(
-                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, context),
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, stage, listViewType, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -417,9 +433,10 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         final Integer top = null;
         final String skip = null;
         final String tags = null;
+        final String stage = null;
         final ListViewType listViewType = null;
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, stage, listViewType));
     }
 
     /**
@@ -433,6 +450,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      *     results with be default page size count will be returned.
      * @param skip Continuation token for pagination.
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param stage data stage.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
@@ -450,10 +468,11 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
+        String stage,
         ListViewType listViewType,
         Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, context));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, stage, listViewType, context));
     }
 
     /**
