@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The state of a server. */
+/** A state of a server that is visible to user. */
 public final class ServerState extends ExpandableStringEnum<ServerState> {
     /** Static value Ready for ServerState. */
     public static final ServerState READY = fromString("Ready");
@@ -19,17 +19,8 @@ public final class ServerState extends ExpandableStringEnum<ServerState> {
     /** Static value Disabled for ServerState. */
     public static final ServerState DISABLED = fromString("Disabled");
 
-    /** Static value Starting for ServerState. */
-    public static final ServerState STARTING = fromString("Starting");
-
-    /** Static value Stopping for ServerState. */
-    public static final ServerState STOPPING = fromString("Stopping");
-
-    /** Static value Stopped for ServerState. */
-    public static final ServerState STOPPED = fromString("Stopped");
-
-    /** Static value Updating for ServerState. */
-    public static final ServerState UPDATING = fromString("Updating");
+    /** Static value Inaccessible for ServerState. */
+    public static final ServerState INACCESSIBLE = fromString("Inaccessible");
 
     /**
      * Creates a new instance of ServerState value.

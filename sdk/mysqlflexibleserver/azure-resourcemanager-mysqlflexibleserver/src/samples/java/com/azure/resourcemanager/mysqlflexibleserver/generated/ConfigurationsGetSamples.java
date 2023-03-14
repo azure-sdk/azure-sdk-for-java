@@ -7,14 +7,14 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 /** Samples for Configurations Get. */
 public final class ConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/ConfigurationGet.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2017-12-01/examples/ConfigurationGet.json
      */
     /**
-     * Sample code: Get a configuration.
+     * Sample code: ConfigurationGet.
      *
      * @param manager Entry point to MySqlManager.
      */
-    public static void getAConfiguration(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+    public static void configurationGet(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
         manager
             .configurations()
             .getWithResponse("TestGroup", "testserver", "event_scheduler", com.azure.core.util.Context.NONE);
