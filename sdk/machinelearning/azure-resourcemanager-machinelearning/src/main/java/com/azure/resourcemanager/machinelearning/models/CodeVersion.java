@@ -74,14 +74,14 @@ public interface CodeVersion {
         /** The stage of the CodeVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, codeName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry.
+             * @param codeName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingCode(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingCode(String resourceGroupName, String registryName, String codeName);
         }
         /** The stage of the CodeVersion definition allowing to specify properties. */
         interface WithProperties {

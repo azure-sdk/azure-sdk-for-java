@@ -37,6 +37,12 @@ public final class ModelVersionProperties extends AssetBase {
     @JsonProperty(value = "modelUri")
     private String modelUri;
 
+    /*
+     * Provisioning state for the model version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
     /** Creates an instance of ModelVersionProperties class. */
     public ModelVersionProperties() {
     }
@@ -119,6 +125,15 @@ public final class ModelVersionProperties extends AssetBase {
     public ModelVersionProperties withModelUri(String modelUri) {
         this.modelUri = modelUri;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the model version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /** {@inheritDoc} */
