@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/modsimworkbench/ci.yml
+      - sdk/modsimworkbench/azure-resourcemanager-modsimworkbench/
+    exclude:
+      - sdk/modsimworkbench/pom.xml
+      - sdk/modsimworkbench/azure-resourcemanager-modsimworkbench/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/modsimworkbench/ci.yml
+      - sdk/modsimworkbench/azure-resourcemanager-modsimworkbench/
+    exclude:
+      - sdk/modsimworkbench/pom.xml
+      - sdk/modsimworkbench/azure-resourcemanager-modsimworkbench/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagermodsimworkbench
+    displayName: azure-resourcemanager-modsimworkbench
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: modsimworkbench
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-modsimworkbench
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermodsimworkbench
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermodsimworkbench }}
