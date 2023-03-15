@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -61,6 +62,12 @@ public final class RecommendationProperties {
      */
     @JsonProperty(value = "recommendationTypeId")
     private String recommendationTypeId;
+
+    /*
+     * The potential risk of not implementing the recommendation.
+     */
+    @JsonProperty(value = "risk")
+    private Risk risk;
 
     /*
      * A summary of the recommendation.
@@ -272,6 +279,26 @@ public final class RecommendationProperties {
      */
     public RecommendationProperties withRecommendationTypeId(String recommendationTypeId) {
         this.recommendationTypeId = recommendationTypeId;
+        return this;
+    }
+
+    /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     *
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.risk;
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     *
+     * @param risk the risk value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withRisk(Risk risk) {
+        this.risk = risk;
         return this;
     }
 
