@@ -50,13 +50,13 @@ public final class ComponentContainerImpl
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String componentName;
 
-    public ComponentContainerImpl withExistingWorkspace(String resourceGroupName, String workspaceName) {
+    public ComponentContainerImpl withExistingRegistry(String resourceGroupName, String registryName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
+        this.registryName = registryName;
         return this;
     }
 
@@ -64,9 +64,8 @@ public final class ComponentContainerImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryComponentContainers()
+                .createOrUpdate(resourceGroupName, registryName, componentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -74,9 +73,8 @@ public final class ComponentContainerImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), context)
-                .getValue();
+                .getRegistryComponentContainers()
+                .createOrUpdate(resourceGroupName, registryName, componentName, this.innerModel(), context);
         return this;
     }
 
@@ -84,7 +82,7 @@ public final class ComponentContainerImpl
         String name, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = new ComponentContainerInner();
         this.serviceManager = serviceManager;
-        this.name = name;
+        this.componentName = name;
     }
 
     public ComponentContainerImpl update() {
@@ -95,9 +93,8 @@ public final class ComponentContainerImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryComponentContainers()
+                .createOrUpdate(resourceGroupName, registryName, componentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -105,9 +102,8 @@ public final class ComponentContainerImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), context)
-                .getValue();
+                .getRegistryComponentContainers()
+                .createOrUpdate(resourceGroupName, registryName, componentName, this.innerModel(), context);
         return this;
     }
 
@@ -117,16 +113,16 @@ public final class ComponentContainerImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "components");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
+        this.componentName = Utils.getValueFromIdByName(innerObject.id(), "components");
     }
 
     public ComponentContainer refresh() {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentContainers()
-                .getWithResponse(resourceGroupName, workspaceName, name, Context.NONE)
+                .getRegistryComponentContainers()
+                .getWithResponse(resourceGroupName, registryName, componentName, Context.NONE)
                 .getValue();
         return this;
     }
@@ -135,8 +131,8 @@ public final class ComponentContainerImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentContainers()
-                .getWithResponse(resourceGroupName, workspaceName, name, context)
+                .getRegistryComponentContainers()
+                .getWithResponse(resourceGroupName, registryName, componentName, context)
                 .getValue();
         return this;
     }
