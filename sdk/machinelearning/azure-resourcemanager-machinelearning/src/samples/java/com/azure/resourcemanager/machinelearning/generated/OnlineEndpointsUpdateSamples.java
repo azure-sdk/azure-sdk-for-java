@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for OnlineEndpoints Update. */
 public final class OnlineEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/update.json
      */
     /**
      * Sample code: Update Online Endpoint.
