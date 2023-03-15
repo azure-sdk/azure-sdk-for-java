@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import java.util.List;
 import java.util.Map;
 
 /** The DeploymentResourceConfiguration model. */
@@ -25,6 +26,13 @@ public final class DeploymentResourceConfiguration extends ResourceConfiguration
     @Override
     public DeploymentResourceConfiguration withInstanceType(String instanceType) {
         super.withInstanceType(instanceType);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DeploymentResourceConfiguration withLocations(List<String> locations) {
+        super.withLocations(locations);
         return this;
     }
 
