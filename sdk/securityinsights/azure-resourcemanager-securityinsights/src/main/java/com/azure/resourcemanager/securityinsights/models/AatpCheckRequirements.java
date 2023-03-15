@@ -21,6 +21,10 @@ public final class AatpCheckRequirements extends DataConnectorsCheckRequirements
     @JsonProperty(value = "properties")
     private AatpCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of AatpCheckRequirements class. */
+    public AatpCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: AATP (Azure Advanced Threat Protection) requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class AatpCheckRequirements extends DataConnectorsCheckRequirements
      */
     private AatpCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the AatpCheckRequirements object itself.
+     */
+    public AatpCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AatpCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

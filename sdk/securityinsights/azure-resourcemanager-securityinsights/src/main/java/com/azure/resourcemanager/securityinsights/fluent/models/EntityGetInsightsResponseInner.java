@@ -25,6 +25,10 @@ public final class EntityGetInsightsResponseInner {
     @JsonProperty(value = "value")
     private List<EntityInsightItem> value;
 
+    /** Creates an instance of EntityGetInsightsResponseInner class. */
+    public EntityGetInsightsResponseInner() {
+    }
+
     /**
      * Get the metadata property: The metadata from the get insights operation results.
      *

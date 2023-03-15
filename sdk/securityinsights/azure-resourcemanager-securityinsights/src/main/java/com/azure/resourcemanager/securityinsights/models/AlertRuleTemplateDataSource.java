@@ -23,6 +23,10 @@ public final class AlertRuleTemplateDataSource {
     @JsonProperty(value = "dataTypes")
     private List<String> dataTypes;
 
+    /** Creates an instance of AlertRuleTemplateDataSource class. */
+    public AlertRuleTemplateDataSource() {
+    }
+
     /**
      * Get the connectorId property: The connector id that provides the following data types.
      *

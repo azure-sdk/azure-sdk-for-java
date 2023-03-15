@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public final class PlaybookActionProperties {
     /*
      * The resource id of the playbook resource.
      */
-    @JsonProperty(value = "logicAppResourceId")
+    @JsonProperty(value = "logicAppResourceId", required = true)
     private String logicAppResourceId;
 
     /*
@@ -22,6 +23,10 @@ public final class PlaybookActionProperties {
      */
     @JsonProperty(value = "tenantId")
     private UUID tenantId;
+
+    /** Creates an instance of PlaybookActionProperties class. */
+    public PlaybookActionProperties() {
+    }
 
     /**
      * Get the logicAppResourceId property: The resource id of the playbook resource.
@@ -69,5 +74,13 @@ public final class PlaybookActionProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (logicAppResourceId() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property logicAppResourceId in model PlaybookActionProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PlaybookActionProperties.class);
 }
