@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mediaservices.generated;
 /** Samples for AssetFilters Get. */
 public final class AssetFiltersGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-get-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-get-by-name.json
      */
     /**
      * Sample code: Get an Asset Filter by name.

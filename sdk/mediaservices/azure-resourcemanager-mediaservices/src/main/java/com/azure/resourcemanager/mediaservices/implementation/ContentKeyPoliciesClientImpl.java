@@ -64,8 +64,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     public interface ContentKeyPoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/contentKeyPolicies")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/contentKeyPolicies")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContentKeyPolicyCollection>> list(
@@ -82,8 +81,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContentKeyPolicyInner>> get(
@@ -98,8 +96,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContentKeyPolicyInner>> createOrUpdate(
@@ -115,8 +112,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -131,8 +127,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/contentKeyPolicies/{contentKeyPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContentKeyPolicyInner>> update(
@@ -148,8 +143,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/contentKeyPolicies/{contentKeyPolicyName}/getPolicyPropertiesWithSecrets")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/contentKeyPolicies/{contentKeyPolicyName}/getPolicyPropertiesWithSecrets")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContentKeyPolicyPropertiesInner>> getPolicyPropertiesWithSecrets(
@@ -212,7 +206,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -281,7 +275,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -461,7 +455,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
             return Mono
                 .error(new IllegalArgumentException("Parameter contentKeyPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -520,7 +514,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
             return Mono
                 .error(new IllegalArgumentException("Parameter contentKeyPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -639,7 +633,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -708,7 +702,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -833,7 +827,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
             return Mono
                 .error(new IllegalArgumentException("Parameter contentKeyPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -891,7 +885,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
             return Mono
                 .error(new IllegalArgumentException("Parameter contentKeyPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1007,7 +1001,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1076,7 +1070,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1200,7 +1194,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
             return Mono
                 .error(new IllegalArgumentException("Parameter contentKeyPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1259,7 +1253,7 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
             return Mono
                 .error(new IllegalArgumentException("Parameter contentKeyPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

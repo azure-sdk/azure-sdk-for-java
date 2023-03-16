@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /** The UserAssignedManagedIdentity model. */
 @Immutable
-public class UserAssignedManagedIdentity {
+public final class UserAssignedManagedIdentity {
     /*
      * The client ID.
      */
