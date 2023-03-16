@@ -73,6 +73,13 @@ public interface SecurityInsights {
     AutomationRulesClient getAutomationRules();
 
     /**
+     * Gets the EntitiesClient object to access its operations.
+     *
+     * @return the EntitiesClient object.
+     */
+    EntitiesClient getEntities();
+
+    /**
      * Gets the IncidentsClient object to access its operations.
      *
      * @return the IncidentsClient object.
@@ -113,13 +120,6 @@ public interface SecurityInsights {
      * @return the DomainWhoisClient object.
      */
     DomainWhoisClient getDomainWhois();
-
-    /**
-     * Gets the EntitiesClient object to access its operations.
-     *
-     * @return the EntitiesClient object.
-     */
-    EntitiesClient getEntities();
 
     /**
      * Gets the EntitiesGetTimelinesClient object to access its operations.
@@ -164,6 +164,27 @@ public interface SecurityInsights {
     FileImportsClient getFileImports();
 
     /**
+     * Gets the HuntsClient object to access its operations.
+     *
+     * @return the HuntsClient object.
+     */
+    HuntsClient getHunts();
+
+    /**
+     * Gets the HuntRelationsClient object to access its operations.
+     *
+     * @return the HuntRelationsClient object.
+     */
+    HuntRelationsClient getHuntRelations();
+
+    /**
+     * Gets the HuntCommentsClient object to access its operations.
+     *
+     * @return the HuntCommentsClient object.
+     */
+    HuntCommentsClient getHuntComments();
+
+    /**
      * Gets the IncidentCommentsClient object to access its operations.
      *
      * @return the IncidentCommentsClient object.
@@ -176,6 +197,13 @@ public interface SecurityInsights {
      * @return the IncidentRelationsClient object.
      */
     IncidentRelationsClient getIncidentRelations();
+
+    /**
+     * Gets the IncidentTasksClient object to access its operations.
+     *
+     * @return the IncidentTasksClient object.
+     */
+    IncidentTasksClient getIncidentTasks();
 
     /**
      * Gets the MetadatasClient object to access its operations.
@@ -197,6 +225,27 @@ public interface SecurityInsights {
      * @return the SentinelOnboardingStatesClient object.
      */
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    GetRecommendationsClient getGetRecommendations();
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
 
     /**
      * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
@@ -246,6 +295,27 @@ public interface SecurityInsights {
      * @return the ThreatIntelligenceIndicatorMetricsClient object.
      */
     ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics();
+
+    /**
+     * Gets the TriggeredAnalyticsRuleRunOperationsClient object to access its operations.
+     *
+     * @return the TriggeredAnalyticsRuleRunOperationsClient object.
+     */
+    TriggeredAnalyticsRuleRunOperationsClient getTriggeredAnalyticsRuleRunOperations();
+
+    /**
+     * Gets the GetTriggeredAnalyticsRuleRunsClient object to access its operations.
+     *
+     * @return the GetTriggeredAnalyticsRuleRunsClient object.
+     */
+    GetTriggeredAnalyticsRuleRunsClient getGetTriggeredAnalyticsRuleRuns();
+
+    /**
+     * Gets the AlertRuleOperationsClient object to access its operations.
+     *
+     * @return the AlertRuleOperationsClient object.
+     */
+    AlertRuleOperationsClient getAlertRuleOperations();
 
     /**
      * Gets the WatchlistsClient object to access its operations.

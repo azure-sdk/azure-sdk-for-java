@@ -19,6 +19,10 @@ public final class ThreatIntelligenceMetricsListInner {
     @JsonProperty(value = "value", required = true)
     private List<ThreatIntelligenceMetrics> value;
 
+    /** Creates an instance of ThreatIntelligenceMetricsListInner class. */
+    public ThreatIntelligenceMetricsListInner() {
+    }
+
     /**
      * Get the value property: Array of threat intelligence metric fields (type/threat type/source).
      *
