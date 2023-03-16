@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsResourceDetails;
@@ -47,6 +46,6 @@ public final class PolicyRestrictionsCheckAtSubscriptionScopeSamples {
                                     .withField("location")
                                     .withValues(Arrays.asList("eastus", "westus", "westus2", "westeurope")),
                                 new PendingField().withField("tags"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

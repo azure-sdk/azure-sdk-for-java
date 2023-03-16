@@ -63,7 +63,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface AttestationsService {
+    public interface AttestationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/attestations")
         @ExpectedResponses({200})
@@ -116,8 +116,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/attestations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/attestations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AttestationListResult>> listByResourceGroup(
@@ -132,8 +131,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/attestations/{attestationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/attestations/{attestationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdateAtResourceGroup(
@@ -148,8 +146,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/attestations/{attestationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/attestations/{attestationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AttestationInner>> getByResourceGroup(
@@ -163,8 +160,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/attestations/{attestationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/attestations/{attestationName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -590,7 +586,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AttestationInner>, AttestationInner> beginCreateOrUpdateAtSubscription(
         String attestationName, AttestationInner parameters) {
-        return beginCreateOrUpdateAtSubscriptionAsync(attestationName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAtSubscriptionAsync(attestationName, parameters).getSyncPoller();
     }
 
     /**
@@ -607,7 +603,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AttestationInner>, AttestationInner> beginCreateOrUpdateAtSubscription(
         String attestationName, AttestationInner parameters, Context context) {
-        return beginCreateOrUpdateAtSubscriptionAsync(attestationName, parameters, context).getSyncPoller();
+        return this.beginCreateOrUpdateAtSubscriptionAsync(attestationName, parameters, context).getSyncPoller();
     }
 
     /**
@@ -1315,7 +1311,9 @@ public final class AttestationsClientImpl implements AttestationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AttestationInner>, AttestationInner> beginCreateOrUpdateAtResourceGroup(
         String resourceGroupName, String attestationName, AttestationInner parameters) {
-        return beginCreateOrUpdateAtResourceGroupAsync(resourceGroupName, attestationName, parameters).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAtResourceGroupAsync(resourceGroupName, attestationName, parameters)
+            .getSyncPoller();
     }
 
     /**
@@ -1333,7 +1331,8 @@ public final class AttestationsClientImpl implements AttestationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AttestationInner>, AttestationInner> beginCreateOrUpdateAtResourceGroup(
         String resourceGroupName, String attestationName, AttestationInner parameters, Context context) {
-        return beginCreateOrUpdateAtResourceGroupAsync(resourceGroupName, attestationName, parameters, context)
+        return this
+            .beginCreateOrUpdateAtResourceGroupAsync(resourceGroupName, attestationName, parameters, context)
             .getSyncPoller();
     }
 
@@ -2030,7 +2029,7 @@ public final class AttestationsClientImpl implements AttestationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AttestationInner>, AttestationInner> beginCreateOrUpdateAtResource(
         String resourceId, String attestationName, AttestationInner parameters) {
-        return beginCreateOrUpdateAtResourceAsync(resourceId, attestationName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAtResourceAsync(resourceId, attestationName, parameters).getSyncPoller();
     }
 
     /**
@@ -2048,7 +2047,9 @@ public final class AttestationsClientImpl implements AttestationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AttestationInner>, AttestationInner> beginCreateOrUpdateAtResource(
         String resourceId, String attestationName, AttestationInner parameters, Context context) {
-        return beginCreateOrUpdateAtResourceAsync(resourceId, attestationName, parameters, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAtResourceAsync(resourceId, attestationName, parameters, context)
+            .getSyncPoller();
     }
 
     /**

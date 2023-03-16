@@ -58,11 +58,10 @@ public final class PolicyTrackedResourcesClientImpl implements PolicyTrackedReso
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface PolicyTrackedResourcesService {
+    public interface PolicyTrackedResourcesService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers"
-                + "/Microsoft.PolicyInsights/policyTrackedResources/{policyTrackedResourcesResource}/queryResults")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers/Microsoft.PolicyInsights/policyTrackedResources/{policyTrackedResourcesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyTrackedResourcesQueryResults>> listQueryResultsForManagementGroup(
@@ -79,8 +78,7 @@ public final class PolicyTrackedResourcesClientImpl implements PolicyTrackedReso
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyTrackedResources"
-                + "/{policyTrackedResourcesResource}/queryResults")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyTrackedResources/{policyTrackedResourcesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyTrackedResourcesQueryResults>> listQueryResultsForSubscription(
@@ -96,8 +94,7 @@ public final class PolicyTrackedResourcesClientImpl implements PolicyTrackedReso
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/policyTrackedResources/{policyTrackedResourcesResource}/queryResults")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/policyTrackedResources/{policyTrackedResourcesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyTrackedResourcesQueryResults>> listQueryResultsForResourceGroup(
@@ -114,8 +111,7 @@ public final class PolicyTrackedResourcesClientImpl implements PolicyTrackedReso
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/{resourceId}/providers/Microsoft.PolicyInsights/policyTrackedResources/{policyTrackedResourcesResource}"
-                + "/queryResults")
+            "/{resourceId}/providers/Microsoft.PolicyInsights/policyTrackedResources/{policyTrackedResourcesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyTrackedResourcesQueryResults>> listQueryResultsForResource(

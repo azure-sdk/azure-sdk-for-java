@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PolicyMetadata GetResource. */
 public final class PolicyMetadataGetResourceSamples {
     /*
@@ -18,6 +16,6 @@ public final class PolicyMetadataGetResourceSamples {
      */
     public static void getASinglePolicyMetadataResource(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyMetadatas().getResourceWithResponse("NIST_SP_800-53_R4_AC-2", Context.NONE);
+        manager.policyMetadatas().getResourceWithResponse("NIST_SP_800-53_R4_AC-2", com.azure.core.util.Context.NONE);
     }
 }

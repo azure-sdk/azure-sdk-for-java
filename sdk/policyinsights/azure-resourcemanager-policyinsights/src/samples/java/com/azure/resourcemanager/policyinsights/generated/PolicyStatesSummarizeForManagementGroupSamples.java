@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 import java.time.OffsetDateTime;
 
@@ -29,6 +28,6 @@ public final class PolicyStatesSummarizeForManagementGroupSamples {
                 OffsetDateTime.parse("2019-10-05T18:00:00Z"),
                 OffsetDateTime.parse("2019-10-06T18:00:00Z"),
                 "PolicyDefinitionAction eq 'deny' or PolicyDefinitionAction eq 'audit'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

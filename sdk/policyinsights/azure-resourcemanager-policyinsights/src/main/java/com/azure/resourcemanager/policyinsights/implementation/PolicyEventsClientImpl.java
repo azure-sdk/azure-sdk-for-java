@@ -58,11 +58,10 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface PolicyEventsService {
+    public interface PolicyEventsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers"
-                + "/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForManagementGroup(
@@ -84,8 +83,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForSubscription(
@@ -106,8 +104,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/policyEvents/{policyEventsResource}/queryResults")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForResourceGroup(
@@ -150,9 +147,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policySetDefinitions"
-                + "/{policySetDefinitionName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policySetDefinitions/{policySetDefinitionName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForPolicySetDefinition(
@@ -175,9 +170,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyDefinitions"
-                + "/{policyDefinitionName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyDefinitions/{policyDefinitionName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForPolicyDefinition(
@@ -200,9 +193,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyAssignments"
-                + "/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForSubscriptionLevelPolicyAssignment(
@@ -225,9 +216,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{authorizationNamespace}"
-                + "/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyEvents"
-                + "/{policyEventsResource}/queryResults")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{authorizationNamespace}/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyEvents/{policyEventsResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyEventsQueryResults>> listQueryResultsForResourceGroupLevelPolicyAssignment(

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations GetAtManagementGroup. */
 public final class RemediationsGetAtManagementGroupSamples {
     /*
@@ -18,6 +16,8 @@ public final class RemediationsGetAtManagementGroupSamples {
      */
     public static void getRemediationAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().getAtManagementGroupWithResponse("financeMg", "storageRemediation", Context.NONE);
+        manager
+            .remediations()
+            .getAtManagementGroupWithResponse("financeMg", "storageRemediation", com.azure.core.util.Context.NONE);
     }
 }

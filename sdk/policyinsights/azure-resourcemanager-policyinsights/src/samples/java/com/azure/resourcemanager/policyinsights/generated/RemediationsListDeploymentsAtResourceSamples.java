@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtResource. */
 public final class RemediationsListDeploymentsAtResourceSamples {
     /*
@@ -24,6 +22,6 @@ public final class RemediationsListDeploymentsAtResourceSamples {
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 "myRemediation",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

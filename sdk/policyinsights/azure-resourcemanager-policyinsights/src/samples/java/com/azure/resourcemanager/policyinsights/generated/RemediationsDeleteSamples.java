@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations Delete. */
 public final class RemediationsDeleteSamples {
     /*
@@ -18,6 +16,9 @@ public final class RemediationsDeleteSamples {
      */
     public static void deleteRemediationAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().deleteByResourceGroupWithResponse("myResourceGroup", "storageRemediation", Context.NONE);
+        manager
+            .remediations()
+            .deleteByResourceGroupWithResponse(
+                "myResourceGroup", "storageRemediation", com.azure.core.util.Context.NONE);
     }
 }

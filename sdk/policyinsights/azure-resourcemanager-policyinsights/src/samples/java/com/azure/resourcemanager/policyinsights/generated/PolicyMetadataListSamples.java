@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PolicyMetadata List. */
 public final class PolicyMetadataListSamples {
     /*
@@ -18,7 +16,7 @@ public final class PolicyMetadataListSamples {
      */
     public static void getCollectionOfPolicyMetadataResources(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyMetadatas().list(null, Context.NONE);
+        manager.policyMetadatas().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class PolicyMetadataListSamples {
      */
     public static void getCollectionOfPolicyMetadataResourcesUsingTopQueryParameter(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyMetadatas().list(1, Context.NONE);
+        manager.policyMetadatas().list(1, com.azure.core.util.Context.NONE);
     }
 }
