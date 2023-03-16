@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.TagsClient;
 import com.azure.resourcemanager.consumption.fluent.models.TagsResultInner;
 import com.azure.resourcemanager.consumption.models.Tags;
 import com.azure.resourcemanager.consumption.models.TagsResult;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class TagsImpl implements Tags {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(TagsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(TagsImpl.class);
 
     private final TagsClient innerClient;
 
@@ -26,15 +25,6 @@ public final class TagsImpl implements Tags {
         this.serviceManager = serviceManager;
     }
 
-    public TagsResult get(String scope) {
-        TagsResultInner inner = this.serviceClient().get(scope);
-        if (inner != null) {
-            return new TagsResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<TagsResult> getWithResponse(String scope, Context context) {
         Response<TagsResultInner> inner = this.serviceClient().getWithResponse(scope, context);
         if (inner != null) {
@@ -43,6 +33,15 @@ public final class TagsImpl implements Tags {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new TagsResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public TagsResult get(String scope) {
+        TagsResultInner inner = this.serviceClient().get(scope);
+        if (inner != null) {
+            return new TagsResultImpl(inner, this.manager());
         } else {
             return null;
         }

@@ -24,7 +24,7 @@ import java.util.Map;
 /** Samples for Budgets CreateOrUpdate. */
 public final class BudgetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/CreateOrUpdateBudget.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-09-01/examples/CreateOrUpdateBudget.json
      */
     /**
      * Sample code: CreateOrUpdateBudget.

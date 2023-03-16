@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationTransactions List. */
 public final class ReservationTransactionsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationTransactionsListByEnrollmentNumber.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2022-09-01/examples/ReservationTransactionsListByEnrollmentNumber.json
      */
     /**
      * Sample code: ReservationTransactionsByEnrollmentNumber.
@@ -20,6 +18,9 @@ public final class ReservationTransactionsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationTransactions()
-            .list("123456", "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30", Context.NONE);
+            .list(
+                "123456",
+                "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30",
+                com.azure.core.util.Context.NONE);
     }
 }
