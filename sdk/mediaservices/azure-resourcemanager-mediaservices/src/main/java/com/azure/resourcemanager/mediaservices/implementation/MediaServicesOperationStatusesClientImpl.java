@@ -57,8 +57,7 @@ public final class MediaServicesOperationStatusesClientImpl implements MediaServ
     public interface MediaServicesOperationStatusesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Media/locations/{locationName}"
-                + "/mediaServicesOperationStatuses/{operationId}")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.Media/locations/{locationName}/mediaServicesOperationStatuses/{operationId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MediaServiceOperationStatusInner>> get(

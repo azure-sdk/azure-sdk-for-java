@@ -64,8 +64,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     public interface StreamingLocatorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/streamingLocators")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StreamingLocatorCollection>> list(
@@ -82,8 +81,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/streamingLocators/{streamingLocatorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StreamingLocatorInner>> get(
@@ -98,8 +96,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/streamingLocators/{streamingLocatorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StreamingLocatorInner>> create(
@@ -115,8 +112,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/streamingLocators/{streamingLocatorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -131,8 +127,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/streamingLocators/{streamingLocatorName}/listContentKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}/listContentKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ListContentKeysResponseInner>> listContentKeys(
@@ -147,8 +142,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/streamingLocators/{streamingLocatorName}/listPaths")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}/listPaths")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ListPathsResponseInner>> listPaths(
@@ -211,7 +205,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -280,7 +274,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -460,7 +454,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -519,7 +513,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -638,7 +632,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -707,7 +701,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -830,7 +824,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -888,7 +882,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -999,7 +993,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1058,7 +1052,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1173,7 +1167,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1232,7 +1226,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
