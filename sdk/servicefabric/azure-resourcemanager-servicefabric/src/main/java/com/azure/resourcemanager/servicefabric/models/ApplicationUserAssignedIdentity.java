@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ApplicationUserAssignedIdentity model. */
 @Fluent
-public class ApplicationUserAssignedIdentity {
+public final class ApplicationUserAssignedIdentity {
     /*
      * The friendly name of user assigned identity.
      */
