@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "PAT", value = PatAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "SAS", value = SasAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "AccessKey", value = AccessKeyAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class)
 })

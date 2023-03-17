@@ -74,14 +74,14 @@ public interface ComponentVersion {
         /** The stage of the ComponentVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, componentName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name.
+             * @param registryName Name of Azure Machine Learning registry.
+             * @param componentName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingComponent(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingComponent(String resourceGroupName, String registryName, String componentName);
         }
         /** The stage of the ComponentVersion definition allowing to specify properties. */
         interface WithProperties {
