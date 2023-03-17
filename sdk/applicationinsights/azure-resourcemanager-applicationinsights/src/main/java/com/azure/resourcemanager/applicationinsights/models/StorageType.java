@@ -14,6 +14,15 @@ public final class StorageType extends ExpandableStringEnum<StorageType> {
     public static final StorageType SERVICE_PROFILER = fromString("ServiceProfiler");
 
     /**
+     * Creates a new instance of StorageType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public StorageType() {
+    }
+
+    /**
      * Creates or finds a StorageType from its string representation.
      *
      * @param name a name to look for.
