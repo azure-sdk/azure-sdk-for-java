@@ -66,8 +66,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     public interface WebPubSubHubsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/hubs")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WebPubSubHubList>> list(
@@ -81,8 +80,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/hubs/{hubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WebPubSubHubInner>> get(
@@ -97,8 +95,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/hubs/{hubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -114,8 +111,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/hubs/{hubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -142,8 +138,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     /**
      * List hub settings.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -199,8 +194,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     /**
      * List hub settings.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -255,8 +249,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     /**
      * List hub settings.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -272,8 +265,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     /**
      * List hub settings.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -291,8 +283,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     /**
      * List hub settings.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -307,8 +298,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     /**
      * List hub settings.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -325,8 +315,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Get a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -379,8 +368,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Get a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -431,8 +419,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Get a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -449,8 +436,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Get a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -468,8 +454,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Get a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -485,8 +470,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -546,8 +530,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @param context The context to associate with this operation.
@@ -605,8 +588,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -633,8 +615,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @param context The context to associate with this operation.
@@ -659,8 +640,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -671,15 +651,14 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WebPubSubHubInner>, WebPubSubHubInner> beginCreateOrUpdate(
         String hubName, String resourceGroupName, String resourceName, WebPubSubHubInner parameters) {
-        return beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters).getSyncPoller();
     }
 
     /**
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @param context The context to associate with this operation.
@@ -691,15 +670,16 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WebPubSubHubInner>, WebPubSubHubInner> beginCreateOrUpdate(
         String hubName, String resourceGroupName, String resourceName, WebPubSubHubInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(hubName, resourceGroupName, resourceName, parameters, context)
+            .getSyncPoller();
     }
 
     /**
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -719,8 +699,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @param context The context to associate with this operation.
@@ -741,8 +720,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -760,8 +738,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Create or update a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of WebPubSubHub and its properties.
      * @param context The context to associate with this operation.
@@ -780,8 +757,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -834,8 +810,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -886,8 +861,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -908,8 +882,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -932,8 +905,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -943,15 +915,14 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String hubName, String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(hubName, resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(hubName, resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -962,15 +933,14 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String hubName, String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(hubName, resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginDeleteAsync(hubName, resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -988,8 +958,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1008,8 +977,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1024,8 +992,7 @@ public final class WebPubSubHubsClientImpl implements WebPubSubHubsClient {
      * Delete a hub setting.
      *
      * @param hubName The hub name.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

@@ -72,8 +72,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     public interface WebPubSubSharedPrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/sharedPrivateLinkResources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SharedPrivateLinkResourceList>> list(
@@ -87,8 +86,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SharedPrivateLinkResourceInner>> get(
@@ -103,8 +101,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -120,8 +117,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -148,8 +144,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     /**
      * List shared private link resources.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -207,8 +202,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     /**
      * List shared private link resources.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -264,8 +258,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     /**
      * List shared private link resources.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -281,8 +274,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     /**
      * List shared private link resources.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -301,8 +293,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     /**
      * List shared private link resources.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -317,8 +308,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     /**
      * List shared private link resources.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -336,8 +326,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Get the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -394,8 +383,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Get the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -450,8 +438,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Get the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -469,8 +456,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Get the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -488,8 +474,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Get the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -506,8 +491,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -574,8 +558,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @param context The context to associate with this operation.
@@ -641,8 +624,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -673,8 +655,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @param context The context to associate with this operation.
@@ -709,8 +690,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -724,7 +704,8 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
         String resourceGroupName,
         String resourceName,
         SharedPrivateLinkResourceInner parameters) {
-        return beginCreateOrUpdateAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters)
+        return this
+            .beginCreateOrUpdateAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters)
             .getSyncPoller();
     }
 
@@ -732,8 +713,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @param context The context to associate with this operation.
@@ -749,7 +729,8 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
         String resourceName,
         SharedPrivateLinkResourceInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters, context)
             .getSyncPoller();
     }
@@ -758,8 +739,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -782,8 +762,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @param context The context to associate with this operation.
@@ -809,8 +788,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -831,8 +809,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Create or update a shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The shared private link resource.
      * @param context The context to associate with this operation.
@@ -856,8 +833,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -913,8 +889,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -968,8 +943,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -991,8 +965,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1015,8 +988,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1026,15 +998,14 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String sharedPrivateLinkResourceName, String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1045,7 +1016,8 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String sharedPrivateLinkResourceName, String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context)
+        return this
+            .beginDeleteAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context)
             .getSyncPoller();
     }
 
@@ -1053,8 +1025,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1073,8 +1044,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1094,8 +1064,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1110,8 +1079,7 @@ public final class WebPubSubSharedPrivateLinkResourcesClientImpl implements WebP
      * Delete the specified shared private link resource.
      *
      * @param sharedPrivateLinkResourceName The name of the shared private link resource.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

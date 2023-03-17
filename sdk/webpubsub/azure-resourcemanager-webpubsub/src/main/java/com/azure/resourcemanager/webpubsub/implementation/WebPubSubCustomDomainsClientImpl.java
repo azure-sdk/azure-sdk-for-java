@@ -67,8 +67,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     public interface WebPubSubCustomDomainsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/customDomains")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomDomainList>> list(
@@ -82,8 +81,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/customDomains/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomDomainInner>> get(
@@ -98,8 +96,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/customDomains/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -115,8 +112,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/webPubSub/{resourceName}/customDomains/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -143,8 +139,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * List all custom domains.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -200,8 +195,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * List all custom domains.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -256,8 +250,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * List all custom domains.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -273,8 +266,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * List all custom domains.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -292,8 +284,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * List all custom domains.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -308,8 +299,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * List all custom domains.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -325,8 +315,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Get a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -379,8 +368,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Get a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
@@ -431,8 +419,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Get a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -449,8 +436,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Get a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
@@ -468,8 +454,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Get a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -485,8 +470,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -546,8 +530,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -605,8 +588,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -633,8 +615,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -659,8 +640,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -672,14 +652,13 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomDomainInner>, CustomDomainInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, String name, CustomDomainInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters).getSyncPoller();
     }
 
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -692,14 +671,15 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomDomainInner>, CustomDomainInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, String name, CustomDomainInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, name, parameters, context)
+            .getSyncPoller();
     }
 
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -719,8 +699,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -741,8 +720,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -760,8 +738,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Create or update a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param parameters A custom domain.
@@ -780,8 +757,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -834,8 +810,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
@@ -886,8 +861,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -908,8 +882,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
@@ -931,8 +904,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -942,14 +914,13 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName, String name) {
-        return beginDeleteAsync(resourceGroupName, resourceName, name).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, name).getSyncPoller();
     }
 
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
@@ -961,14 +932,13 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, String name, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, name, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, name, context).getSyncPoller();
     }
 
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -986,8 +956,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
@@ -1006,8 +975,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1022,8 +990,7 @@ public final class WebPubSubCustomDomainsClientImpl implements WebPubSubCustomDo
     /**
      * Delete a custom domain.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param name Custom domain name.
      * @param context The context to associate with this operation.
