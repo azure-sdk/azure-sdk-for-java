@@ -43,8 +43,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
     /*
      * Name of the image that will be used for the environment.
      * <seealso
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning"
-         + "/how-to-deploy-custom-docker-image#use-a-custom-base-image"
+     * href="https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-custom-docker-image#use-a-custom-base-image"
      * />
      */
     @JsonProperty(value = "image")
@@ -61,6 +60,18 @@ public final class EnvironmentVersionProperties extends AssetBase {
      */
     @JsonProperty(value = "osType")
     private OperatingSystemType osType;
+
+    /*
+     * Provisioning state for the environment version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the environment lifecycle assigned to this environment
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
 
     /** Creates an instance of EnvironmentVersionProperties class. */
     public EnvironmentVersionProperties() {
@@ -144,8 +155,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Get the image property: Name of the image that will be used for the environment. &lt;seealso
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning"
-         + "/how-to-deploy-custom-docker-image#use-a-custom-base-image"
+     * href="https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-custom-docker-image#use-a-custom-base-image"
      * /&gt;.
      *
      * @return the image value.
@@ -156,8 +166,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Set the image property: Name of the image that will be used for the environment. &lt;seealso
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning"
-         + "/how-to-deploy-custom-docker-image#use-a-custom-base-image"
+     * href="https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-custom-docker-image#use-a-custom-base-image"
      * /&gt;.
      *
      * @param image the image value to set.
@@ -205,6 +214,35 @@ public final class EnvironmentVersionProperties extends AssetBase {
      */
     public EnvironmentVersionProperties withOsType(OperatingSystemType osType) {
         this.osType = osType;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the environment version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the environment lifecycle assigned to this environment.
+     *
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the environment lifecycle assigned to this environment.
+     *
+     * @param stage the stage value to set.
+     * @return the EnvironmentVersionProperties object itself.
+     */
+    public EnvironmentVersionProperties withStage(String stage) {
+        this.stage = stage;
         return this;
     }
 

@@ -5,13 +5,29 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** The ModelContainerProperties model. */
 @Fluent
 public final class ModelContainerProperties extends AssetContainer {
+    /*
+     * Provisioning state for the model container.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
     /** Creates an instance of ModelContainerProperties class. */
     public ModelContainerProperties() {
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the model container.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /** {@inheritDoc} */
