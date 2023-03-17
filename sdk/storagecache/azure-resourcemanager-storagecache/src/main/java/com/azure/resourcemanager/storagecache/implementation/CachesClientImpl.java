@@ -82,8 +82,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache"
-                + "/caches")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CachesListResult>> listByResourceGroup(
@@ -96,8 +95,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -111,8 +109,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CacheInner>> getByResourceGroup(
@@ -126,8 +123,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -142,8 +138,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -158,8 +153,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/debugInfo")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/debugInfo")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> debugInfo(
@@ -173,8 +167,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/flush")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/flush")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> flush(
@@ -188,8 +181,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/start")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/start")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -203,8 +195,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/stop")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/stop")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -218,8 +209,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/startPrimingJob")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/startPrimingJob")
         @ExpectedResponses({202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> startPrimingJob(
@@ -234,8 +224,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/stopPrimingJob")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/stopPrimingJob")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stopPrimingJob(
@@ -250,8 +239,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/pausePrimingJob")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/pausePrimingJob")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> pausePrimingJob(
@@ -266,8 +254,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/resumePrimingJob")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/resumePrimingJob")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> resumePrimingJob(
@@ -282,8 +269,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/upgrade")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/upgrade")
         @ExpectedResponses({201, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> upgradeFirmware(
@@ -297,8 +283,7 @@ public final class CachesClientImpl implements CachesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/spaceAllocation")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/spaceAllocation")
         @ExpectedResponses({202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> spaceAllocation(
@@ -333,11 +318,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a subscription.
+     * Returns all Caches the user has access to under a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -378,13 +363,13 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a subscription.
+     * Returns all Caches the user has access to under a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -422,11 +407,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a subscription.
+     * Returns all Caches the user has access to under a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedFlux}.
+     * @return result of the request to list Caches as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CacheInner> listAsync() {
@@ -434,13 +419,13 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a subscription.
+     * Returns all Caches the user has access to under a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedFlux}.
+     * @return result of the request to list Caches as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CacheInner> listAsync(Context context) {
@@ -449,11 +434,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a subscription.
+     * Returns all Caches the user has access to under a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedIterable}.
+     * @return result of the request to list Caches as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CacheInner> list() {
@@ -461,13 +446,13 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a subscription.
+     * Returns all Caches the user has access to under a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedIterable}.
+     * @return result of the request to list Caches as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CacheInner> list(Context context) {
@@ -475,13 +460,13 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a resource group.
+     * Returns all Caches the user has access to under a resource group.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName Target resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -527,14 +512,14 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a resource group.
+     * Returns all Caches the user has access to under a resource group.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName Target resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -578,13 +563,13 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a resource group.
+     * Returns all Caches the user has access to under a resource group.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName Target resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedFlux}.
+     * @return result of the request to list Caches as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CacheInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -594,14 +579,14 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a resource group.
+     * Returns all Caches the user has access to under a resource group.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName Target resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedFlux}.
+     * @return result of the request to list Caches as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CacheInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -611,13 +596,13 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a resource group.
+     * Returns all Caches the user has access to under a resource group.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName Target resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedIterable}.
+     * @return result of the request to list Caches as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CacheInner> listByResourceGroup(String resourceGroupName) {
@@ -625,14 +610,14 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns all caches the user has access to under a resource group.
+     * Returns all Caches the user has access to under a resource group.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName Target resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches as paginated response with {@link PagedIterable}.
+     * @return result of the request to list Caches as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CacheInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -640,10 +625,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -688,10 +673,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -735,10 +720,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -755,10 +740,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -777,10 +762,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -793,10 +778,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -810,10 +795,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -826,10 +811,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -845,10 +830,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -860,10 +845,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Schedules a cache for deletion.
+     * Schedules a Cache for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -876,15 +861,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns a cache.
+     * Returns a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Cache instance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CacheInner>> getByResourceGroupWithResponseAsync(String resourceGroupName, String cacheName) {
@@ -924,16 +909,16 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns a cache.
+     * Returns a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Cache instance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CacheInner>> getByResourceGroupWithResponseAsync(
@@ -971,15 +956,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns a cache.
+     * Returns a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance on successful completion of {@link Mono}.
+     * @return a Cache instance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CacheInner> getByResourceGroupAsync(String resourceGroupName, String cacheName) {
@@ -988,16 +973,16 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns a cache.
+     * Returns a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response}.
+     * @return a Cache instance along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CacheInner> getByResourceGroupWithResponse(
@@ -1006,15 +991,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Returns a cache.
+     * Returns a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance.
+     * @return a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CacheInner getByResourceGroup(String resourceGroupName, String cacheName) {
@@ -1022,17 +1007,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Cache instance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -1079,18 +1064,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Cache instance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -1134,17 +1119,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a cache instance.
+     * @return the {@link PollerFlux} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CacheInner>, CacheInner> beginCreateOrUpdateAsync(
@@ -1157,18 +1142,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a cache instance.
+     * @return the {@link PollerFlux} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CacheInner>, CacheInner> beginCreateOrUpdateAsync(
@@ -1183,17 +1168,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a cache instance.
+     * @return the {@link SyncPoller} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CacheInner>, CacheInner> beginCreateOrUpdate(
@@ -1202,18 +1187,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a cache instance.
+     * @return the {@link SyncPoller} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CacheInner>, CacheInner> beginCreateOrUpdate(
@@ -1222,17 +1207,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance on successful completion of {@link Mono}.
+     * @return a Cache instance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CacheInner> createOrUpdateAsync(String resourceGroupName, String cacheName, CacheInner cache) {
@@ -1242,18 +1227,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance on successful completion of {@link Mono}.
+     * @return a Cache instance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CacheInner> createOrUpdateAsync(
@@ -1264,17 +1249,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance.
+     * @return a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CacheInner createOrUpdate(String resourceGroupName, String cacheName, CacheInner cache) {
@@ -1282,18 +1267,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Create or update a cache.
+     * Create or update a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new cache. If read-only properties are
+     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance.
+     * @return a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CacheInner createOrUpdate(String resourceGroupName, String cacheName, CacheInner cache, Context context) {
@@ -1301,17 +1286,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Cache instance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1356,18 +1341,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Cache instance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1409,17 +1394,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a cache instance.
+     * @return the {@link PollerFlux} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CacheInner>, CacheInner> beginUpdateAsync(
@@ -1432,15 +1417,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a cache instance.
+     * @return the {@link PollerFlux} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CacheInner>, CacheInner> beginUpdateAsync(
@@ -1454,18 +1439,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a cache instance.
+     * @return the {@link PollerFlux} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CacheInner>, CacheInner> beginUpdateAsync(
@@ -1479,15 +1464,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a cache instance.
+     * @return the {@link SyncPoller} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CacheInner>, CacheInner> beginUpdate(String resourceGroupName, String cacheName) {
@@ -1496,18 +1481,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a cache instance.
+     * @return the {@link SyncPoller} for polling of a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CacheInner>, CacheInner> beginUpdate(
@@ -1516,17 +1501,17 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance on successful completion of {@link Mono}.
+     * @return a Cache instance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CacheInner> updateAsync(String resourceGroupName, String cacheName, CacheInner cache) {
@@ -1536,15 +1521,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance on successful completion of {@link Mono}.
+     * @return a Cache instance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CacheInner> updateAsync(String resourceGroupName, String cacheName) {
@@ -1555,18 +1540,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance on successful completion of {@link Mono}.
+     * @return a Cache instance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CacheInner> updateAsync(
@@ -1577,15 +1562,15 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance.
+     * @return a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CacheInner update(String resourceGroupName, String cacheName) {
@@ -1594,18 +1579,18 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Update a cache instance.
+     * Update a Cache instance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the cache. If read-only properties are included,
+     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
      *     they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cache instance.
+     * @return a Cache instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CacheInner update(String resourceGroupName, String cacheName, CacheInner cache, Context context) {
@@ -1613,10 +1598,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1661,10 +1646,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1708,10 +1693,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1728,10 +1713,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1750,10 +1735,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1766,10 +1751,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1784,10 +1769,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1800,10 +1785,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1819,10 +1804,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1834,10 +1819,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1850,11 +1835,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1899,11 +1884,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1947,11 +1932,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1968,11 +1953,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1991,11 +1976,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2008,11 +1993,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2026,11 +2011,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2043,11 +2028,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2063,11 +2048,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2079,11 +2064,11 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2096,10 +2081,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2144,10 +2129,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2191,10 +2176,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2211,10 +2196,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2233,10 +2218,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2249,10 +2234,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2266,10 +2251,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2282,10 +2267,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2301,10 +2286,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2316,10 +2301,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2332,10 +2317,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2380,10 +2365,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2427,10 +2412,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2447,10 +2432,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2469,10 +2454,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2485,10 +2470,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2502,10 +2487,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2518,10 +2503,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2537,10 +2522,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2552,10 +2537,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2570,8 +2555,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2624,8 +2609,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @param context The context to associate with this operation.
@@ -2676,8 +2661,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2699,8 +2684,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2721,8 +2706,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @param context The context to associate with this operation.
@@ -2745,8 +2730,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2762,8 +2747,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @param context The context to associate with this operation.
@@ -2781,8 +2766,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2800,8 +2785,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2819,8 +2804,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @param context The context to associate with this operation.
@@ -2840,8 +2825,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2856,8 +2841,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Create a priming job. This operation is only allowed when the cache is healthy.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @param context The context to associate with this operation.
@@ -2873,8 +2858,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2927,8 +2912,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -2979,8 +2964,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3002,8 +2987,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3024,8 +3009,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3048,8 +3033,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3065,8 +3050,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3084,8 +3069,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3104,8 +3089,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3123,8 +3108,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3144,8 +3129,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3160,8 +3145,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job for deletion.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3178,8 +3163,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3232,8 +3217,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3284,8 +3269,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3307,8 +3292,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3329,8 +3314,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3353,8 +3338,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3370,8 +3355,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3389,8 +3374,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3409,8 +3394,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3428,8 +3413,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3449,8 +3434,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3465,8 +3450,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Schedule a priming job to be paused.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3483,8 +3468,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3537,8 +3522,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3589,8 +3574,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3612,8 +3597,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3634,8 +3619,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3658,8 +3643,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3675,8 +3660,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3694,8 +3679,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3714,8 +3699,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3733,8 +3718,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3754,8 +3739,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3770,8 +3755,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Resumes a paused priming job.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
@@ -3786,10 +3771,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3835,10 +3820,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3882,10 +3867,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3902,10 +3887,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3924,10 +3909,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3940,10 +3925,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3958,10 +3943,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3976,10 +3961,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3995,10 +3980,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4010,10 +3995,10 @@ public final class CachesClientImpl implements CachesClient {
     }
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4028,8 +4013,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4082,8 +4067,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @param context The context to associate with this operation.
@@ -4137,8 +4122,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4160,8 +4145,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4182,8 +4167,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @param context The context to associate with this operation.
@@ -4209,8 +4194,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4226,8 +4211,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @param context The context to associate with this operation.
@@ -4248,8 +4233,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4268,8 +4253,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4287,8 +4272,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @param context The context to associate with this operation.
@@ -4311,8 +4296,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4327,8 +4312,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Update cache space allocation.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @param context The context to associate with this operation.
@@ -4353,7 +4338,7 @@ public final class CachesClientImpl implements CachesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -4391,7 +4376,7 @@ public final class CachesClientImpl implements CachesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -4428,7 +4413,7 @@ public final class CachesClientImpl implements CachesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -4467,7 +4452,7 @@ public final class CachesClientImpl implements CachesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list caches along with {@link PagedResponse} on successful completion of {@link
+     * @return result of the request to list Caches along with {@link PagedResponse} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)

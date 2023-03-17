@@ -7,7 +7,7 @@ package com.azure.resourcemanager.storagecache.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes a resource Id to source key vault. */
+/** Describes a resource Id to source Key Vault. */
 @Fluent
 public final class KeyVaultKeyReferenceSourceVault {
     /*
