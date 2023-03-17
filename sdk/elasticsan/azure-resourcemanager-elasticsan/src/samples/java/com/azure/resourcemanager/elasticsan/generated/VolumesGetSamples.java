@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes Get. */
 public final class VolumesGetSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Get_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Get_MaximumSet_Gen.
@@ -17,11 +15,14 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .getWithResponse(
+                "rgelasticsan", "63-fmQ4_e4S6", "Uuz-7", "n5e-w9-364My-OR3t0-c7m", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Get_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Get_MinimumSet_Gen.
@@ -29,6 +30,9 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .getWithResponse(
+                "rgelasticsan", "63-fmQ4_e4S6", "Uuz-7", "n5e-w9-364My-OR3t0-c7m", com.azure.core.util.Context.NONE);
     }
 }

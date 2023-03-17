@@ -10,7 +10,22 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /** This enumerates the possible sources of a volume creation. */
 public enum VolumeCreateOption {
     /** Enum value None. */
-    NONE("None");
+    NONE("None"),
+
+    /** Enum value VolumeSnapshot. */
+    VOLUME_SNAPSHOT("VolumeSnapshot"),
+
+    /** Enum value DiskSnapshot. */
+    DISK_SNAPSHOT("DiskSnapshot"),
+
+    /** Enum value Disk. */
+    DISK("Disk"),
+
+    /** Enum value DiskRestorePoint. */
+    DISK_RESTORE_POINT("DiskRestorePoint"),
+
+    /** Enum value Export. */
+    EXPORT("Export");
 
     /** The actual serialized value for a VolumeCreateOption instance. */
     private final String value;

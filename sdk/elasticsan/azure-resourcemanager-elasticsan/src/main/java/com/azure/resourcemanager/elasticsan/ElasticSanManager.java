@@ -28,11 +28,13 @@ import com.azure.resourcemanager.elasticsan.implementation.ElasticSanManagementB
 import com.azure.resourcemanager.elasticsan.implementation.ElasticSansImpl;
 import com.azure.resourcemanager.elasticsan.implementation.OperationsImpl;
 import com.azure.resourcemanager.elasticsan.implementation.SkusImpl;
+import com.azure.resourcemanager.elasticsan.implementation.SnapshotsImpl;
 import com.azure.resourcemanager.elasticsan.implementation.VolumeGroupsImpl;
 import com.azure.resourcemanager.elasticsan.implementation.VolumesImpl;
 import com.azure.resourcemanager.elasticsan.models.ElasticSans;
 import com.azure.resourcemanager.elasticsan.models.Operations;
 import com.azure.resourcemanager.elasticsan.models.Skus;
+import com.azure.resourcemanager.elasticsan.models.Snapshots;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroups;
 import com.azure.resourcemanager.elasticsan.models.Volumes;
 import java.time.Duration;
@@ -53,6 +55,8 @@ public final class ElasticSanManager {
     private VolumeGroups volumeGroups;
 
     private Volumes volumes;
+
+    private Snapshots snapshots;
 
     private final ElasticSanManagement clientObject;
 
@@ -301,7 +305,7 @@ public final class ElasticSanManager {
     }
 
     /**
-     * Gets the resource collection API of ElasticSans. It manages ElasticSan.
+     * Gets the resource collection API of ElasticSans.
      *
      * @return Resource collection API of ElasticSans.
      */
@@ -325,7 +329,7 @@ public final class ElasticSanManager {
     }
 
     /**
-     * Gets the resource collection API of Volumes. It manages Volume.
+     * Gets the resource collection API of Volumes.
      *
      * @return Resource collection API of Volumes.
      */
@@ -334,6 +338,18 @@ public final class ElasticSanManager {
             this.volumes = new VolumesImpl(clientObject.getVolumes(), this);
         }
         return volumes;
+    }
+
+    /**
+     * Gets the resource collection API of Snapshots.
+     *
+     * @return Resource collection API of Snapshots.
+     */
+    public Snapshots snapshots() {
+        if (this.snapshots == null) {
+            this.snapshots = new SnapshotsImpl(clientObject.getSnapshots(), this);
+        }
+        return snapshots;
     }
 
     /**

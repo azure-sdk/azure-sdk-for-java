@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for VolumeGroups Create. */
 public final class VolumeGroupsCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/VolumeGroups_Create_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/VolumeGroups_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Create_MinimumSet_Gen.
@@ -24,15 +24,11 @@ public final class VolumeGroupsCreateSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager
-            .volumeGroups()
-            .define("u_5I_1j4t3")
-            .withExistingElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5")
-            .create();
+        manager.volumeGroups().define("Uuz-7").withExistingElasticSan("rgelasticsan", "63-fmQ4_e4S6").create();
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/VolumeGroups_Create_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/VolumeGroups_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Create_MaximumSet_Gen.
@@ -42,9 +38,9 @@ public final class VolumeGroupsCreateSamples {
     public static void volumeGroupsCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .volumeGroups()
-            .define("u_5I_1j4t3")
-            .withExistingElasticSan("rgelasticsan", "ti7q-k952-1qB3J_5")
-            .withTags(mapOf("key5933", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
+            .define("Uuz-7")
+            .withExistingElasticSan("rgelasticsan", "63-fmQ4_e4S6")
+            .withTags(mapOf("key155", "nbu"))
             .withProtocolType(StorageTargetType.ISCSI)
             .withEncryption(EncryptionType.ENCRYPTION_AT_REST_WITH_PLATFORM_KEY)
             .withNetworkAcls(
@@ -53,7 +49,7 @@ public final class VolumeGroupsCreateSamples {
                         Arrays
                             .asList(
                                 new VirtualNetworkRule()
-                                    .withVirtualNetworkResourceId("aaaaaaaaaaaaaaaa")
+                                    .withVirtualNetworkResourceId("dbbomzujrialpmggaobjgwuuqng")
                                     .withAction(Action.ALLOW))))
             .create();
     }

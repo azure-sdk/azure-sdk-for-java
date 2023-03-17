@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for ElasticSanManagement class. */
 public interface ElasticSanManagement {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -78,4 +78,11 @@ public interface ElasticSanManagement {
      * @return the VolumesClient object.
      */
     VolumesClient getVolumes();
+
+    /**
+     * Gets the SnapshotsClient object to access its operations.
+     *
+     * @return the SnapshotsClient object.
+     */
+    SnapshotsClient getSnapshots();
 }

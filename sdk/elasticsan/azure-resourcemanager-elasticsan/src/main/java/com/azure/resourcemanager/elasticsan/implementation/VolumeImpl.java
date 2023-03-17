@@ -5,19 +5,22 @@
 package com.azure.resourcemanager.elasticsan.implementation;
 
 import com.azure.core.management.SystemData;
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
 import com.azure.resourcemanager.elasticsan.models.IscsiTargetInfo;
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
 import com.azure.resourcemanager.elasticsan.models.Volume;
-import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
 import java.util.Collections;
 import java.util.Map;
 
-public final class VolumeImpl implements Volume, Volume.Definition, Volume.Update {
+public final class VolumeImpl implements Volume {
     private VolumeInner innerObject;
 
     private final com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager;
+
+    VolumeImpl(VolumeInner innerObject, com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -52,16 +55,12 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
         return this.innerModel().creationData();
     }
 
-    public Long sizeGiB() {
+    public long sizeGiB() {
         return this.innerModel().sizeGiB();
     }
 
     public IscsiTargetInfo storageTarget() {
         return this.innerModel().storageTarget();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
     }
 
     public VolumeInner innerModel() {
@@ -70,128 +69,5 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
 
     private com.azure.resourcemanager.elasticsan.ElasticSanManager manager() {
         return this.serviceManager;
-    }
-
-    private String resourceGroupName;
-
-    private String elasticSanName;
-
-    private String volumeGroupName;
-
-    private String volumeName;
-
-    private VolumeUpdate updateParameters;
-
-    public VolumeImpl withExistingVolumegroup(String resourceGroupName, String elasticSanName, String volumeGroupName) {
-        this.resourceGroupName = resourceGroupName;
-        this.elasticSanName = elasticSanName;
-        this.volumeGroupName = volumeGroupName;
-        return this;
-    }
-
-    public Volume create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumes()
-                .create(
-                    resourceGroupName, elasticSanName, volumeGroupName, volumeName, this.innerModel(), Context.NONE);
-        return this;
-    }
-
-    public Volume create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumes()
-                .create(resourceGroupName, elasticSanName, volumeGroupName, volumeName, this.innerModel(), context);
-        return this;
-    }
-
-    VolumeImpl(String name, com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager) {
-        this.innerObject = new VolumeInner();
-        this.serviceManager = serviceManager;
-        this.volumeName = name;
-    }
-
-    public VolumeImpl update() {
-        this.updateParameters = new VolumeUpdate();
-        return this;
-    }
-
-    public Volume apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumes()
-                .update(resourceGroupName, elasticSanName, volumeGroupName, volumeName, updateParameters, Context.NONE);
-        return this;
-    }
-
-    public Volume apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumes()
-                .update(resourceGroupName, elasticSanName, volumeGroupName, volumeName, updateParameters, context);
-        return this;
-    }
-
-    VolumeImpl(VolumeInner innerObject, com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.elasticSanName = Utils.getValueFromIdByName(innerObject.id(), "elasticSans");
-        this.volumeGroupName = Utils.getValueFromIdByName(innerObject.id(), "volumegroups");
-        this.volumeName = Utils.getValueFromIdByName(innerObject.id(), "volumes");
-    }
-
-    public Volume refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumes()
-                .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, Context.NONE)
-                .getValue();
-        return this;
-    }
-
-    public Volume refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumes()
-                .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context)
-                .getValue();
-        return this;
-    }
-
-    public VolumeImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateParameters.withTags(tags);
-            return this;
-        }
-    }
-
-    public VolumeImpl withCreationData(SourceCreationData creationData) {
-        this.innerModel().withCreationData(creationData);
-        return this;
-    }
-
-    public VolumeImpl withSizeGiB(Long sizeGiB) {
-        if (isInCreateMode()) {
-            this.innerModel().withSizeGiB(sizeGiB);
-            return this;
-        } else {
-            this.updateParameters.withSizeGiB(sizeGiB);
-            return this;
-        }
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }

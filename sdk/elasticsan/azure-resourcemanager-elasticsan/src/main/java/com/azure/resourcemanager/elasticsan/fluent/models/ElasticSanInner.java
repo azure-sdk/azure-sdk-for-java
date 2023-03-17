@@ -7,7 +7,6 @@ package com.azure.resourcemanager.elasticsan.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,12 +15,12 @@ import java.util.Map;
 
 /** Response for ElasticSan request. */
 @Fluent
-public final class ElasticSanInner extends Resource {
+public class ElasticSanInner extends Resource {
     /*
      * Properties of ElasticSan.
      */
-    @JsonProperty(value = "properties", required = true)
-    private ElasticSanProperties innerProperties = new ElasticSanProperties();
+    @JsonProperty(value = "properties")
+    private ElasticSanProperties innerProperties;
 
     /*
      * Resource metadata required by ARM RPC
@@ -125,8 +124,8 @@ public final class ElasticSanInner extends Resource {
      *
      * @return the baseSizeTiB value.
      */
-    public long baseSizeTiB() {
-        return this.innerProperties() == null ? 0L : this.innerProperties().baseSizeTiB();
+    public Long baseSizeTiB() {
+        return this.innerProperties() == null ? null : this.innerProperties().baseSizeTiB();
     }
 
     /**
@@ -135,7 +134,7 @@ public final class ElasticSanInner extends Resource {
      * @param baseSizeTiB the baseSizeTiB value to set.
      * @return the ElasticSanInner object itself.
      */
-    public ElasticSanInner withBaseSizeTiB(long baseSizeTiB) {
+    public ElasticSanInner withBaseSizeTiB(Long baseSizeTiB) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ElasticSanProperties();
         }
@@ -148,8 +147,8 @@ public final class ElasticSanInner extends Resource {
      *
      * @return the extendedCapacitySizeTiB value.
      */
-    public long extendedCapacitySizeTiB() {
-        return this.innerProperties() == null ? 0L : this.innerProperties().extendedCapacitySizeTiB();
+    public Long extendedCapacitySizeTiB() {
+        return this.innerProperties() == null ? null : this.innerProperties().extendedCapacitySizeTiB();
     }
 
     /**
@@ -158,7 +157,7 @@ public final class ElasticSanInner extends Resource {
      * @param extendedCapacitySizeTiB the extendedCapacitySizeTiB value to set.
      * @return the ElasticSanInner object itself.
      */
-    public ElasticSanInner withExtendedCapacitySizeTiB(long extendedCapacitySizeTiB) {
+    public ElasticSanInner withExtendedCapacitySizeTiB(Long extendedCapacitySizeTiB) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ElasticSanProperties();
         }
@@ -217,14 +216,8 @@ public final class ElasticSanInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ElasticSanInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ElasticSanInner.class);
 }

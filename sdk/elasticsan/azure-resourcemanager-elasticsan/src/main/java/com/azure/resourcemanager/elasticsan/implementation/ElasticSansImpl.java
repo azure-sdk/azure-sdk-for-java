@@ -12,6 +12,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.fluent.ElasticSansClient;
 import com.azure.resourcemanager.elasticsan.fluent.models.ElasticSanInner;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
+import com.azure.resourcemanager.elasticsan.models.ElasticSanCreateParameter;
+import com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate;
 import com.azure.resourcemanager.elasticsan.models.ElasticSans;
 
 public final class ElasticSansImpl implements ElasticSans {
@@ -47,6 +49,44 @@ public final class ElasticSansImpl implements ElasticSans {
         return Utils.mapPage(inner, inner1 -> new ElasticSanImpl(inner1, this.manager()));
     }
 
+    public ElasticSan create(String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters) {
+        ElasticSanInner inner = this.serviceClient().create(resourceGroupName, elasticSanName, parameters);
+        if (inner != null) {
+            return new ElasticSanImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ElasticSan create(
+        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context) {
+        ElasticSanInner inner = this.serviceClient().create(resourceGroupName, elasticSanName, parameters, context);
+        if (inner != null) {
+            return new ElasticSanImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ElasticSan update(String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters) {
+        ElasticSanInner inner = this.serviceClient().update(resourceGroupName, elasticSanName, parameters);
+        if (inner != null) {
+            return new ElasticSanImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ElasticSan update(
+        String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context) {
+        ElasticSanInner inner = this.serviceClient().update(resourceGroupName, elasticSanName, parameters, context);
+        if (inner != null) {
+            return new ElasticSanImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void deleteByResourceGroup(String resourceGroupName, String elasticSanName) {
         this.serviceClient().delete(resourceGroupName, elasticSanName);
     }
@@ -79,91 +119,11 @@ public final class ElasticSansImpl implements ElasticSans {
         }
     }
 
-    public ElasticSan getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String elasticSanName = Utils.getValueFromIdByName(id, "elasticSans");
-        if (elasticSanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'elasticSans'.", id)));
-        }
-        return this.getByResourceGroupWithResponse(resourceGroupName, elasticSanName, Context.NONE).getValue();
-    }
-
-    public Response<ElasticSan> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String elasticSanName = Utils.getValueFromIdByName(id, "elasticSans");
-        if (elasticSanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'elasticSans'.", id)));
-        }
-        return this.getByResourceGroupWithResponse(resourceGroupName, elasticSanName, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String elasticSanName = Utils.getValueFromIdByName(id, "elasticSans");
-        if (elasticSanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'elasticSans'.", id)));
-        }
-        this.delete(resourceGroupName, elasticSanName, Context.NONE);
-    }
-
-    public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String elasticSanName = Utils.getValueFromIdByName(id, "elasticSans");
-        if (elasticSanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'elasticSans'.", id)));
-        }
-        this.delete(resourceGroupName, elasticSanName, context);
-    }
-
     private ElasticSansClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.elasticsan.ElasticSanManager manager() {
         return this.serviceManager;
-    }
-
-    public ElasticSanImpl define(String name) {
-        return new ElasticSanImpl(name, this.manager());
     }
 }
