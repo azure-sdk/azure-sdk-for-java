@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Applications Get. */
 public final class ApplicationsGetSamples {
     /*
@@ -18,7 +16,7 @@ public final class ApplicationsGetSamples {
      */
     public static void getApplicationOnHDInsightClusterCreationInProgress(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.applications().getWithResponse("rg1", "cluster1", "app", Context.NONE);
+        manager.applications().getWithResponse("rg1", "cluster1", "app", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class ApplicationsGetSamples {
      */
     public static void getApplicationOnHDInsightClusterSuccessfullyCreated(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.applications().getWithResponse("rg1", "cluster1", "app", Context.NONE);
+        manager.applications().getWithResponse("rg1", "cluster1", "app", com.azure.core.util.Context.NONE);
     }
 }

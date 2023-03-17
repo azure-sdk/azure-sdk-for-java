@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.ClusterDiskEncryptionParameters;
 
 /** Samples for Clusters RotateDiskEncryptionKey. */
@@ -28,6 +27,6 @@ public final class ClustersRotateDiskEncryptionKeySamples {
                     .withVaultUri("https://newkeyvault.vault.azure.net/")
                     .withKeyName("fakeTokenPlaceholder")
                     .withKeyVersion("fakeTokenPlaceholder"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

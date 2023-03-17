@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines ListHosts. */
 public final class VirtualMachinesListHostsSamples {
     /*
@@ -17,6 +15,6 @@ public final class VirtualMachinesListHostsSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void getAllHostsInTheCluster(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.virtualMachines().listHostsWithResponse("rg1", "cluster1", Context.NONE);
+        manager.virtualMachines().listHostsWithResponse("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ScriptActions ListByCluster. */
 public final class ScriptActionsListByClusterSamples {
     /*
@@ -18,6 +16,6 @@ public final class ScriptActionsListByClusterSamples {
      */
     public static void listAllPersistedScriptActionsForTheGivenCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.scriptActions().listByCluster("rg1", "cluster1", Context.NONE);
+        manager.scriptActions().listByCluster("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

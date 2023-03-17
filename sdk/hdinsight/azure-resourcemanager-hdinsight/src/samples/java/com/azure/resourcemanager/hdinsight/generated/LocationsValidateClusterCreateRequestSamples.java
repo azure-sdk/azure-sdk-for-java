@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.hdinsight.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hdinsight.models.ClusterCreateProperties;
 import com.azure.resourcemanager.hdinsight.models.ClusterCreateRequestValidationParameters;
@@ -119,7 +118,7 @@ public final class LocationsValidateClusterCreateRequestSamples {
                     .withType("Microsoft.HDInsight/clusters")
                     .withTenantId("00000000-0000-0000-0000-000000000000")
                     .withFetchAaddsResource(false),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

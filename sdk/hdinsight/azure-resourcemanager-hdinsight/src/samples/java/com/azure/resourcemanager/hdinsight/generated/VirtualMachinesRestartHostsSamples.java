@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import java.util.Arrays;
 
 /** Samples for VirtualMachines RestartHosts. */
@@ -19,6 +18,8 @@ public final class VirtualMachinesRestartHostsSamples {
      */
     public static void restartsTheSpecifiedHDInsightClusterHosts(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.virtualMachines().restartHosts("rg1", "cluster1", Arrays.asList("gateway1", "gateway3"), Context.NONE);
+        manager
+            .virtualMachines()
+            .restartHosts("rg1", "cluster1", Arrays.asList("gateway1", "gateway3"), com.azure.core.util.Context.NONE);
     }
 }
