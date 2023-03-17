@@ -83,6 +83,10 @@ public final class CodelessConnectorPollingRequestProperties {
     @JsonProperty(value = "endTimeAttributeName")
     private String endTimeAttributeName;
 
+    /** Creates an instance of CodelessConnectorPollingRequestProperties class. */
+    public CodelessConnectorPollingRequestProperties() {
+    }
+
     /**
      * Get the apiEndpoint property: Describe the endpoint we should pull the data from.
      *

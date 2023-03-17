@@ -17,6 +17,10 @@ public final class SentinelOnboardingStateInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private SentinelOnboardingStateProperties innerProperties;
 
+    /** Creates an instance of SentinelOnboardingStateInner class. */
+    public SentinelOnboardingStateInner() {
+    }
+
     /**
      * Get the innerProperties property: The Sentinel onboarding state object.
      *

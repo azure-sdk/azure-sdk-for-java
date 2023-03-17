@@ -21,6 +21,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({@JsonSubTypes.Type(name = "Anomaly", value = AnomalySecurityMLAnalyticsSettings.class)})
 @Fluent
 public class SecurityMLAnalyticsSettingInner extends ResourceWithEtag {
+    /** Creates an instance of SecurityMLAnalyticsSettingInner class. */
+    public SecurityMLAnalyticsSettingInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public SecurityMLAnalyticsSettingInner withEtag(String etag) {

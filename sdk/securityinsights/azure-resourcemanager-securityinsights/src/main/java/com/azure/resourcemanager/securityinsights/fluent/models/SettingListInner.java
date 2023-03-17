@@ -18,6 +18,10 @@ public final class SettingListInner {
     @JsonProperty(value = "value", required = true)
     private List<SettingsInner> value;
 
+    /** Creates an instance of SettingListInner class. */
+    public SettingListInner() {
+    }
+
     /**
      * Get the value property: Array of settings.
      *
