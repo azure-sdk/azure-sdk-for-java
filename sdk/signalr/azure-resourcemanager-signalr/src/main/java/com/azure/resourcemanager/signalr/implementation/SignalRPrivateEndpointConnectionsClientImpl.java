@@ -72,8 +72,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     public interface SignalRPrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/signalR/{resourceName}/privateEndpointConnections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionList>> list(
@@ -87,8 +86,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/signalR/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> get(
@@ -103,8 +101,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/signalR/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> update(
@@ -120,8 +117,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService"
-                + "/signalR/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/signalR/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -148,8 +144,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * List private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -207,8 +202,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * List private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -264,8 +258,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * List private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -281,8 +274,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * List private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -301,8 +293,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * List private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -317,8 +308,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * List private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -335,9 +325,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Get the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -393,9 +383,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Get the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -449,9 +439,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Get the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -468,9 +458,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Get the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -487,9 +477,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Get the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -505,9 +495,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Update the state of specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of private endpoint and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -573,9 +563,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Update the state of specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of private endpoint and its properties.
      * @param context The context to associate with this operation.
@@ -640,9 +630,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Update the state of specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of private endpoint and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -663,9 +653,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Update the state of specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of private endpoint and its properties.
      * @param context The context to associate with this operation.
@@ -689,9 +679,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Update the state of specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param parameters The resource of private endpoint and its properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -713,9 +703,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -770,9 +760,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -825,9 +815,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -848,9 +838,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -872,9 +862,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -884,15 +874,15 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String privateEndpointConnectionName, String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -903,16 +893,17 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String privateEndpointConnectionName, String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName, context)
+        return this
+            .beginDeleteAsync(privateEndpointConnectionName, resourceGroupName, resourceName, context)
             .getSyncPoller();
     }
 
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -930,9 +921,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -951,9 +942,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -967,9 +958,9 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     /**
      * Delete the specified private endpoint connection.
      *
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
-     *     from the Azure Resource Manager API or the portal.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

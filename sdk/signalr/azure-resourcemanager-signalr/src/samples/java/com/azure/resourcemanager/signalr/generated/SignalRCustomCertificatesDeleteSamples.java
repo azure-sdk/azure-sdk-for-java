@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.signalr.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SignalRCustomCertificates Delete. */
 public final class SignalRCustomCertificatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/preview/2022-08-01-preview/examples/SignalRCustomCertificates_Delete.json
+     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/preview/2023-03-01-preview/examples/SignalRCustomCertificates_Delete.json
      */
     /**
      * Sample code: SignalRCustomCertificates_Delete.
@@ -19,6 +17,6 @@ public final class SignalRCustomCertificatesDeleteSamples {
     public static void signalRCustomCertificatesDelete(com.azure.resourcemanager.signalr.SignalRManager manager) {
         manager
             .signalRCustomCertificates()
-            .deleteWithResponse("myResourceGroup", "mySignalRService", "myCert", Context.NONE);
+            .deleteWithResponse("myResourceGroup", "mySignalRService", "myCert", com.azure.core.util.Context.NONE);
     }
 }
