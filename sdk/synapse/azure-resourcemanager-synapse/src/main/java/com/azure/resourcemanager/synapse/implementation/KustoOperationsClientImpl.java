@@ -78,7 +78,7 @@ public final class KustoOperationsClientImpl implements KustoOperationsClient {
     }
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -110,7 +110,7 @@ public final class KustoOperationsClientImpl implements KustoOperationsClient {
     }
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -144,7 +144,7 @@ public final class KustoOperationsClientImpl implements KustoOperationsClient {
     }
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -156,7 +156,7 @@ public final class KustoOperationsClientImpl implements KustoOperationsClient {
     }
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -171,7 +171,7 @@ public final class KustoOperationsClientImpl implements KustoOperationsClient {
     }
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -183,7 +183,7 @@ public final class KustoOperationsClientImpl implements KustoOperationsClient {
     }
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

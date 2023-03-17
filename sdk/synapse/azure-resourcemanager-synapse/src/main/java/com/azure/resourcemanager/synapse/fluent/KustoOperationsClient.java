@@ -13,7 +13,7 @@ import com.azure.resourcemanager.synapse.fluent.models.OperationInner;
 /** An instance of this class provides access to all the operations defined in KustoOperationsClient. */
 public interface KustoOperationsClient {
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -23,7 +23,7 @@ public interface KustoOperationsClient {
     PagedIterable<OperationInner> list();
 
     /**
-     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider.
+     * Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider 1.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
