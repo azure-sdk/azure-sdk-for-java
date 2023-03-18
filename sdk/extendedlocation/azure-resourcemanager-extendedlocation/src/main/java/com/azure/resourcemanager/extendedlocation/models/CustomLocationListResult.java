@@ -24,6 +24,10 @@ public final class CustomLocationListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<CustomLocationInner> value;
 
+    /** Creates an instance of CustomLocationListResult class. */
+    public CustomLocationListResult() {
+    }
+
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
      *

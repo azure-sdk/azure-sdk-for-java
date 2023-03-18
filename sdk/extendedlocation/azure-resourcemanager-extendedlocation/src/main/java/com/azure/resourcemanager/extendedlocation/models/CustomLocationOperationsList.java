@@ -25,6 +25,10 @@ public final class CustomLocationOperationsList {
     @JsonProperty(value = "value", required = true)
     private List<CustomLocationOperationInner> value;
 
+    /** Creates an instance of CustomLocationOperationsList class. */
+    public CustomLocationOperationsList() {
+    }
+
     /**
      * Get the nextLink property: Next page of operations.
      *
