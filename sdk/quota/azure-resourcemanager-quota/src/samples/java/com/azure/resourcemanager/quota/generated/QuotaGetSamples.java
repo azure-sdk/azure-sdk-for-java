@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.quota.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Quota Get. */
 public final class QuotaGetSamples {
     /*
@@ -22,7 +20,7 @@ public final class QuotaGetSamples {
             .getWithResponse(
                 "MinPublicIpInterNetworkPrefixLength",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -39,6 +37,6 @@ public final class QuotaGetSamples {
             .getWithResponse(
                 "standardNDSFamily",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

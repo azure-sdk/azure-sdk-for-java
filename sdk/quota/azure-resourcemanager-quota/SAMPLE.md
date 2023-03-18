@@ -124,8 +124,6 @@ public final class QuotaCreateOrUpdateSamples {
 ### Quota_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Quota Get. */
 public final class QuotaGetSamples {
     /*
@@ -142,7 +140,7 @@ public final class QuotaGetSamples {
             .getWithResponse(
                 "MinPublicIpInterNetworkPrefixLength",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -159,7 +157,7 @@ public final class QuotaGetSamples {
             .getWithResponse(
                 "standardNDSFamily",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -167,8 +165,6 @@ public final class QuotaGetSamples {
 ### Quota_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Quota List. */
 public final class QuotaListSamples {
     /*
@@ -185,7 +181,7 @@ public final class QuotaListSamples {
             .quotas()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.MachineLearningServices/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -201,7 +197,7 @@ public final class QuotaListSamples {
             .quotas()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -217,7 +213,7 @@ public final class QuotaListSamples {
             .quotas()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -225,7 +221,6 @@ public final class QuotaListSamples {
 ### Quota_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.quota.models.CurrentQuotaLimitBase;
 import com.azure.resourcemanager.quota.models.LimitObject;
 import com.azure.resourcemanager.quota.models.QuotaProperties;
@@ -248,7 +243,7 @@ public final class QuotaUpdateSamples {
                 .getWithResponse(
                     "standardFSv2Family",
                     "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Compute/locations/eastus",
-                    Context.NONE)
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -274,7 +269,7 @@ public final class QuotaUpdateSamples {
                 .getWithResponse(
                     "MinPublicIpInterNetworkPrefixLength",
                     "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Network/locations/eastus",
-                    Context.NONE)
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -291,8 +286,6 @@ public final class QuotaUpdateSamples {
 ### QuotaOperation_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for QuotaOperation List. */
 public final class QuotaOperationListSamples {
     /*
@@ -304,7 +297,7 @@ public final class QuotaOperationListSamples {
      * @param manager Entry point to QuotaManager.
      */
     public static void getOperations(com.azure.resourcemanager.quota.QuotaManager manager) {
-        manager.quotaOperations().list(Context.NONE);
+        manager.quotaOperations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -312,8 +305,6 @@ public final class QuotaOperationListSamples {
 ### QuotaRequestStatus_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for QuotaRequestStatus Get. */
 public final class QuotaRequestStatusGetSamples {
     /*
@@ -330,7 +321,7 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -347,7 +338,7 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -364,7 +355,7 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -372,8 +363,6 @@ public final class QuotaRequestStatusGetSamples {
 ### QuotaRequestStatus_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for QuotaRequestStatus List. */
 public final class QuotaRequestStatusListSamples {
     /*
@@ -392,7 +381,7 @@ public final class QuotaRequestStatusListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -400,8 +389,6 @@ public final class QuotaRequestStatusListSamples {
 ### Usages_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Usages Get. */
 public final class UsagesGetSamples {
     /*
@@ -418,7 +405,7 @@ public final class UsagesGetSamples {
             .getWithResponse(
                 "MinPublicIpInterNetworkPrefixLength",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -435,7 +422,7 @@ public final class UsagesGetSamples {
             .getWithResponse(
                 "standardNDSFamily",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -443,8 +430,6 @@ public final class UsagesGetSamples {
 ### Usages_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Usages List. */
 public final class UsagesListSamples {
     /*
@@ -460,7 +445,7 @@ public final class UsagesListSamples {
             .usages()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -476,7 +461,7 @@ public final class UsagesListSamples {
             .usages()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -492,7 +477,7 @@ public final class UsagesListSamples {
             .usages()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.MachineLearningServices/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.quota.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for QuotaRequestStatus List. */
 public final class QuotaRequestStatusListSamples {
     /*
@@ -24,6 +22,6 @@ public final class QuotaRequestStatusListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

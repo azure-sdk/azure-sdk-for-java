@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.quota.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.quota.models.CurrentQuotaLimitBase;
 import com.azure.resourcemanager.quota.models.LimitObject;
 import com.azure.resourcemanager.quota.models.QuotaProperties;
@@ -27,7 +26,7 @@ public final class QuotaUpdateSamples {
                 .getWithResponse(
                     "standardFSv2Family",
                     "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Compute/locations/eastus",
-                    Context.NONE)
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -53,7 +52,7 @@ public final class QuotaUpdateSamples {
                 .getWithResponse(
                     "MinPublicIpInterNetworkPrefixLength",
                     "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Network/locations/eastus",
-                    Context.NONE)
+                    com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

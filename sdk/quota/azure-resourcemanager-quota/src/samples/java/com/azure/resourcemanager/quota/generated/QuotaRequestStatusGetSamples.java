@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.quota.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for QuotaRequestStatus Get. */
 public final class QuotaRequestStatusGetSamples {
     /*
@@ -22,7 +20,7 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -39,7 +37,7 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -56,6 +54,6 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Compute/locations/eastus",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

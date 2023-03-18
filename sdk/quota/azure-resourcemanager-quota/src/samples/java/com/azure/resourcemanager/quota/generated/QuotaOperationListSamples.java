@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.quota.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for QuotaOperation List. */
 public final class QuotaOperationListSamples {
     /*
@@ -17,6 +15,6 @@ public final class QuotaOperationListSamples {
      * @param manager Entry point to QuotaManager.
      */
     public static void getOperations(com.azure.resourcemanager.quota.QuotaManager manager) {
-        manager.quotaOperations().list(Context.NONE);
+        manager.quotaOperations().list(com.azure.core.util.Context.NONE);
     }
 }
