@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Volumes Delete. */
 public final class VolumesDeleteSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MinimumSet_Gen.
@@ -17,11 +15,14 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .delete(
+                "rgelasticsan", "gK0Xqt_l", "kypb8-jS2-75o-7T_MrJeI_32E-I61", "3e-5", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MaximumSet_Gen.
@@ -29,6 +30,9 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE);
+        manager
+            .volumes()
+            .delete(
+                "rgelasticsan", "gK0Xqt_l", "kypb8-jS2-75o-7T_MrJeI_32E-I61", "3e-5", com.azure.core.util.Context.NONE);
     }
 }

@@ -12,6 +12,7 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
+import com.azure.resourcemanager.elasticsan.models.VolumeCreateParameter;
 import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
 
 /** An instance of this class provides access to all the operations defined in VolumesClient. */
@@ -35,7 +36,7 @@ public interface VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters);
+        VolumeCreateParameter parameters);
 
     /**
      * Create a Volume.
@@ -57,7 +58,7 @@ public interface VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context);
 
     /**
@@ -79,7 +80,7 @@ public interface VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters);
+        VolumeCreateParameter parameters);
 
     /**
      * Create a Volume.
@@ -101,7 +102,7 @@ public interface VolumesClient {
         String elasticSanName,
         String volumeGroupName,
         String volumeName,
-        VolumeInner parameters,
+        VolumeCreateParameter parameters,
         Context context);
 
     /**

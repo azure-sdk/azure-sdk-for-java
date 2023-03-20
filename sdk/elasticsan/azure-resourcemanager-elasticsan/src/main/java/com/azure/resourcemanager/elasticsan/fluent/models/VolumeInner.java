@@ -15,7 +15,7 @@ import java.util.Map;
 
 /** Response for Volume request. */
 @Fluent
-public final class VolumeInner extends ProxyResource {
+public class VolumeInner extends ProxyResource {
     /*
      * Properties of Volume.
      */

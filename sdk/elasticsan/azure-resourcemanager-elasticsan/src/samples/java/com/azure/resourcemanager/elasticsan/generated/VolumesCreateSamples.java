@@ -6,13 +6,14 @@ package com.azure.resourcemanager.elasticsan.generated;
 
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
 import com.azure.resourcemanager.elasticsan.models.VolumeCreateOption;
+import com.azure.resourcemanager.elasticsan.models.VolumeCreateParameter;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Volumes Create. */
 public final class VolumesCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Create_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MaximumSet_Gen.
@@ -22,17 +23,23 @@ public final class VolumesCreateSamples {
     public static void volumesCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .volumes()
-            .define("9132y")
-            .withExistingVolumegroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3")
-            .withTags(mapOf("key7423", "aaaa"))
-            .withCreationData(
-                new SourceCreationData().withCreateSource(VolumeCreateOption.NONE).withSourceUri("aaaaaa"))
-            .withSizeGiB(22L)
-            .create();
+            .create(
+                "rgelasticsan",
+                "gK0Xqt_l",
+                "kypb8-jS2-75o-7T_MrJeI_32E-I61",
+                "3e-5",
+                new VolumeCreateParameter()
+                    .withTags(mapOf("key771", "hehvfomthzftrtugbohtwgvnhvic"))
+                    .withCreationData(
+                        new SourceCreationData()
+                            .withCreateSource(VolumeCreateOption.NONE)
+                            .withSourceUri("mtxprdnmqwrwlsffwhaczvdpxl"))
+                    .withSizeGiB(6L),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Create_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MinimumSet_Gen.
@@ -42,9 +49,13 @@ public final class VolumesCreateSamples {
     public static void volumesCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager
             .volumes()
-            .define("9132y")
-            .withExistingVolumegroup("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3")
-            .create();
+            .create(
+                "rgelasticsan",
+                "gK0Xqt_l",
+                "kypb8-jS2-75o-7T_MrJeI_32E-I61",
+                "3e-5",
+                new VolumeCreateParameter().withSizeGiB(6L),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

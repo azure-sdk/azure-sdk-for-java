@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.elasticsan.models.Volume;
+import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Volumes Update. */
 public final class VolumesUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Update_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Update_MinimumSet_Gen.
@@ -20,16 +19,19 @@ public final class VolumesUpdateSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesUpdateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        Volume resource =
-            manager
-                .volumes()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE)
-                .getValue();
-        resource.update().apply();
+        manager
+            .volumes()
+            .update(
+                "rgelasticsan",
+                "gK0Xqt_l",
+                "kypb8-jS2-75o-7T_MrJeI_32E-I61",
+                "3e-5",
+                new VolumeUpdate(),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2021-11-20-preview/examples/Volumes_Update_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Update_MaximumSet_Gen.
@@ -37,12 +39,15 @@ public final class VolumesUpdateSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesUpdateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        Volume resource =
-            manager
-                .volumes()
-                .getWithResponse("rgelasticsan", "ti7q-k952-1qB3J_5", "u_5I_1j4t3", "9132y", Context.NONE)
-                .getValue();
-        resource.update().withTags(mapOf("key1864", "aaaaaaaaa")).withSizeGiB(9L).apply();
+        manager
+            .volumes()
+            .update(
+                "rgelasticsan",
+                "gK0Xqt_l",
+                "kypb8-jS2-75o-7T_MrJeI_32E-I61",
+                "3e-5",
+                new VolumeUpdate().withTags(mapOf("key4429", "mcnxoewapph")).withSizeGiB(8L),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

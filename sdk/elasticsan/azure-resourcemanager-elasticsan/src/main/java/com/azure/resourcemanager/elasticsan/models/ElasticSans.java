@@ -54,6 +54,61 @@ public interface ElasticSans {
     PagedIterable<ElasticSan> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * Create ElasticSan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param parameters Elastic San object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response for ElasticSan request.
+     */
+    ElasticSan create(String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters);
+
+    /**
+     * Create ElasticSan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param parameters Elastic San object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response for ElasticSan request.
+     */
+    ElasticSan create(
+        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context);
+
+    /**
+     * Update a Elastic San.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param parameters Elastic San object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response for ElasticSan request.
+     */
+    ElasticSan update(String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters);
+
+    /**
+     * Update a Elastic San.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param parameters Elastic San object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response for ElasticSan request.
+     */
+    ElasticSan update(String resourceGroupName, String elasticSanName, ElasticSanUpdate parameters, Context context);
+
+    /**
      * Delete a Elastic San.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -101,56 +156,4 @@ public interface ElasticSans {
      * @return a ElasticSan.
      */
     ElasticSan getByResourceGroup(String resourceGroupName, String elasticSanName);
-
-    /**
-     * Get a ElasticSan.
-     *
-     * @param id the resource ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response}.
-     */
-    ElasticSan getById(String id);
-
-    /**
-     * Get a ElasticSan.
-     *
-     * @param id the resource ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response}.
-     */
-    Response<ElasticSan> getByIdWithResponse(String id, Context context);
-
-    /**
-     * Delete a Elastic San.
-     *
-     * @param id the resource ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteById(String id);
-
-    /**
-     * Delete a Elastic San.
-     *
-     * @param id the resource ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByIdWithResponse(String id, Context context);
-
-    /**
-     * Begins definition for a new ElasticSan resource.
-     *
-     * @param name resource name.
-     * @return the first stage of the new ElasticSan definition.
-     */
-    ElasticSan.DefinitionStages.Blank define(String name);
 }

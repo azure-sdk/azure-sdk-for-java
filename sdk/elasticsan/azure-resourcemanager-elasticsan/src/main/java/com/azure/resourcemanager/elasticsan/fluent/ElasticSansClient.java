@@ -12,6 +12,7 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elasticsan.fluent.models.ElasticSanInner;
+import com.azure.resourcemanager.elasticsan.models.ElasticSanCreateParameter;
 import com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate;
 
 /** An instance of this class provides access to all the operations defined in ElasticSansClient. */
@@ -76,7 +77,7 @@ public interface ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginCreate(
-        String resourceGroupName, String elasticSanName, ElasticSanInner parameters);
+        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters);
 
     /**
      * Create ElasticSan.
@@ -92,7 +93,7 @@ public interface ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ElasticSanInner>, ElasticSanInner> beginCreate(
-        String resourceGroupName, String elasticSanName, ElasticSanInner parameters, Context context);
+        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context);
 
     /**
      * Create ElasticSan.
@@ -106,7 +107,7 @@ public interface ElasticSansClient {
      * @return response for ElasticSan request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner create(String resourceGroupName, String elasticSanName, ElasticSanInner parameters);
+    ElasticSanInner create(String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters);
 
     /**
      * Create ElasticSan.
@@ -122,7 +123,7 @@ public interface ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ElasticSanInner create(
-        String resourceGroupName, String elasticSanName, ElasticSanInner parameters, Context context);
+        String resourceGroupName, String elasticSanName, ElasticSanCreateParameter parameters, Context context);
 
     /**
      * Update a Elastic San.
