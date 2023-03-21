@@ -5,18 +5,14 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.CreditBalanceSummary;
 import com.azure.resourcemanager.consumption.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of the credit summary. */
 @Immutable
 public final class CreditSummaryProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CreditSummaryProperties.class);
-
     /*
      * Summary of balances associated with this credit summary.
      */
@@ -60,10 +56,20 @@ public final class CreditSummaryProperties {
     private Reseller reseller;
 
     /*
+     * If true, the listed details are based on an estimation and it will be subjected to change.
+     */
+    @JsonProperty(value = "isEstimatedBalance", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean isEstimatedBalance;
+
+    /*
      * The eTag for the resource.
      */
     @JsonProperty(value = "eTag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
+
+    /** Creates an instance of CreditSummaryProperties class. */
+    public CreditSummaryProperties() {
+    }
 
     /**
      * Get the balanceSummary property: Summary of balances associated with this credit summary.
@@ -126,6 +132,16 @@ public final class CreditSummaryProperties {
      */
     public Reseller reseller() {
         return this.reseller;
+    }
+
+    /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.isEstimatedBalance;
     }
 
     /**
