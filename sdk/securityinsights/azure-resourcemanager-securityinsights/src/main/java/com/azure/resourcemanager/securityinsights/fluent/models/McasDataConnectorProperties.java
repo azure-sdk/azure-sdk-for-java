@@ -19,6 +19,10 @@ public final class McasDataConnectorProperties extends DataConnectorTenantId {
     @JsonProperty(value = "dataTypes", required = true)
     private McasDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of McasDataConnectorProperties class. */
+    public McasDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

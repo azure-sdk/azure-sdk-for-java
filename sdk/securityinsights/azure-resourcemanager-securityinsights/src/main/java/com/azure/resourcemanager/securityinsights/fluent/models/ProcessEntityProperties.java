@@ -67,6 +67,10 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "processId", access = JsonProperty.Access.WRITE_ONLY)
     private String processId;
 
+    /** Creates an instance of ProcessEntityProperties class. */
+    public ProcessEntityProperties() {
+    }
+
     /**
      * Get the accountEntityId property: The account entity id running the processes.
      *

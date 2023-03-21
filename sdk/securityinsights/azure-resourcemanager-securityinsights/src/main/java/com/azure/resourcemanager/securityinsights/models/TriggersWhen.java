@@ -17,6 +17,15 @@ public final class TriggersWhen extends ExpandableStringEnum<TriggersWhen> {
     public static final TriggersWhen UPDATED = fromString("Updated");
 
     /**
+     * Creates a new instance of TriggersWhen value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public TriggersWhen() {
+    }
+
+    /**
      * Creates or finds a TriggersWhen from its string representation.
      *
      * @param name a name to look for.

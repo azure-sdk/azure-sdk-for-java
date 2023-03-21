@@ -42,15 +42,6 @@ public final class EntityQueriesImpl implements EntityQueries {
         return Utils.mapPage(inner, inner1 -> new EntityQueryImpl(inner1, this.manager()));
     }
 
-    public EntityQuery get(String resourceGroupName, String workspaceName, String entityQueryId) {
-        EntityQueryInner inner = this.serviceClient().get(resourceGroupName, workspaceName, entityQueryId);
-        if (inner != null) {
-            return new EntityQueryImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EntityQuery> getWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryId, Context context) {
         Response<EntityQueryInner> inner =
@@ -66,10 +57,8 @@ public final class EntityQueriesImpl implements EntityQueries {
         }
     }
 
-    public EntityQuery createOrUpdate(
-        String resourceGroupName, String workspaceName, String entityQueryId, CustomEntityQuery entityQuery) {
-        EntityQueryInner inner =
-            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, entityQueryId, entityQuery);
+    public EntityQuery get(String resourceGroupName, String workspaceName, String entityQueryId) {
+        EntityQueryInner inner = this.serviceClient().get(resourceGroupName, workspaceName, entityQueryId);
         if (inner != null) {
             return new EntityQueryImpl(inner, this.manager());
         } else {
@@ -98,13 +87,24 @@ public final class EntityQueriesImpl implements EntityQueries {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String entityQueryId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, entityQueryId);
+    public EntityQuery createOrUpdate(
+        String resourceGroupName, String workspaceName, String entityQueryId, CustomEntityQuery entityQuery) {
+        EntityQueryInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, entityQueryId, entityQuery);
+        if (inner != null) {
+            return new EntityQueryImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, entityQueryId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String entityQueryId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, entityQueryId);
     }
 
     private EntityQueriesClient serviceClient() {
