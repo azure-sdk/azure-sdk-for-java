@@ -15,7 +15,7 @@ import com.azure.resourcemanager.hybridcompute.models.InstanceViewTypes;
 /** An instance of this class provides access to all the operations defined in MachinesClient. */
 public interface MachinesClient {
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -29,7 +29,7 @@ public interface MachinesClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String machineName, Context context);
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
