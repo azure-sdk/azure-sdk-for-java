@@ -15,6 +15,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class MLFlowModelJobOutput extends JobOutput {
     /*
+     * Output Asset Name.
+     */
+    @JsonProperty(value = "assetName")
+    private String assetName;
+
+    /*
+     * Output Asset Version.
+     */
+    @JsonProperty(value = "assetVersion")
+    private String assetVersion;
+
+    /*
      * Output Asset Delivery Mode.
      */
     @JsonProperty(value = "mode")
@@ -28,6 +40,46 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /** Creates an instance of MLFlowModelJobOutput class. */
     public MLFlowModelJobOutput() {
+    }
+
+    /**
+     * Get the assetName property: Output Asset Name.
+     *
+     * @return the assetName value.
+     */
+    public String assetName() {
+        return this.assetName;
+    }
+
+    /**
+     * Set the assetName property: Output Asset Name.
+     *
+     * @param assetName the assetName value to set.
+     * @return the MLFlowModelJobOutput object itself.
+     */
+    public MLFlowModelJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
+        return this;
+    }
+
+    /**
+     * Get the assetVersion property: Output Asset Version.
+     *
+     * @return the assetVersion value.
+     */
+    public String assetVersion() {
+        return this.assetVersion;
+    }
+
+    /**
+     * Set the assetVersion property: Output Asset Version.
+     *
+     * @param assetVersion the assetVersion value to set.
+     * @return the MLFlowModelJobOutput object itself.
+     */
+    public MLFlowModelJobOutput withAssetVersion(String assetVersion) {
+        this.assetVersion = assetVersion;
+        return this;
     }
 
     /**

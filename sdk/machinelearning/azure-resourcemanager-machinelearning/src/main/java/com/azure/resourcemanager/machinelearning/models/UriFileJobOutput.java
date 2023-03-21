@@ -15,6 +15,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class UriFileJobOutput extends JobOutput {
     /*
+     * Output Asset Name.
+     */
+    @JsonProperty(value = "assetName")
+    private String assetName;
+
+    /*
+     * Output Asset Version.
+     */
+    @JsonProperty(value = "assetVersion")
+    private String assetVersion;
+
+    /*
      * Output Asset Delivery Mode.
      */
     @JsonProperty(value = "mode")
@@ -28,6 +40,46 @@ public final class UriFileJobOutput extends JobOutput {
 
     /** Creates an instance of UriFileJobOutput class. */
     public UriFileJobOutput() {
+    }
+
+    /**
+     * Get the assetName property: Output Asset Name.
+     *
+     * @return the assetName value.
+     */
+    public String assetName() {
+        return this.assetName;
+    }
+
+    /**
+     * Set the assetName property: Output Asset Name.
+     *
+     * @param assetName the assetName value to set.
+     * @return the UriFileJobOutput object itself.
+     */
+    public UriFileJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
+        return this;
+    }
+
+    /**
+     * Get the assetVersion property: Output Asset Version.
+     *
+     * @return the assetVersion value.
+     */
+    public String assetVersion() {
+        return this.assetVersion;
+    }
+
+    /**
+     * Set the assetVersion property: Output Asset Version.
+     *
+     * @param assetVersion the assetVersion value to set.
+     * @return the UriFileJobOutput object itself.
+     */
+    public UriFileJobOutput withAssetVersion(String assetVersion) {
+        this.assetVersion = assetVersion;
+        return this;
     }
 
     /**
