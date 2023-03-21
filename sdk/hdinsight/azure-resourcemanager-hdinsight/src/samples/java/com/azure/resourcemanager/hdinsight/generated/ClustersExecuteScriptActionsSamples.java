@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.ExecuteScriptActionParameters;
 import com.azure.resourcemanager.hdinsight.models.RuntimeScriptAction;
 import java.util.Arrays;
@@ -36,6 +35,6 @@ public final class ClustersExecuteScriptActionsSamples {
                                     .withParameters("")
                                     .withRoles(Arrays.asList("headnode", "workernode"))))
                     .withPersistOnSuccess(false),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

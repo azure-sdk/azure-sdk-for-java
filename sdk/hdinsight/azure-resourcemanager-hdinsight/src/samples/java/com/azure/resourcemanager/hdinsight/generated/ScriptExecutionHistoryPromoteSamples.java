@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ScriptExecutionHistory Promote. */
 public final class ScriptExecutionHistoryPromoteSamples {
     /*
@@ -18,6 +16,8 @@ public final class ScriptExecutionHistoryPromoteSamples {
      */
     public static void promoteAScriptActionOnHDInsightCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.scriptExecutionHistories().promoteWithResponse("rg1", "cluster1", "391145124054712", Context.NONE);
+        manager
+            .scriptExecutionHistories()
+            .promoteWithResponse("rg1", "cluster1", "391145124054712", com.azure.core.util.Context.NONE);
     }
 }
