@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** Threat Intelligence TAXII data connector required properties. */
 @Fluent
 public final class TiTaxiiCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of TiTaxiiCheckRequirementsProperties class. */
+    public TiTaxiiCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public TiTaxiiCheckRequirementsProperties withTenantId(String tenantId) {

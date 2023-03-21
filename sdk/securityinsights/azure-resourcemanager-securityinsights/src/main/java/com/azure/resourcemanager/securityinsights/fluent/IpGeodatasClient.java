@@ -17,19 +17,6 @@ public interface IpGeodatasClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param ipAddress IP address (v4 or v6) to be enriched.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return geodata for a single IP address.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    EnrichmentIpGeodataInner get(String resourceGroupName, String ipAddress);
-
-    /**
-     * Get geodata for a single IP address.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ipAddress IP address (v4 or v6) to be enriched.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -38,4 +25,17 @@ public interface IpGeodatasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<EnrichmentIpGeodataInner> getWithResponse(String resourceGroupName, String ipAddress, Context context);
+
+    /**
+     * Get geodata for a single IP address.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param ipAddress IP address (v4 or v6) to be enriched.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return geodata for a single IP address.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    EnrichmentIpGeodataInner get(String resourceGroupName, String ipAddress);
 }

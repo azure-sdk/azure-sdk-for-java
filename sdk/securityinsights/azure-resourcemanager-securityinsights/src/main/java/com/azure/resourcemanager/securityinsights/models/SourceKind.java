@@ -23,6 +23,15 @@ public final class SourceKind extends ExpandableStringEnum<SourceKind> {
     public static final SourceKind SOURCE_REPOSITORY = fromString("SourceRepository");
 
     /**
+     * Creates a new instance of SourceKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SourceKind() {
+    }
+
+    /**
      * Creates or finds a SourceKind from its string representation.
      *
      * @param name a name to look for.

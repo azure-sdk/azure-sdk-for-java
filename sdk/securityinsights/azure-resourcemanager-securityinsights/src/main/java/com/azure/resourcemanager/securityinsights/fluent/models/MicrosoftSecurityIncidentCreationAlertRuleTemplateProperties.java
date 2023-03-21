@@ -41,6 +41,10 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
     @JsonProperty(value = "severitiesFilter")
     private List<AlertSeverity> severitiesFilter;
 
+    /** Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties class. */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
      *
