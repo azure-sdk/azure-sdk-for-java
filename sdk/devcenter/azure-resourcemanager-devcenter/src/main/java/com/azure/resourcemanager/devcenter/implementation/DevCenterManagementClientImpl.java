@@ -41,7 +41,6 @@ import com.azure.resourcemanager.devcenter.fluent.ProjectEnvironmentTypesClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectsClient;
 import com.azure.resourcemanager.devcenter.fluent.SchedulesClient;
 import com.azure.resourcemanager.devcenter.fluent.SkusClient;
-import com.azure.resourcemanager.devcenter.fluent.UsagesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -282,18 +281,6 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
         return this.operationStatuses;
     }
 
-    /** The UsagesClient object to access its operations. */
-    private final UsagesClient usages;
-
-    /**
-     * Gets the UsagesClient object to access its operations.
-     *
-     * @return the UsagesClient object.
-     */
-    public UsagesClient getUsages() {
-        return this.usages;
-    }
-
     /** The CheckNameAvailabilitiesClient object to access its operations. */
     private final CheckNameAvailabilitiesClient checkNameAvailabilities;
 
@@ -376,7 +363,7 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-11-11-preview";
+        this.apiVersion = "2023-01-01-preview";
         this.devCenters = new DevCentersClientImpl(this);
         this.projects = new ProjectsClientImpl(this);
         this.attachedNetworks = new AttachedNetworksClientImpl(this);
@@ -390,7 +377,6 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
         this.devBoxDefinitions = new DevBoxDefinitionsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.operationStatuses = new OperationStatusesClientImpl(this);
-        this.usages = new UsagesClientImpl(this);
         this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
         this.skus = new SkusClientImpl(this);
         this.pools = new PoolsClientImpl(this);
