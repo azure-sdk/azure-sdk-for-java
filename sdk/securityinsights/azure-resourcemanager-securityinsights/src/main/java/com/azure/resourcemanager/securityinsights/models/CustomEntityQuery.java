@@ -19,6 +19,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({@JsonSubTypes.Type(name = "Activity", value = ActivityCustomEntityQuery.class)})
 @Fluent
 public class CustomEntityQuery extends ResourceWithEtag {
+    /** Creates an instance of CustomEntityQuery class. */
+    public CustomEntityQuery() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public CustomEntityQuery withEtag(String etag) {

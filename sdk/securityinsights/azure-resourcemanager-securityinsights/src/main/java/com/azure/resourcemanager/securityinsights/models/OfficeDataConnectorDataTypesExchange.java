@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Exchange data type connection. */
 @Fluent
 public final class OfficeDataConnectorDataTypesExchange extends DataConnectorDataTypeCommon {
+    /** Creates an instance of OfficeDataConnectorDataTypesExchange class. */
+    public OfficeDataConnectorDataTypesExchange() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public OfficeDataConnectorDataTypesExchange withState(DataTypeState state) {

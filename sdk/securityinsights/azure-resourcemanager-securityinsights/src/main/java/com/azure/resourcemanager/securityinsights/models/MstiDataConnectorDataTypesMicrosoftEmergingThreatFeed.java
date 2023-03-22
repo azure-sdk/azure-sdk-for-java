@@ -7,32 +7,37 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 
 /** Data type for Microsoft Threat Intelligence Platforms data connector. */
 @Fluent
 public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends DataConnectorDataTypeCommon {
     /*
-     * lookback period
+     * The lookback period for the feed to be imported.
      */
     @JsonProperty(value = "lookbackPeriod", required = true)
-    private String lookbackPeriod;
+    private OffsetDateTime lookbackPeriod;
+
+    /** Creates an instance of MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed class. */
+    public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed() {
+    }
 
     /**
-     * Get the lookbackPeriod property: lookback period.
+     * Get the lookbackPeriod property: The lookback period for the feed to be imported.
      *
      * @return the lookbackPeriod value.
      */
-    public String lookbackPeriod() {
+    public OffsetDateTime lookbackPeriod() {
         return this.lookbackPeriod;
     }
 
     /**
-     * Set the lookbackPeriod property: lookback period.
+     * Set the lookbackPeriod property: The lookback period for the feed to be imported.
      *
      * @param lookbackPeriod the lookbackPeriod value to set.
      * @return the MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed object itself.
      */
-    public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed withLookbackPeriod(String lookbackPeriod) {
+    public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed withLookbackPeriod(OffsetDateTime lookbackPeriod) {
         this.lookbackPeriod = lookbackPeriod;
         return this;
     }

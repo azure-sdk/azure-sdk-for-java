@@ -22,6 +22,10 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private AwsCloudTrailDataConnectorProperties innerProperties;
 
+    /** Creates an instance of AwsCloudTrailDataConnector class. */
+    public AwsCloudTrailDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Amazon Web Services CloudTrail data connector properties.
      *
