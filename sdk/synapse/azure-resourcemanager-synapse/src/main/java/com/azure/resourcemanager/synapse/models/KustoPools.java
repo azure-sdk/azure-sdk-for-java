@@ -60,7 +60,7 @@ public interface KustoPools {
     /**
      * List Kusto pools
      *
-     * <p>List all Kusto pools.
+     * <p>List all Kusto pools 1.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -76,7 +76,7 @@ public interface KustoPools {
     /**
      * List Kusto pools
      *
-     * <p>List all Kusto pools.
+     * <p>List all Kusto pools 1.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
