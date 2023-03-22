@@ -101,7 +101,7 @@ public final class ComputeInstanceProperties {
     /*
      * The list of schedules to be applied on the computes.
      */
-    @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "schedules")
     private ComputeSchedules schedules;
 
     /*
@@ -359,6 +359,17 @@ public final class ComputeInstanceProperties {
      */
     public ComputeSchedules schedules() {
         return this.schedules;
+    }
+
+    /**
+     * Set the schedules property: The list of schedules to be applied on the computes.
+     *
+     * @param schedules the schedules value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withSchedules(ComputeSchedules schedules) {
+        this.schedules = schedules;
+        return this;
     }
 
     /**

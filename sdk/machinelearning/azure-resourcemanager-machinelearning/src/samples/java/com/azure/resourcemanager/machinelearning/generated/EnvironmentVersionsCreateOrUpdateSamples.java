@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for EnvironmentVersions CreateOrUpdate. */
 public final class EnvironmentVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Environment Version.
