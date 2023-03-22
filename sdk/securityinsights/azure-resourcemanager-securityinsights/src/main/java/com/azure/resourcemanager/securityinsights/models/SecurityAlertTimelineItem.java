@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** Represents security alert timeline item. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
@@ -69,6 +70,22 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
      */
     @JsonProperty(value = "alertType", required = true)
     private String alertType;
+
+    /*
+     * The intent of the alert.
+     */
+    @JsonProperty(value = "intent", access = JsonProperty.Access.WRITE_ONLY)
+    private KillChainIntent intent;
+
+    /*
+     * The techniques of the alert.
+     */
+    @JsonProperty(value = "techniques")
+    private List<String> techniques;
+
+    /** Creates an instance of SecurityAlertTimelineItem class. */
+    public SecurityAlertTimelineItem() {
+    }
 
     /**
      * Get the azureResourceId property: The alert azure resource id.
@@ -247,6 +264,35 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
      */
     public SecurityAlertTimelineItem withAlertType(String alertType) {
         this.alertType = alertType;
+        return this;
+    }
+
+    /**
+     * Get the intent property: The intent of the alert.
+     *
+     * @return the intent value.
+     */
+    public KillChainIntent intent() {
+        return this.intent;
+    }
+
+    /**
+     * Get the techniques property: The techniques of the alert.
+     *
+     * @return the techniques value.
+     */
+    public List<String> techniques() {
+        return this.techniques;
+    }
+
+    /**
+     * Set the techniques property: The techniques of the alert.
+     *
+     * @param techniques the techniques value to set.
+     * @return the SecurityAlertTimelineItem object itself.
+     */
+    public SecurityAlertTimelineItem withTechniques(List<String> techniques) {
+        this.techniques = techniques;
         return this;
     }
 

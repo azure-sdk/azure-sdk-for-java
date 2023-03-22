@@ -54,19 +54,6 @@ public interface FileImports {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a file import.
-     */
-    FileImport get(String resourceGroupName, String workspaceName, String fileImportId);
-
-    /**
-     * Gets a file import.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param fileImportId File import ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -75,6 +62,19 @@ public interface FileImports {
      */
     Response<FileImport> getWithResponse(
         String resourceGroupName, String workspaceName, String fileImportId, Context context);
+
+    /**
+     * Gets a file import.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param fileImportId File import ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a file import.
+     */
+    FileImport get(String resourceGroupName, String workspaceName, String fileImportId);
 
     /**
      * Delete the file import.

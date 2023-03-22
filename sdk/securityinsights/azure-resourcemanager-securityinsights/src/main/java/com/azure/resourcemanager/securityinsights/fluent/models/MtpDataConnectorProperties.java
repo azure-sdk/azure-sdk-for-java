@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.MtpDataConnectorDataTypes;
+import com.azure.resourcemanager.securityinsights.models.MtpFilteredProviders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** MTP (Microsoft Threat Protection) data connector properties. */
@@ -18,6 +19,16 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
      */
     @JsonProperty(value = "dataTypes", required = true)
     private MtpDataConnectorDataTypes dataTypes;
+
+    /*
+     * The available filtered providers for the connector.
+     */
+    @JsonProperty(value = "filteredProviders")
+    private MtpFilteredProviders filteredProviders;
+
+    /** Creates an instance of MtpDataConnectorProperties class. */
+    public MtpDataConnectorProperties() {
+    }
 
     /**
      * Get the dataTypes property: The available data types for the connector.
@@ -36,6 +47,26 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
      */
     public MtpDataConnectorProperties withDataTypes(MtpDataConnectorDataTypes dataTypes) {
         this.dataTypes = dataTypes;
+        return this;
+    }
+
+    /**
+     * Get the filteredProviders property: The available filtered providers for the connector.
+     *
+     * @return the filteredProviders value.
+     */
+    public MtpFilteredProviders filteredProviders() {
+        return this.filteredProviders;
+    }
+
+    /**
+     * Set the filteredProviders property: The available filtered providers for the connector.
+     *
+     * @param filteredProviders the filteredProviders value to set.
+     * @return the MtpDataConnectorProperties object itself.
+     */
+    public MtpDataConnectorProperties withFilteredProviders(MtpFilteredProviders filteredProviders) {
+        this.filteredProviders = filteredProviders;
         return this;
     }
 
@@ -61,6 +92,9 @@ public final class MtpDataConnectorProperties extends DataConnectorTenantId {
                         "Missing required property dataTypes in model MtpDataConnectorProperties"));
         } else {
             dataTypes().validate();
+        }
+        if (filteredProviders() != null) {
+            filteredProviders().validate();
         }
     }
 
