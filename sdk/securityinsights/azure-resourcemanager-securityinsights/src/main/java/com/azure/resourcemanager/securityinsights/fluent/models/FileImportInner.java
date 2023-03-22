@@ -31,6 +31,10 @@ public final class FileImportInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of FileImportInner class. */
+    public FileImportInner() {
+    }
+
     /**
      * Get the innerProperties property: File import properties.
      *

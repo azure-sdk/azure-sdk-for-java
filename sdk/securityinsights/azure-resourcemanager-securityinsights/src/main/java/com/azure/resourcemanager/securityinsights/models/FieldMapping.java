@@ -22,6 +22,10 @@ public final class FieldMapping {
     @JsonProperty(value = "columnName")
     private String columnName;
 
+    /** Creates an instance of FieldMapping class. */
+    public FieldMapping() {
+    }
+
     /**
      * Get the identifier property: the V3 identifier of the entity.
      *

@@ -22,6 +22,10 @@ public final class ThreatIntelligenceSortingCriteria {
     @JsonProperty(value = "sortOrder")
     private ThreatIntelligenceSortingCriteriaEnum sortOrder;
 
+    /** Creates an instance of ThreatIntelligenceSortingCriteria class. */
+    public ThreatIntelligenceSortingCriteria() {
+    }
+
     /**
      * Get the itemKey property: Column name.
      *

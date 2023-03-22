@@ -25,6 +25,10 @@ public final class DataConnectorList {
     @JsonProperty(value = "value", required = true)
     private List<DataConnectorInner> value;
 
+    /** Creates an instance of DataConnectorList class. */
+    public DataConnectorList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of data connectors.
      *

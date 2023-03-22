@@ -23,6 +23,10 @@ public final class InsightQueryItemPropertiesTableQuery {
     @JsonProperty(value = "queriesDefinitions")
     private List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem> queriesDefinitions;
 
+    /** Creates an instance of InsightQueryItemPropertiesTableQuery class. */
+    public InsightQueryItemPropertiesTableQuery() {
+    }
+
     /**
      * Get the columnsDefinitions property: List of insight column definitions.
      *
