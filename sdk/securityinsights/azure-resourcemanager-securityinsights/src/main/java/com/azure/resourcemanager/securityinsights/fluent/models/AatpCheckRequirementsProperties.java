@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** AATP (Azure Advanced Threat Protection) requirements check properties. */
 @Fluent
 public final class AatpCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of AatpCheckRequirementsProperties class. */
+    public AatpCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public AatpCheckRequirementsProperties withTenantId(String tenantId) {

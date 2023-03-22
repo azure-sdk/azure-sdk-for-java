@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.models.Kind;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataCategories;
 import com.azure.resourcemanager.securityinsights.models.MetadataDependencies;
@@ -24,6 +23,10 @@ public final class MetadataModelInner extends ResourceWithEtag {
      */
     @JsonProperty(value = "properties")
     private MetadataProperties innerProperties;
+
+    /** Creates an instance of MetadataModelInner class. */
+    public MetadataModelInner() {
+    }
 
     /**
      * Get the innerProperties property: Metadata properties.
@@ -125,7 +128,7 @@ public final class MetadataModelInner extends ResourceWithEtag {
      *
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.innerProperties() == null ? null : this.innerProperties().kind();
     }
 
@@ -135,7 +138,7 @@ public final class MetadataModelInner extends ResourceWithEtag {
      * @param kind the kind value to set.
      * @return the MetadataModelInner object itself.
      */
-    public MetadataModelInner withKind(Kind kind) {
+    public MetadataModelInner withKind(String kind) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MetadataProperties();
         }
