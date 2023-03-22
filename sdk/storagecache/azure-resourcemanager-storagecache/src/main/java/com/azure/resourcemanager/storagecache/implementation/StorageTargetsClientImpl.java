@@ -67,8 +67,7 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     public interface StorageTargetsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/storageTargets/{storageTargetName}/dnsRefresh")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/dnsRefresh")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> dnsRefresh(
@@ -83,8 +82,7 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/storageTargets")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StorageTargetsResult>> listByCache(
@@ -98,8 +96,7 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/storageTargets/{storageTargetName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -115,8 +112,7 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/storageTargets/{storageTargetName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StorageTargetInner>> get(
@@ -131,8 +127,7 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/storageTargets/{storageTargetName}")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -148,8 +143,7 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches"
-                + "/{cacheName}/storageTargets/{storageTargetName}/restoreDefaults")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/restoreDefaults")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> restoreDefaults(
@@ -176,8 +170,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -231,8 +225,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -284,8 +278,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -307,8 +301,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -331,8 +325,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -349,8 +343,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -368,8 +362,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -387,8 +381,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -408,8 +402,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -424,8 +418,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to refresh its DNS information.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -439,10 +433,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a list of Storage Targets for the specified cache.
+     * Returns a list of Storage Targets for the specified Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -497,10 +491,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a list of Storage Targets for the specified cache.
+     * Returns a list of Storage Targets for the specified Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -553,10 +547,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a list of Storage Targets for the specified cache.
+     * Returns a list of Storage Targets for the specified Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -571,10 +565,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a list of Storage Targets for the specified cache.
+     * Returns a list of Storage Targets for the specified Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -591,10 +585,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a list of Storage Targets for the specified cache.
+     * Returns a list of Storage Targets for the specified Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -607,10 +601,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a list of Storage Targets for the specified cache.
+     * Returns a list of Storage Targets for the specified Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -624,13 +618,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -685,13 +679,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -744,13 +738,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -772,13 +766,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -799,13 +793,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -828,13 +822,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -850,13 +844,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -874,13 +868,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -898,13 +892,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -921,13 +915,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -947,13 +941,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -967,13 +961,13 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if
-     * the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
      * deleted.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
@@ -990,10 +984,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a Storage Target from a cache.
+     * Returns a Storage Target from a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1045,10 +1039,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a Storage Target from a cache.
+     * Returns a Storage Target from a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -1098,10 +1092,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a Storage Target from a cache.
+     * Returns a Storage Target from a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1116,10 +1110,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a Storage Target from a cache.
+     * Returns a Storage Target from a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -1135,10 +1129,10 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Returns a Storage Target from a cache.
+     * Returns a Storage Target from a Cache.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1152,11 +1146,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1215,11 +1209,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1280,11 +1274,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1309,11 +1303,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1340,11 +1334,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1362,11 +1356,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1389,11 +1383,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1411,11 +1405,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1438,11 +1432,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1458,11 +1452,11 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     }
 
     /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the cache is healthy again.
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
@@ -1485,8 +1479,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1540,8 +1534,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -1593,8 +1587,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1616,8 +1610,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -1640,8 +1634,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1658,8 +1652,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -1677,8 +1671,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1696,8 +1690,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
@@ -1717,8 +1711,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1733,8 +1727,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Tells a storage target to restore its settings to their default values.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cacheName Name of cache. Length of name must not be greater than 80 and chars must be from the
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.

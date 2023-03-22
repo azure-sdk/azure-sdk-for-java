@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** Cache identity properties. */
 @Fluent
-public class CacheIdentity {
+public final class CacheIdentity {
     /*
      * The principal ID for the system-assigned identity of the cache.
      */
