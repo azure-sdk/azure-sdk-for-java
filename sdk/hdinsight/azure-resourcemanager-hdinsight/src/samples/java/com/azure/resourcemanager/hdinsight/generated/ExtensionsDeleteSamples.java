@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class ExtensionsDeleteSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void deleteAnExtension(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.extensions().delete("rg1", "cluster1", "clustermonitoring", Context.NONE);
+        manager.extensions().delete("rg1", "cluster1", "clustermonitoring", com.azure.core.util.Context.NONE);
     }
 }
