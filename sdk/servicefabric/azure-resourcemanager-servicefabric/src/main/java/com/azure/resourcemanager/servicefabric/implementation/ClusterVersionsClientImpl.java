@@ -54,8 +54,7 @@ public final class ClusterVersionsClientImpl implements ClusterVersionsClient {
     public interface ClusterVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/clusterVersions"
-                + "/{clusterVersion}")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/clusterVersions/{clusterVersion}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ClusterCodeVersionsListResultInner>> get(
@@ -69,8 +68,7 @@ public final class ClusterVersionsClientImpl implements ClusterVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments"
-                + "/{environment}/clusterVersions/{clusterVersion}")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments/{environment}/clusterVersions/{clusterVersion}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ClusterCodeVersionsListResultInner>> getByEnvironment(
@@ -97,8 +95,7 @@ public final class ClusterVersionsClientImpl implements ClusterVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments"
-                + "/{environment}/clusterVersions")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments/{environment}/clusterVersions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ClusterCodeVersionsListResultInner>> listByEnvironment(
