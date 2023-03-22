@@ -24,6 +24,10 @@ public final class EntityExpandResponseInner {
     @JsonProperty(value = "value")
     private EntityExpandResponseValue value;
 
+    /** Creates an instance of EntityExpandResponseInner class. */
+    public EntityExpandResponseInner() {
+    }
+
     /**
      * Get the metadata property: The metadata from the expansion operation results.
      *
