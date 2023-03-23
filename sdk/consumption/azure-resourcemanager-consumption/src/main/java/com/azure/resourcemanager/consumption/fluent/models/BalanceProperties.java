@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.BalancePropertiesAdjustmentDetailsItem;
 import com.azure.resourcemanager.consumption.models.BalancePropertiesNewPurchasesDetailsItem;
 import com.azure.resourcemanager.consumption.models.BillingFrequency;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,8 +15,6 @@ import java.util.List;
 /** The properties of the balance. */
 @Fluent
 public final class BalanceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BalanceProperties.class);
-
     /*
      * The ISO currency in which the meter is charged, for example, USD.
      */
@@ -32,8 +28,7 @@ public final class BalanceProperties {
     private BigDecimal beginningBalance;
 
     /*
-     * The ending balance for the billing period (for open periods this will be
-     * updated daily).
+     * The ending balance for the billing period (for open periods this will be updated daily).
      */
     @JsonProperty(value = "endingBalance", access = JsonProperty.Access.WRITE_ONLY)
     private BigDecimal endingBalance;
@@ -109,6 +104,10 @@ public final class BalanceProperties {
      */
     @JsonProperty(value = "adjustmentDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<BalancePropertiesAdjustmentDetailsItem> adjustmentDetails;
+
+    /** Creates an instance of BalanceProperties class. */
+    public BalanceProperties() {
+    }
 
     /**
      * Get the currency property: The ISO currency in which the meter is charged, for example, USD.

@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.PriceSheetsClient;
 import com.azure.resourcemanager.consumption.fluent.models.PriceSheetResultInner;
 import com.azure.resourcemanager.consumption.models.PriceSheetResult;
 import com.azure.resourcemanager.consumption.models.PriceSheets;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PriceSheetsImpl implements PriceSheets {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PriceSheetsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PriceSheetsImpl.class);
 
     private final PriceSheetsClient innerClient;
 
@@ -25,15 +24,6 @@ public final class PriceSheetsImpl implements PriceSheets {
         PriceSheetsClient innerClient, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PriceSheetResult get() {
-        PriceSheetResultInner inner = this.serviceClient().get();
-        if (inner != null) {
-            return new PriceSheetResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<PriceSheetResult> getWithResponse(String expand, String skiptoken, Integer top, Context context) {
@@ -49,8 +39,8 @@ public final class PriceSheetsImpl implements PriceSheets {
         }
     }
 
-    public PriceSheetResult getByBillingPeriod(String billingPeriodName) {
-        PriceSheetResultInner inner = this.serviceClient().getByBillingPeriod(billingPeriodName);
+    public PriceSheetResult get() {
+        PriceSheetResultInner inner = this.serviceClient().get();
         if (inner != null) {
             return new PriceSheetResultImpl(inner, this.manager());
         } else {
@@ -68,6 +58,15 @@ public final class PriceSheetsImpl implements PriceSheets {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PriceSheetResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PriceSheetResult getByBillingPeriod(String billingPeriodName) {
+        PriceSheetResultInner inner = this.serviceClient().getByBillingPeriod(billingPeriodName);
+        if (inner != null) {
+            return new PriceSheetResultImpl(inner, this.manager());
         } else {
             return null;
         }
