@@ -26,6 +26,15 @@ public final class StudentLabStatus extends ExpandableStringEnum<StudentLabStatu
     public static final StudentLabStatus DELETED = fromString("Deleted");
 
     /**
+     * Creates a new instance of StudentLabStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public StudentLabStatus() {
+    }
+
+    /**
      * Creates or finds a StudentLabStatus from its string representation.
      *
      * @param name a name to look for.

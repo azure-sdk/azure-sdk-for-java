@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class OperationsListSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void getOperations(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.operations().listWithResponse(Context.NONE);
+        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }

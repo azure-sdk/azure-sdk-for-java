@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.education.models.InviteCodeGenerateRequest;
 
 /** Samples for Labs GenerateInviteCode. */
@@ -26,6 +25,6 @@ public final class LabsGenerateInviteCodeSamples {
                 "{invoiceSectionName}",
                 new InviteCodeGenerateRequest().withMaxStudentCount(10.0F),
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
