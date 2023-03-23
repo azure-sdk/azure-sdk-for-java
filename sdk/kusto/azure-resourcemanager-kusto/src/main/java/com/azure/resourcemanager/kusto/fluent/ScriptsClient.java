@@ -240,7 +240,7 @@ public interface ScriptsClient {
         Context context);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -256,7 +256,7 @@ public interface ScriptsClient {
         String resourceGroupName, String clusterName, String databaseName, String scriptName);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -273,7 +273,7 @@ public interface ScriptsClient {
         String resourceGroupName, String clusterName, String databaseName, String scriptName, Context context);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -287,7 +287,7 @@ public interface ScriptsClient {
     void delete(String resourceGroupName, String clusterName, String databaseName, String scriptName);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
