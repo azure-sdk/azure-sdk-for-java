@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ScriptActions GetExecutionAsyncOperationStatus. */
 public final class ScriptActionsGetExecutionAsyncOperationStatusSamples {
     /*
@@ -21,6 +19,6 @@ public final class ScriptActionsGetExecutionAsyncOperationStatusSamples {
         manager
             .scriptActions()
             .getExecutionAsyncOperationStatusWithResponse(
-                "rg1", "cluster1", "CF938302-6B4D-44A0-A6D2-C0D67E847AEC", Context.NONE);
+                "rg1", "cluster1", "CF938302-6B4D-44A0-A6D2-C0D67E847AEC", com.azure.core.util.Context.NONE);
     }
 }

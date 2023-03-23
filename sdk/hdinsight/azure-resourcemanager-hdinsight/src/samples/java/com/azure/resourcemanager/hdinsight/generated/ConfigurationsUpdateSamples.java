@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public final class ConfigurationsUpdateSamples {
                     "**********",
                     "restAuthCredential.username",
                     "hadoop"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -46,7 +45,12 @@ public final class ConfigurationsUpdateSamples {
     public static void disableHTTPConnectivity(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
         manager
             .configurations()
-            .update("rg1", "cluster1", "gateway", mapOf("restAuthCredential.isEnabled", "false"), Context.NONE);
+            .update(
+                "rg1",
+                "cluster1",
+                "gateway",
+                mapOf("restAuthCredential.isEnabled", "false"),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

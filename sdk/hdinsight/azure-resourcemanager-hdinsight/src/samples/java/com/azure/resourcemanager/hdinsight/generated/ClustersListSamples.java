@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clusters List. */
 public final class ClustersListSamples {
     /*
@@ -17,6 +15,6 @@ public final class ClustersListSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void getAllHadoopOnLinuxClusters(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.clusters().list(Context.NONE);
+        manager.clusters().list(com.azure.core.util.Context.NONE);
     }
 }
