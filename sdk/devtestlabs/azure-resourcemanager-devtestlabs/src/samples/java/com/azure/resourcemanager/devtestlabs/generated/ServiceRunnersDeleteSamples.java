@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ServiceRunners Delete. */
 public final class ServiceRunnersDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceRunners_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceRunners_Delete.json
      */
     /**
      * Sample code: ServiceRunners_Delete.
@@ -17,7 +17,6 @@ public final class ServiceRunnersDeleteSamples {
     public static void serviceRunnersDelete(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .serviceRunners()
-            .deleteWithResponse(
-                "resourceGroupName", "{devtestlabName}", "{servicerunnerName}", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "myLabName", "{servicerunnerName}", com.azure.core.util.Context.NONE);
     }
 }

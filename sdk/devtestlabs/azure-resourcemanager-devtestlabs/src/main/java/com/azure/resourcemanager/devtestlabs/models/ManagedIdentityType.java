@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Managed identity. */
+/** Type of identity (SystemAssigned, UserAssigned, None). */
 public final class ManagedIdentityType extends ExpandableStringEnum<ManagedIdentityType> {
     /** Static value None for ManagedIdentityType. */
     public static final ManagedIdentityType NONE = fromString("None");

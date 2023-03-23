@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.Lab;
 /** Samples for Labs Update. */
 public final class LabsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Labs_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Labs_Update.json
      */
     /**
      * Sample code: Labs_Update.
@@ -21,7 +21,7 @@ public final class LabsUpdateSamples {
             manager
                 .labs()
                 .getByResourceGroupWithResponse(
-                    "resourceGroupName", "{labName}", null, com.azure.core.util.Context.NONE)
+                    "resourceGroupName", "myLabName", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

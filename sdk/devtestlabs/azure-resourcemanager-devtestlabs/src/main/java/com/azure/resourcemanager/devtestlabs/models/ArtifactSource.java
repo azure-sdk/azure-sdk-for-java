@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactSourceInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
@@ -46,6 +48,13 @@ public interface ArtifactSource {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the displayName property: The artifact source's display name.
@@ -321,7 +330,7 @@ public interface ArtifactSource {
     ArtifactSource.Update update();
 
     /** The template for ArtifactSource update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -348,6 +357,16 @@ public interface ArtifactSource {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the ArtifactSource update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(IdentityProperties identity);
         }
     }
     /**

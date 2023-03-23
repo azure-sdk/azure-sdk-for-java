@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.fluent.GalleryImagesClient;
@@ -41,6 +43,30 @@ public final class GalleryImagesImpl implements GalleryImages {
         PagedIterable<GalleryImageInner> inner =
             this.serviceClient().list(resourceGroupName, labName, expand, filter, top, orderby, context);
         return Utils.mapPage(inner, inner1 -> new GalleryImageImpl(inner1, this.manager()));
+    }
+
+    public Response<GalleryImage> getWithResponse(
+        String resourceGroupName, String labName, String name, Context context) {
+        Response<GalleryImageInner> inner =
+            this.serviceClient().getWithResponse(resourceGroupName, labName, name, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new GalleryImageImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GalleryImage get(String resourceGroupName, String labName, String name) {
+        GalleryImageInner inner = this.serviceClient().get(resourceGroupName, labName, name);
+        if (inner != null) {
+            return new GalleryImageImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     private GalleryImagesClient serviceClient() {

@@ -26,7 +26,7 @@ public interface ServiceFabricSchedulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScheduleInner> list(
@@ -40,14 +40,14 @@ public interface ServiceFabricSchedulesClient {
      * @param username The name of the user profile.
      * @param serviceFabricName The name of the service fabric.
      * @param expand Specify the $expand query. Example: 'properties($select=status)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScheduleInner> list(
@@ -196,7 +196,7 @@ public interface ServiceFabricSchedulesClient {
      * @param username The name of the user profile.
      * @param serviceFabricName The name of the service fabric.
      * @param name The name of the schedule.
-     * @param schedule A schedule.
+     * @param schedule Allows modifying tags of schedules. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -221,7 +221,7 @@ public interface ServiceFabricSchedulesClient {
      * @param username The name of the user profile.
      * @param serviceFabricName The name of the service fabric.
      * @param name The name of the schedule.
-     * @param schedule A schedule.
+     * @param schedule Allows modifying tags of schedules. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

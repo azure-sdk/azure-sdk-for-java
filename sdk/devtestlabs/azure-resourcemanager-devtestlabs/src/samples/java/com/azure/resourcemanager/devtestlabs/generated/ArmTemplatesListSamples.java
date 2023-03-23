@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ArmTemplates List. */
 public final class ArmTemplatesListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ArmTemplates_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ArmTemplates_List.json
      */
     /**
      * Sample code: ArmTemplates_List.
@@ -19,8 +19,8 @@ public final class ArmTemplatesListSamples {
             .armTemplates()
             .list(
                 "resourceGroupName",
-                "{labName}",
-                "{artifactSourceName}",
+                "myLabName",
+                "myArtifactSource",
                 null,
                 null,
                 null,

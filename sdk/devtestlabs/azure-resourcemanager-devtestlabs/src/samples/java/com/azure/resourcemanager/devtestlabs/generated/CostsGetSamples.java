@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Costs Get. */
 public final class CostsGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Costs_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Costs_Get.json
      */
     /**
      * Sample code: Costs_Get.
@@ -17,6 +17,6 @@ public final class CostsGetSamples {
     public static void costsGet(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .costs()
-            .getWithResponse("resourceGroupName", "{labName}", "targetCost", null, com.azure.core.util.Context.NONE);
+            .getWithResponse("resourceGroupName", "myLabName", "targetCost", null, com.azure.core.util.Context.NONE);
     }
 }

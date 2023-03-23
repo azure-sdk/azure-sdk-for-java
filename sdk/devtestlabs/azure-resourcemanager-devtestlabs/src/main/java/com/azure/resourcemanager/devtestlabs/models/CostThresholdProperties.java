@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PercentageCostThresholdProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of a cost threshold item. */
@@ -20,7 +21,7 @@ public final class CostThresholdProperties {
      * The value of the percentage cost threshold.
      */
     @JsonProperty(value = "percentageThreshold")
-    private PercentageCostThresholdProperties percentageThreshold;
+    private PercentageCostThresholdProperties innerPercentageThreshold;
 
     /*
      * Indicates whether this threshold will be displayed on cost charts.
@@ -65,23 +66,12 @@ public final class CostThresholdProperties {
     }
 
     /**
-     * Get the percentageThreshold property: The value of the percentage cost threshold.
+     * Get the innerPercentageThreshold property: The value of the percentage cost threshold.
      *
-     * @return the percentageThreshold value.
+     * @return the innerPercentageThreshold value.
      */
-    public PercentageCostThresholdProperties percentageThreshold() {
-        return this.percentageThreshold;
-    }
-
-    /**
-     * Set the percentageThreshold property: The value of the percentage cost threshold.
-     *
-     * @param percentageThreshold the percentageThreshold value to set.
-     * @return the CostThresholdProperties object itself.
-     */
-    public CostThresholdProperties withPercentageThreshold(PercentageCostThresholdProperties percentageThreshold) {
-        this.percentageThreshold = percentageThreshold;
-        return this;
+    private PercentageCostThresholdProperties innerPercentageThreshold() {
+        return this.innerPercentageThreshold;
     }
 
     /**
@@ -147,13 +137,36 @@ public final class CostThresholdProperties {
     }
 
     /**
+     * Get the thresholdValue property: The cost threshold value.
+     *
+     * @return the thresholdValue value.
+     */
+    public Double thresholdValue() {
+        return this.innerPercentageThreshold() == null ? null : this.innerPercentageThreshold().thresholdValue();
+    }
+
+    /**
+     * Set the thresholdValue property: The cost threshold value.
+     *
+     * @param thresholdValue the thresholdValue value to set.
+     * @return the CostThresholdProperties object itself.
+     */
+    public CostThresholdProperties withThresholdValue(Double thresholdValue) {
+        if (this.innerPercentageThreshold() == null) {
+            this.innerPercentageThreshold = new PercentageCostThresholdProperties();
+        }
+        this.innerPercentageThreshold().withThresholdValue(thresholdValue);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (percentageThreshold() != null) {
-            percentageThreshold().validate();
+        if (innerPercentageThreshold() != null) {
+            innerPercentageThreshold().validate();
         }
     }
 }

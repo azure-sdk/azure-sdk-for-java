@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.DiskInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.models.AttachDiskProperties;
 import com.azure.resourcemanager.devtestlabs.models.DetachDiskProperties;
 import com.azure.resourcemanager.devtestlabs.models.Disk;
@@ -44,6 +46,10 @@ public final class DiskImpl implements Disk, Disk.Definition, Disk.Update {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public StorageType diskType() {
@@ -280,6 +286,11 @@ public final class DiskImpl implements Disk, Disk.Definition, Disk.Update {
 
     public DiskImpl withManagedDiskId(String managedDiskId) {
         this.innerModel().withManagedDiskId(managedDiskId);
+        return this;
+    }
+
+    public DiskImpl withIdentity(IdentityProperties identity) {
+        this.updateDisk.withIdentity(identity);
         return this;
     }
 

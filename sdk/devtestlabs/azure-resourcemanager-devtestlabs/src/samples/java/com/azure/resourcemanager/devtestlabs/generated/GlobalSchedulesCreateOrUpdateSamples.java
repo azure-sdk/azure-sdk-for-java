@@ -5,13 +5,12 @@
 package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
-import com.azure.resourcemanager.devtestlabs.models.WeekDetails;
 import java.util.Arrays;
 
 /** Samples for GlobalSchedules CreateOrUpdate. */
 public final class GlobalSchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/GlobalSchedules_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/GlobalSchedules_CreateOrUpdate.json
      */
     /**
      * Sample code: GlobalSchedules_CreateOrUpdate.
@@ -22,15 +21,13 @@ public final class GlobalSchedulesCreateOrUpdateSamples {
         manager
             .globalSchedules()
             .define("labvmautostart")
-            .withRegion((String) null)
+            .withRegion("southeastasia")
             .withExistingResourceGroup("resourceGroupName")
             .withStatus(EnableStatus.ENABLED)
             .withTaskType("LabVmsStartupTask")
-            .withWeeklyRecurrence(
-                new WeekDetails()
-                    .withWeekdays(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
-                    .withTime("0700"))
             .withTimeZoneId("Hawaiian Standard Time")
+            .withWeekdays(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+            .withTime("0700")
             .create();
     }
 }

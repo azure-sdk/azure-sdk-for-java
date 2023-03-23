@@ -16,13 +16,13 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.devtestlabs.fluent.OperationsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.OperationResultInner;
+import com.azure.resourcemanager.devtestlabs.models.OperationsGetResponse;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
@@ -56,7 +56,7 @@ public final class OperationsClientImpl implements OperationsClient {
             "/subscriptions/{subscriptionId}/providers/Microsoft.DevTestLab/locations/{locationName}/operations/{name}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationResultInner>> get(
+        Mono<OperationsGetResponse> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("locationName") String locationName,
@@ -74,10 +74,10 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation along with {@link Response} on successful completion of {@link Mono}.
+     * @return operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationResultInner>> getWithResponseAsync(String locationName, String name) {
+    private Mono<OperationsGetResponse> getWithResponseAsync(String locationName, String name) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -121,11 +121,10 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation along with {@link Response} on successful completion of {@link Mono}.
+     * @return operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationResultInner>> getWithResponseAsync(
-        String locationName, String name, Context context) {
+    private Mono<OperationsGetResponse> getWithResponseAsync(String locationName, String name, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -181,10 +180,10 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation along with {@link Response}.
+     * @return operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OperationResultInner> getWithResponse(String locationName, String name, Context context) {
+    public OperationsGetResponse getWithResponse(String locationName, String name, Context context) {
         return getWithResponseAsync(locationName, name, context).block();
     }
 

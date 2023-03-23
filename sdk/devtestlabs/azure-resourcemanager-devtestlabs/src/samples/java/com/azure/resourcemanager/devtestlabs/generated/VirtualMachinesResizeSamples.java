@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.ResizeLabVirtualMachinePrope
 /** Samples for VirtualMachines Resize. */
 public final class VirtualMachinesResizeSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Resize.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Resize.json
      */
     /**
      * Sample code: VirtualMachines_Resize.
@@ -21,7 +21,7 @@ public final class VirtualMachinesResizeSamples {
             .virtualMachines()
             .resize(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{vmName}",
                 new ResizeLabVirtualMachineProperties().withSize("Standard_A4_v2"),
                 com.azure.core.util.Context.NONE);

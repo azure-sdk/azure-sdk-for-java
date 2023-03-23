@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachineSchedules Execute. */
 public final class VirtualMachineSchedulesExecuteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachineSchedules_Execute.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachineSchedules_Execute.json
      */
     /**
      * Sample code: VirtualMachineSchedules_Execute.
@@ -18,6 +18,6 @@ public final class VirtualMachineSchedulesExecuteSamples {
         com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachineSchedules()
-            .execute("resourceGroupName", "{labName}", "{vmName}", "LabVmsShutdown", com.azure.core.util.Context.NONE);
+            .execute("resourceGroupName", "myLabName", "vmName", "LabVmsShutdown", com.azure.core.util.Context.NONE);
     }
 }

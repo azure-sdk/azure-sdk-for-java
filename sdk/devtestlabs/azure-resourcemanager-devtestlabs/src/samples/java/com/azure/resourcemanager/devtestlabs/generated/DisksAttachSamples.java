@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.AttachDiskProperties;
 /** Samples for Disks Attach. */
 public final class DisksAttachSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Disks_Attach.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Disks_Attach.json
      */
     /**
      * Sample code: Disks_Attach.
@@ -21,12 +21,12 @@ public final class DisksAttachSamples {
             .disks()
             .attach(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{userId}",
                 "{diskName}",
                 new AttachDiskProperties()
                     .withLeasedByLabVmId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/{vmName}"),
+                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/myLabName/virtualmachines/{vmName}"),
                 com.azure.core.util.Context.NONE);
     }
 }

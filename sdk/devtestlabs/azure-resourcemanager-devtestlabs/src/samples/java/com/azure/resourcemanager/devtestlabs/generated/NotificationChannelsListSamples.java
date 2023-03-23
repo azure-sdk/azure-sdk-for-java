@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for NotificationChannels List. */
 public final class NotificationChannelsListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/NotificationChannels_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/NotificationChannels_List.json
      */
     /**
      * Sample code: NotificationChannels_List.
@@ -17,6 +17,6 @@ public final class NotificationChannelsListSamples {
     public static void notificationChannelsList(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .notificationChannels()
-            .list("resourceGroupName", "{labName}", null, null, null, null, com.azure.core.util.Context.NONE);
+            .list("resourceGroupName", "myLabName", null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

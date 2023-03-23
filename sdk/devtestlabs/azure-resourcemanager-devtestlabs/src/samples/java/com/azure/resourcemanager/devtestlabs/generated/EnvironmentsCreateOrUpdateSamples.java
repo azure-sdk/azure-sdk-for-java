@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.EnvironmentDeploymentProperties;
 import java.util.Arrays;
 
 /** Samples for Environments CreateOrUpdate. */
 public final class EnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Environments_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Environments_CreateOrUpdate.json
      */
     /**
      * Sample code: Environments_CreateOrUpdate.
@@ -21,13 +20,11 @@ public final class EnvironmentsCreateOrUpdateSamples {
         manager
             .environments()
             .define("{environmentName}")
-            .withRegion((String) null)
-            .withExistingUser("resourceGroupName", "{labName}", "@me")
-            .withDeploymentProperties(
-                new EnvironmentDeploymentProperties()
-                    .withArmTemplateId(
-                        "/subscriptions/{subscriptionId}/resourceGroups/resourceGroupName/providers/Microsoft.DevTestLab/labs/{labName}/artifactSources/{artifactSourceName}/armTemplates/{armTemplateName}")
-                    .withParameters(Arrays.asList()))
+            .withRegion("southeastasia")
+            .withExistingUser("resourceGroupName", "myLabName", "@me")
+            .withArmTemplateId(
+                "/subscriptions/{subscriptionId}/resourceGroups/resourceGroupName/providers/Microsoft.DevTestLab/labs/myLabName/artifactSources/myArtifactSource/armTemplates/{armTemplateName}")
+            .withParameters(Arrays.asList())
             .create();
     }
 }

@@ -27,6 +27,7 @@ import com.azure.resourcemanager.devtestlabs.fluent.DevTestLabsClient;
 import com.azure.resourcemanager.devtestlabs.implementation.ArmTemplatesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ArtifactSourcesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ArtifactsImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.BastionHostsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.CostsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.CustomImagesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.DevTestLabsClientBuilder;
@@ -35,6 +36,7 @@ import com.azure.resourcemanager.devtestlabs.implementation.EnvironmentsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.FormulasImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.GalleryImagesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.GlobalSchedulesImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.LabSecretsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.LabsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.NotificationChannelsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.OperationsImpl;
@@ -46,6 +48,8 @@ import com.azure.resourcemanager.devtestlabs.implementation.SecretsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ServiceFabricSchedulesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ServiceFabricsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ServiceRunnersImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.SharedGalleriesImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.SharedImagesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.UsersImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.VirtualMachineSchedulesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.VirtualMachinesImpl;
@@ -53,6 +57,7 @@ import com.azure.resourcemanager.devtestlabs.implementation.VirtualNetworksImpl;
 import com.azure.resourcemanager.devtestlabs.models.ArmTemplates;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactSources;
 import com.azure.resourcemanager.devtestlabs.models.Artifacts;
+import com.azure.resourcemanager.devtestlabs.models.BastionHosts;
 import com.azure.resourcemanager.devtestlabs.models.Costs;
 import com.azure.resourcemanager.devtestlabs.models.CustomImages;
 import com.azure.resourcemanager.devtestlabs.models.Disks;
@@ -60,6 +65,7 @@ import com.azure.resourcemanager.devtestlabs.models.Environments;
 import com.azure.resourcemanager.devtestlabs.models.Formulas;
 import com.azure.resourcemanager.devtestlabs.models.GalleryImages;
 import com.azure.resourcemanager.devtestlabs.models.GlobalSchedules;
+import com.azure.resourcemanager.devtestlabs.models.LabSecrets;
 import com.azure.resourcemanager.devtestlabs.models.Labs;
 import com.azure.resourcemanager.devtestlabs.models.NotificationChannels;
 import com.azure.resourcemanager.devtestlabs.models.Operations;
@@ -71,6 +77,8 @@ import com.azure.resourcemanager.devtestlabs.models.Secrets;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabricSchedules;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabrics;
 import com.azure.resourcemanager.devtestlabs.models.ServiceRunners;
+import com.azure.resourcemanager.devtestlabs.models.SharedGalleries;
+import com.azure.resourcemanager.devtestlabs.models.SharedImages;
 import com.azure.resourcemanager.devtestlabs.models.Users;
 import com.azure.resourcemanager.devtestlabs.models.VirtualMachineSchedules;
 import com.azure.resourcemanager.devtestlabs.models.VirtualMachines;
@@ -114,7 +122,13 @@ public final class DevTestLabsManager {
 
     private Schedules schedules;
 
+    private LabSecrets labSecrets;
+
     private ServiceRunners serviceRunners;
+
+    private SharedGalleries sharedGalleries;
+
+    private SharedImages sharedImages;
 
     private Users users;
 
@@ -133,6 +147,8 @@ public final class DevTestLabsManager {
     private VirtualMachineSchedules virtualMachineSchedules;
 
     private VirtualNetworks virtualNetworks;
+
+    private BastionHosts bastionHosts;
 
     private final DevTestLabsClient clientObject;
 
@@ -299,7 +315,7 @@ public final class DevTestLabsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.devtestlabs")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -537,6 +553,18 @@ public final class DevTestLabsManager {
     }
 
     /**
+     * Gets the resource collection API of LabSecrets. It manages LabSecret.
+     *
+     * @return Resource collection API of LabSecrets.
+     */
+    public LabSecrets labSecrets() {
+        if (this.labSecrets == null) {
+            this.labSecrets = new LabSecretsImpl(clientObject.getLabSecrets(), this);
+        }
+        return labSecrets;
+    }
+
+    /**
      * Gets the resource collection API of ServiceRunners. It manages ServiceRunner.
      *
      * @return Resource collection API of ServiceRunners.
@@ -546,6 +574,30 @@ public final class DevTestLabsManager {
             this.serviceRunners = new ServiceRunnersImpl(clientObject.getServiceRunners(), this);
         }
         return serviceRunners;
+    }
+
+    /**
+     * Gets the resource collection API of SharedGalleries. It manages SharedGallery.
+     *
+     * @return Resource collection API of SharedGalleries.
+     */
+    public SharedGalleries sharedGalleries() {
+        if (this.sharedGalleries == null) {
+            this.sharedGalleries = new SharedGalleriesImpl(clientObject.getSharedGalleries(), this);
+        }
+        return sharedGalleries;
+    }
+
+    /**
+     * Gets the resource collection API of SharedImages. It manages SharedImage.
+     *
+     * @return Resource collection API of SharedImages.
+     */
+    public SharedImages sharedImages() {
+        if (this.sharedImages == null) {
+            this.sharedImages = new SharedImagesImpl(clientObject.getSharedImages(), this);
+        }
+        return sharedImages;
     }
 
     /**
@@ -656,6 +708,18 @@ public final class DevTestLabsManager {
             this.virtualNetworks = new VirtualNetworksImpl(clientObject.getVirtualNetworks(), this);
         }
         return virtualNetworks;
+    }
+
+    /**
+     * Gets the resource collection API of BastionHosts. It manages BastionHost.
+     *
+     * @return Resource collection API of BastionHosts.
+     */
+    public BastionHosts bastionHosts() {
+        if (this.bastionHosts == null) {
+            this.bastionHosts = new BastionHostsImpl(clientObject.getBastionHosts(), this);
+        }
+        return bastionHosts;
     }
 
     /**

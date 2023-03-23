@@ -11,7 +11,7 @@ import java.util.Arrays;
 /** Samples for NotificationChannels CreateOrUpdate. */
 public final class NotificationChannelsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/NotificationChannels_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/NotificationChannels_CreateOrUpdate.json
      */
     /**
      * Sample code: NotificationChannels_CreateOrUpdate.
@@ -23,8 +23,8 @@ public final class NotificationChannelsCreateOrUpdateSamples {
         manager
             .notificationChannels()
             .define("{notificationChannelName}")
-            .withRegion((String) null)
-            .withExistingLab("resourceGroupName", "{labName}")
+            .withRegion("{location}")
+            .withExistingLab("resourceGroupName", "myLabName")
             .withWebhookUrl("{webhookUrl}")
             .withEmailRecipient("{email}")
             .withNotificationLocale("en")

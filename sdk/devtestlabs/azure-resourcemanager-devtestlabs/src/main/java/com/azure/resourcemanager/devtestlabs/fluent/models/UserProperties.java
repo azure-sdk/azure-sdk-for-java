@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.devtestlabs.models.UserIdentity;
-import com.azure.resourcemanager.devtestlabs.models.UserSecretStore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -17,13 +15,13 @@ public final class UserProperties {
      * The identity of the user.
      */
     @JsonProperty(value = "identity")
-    private UserIdentity identity;
+    private UserIdentity innerIdentity;
 
     /*
      * The secret store of the user.
      */
     @JsonProperty(value = "secretStore")
-    private UserSecretStore secretStore;
+    private UserSecretStore innerSecretStore;
 
     /*
      * The creation date of the user profile.
@@ -48,43 +46,21 @@ public final class UserProperties {
     }
 
     /**
-     * Get the identity property: The identity of the user.
+     * Get the innerIdentity property: The identity of the user.
      *
-     * @return the identity value.
+     * @return the innerIdentity value.
      */
-    public UserIdentity identity() {
-        return this.identity;
+    private UserIdentity innerIdentity() {
+        return this.innerIdentity;
     }
 
     /**
-     * Set the identity property: The identity of the user.
+     * Get the innerSecretStore property: The secret store of the user.
      *
-     * @param identity the identity value to set.
-     * @return the UserProperties object itself.
+     * @return the innerSecretStore value.
      */
-    public UserProperties withIdentity(UserIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the secretStore property: The secret store of the user.
-     *
-     * @return the secretStore value.
-     */
-    public UserSecretStore secretStore() {
-        return this.secretStore;
-    }
-
-    /**
-     * Set the secretStore property: The secret store of the user.
-     *
-     * @param secretStore the secretStore value to set.
-     * @return the UserProperties object itself.
-     */
-    public UserProperties withSecretStore(UserSecretStore secretStore) {
-        this.secretStore = secretStore;
-        return this;
+    private UserSecretStore innerSecretStore() {
+        return this.innerSecretStore;
     }
 
     /**
@@ -115,16 +91,181 @@ public final class UserProperties {
     }
 
     /**
+     * Get the principalName property: Set to the principal name / UPN of the client JWT making the request.
+     *
+     * @return the principalName value.
+     */
+    public String principalName() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().principalName();
+    }
+
+    /**
+     * Set the principalName property: Set to the principal name / UPN of the client JWT making the request.
+     *
+     * @param principalName the principalName value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withPrincipalName(String principalName) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new UserIdentity();
+        }
+        this.innerIdentity().withPrincipalName(principalName);
+        return this;
+    }
+
+    /**
+     * Get the principalId property: Set to the principal Id of the client JWT making the request. Service principal
+     * will not have the principal Id.
+     *
+     * @return the principalId value.
+     */
+    public String principalId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().principalId();
+    }
+
+    /**
+     * Set the principalId property: Set to the principal Id of the client JWT making the request. Service principal
+     * will not have the principal Id.
+     *
+     * @param principalId the principalId value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withPrincipalId(String principalId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new UserIdentity();
+        }
+        this.innerIdentity().withPrincipalId(principalId);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: Set to the tenant ID of the client JWT making the request.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: Set to the tenant ID of the client JWT making the request.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withTenantId(String tenantId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new UserIdentity();
+        }
+        this.innerIdentity().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the objectId property: Set to the object Id of the client JWT making the request. Not all users have object
+     * Id. For CSP (reseller) scenarios for example, object Id is not available.
+     *
+     * @return the objectId value.
+     */
+    public String objectId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().objectId();
+    }
+
+    /**
+     * Set the objectId property: Set to the object Id of the client JWT making the request. Not all users have object
+     * Id. For CSP (reseller) scenarios for example, object Id is not available.
+     *
+     * @param objectId the objectId value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withObjectId(String objectId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new UserIdentity();
+        }
+        this.innerIdentity().withObjectId(objectId);
+        return this;
+    }
+
+    /**
+     * Get the appId property: Set to the app Id of the client JWT making the request.
+     *
+     * @return the appId value.
+     */
+    public String appId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().appId();
+    }
+
+    /**
+     * Set the appId property: Set to the app Id of the client JWT making the request.
+     *
+     * @param appId the appId value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withAppId(String appId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new UserIdentity();
+        }
+        this.innerIdentity().withAppId(appId);
+        return this;
+    }
+
+    /**
+     * Get the keyVaultUri property: The URI of the user's Key vault.
+     *
+     * @return the keyVaultUri value.
+     */
+    public String keyVaultUri() {
+        return this.innerSecretStore() == null ? null : this.innerSecretStore().keyVaultUri();
+    }
+
+    /**
+     * Set the keyVaultUri property: The URI of the user's Key vault.
+     *
+     * @param keyVaultUri the keyVaultUri value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withKeyVaultUri(String keyVaultUri) {
+        if (this.innerSecretStore() == null) {
+            this.innerSecretStore = new UserSecretStore();
+        }
+        this.innerSecretStore().withKeyVaultUri(keyVaultUri);
+        return this;
+    }
+
+    /**
+     * Get the keyVaultId property: The ID of the user's Key vault.
+     *
+     * @return the keyVaultId value.
+     */
+    public String keyVaultId() {
+        return this.innerSecretStore() == null ? null : this.innerSecretStore().keyVaultId();
+    }
+
+    /**
+     * Set the keyVaultId property: The ID of the user's Key vault.
+     *
+     * @param keyVaultId the keyVaultId value to set.
+     * @return the UserProperties object itself.
+     */
+    public UserProperties withKeyVaultId(String keyVaultId) {
+        if (this.innerSecretStore() == null) {
+            this.innerSecretStore = new UserSecretStore();
+        }
+        this.innerSecretStore().withKeyVaultId(keyVaultId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
+        if (innerIdentity() != null) {
+            innerIdentity().validate();
         }
-        if (secretStore() != null) {
-            secretStore().validate();
+        if (innerSecretStore() != null) {
+            innerSecretStore().validate();
         }
     }
 }

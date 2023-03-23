@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Schedules ListApplicable. */
 public final class SchedulesListApplicableSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Schedules_ListApplicable.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Schedules_ListApplicable.json
      */
     /**
      * Sample code: Schedules_ListApplicable.
@@ -17,6 +17,6 @@ public final class SchedulesListApplicableSamples {
     public static void schedulesListApplicable(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .schedules()
-            .listApplicable("resourceGroupName", "{labName}", "{scheduleName}", com.azure.core.util.Context.NONE);
+            .listApplicable("resourceGroupName", "myLabName", "{scheduleName}", com.azure.core.util.Context.NONE);
     }
 }

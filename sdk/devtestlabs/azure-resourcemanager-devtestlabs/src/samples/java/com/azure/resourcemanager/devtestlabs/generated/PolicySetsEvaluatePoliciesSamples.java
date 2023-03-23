@@ -11,7 +11,7 @@ import java.util.Arrays;
 /** Samples for PolicySets EvaluatePolicies. */
 public final class PolicySetsEvaluatePoliciesSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/PolicySets_EvaluatePolicies.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/PolicySets_EvaluatePolicies.json
      */
     /**
      * Sample code: PolicySets_EvaluatePolicies.
@@ -23,7 +23,7 @@ public final class PolicySetsEvaluatePoliciesSamples {
             .policySets()
             .evaluatePoliciesWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{policySetName}",
                 new EvaluatePoliciesRequest()
                     .withPolicies(

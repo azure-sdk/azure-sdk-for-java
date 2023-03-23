@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.SecretInner;
 import com.azure.resourcemanager.devtestlabs.models.Secret;
 import com.azure.resourcemanager.devtestlabs.models.SecretFragment;
@@ -40,6 +42,10 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String value() {
@@ -193,6 +199,11 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
 
     public SecretImpl withValue(String value) {
         this.innerModel().withValue(value);
+        return this;
+    }
+
+    public SecretImpl withIdentity(IdentityProperties identity) {
+        this.updateSecret.withIdentity(identity);
         return this;
     }
 

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines Get. */
 public final class VirtualMachinesGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Get.json
      */
     /**
      * Sample code: VirtualMachines_Get.
@@ -17,6 +17,6 @@ public final class VirtualMachinesGetSamples {
     public static void virtualMachinesGet(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachines()
-            .getWithResponse("resourceGroupName", "{labName}", "{vmName}", null, com.azure.core.util.Context.NONE);
+            .getWithResponse("resourceGroupName", "myLabName", "{vmName}", null, com.azure.core.util.Context.NONE);
     }
 }

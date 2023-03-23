@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A schedule. */
+/** Patch. */
 @Fluent
 public final class ScheduleFragment extends UpdateResource {
     /** Creates an instance of ScheduleFragment class. */
@@ -18,6 +19,13 @@ public final class ScheduleFragment extends UpdateResource {
     @Override
     public ScheduleFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ScheduleFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

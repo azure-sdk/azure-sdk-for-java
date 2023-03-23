@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines Restart. */
 public final class VirtualMachinesRestartSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Restart.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Restart.json
      */
     /**
      * Sample code: VirtualMachines_Restart.
@@ -17,6 +17,6 @@ public final class VirtualMachinesRestartSamples {
     public static void virtualMachinesRestart(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachines()
-            .restart("resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+            .restart("resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

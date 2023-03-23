@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriParameter;
 /** Samples for Labs GenerateUploadUri. */
 public final class LabsGenerateUploadUriSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Labs_GenerateUploadUri.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Labs_GenerateUploadUri.json
      */
     /**
      * Sample code: Labs_GenerateUploadUri.
@@ -21,7 +21,7 @@ public final class LabsGenerateUploadUriSamples {
             .labs()
             .generateUploadUriWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 new GenerateUploadUriParameter().withBlobName("{blob-name}"),
                 com.azure.core.util.Context.NONE);
     }

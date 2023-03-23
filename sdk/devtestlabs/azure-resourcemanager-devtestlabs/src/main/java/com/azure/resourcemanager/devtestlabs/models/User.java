@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.UserInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -48,18 +50,11 @@ public interface User {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: The identity of the user.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the identity value.
+     * @return the systemData value.
      */
-    UserIdentity identity();
-
-    /**
-     * Gets the secretStore property: The secret store of the user.
-     *
-     * @return the secretStore value.
-     */
-    UserSecretStore secretStore();
+    SystemData systemData();
 
     /**
      * Gets the createdDate property: The creation date of the user profile.
@@ -81,6 +76,57 @@ public interface User {
      * @return the uniqueIdentifier value.
      */
     String uniqueIdentifier();
+
+    /**
+     * Gets the principalName property: Set to the principal name / UPN of the client JWT making the request.
+     *
+     * @return the principalName value.
+     */
+    String principalName();
+
+    /**
+     * Gets the principalId property: Set to the principal Id of the client JWT making the request. Service principal
+     * will not have the principal Id.
+     *
+     * @return the principalId value.
+     */
+    String principalId();
+
+    /**
+     * Gets the tenantId property: Set to the tenant ID of the client JWT making the request.
+     *
+     * @return the tenantId value.
+     */
+    String tenantId();
+
+    /**
+     * Gets the objectId property: Set to the object Id of the client JWT making the request. Not all users have object
+     * Id. For CSP (reseller) scenarios for example, object Id is not available.
+     *
+     * @return the objectId value.
+     */
+    String objectId();
+
+    /**
+     * Gets the appId property: Set to the app Id of the client JWT making the request.
+     *
+     * @return the appId value.
+     */
+    String appId();
+
+    /**
+     * Gets the keyVaultUri property: The URI of the user's Key vault.
+     *
+     * @return the keyVaultUri value.
+     */
+    String keyVaultUri();
+
+    /**
+     * Gets the keyVaultId property: The ID of the user's Key vault.
+     *
+     * @return the keyVaultId value.
+     */
+    String keyVaultId();
 
     /**
      * Gets the region of the resource.
@@ -156,7 +202,14 @@ public interface User {
          * created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithSecretStore {
+            extends DefinitionStages.WithTags,
+                DefinitionStages.WithPrincipalName,
+                DefinitionStages.WithPrincipalId,
+                DefinitionStages.WithTenantId,
+                DefinitionStages.WithObjectId,
+                DefinitionStages.WithAppId,
+                DefinitionStages.WithKeyVaultUri,
+                DefinitionStages.WithKeyVaultId {
             /**
              * Executes the create request.
              *
@@ -182,25 +235,80 @@ public interface User {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the User definition allowing to specify identity. */
-        interface WithIdentity {
+        /** The stage of the User definition allowing to specify principalName. */
+        interface WithPrincipalName {
             /**
-             * Specifies the identity property: The identity of the user..
+             * Specifies the principalName property: Set to the principal name / UPN of the client JWT making the
+             * request..
              *
-             * @param identity The identity of the user.
+             * @param principalName Set to the principal name / UPN of the client JWT making the request.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(UserIdentity identity);
+            WithCreate withPrincipalName(String principalName);
         }
-        /** The stage of the User definition allowing to specify secretStore. */
-        interface WithSecretStore {
+        /** The stage of the User definition allowing to specify principalId. */
+        interface WithPrincipalId {
             /**
-             * Specifies the secretStore property: The secret store of the user..
+             * Specifies the principalId property: Set to the principal Id of the client JWT making the request. Service
+             * principal will not have the principal Id..
              *
-             * @param secretStore The secret store of the user.
+             * @param principalId Set to the principal Id of the client JWT making the request. Service principal will
+             *     not have the principal Id.
              * @return the next definition stage.
              */
-            WithCreate withSecretStore(UserSecretStore secretStore);
+            WithCreate withPrincipalId(String principalId);
+        }
+        /** The stage of the User definition allowing to specify tenantId. */
+        interface WithTenantId {
+            /**
+             * Specifies the tenantId property: Set to the tenant ID of the client JWT making the request..
+             *
+             * @param tenantId Set to the tenant ID of the client JWT making the request.
+             * @return the next definition stage.
+             */
+            WithCreate withTenantId(String tenantId);
+        }
+        /** The stage of the User definition allowing to specify objectId. */
+        interface WithObjectId {
+            /**
+             * Specifies the objectId property: Set to the object Id of the client JWT making the request. Not all users
+             * have object Id. For CSP (reseller) scenarios for example, object Id is not available..
+             *
+             * @param objectId Set to the object Id of the client JWT making the request. Not all users have object Id.
+             *     For CSP (reseller) scenarios for example, object Id is not available.
+             * @return the next definition stage.
+             */
+            WithCreate withObjectId(String objectId);
+        }
+        /** The stage of the User definition allowing to specify appId. */
+        interface WithAppId {
+            /**
+             * Specifies the appId property: Set to the app Id of the client JWT making the request..
+             *
+             * @param appId Set to the app Id of the client JWT making the request.
+             * @return the next definition stage.
+             */
+            WithCreate withAppId(String appId);
+        }
+        /** The stage of the User definition allowing to specify keyVaultUri. */
+        interface WithKeyVaultUri {
+            /**
+             * Specifies the keyVaultUri property: The URI of the user's Key vault..
+             *
+             * @param keyVaultUri The URI of the user's Key vault.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVaultUri(String keyVaultUri);
+        }
+        /** The stage of the User definition allowing to specify keyVaultId. */
+        interface WithKeyVaultId {
+            /**
+             * Specifies the keyVaultId property: The ID of the user's Key vault..
+             *
+             * @param keyVaultId The ID of the user's Key vault.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVaultId(String keyVaultId);
         }
     }
     /**
@@ -211,7 +319,7 @@ public interface User {
     User.Update update();
 
     /** The template for User update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -238,6 +346,16 @@ public interface User {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the User update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(IdentityProperties identity);
         }
     }
     /**

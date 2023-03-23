@@ -5,8 +5,11 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.DtlEnvironmentInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of DtlEnvironment. */
@@ -47,11 +50,11 @@ public interface DtlEnvironment {
     Map<String, String> tags();
 
     /**
-     * Gets the deploymentProperties property: The deployment properties of the environment.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * @return the deploymentProperties value.
+     * @return the systemData value.
      */
-    EnvironmentDeploymentProperties deploymentProperties();
+    SystemData systemData();
 
     /**
      * Gets the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
@@ -88,6 +91,20 @@ public interface DtlEnvironment {
      * @return the uniqueIdentifier value.
      */
     String uniqueIdentifier();
+
+    /**
+     * Gets the armTemplateId property: The Azure Resource Manager template's identifier.
+     *
+     * @return the armTemplateId value.
+     */
+    String armTemplateId();
+
+    /**
+     * Gets the parameters property: The parameters of the Azure Resource Manager template.
+     *
+     * @return the parameters value.
+     */
+    List<ArmTemplateParameterProperties> parameters();
 
     /**
      * Gets the region of the resource.
@@ -165,8 +182,9 @@ public interface DtlEnvironment {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
-                DefinitionStages.WithDeploymentProperties,
-                DefinitionStages.WithArmTemplateDisplayName {
+                DefinitionStages.WithArmTemplateDisplayName,
+                DefinitionStages.WithArmTemplateId,
+                DefinitionStages.WithParameters {
             /**
              * Executes the create request.
              *
@@ -192,16 +210,6 @@ public interface DtlEnvironment {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the DtlEnvironment definition allowing to specify deploymentProperties. */
-        interface WithDeploymentProperties {
-            /**
-             * Specifies the deploymentProperties property: The deployment properties of the environment..
-             *
-             * @param deploymentProperties The deployment properties of the environment.
-             * @return the next definition stage.
-             */
-            WithCreate withDeploymentProperties(EnvironmentDeploymentProperties deploymentProperties);
-        }
         /** The stage of the DtlEnvironment definition allowing to specify armTemplateDisplayName. */
         interface WithArmTemplateDisplayName {
             /**
@@ -214,6 +222,26 @@ public interface DtlEnvironment {
              */
             WithCreate withArmTemplateDisplayName(String armTemplateDisplayName);
         }
+        /** The stage of the DtlEnvironment definition allowing to specify armTemplateId. */
+        interface WithArmTemplateId {
+            /**
+             * Specifies the armTemplateId property: The Azure Resource Manager template's identifier..
+             *
+             * @param armTemplateId The Azure Resource Manager template's identifier.
+             * @return the next definition stage.
+             */
+            WithCreate withArmTemplateId(String armTemplateId);
+        }
+        /** The stage of the DtlEnvironment definition allowing to specify parameters. */
+        interface WithParameters {
+            /**
+             * Specifies the parameters property: The parameters of the Azure Resource Manager template..
+             *
+             * @param parameters The parameters of the Azure Resource Manager template.
+             * @return the next definition stage.
+             */
+            WithCreate withParameters(List<ArmTemplateParameterProperties> parameters);
+        }
     }
     /**
      * Begins update for the DtlEnvironment resource.
@@ -223,7 +251,7 @@ public interface DtlEnvironment {
     DtlEnvironment.Update update();
 
     /** The template for DtlEnvironment update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -250,6 +278,16 @@ public interface DtlEnvironment {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the DtlEnvironment update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(IdentityProperties identity);
         }
     }
     /**

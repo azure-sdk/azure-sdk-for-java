@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachineSchedules List. */
 public final class VirtualMachineSchedulesListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachineSchedules_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachineSchedules_List.json
      */
     /**
      * Sample code: VirtualMachineSchedules_List.
@@ -17,7 +17,6 @@ public final class VirtualMachineSchedulesListSamples {
     public static void virtualMachineSchedulesList(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachineSchedules()
-            .list(
-                "resourceGroupName", "{labName}", "{vmName}", null, null, null, null, com.azure.core.util.Context.NONE);
+            .list("resourceGroupName", "myLabName", "vmName", null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

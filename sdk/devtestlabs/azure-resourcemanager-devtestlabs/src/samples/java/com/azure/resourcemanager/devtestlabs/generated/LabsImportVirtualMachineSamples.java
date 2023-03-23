@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineReque
 /** Samples for Labs ImportVirtualMachine. */
 public final class LabsImportVirtualMachineSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Labs_ImportVirtualMachine.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Labs_ImportVirtualMachine.json
      */
     /**
      * Sample code: Labs_ImportVirtualMachine.
@@ -21,7 +21,7 @@ public final class LabsImportVirtualMachineSamples {
             .labs()
             .importVirtualMachine(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 new ImportLabVirtualMachineRequest()
                     .withSourceVirtualMachineResourceId(
                         "/subscriptions/{subscriptionId}/resourceGroups/{otherResourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}")

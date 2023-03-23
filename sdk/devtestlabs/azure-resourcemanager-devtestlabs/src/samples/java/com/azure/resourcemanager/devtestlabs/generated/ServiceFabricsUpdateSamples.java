@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for ServiceFabrics Update. */
 public final class ServiceFabricsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabrics_Update.json
      */
     /**
      * Sample code: ServiceFabrics_Update.
@@ -24,7 +24,7 @@ public final class ServiceFabricsUpdateSamples {
                 .serviceFabrics()
                 .getWithResponse(
                     "resourceGroupName",
-                    "{labName}",
+                    "myLabName",
                     "{userName}",
                     "{serviceFabricName}",
                     null,

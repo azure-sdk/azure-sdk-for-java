@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Policies List. */
 public final class PoliciesListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Policies_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Policies_List.json
      */
     /**
      * Sample code: Policies_List.
@@ -19,7 +19,7 @@ public final class PoliciesListSamples {
             .policies()
             .list(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{policySetName}",
                 null,
                 null,

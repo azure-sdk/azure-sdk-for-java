@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactSourceInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactSource;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactSourceFragment;
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
@@ -43,6 +45,10 @@ public final class ArtifactSourceImpl implements ArtifactSource, ArtifactSource.
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {
@@ -262,6 +268,11 @@ public final class ArtifactSourceImpl implements ArtifactSource, ArtifactSource.
 
     public ArtifactSourceImpl withStatus(EnableStatus status) {
         this.innerModel().withStatus(status);
+        return this;
+    }
+
+    public ArtifactSourceImpl withIdentity(IdentityProperties identity) {
+        this.updateArtifactSource.withIdentity(identity);
         return this;
     }
 

@@ -5,14 +5,16 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.CustomImageInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.models.CustomImage;
 import com.azure.resourcemanager.devtestlabs.models.CustomImageFragment;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesCustom;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromPlan;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromVm;
+import com.azure.resourcemanager.devtestlabs.models.CustomImageOsType;
 import com.azure.resourcemanager.devtestlabs.models.DataDiskStorageTypeInfo;
+import com.azure.resourcemanager.devtestlabs.models.LinuxOsState;
+import com.azure.resourcemanager.devtestlabs.models.WindowsOsState;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -48,12 +50,8 @@ public final class CustomImageImpl implements CustomImage, CustomImage.Definitio
         }
     }
 
-    public CustomImagePropertiesFromVm vm() {
-        return this.innerModel().vm();
-    }
-
-    public CustomImagePropertiesCustom vhd() {
-        return this.innerModel().vhd();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String description() {
@@ -85,10 +83,6 @@ public final class CustomImageImpl implements CustomImage, CustomImage.Definitio
         }
     }
 
-    public CustomImagePropertiesFromPlan customImagePlan() {
-        return this.innerModel().customImagePlan();
-    }
-
     public Boolean isPlanAuthorized() {
         return this.innerModel().isPlanAuthorized();
     }
@@ -99,6 +93,42 @@ public final class CustomImageImpl implements CustomImage, CustomImage.Definitio
 
     public String uniqueIdentifier() {
         return this.innerModel().uniqueIdentifier();
+    }
+
+    public String sourceVmId() {
+        return this.innerModel().sourceVmId();
+    }
+
+    public WindowsOsState windowsOsState() {
+        return this.innerModel().windowsOsState();
+    }
+
+    public LinuxOsState linuxOsState() {
+        return this.innerModel().linuxOsState();
+    }
+
+    public String imageName() {
+        return this.innerModel().imageName();
+    }
+
+    public Boolean sysPrep() {
+        return this.innerModel().sysPrep();
+    }
+
+    public CustomImageOsType osType() {
+        return this.innerModel().osType();
+    }
+
+    public String idPropertiesId() {
+        return this.innerModel().idPropertiesId();
+    }
+
+    public String publisher() {
+        return this.innerModel().publisher();
+    }
+
+    public String offer() {
+        return this.innerModel().offer();
     }
 
     public Region region() {
@@ -235,16 +265,6 @@ public final class CustomImageImpl implements CustomImage, CustomImage.Definitio
         }
     }
 
-    public CustomImageImpl withVm(CustomImagePropertiesFromVm vm) {
-        this.innerModel().withVm(vm);
-        return this;
-    }
-
-    public CustomImageImpl withVhd(CustomImagePropertiesCustom vhd) {
-        this.innerModel().withVhd(vhd);
-        return this;
-    }
-
     public CustomImageImpl withDescription(String description) {
         this.innerModel().withDescription(description);
         return this;
@@ -270,13 +290,58 @@ public final class CustomImageImpl implements CustomImage, CustomImage.Definitio
         return this;
     }
 
-    public CustomImageImpl withCustomImagePlan(CustomImagePropertiesFromPlan customImagePlan) {
-        this.innerModel().withCustomImagePlan(customImagePlan);
+    public CustomImageImpl withIsPlanAuthorized(Boolean isPlanAuthorized) {
+        this.innerModel().withIsPlanAuthorized(isPlanAuthorized);
         return this;
     }
 
-    public CustomImageImpl withIsPlanAuthorized(Boolean isPlanAuthorized) {
-        this.innerModel().withIsPlanAuthorized(isPlanAuthorized);
+    public CustomImageImpl withSourceVmId(String sourceVmId) {
+        this.innerModel().withSourceVmId(sourceVmId);
+        return this;
+    }
+
+    public CustomImageImpl withWindowsOsState(WindowsOsState windowsOsState) {
+        this.innerModel().withWindowsOsState(windowsOsState);
+        return this;
+    }
+
+    public CustomImageImpl withLinuxOsState(LinuxOsState linuxOsState) {
+        this.innerModel().withLinuxOsState(linuxOsState);
+        return this;
+    }
+
+    public CustomImageImpl withImageName(String imageName) {
+        this.innerModel().withImageName(imageName);
+        return this;
+    }
+
+    public CustomImageImpl withSysPrep(Boolean sysPrep) {
+        this.innerModel().withSysPrep(sysPrep);
+        return this;
+    }
+
+    public CustomImageImpl withOsType(CustomImageOsType osType) {
+        this.innerModel().withOsType(osType);
+        return this;
+    }
+
+    public CustomImageImpl withIdPropertiesId(String idPropertiesId) {
+        this.innerModel().withIdPropertiesId(idPropertiesId);
+        return this;
+    }
+
+    public CustomImageImpl withPublisher(String publisher) {
+        this.innerModel().withPublisher(publisher);
+        return this;
+    }
+
+    public CustomImageImpl withOffer(String offer) {
+        this.innerModel().withOffer(offer);
+        return this;
+    }
+
+    public CustomImageImpl withIdentity(IdentityProperties identity) {
+        this.updateCustomImage.withIdentity(identity);
         return this;
     }
 

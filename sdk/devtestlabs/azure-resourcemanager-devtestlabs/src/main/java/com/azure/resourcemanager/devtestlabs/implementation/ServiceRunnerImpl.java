@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerInner;
-import com.azure.resourcemanager.devtestlabs.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.models.ServiceRunner;
 import java.util.Collections;
 import java.util.Map;
@@ -44,6 +45,22 @@ public final class ServiceRunnerImpl implements ServiceRunner, ServiceRunner.Def
 
     public IdentityProperties identity() {
         return this.innerModel().identity();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String identityUsageType() {
+        return this.innerModel().identityUsageType();
+    }
+
+    public String provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String uniqueIdentifier() {
+        return this.innerModel().uniqueIdentifier();
     }
 
     public Region region() {
@@ -83,8 +100,7 @@ public final class ServiceRunnerImpl implements ServiceRunner, ServiceRunner.Def
             serviceManager
                 .serviceClient()
                 .getServiceRunners()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), Context.NONE)
-                .getValue();
+                .createOrUpdate(resourceGroupName, labName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -93,8 +109,7 @@ public final class ServiceRunnerImpl implements ServiceRunner, ServiceRunner.Def
             serviceManager
                 .serviceClient()
                 .getServiceRunners()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), context)
-                .getValue();
+                .createOrUpdate(resourceGroupName, labName, name, this.innerModel(), context);
         return this;
     }
 
@@ -113,8 +128,7 @@ public final class ServiceRunnerImpl implements ServiceRunner, ServiceRunner.Def
             serviceManager
                 .serviceClient()
                 .getServiceRunners()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), Context.NONE)
-                .getValue();
+                .createOrUpdate(resourceGroupName, labName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -123,8 +137,7 @@ public final class ServiceRunnerImpl implements ServiceRunner, ServiceRunner.Def
             serviceManager
                 .serviceClient()
                 .getServiceRunners()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), context)
-                .getValue();
+                .createOrUpdate(resourceGroupName, labName, name, this.innerModel(), context);
         return this;
     }
 
@@ -174,6 +187,11 @@ public final class ServiceRunnerImpl implements ServiceRunner, ServiceRunner.Def
 
     public ServiceRunnerImpl withIdentity(IdentityProperties identity) {
         this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public ServiceRunnerImpl withIdentityUsageType(String identityUsageType) {
+        this.innerModel().withIdentityUsageType(identityUsageType);
         return this;
     }
 }

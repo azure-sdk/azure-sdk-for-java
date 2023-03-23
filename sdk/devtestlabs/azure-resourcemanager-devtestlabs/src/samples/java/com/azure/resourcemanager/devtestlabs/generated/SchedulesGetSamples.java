@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Schedules Get. */
 public final class SchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Schedules_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Schedules_Get.json
      */
     /**
      * Sample code: Schedules_Get.
@@ -18,6 +18,6 @@ public final class SchedulesGetSamples {
         manager
             .schedules()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "{scheduleName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{scheduleName}", null, com.azure.core.util.Context.NONE);
     }
 }

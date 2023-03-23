@@ -5,10 +5,11 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.models.CostThresholdProperties;
 import com.azure.resourcemanager.devtestlabs.models.LabCostDetailsProperties;
-import com.azure.resourcemanager.devtestlabs.models.LabCostSummaryProperties;
 import com.azure.resourcemanager.devtestlabs.models.LabResourceCostProperties;
-import com.azure.resourcemanager.devtestlabs.models.TargetCostProperties;
+import com.azure.resourcemanager.devtestlabs.models.ReportingCycleType;
+import com.azure.resourcemanager.devtestlabs.models.TargetCostStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -20,13 +21,13 @@ public final class LabCostProperties {
      * The target cost properties
      */
     @JsonProperty(value = "targetCost")
-    private TargetCostProperties targetCost;
+    private TargetCostProperties innerTargetCost;
 
     /*
      * The lab cost summary component of the cost data.
      */
     @JsonProperty(value = "labCostSummary", access = JsonProperty.Access.WRITE_ONLY)
-    private LabCostSummaryProperties labCostSummary;
+    private LabCostSummaryProperties innerLabCostSummary;
 
     /*
      * The lab cost details component of the cost data.
@@ -81,32 +82,21 @@ public final class LabCostProperties {
     }
 
     /**
-     * Get the targetCost property: The target cost properties.
+     * Get the innerTargetCost property: The target cost properties.
      *
-     * @return the targetCost value.
+     * @return the innerTargetCost value.
      */
-    public TargetCostProperties targetCost() {
-        return this.targetCost;
+    private TargetCostProperties innerTargetCost() {
+        return this.innerTargetCost;
     }
 
     /**
-     * Set the targetCost property: The target cost properties.
+     * Get the innerLabCostSummary property: The lab cost summary component of the cost data.
      *
-     * @param targetCost the targetCost value to set.
-     * @return the LabCostProperties object itself.
+     * @return the innerLabCostSummary value.
      */
-    public LabCostProperties withTargetCost(TargetCostProperties targetCost) {
-        this.targetCost = targetCost;
-        return this;
-    }
-
-    /**
-     * Get the labCostSummary property: The lab cost summary component of the cost data.
-     *
-     * @return the labCostSummary value.
-     */
-    public LabCostSummaryProperties labCostSummary() {
-        return this.labCostSummary;
+    private LabCostSummaryProperties innerLabCostSummary() {
+        return this.innerLabCostSummary;
     }
 
     /**
@@ -226,16 +216,177 @@ public final class LabCostProperties {
     }
 
     /**
+     * Get the status property: Target cost status.
+     *
+     * @return the status value.
+     */
+    public TargetCostStatus status() {
+        return this.innerTargetCost() == null ? null : this.innerTargetCost().status();
+    }
+
+    /**
+     * Set the status property: Target cost status.
+     *
+     * @param status the status value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withStatus(TargetCostStatus status) {
+        if (this.innerTargetCost() == null) {
+            this.innerTargetCost = new TargetCostProperties();
+        }
+        this.innerTargetCost().withStatus(status);
+        return this;
+    }
+
+    /**
+     * Get the target property: Lab target cost.
+     *
+     * @return the target value.
+     */
+    public Integer target() {
+        return this.innerTargetCost() == null ? null : this.innerTargetCost().target();
+    }
+
+    /**
+     * Set the target property: Lab target cost.
+     *
+     * @param target the target value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withTarget(Integer target) {
+        if (this.innerTargetCost() == null) {
+            this.innerTargetCost = new TargetCostProperties();
+        }
+        this.innerTargetCost().withTarget(target);
+        return this;
+    }
+
+    /**
+     * Get the costThresholds property: Cost thresholds.
+     *
+     * @return the costThresholds value.
+     */
+    public List<CostThresholdProperties> costThresholds() {
+        return this.innerTargetCost() == null ? null : this.innerTargetCost().costThresholds();
+    }
+
+    /**
+     * Set the costThresholds property: Cost thresholds.
+     *
+     * @param costThresholds the costThresholds value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withCostThresholds(List<CostThresholdProperties> costThresholds) {
+        if (this.innerTargetCost() == null) {
+            this.innerTargetCost = new TargetCostProperties();
+        }
+        this.innerTargetCost().withCostThresholds(costThresholds);
+        return this;
+    }
+
+    /**
+     * Get the cycleStartDateTime property: Reporting cycle start date.
+     *
+     * @return the cycleStartDateTime value.
+     */
+    public OffsetDateTime cycleStartDateTime() {
+        return this.innerTargetCost() == null ? null : this.innerTargetCost().cycleStartDateTime();
+    }
+
+    /**
+     * Set the cycleStartDateTime property: Reporting cycle start date.
+     *
+     * @param cycleStartDateTime the cycleStartDateTime value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withCycleStartDateTime(OffsetDateTime cycleStartDateTime) {
+        if (this.innerTargetCost() == null) {
+            this.innerTargetCost = new TargetCostProperties();
+        }
+        this.innerTargetCost().withCycleStartDateTime(cycleStartDateTime);
+        return this;
+    }
+
+    /**
+     * Get the cycleEndDateTime property: Reporting cycle end date.
+     *
+     * @return the cycleEndDateTime value.
+     */
+    public OffsetDateTime cycleEndDateTime() {
+        return this.innerTargetCost() == null ? null : this.innerTargetCost().cycleEndDateTime();
+    }
+
+    /**
+     * Set the cycleEndDateTime property: Reporting cycle end date.
+     *
+     * @param cycleEndDateTime the cycleEndDateTime value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withCycleEndDateTime(OffsetDateTime cycleEndDateTime) {
+        if (this.innerTargetCost() == null) {
+            this.innerTargetCost = new TargetCostProperties();
+        }
+        this.innerTargetCost().withCycleEndDateTime(cycleEndDateTime);
+        return this;
+    }
+
+    /**
+     * Get the cycleType property: Reporting cycle type.
+     *
+     * @return the cycleType value.
+     */
+    public ReportingCycleType cycleType() {
+        return this.innerTargetCost() == null ? null : this.innerTargetCost().cycleType();
+    }
+
+    /**
+     * Set the cycleType property: Reporting cycle type.
+     *
+     * @param cycleType the cycleType value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withCycleType(ReportingCycleType cycleType) {
+        if (this.innerTargetCost() == null) {
+            this.innerTargetCost = new TargetCostProperties();
+        }
+        this.innerTargetCost().withCycleType(cycleType);
+        return this;
+    }
+
+    /**
+     * Get the estimatedLabCost property: The cost component of the cost item.
+     *
+     * @return the estimatedLabCost value.
+     */
+    public Double estimatedLabCost() {
+        return this.innerLabCostSummary() == null ? null : this.innerLabCostSummary().estimatedLabCost();
+    }
+
+    /**
+     * Set the estimatedLabCost property: The cost component of the cost item.
+     *
+     * @param estimatedLabCost the estimatedLabCost value to set.
+     * @return the LabCostProperties object itself.
+     */
+    public LabCostProperties withEstimatedLabCost(Double estimatedLabCost) {
+        if (this.innerLabCostSummary() == null) {
+            this.innerLabCostSummary = new LabCostSummaryProperties();
+        }
+        this.innerLabCostSummary().withEstimatedLabCost(estimatedLabCost);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (targetCost() != null) {
-            targetCost().validate();
+        if (innerTargetCost() != null) {
+            innerTargetCost().validate();
         }
-        if (labCostSummary() != null) {
-            labCostSummary().validate();
+        if (innerLabCostSummary() != null) {
+            innerLabCostSummary().validate();
         }
         if (labCostDetails() != null) {
             labCostDetails().forEach(e -> e.validate());

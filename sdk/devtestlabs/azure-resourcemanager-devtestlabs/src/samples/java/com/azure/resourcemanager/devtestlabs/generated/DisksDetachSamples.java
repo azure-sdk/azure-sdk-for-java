@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.DetachDiskProperties;
 /** Samples for Disks Detach. */
 public final class DisksDetachSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Disks_Detach.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Disks_Detach.json
      */
     /**
      * Sample code: Disks_Detach.
@@ -21,12 +21,12 @@ public final class DisksDetachSamples {
             .disks()
             .detach(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{userId}",
                 "{diskName}",
                 new DetachDiskProperties()
                     .withLeasedByLabVmId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/myResourceGroup/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/{vmName}"),
+                        "/subscriptions/{subscriptionId}/resourcegroups/myResourceGroup/providers/microsoft.devtestlab/labs/myLabName/virtualmachines/{vmName}"),
                 com.azure.core.util.Context.NONE);
     }
 }

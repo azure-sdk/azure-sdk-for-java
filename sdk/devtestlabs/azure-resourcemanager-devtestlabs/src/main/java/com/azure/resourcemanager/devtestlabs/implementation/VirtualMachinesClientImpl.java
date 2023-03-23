@@ -75,8 +75,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     public interface VirtualMachinesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabVirtualMachineList>> list(
@@ -94,8 +93,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabVirtualMachineInner>> get(
@@ -111,8 +109,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -128,8 +125,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -144,8 +140,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabVirtualMachineInner>> update(
@@ -161,8 +156,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/addDataDisk")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/addDataDisk")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> addDataDisk(
@@ -178,8 +172,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/applyArtifacts")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/applyArtifacts")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> applyArtifacts(
@@ -195,8 +188,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/claim")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/claim")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> claim(
@@ -211,8 +203,22 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/detachDataDisk")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/clearArtifactResults")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> clearArtifactResults(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("labName") String labName,
+            @PathParam("name") String name,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/detachDataDisk")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> detachDataDisk(
@@ -228,8 +234,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/getRdpFileContents")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/getRdpFileContents")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RdpConnectionInner>> getRdpFileContents(
@@ -244,8 +249,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/listApplicableSchedules")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/listApplicableSchedules")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApplicableScheduleInner>> listApplicableSchedules(
@@ -260,8 +264,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/redeploy")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/redeploy")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> redeploy(
@@ -276,8 +279,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/resize")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/resize")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> resize(
@@ -293,8 +295,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/restart")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/restart")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> restart(
@@ -309,8 +310,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -325,8 +325,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -341,8 +340,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/transferDisks")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/transferDisks")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> transferDisks(
@@ -357,8 +355,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/virtualmachines/{name}/unClaim")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/virtualmachines/{name}/unClaim")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> unClaim(
@@ -389,14 +386,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example:
      *     'properties($expand=artifacts,computeVm,networkInterface,applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of virtualMachines and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVirtualMachineInner>> listSinglePageAsync(
@@ -456,15 +453,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example:
      *     'properties($expand=artifacts,computeVm,networkInterface,applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of virtualMachines and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVirtualMachineInner>> listSinglePageAsync(
@@ -527,13 +524,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example:
      *     'properties($expand=artifacts,computeVm,networkInterface,applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabVirtualMachineInner> listAsync(
@@ -551,7 +548,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabVirtualMachineInner> listAsync(String resourceGroupName, String labName) {
@@ -571,14 +568,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example:
      *     'properties($expand=artifacts,computeVm,networkInterface,applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabVirtualMachineInner> listAsync(
@@ -602,7 +599,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabVirtualMachineInner> list(String resourceGroupName, String labName) {
@@ -620,14 +617,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example:
      *     'properties($expand=artifacts,computeVm,networkInterface,applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabVirtualMachineInner> list(
@@ -807,7 +804,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -868,7 +865,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -931,7 +928,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -958,7 +955,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -991,7 +988,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -1009,7 +1006,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -1034,7 +1031,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -1054,7 +1051,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -1079,7 +1076,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -1097,7 +1094,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Create or replace an existing virtual machine. This operation can take a while to complete.
+     * Create or replace an existing Virtual machine. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -1371,7 +1368,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
-     * @param labVirtualMachine A virtual machine.
+     * @param labVirtualMachine Allows modifying tags of virtual machines. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1432,7 +1429,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
-     * @param labVirtualMachine A virtual machine.
+     * @param labVirtualMachine Allows modifying tags of virtual machines. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1495,7 +1492,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
-     * @param labVirtualMachine A virtual machine.
+     * @param labVirtualMachine Allows modifying tags of virtual machines. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1514,7 +1511,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
-     * @param labVirtualMachine A virtual machine.
+     * @param labVirtualMachine Allows modifying tags of virtual machines. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1537,7 +1534,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
-     * @param labVirtualMachine A virtual machine.
+     * @param labVirtualMachine Allows modifying tags of virtual machines. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2377,6 +2374,159 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void claim(String resourceGroupName, String labName, String name, Context context) {
         claimAsync(resourceGroupName, labName, name, context).block();
+    }
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> clearArtifactResultsWithResponseAsync(
+        String resourceGroupName, String labName, String name) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (labName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter labName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .clearArtifactResults(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            labName,
+                            name,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> clearArtifactResultsWithResponseAsync(
+        String resourceGroupName, String labName, String name, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (labName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter labName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .clearArtifactResults(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                labName,
+                name,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> clearArtifactResultsAsync(String resourceGroupName, String labName, String name) {
+        return clearArtifactResultsWithResponseAsync(resourceGroupName, labName, name).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> clearArtifactResultsWithResponse(
+        String resourceGroupName, String labName, String name, Context context) {
+        return clearArtifactResultsWithResponseAsync(resourceGroupName, labName, name, context).block();
+    }
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void clearArtifactResults(String resourceGroupName, String labName, String name) {
+        clearArtifactResultsWithResponse(resourceGroupName, labName, name, Context.NONE);
     }
 
     /**
@@ -4833,8 +4983,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of virtualMachines and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVirtualMachineInner>> listNextSinglePageAsync(String nextLink) {
@@ -4871,8 +5021,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of virtualMachines and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVirtualMachineInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -12,6 +12,7 @@ import com.azure.resourcemanager.devtestlabs.fluent.OperationsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.OperationResultInner;
 import com.azure.resourcemanager.devtestlabs.models.OperationResult;
 import com.azure.resourcemanager.devtestlabs.models.Operations;
+import com.azure.resourcemanager.devtestlabs.models.OperationsGetResponse;
 
 public final class OperationsImpl implements Operations {
     private static final ClientLogger LOGGER = new ClientLogger(OperationsImpl.class);
@@ -27,7 +28,7 @@ public final class OperationsImpl implements Operations {
     }
 
     public Response<OperationResult> getWithResponse(String locationName, String name, Context context) {
-        Response<OperationResultInner> inner = this.serviceClient().getWithResponse(locationName, name, context);
+        OperationsGetResponse inner = this.serviceClient().getWithResponse(locationName, name, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),

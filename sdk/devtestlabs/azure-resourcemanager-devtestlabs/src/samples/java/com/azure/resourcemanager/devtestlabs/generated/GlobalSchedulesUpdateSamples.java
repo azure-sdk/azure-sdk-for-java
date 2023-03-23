@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for GlobalSchedules Update. */
 public final class GlobalSchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/GlobalSchedules_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/GlobalSchedules_Update.json
      */
     /**
      * Sample code: GlobalSchedules_Update.

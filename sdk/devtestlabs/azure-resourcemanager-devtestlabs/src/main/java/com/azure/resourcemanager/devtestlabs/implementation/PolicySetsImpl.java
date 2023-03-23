@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.fluent.PolicySetsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.EvaluatePoliciesResponseInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PolicySetInner;
 import com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesRequest;
 import com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesResponse;
+import com.azure.resourcemanager.devtestlabs.models.PolicySet;
 import com.azure.resourcemanager.devtestlabs.models.PolicySets;
 
 public final class PolicySetsImpl implements PolicySets {
@@ -25,6 +28,18 @@ public final class PolicySetsImpl implements PolicySets {
         PolicySetsClient innerClient, com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public PagedIterable<PolicySet> list(String resourceGroupName, String labName) {
+        PagedIterable<PolicySetInner> inner = this.serviceClient().list(resourceGroupName, labName);
+        return Utils.mapPage(inner, inner1 -> new PolicySetImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PolicySet> list(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby, Context context) {
+        PagedIterable<PolicySetInner> inner =
+            this.serviceClient().list(resourceGroupName, labName, filter, top, orderby, context);
+        return Utils.mapPage(inner, inner1 -> new PolicySetImpl(inner1, this.manager()));
     }
 
     public Response<EvaluatePoliciesResponse> evaluatePoliciesWithResponse(

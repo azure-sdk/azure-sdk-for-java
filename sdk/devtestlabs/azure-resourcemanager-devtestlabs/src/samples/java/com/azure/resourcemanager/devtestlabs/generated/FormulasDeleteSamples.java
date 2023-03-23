@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Formulas Delete. */
 public final class FormulasDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Formulas_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Formulas_Delete.json
      */
     /**
      * Sample code: Formulas_Delete.
@@ -17,6 +17,6 @@ public final class FormulasDeleteSamples {
     public static void formulasDelete(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .formulas()
-            .deleteWithResponse("resourceGroupName", "{labName}", "{formulaName}", com.azure.core.util.Context.NONE);
+            .deleteWithResponse("resourceGroupName", "myLabName", "{formulaName}", com.azure.core.util.Context.NONE);
     }
 }

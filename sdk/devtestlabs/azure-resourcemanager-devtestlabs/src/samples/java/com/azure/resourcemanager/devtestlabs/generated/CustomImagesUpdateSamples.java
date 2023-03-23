@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for CustomImages Update. */
 public final class CustomImagesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/CustomImages_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/CustomImages_Update.json
      */
     /**
      * Sample code: CustomImages_Update.
@@ -23,7 +23,7 @@ public final class CustomImagesUpdateSamples {
             manager
                 .customImages()
                 .getWithResponse(
-                    "resourceGroupName", "{labName}", "{customImageName}", null, com.azure.core.util.Context.NONE)
+                    "resourceGroupName", "myLabName", "{customImageName}", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tagName1", "tagValue2")).apply();
     }

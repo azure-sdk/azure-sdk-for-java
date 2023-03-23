@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A Service Fabric. */
+/** Patch. */
 @Fluent
 public final class ServiceFabricFragment extends UpdateResource {
     /** Creates an instance of ServiceFabricFragment class. */
@@ -18,6 +19,13 @@ public final class ServiceFabricFragment extends UpdateResource {
     @Override
     public ServiceFabricFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ServiceFabricFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

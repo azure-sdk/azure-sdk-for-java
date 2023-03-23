@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ArtifactSources Delete. */
 public final class ArtifactSourcesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ArtifactSources_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ArtifactSources_Delete.json
      */
     /**
      * Sample code: ArtifactSources_Delete.
@@ -17,7 +17,6 @@ public final class ArtifactSourcesDeleteSamples {
     public static void artifactSourcesDelete(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .artifactSources()
-            .deleteWithResponse(
-                "resourceGroupName", "{labName}", "{artifactSourceName}", com.azure.core.util.Context.NONE);
+            .deleteWithResponse("resourceGroupName", "myLabName", "myArtifactSource", com.azure.core.util.Context.NONE);
     }
 }

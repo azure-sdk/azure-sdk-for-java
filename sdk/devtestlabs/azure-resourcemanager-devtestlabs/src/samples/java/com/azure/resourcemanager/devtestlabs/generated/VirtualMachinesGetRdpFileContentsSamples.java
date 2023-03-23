@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines GetRdpFileContents. */
 public final class VirtualMachinesGetRdpFileContentsSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_GetRdpFileContents.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_GetRdpFileContents.json
      */
     /**
      * Sample code: VirtualMachines_GetRdpFileContents.
@@ -19,6 +19,6 @@ public final class VirtualMachinesGetRdpFileContentsSamples {
         manager
             .virtualMachines()
             .getRdpFileContentsWithResponse(
-                "resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

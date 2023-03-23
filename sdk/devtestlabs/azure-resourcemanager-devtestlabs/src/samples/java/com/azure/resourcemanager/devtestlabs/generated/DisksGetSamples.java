@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Disks Get. */
 public final class DisksGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Disks_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Disks_Get.json
      */
     /**
      * Sample code: Disks_Get.
@@ -18,6 +18,6 @@ public final class DisksGetSamples {
         manager
             .disks()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "@me", "{diskName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "@me", "{diskName}", null, com.azure.core.util.Context.NONE);
     }
 }

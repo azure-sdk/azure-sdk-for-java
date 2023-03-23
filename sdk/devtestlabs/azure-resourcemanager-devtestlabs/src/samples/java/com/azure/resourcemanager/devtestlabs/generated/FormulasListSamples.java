@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Formulas List. */
 public final class FormulasListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Formulas_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Formulas_List.json
      */
     /**
      * Sample code: Formulas_List.
@@ -17,6 +17,6 @@ public final class FormulasListSamples {
     public static void formulasList(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .formulas()
-            .list("resourceGroupName", "{labName}", null, null, null, null, com.azure.core.util.Context.NONE);
+            .list("resourceGroupName", "myLabName", null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

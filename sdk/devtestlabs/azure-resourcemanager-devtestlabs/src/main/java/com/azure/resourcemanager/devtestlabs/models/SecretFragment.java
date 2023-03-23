@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A secret. */
+/** Patch. */
 @Fluent
 public final class SecretFragment extends UpdateResource {
     /** Creates an instance of SecretFragment class. */
@@ -18,6 +19,13 @@ public final class SecretFragment extends UpdateResource {
     @Override
     public SecretFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SecretFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

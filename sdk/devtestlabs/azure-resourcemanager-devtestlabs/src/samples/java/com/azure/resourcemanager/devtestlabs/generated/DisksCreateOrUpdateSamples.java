@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.StorageType;
 /** Samples for Disks CreateOrUpdate. */
 public final class DisksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Disks_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Disks_CreateOrUpdate.json
      */
     /**
      * Sample code: Disks_CreateOrUpdate.
@@ -20,12 +20,12 @@ public final class DisksCreateOrUpdateSamples {
         manager
             .disks()
             .define("{diskName}")
-            .withRegion((String) null)
-            .withExistingUser("resourceGroupName", "{labName}", "{userId}")
+            .withRegion("{location}")
+            .withExistingUser("resourceGroupName", "myLabName", "{userId}")
             .withDiskType(StorageType.STANDARD)
             .withDiskSizeGiB(1023)
             .withLeasedByLabVmId(
-                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/vmName")
+                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/myLabName/virtualmachines/vmName")
             .create();
     }
 }

@@ -13,13 +13,13 @@ import com.azure.resourcemanager.devtestlabs.fluent.LabsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GenerateUploadUriResponseInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabVhdInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
 import com.azure.resourcemanager.devtestlabs.models.ExportResourceUsageParameters;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriParameter;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriResponse;
 import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineRequest;
 import com.azure.resourcemanager.devtestlabs.models.Lab;
 import com.azure.resourcemanager.devtestlabs.models.LabVhd;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
 import com.azure.resourcemanager.devtestlabs.models.Labs;
 
 public final class LabsImpl implements Labs {
@@ -97,16 +97,26 @@ public final class LabsImpl implements Labs {
     }
 
     public void createEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         this.serviceClient().createEnvironment(resourceGroupName, name, labVirtualMachineCreationParameter);
     }
 
     public void createEnvironment(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         this.serviceClient().createEnvironment(resourceGroupName, name, labVirtualMachineCreationParameter, context);
+    }
+
+    public Response<Void> ensureCurrentUserProfileWithResponse(String resourceGroupName, String name, Context context) {
+        return this.serviceClient().ensureCurrentUserProfileWithResponse(resourceGroupName, name, context);
+    }
+
+    public void ensureCurrentUserProfile(String resourceGroupName, String name) {
+        this.serviceClient().ensureCurrentUserProfile(resourceGroupName, name);
     }
 
     public void exportResourceUsage(

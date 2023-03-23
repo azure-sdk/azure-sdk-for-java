@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for NotificationChannels Delete. */
 public final class NotificationChannelsDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/NotificationChannels_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/NotificationChannels_Delete.json
      */
     /**
      * Sample code: NotificationChannels_Delete.
@@ -18,6 +18,6 @@ public final class NotificationChannelsDeleteSamples {
         manager
             .notificationChannels()
             .deleteWithResponse(
-                "resourceGroupName", "{labName}", "{notificationChannelName}", com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{notificationChannelName}", com.azure.core.util.Context.NONE);
     }
 }

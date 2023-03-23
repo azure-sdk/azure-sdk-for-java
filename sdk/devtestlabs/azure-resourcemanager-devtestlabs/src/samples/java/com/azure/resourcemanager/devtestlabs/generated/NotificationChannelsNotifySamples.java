@@ -10,7 +10,7 @@ import com.azure.resourcemanager.devtestlabs.models.NotifyParameters;
 /** Samples for NotificationChannels Notify. */
 public final class NotificationChannelsNotifySamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/NotificationChannels_Notify.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/NotificationChannels_Notify.json
      */
     /**
      * Sample code: NotificationChannels_Notify.
@@ -22,12 +22,12 @@ public final class NotificationChannelsNotifySamples {
             .notificationChannels()
             .notifyWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{notificationChannelName}",
                 new NotifyParameters()
                     .withEventName(NotificationChannelEventType.AUTO_SHUTDOWN)
                     .withJsonPayload(
-                        "{\"eventType\":\"AutoShutdown\",\"subscriptionId\":\"{subscriptionId}\",\"resourceGroupName\":\"resourceGroupName\",\"labName\":\"{labName}\"}"),
+                        "{\"eventType\":\"AutoShutdown\",\"subscriptionId\":\"{subscriptionId}\",\"resourceGroupName\":\"resourceGroupName\",\"labName\":\"myLabName\"}"),
                 com.azure.core.util.Context.NONE);
     }
 }

@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.RetargetScheduleProperties;
 /** Samples for GlobalSchedules Retarget. */
 public final class GlobalSchedulesRetargetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/GlobalSchedules_Retarget.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/GlobalSchedules_Retarget.json
      */
     /**
      * Sample code: GlobalSchedules_Retarget.

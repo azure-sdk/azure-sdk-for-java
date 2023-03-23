@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** An environment, which is essentially an ARM template deployment. */
+/** Patch. */
 @Fluent
 public final class DtlEnvironmentFragment extends UpdateResource {
     /** Creates an instance of DtlEnvironmentFragment class. */
@@ -18,6 +19,13 @@ public final class DtlEnvironmentFragment extends UpdateResource {
     @Override
     public DtlEnvironmentFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DtlEnvironmentFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.VirtualNetworkInner;
 import com.azure.resourcemanager.devtestlabs.models.ExternalSubnet;
 import com.azure.resourcemanager.devtestlabs.models.Subnet;
@@ -45,6 +47,10 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public List<Subnet> allowedSubnets() {
@@ -245,6 +251,11 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
 
     public VirtualNetworkImpl withSubnetOverrides(List<SubnetOverride> subnetOverrides) {
         this.innerModel().withSubnetOverrides(subnetOverrides);
+        return this;
+    }
+
+    public VirtualNetworkImpl withIdentity(IdentityProperties identity) {
+        this.updateVirtualNetwork.withIdentity(identity);
         return this;
     }
 
