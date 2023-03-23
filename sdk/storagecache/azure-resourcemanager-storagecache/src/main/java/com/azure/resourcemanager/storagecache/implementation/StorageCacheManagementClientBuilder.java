@@ -18,12 +18,14 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {StorageCacheManagementClientImpl.class})
 public final class StorageCacheManagementClientBuilder {
     /*
-     * The ID of the target subscription.
+     * Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of
+     * the URI for every service call.
      */
     private String subscriptionId;
 
     /**
-     * Sets The ID of the target subscription.
+     * Sets Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms
+     * part of the URI for every service call.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the StorageCacheManagementClientBuilder.

@@ -19,7 +19,7 @@ public final class StorageTargetsResult {
     private String nextLink;
 
     /*
-     * The list of Storage Targets defined for the cache.
+     * The list of Storage Targets defined for the Cache.
      */
     @JsonProperty(value = "value")
     private List<StorageTargetInner> value;
@@ -49,7 +49,7 @@ public final class StorageTargetsResult {
     }
 
     /**
-     * Get the value property: The list of Storage Targets defined for the cache.
+     * Get the value property: The list of Storage Targets defined for the Cache.
      *
      * @return the value value.
      */
@@ -58,7 +58,7 @@ public final class StorageTargetsResult {
     }
 
     /**
-     * Set the value property: The list of Storage Targets defined for the cache.
+     * Set the value property: The list of Storage Targets defined for the Cache.
      *
      * @param value the value value to set.
      * @return the StorageTargetsResult object itself.

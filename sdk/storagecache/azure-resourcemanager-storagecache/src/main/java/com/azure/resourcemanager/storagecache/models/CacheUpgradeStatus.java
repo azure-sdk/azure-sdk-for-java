@@ -8,24 +8,24 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties describing the software upgrade state of the cache. */
+/** Properties describing the software upgrade state of the Cache. */
 @Immutable
 public final class CacheUpgradeStatus {
     /*
-     * Version string of the firmware currently installed on this cache.
+     * Version string of the firmware currently installed on this Cache.
      */
     @JsonProperty(value = "currentFirmwareVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String currentFirmwareVersion;
 
     /*
-     * True if there is a firmware update ready to install on this cache. The firmware will automatically be installed
+     * True if there is a firmware update ready to install on this Cache. The firmware will automatically be installed
      * after firmwareUpdateDeadline if not triggered earlier via the upgrade operation.
      */
     @JsonProperty(value = "firmwareUpdateStatus", access = JsonProperty.Access.WRITE_ONLY)
     private FirmwareStatusType firmwareUpdateStatus;
 
     /*
-     * Time at which the pending firmware update will automatically be installed on the cache.
+     * Time at which the pending firmware update will automatically be installed on the Cache.
      */
     @JsonProperty(value = "firmwareUpdateDeadline", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime firmwareUpdateDeadline;
@@ -47,7 +47,7 @@ public final class CacheUpgradeStatus {
     }
 
     /**
-     * Get the currentFirmwareVersion property: Version string of the firmware currently installed on this cache.
+     * Get the currentFirmwareVersion property: Version string of the firmware currently installed on this Cache.
      *
      * @return the currentFirmwareVersion value.
      */
@@ -56,7 +56,7 @@ public final class CacheUpgradeStatus {
     }
 
     /**
-     * Get the firmwareUpdateStatus property: True if there is a firmware update ready to install on this cache. The
+     * Get the firmwareUpdateStatus property: True if there is a firmware update ready to install on this Cache. The
      * firmware will automatically be installed after firmwareUpdateDeadline if not triggered earlier via the upgrade
      * operation.
      *
@@ -68,7 +68,7 @@ public final class CacheUpgradeStatus {
 
     /**
      * Get the firmwareUpdateDeadline property: Time at which the pending firmware update will automatically be
-     * installed on the cache.
+     * installed on the Cache.
      *
      * @return the firmwareUpdateDeadline value.
      */

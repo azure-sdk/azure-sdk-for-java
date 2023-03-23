@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class CacheEncryptionSettings {
     /*
-     * Specifies the location of the key encryption key in key vault.
+     * Specifies the location of the key encryption key in Key Vault.
      */
     @JsonProperty(value = "keyEncryptionKey")
     private KeyVaultKeyReference keyEncryptionKey;
 
     /*
-     * Specifies whether the service will automatically rotate to the newest version of the key in the key vault.
+     * Specifies whether the service will automatically rotate to the newest version of the key in the Key Vault.
      */
     @JsonProperty(value = "rotationToLatestKeyVersionEnabled")
     private Boolean rotationToLatestKeyVersionEnabled;
@@ -27,7 +27,7 @@ public final class CacheEncryptionSettings {
     }
 
     /**
-     * Get the keyEncryptionKey property: Specifies the location of the key encryption key in key vault.
+     * Get the keyEncryptionKey property: Specifies the location of the key encryption key in Key Vault.
      *
      * @return the keyEncryptionKey value.
      */
@@ -36,7 +36,7 @@ public final class CacheEncryptionSettings {
     }
 
     /**
-     * Set the keyEncryptionKey property: Specifies the location of the key encryption key in key vault.
+     * Set the keyEncryptionKey property: Specifies the location of the key encryption key in Key Vault.
      *
      * @param keyEncryptionKey the keyEncryptionKey value to set.
      * @return the CacheEncryptionSettings object itself.
@@ -48,7 +48,7 @@ public final class CacheEncryptionSettings {
 
     /**
      * Get the rotationToLatestKeyVersionEnabled property: Specifies whether the service will automatically rotate to
-     * the newest version of the key in the key vault.
+     * the newest version of the key in the Key Vault.
      *
      * @return the rotationToLatestKeyVersionEnabled value.
      */
@@ -58,7 +58,7 @@ public final class CacheEncryptionSettings {
 
     /**
      * Set the rotationToLatestKeyVersionEnabled property: Specifies whether the service will automatically rotate to
-     * the newest version of the key in the key vault.
+     * the newest version of the key in the Key Vault.
      *
      * @param rotationToLatestKeyVersionEnabled the rotationToLatestKeyVersionEnabled value to set.
      * @return the CacheEncryptionSettings object itself.

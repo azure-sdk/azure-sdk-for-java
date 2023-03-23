@@ -63,41 +63,28 @@ public interface Cache {
     SystemData systemData();
 
     /**
-     * Gets the sku property: SKU for the cache.
+     * Gets the sku property: SKU for the Cache.
      *
      * @return the sku value.
      */
     CacheSku sku();
 
     /**
-     * Gets the cacheSizeGB property: The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the
-     * cache SKU - &lt;a href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-     * SKUs&lt;/a&gt;.
+     * Gets the cacheSizeGB property: The size of this Cache, in GB.
      *
      * @return the cacheSizeGB value.
      */
     Integer cacheSizeGB();
 
     /**
-     * Gets the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
-     * Values depend on the cache SKU - &lt;a
-     * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List SKUs&lt;/a&gt;. Values
-     * above 1.0 increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
-     * larger than its base size.
-     *
-     * @return the scalingFactor value.
-     */
-    Double scalingFactor();
-
-    /**
-     * Gets the health property: Health of the cache.
+     * Gets the health property: Health of the Cache.
      *
      * @return the health value.
      */
     CacheHealth health();
 
     /**
-     * Gets the mountAddresses property: Array of IPv4 addresses that can be used by clients mounting this cache.
+     * Gets the mountAddresses property: Array of IP addresses that can be used by clients mounting this Cache.
      *
      * @return the mountAddresses value.
      */
@@ -112,21 +99,21 @@ public interface Cache {
     ProvisioningStateType provisioningState();
 
     /**
-     * Gets the subnet property: Subnet used for the cache.
+     * Gets the subnet property: Subnet used for the Cache.
      *
      * @return the subnet value.
      */
     String subnet();
 
     /**
-     * Gets the upgradeStatus property: Upgrade status of the cache.
+     * Gets the upgradeStatus property: Upgrade status of the Cache.
      *
      * @return the upgradeStatus value.
      */
     CacheUpgradeStatus upgradeStatus();
 
     /**
-     * Gets the upgradeSettings property: Upgrade settings of the cache.
+     * Gets the upgradeSettings property: Upgrade settings of the Cache.
      *
      * @return the upgradeSettings value.
      */
@@ -246,7 +233,7 @@ public interface Cache {
             /**
              * Specifies resourceGroupName.
              *
-             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param resourceGroupName Target resource group.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
@@ -260,7 +247,6 @@ public interface Cache {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithCacheSizeGB,
-                DefinitionStages.WithScalingFactor,
                 DefinitionStages.WithSubnet,
                 DefinitionStages.WithUpgradeSettings,
                 DefinitionStages.WithNetworkSettings,
@@ -306,9 +292,9 @@ public interface Cache {
         /** The stage of the Cache definition allowing to specify sku. */
         interface WithSku {
             /**
-             * Specifies the sku property: SKU for the cache..
+             * Specifies the sku property: SKU for the Cache..
              *
-             * @param sku SKU for the cache.
+             * @param sku SKU for the Cache.
              * @return the next definition stage.
              */
             WithCreate withSku(CacheSku sku);
@@ -316,43 +302,19 @@ public interface Cache {
         /** The stage of the Cache definition allowing to specify cacheSizeGB. */
         interface WithCacheSizeGB {
             /**
-             * Specifies the cacheSizeGB property: The size of this cache, in GB, when scalingFactor is 1.0. Values
-             * depend on the cache SKU - &lt;a
-             * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-             * SKUs&lt;/a&gt;..
+             * Specifies the cacheSizeGB property: The size of this Cache, in GB..
              *
-             * @param cacheSizeGB The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the cache
-             *     SKU - &lt;a
-             *     href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-             *     SKUs&lt;/a&gt;.
+             * @param cacheSizeGB The size of this Cache, in GB.
              * @return the next definition stage.
              */
             WithCreate withCacheSizeGB(Integer cacheSizeGB);
         }
-        /** The stage of the Cache definition allowing to specify scalingFactor. */
-        interface WithScalingFactor {
-            /**
-             * Specifies the scalingFactor property: Multiplier that sets the current storage and throughput capacity of
-             * the cache. Values depend on the cache SKU - &lt;a
-             * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-             * SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling factor
-             * 1.33 gives a cache that's 33% larger than its base size..
-             *
-             * @param scalingFactor Multiplier that sets the current storage and throughput capacity of the cache.
-             *     Values depend on the cache SKU - &lt;a
-             *     href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-             *     SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling
-             *     factor 1.33 gives a cache that's 33% larger than its base size.
-             * @return the next definition stage.
-             */
-            WithCreate withScalingFactor(Double scalingFactor);
-        }
         /** The stage of the Cache definition allowing to specify subnet. */
         interface WithSubnet {
             /**
-             * Specifies the subnet property: Subnet used for the cache..
+             * Specifies the subnet property: Subnet used for the Cache..
              *
-             * @param subnet Subnet used for the cache.
+             * @param subnet Subnet used for the Cache.
              * @return the next definition stage.
              */
             WithCreate withSubnet(String subnet);
@@ -360,9 +322,9 @@ public interface Cache {
         /** The stage of the Cache definition allowing to specify upgradeSettings. */
         interface WithUpgradeSettings {
             /**
-             * Specifies the upgradeSettings property: Upgrade settings of the cache..
+             * Specifies the upgradeSettings property: Upgrade settings of the Cache..
              *
-             * @param upgradeSettings Upgrade settings of the cache.
+             * @param upgradeSettings Upgrade settings of the Cache.
              * @return the next definition stage.
              */
             WithCreate withUpgradeSettings(CacheUpgradeSettings upgradeSettings);
@@ -431,7 +393,6 @@ public interface Cache {
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithIdentity,
-            UpdateStages.WithScalingFactor,
             UpdateStages.WithUpgradeSettings,
             UpdateStages.WithNetworkSettings,
             UpdateStages.WithEncryptionSettings,
@@ -474,30 +435,12 @@ public interface Cache {
              */
             Update withIdentity(CacheIdentity identity);
         }
-        /** The stage of the Cache update allowing to specify scalingFactor. */
-        interface WithScalingFactor {
-            /**
-             * Specifies the scalingFactor property: Multiplier that sets the current storage and throughput capacity of
-             * the cache. Values depend on the cache SKU - &lt;a
-             * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-             * SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling factor
-             * 1.33 gives a cache that's 33% larger than its base size..
-             *
-             * @param scalingFactor Multiplier that sets the current storage and throughput capacity of the cache.
-             *     Values depend on the cache SKU - &lt;a
-             *     href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-             *     SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling
-             *     factor 1.33 gives a cache that's 33% larger than its base size.
-             * @return the next definition stage.
-             */
-            Update withScalingFactor(Double scalingFactor);
-        }
         /** The stage of the Cache update allowing to specify upgradeSettings. */
         interface WithUpgradeSettings {
             /**
-             * Specifies the upgradeSettings property: Upgrade settings of the cache..
+             * Specifies the upgradeSettings property: Upgrade settings of the Cache..
              *
-             * @param upgradeSettings Upgrade settings of the cache.
+             * @param upgradeSettings Upgrade settings of the Cache.
              * @return the next definition stage.
              */
             Update withUpgradeSettings(CacheUpgradeSettings upgradeSettings);
@@ -559,7 +502,7 @@ public interface Cache {
     Cache refresh(Context context);
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -567,7 +510,7 @@ public interface Cache {
     void debugInfo();
 
     /**
-     * Tells a cache to write generate debug info for support to process.
+     * Tells a Cache to write generate debug info for support to process.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -577,7 +520,7 @@ public interface Cache {
     void debugInfo(Context context);
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -586,7 +529,7 @@ public interface Cache {
     void flush();
 
     /**
-     * Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
+     * Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors
      * returned until the flush is complete.
      *
      * @param context The context to associate with this operation.
@@ -597,7 +540,7 @@ public interface Cache {
     void flush(Context context);
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -605,7 +548,7 @@ public interface Cache {
     void start();
 
     /**
-     * Tells a Stopped state cache to transition to Active state.
+     * Tells a Stopped state Cache to transition to Active state.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -615,7 +558,7 @@ public interface Cache {
     void start(Context context);
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -623,7 +566,7 @@ public interface Cache {
     void stop();
 
     /**
-     * Tells an Active cache to transition to Stopped state.
+     * Tells an Active Cache to transition to Stopped state.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -709,7 +652,7 @@ public interface Cache {
     void resumePrimingJob(PrimingJobIdParameter primingJobId, Context context);
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -717,7 +660,7 @@ public interface Cache {
     void upgradeFirmware();
 
     /**
-     * Upgrade a cache's firmware if a new version is available. Otherwise, this operation has no effect.
+     * Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

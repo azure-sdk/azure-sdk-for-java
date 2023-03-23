@@ -18,33 +18,23 @@ import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocatio
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of the cache. */
+/** Properties of the Cache. */
 @Fluent
 public final class CacheProperties {
     /*
-     * The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the cache SKU - <a
-     * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP">List SKUs</a>.
+     * The size of this Cache, in GB.
      */
     @JsonProperty(value = "cacheSizeGB")
     private Integer cacheSizeGB;
 
     /*
-     * Multiplier that sets the current storage and throughput capacity of the cache. Values depend on the cache SKU -
-     * <a href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP">List SKUs</a>. Values
-     * above 1.0 increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
-     * larger than its base size.
-     */
-    @JsonProperty(value = "scalingFactor")
-    private Double scalingFactor;
-
-    /*
-     * Health of the cache.
+     * Health of the Cache.
      */
     @JsonProperty(value = "health", access = JsonProperty.Access.WRITE_ONLY)
     private CacheHealth health;
 
     /*
-     * Array of IPv4 addresses that can be used by clients mounting this cache.
+     * Array of IP addresses that can be used by clients mounting this Cache.
      */
     @JsonProperty(value = "mountAddresses", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> mountAddresses;
@@ -57,19 +47,19 @@ public final class CacheProperties {
     private ProvisioningStateType provisioningState;
 
     /*
-     * Subnet used for the cache.
+     * Subnet used for the Cache.
      */
     @JsonProperty(value = "subnet")
     private String subnet;
 
     /*
-     * Upgrade status of the cache.
+     * Upgrade status of the Cache.
      */
     @JsonProperty(value = "upgradeStatus", access = JsonProperty.Access.WRITE_ONLY)
     private CacheUpgradeStatus upgradeStatus;
 
     /*
-     * Upgrade settings of the cache.
+     * Upgrade settings of the Cache.
      */
     @JsonProperty(value = "upgradeSettings")
     private CacheUpgradeSettings upgradeSettings;
@@ -121,9 +111,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Get the cacheSizeGB property: The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the
-     * cache SKU - &lt;a href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-     * SKUs&lt;/a&gt;.
+     * Get the cacheSizeGB property: The size of this Cache, in GB.
      *
      * @return the cacheSizeGB value.
      */
@@ -132,9 +120,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Set the cacheSizeGB property: The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the
-     * cache SKU - &lt;a href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
-     * SKUs&lt;/a&gt;.
+     * Set the cacheSizeGB property: The size of this Cache, in GB.
      *
      * @param cacheSizeGB the cacheSizeGB value to set.
      * @return the CacheProperties object itself.
@@ -145,35 +131,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Get the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
-     * Values depend on the cache SKU - &lt;a
-     * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List SKUs&lt;/a&gt;. Values
-     * above 1.0 increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
-     * larger than its base size.
-     *
-     * @return the scalingFactor value.
-     */
-    public Double scalingFactor() {
-        return this.scalingFactor;
-    }
-
-    /**
-     * Set the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
-     * Values depend on the cache SKU - &lt;a
-     * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List SKUs&lt;/a&gt;. Values
-     * above 1.0 increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
-     * larger than its base size.
-     *
-     * @param scalingFactor the scalingFactor value to set.
-     * @return the CacheProperties object itself.
-     */
-    public CacheProperties withScalingFactor(Double scalingFactor) {
-        this.scalingFactor = scalingFactor;
-        return this;
-    }
-
-    /**
-     * Get the health property: Health of the cache.
+     * Get the health property: Health of the Cache.
      *
      * @return the health value.
      */
@@ -182,7 +140,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Get the mountAddresses property: Array of IPv4 addresses that can be used by clients mounting this cache.
+     * Get the mountAddresses property: Array of IP addresses that can be used by clients mounting this Cache.
      *
      * @return the mountAddresses value.
      */
@@ -201,7 +159,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Get the subnet property: Subnet used for the cache.
+     * Get the subnet property: Subnet used for the Cache.
      *
      * @return the subnet value.
      */
@@ -210,7 +168,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Set the subnet property: Subnet used for the cache.
+     * Set the subnet property: Subnet used for the Cache.
      *
      * @param subnet the subnet value to set.
      * @return the CacheProperties object itself.
@@ -221,7 +179,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Get the upgradeStatus property: Upgrade status of the cache.
+     * Get the upgradeStatus property: Upgrade status of the Cache.
      *
      * @return the upgradeStatus value.
      */
@@ -230,7 +188,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Get the upgradeSettings property: Upgrade settings of the cache.
+     * Get the upgradeSettings property: Upgrade settings of the Cache.
      *
      * @return the upgradeSettings value.
      */
@@ -239,7 +197,7 @@ public final class CacheProperties {
     }
 
     /**
-     * Set the upgradeSettings property: Upgrade settings of the cache.
+     * Set the upgradeSettings property: Upgrade settings of the Cache.
      *
      * @param upgradeSettings the upgradeSettings value to set.
      * @return the CacheProperties object itself.
