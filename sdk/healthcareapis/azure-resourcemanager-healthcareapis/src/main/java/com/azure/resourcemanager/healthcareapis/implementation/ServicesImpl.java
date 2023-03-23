@@ -30,15 +30,6 @@ public final class ServicesImpl implements Services {
         this.serviceManager = serviceManager;
     }
 
-    public ServicesDescription getByResourceGroup(String resourceGroupName, String resourceName) {
-        ServicesDescriptionInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
-        if (inner != null) {
-            return new ServicesDescriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ServicesDescription> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         Response<ServicesDescriptionInner> inner =
@@ -49,6 +40,15 @@ public final class ServicesImpl implements Services {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ServicesDescriptionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ServicesDescription getByResourceGroup(String resourceGroupName, String resourceName) {
+        ServicesDescriptionInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
+        if (inner != null) {
+            return new ServicesDescriptionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -83,17 +83,6 @@ public final class ServicesImpl implements Services {
         return Utils.mapPage(inner, inner1 -> new ServicesDescriptionImpl(inner1, this.manager()));
     }
 
-    public ServicesNameAvailabilityInfo checkNameAvailability(
-        CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
-        ServicesNameAvailabilityInfoInner inner =
-            this.serviceClient().checkNameAvailability(checkNameAvailabilityInputs);
-        if (inner != null) {
-            return new ServicesNameAvailabilityInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ServicesNameAvailabilityInfo> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityParameters checkNameAvailabilityInputs, Context context) {
         Response<ServicesNameAvailabilityInfoInner> inner =
@@ -104,6 +93,17 @@ public final class ServicesImpl implements Services {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ServicesNameAvailabilityInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ServicesNameAvailabilityInfo checkNameAvailability(
+        CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
+        ServicesNameAvailabilityInfoInner inner =
+            this.serviceClient().checkNameAvailability(checkNameAvailabilityInputs);
+        if (inner != null) {
+            return new ServicesNameAvailabilityInfoImpl(inner, this.manager());
         } else {
             return null;
         }

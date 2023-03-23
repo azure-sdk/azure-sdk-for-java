@@ -7,7 +7,7 @@ package com.azure.resourcemanager.healthcareapis.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for Kind. */
+/** The kind of the service. */
 public enum Kind {
     /** Enum value fhir. */
     FHIR("fhir"),
@@ -33,6 +33,9 @@ public enum Kind {
      */
     @JsonCreator
     public static Kind fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         Kind[] items = Kind.values();
         for (Kind item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -42,6 +45,7 @@ public enum Kind {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {
