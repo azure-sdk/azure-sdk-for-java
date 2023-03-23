@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Labs Get. */
 public final class LabsGetSamples {
     /*
@@ -20,7 +18,11 @@ public final class LabsGetSamples {
         manager
             .labs()
             .getWithResponse(
-                "{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", true, Context.NONE);
+                "{billingAccountName}",
+                "{billingProfileName}",
+                "{invoiceSectionName}",
+                true,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -35,6 +37,10 @@ public final class LabsGetSamples {
         manager
             .labs()
             .getWithResponse(
-                "{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", false, Context.NONE);
+                "{billingAccountName}",
+                "{billingProfileName}",
+                "{invoiceSectionName}",
+                false,
+                com.azure.core.util.Context.NONE);
     }
 }
