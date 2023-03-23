@@ -25,6 +25,10 @@ public final class IoTDeviceEntity extends EntityInner {
     @JsonProperty(value = "properties")
     private IoTDeviceEntityProperties innerProperties;
 
+    /** Creates an instance of IoTDeviceEntity class. */
+    public IoTDeviceEntity() {
+    }
+
     /**
      * Get the innerProperties property: IoTDevice entity properties.
      *

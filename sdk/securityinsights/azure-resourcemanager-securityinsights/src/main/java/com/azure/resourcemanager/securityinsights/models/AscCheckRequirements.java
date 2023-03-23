@@ -21,6 +21,10 @@ public final class AscCheckRequirements extends DataConnectorsCheckRequirements 
     @JsonProperty(value = "properties")
     private AscCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of AscCheckRequirements class. */
+    public AscCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: ASC (Azure Security Center) requirements check properties.
      *

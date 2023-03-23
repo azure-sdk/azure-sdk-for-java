@@ -58,20 +58,6 @@ public interface IncidentComments {
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
      * @param incidentCommentId Incident comment ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident comment.
-     */
-    IncidentComment get(String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId);
-
-    /**
-     * Gets an incident comment.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param incidentCommentId Incident comment ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -82,7 +68,7 @@ public interface IncidentComments {
         String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId, Context context);
 
     /**
-     * Delete the incident comment.
+     * Gets an incident comment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -91,8 +77,9 @@ public interface IncidentComments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an incident comment.
      */
-    void delete(String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId);
+    IncidentComment get(String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId);
 
     /**
      * Delete the incident comment.
@@ -109,6 +96,19 @@ public interface IncidentComments {
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId, Context context);
+
+    /**
+     * Delete the incident comment.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @param incidentCommentId Incident comment ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId);
 
     /**
      * Gets an incident comment.
