@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Identity for the Provisioned cluster. */
 @Fluent
-public class ProvisionedClusterIdentity {
+public final class ProvisionedClusterIdentity {
     /*
      * The principal id of provisioned cluster identity. This property will only be provided for a system assigned
      * identity.
