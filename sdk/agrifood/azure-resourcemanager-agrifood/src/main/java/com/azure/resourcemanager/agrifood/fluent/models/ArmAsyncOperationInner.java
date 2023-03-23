@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.agrifood.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.agrifood.models.ArmAsyncOperationError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -18,6 +19,18 @@ public final class ArmAsyncOperationInner {
      */
     @JsonProperty(value = "status")
     private String status;
+
+    /*
+     * Arm async operation error class.
+     * Ref:
+     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#azure-asyncoperation-resource-format.
+     */
+    @JsonProperty(value = "error")
+    private ArmAsyncOperationError error;
+
+    /** Creates an instance of ArmAsyncOperationInner class. */
+    public ArmAsyncOperationInner() {
+    }
 
     /**
      * Get the status property: Status of the async operation.
@@ -40,10 +53,35 @@ public final class ArmAsyncOperationInner {
     }
 
     /**
+     * Get the error property: Arm async operation error class. Ref:
+     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#azure-asyncoperation-resource-format.
+     *
+     * @return the error value.
+     */
+    public ArmAsyncOperationError error() {
+        return this.error;
+    }
+
+    /**
+     * Set the error property: Arm async operation error class. Ref:
+     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#azure-asyncoperation-resource-format.
+     *
+     * @param error the error value to set.
+     * @return the ArmAsyncOperationInner object itself.
+     */
+    public ArmAsyncOperationInner withError(ArmAsyncOperationError error) {
+        this.error = error;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (error() != null) {
+            error().validate();
+        }
     }
 }
