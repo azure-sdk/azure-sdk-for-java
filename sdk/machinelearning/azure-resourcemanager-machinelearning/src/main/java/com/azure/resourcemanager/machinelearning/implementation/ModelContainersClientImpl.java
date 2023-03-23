@@ -40,21 +40,21 @@ public final class ModelContainersClientImpl implements ModelContainersClient {
     private final ModelContainersService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ModelContainersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ModelContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ModelContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(ModelContainersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesModelContainers to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesModelContainers to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -62,8 +62,7 @@ public final class ModelContainersClientImpl implements ModelContainersClient {
     public interface ModelContainersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ModelContainerResourceArmPaginatedResult>> list(
@@ -80,8 +79,7 @@ public final class ModelContainersClientImpl implements ModelContainersClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -96,8 +94,7 @@ public final class ModelContainersClientImpl implements ModelContainersClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ModelContainerInner>> get(
@@ -112,8 +109,7 @@ public final class ModelContainersClientImpl implements ModelContainersClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ModelContainerInner>> createOrUpdate(
