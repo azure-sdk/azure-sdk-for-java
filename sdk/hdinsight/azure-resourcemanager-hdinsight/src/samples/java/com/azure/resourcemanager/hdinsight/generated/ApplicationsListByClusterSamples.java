@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Applications ListByCluster. */
 public final class ApplicationsListByClusterSamples {
     /*
@@ -18,6 +16,6 @@ public final class ApplicationsListByClusterSamples {
      */
     public static void getAllApplicationsForAnHDInsightCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.applications().listByCluster("rg1", "cluster1", Context.NONE);
+        manager.applications().listByCluster("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ScriptActions GetExecutionDetail. */
 public final class ScriptActionsGetExecutionDetailSamples {
     /*
@@ -18,6 +16,8 @@ public final class ScriptActionsGetExecutionDetailSamples {
      */
     public static void getScriptExecutionHistoryByScriptId(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.scriptActions().getExecutionDetailWithResponse("rg1", "cluster1", "391145124054712", Context.NONE);
+        manager
+            .scriptActions()
+            .getExecutionDetailWithResponse("rg1", "cluster1", "391145124054712", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ScriptExecutionHistory ListByCluster. */
 public final class ScriptExecutionHistoryListByClusterSamples {
     /*
@@ -17,6 +15,6 @@ public final class ScriptExecutionHistoryListByClusterSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void getScriptExecutionHistoryList(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.scriptExecutionHistories().listByCluster("rg1", "cluster1", Context.NONE);
+        manager.scriptExecutionHistories().listByCluster("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

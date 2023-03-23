@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions GetMonitoringStatus. */
 public final class ExtensionsGetMonitoringStatusSamples {
     /*
@@ -17,6 +15,6 @@ public final class ExtensionsGetMonitoringStatusSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void enableClusterMonitoring(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.extensions().getMonitoringStatusWithResponse("rg1", "cluster1", Context.NONE);
+        manager.extensions().getMonitoringStatusWithResponse("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
