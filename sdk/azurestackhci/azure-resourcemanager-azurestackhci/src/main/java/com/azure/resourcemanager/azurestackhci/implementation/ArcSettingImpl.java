@@ -187,14 +187,14 @@ public final class ArcSettingImpl implements ArcSetting, ArcSetting.Definition, 
         return this;
     }
 
-    public PasswordCredential generatePassword() {
-        return serviceManager.arcSettings().generatePassword(resourceGroupName, clusterName, arcSettingName);
-    }
-
     public Response<PasswordCredential> generatePasswordWithResponse(Context context) {
         return serviceManager
             .arcSettings()
             .generatePasswordWithResponse(resourceGroupName, clusterName, arcSettingName, context);
+    }
+
+    public PasswordCredential generatePassword() {
+        return serviceManager.arcSettings().generatePassword(resourceGroupName, clusterName, arcSettingName);
     }
 
     public ArcIdentityResponse createIdentity() {
