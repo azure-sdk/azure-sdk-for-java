@@ -59,6 +59,10 @@ public final class ElasticMonitorResourceImpl
         return this.innerModel().identity();
     }
 
+    public Boolean generateApiKey() {
+        return this.innerModel().generateApiKey();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
