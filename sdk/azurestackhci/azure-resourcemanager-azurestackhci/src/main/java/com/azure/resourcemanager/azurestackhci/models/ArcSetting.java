@@ -35,7 +35,7 @@ public interface ArcSetting {
     String type();
 
     /**
-     * Gets the systemData property: System data of ArcSetting resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -104,6 +104,13 @@ public interface ArcSetting {
      * @return the connectivityProperties value.
      */
     Object connectivityProperties();
+
+    /**
+     * Gets the defaultExtensions property: Properties for each of the default extensions category.
+     *
+     * @return the defaultExtensions value.
+     */
+    List<DefaultExtensionDetails> defaultExtensions();
 
     /**
      * Gets the name of the resource group.
@@ -295,15 +302,6 @@ public interface ArcSetting {
     /**
      * Generate password for arc settings.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    PasswordCredential generatePassword();
-
-    /**
-     * Generate password for arc settings.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -311,6 +309,15 @@ public interface ArcSetting {
      * @return the response body along with {@link Response}.
      */
     Response<PasswordCredential> generatePasswordWithResponse(Context context);
+
+    /**
+     * Generate password for arc settings.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    PasswordCredential generatePassword();
 
     /**
      * Create Aad identity for arc settings.
@@ -331,4 +338,42 @@ public interface ArcSetting {
      * @return arcIdentity details.
      */
     ArcIdentityResponse createIdentity(Context context);
+
+    /**
+     * Add consent time for default extensions and initiate extensions installation.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return arcSetting details along with {@link Response}.
+     */
+    Response<ArcSetting> consentAndInstallDefaultExtensionsWithResponse(Context context);
+
+    /**
+     * Add consent time for default extensions and initiate extensions installation.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return arcSetting details.
+     */
+    ArcSetting consentAndInstallDefaultExtensions();
+
+    /**
+     * Initializes ARC Disable process on the cluster.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void initializeDisableProcess();
+
+    /**
+     * Initializes ARC Disable process on the cluster.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void initializeDisableProcess(Context context);
 }
