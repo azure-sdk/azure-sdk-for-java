@@ -17,6 +17,12 @@ public final class ConnectToTargetSqlDbTaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private SqlConnectionInfo targetConnectionInfo;
 
+    /*
+     * Boolean flag indicating whether to query object counts for each database on the target server
+     */
+    @JsonProperty(value = "queryObjectCounts")
+    private Boolean queryObjectCounts;
+
     /** Creates an instance of ConnectToTargetSqlDbTaskInput class. */
     public ConnectToTargetSqlDbTaskInput() {
     }
@@ -38,6 +44,28 @@ public final class ConnectToTargetSqlDbTaskInput {
      */
     public ConnectToTargetSqlDbTaskInput withTargetConnectionInfo(SqlConnectionInfo targetConnectionInfo) {
         this.targetConnectionInfo = targetConnectionInfo;
+        return this;
+    }
+
+    /**
+     * Get the queryObjectCounts property: Boolean flag indicating whether to query object counts for each database on
+     * the target server.
+     *
+     * @return the queryObjectCounts value.
+     */
+    public Boolean queryObjectCounts() {
+        return this.queryObjectCounts;
+    }
+
+    /**
+     * Set the queryObjectCounts property: Boolean flag indicating whether to query object counts for each database on
+     * the target server.
+     *
+     * @param queryObjectCounts the queryObjectCounts value to set.
+     * @return the ConnectToTargetSqlDbTaskInput object itself.
+     */
+    public ConnectToTargetSqlDbTaskInput withQueryObjectCounts(Boolean queryObjectCounts) {
+        this.queryObjectCounts = queryObjectCounts;
         return this;
     }
 

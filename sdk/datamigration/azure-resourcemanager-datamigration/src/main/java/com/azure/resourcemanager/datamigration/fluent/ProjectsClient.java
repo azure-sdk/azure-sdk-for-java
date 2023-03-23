@@ -27,7 +27,7 @@ public interface ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName);
+    PagedIterable<ProjectInner> list(String groupName, String serviceName);
 
     /**
      * Get projects in a service
@@ -44,13 +44,16 @@ public interface ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName, Context context);
+    PagedIterable<ProjectInner> list(String groupName, String serviceName, Context context);
 
     /**
      * Create or update project
      *
      * <p>The project resource is a nested resource representing a stored migration project. The PUT method creates a
-     * new project or updates an existing one.
+     * new project or updates an existing one. Database Migration Service (classic) - SQL scenarios are on a deprecation
+     * path and will be retired on 15 March 2026 for all customers. Please migrate to Azure SQL database services by
+     * using the latest Azure Database Migration Service version which is available as an extension in Azure Data
+     * Studio, or by using Azure PowerShell and Azure CLI.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -70,7 +73,10 @@ public interface ProjectsClient {
      * Create or update project
      *
      * <p>The project resource is a nested resource representing a stored migration project. The PUT method creates a
-     * new project or updates an existing one.
+     * new project or updates an existing one. Database Migration Service (classic) - SQL scenarios are on a deprecation
+     * path and will be retired on 15 March 2026 for all customers. Please migrate to Azure SQL database services by
+     * using the latest Azure Database Migration Service version which is available as an extension in Azure Data
+     * Studio, or by using Azure PowerShell and Azure CLI.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -159,7 +165,10 @@ public interface ProjectsClient {
      * Update project
      *
      * <p>The project resource is a nested resource representing a stored migration project. The PATCH method updates an
-     * existing project.
+     * existing project. Database Migration Service (classic) - SQL scenarios are on a deprecation path and will be
+     * retired on 15 March 2026 for all customers. Please migrate to Azure SQL database services by using the latest
+     * Azure Database Migration Service version which is available as an extension in Azure Data Studio, or by using
+     * Azure PowerShell and Azure CLI.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -179,7 +188,10 @@ public interface ProjectsClient {
      * Update project
      *
      * <p>The project resource is a nested resource representing a stored migration project. The PATCH method updates an
-     * existing project.
+     * existing project. Database Migration Service (classic) - SQL scenarios are on a deprecation path and will be
+     * retired on 15 March 2026 for all customers. Please migrate to Azure SQL database services by using the latest
+     * Azure Database Migration Service version which is available as an extension in Azure Data Studio, or by using
+     * Azure PowerShell and Azure CLI.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
