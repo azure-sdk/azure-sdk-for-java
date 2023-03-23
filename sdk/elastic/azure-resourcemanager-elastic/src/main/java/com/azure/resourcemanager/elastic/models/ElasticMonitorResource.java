@@ -69,6 +69,13 @@ public interface ElasticMonitorResource {
     IdentityProperties identity();
 
     /**
+     * Gets the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
+     *
+     * @return the generateApiKey value.
+     */
+    Boolean generateApiKey();
+
+    /**
      * Gets the systemData property: The system metadata relating to this resource.
      *
      * @return the systemData value.

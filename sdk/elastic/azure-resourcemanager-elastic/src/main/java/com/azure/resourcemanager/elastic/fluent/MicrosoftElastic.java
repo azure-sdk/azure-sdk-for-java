@@ -176,4 +176,11 @@ public interface MicrosoftElastic {
      * @return the TrafficFiltersClient object.
      */
     TrafficFiltersClient getTrafficFilters();
+
+    /**
+     * Gets the OrganizationsClient object to access its operations.
+     *
+     * @return the OrganizationsClient object.
+     */
+    OrganizationsClient getOrganizations();
 }
