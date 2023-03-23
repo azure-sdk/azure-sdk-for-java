@@ -23,6 +23,10 @@ public final class DicomServiceAuthenticationConfiguration {
     @JsonProperty(value = "audiences", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> audiences;
 
+    /** Creates an instance of DicomServiceAuthenticationConfiguration class. */
+    public DicomServiceAuthenticationConfiguration() {
+    }
+
     /**
      * Get the authority property: The authority url for the service.
      *

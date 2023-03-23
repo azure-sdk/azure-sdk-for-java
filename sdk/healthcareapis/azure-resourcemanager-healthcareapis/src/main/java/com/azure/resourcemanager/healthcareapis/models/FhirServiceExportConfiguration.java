@@ -16,6 +16,10 @@ public final class FhirServiceExportConfiguration {
     @JsonProperty(value = "storageAccountName")
     private String storageAccountName;
 
+    /** Creates an instance of FhirServiceExportConfiguration class. */
+    public FhirServiceExportConfiguration() {
+    }
+
     /**
      * Get the storageAccountName property: The name of the default export storage account.
      *
