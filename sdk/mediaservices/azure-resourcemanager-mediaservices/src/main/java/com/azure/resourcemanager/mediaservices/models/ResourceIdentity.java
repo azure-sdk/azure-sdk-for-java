@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ResourceIdentity model. */
 @Fluent
-public class ResourceIdentity {
+public final class ResourceIdentity {
     /*
      * The user assigned managed identity's ARM ID to use when accessing a resource.
      */
