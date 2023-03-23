@@ -244,8 +244,6 @@ public final class SecurityManager {
 
     private SoftwareInventories softwareInventories;
 
-    private SecurityConnectors securityConnectors;
-
     private GovernanceRules governanceRules;
 
     private GovernanceAssignments governanceAssignments;
@@ -273,6 +271,8 @@ public final class SecurityManager {
     private SqlVulnerabilityAssessmentScanResults sqlVulnerabilityAssessmentScanResults;
 
     private SqlVulnerabilityAssessmentBaselineRules sqlVulnerabilityAssessmentBaselineRules;
+
+    private SecurityConnectors securityConnectors;
 
     private final SecurityCenter clientObject;
 
@@ -439,7 +439,7 @@ public final class SecurityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.security")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1059,18 +1059,6 @@ public final class SecurityManager {
     }
 
     /**
-     * Gets the resource collection API of SecurityConnectors. It manages SecurityConnector.
-     *
-     * @return Resource collection API of SecurityConnectors.
-     */
-    public SecurityConnectors securityConnectors() {
-        if (this.securityConnectors == null) {
-            this.securityConnectors = new SecurityConnectorsImpl(clientObject.getSecurityConnectors(), this);
-        }
-        return securityConnectors;
-    }
-
-    /**
      * Gets the resource collection API of GovernanceRules. It manages GovernanceRule.
      *
      * @return Resource collection API of GovernanceRules.
@@ -1247,6 +1235,18 @@ public final class SecurityManager {
                     clientObject.getSqlVulnerabilityAssessmentBaselineRules(), this);
         }
         return sqlVulnerabilityAssessmentBaselineRules;
+    }
+
+    /**
+     * Gets the resource collection API of SecurityConnectors. It manages SecurityConnector.
+     *
+     * @return Resource collection API of SecurityConnectors.
+     */
+    public SecurityConnectors securityConnectors() {
+        if (this.securityConnectors == null) {
+            this.securityConnectors = new SecurityConnectorsImpl(clientObject.getSecurityConnectors(), this);
+        }
+        return securityConnectors;
     }
 
     /**

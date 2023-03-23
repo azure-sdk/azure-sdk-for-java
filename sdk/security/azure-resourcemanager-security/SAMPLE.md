@@ -4974,7 +4974,7 @@ import java.util.Map;
 /** Samples for SecurityConnectors CreateOrUpdate. */
 public final class SecurityConnectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-08-01-preview/examples/SecurityConnectors/PutSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/PutSecurityConnector_example.json
      */
     /**
      * Sample code: Create or update a security connector.
@@ -5020,7 +5020,7 @@ public final class SecurityConnectorsCreateOrUpdateSamples {
 /** Samples for SecurityConnectors Delete. */
 public final class SecurityConnectorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-08-01-preview/examples/SecurityConnectors/DeleteSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/DeleteSecurityConnector_example.json
      */
     /**
      * Sample code: Delete a security connector.
@@ -5041,7 +5041,7 @@ public final class SecurityConnectorsDeleteSamples {
 /** Samples for SecurityConnectors GetByResourceGroup. */
 public final class SecurityConnectorsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-08-01-preview/examples/SecurityConnectors/GetSecurityConnectorSingleResource_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/GetSecurityConnectorSingleResource_example.json
      */
     /**
      * Sample code: Retrieve a security connector.
@@ -5063,7 +5063,7 @@ public final class SecurityConnectorsGetByResourceGroupSamples {
 /** Samples for SecurityConnectors List. */
 public final class SecurityConnectorsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-08-01-preview/examples/SecurityConnectors/GetSecurityConnectorsSubscription_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/GetSecurityConnectorsSubscription_example.json
      */
     /**
      * Sample code: List all security connectors of a specified subscription.
@@ -5083,7 +5083,7 @@ public final class SecurityConnectorsListSamples {
 /** Samples for SecurityConnectors ListByResourceGroup. */
 public final class SecurityConnectorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-08-01-preview/examples/SecurityConnectors/GetSecurityConnectorsResourceGroup_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/GetSecurityConnectorsResourceGroup_example.json
      */
     /**
      * Sample code: List all security connectors of a specified resource group.
@@ -5112,7 +5112,7 @@ import java.util.Map;
 /** Samples for SecurityConnectors Update. */
 public final class SecurityConnectorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-08-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
      */
     /**
      * Sample code: Update a security connector.
