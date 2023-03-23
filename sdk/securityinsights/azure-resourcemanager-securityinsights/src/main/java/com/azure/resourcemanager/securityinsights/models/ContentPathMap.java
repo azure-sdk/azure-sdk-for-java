@@ -22,6 +22,10 @@ public final class ContentPathMap {
     @JsonProperty(value = "path")
     private String path;
 
+    /** Creates an instance of ContentPathMap class. */
+    public ContentPathMap() {
+    }
+
     /**
      * Get the contentType property: Content type.
      *
