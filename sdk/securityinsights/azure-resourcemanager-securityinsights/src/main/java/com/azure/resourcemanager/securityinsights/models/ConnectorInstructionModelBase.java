@@ -23,6 +23,10 @@ public class ConnectorInstructionModelBase {
     @JsonProperty(value = "type", required = true)
     private SettingType type;
 
+    /** Creates an instance of ConnectorInstructionModelBase class. */
+    public ConnectorInstructionModelBase() {
+    }
+
     /**
      * Get the parameters property: The parameters for the setting.
      *
