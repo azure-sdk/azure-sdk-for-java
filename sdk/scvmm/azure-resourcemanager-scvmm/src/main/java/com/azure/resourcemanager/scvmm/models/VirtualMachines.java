@@ -11,19 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of VirtualMachines. */
 public interface VirtualMachines {
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the VirtualMachines resource definition.
-     */
-    VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName);
-
-    /**
-     * Implements VirtualMachine GET method.
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -37,21 +27,23 @@ public interface VirtualMachines {
         String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the VirtualMachines resource definition.
      */
-    void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force);
+    VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -62,7 +54,9 @@ public interface VirtualMachines {
     void delete(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -77,19 +71,9 @@ public interface VirtualMachines {
     void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body);
-
-    /**
-     * Stop virtual machine.
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -100,7 +84,9 @@ public interface VirtualMachines {
     void stop(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -113,7 +99,9 @@ public interface VirtualMachines {
     void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body, Context context);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -124,7 +112,9 @@ public interface VirtualMachines {
     void start(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -136,7 +126,9 @@ public interface VirtualMachines {
     void start(String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -147,7 +139,9 @@ public interface VirtualMachines {
     void restart(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -159,19 +153,9 @@ public interface VirtualMachines {
     void restart(String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine create checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void createCheckpoint(String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body);
-
-    /**
-     * Creates a checkpoint in virtual machine.
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -182,7 +166,9 @@ public interface VirtualMachines {
     void createCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -196,19 +182,9 @@ public interface VirtualMachines {
         String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body, Context context);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine delete checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteCheckpoint(String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body);
-
-    /**
-     * Deletes a checkpoint in virtual machine.
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -219,7 +195,9 @@ public interface VirtualMachines {
     void deleteCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -233,19 +211,9 @@ public interface VirtualMachines {
         String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body, Context context);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine restore checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void restoreCheckpoint(String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body);
-
-    /**
-     * Restores to a checkpoint in virtual machine.
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -256,7 +224,9 @@ public interface VirtualMachines {
     void restoreCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -270,7 +240,9 @@ public interface VirtualMachines {
         String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body, Context context);
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -281,7 +253,9 @@ public interface VirtualMachines {
     PagedIterable<VirtualMachine> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -293,7 +267,9 @@ public interface VirtualMachines {
     PagedIterable<VirtualMachine> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -302,7 +278,9 @@ public interface VirtualMachines {
     PagedIterable<VirtualMachine> list();
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -313,7 +291,9 @@ public interface VirtualMachines {
     PagedIterable<VirtualMachine> list(Context context);
 
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -324,7 +304,9 @@ public interface VirtualMachines {
     VirtualMachine getById(String id);
 
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -336,7 +318,9 @@ public interface VirtualMachines {
     Response<VirtualMachine> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -346,7 +330,9 @@ public interface VirtualMachines {
     void deleteById(String id);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param id the resource ID.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.

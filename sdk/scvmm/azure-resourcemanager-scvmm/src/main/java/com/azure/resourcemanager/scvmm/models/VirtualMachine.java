@@ -189,6 +189,13 @@ public interface VirtualMachine {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.scvmm.fluent.models.VirtualMachineInner object.
      *
      * @return the inner object.
@@ -495,17 +502,9 @@ public interface VirtualMachine {
     VirtualMachine refresh(Context context);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
      *
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void stop(StopVirtualMachineOptions body);
-
-    /**
-     * Stop virtual machine.
+     * <p>Stop virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -513,7 +512,9 @@ public interface VirtualMachine {
     void stop();
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param body Virtualmachine stop action payload.
      * @param context The context to associate with this operation.
@@ -524,7 +525,9 @@ public interface VirtualMachine {
     void stop(StopVirtualMachineOptions body, Context context);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -532,7 +535,9 @@ public interface VirtualMachine {
     void start();
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -542,7 +547,9 @@ public interface VirtualMachine {
     void start(Context context);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -550,7 +557,9 @@ public interface VirtualMachine {
     void restart();
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -560,17 +569,9 @@ public interface VirtualMachine {
     void restart(Context context);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
      *
-     * @param body Virtualmachine create checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void createCheckpoint(VirtualMachineCreateCheckpoint body);
-
-    /**
-     * Creates a checkpoint in virtual machine.
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -578,7 +579,9 @@ public interface VirtualMachine {
     void createCheckpoint();
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param body Virtualmachine create checkpoint action payload.
      * @param context The context to associate with this operation.
@@ -589,17 +592,9 @@ public interface VirtualMachine {
     void createCheckpoint(VirtualMachineCreateCheckpoint body, Context context);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
      *
-     * @param body Virtualmachine delete checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteCheckpoint(VirtualMachineDeleteCheckpoint body);
-
-    /**
-     * Deletes a checkpoint in virtual machine.
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -607,7 +602,9 @@ public interface VirtualMachine {
     void deleteCheckpoint();
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param body Virtualmachine delete checkpoint action payload.
      * @param context The context to associate with this operation.
@@ -618,17 +615,9 @@ public interface VirtualMachine {
     void deleteCheckpoint(VirtualMachineDeleteCheckpoint body, Context context);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
      *
-     * @param body Virtualmachine restore checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void restoreCheckpoint(VirtualMachineRestoreCheckpoint body);
-
-    /**
-     * Restores to a checkpoint in virtual machine.
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -636,7 +625,9 @@ public interface VirtualMachine {
     void restoreCheckpoint();
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param body Virtualmachine restore checkpoint action payload.
      * @param context The context to associate with this operation.

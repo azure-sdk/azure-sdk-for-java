@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilitySets ListByResourceGroup. */
 public final class AvailabilitySetsListByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class AvailabilitySetsListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listAvailabilitySetsByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().listByResourceGroup("testrg", Context.NONE);
+        manager.availabilitySets().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }

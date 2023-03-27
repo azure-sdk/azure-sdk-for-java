@@ -12,11 +12,14 @@ import java.util.List;
 @Fluent
 public final class NetworkProfileUpdate {
     /*
-     * Gets or sets the list of network interfaces associated with the virtual
-     * machine.
+     * Gets or sets the list of network interfaces associated with the virtual machine.
      */
     @JsonProperty(value = "networkInterfaces")
     private List<NetworkInterfacesUpdate> networkInterfaces;
+
+    /** Creates an instance of NetworkProfileUpdate class. */
+    public NetworkProfileUpdate() {
+    }
 
     /**
      * Get the networkInterfaces property: Gets or sets the list of network interfaces associated with the virtual

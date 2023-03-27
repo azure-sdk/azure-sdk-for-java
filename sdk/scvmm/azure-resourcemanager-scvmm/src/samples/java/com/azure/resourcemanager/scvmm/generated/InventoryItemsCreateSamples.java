@@ -4,6 +4,8 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
+import com.azure.resourcemanager.scvmm.models.CloudInventoryItem;
+
 /** Samples for InventoryItems Create. */
 public final class InventoryItemsCreateSamples {
     /*
@@ -19,6 +21,7 @@ public final class InventoryItemsCreateSamples {
             .inventoryItems()
             .define("12345678-1234-1234-1234-123456789abc")
             .withExistingVmmServer("testrg", "ContosoVMMServer")
+            .withProperties(new CloudInventoryItem())
             .create();
     }
 }

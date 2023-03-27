@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for InventoryItems Get. */
 public final class InventoryItemsGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class InventoryItemsGetSamples {
     public static void getInventoryItem(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         manager
             .inventoryItems()
-            .getWithResponse("testrg", "ContosoVMMServer", "12345678-1234-1234-1234-123456789abc", Context.NONE);
+            .getWithResponse(
+                "testrg", "ContosoVMMServer", "12345678-1234-1234-1234-123456789abc", com.azure.core.util.Context.NONE);
     }
 }

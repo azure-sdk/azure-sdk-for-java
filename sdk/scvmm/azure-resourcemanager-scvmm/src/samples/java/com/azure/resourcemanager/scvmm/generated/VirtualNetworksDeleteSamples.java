@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualNetworks Delete. */
 public final class VirtualNetworksDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class VirtualNetworksDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteVirtualNetwork(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().delete("testrg", "HRVirtualNetwork", null, Context.NONE);
+        manager.virtualNetworks().delete("testrg", "HRVirtualNetwork", null, com.azure.core.util.Context.NONE);
     }
 }

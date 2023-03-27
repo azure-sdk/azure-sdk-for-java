@@ -27,15 +27,6 @@ public final class AvailabilitySetsImpl implements AvailabilitySets {
         this.serviceManager = serviceManager;
     }
 
-    public AvailabilitySet getByResourceGroup(String resourceGroupName, String availabilitySetName) {
-        AvailabilitySetInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, availabilitySetName);
-        if (inner != null) {
-            return new AvailabilitySetImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AvailabilitySet> getByResourceGroupWithResponse(
         String resourceGroupName, String availabilitySetName, Context context) {
         Response<AvailabilitySetInner> inner =
@@ -51,8 +42,13 @@ public final class AvailabilitySetsImpl implements AvailabilitySets {
         }
     }
 
-    public void delete(String resourceGroupName, String availabilitySetName, Boolean force) {
-        this.serviceClient().delete(resourceGroupName, availabilitySetName, force);
+    public AvailabilitySet getByResourceGroup(String resourceGroupName, String availabilitySetName) {
+        AvailabilitySetInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, availabilitySetName);
+        if (inner != null) {
+            return new AvailabilitySetImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String availabilitySetName) {

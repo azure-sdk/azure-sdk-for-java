@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualNetworks ListByResourceGroup. */
 public final class VirtualNetworksListByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class VirtualNetworksListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualNetworksByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().listByResourceGroup("testrg", Context.NONE);
+        manager.virtualNetworks().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }

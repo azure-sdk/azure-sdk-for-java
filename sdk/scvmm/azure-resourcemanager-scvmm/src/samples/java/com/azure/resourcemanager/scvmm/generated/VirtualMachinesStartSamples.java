@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Start. */
 public final class VirtualMachinesStartSamples {
     /*
@@ -17,6 +15,6 @@ public final class VirtualMachinesStartSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void startVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().start("testrg", "DemoVM", Context.NONE);
+        manager.virtualMachines().start("testrg", "DemoVM", com.azure.core.util.Context.NONE);
     }
 }

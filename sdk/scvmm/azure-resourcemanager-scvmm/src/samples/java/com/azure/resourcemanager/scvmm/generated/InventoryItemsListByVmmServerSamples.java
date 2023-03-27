@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for InventoryItems ListByVmmServer. */
 public final class InventoryItemsListByVmmServerSamples {
     /*
@@ -17,6 +15,6 @@ public final class InventoryItemsListByVmmServerSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void inventoryItemsListByVMMServer(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.inventoryItems().listByVmmServer("testrg", "ContosoVMMServer", Context.NONE);
+        manager.inventoryItems().listByVmmServer("testrg", "ContosoVMMServer", com.azure.core.util.Context.NONE);
     }
 }

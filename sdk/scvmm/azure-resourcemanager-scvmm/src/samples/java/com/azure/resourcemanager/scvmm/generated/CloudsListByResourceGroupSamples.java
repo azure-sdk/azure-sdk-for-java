@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clouds ListByResourceGroup. */
 public final class CloudsListByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class CloudsListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listCloudsByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().listByResourceGroup("testrg", Context.NONE);
+        manager.clouds().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.AllocationMethod;
 import com.azure.resourcemanager.scvmm.models.HardwareProfileUpdate;
 import com.azure.resourcemanager.scvmm.models.NetworkInterfacesUpdate;
@@ -29,7 +28,10 @@ public final class VirtualMachinesUpdateSamples {
      */
     public static void updateVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         VirtualMachine resource =
-            manager.virtualMachines().getByResourceGroupWithResponse("testrg", "DemoVM", Context.NONE).getValue();
+            manager
+                .virtualMachines()
+                .getByResourceGroupWithResponse("testrg", "DemoVM", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineDeleteCheckpoint;
 
 /** Samples for VirtualMachines DeleteCheckpoint. */
@@ -21,6 +20,9 @@ public final class VirtualMachinesDeleteCheckpointSamples {
         manager
             .virtualMachines()
             .deleteCheckpoint(
-                "testrg", "DemoVM", new VirtualMachineDeleteCheckpoint().withId("Demo CheckpointID"), Context.NONE);
+                "testrg",
+                "DemoVM",
+                new VirtualMachineDeleteCheckpoint().withId("Demo CheckpointID"),
+                com.azure.core.util.Context.NONE);
     }
 }

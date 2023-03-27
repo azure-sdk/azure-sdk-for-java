@@ -58,11 +58,10 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ScvmmClientInventory")
-    private interface InventoryItemsService {
+    public interface InventoryItemsService {
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers"
-                + "/{vmmServerName}/inventoryItems/{inventoryItemName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InventoryItemInner>> create(
@@ -78,8 +77,7 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers"
-                + "/{vmmServerName}/inventoryItems/{inventoryItemName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InventoryItemInner>> get(
@@ -94,8 +92,7 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers"
-                + "/{vmmServerName}/inventoryItems/{inventoryItemName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -110,8 +107,7 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers"
-                + "/{vmmServerName}/inventoryItems")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InventoryItemsList>> listByVmmServer(
@@ -135,7 +131,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Create Or Update InventoryItem.
+     * Implements InventoryItem PUT method.
+     *
+     * <p>Create Or Update InventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -194,7 +192,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Create Or Update InventoryItem.
+     * Implements InventoryItem PUT method.
+     *
+     * <p>Create Or Update InventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -255,33 +255,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Create Or Update InventoryItem.
+     * Implements InventoryItem PUT method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param vmmServerName Name of the VMMServer.
-     * @param inventoryItemName Name of the inventoryItem.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the inventory item on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InventoryItemInner> createAsync(
-        String resourceGroupName, String vmmServerName, String inventoryItemName, InventoryItemInner body) {
-        return createWithResponseAsync(resourceGroupName, vmmServerName, inventoryItemName, body)
-            .flatMap(
-                (Response<InventoryItemInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Create Or Update InventoryItem.
+     * <p>Create Or Update InventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -296,35 +272,13 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
         String resourceGroupName, String vmmServerName, String inventoryItemName) {
         final InventoryItemInner body = null;
         return createWithResponseAsync(resourceGroupName, vmmServerName, inventoryItemName, body)
-            .flatMap(
-                (Response<InventoryItemInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Create Or Update InventoryItem.
+     * Implements InventoryItem PUT method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param vmmServerName Name of the VMMServer.
-     * @param inventoryItemName Name of the inventoryItem.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the inventory item.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public InventoryItemInner create(String resourceGroupName, String vmmServerName, String inventoryItemName) {
-        final InventoryItemInner body = null;
-        return createAsync(resourceGroupName, vmmServerName, inventoryItemName, body).block();
-    }
-
-    /**
-     * Create Or Update InventoryItem.
+     * <p>Create Or Update InventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -347,7 +301,28 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Shows an inventory item.
+     * Implements InventoryItem PUT method.
+     *
+     * <p>Create Or Update InventoryItem.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmmServerName Name of the VMMServer.
+     * @param inventoryItemName Name of the inventoryItem.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the inventory item.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public InventoryItemInner create(String resourceGroupName, String vmmServerName, String inventoryItemName) {
+        final InventoryItemInner body = null;
+        return createWithResponse(resourceGroupName, vmmServerName, inventoryItemName, body, Context.NONE).getValue();
+    }
+
+    /**
+     * Implements GET InventoryItem method.
+     *
+     * <p>Shows an inventory item.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -401,7 +376,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Shows an inventory item.
+     * Implements GET InventoryItem method.
+     *
+     * <p>Shows an inventory item.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -453,7 +430,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Shows an inventory item.
+     * Implements GET InventoryItem method.
+     *
+     * <p>Shows an inventory item.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -467,34 +446,13 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     private Mono<InventoryItemInner> getAsync(
         String resourceGroupName, String vmmServerName, String inventoryItemName) {
         return getWithResponseAsync(resourceGroupName, vmmServerName, inventoryItemName)
-            .flatMap(
-                (Response<InventoryItemInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Shows an inventory item.
+     * Implements GET InventoryItem method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param vmmServerName Name of the VMMServer.
-     * @param inventoryItemName Name of the inventoryItem.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the inventory item.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public InventoryItemInner get(String resourceGroupName, String vmmServerName, String inventoryItemName) {
-        return getAsync(resourceGroupName, vmmServerName, inventoryItemName).block();
-    }
-
-    /**
-     * Shows an inventory item.
+     * <p>Shows an inventory item.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -512,7 +470,27 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Deletes an inventoryItem.
+     * Implements GET InventoryItem method.
+     *
+     * <p>Shows an inventory item.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmmServerName Name of the VMMServer.
+     * @param inventoryItemName Name of the inventoryItem.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the inventory item.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public InventoryItemInner get(String resourceGroupName, String vmmServerName, String inventoryItemName) {
+        return getWithResponse(resourceGroupName, vmmServerName, inventoryItemName, Context.NONE).getValue();
+    }
+
+    /**
+     * Implements inventoryItem DELETE method.
+     *
+     * <p>Deletes an inventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -566,7 +544,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Deletes an inventoryItem.
+     * Implements inventoryItem DELETE method.
+     *
+     * <p>Deletes an inventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -618,7 +598,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Deletes an inventoryItem.
+     * Implements inventoryItem DELETE method.
+     *
+     * <p>Deletes an inventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -631,26 +613,13 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String vmmServerName, String inventoryItemName) {
         return deleteWithResponseAsync(resourceGroupName, vmmServerName, inventoryItemName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * Deletes an inventoryItem.
+     * Implements inventoryItem DELETE method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param vmmServerName Name of the VMMServer.
-     * @param inventoryItemName Name of the inventoryItem.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String vmmServerName, String inventoryItemName) {
-        deleteAsync(resourceGroupName, vmmServerName, inventoryItemName).block();
-    }
-
-    /**
-     * Deletes an inventoryItem.
+     * <p>Deletes an inventoryItem.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -668,7 +637,26 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Returns the list of inventoryItems in the given VMMServer.
+     * Implements inventoryItem DELETE method.
+     *
+     * <p>Deletes an inventoryItem.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmmServerName Name of the VMMServer.
+     * @param inventoryItemName Name of the inventoryItem.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String vmmServerName, String inventoryItemName) {
+        deleteWithResponse(resourceGroupName, vmmServerName, inventoryItemName, Context.NONE);
+    }
+
+    /**
+     * Implements GET for the list of Inventory Items in the VMMServer.
+     *
+     * <p>Returns the list of inventoryItems in the given VMMServer.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -725,7 +713,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Returns the list of inventoryItems in the given VMMServer.
+     * Implements GET for the list of Inventory Items in the VMMServer.
+     *
+     * <p>Returns the list of inventoryItems in the given VMMServer.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -780,7 +770,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Returns the list of inventoryItems in the given VMMServer.
+     * Implements GET for the list of Inventory Items in the VMMServer.
+     *
+     * <p>Returns the list of inventoryItems in the given VMMServer.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -797,7 +789,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Returns the list of inventoryItems in the given VMMServer.
+     * Implements GET for the list of Inventory Items in the VMMServer.
+     *
+     * <p>Returns the list of inventoryItems in the given VMMServer.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -816,7 +810,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Returns the list of inventoryItems in the given VMMServer.
+     * Implements GET for the list of Inventory Items in the VMMServer.
+     *
+     * <p>Returns the list of inventoryItems in the given VMMServer.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -831,7 +827,9 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     }
 
     /**
-     * Returns the list of inventoryItems in the given VMMServer.
+     * Implements GET for the list of Inventory Items in the VMMServer.
+     *
+     * <p>Returns the list of inventoryItems in the given VMMServer.
      *
      * @param resourceGroupName The name of the resource group.
      * @param vmmServerName Name of the VMMServer.
@@ -850,7 +848,8 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -885,7 +884,8 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class OperationsListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listOperations(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
