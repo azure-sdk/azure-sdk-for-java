@@ -11,13 +11,7 @@ import java.util.Map;
 
 /** configuration for Microsoft Defender for Server VM scanning. */
 @Fluent
-public final class DefenderForServersAwsOfferingVmScannersConfiguration {
-    /*
-     * The cloud role ARN in AWS for this feature
-     */
-    @JsonProperty(value = "cloudRoleArn")
-    private String cloudRoleArn;
-
+public final class DefenderForServersGcpOfferingVmScannersConfiguration {
     /*
      * The scanning mode for the VM scan.
      */
@@ -25,34 +19,14 @@ public final class DefenderForServersAwsOfferingVmScannersConfiguration {
     private ScanningMode scanningMode;
 
     /*
-     * VM tags that indicates that VM should not be scanned
+     * VM tags that indicate that VM should not be scanned
      */
     @JsonProperty(value = "exclusionTags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> exclusionTags;
 
-    /** Creates an instance of DefenderForServersAwsOfferingVmScannersConfiguration class. */
-    public DefenderForServersAwsOfferingVmScannersConfiguration() {
-    }
-
-    /**
-     * Get the cloudRoleArn property: The cloud role ARN in AWS for this feature.
-     *
-     * @return the cloudRoleArn value.
-     */
-    public String cloudRoleArn() {
-        return this.cloudRoleArn;
-    }
-
-    /**
-     * Set the cloudRoleArn property: The cloud role ARN in AWS for this feature.
-     *
-     * @param cloudRoleArn the cloudRoleArn value to set.
-     * @return the DefenderForServersAwsOfferingVmScannersConfiguration object itself.
-     */
-    public DefenderForServersAwsOfferingVmScannersConfiguration withCloudRoleArn(String cloudRoleArn) {
-        this.cloudRoleArn = cloudRoleArn;
-        return this;
+    /** Creates an instance of DefenderForServersGcpOfferingVmScannersConfiguration class. */
+    public DefenderForServersGcpOfferingVmScannersConfiguration() {
     }
 
     /**
@@ -68,15 +42,15 @@ public final class DefenderForServersAwsOfferingVmScannersConfiguration {
      * Set the scanningMode property: The scanning mode for the VM scan.
      *
      * @param scanningMode the scanningMode value to set.
-     * @return the DefenderForServersAwsOfferingVmScannersConfiguration object itself.
+     * @return the DefenderForServersGcpOfferingVmScannersConfiguration object itself.
      */
-    public DefenderForServersAwsOfferingVmScannersConfiguration withScanningMode(ScanningMode scanningMode) {
+    public DefenderForServersGcpOfferingVmScannersConfiguration withScanningMode(ScanningMode scanningMode) {
         this.scanningMode = scanningMode;
         return this;
     }
 
     /**
-     * Get the exclusionTags property: VM tags that indicates that VM should not be scanned.
+     * Get the exclusionTags property: VM tags that indicate that VM should not be scanned.
      *
      * @return the exclusionTags value.
      */
@@ -85,12 +59,12 @@ public final class DefenderForServersAwsOfferingVmScannersConfiguration {
     }
 
     /**
-     * Set the exclusionTags property: VM tags that indicates that VM should not be scanned.
+     * Set the exclusionTags property: VM tags that indicate that VM should not be scanned.
      *
      * @param exclusionTags the exclusionTags value to set.
-     * @return the DefenderForServersAwsOfferingVmScannersConfiguration object itself.
+     * @return the DefenderForServersGcpOfferingVmScannersConfiguration object itself.
      */
-    public DefenderForServersAwsOfferingVmScannersConfiguration withExclusionTags(Map<String, String> exclusionTags) {
+    public DefenderForServersGcpOfferingVmScannersConfiguration withExclusionTags(Map<String, String> exclusionTags) {
         this.exclusionTags = exclusionTags;
         return this;
     }
