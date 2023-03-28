@@ -62,6 +62,14 @@ public final class JobsImpl implements Jobs {
         }
     }
 
+    public void triggerCancel(String resourceGroupName, String vaultName, String jobId) {
+        this.serviceClient().triggerCancel(resourceGroupName, vaultName, jobId);
+    }
+
+    public void triggerCancel(String resourceGroupName, String vaultName, String jobId, Context context) {
+        this.serviceClient().triggerCancel(resourceGroupName, vaultName, jobId, context);
+    }
+
     private JobsClient serviceClient() {
         return this.innerClient;
     }

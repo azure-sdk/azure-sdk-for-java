@@ -30,6 +30,7 @@ import com.azure.resourcemanager.dataprotection.fluent.DataProtectionClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionOperationsClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionsClient;
 import com.azure.resourcemanager.dataprotection.fluent.DeletedBackupInstancesClient;
+import com.azure.resourcemanager.dataprotection.fluent.DppResourceGuardProxiesClient;
 import com.azure.resourcemanager.dataprotection.fluent.ExportJobsClient;
 import com.azure.resourcemanager.dataprotection.fluent.ExportJobsOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.JobsClient;
@@ -39,6 +40,7 @@ import com.azure.resourcemanager.dataprotection.fluent.OperationStatusClient;
 import com.azure.resourcemanager.dataprotection.fluent.OperationStatusResourceGroupContextsClient;
 import com.azure.resourcemanager.dataprotection.fluent.RecoveryPointsClient;
 import com.azure.resourcemanager.dataprotection.fluent.ResourceGuardsClient;
+import com.azure.resourcemanager.dataprotection.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.dataprotection.fluent.RestorableTimeRangesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -46,7 +48,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.UUID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -54,14 +55,14 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = DataProtectionClientBuilder.class)
 public final class DataProtectionClientImpl implements DataProtectionClient {
     /** The ID of the target subscription. The value must be an UUID. */
-    private final UUID subscriptionId;
+    private final String subscriptionId;
 
     /**
      * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
-    public UUID getSubscriptionId() {
+    public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
@@ -257,6 +258,18 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         return this.recoveryPoints;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
     /** The JobsClient object to access its operations. */
     private final JobsClient jobs;
 
@@ -329,6 +342,18 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         return this.resourceGuards;
     }
 
+    /** The DppResourceGuardProxiesClient object to access its operations. */
+    private final DppResourceGuardProxiesClient dppResourceGuardProxies;
+
+    /**
+     * Gets the DppResourceGuardProxiesClient object to access its operations.
+     *
+     * @return the DppResourceGuardProxiesClient object.
+     */
+    public DppResourceGuardProxiesClient getDppResourceGuardProxies() {
+        return this.dppResourceGuardProxies;
+    }
+
     /**
      * Initializes an instance of DataProtectionClient client.
      *
@@ -344,14 +369,14 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
         AzureEnvironment environment,
-        UUID subscriptionId,
+        String subscriptionId,
         String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-01";
+        this.apiVersion = "2023-04-01-preview";
         this.backupVaults = new BackupVaultsClientImpl(this);
         this.operationResults = new OperationResultsClientImpl(this);
         this.operationStatus = new OperationStatusClientImpl(this);
@@ -363,12 +388,14 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         this.backupPolicies = new BackupPoliciesClientImpl(this);
         this.backupInstances = new BackupInstancesClientImpl(this);
         this.recoveryPoints = new RecoveryPointsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.jobs = new JobsClientImpl(this);
         this.restorableTimeRanges = new RestorableTimeRangesClientImpl(this);
         this.exportJobs = new ExportJobsClientImpl(this);
         this.exportJobsOperationResults = new ExportJobsOperationResultsClientImpl(this);
         this.deletedBackupInstances = new DeletedBackupInstancesClientImpl(this);
         this.resourceGuards = new ResourceGuardsClientImpl(this);
+        this.dppResourceGuardProxies = new DppResourceGuardProxiesClientImpl(this);
     }
 
     /**
