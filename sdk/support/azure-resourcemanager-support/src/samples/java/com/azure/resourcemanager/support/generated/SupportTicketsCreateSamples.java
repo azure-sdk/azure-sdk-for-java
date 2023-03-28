@@ -380,6 +380,47 @@ public final class SupportTicketsCreateSamples {
     }
 
     /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2020-04-01/examples/CreateALSQuotaRequestForSubscription.json
+     */
+    /**
+     * Sample code: Create a ticket to request Quota increase for Azure Lab Services for a subscription.
+     *
+     * @param manager Entry point to SupportManager.
+     */
+    public static void createATicketToRequestQuotaIncreaseForAzureLabServicesForASubscription(
+        com.azure.resourcemanager.support.SupportManager manager) {
+        manager
+            .supportTickets()
+            .define("testticket")
+            .withDescription("my description")
+            .withProblemClassificationId(
+                "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/als_problemClassification_guid")
+            .withSeverity(SeverityLevel.MODERATE)
+            .withContactDetails(
+                new ContactProfile()
+                    .withFirstName("abc")
+                    .withLastName("xyz")
+                    .withPreferredContactMethod(PreferredContactMethod.EMAIL)
+                    .withPrimaryEmailAddress("abc@contoso.com")
+                    .withPreferredTimeZone("Pacific Standard Time")
+                    .withCountry("usa")
+                    .withPreferredSupportLanguage("en-US"))
+            .withTitle("my title")
+            .withServiceId("/providers/Microsoft.Support/services/quota_service_guid")
+            .withQuotaTicketDetails(
+                new QuotaTicketDetails()
+                    .withQuotaChangeRequestVersion("1.0")
+                    .withQuotaChangeRequests(
+                        Arrays
+                            .asList(
+                                new QuotaChangeRequest()
+                                    .withRegion("EastUS")
+                                    .withPayload(
+                                        "{\"deployment_model\":\"LabPlan_V2\",\"vnetRegion\":\"Yes\",\"QuotaBucket\":\"standardFSv2Family\",\"NewLimit\":157}"))))
+            .create();
+    }
+
+    /*
      * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2020-04-01/examples/CreateBatchQuotaTicketForSpecificBatchAccountForDedicatedCores.json
      */
     /**
