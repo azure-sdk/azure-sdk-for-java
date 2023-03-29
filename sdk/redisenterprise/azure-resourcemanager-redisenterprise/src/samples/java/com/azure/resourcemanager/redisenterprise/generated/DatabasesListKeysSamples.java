@@ -10,7 +10,7 @@ public final class DatabasesListKeysSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesListKeys.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesListKeys.
+     * Sample code: RedisEnterpriseDatabases_ListKeys.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */

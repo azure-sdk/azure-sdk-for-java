@@ -10,7 +10,7 @@ public final class RedisEnterpriseGetByResourceGroupSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseGet.json
      */
     /**
-     * Sample code: RedisEnterpriseGet.
+     * Sample code: RedisEnterprise_Get.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */

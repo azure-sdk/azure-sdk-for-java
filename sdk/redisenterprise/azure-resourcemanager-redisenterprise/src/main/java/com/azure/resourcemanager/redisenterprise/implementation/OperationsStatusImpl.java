@@ -9,8 +9,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.OperationsStatusClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
-import com.azure.resourcemanager.redisenterprise.models.OperationStatus;
+import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusResultInner;
+import com.azure.resourcemanager.redisenterprise.models.OperationStatusResult;
 import com.azure.resourcemanager.redisenterprise.models.OperationsStatus;
 
 public final class OperationsStatusImpl implements OperationsStatus {
@@ -27,23 +27,25 @@ public final class OperationsStatusImpl implements OperationsStatus {
         this.serviceManager = serviceManager;
     }
 
-    public Response<OperationStatus> getWithResponse(String location, String operationId, Context context) {
-        Response<OperationStatusInner> inner = this.serviceClient().getWithResponse(location, operationId, context);
+    public Response<OperationStatusResult> getWithResponse(
+        String subscriptionId, String location, String operationId, Context context) {
+        Response<OperationStatusResultInner> inner =
+            this.serviceClient().getWithResponse(subscriptionId, location, operationId, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new OperationStatusImpl(inner.getValue(), this.manager()));
+                new OperationStatusResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public OperationStatus get(String location, String operationId) {
-        OperationStatusInner inner = this.serviceClient().get(location, operationId);
+    public OperationStatusResult get(String subscriptionId, String location, String operationId) {
+        OperationStatusResultInner inner = this.serviceClient().get(subscriptionId, location, operationId);
         if (inner != null) {
-            return new OperationStatusImpl(inner, this.manager());
+            return new OperationStatusResultImpl(inner, this.manager());
         } else {
             return null;
         }

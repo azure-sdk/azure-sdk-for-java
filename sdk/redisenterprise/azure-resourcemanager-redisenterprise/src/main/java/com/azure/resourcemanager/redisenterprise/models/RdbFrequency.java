@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Sets the frequency at which a snapshot of the database is created. */
+/** Defines values for RdbFrequency. */
 public final class RdbFrequency extends ExpandableStringEnum<RdbFrequency> {
     /** Static value 1h for RdbFrequency. */
     public static final RdbFrequency ONEH = fromString("1h");

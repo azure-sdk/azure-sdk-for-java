@@ -11,11 +11,11 @@ import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnectio
 import com.azure.resourcemanager.redisenterprise.models.PrivateLinkServiceConnectionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the PrivateEndpointConnectProperties. */
+/** Properties of a PrivateEndpointConnection on a RedisEnterprise cluster. */
 @Fluent
 public final class PrivateEndpointConnectionProperties {
     /*
-     * The resource of private end point.
+     * The private endpoint that is connected
      */
     @JsonProperty(value = "privateEndpoint")
     private PrivateEndpoint privateEndpoint;
@@ -29,7 +29,7 @@ public final class PrivateEndpointConnectionProperties {
     /*
      * The provisioning state of the private endpoint connection resource.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "provisioningState", required = true, access = JsonProperty.Access.WRITE_ONLY)
     private PrivateEndpointConnectionProvisioningState provisioningState;
 
     /** Creates an instance of PrivateEndpointConnectionProperties class. */
@@ -37,7 +37,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
+     * Get the privateEndpoint property: The private endpoint that is connected.
      *
      * @return the privateEndpoint value.
      */
@@ -46,7 +46,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
+     * Set the privateEndpoint property: The private endpoint that is connected.
      *
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionProperties object itself.

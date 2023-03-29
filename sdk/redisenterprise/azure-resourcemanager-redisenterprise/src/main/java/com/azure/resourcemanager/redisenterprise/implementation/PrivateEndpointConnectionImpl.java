@@ -13,10 +13,17 @@ import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnectio
 import com.azure.resourcemanager.redisenterprise.models.PrivateLinkServiceConnectionState;
 
 public final class PrivateEndpointConnectionImpl
-    implements PrivateEndpointConnection, PrivateEndpointConnection.Definition, PrivateEndpointConnection.Update {
+    implements PrivateEndpointConnection, PrivateEndpointConnection.Definition {
     private PrivateEndpointConnectionInner innerObject;
 
     private final com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager;
+
+    PrivateEndpointConnectionImpl(
+        PrivateEndpointConnectionInner innerObject,
+        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -46,10 +53,6 @@ public final class PrivateEndpointConnectionImpl
         return this.innerModel().provisioningState();
     }
 
-    public String resourceGroupName() {
-        return resourceGroupName;
-    }
-
     public PrivateEndpointConnectionInner innerModel() {
         return this.innerObject;
     }
@@ -75,7 +78,7 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .put(resourceGroupName, clusterName, privateEndpointConnectionName, this.innerModel(), Context.NONE);
+                .create(resourceGroupName, clusterName, privateEndpointConnectionName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -84,7 +87,7 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .put(resourceGroupName, clusterName, privateEndpointConnectionName, this.innerModel(), context);
+                .create(resourceGroupName, clusterName, privateEndpointConnectionName, this.innerModel(), context);
         return this;
     }
 
@@ -93,38 +96,6 @@ public final class PrivateEndpointConnectionImpl
         this.innerObject = new PrivateEndpointConnectionInner();
         this.serviceManager = serviceManager;
         this.privateEndpointConnectionName = name;
-    }
-
-    public PrivateEndpointConnectionImpl update() {
-        return this;
-    }
-
-    public PrivateEndpointConnection apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateEndpointConnections()
-                .put(resourceGroupName, clusterName, privateEndpointConnectionName, this.innerModel(), Context.NONE);
-        return this;
-    }
-
-    public PrivateEndpointConnection apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateEndpointConnections()
-                .put(resourceGroupName, clusterName, privateEndpointConnectionName, this.innerModel(), context);
-        return this;
-    }
-
-    PrivateEndpointConnectionImpl(
-        PrivateEndpointConnectionInner innerObject,
-        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.clusterName = Utils.getValueFromIdByName(innerObject.id(), "redisEnterprise");
-        this.privateEndpointConnectionName = Utils.getValueFromIdByName(innerObject.id(), "privateEndpointConnections");
     }
 
     public PrivateEndpointConnection refresh() {

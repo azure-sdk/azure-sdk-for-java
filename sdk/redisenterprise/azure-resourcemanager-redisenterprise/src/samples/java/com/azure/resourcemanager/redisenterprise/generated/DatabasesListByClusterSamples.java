@@ -10,7 +10,7 @@ public final class DatabasesListByClusterSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesListByCluster.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesListByCluster.
+     * Sample code: RedisEnterpriseDatabases_ListByCluster.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */

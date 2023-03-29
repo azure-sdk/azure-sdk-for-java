@@ -10,11 +10,12 @@ public final class SkusListSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseSkusList.json
      */
     /**
-     * Sample code: SkusList.
+     * Sample code: RedisEnterpriseSkus_List.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void skusList(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.skus().list("westus2", com.azure.core.util.Context.NONE);
+    public static void redisEnterpriseSkusList(
+        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager.skus().list(com.azure.core.util.Context.NONE);
     }
 }

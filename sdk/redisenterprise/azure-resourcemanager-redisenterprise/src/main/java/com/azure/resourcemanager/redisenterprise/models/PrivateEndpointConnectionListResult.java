@@ -5,25 +5,32 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of private endpoint connection associated with the specified storage account. */
+/** The response of a PrivateEndpointConnection list operation. */
 @Fluent
 public final class PrivateEndpointConnectionListResult {
     /*
-     * Array of private endpoint connections
+     * The PrivateEndpointConnection items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<PrivateEndpointConnectionInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
 
     /** Creates an instance of PrivateEndpointConnectionListResult class. */
     public PrivateEndpointConnectionListResult() {
     }
 
     /**
-     * Get the value property: Array of private endpoint connections.
+     * Get the value property: The PrivateEndpointConnection items on this page.
      *
      * @return the value value.
      */
@@ -32,7 +39,7 @@ public final class PrivateEndpointConnectionListResult {
     }
 
     /**
-     * Set the value property: Array of private endpoint connections.
+     * Set the value property: The PrivateEndpointConnection items on this page.
      *
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionListResult object itself.
@@ -43,13 +50,40 @@ public final class PrivateEndpointConnectionListResult {
     }
 
     /**
+     * Get the nextLink property: The link to the next page of items.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page of items.
+     *
+     * @param nextLink the nextLink value to set.
+     * @return the PrivateEndpointConnectionListResult object itself.
+     */
+    public PrivateEndpointConnectionListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property value in model PrivateEndpointConnectionListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionListResult.class);
 }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Current provisioning status. */
+/** Defines values for ProvisioningState. */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /** Static value Succeeded for ProvisioningState. */
     public static final ProvisioningState SUCCEEDED = fromString("Succeeded");
@@ -19,14 +19,17 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /** Static value Canceled for ProvisioningState. */
     public static final ProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Creating for ProvisioningState. */
-    public static final ProvisioningState CREATING = fromString("Creating");
+    /** Static value Provisioning for ProvisioningState. */
+    public static final ProvisioningState PROVISIONING = fromString("Provisioning");
 
     /** Static value Updating for ProvisioningState. */
     public static final ProvisioningState UPDATING = fromString("Updating");
 
     /** Static value Deleting for ProvisioningState. */
     public static final ProvisioningState DELETING = fromString("Deleting");
+
+    /** Static value Accepted for ProvisioningState. */
+    public static final ProvisioningState ACCEPTED = fromString("Accepted");
 
     /**
      * Creates a new instance of ProvisioningState value.

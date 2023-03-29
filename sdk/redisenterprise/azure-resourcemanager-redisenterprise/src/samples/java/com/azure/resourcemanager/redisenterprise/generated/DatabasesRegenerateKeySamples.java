@@ -4,28 +4,18 @@
 
 package com.azure.resourcemanager.redisenterprise.generated;
 
-import com.azure.resourcemanager.redisenterprise.models.AccessKeyType;
-import com.azure.resourcemanager.redisenterprise.models.RegenerateKeyParameters;
-
 /** Samples for Databases RegenerateKey. */
 public final class DatabasesRegenerateKeySamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesRegenerateKey.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesRegenerateKey.
+     * Sample code: RedisEnterpriseDatabases_RegenerateKey.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void redisEnterpriseDatabasesRegenerateKey(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .regenerateKey(
-                "rg1",
-                "cache1",
-                "default",
-                new RegenerateKeyParameters().withKeyType(AccessKeyType.PRIMARY),
-                com.azure.core.util.Context.NONE);
+        manager.databases().regenerateKey("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
     }
 }

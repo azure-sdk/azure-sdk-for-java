@@ -5,22 +5,13 @@
 package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
-import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
-import com.azure.resourcemanager.redisenterprise.models.Module;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.redisenterprise.models.ClientProtocol;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
-import com.azure.resourcemanager.redisenterprise.models.Protocol;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
-import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/**
- * RedisEnterprise database properties
- *
- * <p>Properties of RedisEnterprise databases, as opposed to general resource properties like location, tags.
- */
+/** Properties of a Database on a RedisEnterprise cluster. */
 @Fluent
 public final class DatabaseProperties {
     /*
@@ -28,55 +19,25 @@ public final class DatabaseProperties {
      * TLS-encrypted.
      */
     @JsonProperty(value = "clientProtocol")
-    private Protocol clientProtocol;
+    private ClientProtocol clientProtocol;
 
     /*
-     * TCP port of the database endpoint. Specified at create time. Defaults to an available port.
+     * Port number for the database to listen on. E.g. 10000.
      */
     @JsonProperty(value = "port")
     private Integer port;
 
     /*
-     * Current provisioning status of the database
+     * Provisioning state of the database
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "provisioningState", required = true, access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
-
-    /*
-     * Current resource status of the database
-     */
-    @JsonProperty(value = "resourceState", access = JsonProperty.Access.WRITE_ONLY)
-    private ResourceState resourceState;
-
-    /*
-     * Clustering policy - default is OSSCluster. Specified at create time.
-     */
-    @JsonProperty(value = "clusteringPolicy")
-    private ClusteringPolicy clusteringPolicy;
-
-    /*
-     * Redis eviction policy - default is VolatileLRU
-     */
-    @JsonProperty(value = "evictionPolicy")
-    private EvictionPolicy evictionPolicy;
 
     /*
      * Persistence settings
      */
-    @JsonProperty(value = "persistence")
+    @JsonProperty(value = "persistence", required = true)
     private Persistence persistence;
-
-    /*
-     * Optional set of redis modules to enable in this database - modules can only be added at creation time.
-     */
-    @JsonProperty(value = "modules")
-    private List<Module> modules;
-
-    /*
-     * Optional set of properties to configure geo replication for this database.
-     */
-    @JsonProperty(value = "geoReplication")
-    private DatabasePropertiesGeoReplication geoReplication;
 
     /** Creates an instance of DatabaseProperties class. */
     public DatabaseProperties() {
@@ -88,7 +49,7 @@ public final class DatabaseProperties {
      *
      * @return the clientProtocol value.
      */
-    public Protocol clientProtocol() {
+    public ClientProtocol clientProtocol() {
         return this.clientProtocol;
     }
 
@@ -99,14 +60,13 @@ public final class DatabaseProperties {
      * @param clientProtocol the clientProtocol value to set.
      * @return the DatabaseProperties object itself.
      */
-    public DatabaseProperties withClientProtocol(Protocol clientProtocol) {
+    public DatabaseProperties withClientProtocol(ClientProtocol clientProtocol) {
         this.clientProtocol = clientProtocol;
         return this;
     }
 
     /**
-     * Get the port property: TCP port of the database endpoint. Specified at create time. Defaults to an available
-     * port.
+     * Get the port property: Port number for the database to listen on. E.g. 10000.
      *
      * @return the port value.
      */
@@ -115,8 +75,7 @@ public final class DatabaseProperties {
     }
 
     /**
-     * Set the port property: TCP port of the database endpoint. Specified at create time. Defaults to an available
-     * port.
+     * Set the port property: Port number for the database to listen on. E.g. 10000.
      *
      * @param port the port value to set.
      * @return the DatabaseProperties object itself.
@@ -127,61 +86,12 @@ public final class DatabaseProperties {
     }
 
     /**
-     * Get the provisioningState property: Current provisioning status of the database.
+     * Get the provisioningState property: Provisioning state of the database.
      *
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Get the resourceState property: Current resource status of the database.
-     *
-     * @return the resourceState value.
-     */
-    public ResourceState resourceState() {
-        return this.resourceState;
-    }
-
-    /**
-     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
-     *
-     * @return the clusteringPolicy value.
-     */
-    public ClusteringPolicy clusteringPolicy() {
-        return this.clusteringPolicy;
-    }
-
-    /**
-     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
-     *
-     * @param clusteringPolicy the clusteringPolicy value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withClusteringPolicy(ClusteringPolicy clusteringPolicy) {
-        this.clusteringPolicy = clusteringPolicy;
-        return this;
-    }
-
-    /**
-     * Get the evictionPolicy property: Redis eviction policy - default is VolatileLRU.
-     *
-     * @return the evictionPolicy value.
-     */
-    public EvictionPolicy evictionPolicy() {
-        return this.evictionPolicy;
-    }
-
-    /**
-     * Set the evictionPolicy property: Redis eviction policy - default is VolatileLRU.
-     *
-     * @param evictionPolicy the evictionPolicy value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withEvictionPolicy(EvictionPolicy evictionPolicy) {
-        this.evictionPolicy = evictionPolicy;
-        return this;
     }
 
     /**
@@ -205,61 +115,19 @@ public final class DatabaseProperties {
     }
 
     /**
-     * Get the modules property: Optional set of redis modules to enable in this database - modules can only be added at
-     * creation time.
-     *
-     * @return the modules value.
-     */
-    public List<Module> modules() {
-        return this.modules;
-    }
-
-    /**
-     * Set the modules property: Optional set of redis modules to enable in this database - modules can only be added at
-     * creation time.
-     *
-     * @param modules the modules value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withModules(List<Module> modules) {
-        this.modules = modules;
-        return this;
-    }
-
-    /**
-     * Get the geoReplication property: Optional set of properties to configure geo replication for this database.
-     *
-     * @return the geoReplication value.
-     */
-    public DatabasePropertiesGeoReplication geoReplication() {
-        return this.geoReplication;
-    }
-
-    /**
-     * Set the geoReplication property: Optional set of properties to configure geo replication for this database.
-     *
-     * @param geoReplication the geoReplication value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withGeoReplication(DatabasePropertiesGeoReplication geoReplication) {
-        this.geoReplication = geoReplication;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (persistence() != null) {
+        if (persistence() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property persistence in model DatabaseProperties"));
+        } else {
             persistence().validate();
         }
-        if (modules() != null) {
-            modules().forEach(e -> e.validate());
-        }
-        if (geoReplication() != null) {
-            geoReplication().validate();
-        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DatabaseProperties.class);
 }

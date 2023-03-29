@@ -8,8 +8,8 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.SkusClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.RegionSkuDetailInner;
-import com.azure.resourcemanager.redisenterprise.models.RegionSkuDetail;
+import com.azure.resourcemanager.redisenterprise.fluent.models.SkuDetailsInner;
+import com.azure.resourcemanager.redisenterprise.models.SkuDetails;
 import com.azure.resourcemanager.redisenterprise.models.Skus;
 
 public final class SkusImpl implements Skus {
@@ -25,14 +25,14 @@ public final class SkusImpl implements Skus {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<RegionSkuDetail> list(String location) {
-        PagedIterable<RegionSkuDetailInner> inner = this.serviceClient().list(location);
-        return Utils.mapPage(inner, inner1 -> new RegionSkuDetailImpl(inner1, this.manager()));
+    public PagedIterable<SkuDetails> list() {
+        PagedIterable<SkuDetailsInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new SkuDetailsImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<RegionSkuDetail> list(String location, Context context) {
-        PagedIterable<RegionSkuDetailInner> inner = this.serviceClient().list(location, context);
-        return Utils.mapPage(inner, inner1 -> new RegionSkuDetailImpl(inner1, this.manager()));
+    public PagedIterable<SkuDetails> list(Context context) {
+        PagedIterable<SkuDetailsInner> inner = this.serviceClient().list(context);
+        return Utils.mapPage(inner, inner1 -> new SkuDetailsImpl(inner1, this.manager()));
     }
 
     private SkusClient serviceClient() {

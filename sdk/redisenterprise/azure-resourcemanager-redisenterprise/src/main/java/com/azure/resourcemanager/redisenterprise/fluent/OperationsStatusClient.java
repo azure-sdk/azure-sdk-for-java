@@ -8,34 +8,37 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusResultInner;
 
 /** An instance of this class provides access to all the operations defined in OperationsStatusClient. */
 public interface OperationsStatusClient {
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response}.
+     * @return information about a database in a RedisEnterprise cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<OperationStatusInner> getWithResponse(String location, String operationId, Context context);
+    Response<OperationStatusResultInner> getWithResponse(
+        String subscriptionId, String location, String operationId, Context context);
 
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation.
+     * @return information about a database in a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    OperationStatusInner get(String location, String operationId);
+    OperationStatusResultInner get(String subscriptionId, String location, String operationId);
 }

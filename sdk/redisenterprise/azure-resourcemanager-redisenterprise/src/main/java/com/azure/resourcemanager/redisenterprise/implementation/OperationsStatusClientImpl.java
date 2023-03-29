@@ -22,7 +22,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.redisenterprise.fluent.OperationsStatusClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusResultInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationsStatusClient. */
@@ -53,48 +53,48 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
     public interface OperationsStatusService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/operationsStatus/{operationId}")
+            "/Subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/OperationStatuses/{operationId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationStatusInner>> get(
+        Mono<Response<OperationStatusResultInner>> get(
             @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("location") String location,
             @PathParam("operationId") String operationId,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response} on successful completion of {@link Mono}.
+     * @return information about a database in a RedisEnterprise cluster along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationStatusInner>> getWithResponseAsync(String location, String operationId) {
+    private Mono<Response<OperationStatusResultInner>> getWithResponseAsync(
+        String subscriptionId, String location, String operationId) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
         if (location == null) {
             return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -103,34 +103,39 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
                     service
                         .get(
                             this.client.getEndpoint(),
+                            subscriptionId,
                             location,
                             operationId,
                             this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response} on successful completion of {@link Mono}.
+     * @return information about a database in a RedisEnterprise cluster along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationStatusInner>> getWithResponseAsync(
-        String location, String operationId, Context context) {
+    private Mono<Response<OperationStatusResultInner>> getWithResponseAsync(
+        String subscriptionId, String location, String operationId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         if (location == null) {
             return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
@@ -138,68 +143,67 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
+                subscriptionId,
                 location,
                 operationId,
                 this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
                 accept,
                 context);
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation on successful completion of {@link Mono}.
+     * @return information about a database in a RedisEnterprise cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusInner> getAsync(String location, String operationId) {
-        return getWithResponseAsync(location, operationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<OperationStatusResultInner> getAsync(String subscriptionId, String location, String operationId) {
+        return getWithResponseAsync(subscriptionId, location, operationId)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response}.
+     * @return information about a database in a RedisEnterprise cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OperationStatusInner> getWithResponse(String location, String operationId, Context context) {
-        return getWithResponseAsync(location, operationId, context).block();
+    public Response<OperationStatusResultInner> getWithResponse(
+        String subscriptionId, String location, String operationId, Context context) {
+        return getWithResponseAsync(subscriptionId, location, operationId, context).block();
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about a database in a RedisEnterprise cluster.
      *
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
+     * @param subscriptionId ID of the subscription.
+     * @param location Location of the long-running operation result.
+     * @param operationId Unique ID of the long-running operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation.
+     * @return information about a database in a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusInner get(String location, String operationId) {
-        return getWithResponse(location, operationId, Context.NONE).getValue();
+    public OperationStatusResultInner get(String subscriptionId, String location, String operationId) {
+        return getWithResponse(subscriptionId, location, operationId, Context.NONE).getValue();
     }
 }

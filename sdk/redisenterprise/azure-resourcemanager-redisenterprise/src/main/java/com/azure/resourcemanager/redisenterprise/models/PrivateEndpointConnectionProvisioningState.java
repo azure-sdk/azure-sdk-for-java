@@ -14,14 +14,17 @@ public final class PrivateEndpointConnectionProvisioningState
     /** Static value Succeeded for PrivateEndpointConnectionProvisioningState. */
     public static final PrivateEndpointConnectionProvisioningState SUCCEEDED = fromString("Succeeded");
 
+    /** Static value Failed for PrivateEndpointConnectionProvisioningState. */
+    public static final PrivateEndpointConnectionProvisioningState FAILED = fromString("Failed");
+
+    /** Static value Canceled for PrivateEndpointConnectionProvisioningState. */
+    public static final PrivateEndpointConnectionProvisioningState CANCELED = fromString("Canceled");
+
     /** Static value Creating for PrivateEndpointConnectionProvisioningState. */
     public static final PrivateEndpointConnectionProvisioningState CREATING = fromString("Creating");
 
     /** Static value Deleting for PrivateEndpointConnectionProvisioningState. */
     public static final PrivateEndpointConnectionProvisioningState DELETING = fromString("Deleting");
-
-    /** Static value Failed for PrivateEndpointConnectionProvisioningState. */
-    public static final PrivateEndpointConnectionProvisioningState FAILED = fromString("Failed");
 
     /**
      * Creates a new instance of PrivateEndpointConnectionProvisioningState value.

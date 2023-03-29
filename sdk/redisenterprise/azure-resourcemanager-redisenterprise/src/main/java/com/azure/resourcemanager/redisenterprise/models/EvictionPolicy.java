@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Redis eviction policy - default is VolatileLRU. */
+/** Defines values for EvictionPolicy. */
 public final class EvictionPolicy extends ExpandableStringEnum<EvictionPolicy> {
     /** Static value AllKeysLFU for EvictionPolicy. */
     public static final EvictionPolicy ALL_KEYS_LFU = fromString("AllKeysLFU");

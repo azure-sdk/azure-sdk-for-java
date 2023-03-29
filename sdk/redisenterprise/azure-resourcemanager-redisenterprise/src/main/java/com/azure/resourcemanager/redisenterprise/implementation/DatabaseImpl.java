@@ -9,28 +9,27 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import com.azure.resourcemanager.redisenterprise.models.AccessKeys;
-import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
+import com.azure.resourcemanager.redisenterprise.models.ClientProtocol;
 import com.azure.resourcemanager.redisenterprise.models.Database;
-import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.DatabaseUpdate;
-import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
-import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
+import com.azure.resourcemanager.redisenterprise.models.DatabaseCreateOrUpdate;
+import com.azure.resourcemanager.redisenterprise.models.ExportParameters;
 import com.azure.resourcemanager.redisenterprise.models.FlushParameters;
 import com.azure.resourcemanager.redisenterprise.models.ForceUnlinkParameters;
-import com.azure.resourcemanager.redisenterprise.models.ImportClusterParameters;
-import com.azure.resourcemanager.redisenterprise.models.Module;
+import com.azure.resourcemanager.redisenterprise.models.ImportParameters;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
-import com.azure.resourcemanager.redisenterprise.models.Protocol;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.RegenerateKeyParameters;
-import com.azure.resourcemanager.redisenterprise.models.ResourceState;
-import java.util.Collections;
-import java.util.List;
 
-public final class DatabaseImpl implements Database, Database.Definition, Database.Update {
+public final class DatabaseImpl implements Database, Database.Definition {
     private DatabaseInner innerObject;
 
     private final com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager;
+
+    DatabaseImpl(
+        DatabaseInner innerObject, com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -48,7 +47,7 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         return this.innerModel().systemData();
     }
 
-    public Protocol clientProtocol() {
+    public ClientProtocol clientProtocol() {
         return this.innerModel().clientProtocol();
     }
 
@@ -60,37 +59,8 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         return this.innerModel().provisioningState();
     }
 
-    public ResourceState resourceState() {
-        return this.innerModel().resourceState();
-    }
-
-    public ClusteringPolicy clusteringPolicy() {
-        return this.innerModel().clusteringPolicy();
-    }
-
-    public EvictionPolicy evictionPolicy() {
-        return this.innerModel().evictionPolicy();
-    }
-
     public Persistence persistence() {
         return this.innerModel().persistence();
-    }
-
-    public List<Module> modules() {
-        List<Module> inner = this.innerModel().modules();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public DatabasePropertiesGeoReplication geoReplication() {
-        return this.innerModel().geoReplication();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
     }
 
     public DatabaseInner innerModel() {
@@ -107,7 +77,7 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
 
     private String databaseName;
 
-    private DatabaseUpdate updateParameters;
+    private DatabaseCreateOrUpdate createResource;
 
     public DatabaseImpl withExistingRedisEnterprise(String resourceGroupName, String clusterName) {
         this.resourceGroupName = resourceGroupName;
@@ -120,7 +90,7 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
             serviceManager
                 .serviceClient()
                 .getDatabases()
-                .create(resourceGroupName, clusterName, databaseName, this.innerModel(), Context.NONE);
+                .create(resourceGroupName, clusterName, databaseName, createResource, Context.NONE);
         return this;
     }
 
@@ -129,7 +99,7 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
             serviceManager
                 .serviceClient()
                 .getDatabases()
-                .create(resourceGroupName, clusterName, databaseName, this.innerModel(), context);
+                .create(resourceGroupName, clusterName, databaseName, createResource, context);
         return this;
     }
 
@@ -137,38 +107,7 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         this.innerObject = new DatabaseInner();
         this.serviceManager = serviceManager;
         this.databaseName = name;
-    }
-
-    public DatabaseImpl update() {
-        this.updateParameters = new DatabaseUpdate();
-        return this;
-    }
-
-    public Database apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatabases()
-                .update(resourceGroupName, clusterName, databaseName, updateParameters, Context.NONE);
-        return this;
-    }
-
-    public Database apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatabases()
-                .update(resourceGroupName, clusterName, databaseName, updateParameters, context);
-        return this;
-    }
-
-    DatabaseImpl(
-        DatabaseInner innerObject, com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.clusterName = Utils.getValueFromIdByName(innerObject.id(), "redisEnterprise");
-        this.databaseName = Utils.getValueFromIdByName(innerObject.id(), "databases");
+        this.createResource = new DatabaseCreateOrUpdate();
     }
 
     public Database refresh() {
@@ -191,6 +130,38 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         return this;
     }
 
+    public void exportRdb(ExportParameters body) {
+        serviceManager.databases().exportRdb(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void exportRdb(ExportParameters body, Context context) {
+        serviceManager.databases().exportRdb(resourceGroupName, clusterName, databaseName, body, context);
+    }
+
+    public void forceUnlink(ForceUnlinkParameters body) {
+        serviceManager.databases().forceUnlink(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void forceUnlink(ForceUnlinkParameters body, Context context) {
+        serviceManager.databases().forceUnlink(resourceGroupName, clusterName, databaseName, body, context);
+    }
+
+    public void fush(FlushParameters body) {
+        serviceManager.databases().fush(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void fush(FlushParameters body, Context context) {
+        serviceManager.databases().fush(resourceGroupName, clusterName, databaseName, body, context);
+    }
+
+    public void importRdb(ImportParameters body) {
+        serviceManager.databases().importRdb(resourceGroupName, clusterName, databaseName, body);
+    }
+
+    public void importRdb(ImportParameters body, Context context) {
+        serviceManager.databases().importRdb(resourceGroupName, clusterName, databaseName, body, context);
+    }
+
     public Response<AccessKeys> listKeysWithResponse(Context context) {
         return serviceManager.databases().listKeysWithResponse(resourceGroupName, clusterName, databaseName, context);
     }
@@ -199,99 +170,26 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         return serviceManager.databases().listKeys(resourceGroupName, clusterName, databaseName);
     }
 
-    public AccessKeys regenerateKey(RegenerateKeyParameters parameters) {
-        return serviceManager.databases().regenerateKey(resourceGroupName, clusterName, databaseName, parameters);
+    public AccessKeys regenerateKey(RegenerateKeyParameters body) {
+        return serviceManager.databases().regenerateKey(resourceGroupName, clusterName, databaseName, body);
     }
 
-    public AccessKeys regenerateKey(RegenerateKeyParameters parameters, Context context) {
-        return serviceManager
-            .databases()
-            .regenerateKey(resourceGroupName, clusterName, databaseName, parameters, context);
+    public AccessKeys regenerateKey(RegenerateKeyParameters body, Context context) {
+        return serviceManager.databases().regenerateKey(resourceGroupName, clusterName, databaseName, body, context);
     }
 
-    public void importMethod(ImportClusterParameters parameters) {
-        serviceManager.databases().importMethod(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void importMethod(ImportClusterParameters parameters, Context context) {
-        serviceManager.databases().importMethod(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
-    public void export(ExportClusterParameters parameters) {
-        serviceManager.databases().export(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void export(ExportClusterParameters parameters, Context context) {
-        serviceManager.databases().export(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
-    public void forceUnlink(ForceUnlinkParameters parameters) {
-        serviceManager.databases().forceUnlink(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void forceUnlink(ForceUnlinkParameters parameters, Context context) {
-        serviceManager.databases().forceUnlink(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
-    public void flush(FlushParameters parameters) {
-        serviceManager.databases().flush(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void flush(FlushParameters parameters, Context context) {
-        serviceManager.databases().flush(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
-    public DatabaseImpl withClientProtocol(Protocol clientProtocol) {
-        if (isInCreateMode()) {
-            this.innerModel().withClientProtocol(clientProtocol);
-            return this;
-        } else {
-            this.updateParameters.withClientProtocol(clientProtocol);
-            return this;
-        }
+    public DatabaseImpl withClientProtocol(ClientProtocol clientProtocol) {
+        this.createResource.withClientProtocol(clientProtocol);
+        return this;
     }
 
     public DatabaseImpl withPort(Integer port) {
-        this.innerModel().withPort(port);
+        this.createResource.withPort(port);
         return this;
-    }
-
-    public DatabaseImpl withClusteringPolicy(ClusteringPolicy clusteringPolicy) {
-        this.innerModel().withClusteringPolicy(clusteringPolicy);
-        return this;
-    }
-
-    public DatabaseImpl withEvictionPolicy(EvictionPolicy evictionPolicy) {
-        if (isInCreateMode()) {
-            this.innerModel().withEvictionPolicy(evictionPolicy);
-            return this;
-        } else {
-            this.updateParameters.withEvictionPolicy(evictionPolicy);
-            return this;
-        }
     }
 
     public DatabaseImpl withPersistence(Persistence persistence) {
-        if (isInCreateMode()) {
-            this.innerModel().withPersistence(persistence);
-            return this;
-        } else {
-            this.updateParameters.withPersistence(persistence);
-            return this;
-        }
-    }
-
-    public DatabaseImpl withModules(List<Module> modules) {
-        this.innerModel().withModules(modules);
+        this.createResource.withPersistence(persistence);
         return this;
-    }
-
-    public DatabaseImpl withGeoReplication(DatabasePropertiesGeoReplication geoReplication) {
-        this.innerModel().withGeoReplication(geoReplication);
-        return this;
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }

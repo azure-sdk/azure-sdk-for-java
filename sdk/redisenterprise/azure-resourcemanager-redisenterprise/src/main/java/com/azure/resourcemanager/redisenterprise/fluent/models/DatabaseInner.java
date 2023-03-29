@@ -7,24 +7,16 @@ package com.azure.resourcemanager.redisenterprise.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
-import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
-import com.azure.resourcemanager.redisenterprise.models.Module;
+import com.azure.resourcemanager.redisenterprise.models.ClientProtocol;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
-import com.azure.resourcemanager.redisenterprise.models.Protocol;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
-import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** Describes a database on the RedisEnterprise cluster. */
+/** Describes a Database on a RedisEnterprise cluster. */
 @Fluent
 public final class DatabaseInner extends ProxyResource {
     /*
-     * RedisEnterprise database properties
-     *
-     * Other properties of the database.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private DatabaseProperties innerProperties;
@@ -40,9 +32,7 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: RedisEnterprise database properties
-     *
-     * <p>Other properties of the database.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      *
      * @return the innerProperties value.
      */
@@ -65,7 +55,7 @@ public final class DatabaseInner extends ProxyResource {
      *
      * @return the clientProtocol value.
      */
-    public Protocol clientProtocol() {
+    public ClientProtocol clientProtocol() {
         return this.innerProperties() == null ? null : this.innerProperties().clientProtocol();
     }
 
@@ -76,7 +66,7 @@ public final class DatabaseInner extends ProxyResource {
      * @param clientProtocol the clientProtocol value to set.
      * @return the DatabaseInner object itself.
      */
-    public DatabaseInner withClientProtocol(Protocol clientProtocol) {
+    public DatabaseInner withClientProtocol(ClientProtocol clientProtocol) {
         if (this.innerProperties() == null) {
             this.innerProperties = new DatabaseProperties();
         }
@@ -85,8 +75,7 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Get the port property: TCP port of the database endpoint. Specified at create time. Defaults to an available
-     * port.
+     * Get the port property: Port number for the database to listen on. E.g. 10000.
      *
      * @return the port value.
      */
@@ -95,8 +84,7 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Set the port property: TCP port of the database endpoint. Specified at create time. Defaults to an available
-     * port.
+     * Set the port property: Port number for the database to listen on. E.g. 10000.
      *
      * @param port the port value to set.
      * @return the DatabaseInner object itself.
@@ -110,67 +98,12 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: Current provisioning status of the database.
+     * Get the provisioningState property: Provisioning state of the database.
      *
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the resourceState property: Current resource status of the database.
-     *
-     * @return the resourceState value.
-     */
-    public ResourceState resourceState() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceState();
-    }
-
-    /**
-     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
-     *
-     * @return the clusteringPolicy value.
-     */
-    public ClusteringPolicy clusteringPolicy() {
-        return this.innerProperties() == null ? null : this.innerProperties().clusteringPolicy();
-    }
-
-    /**
-     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
-     *
-     * @param clusteringPolicy the clusteringPolicy value to set.
-     * @return the DatabaseInner object itself.
-     */
-    public DatabaseInner withClusteringPolicy(ClusteringPolicy clusteringPolicy) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withClusteringPolicy(clusteringPolicy);
-        return this;
-    }
-
-    /**
-     * Get the evictionPolicy property: Redis eviction policy - default is VolatileLRU.
-     *
-     * @return the evictionPolicy value.
-     */
-    public EvictionPolicy evictionPolicy() {
-        return this.innerProperties() == null ? null : this.innerProperties().evictionPolicy();
-    }
-
-    /**
-     * Set the evictionPolicy property: Redis eviction policy - default is VolatileLRU.
-     *
-     * @param evictionPolicy the evictionPolicy value to set.
-     * @return the DatabaseInner object itself.
-     */
-    public DatabaseInner withEvictionPolicy(EvictionPolicy evictionPolicy) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withEvictionPolicy(evictionPolicy);
-        return this;
     }
 
     /**
@@ -193,54 +126,6 @@ public final class DatabaseInner extends ProxyResource {
             this.innerProperties = new DatabaseProperties();
         }
         this.innerProperties().withPersistence(persistence);
-        return this;
-    }
-
-    /**
-     * Get the modules property: Optional set of redis modules to enable in this database - modules can only be added at
-     * creation time.
-     *
-     * @return the modules value.
-     */
-    public List<Module> modules() {
-        return this.innerProperties() == null ? null : this.innerProperties().modules();
-    }
-
-    /**
-     * Set the modules property: Optional set of redis modules to enable in this database - modules can only be added at
-     * creation time.
-     *
-     * @param modules the modules value to set.
-     * @return the DatabaseInner object itself.
-     */
-    public DatabaseInner withModules(List<Module> modules) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withModules(modules);
-        return this;
-    }
-
-    /**
-     * Get the geoReplication property: Optional set of properties to configure geo replication for this database.
-     *
-     * @return the geoReplication value.
-     */
-    public DatabasePropertiesGeoReplication geoReplication() {
-        return this.innerProperties() == null ? null : this.innerProperties().geoReplication();
-    }
-
-    /**
-     * Set the geoReplication property: Optional set of properties to configure geo replication for this database.
-     *
-     * @param geoReplication the geoReplication value to set.
-     * @return the DatabaseInner object itself.
-     */
-    public DatabaseInner withGeoReplication(DatabasePropertiesGeoReplication geoReplication) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withGeoReplication(geoReplication);
         return this;
     }
 

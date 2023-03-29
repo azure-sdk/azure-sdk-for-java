@@ -52,18 +52,18 @@ public interface RedisEnterpriseManagementClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the OperationsStatusClient object to access its operations.
-     *
-     * @return the OperationsStatusClient object.
-     */
-    OperationsStatusClient getOperationsStatus();
-
-    /**
      * Gets the RedisEnterprisesClient object to access its operations.
      *
      * @return the RedisEnterprisesClient object.
      */
     RedisEnterprisesClient getRedisEnterprises();
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     *
+     * @return the SkusClient object.
+     */
+    SkusClient getSkus();
 
     /**
      * Gets the DatabasesClient object to access its operations.
@@ -87,9 +87,9 @@ public interface RedisEnterpriseManagementClient {
     PrivateLinkResourcesClient getPrivateLinkResources();
 
     /**
-     * Gets the SkusClient object to access its operations.
+     * Gets the OperationsStatusClient object to access its operations.
      *
-     * @return the SkusClient object.
+     * @return the OperationsStatusClient object.
      */
-    SkusClient getSkus();
+    OperationsStatusClient getOperationsStatus();
 }

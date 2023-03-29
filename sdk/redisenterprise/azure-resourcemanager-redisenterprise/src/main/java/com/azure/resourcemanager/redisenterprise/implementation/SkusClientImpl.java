@@ -26,8 +26,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.redisenterprise.fluent.SkusClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.RegionSkuDetailInner;
-import com.azure.resourcemanager.redisenterprise.models.RegionSkuDetails;
+import com.azure.resourcemanager.redisenterprise.fluent.models.SkuDetailsInner;
+import com.azure.resourcemanager.redisenterprise.models.SkuDetailsListResult;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SkusClient. */
@@ -56,30 +56,37 @@ public final class SkusClientImpl implements SkusClient {
     @ServiceInterface(name = "RedisEnterpriseManag")
     public interface SkusService {
         @Headers({"Content-Type: application/json"})
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/skus")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Cache/skus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RegionSkuDetails>> list(
+        Mono<Response<SkuDetailsListResult>> list(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location,
             @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SkuDetailsListResult>> listBySubscriptionNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SkuDetails list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RegionSkuDetailInner>> listSinglePageAsync(String location) {
+    private Mono<PagedResponse<SkuDetailsInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -91,9 +98,6 @@ public final class SkusClientImpl implements SkusClient {
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -102,31 +106,34 @@ public final class SkusClientImpl implements SkusClient {
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            location,
                             this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
                             accept,
                             context))
-            .<PagedResponse<RegionSkuDetailInner>>map(
+            .<PagedResponse<SkuDetailsInner>>map(
                 res ->
                     new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a SkuDetails list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RegionSkuDetailInner>> listSinglePageAsync(String location, Context context) {
+    private Mono<PagedResponse<SkuDetailsInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -139,84 +146,154 @@ public final class SkusClientImpl implements SkusClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                location,
                 this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
                 accept,
                 context)
             .map(
                 res ->
                     new PagedResponseBase<>(
-                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null));
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedFlux}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RegionSkuDetailInner> listAsync(String location) {
-        return new PagedFlux<>(() -> listSinglePageAsync(location));
+    private PagedFlux<SkuDetailsInner> listAsync() {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedFlux}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RegionSkuDetailInner> listAsync(String location, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(location, context));
+    private PagedFlux<SkuDetailsInner> listAsync(Context context) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedIterable}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RegionSkuDetailInner> list(String location) {
-        return new PagedIterable<>(listAsync(location));
+    public PagedIterable<SkuDetailsInner> list() {
+        return new PagedIterable<>(listAsync());
     }
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedIterable}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RegionSkuDetailInner> list(String location, Context context) {
-        return new PagedIterable<>(listAsync(location, context));
+    public PagedIterable<SkuDetailsInner> list(Context context) {
+        return new PagedIterable<>(listAsync(context));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SkuDetails list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SkuDetailsInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<SkuDetailsInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SkuDetails list operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SkuDetailsInner>> listBySubscriptionNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 }

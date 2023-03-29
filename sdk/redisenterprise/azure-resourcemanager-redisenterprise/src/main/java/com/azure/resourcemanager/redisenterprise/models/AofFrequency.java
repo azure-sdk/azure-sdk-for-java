@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Sets the frequency at which data is written to disk. */
+/** Defines values for AofFrequency. */
 public final class AofFrequency extends ExpandableStringEnum<AofFrequency> {
     /** Static value 1s for AofFrequency. */
     public static final AofFrequency ONES = fromString("1s");

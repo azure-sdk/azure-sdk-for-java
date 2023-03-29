@@ -7,17 +7,15 @@ package com.azure.resourcemanager.redisenterprise.generated;
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDeletePrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePrivateEndpointConnectionsDelete.json
      */
     /**
-     * Sample code: RedisEnterpriseDeletePrivateEndpointConnection.
+     * Sample code: RedisEnterprisePrivateEndpointConnections_Delete.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterpriseDeletePrivateEndpointConnection(
+    public static void redisEnterprisePrivateEndpointConnectionsDelete(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .privateEndpointConnections()
-            .deleteWithResponse("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections().delete("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
     }
 }

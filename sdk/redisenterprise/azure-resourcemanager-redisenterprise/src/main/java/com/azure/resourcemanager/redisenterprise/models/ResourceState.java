@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Current resource status. */
+/** Defines values for ResourceState. */
 public final class ResourceState extends ExpandableStringEnum<ResourceState> {
     /** Static value Running for ResourceState. */
     public static final ResourceState RUNNING = fromString("Running");

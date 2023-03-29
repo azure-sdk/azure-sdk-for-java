@@ -21,8 +21,8 @@ public final class Sku {
      * The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...)
      * for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
      */
-    @JsonProperty(value = "capacity")
-    private Integer capacity;
+    @JsonProperty(value = "capacity", required = true)
+    private int capacity;
 
     /** Creates an instance of Sku class. */
     public Sku() {
@@ -56,7 +56,7 @@ public final class Sku {
      *
      * @return the capacity value.
      */
-    public Integer capacity() {
+    public int capacity() {
         return this.capacity;
     }
 
@@ -67,7 +67,7 @@ public final class Sku {
      * @param capacity the capacity value to set.
      * @return the Sku object itself.
      */
-    public Sku withCapacity(Integer capacity) {
+    public Sku withCapacity(int capacity) {
         this.capacity = capacity;
         return this;
     }

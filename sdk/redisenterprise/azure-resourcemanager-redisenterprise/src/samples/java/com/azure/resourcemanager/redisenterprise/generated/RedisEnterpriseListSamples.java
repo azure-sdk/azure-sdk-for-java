@@ -10,7 +10,7 @@ public final class RedisEnterpriseListSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseList.json
      */
     /**
-     * Sample code: RedisEnterpriseList.
+     * Sample code: RedisEnterprise_List.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */

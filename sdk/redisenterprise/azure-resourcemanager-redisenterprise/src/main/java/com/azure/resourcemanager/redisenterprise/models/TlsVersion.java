@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The minimum TLS version for the cluster to support, e.g. '1.2'. */
+/** Defines values for TlsVersion. */
 public final class TlsVersion extends ExpandableStringEnum<TlsVersion> {
     /** Static value 1.0 for TlsVersion. */
     public static final TlsVersion ONE_ZERO = fromString("1.0");

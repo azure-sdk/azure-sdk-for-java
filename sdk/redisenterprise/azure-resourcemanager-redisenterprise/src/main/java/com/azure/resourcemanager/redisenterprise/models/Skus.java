@@ -10,27 +10,22 @@ import com.azure.core.util.Context;
 /** Resource collection API of Skus. */
 public interface Skus {
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedIterable}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<RegionSkuDetail> list(String location);
+    PagedIterable<SkuDetails> list();
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedIterable}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<RegionSkuDetail> list(String location, Context context);
+    PagedIterable<SkuDetails> list(Context context);
 }

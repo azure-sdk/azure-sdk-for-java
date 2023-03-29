@@ -5,20 +5,17 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/**
- * Flush all the keys from the current and all its linked databases
- *
- * <p>Parameters for a Redis Enterprise active geo-replication flush operation.
- */
+/** Parameters for a Redis Enterprise Active Geo Replication Flush operation. */
 @Fluent
 public final class FlushParameters {
     /*
-     * The resource identifiers of all the other database resources in the georeplication group to be flushed
+     * The resource IDs of the database resources to be flushed
      */
-    @JsonProperty(value = "ids")
+    @JsonProperty(value = "ids", required = true)
     private List<String> ids;
 
     /** Creates an instance of FlushParameters class. */
@@ -26,8 +23,7 @@ public final class FlushParameters {
     }
 
     /**
-     * Get the ids property: The resource identifiers of all the other database resources in the georeplication group to
-     * be flushed.
+     * Get the ids property: The resource IDs of the database resources to be flushed.
      *
      * @return the ids value.
      */
@@ -36,8 +32,7 @@ public final class FlushParameters {
     }
 
     /**
-     * Set the ids property: The resource identifiers of all the other database resources in the georeplication group to
-     * be flushed.
+     * Set the ids property: The resource IDs of the database resources to be flushed.
      *
      * @param ids the ids value to set.
      * @return the FlushParameters object itself.
@@ -53,5 +48,12 @@ public final class FlushParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (ids() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property ids in model FlushParameters"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(FlushParameters.class);
 }

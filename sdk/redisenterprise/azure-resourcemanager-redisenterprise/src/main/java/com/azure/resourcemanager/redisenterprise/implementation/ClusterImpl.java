@@ -8,20 +8,15 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
-import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.redisenterprise.models.Cluster;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
 import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
+import com.azure.resourcemanager.redisenterprise.models.SkuUpdate;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.Update {
     private ClusterInner innerObject;
@@ -57,33 +52,16 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().sku();
     }
 
-    public List<String> zones() {
-        List<String> inner = this.innerModel().zones();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
 
-    public TlsVersion minimumTlsVersion() {
-        return this.innerModel().minimumTlsVersion();
-    }
-
-    public ClusterPropertiesEncryption encryption() {
-        return this.innerModel().encryption();
-    }
-
     public String hostname() {
         return this.innerModel().hostname();
+    }
+
+    public TlsVersion minTlsVersion() {
+        return this.innerModel().minTlsVersion();
     }
 
     public ProvisioningState provisioningState() {
@@ -96,20 +74,6 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     public String redisVersion() {
         return this.innerModel().redisVersion();
-    }
-
-    public List<PrivateEndpointConnection> privateEndpointConnections() {
-        List<PrivateEndpointConnectionInner> inner = this.innerModel().privateEndpointConnections();
-        if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public Region region() {
@@ -136,7 +100,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     private String clusterName;
 
-    private ClusterUpdate updateParameters;
+    private ClusterUpdate updateProperties;
 
     public ClusterImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -168,7 +132,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public ClusterImpl update() {
-        this.updateParameters = new ClusterUpdate();
+        this.updateProperties = new ClusterUpdate();
         return this;
     }
 
@@ -177,7 +141,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             serviceManager
                 .serviceClient()
                 .getRedisEnterprises()
-                .update(resourceGroupName, clusterName, updateParameters, Context.NONE);
+                .update(resourceGroupName, clusterName, updateProperties, Context.NONE);
         return this;
     }
 
@@ -186,7 +150,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             serviceManager
                 .serviceClient()
                 .getRedisEnterprises()
-                .update(resourceGroupName, clusterName, updateParameters, context);
+                .update(resourceGroupName, clusterName, updateProperties, context);
         return this;
     }
 
@@ -229,13 +193,8 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public ClusterImpl withSku(Sku sku) {
-        if (isInCreateMode()) {
-            this.innerModel().withSku(sku);
-            return this;
-        } else {
-            this.updateParameters.withSku(sku);
-            return this;
-        }
+        this.innerModel().withSku(sku);
+        return this;
     }
 
     public ClusterImpl withTags(Map<String, String> tags) {
@@ -243,44 +202,29 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
-    public ClusterImpl withZones(List<String> zones) {
-        this.innerModel().withZones(zones);
+    public ClusterImpl withMinTlsVersion(TlsVersion minTlsVersion) {
+        this.innerModel().withMinTlsVersion(minTlsVersion);
         return this;
     }
 
-    public ClusterImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateParameters.withIdentity(identity);
-            return this;
-        }
+    public ClusterImpl withSku(SkuUpdate sku) {
+        this.updateProperties.withSku(sku);
+        return this;
     }
 
-    public ClusterImpl withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
-        if (isInCreateMode()) {
-            this.innerModel().withMinimumTlsVersion(minimumTlsVersion);
-            return this;
-        } else {
-            this.updateParameters.withMinimumTlsVersion(minimumTlsVersion);
-            return this;
-        }
+    public ClusterImpl withSkuPropertiesSku(SkuUpdate skuPropertiesSku) {
+        this.updateProperties.withSkuPropertiesSku(skuPropertiesSku);
+        return this;
     }
 
-    public ClusterImpl withEncryption(ClusterPropertiesEncryption encryption) {
-        if (isInCreateMode()) {
-            this.innerModel().withEncryption(encryption);
-            return this;
-        } else {
-            this.updateParameters.withEncryption(encryption);
-            return this;
-        }
+    public ClusterImpl withTagsPropertiesTags(Map<String, String> tagsPropertiesTags) {
+        this.updateProperties.withTagsPropertiesTags(tagsPropertiesTags);
+        return this;
     }
 
     private boolean isInCreateMode() {

@@ -126,18 +126,6 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
         return this.operations;
     }
 
-    /** The OperationsStatusClient object to access its operations. */
-    private final OperationsStatusClient operationsStatus;
-
-    /**
-     * Gets the OperationsStatusClient object to access its operations.
-     *
-     * @return the OperationsStatusClient object.
-     */
-    public OperationsStatusClient getOperationsStatus() {
-        return this.operationsStatus;
-    }
-
     /** The RedisEnterprisesClient object to access its operations. */
     private final RedisEnterprisesClient redisEnterprises;
 
@@ -148,6 +136,18 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
      */
     public RedisEnterprisesClient getRedisEnterprises() {
         return this.redisEnterprises;
+    }
+
+    /** The SkusClient object to access its operations. */
+    private final SkusClient skus;
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     *
+     * @return the SkusClient object.
+     */
+    public SkusClient getSkus() {
+        return this.skus;
     }
 
     /** The DatabasesClient object to access its operations. */
@@ -186,16 +186,16 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
         return this.privateLinkResources;
     }
 
-    /** The SkusClient object to access its operations. */
-    private final SkusClient skus;
+    /** The OperationsStatusClient object to access its operations. */
+    private final OperationsStatusClient operationsStatus;
 
     /**
-     * Gets the SkusClient object to access its operations.
+     * Gets the OperationsStatusClient object to access its operations.
      *
-     * @return the SkusClient object.
+     * @return the OperationsStatusClient object.
      */
-    public SkusClient getSkus() {
-        return this.skus;
+    public OperationsStatusClient getOperationsStatus() {
+        return this.operationsStatus;
     }
 
     /**
@@ -222,12 +222,12 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
         this.endpoint = endpoint;
         this.apiVersion = "2023-03-01-preview";
         this.operations = new OperationsClientImpl(this);
-        this.operationsStatus = new OperationsStatusClientImpl(this);
         this.redisEnterprises = new RedisEnterprisesClientImpl(this);
+        this.skus = new SkusClientImpl(this);
         this.databases = new DatabasesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.skus = new SkusClientImpl(this);
+        this.operationsStatus = new OperationsStatusClientImpl(this);
     }
 
     /**

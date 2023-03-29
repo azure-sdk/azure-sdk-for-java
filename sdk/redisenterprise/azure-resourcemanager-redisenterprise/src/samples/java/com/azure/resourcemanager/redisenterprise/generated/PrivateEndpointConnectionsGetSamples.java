@@ -7,14 +7,14 @@ package com.azure.resourcemanager.redisenterprise.generated;
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseGetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePrivateEndpointConnectionsGet.json
      */
     /**
-     * Sample code: RedisEnterpriseGetPrivateEndpointConnection.
+     * Sample code: RedisEnterprisePrivateEndpointConnections_Get.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterpriseGetPrivateEndpointConnection(
+    public static void redisEnterprisePrivateEndpointConnectionsGet(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
         manager
             .privateEndpointConnections()

@@ -8,34 +8,29 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.redisenterprise.fluent.models.RegionSkuDetailInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.SkuDetailsInner;
 
 /** An instance of this class provides access to all the operations defined in SkusClient. */
 public interface SkusClient {
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedIterable}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<RegionSkuDetailInner> list(String location);
+    PagedIterable<SkuDetailsInner> list();
 
     /**
-     * Gets information about skus in specified location for the given subscription id.
+     * Lists all RedisEnterprise skus in a subscription.
      *
-     * @param location The name of Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about skus in specified location for the given subscription id as paginated response with
-     *     {@link PagedIterable}.
+     * @return the response of a SkuDetails list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<RegionSkuDetailInner> list(String location, Context context);
+    PagedIterable<SkuDetailsInner> list(Context context);
 }

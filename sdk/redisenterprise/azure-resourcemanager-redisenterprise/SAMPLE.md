@@ -5,19 +5,15 @@
 
 - [Create](#databases_create)
 - [Delete](#databases_delete)
-- [Export](#databases_export)
-- [Flush](#databases_flush)
+- [ExportRdb](#databases_exportrdb)
 - [ForceUnlink](#databases_forceunlink)
+- [Fush](#databases_fush)
 - [Get](#databases_get)
-- [ImportMethod](#databases_importmethod)
+- [ImportRdb](#databases_importrdb)
 - [ListByCluster](#databases_listbycluster)
 - [ListKeys](#databases_listkeys)
 - [RegenerateKey](#databases_regeneratekey)
 - [Update](#databases_update)
-
-## Operations
-
-- [List](#operations_list)
 
 ## OperationsStatus
 
@@ -25,14 +21,11 @@
 
 ## PrivateEndpointConnections
 
+- [Create](#privateendpointconnections_create)
 - [Delete](#privateendpointconnections_delete)
 - [Get](#privateendpointconnections_get)
-- [List](#privateendpointconnections_list)
-- [Put](#privateendpointconnections_put)
-
-## PrivateLinkResources
-
-- [ListByCluster](#privatelinkresources_listbycluster)
+- [ListByCluster](#privateendpointconnections_listbycluster)
+- [Update](#privateendpointconnections_update)
 
 ## RedisEnterprise
 
@@ -49,77 +42,32 @@
 ### Databases_Create
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.AofFrequency;
-import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
-import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
-import com.azure.resourcemanager.redisenterprise.models.LinkedDatabase;
-import com.azure.resourcemanager.redisenterprise.models.Module;
-import com.azure.resourcemanager.redisenterprise.models.Persistence;
-import com.azure.resourcemanager.redisenterprise.models.Protocol;
-import java.util.Arrays;
-
 /** Samples for Databases Create. */
 public final class DatabasesCreateSamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesCreate.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesCreate.
+     * Sample code: RedisEnterpriseDatabases_Create.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void redisEnterpriseDatabasesCreate(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .define("default")
-            .withExistingRedisEnterprise("rg1", "cache1")
-            .withClientProtocol(Protocol.ENCRYPTED)
-            .withPort(10000)
-            .withClusteringPolicy(ClusteringPolicy.ENTERPRISE_CLUSTER)
-            .withEvictionPolicy(EvictionPolicy.ALL_KEYS_LRU)
-            .withPersistence(new Persistence().withAofEnabled(true).withAofFrequency(AofFrequency.ONES))
-            .withModules(
-                Arrays
-                    .asList(
-                        new Module().withName("RedisBloom").withArgs("ERROR_RATE 0.00 INITIAL_SIZE 400"),
-                        new Module().withName("RedisTimeSeries").withArgs("RETENTION_POLICY 20"),
-                        new Module().withName("RediSearch")))
-            .create();
+        manager.databases().define("default").withExistingRedisEnterprise("rg1", "cache1").create();
     }
 
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesCreateWithGeoReplication.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesCreate With Active Geo Replication.
+     * Sample code: RedisEnterpriseDatabases_CreateWithGeoReplication.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterpriseDatabasesCreateWithActiveGeoReplication(
+    public static void redisEnterpriseDatabasesCreateWithGeoReplication(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .define("default")
-            .withExistingRedisEnterprise("rg1", "cache1")
-            .withClientProtocol(Protocol.ENCRYPTED)
-            .withPort(10000)
-            .withClusteringPolicy(ClusteringPolicy.ENTERPRISE_CLUSTER)
-            .withEvictionPolicy(EvictionPolicy.NO_EVICTION)
-            .withGeoReplication(
-                new DatabasePropertiesGeoReplication()
-                    .withGroupNickname("groupName")
-                    .withLinkedDatabases(
-                        Arrays
-                            .asList(
-                                new LinkedDatabase()
-                                    .withId(
-                                        "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Cache/redisEnterprise/cache1/databases/default"),
-                                new LinkedDatabase()
-                                    .withId(
-                                        "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default"))))
-            .create();
+        manager.databases().define("default").withExistingRedisEnterprise("rg1", "cache1").create();
     }
 }
 ```
@@ -133,7 +81,7 @@ public final class DatabasesDeleteSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesDelete.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesDelete.
+     * Sample code: RedisEnterpriseDatabases_Delete.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -144,66 +92,22 @@ public final class DatabasesDeleteSamples {
 }
 ```
 
-### Databases_Export
+### Databases_ExportRdb
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
-
-/** Samples for Databases Export. */
-public final class DatabasesExportSamples {
+/** Samples for Databases ExportRdb. */
+public final class DatabasesExportRdbSamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesExport.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesExport.
+     * Sample code: RedisEnterpriseDatabases_Export.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void redisEnterpriseDatabasesExport(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .export(
-                "rg1",
-                "cache1",
-                "default",
-                new ExportClusterParameters()
-                    .withSasUri("https://contosostorage.blob.core.window.net/urlToBlobContainer?sasKeyParameters"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Databases_Flush
-
-```java
-import com.azure.resourcemanager.redisenterprise.models.FlushParameters;
-import java.util.Arrays;
-
-/** Samples for Databases Flush. */
-public final class DatabasesFlushSamples {
-    /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesFlush.json
-     */
-    /**
-     * Sample code: How to flush all the keys in the database.
-     *
-     * @param manager Entry point to RedisEnterpriseManager.
-     */
-    public static void howToFlushAllTheKeysInTheDatabase(
-        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .flush(
-                "rg1",
-                "cache1",
-                "default",
-                new FlushParameters()
-                    .withIds(
-                        Arrays
-                            .asList(
-                                "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default")),
-                com.azure.core.util.Context.NONE);
+        manager.databases().exportRdb("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -211,33 +115,39 @@ public final class DatabasesFlushSamples {
 ### Databases_ForceUnlink
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.ForceUnlinkParameters;
-import java.util.Arrays;
-
 /** Samples for Databases ForceUnlink. */
 public final class DatabasesForceUnlinkSamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesForceUnlink.json
      */
     /**
-     * Sample code: How to unlink a database during a regional outage.
+     * Sample code: RedisEnterpriseDatabases_ForceUnlink.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void howToUnlinkADatabaseDuringARegionalOutage(
+    public static void redisEnterpriseDatabasesForceUnlink(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .forceUnlink(
-                "rg1",
-                "cache1",
-                "default",
-                new ForceUnlinkParameters()
-                    .withIds(
-                        Arrays
-                            .asList(
-                                "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default")),
-                com.azure.core.util.Context.NONE);
+        manager.databases().forceUnlink("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Databases_Fush
+
+```java
+/** Samples for Databases Fush. */
+public final class DatabasesFushSamples {
+    /*
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesFlush.json
+     */
+    /**
+     * Sample code: RedisEnterpriseDatabases_Flush.
+     *
+     * @param manager Entry point to RedisEnterpriseManager.
+     */
+    public static void redisEnterpriseDatabasesFlush(
+        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager.databases().fush("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -251,7 +161,7 @@ public final class DatabasesGetSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesGet.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesGet.
+     * Sample code: RedisEnterpriseDatabases_Get.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -262,37 +172,22 @@ public final class DatabasesGetSamples {
 }
 ```
 
-### Databases_ImportMethod
+### Databases_ImportRdb
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.ImportClusterParameters;
-import java.util.Arrays;
-
-/** Samples for Databases ImportMethod. */
-public final class DatabasesImportMethodSamples {
+/** Samples for Databases ImportRdb. */
+public final class DatabasesImportRdbSamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesImport.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesImport.
+     * Sample code: RedisEnterpriseDatabases_Import.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void redisEnterpriseDatabasesImport(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .importMethod(
-                "rg1",
-                "cache1",
-                "default",
-                new ImportClusterParameters()
-                    .withSasUris(
-                        Arrays
-                            .asList(
-                                "https://contosostorage.blob.core.window.net/urltoBlobFile1?sasKeyParameters",
-                                "https://contosostorage.blob.core.window.net/urltoBlobFile2?sasKeyParameters")),
-                com.azure.core.util.Context.NONE);
+        manager.databases().importRdb("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -306,7 +201,7 @@ public final class DatabasesListByClusterSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesListByCluster.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesListByCluster.
+     * Sample code: RedisEnterpriseDatabases_ListByCluster.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -326,7 +221,7 @@ public final class DatabasesListKeysSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesListKeys.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesListKeys.
+     * Sample code: RedisEnterpriseDatabases_ListKeys.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -340,29 +235,19 @@ public final class DatabasesListKeysSamples {
 ### Databases_RegenerateKey
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.AccessKeyType;
-import com.azure.resourcemanager.redisenterprise.models.RegenerateKeyParameters;
-
 /** Samples for Databases RegenerateKey. */
 public final class DatabasesRegenerateKeySamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesRegenerateKey.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesRegenerateKey.
+     * Sample code: RedisEnterpriseDatabases_RegenerateKey.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void redisEnterpriseDatabasesRegenerateKey(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .databases()
-            .regenerateKey(
-                "rg1",
-                "cache1",
-                "default",
-                new RegenerateKeyParameters().withKeyType(AccessKeyType.PRIMARY),
-                com.azure.core.util.Context.NONE);
+        manager.databases().regenerateKey("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -370,54 +255,19 @@ public final class DatabasesRegenerateKeySamples {
 ### Databases_Update
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.Database;
-import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
-import com.azure.resourcemanager.redisenterprise.models.Persistence;
-import com.azure.resourcemanager.redisenterprise.models.Protocol;
-import com.azure.resourcemanager.redisenterprise.models.RdbFrequency;
-
 /** Samples for Databases Update. */
 public final class DatabasesUpdateSamples {
     /*
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesUpdate.json
      */
     /**
-     * Sample code: RedisEnterpriseDatabasesUpdate.
+     * Sample code: RedisEnterpriseDatabases_Update.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void redisEnterpriseDatabasesUpdate(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        Database resource =
-            manager
-                .databases()
-                .getWithResponse("rg1", "cache1", "default", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withClientProtocol(Protocol.ENCRYPTED)
-            .withEvictionPolicy(EvictionPolicy.ALL_KEYS_LRU)
-            .withPersistence(new Persistence().withRdbEnabled(true).withRdbFrequency(RdbFrequency.ONE_TWOH))
-            .apply();
-    }
-}
-```
-
-### Operations_List
-
-```java
-/** Samples for Operations List. */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/OperationsList.json
-     */
-    /**
-     * Sample code: OperationsList.
-     *
-     * @param manager Entry point to RedisEnterpriseManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+        manager.databases().update("rg1", "cache1", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -431,12 +281,34 @@ public final class OperationsStatusGetSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/OperationsStatusGet.json
      */
     /**
-     * Sample code: OperationsStatusGet.
+     * Sample code: OperationsStatus_Get.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
     public static void operationsStatusGet(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.operationsStatus().getWithResponse("West US", "testoperationid", com.azure.core.util.Context.NONE);
+        manager
+            .operationsStatus()
+            .getWithResponse("subid", "West US", "testoperationid", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Create
+
+```java
+/** Samples for PrivateEndpointConnections Create. */
+public final class PrivateEndpointConnectionsCreateSamples {
+    /*
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePrivateEndpointConnectionsCreate.json
+     */
+    /**
+     * Sample code: RedisEnterprisePrivateEndpointConnections_Create.
+     *
+     * @param manager Entry point to RedisEnterpriseManager.
+     */
+    public static void redisEnterprisePrivateEndpointConnectionsCreate(
+        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager.privateEndpointConnections().define("pectest01").withExistingRedisEnterprise("rg1", "cache1").create();
     }
 }
 ```
@@ -447,18 +319,16 @@ public final class OperationsStatusGetSamples {
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDeletePrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePrivateEndpointConnectionsDelete.json
      */
     /**
-     * Sample code: RedisEnterpriseDeletePrivateEndpointConnection.
+     * Sample code: RedisEnterprisePrivateEndpointConnections_Delete.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterpriseDeletePrivateEndpointConnection(
+    public static void redisEnterprisePrivateEndpointConnectionsDelete(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .privateEndpointConnections()
-            .deleteWithResponse("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections().delete("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -469,14 +339,14 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseGetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePrivateEndpointConnectionsGet.json
      */
     /**
-     * Sample code: RedisEnterpriseGetPrivateEndpointConnection.
+     * Sample code: RedisEnterprisePrivateEndpointConnections_Get.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterpriseGetPrivateEndpointConnection(
+    public static void redisEnterprisePrivateEndpointConnectionsGet(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
         manager
             .privateEndpointConnections()
@@ -485,73 +355,42 @@ public final class PrivateEndpointConnectionsGetSamples {
 }
 ```
 
-### PrivateEndpointConnections_List
+### PrivateEndpointConnections_ListByCluster
 
 ```java
-/** Samples for PrivateEndpointConnections List. */
-public final class PrivateEndpointConnectionsListSamples {
+/** Samples for PrivateEndpointConnections ListByCluster. */
+public final class PrivateEndpointConnectionsListByClusterSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseListPrivateEndpointConnections.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePrivateEndpointConnectionsListByCluster.json
      */
     /**
-     * Sample code: RedisEnterpriseListPrivateEndpointConnections.
+     * Sample code: RedisEnterprisePrivateEndpointConnections_ListByCluster.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterpriseListPrivateEndpointConnections(
+    public static void redisEnterprisePrivateEndpointConnectionsListByCluster(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.privateEndpointConnections().list("rg1", "cache1", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections().listByCluster("rg1", "cache1", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### PrivateEndpointConnections_Put
+### PrivateEndpointConnections_Update
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointServiceConnectionStatus;
-import com.azure.resourcemanager.redisenterprise.models.PrivateLinkServiceConnectionState;
-
-/** Samples for PrivateEndpointConnections Put. */
-public final class PrivateEndpointConnectionsPutSamples {
+/** Samples for PrivateEndpointConnections Update. */
+public final class PrivateEndpointConnectionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterprisePutPrivateEndpointConnection.json
+     * x-ms-original-file: null
      */
     /**
-     * Sample code: RedisEnterprisePutPrivateEndpointConnection.
+     * Sample code: RedisEnterprisePrivateEndpointConnections_Update.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void redisEnterprisePutPrivateEndpointConnection(
+    public static void redisEnterprisePrivateEndpointConnectionsUpdate(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .privateEndpointConnections()
-            .define("pectest01")
-            .withExistingRedisEnterprise("rg1", "cache1")
-            .withPrivateLinkServiceConnectionState(
-                new PrivateLinkServiceConnectionState()
-                    .withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
-                    .withDescription("Auto-Approved"))
-            .create();
-    }
-}
-```
-
-### PrivateLinkResources_ListByCluster
-
-```java
-/** Samples for PrivateLinkResources ListByCluster. */
-public final class PrivateLinkResourcesListByClusterSamples {
-    /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseListPrivateLinkResources.json
-     */
-    /**
-     * Sample code: RedisEnterpriseListPrivateLinkResources.
-     *
-     * @param manager Entry point to RedisEnterpriseManager.
-     */
-    public static void redisEnterpriseListPrivateLinkResources(
-        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.privateLinkResources().listByCluster("rg1", "cache1", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections().update(null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -559,19 +398,7 @@ public final class PrivateLinkResourcesListByClusterSamples {
 ### RedisEnterprise_Create
 
 ```java
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryptionCustomerManagedKeyEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryptionCustomerManagedKeyEncryptionKeyIdentity;
-import com.azure.resourcemanager.redisenterprise.models.CmkIdentityType;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
-import com.azure.resourcemanager.redisenterprise.models.SkuName;
-import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
-import com.azure.resourcemanager.redisenterprise.models.UserAssignedIdentity;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /** Samples for RedisEnterprise Create. */
 public final class RedisEnterpriseCreateSamples {
@@ -579,7 +406,7 @@ public final class RedisEnterpriseCreateSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseCreate.json
      */
     /**
-     * Sample code: RedisEnterpriseCreate.
+     * Sample code: RedisEnterprise_Create.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -587,41 +414,10 @@ public final class RedisEnterpriseCreateSamples {
         manager
             .redisEnterprises()
             .define("cache1")
-            .withRegion("West US")
+            .withRegion((String) null)
             .withExistingResourceGroup("rg1")
-            .withSku(new Sku().withName(SkuName.ENTERPRISE_FLASH_F300).withCapacity(3))
-            .withTags(mapOf("tag1", "value1"))
-            .withZones(Arrays.asList("1", "2", "3"))
-            .withIdentity(
-                new ManagedServiceIdentity()
-                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/your-subscription/resourceGroups/your-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/your-identity",
-                            new UserAssignedIdentity())))
-            .withMinimumTlsVersion(TlsVersion.ONE_TWO)
-            .withEncryption(
-                new ClusterPropertiesEncryption()
-                    .withCustomerManagedKeyEncryption(
-                        new ClusterPropertiesEncryptionCustomerManagedKeyEncryption()
-                            .withKeyEncryptionKeyIdentity(
-                                new ClusterPropertiesEncryptionCustomerManagedKeyEncryptionKeyIdentity()
-                                    .withUserAssignedIdentityResourceId(
-                                        "/subscriptions/your-subscription/resourceGroups/your-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/your-identity")
-                                    .withIdentityType(CmkIdentityType.USER_ASSIGNED_IDENTITY))
-                            .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
+            .withSku((Sku) null)
             .create();
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```
@@ -635,7 +431,7 @@ public final class RedisEnterpriseDeleteSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDelete.json
      */
     /**
-     * Sample code: RedisEnterpriseDelete.
+     * Sample code: RedisEnterprise_Delete.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -654,7 +450,7 @@ public final class RedisEnterpriseGetByResourceGroupSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseGet.json
      */
     /**
-     * Sample code: RedisEnterpriseGet.
+     * Sample code: RedisEnterprise_Get.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -673,7 +469,7 @@ public final class RedisEnterpriseListSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseList.json
      */
     /**
-     * Sample code: RedisEnterpriseList.
+     * Sample code: RedisEnterprise_List.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -692,7 +488,7 @@ public final class RedisEnterpriseListByResourceGroupSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseListByResourceGroup.json
      */
     /**
-     * Sample code: RedisEnterpriseListByResourceGroup.
+     * Sample code: RedisEnterprise_ListByResourceGroup.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -707,11 +503,6 @@ public final class RedisEnterpriseListByResourceGroupSamples {
 
 ```java
 import com.azure.resourcemanager.redisenterprise.models.Cluster;
-import com.azure.resourcemanager.redisenterprise.models.Sku;
-import com.azure.resourcemanager.redisenterprise.models.SkuName;
-import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
-import java.util.HashMap;
-import java.util.Map;
 
 /** Samples for RedisEnterprise Update. */
 public final class RedisEnterpriseUpdateSamples {
@@ -719,7 +510,7 @@ public final class RedisEnterpriseUpdateSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseUpdate.json
      */
     /**
-     * Sample code: RedisEnterpriseUpdate.
+     * Sample code: RedisEnterprise_Update.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
@@ -729,23 +520,7 @@ public final class RedisEnterpriseUpdateSamples {
                 .redisEnterprises()
                 .getByResourceGroupWithResponse("rg1", "cache1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource
-            .update()
-            .withTags(mapOf("tag1", "value1"))
-            .withSku(new Sku().withName(SkuName.ENTERPRISE_FLASH_F300).withCapacity(9))
-            .withMinimumTlsVersion(TlsVersion.ONE_TWO)
-            .apply();
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        resource.update().apply();
     }
 }
 ```
@@ -759,12 +534,13 @@ public final class SkusListSamples {
      * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseSkusList.json
      */
     /**
-     * Sample code: SkusList.
+     * Sample code: RedisEnterpriseSkus_List.
      *
      * @param manager Entry point to RedisEnterpriseManager.
      */
-    public static void skusList(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager.skus().list("westus2", com.azure.core.util.Context.NONE);
+    public static void redisEnterpriseSkusList(
+        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager.skus().list(com.azure.core.util.Context.NONE);
     }
 }
 ```

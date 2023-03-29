@@ -8,44 +8,27 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import java.util.Map;
 
 /** Describes the RedisEnterprise cluster. */
 @Fluent
 public final class ClusterInner extends Resource {
     /*
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private ClusterProperties innerProperties;
+
+    /*
      * The SKU to create, which affects price, performance, and features.
      */
     @JsonProperty(value = "sku", required = true)
     private Sku sku;
-
-    /*
-     * The Availability Zones where this cluster will be deployed.
-     */
-    @JsonProperty(value = "zones")
-    private List<String> zones;
-
-    /*
-     * The identity of the resource.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
-
-    /*
-     * RedisEnterprise cluster properties
-     *
-     * Other properties of the cluster.
-     */
-    @JsonProperty(value = "properties")
-    private ClusterProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -55,6 +38,15 @@ public final class ClusterInner extends Resource {
 
     /** Creates an instance of ClusterInner class. */
     public ClusterInner() {
+    }
+
+    /**
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     *
+     * @return the innerProperties value.
+     */
+    private ClusterProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -75,57 +67,6 @@ public final class ClusterInner extends Resource {
     public ClusterInner withSku(Sku sku) {
         this.sku = sku;
         return this;
-    }
-
-    /**
-     * Get the zones property: The Availability Zones where this cluster will be deployed.
-     *
-     * @return the zones value.
-     */
-    public List<String> zones() {
-        return this.zones;
-    }
-
-    /**
-     * Set the zones property: The Availability Zones where this cluster will be deployed.
-     *
-     * @param zones the zones value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withZones(List<String> zones) {
-        this.zones = zones;
-        return this;
-    }
-
-    /**
-     * Get the identity property: The identity of the resource.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The identity of the resource.
-     *
-     * @param identity the identity value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: RedisEnterprise cluster properties
-     *
-     * <p>Other properties of the cluster.
-     *
-     * @return the innerProperties value.
-     */
-    private ClusterProperties innerProperties() {
-        return this.innerProperties;
     }
 
     /**
@@ -152,52 +93,6 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @return the minimumTlsVersion value.
-     */
-    public TlsVersion minimumTlsVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().minimumTlsVersion();
-    }
-
-    /**
-     * Set the minimumTlsVersion property: The minimum TLS version for the cluster to support, e.g. '1.2'.
-     *
-     * @param minimumTlsVersion the minimumTlsVersion value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withMinimumTlsVersion(minimumTlsVersion);
-        return this;
-    }
-
-    /**
-     * Get the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @return the encryption value.
-     */
-    public ClusterPropertiesEncryption encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
-    }
-
-    /**
-     * Set the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @param encryption the encryption value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withEncryption(ClusterPropertiesEncryption encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
-        return this;
-    }
-
-    /**
      * Get the hostname property: DNS name of the cluster endpoint.
      *
      * @return the hostname value.
@@ -207,7 +102,30 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: Current provisioning status of the cluster.
+     * Get the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @return the minTlsVersion value.
+     */
+    public TlsVersion minTlsVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().minTlsVersion();
+    }
+
+    /**
+     * Set the minTlsVersion property: The minimum TLS version for the cluster to support, e.g. the default of '1.2'.
+     *
+     * @param minTlsVersion the minTlsVersion value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withMinTlsVersion(TlsVersion minTlsVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withMinTlsVersion(minTlsVersion);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Current provisioning status of the last operation on the cluster.
      *
      * @return the provisioningState value.
      */
@@ -234,33 +152,20 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the privateEndpointConnections property: List of private endpoint connections associated with the specified
-     * RedisEnterprise cluster.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (sku() == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sku in model ClusterInner"));
         } else {
             sku().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
-        }
-        if (innerProperties() != null) {
-            innerProperties().validate();
         }
     }
 

@@ -9,15 +9,11 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/**
- * Forcibly unlink another database from this database.
- *
- * <p>Parameters for a Redis Enterprise Active Geo Replication Force Unlink operation.
- */
+/** Parameters for a Redis Enterprise Active Geo Replication Force Unlink operation. */
 @Fluent
 public final class ForceUnlinkParameters {
     /*
-     * The resource IDs of the database resources to be unlinked.
+     * The resource IDs of the database resources to be unlinked
      */
     @JsonProperty(value = "ids", required = true)
     private List<String> ids;

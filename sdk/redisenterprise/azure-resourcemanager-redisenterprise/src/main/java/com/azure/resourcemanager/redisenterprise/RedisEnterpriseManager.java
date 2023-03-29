@@ -50,9 +50,9 @@ import java.util.stream.Collectors;
 public final class RedisEnterpriseManager {
     private Operations operations;
 
-    private OperationsStatus operationsStatus;
-
     private RedisEnterprises redisEnterprises;
+
+    private Skus skus;
 
     private Databases databases;
 
@@ -60,7 +60,7 @@ public final class RedisEnterpriseManager {
 
     private PrivateLinkResources privateLinkResources;
 
-    private Skus skus;
+    private OperationsStatus operationsStatus;
 
     private final RedisEnterpriseManagementClient clientObject;
 
@@ -227,7 +227,7 @@ public final class RedisEnterpriseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.redisenterprise")
                 .append("/")
-                .append("1.1.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -297,18 +297,6 @@ public final class RedisEnterpriseManager {
     }
 
     /**
-     * Gets the resource collection API of OperationsStatus.
-     *
-     * @return Resource collection API of OperationsStatus.
-     */
-    public OperationsStatus operationsStatus() {
-        if (this.operationsStatus == null) {
-            this.operationsStatus = new OperationsStatusImpl(clientObject.getOperationsStatus(), this);
-        }
-        return operationsStatus;
-    }
-
-    /**
      * Gets the resource collection API of RedisEnterprises. It manages Cluster.
      *
      * @return Resource collection API of RedisEnterprises.
@@ -318,6 +306,18 @@ public final class RedisEnterpriseManager {
             this.redisEnterprises = new RedisEnterprisesImpl(clientObject.getRedisEnterprises(), this);
         }
         return redisEnterprises;
+    }
+
+    /**
+     * Gets the resource collection API of Skus.
+     *
+     * @return Resource collection API of Skus.
+     */
+    public Skus skus() {
+        if (this.skus == null) {
+            this.skus = new SkusImpl(clientObject.getSkus(), this);
+        }
+        return skus;
     }
 
     /**
@@ -358,15 +358,15 @@ public final class RedisEnterpriseManager {
     }
 
     /**
-     * Gets the resource collection API of Skus.
+     * Gets the resource collection API of OperationsStatus.
      *
-     * @return Resource collection API of Skus.
+     * @return Resource collection API of OperationsStatus.
      */
-    public Skus skus() {
-        if (this.skus == null) {
-            this.skus = new SkusImpl(clientObject.getSkus(), this);
+    public OperationsStatus operationsStatus() {
+        if (this.operationsStatus == null) {
+            this.operationsStatus = new OperationsStatusImpl(clientObject.getOperationsStatus(), this);
         }
-        return skus;
+        return operationsStatus;
     }
 
     /**
