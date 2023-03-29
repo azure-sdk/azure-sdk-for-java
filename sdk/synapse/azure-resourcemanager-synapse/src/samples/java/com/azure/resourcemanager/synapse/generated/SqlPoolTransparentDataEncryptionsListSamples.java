@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolTransparentDataEncryptions List. */
 public final class SqlPoolTransparentDataEncryptionsListSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetSqlPoolTransparentDataEncryptionList.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetSqlPoolTransparentDataEncryptionList.json
      */
     /**
      * Sample code: Get list of transparent data encryption configurations of a SQL Analytics pool.

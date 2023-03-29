@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for WorkspaceSqlAadAdmins Get. */
 public final class WorkspaceSqlAadAdminsGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetWorkspaceAadAdmin.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetWorkspaceAadAdmin.json
      */
     /**
      * Sample code: Get workspace active directory admin.

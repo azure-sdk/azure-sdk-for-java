@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for WorkspaceManagedSqlServerEncryptionProtector List. */
 public final class WorkspaceManagedSqlServerEncryptionProtectorListSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetWorkspaceManagedSqlServerEncryptionProtectorList.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetWorkspaceManagedSqlServerEncryptionProtectorList.json
      */
     /**
      * Sample code: Get workspace managed sql Server's encryption protectors.

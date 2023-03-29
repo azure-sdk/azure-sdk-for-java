@@ -60,8 +60,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
     public interface SqlPoolDataWarehouseUserActivitiesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/dataWarehouseUserActivities/{dataWarehouseUserActivityName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/dataWarehouseUserActivities/{dataWarehouseUserActivityName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataWarehouseUserActivitiesInner>> get(
@@ -125,7 +124,6 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
                     new IllegalArgumentException(
                         "Parameter dataWarehouseUserActivityName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -133,7 +131,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -195,13 +193,12 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
                     new IllegalArgumentException(
                         "Parameter dataWarehouseUserActivityName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

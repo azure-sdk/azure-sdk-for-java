@@ -9,7 +9,7 @@ import com.azure.resourcemanager.synapse.models.SelfHostedIntegrationRuntime;
 /** Samples for IntegrationRuntimes Create. */
 public final class IntegrationRuntimesCreateSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/IntegrationRuntimes_Create.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/IntegrationRuntimes_Create.json
      */
     /**
      * Sample code: Create integration runtime.

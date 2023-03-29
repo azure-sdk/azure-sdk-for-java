@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPools ListByWorkspace. */
 public final class SqlPoolsListByWorkspaceSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListSqlPoolsInWorkspaceWithFilter.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ListSqlPoolsInWorkspaceWithFilter.json
      */
     /**
      * Sample code: List SQL Analytics pools in a workspace with filter.
@@ -20,7 +20,7 @@ public final class SqlPoolsListByWorkspaceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListSqlPoolsInWorkspace.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ListSqlPoolsInWorkspace.json
      */
     /**
      * Sample code: List SQL Analytics pools in a workspace.

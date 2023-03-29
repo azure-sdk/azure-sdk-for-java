@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolMaintenanceWindows Get. */
 public final class SqlPoolMaintenanceWindowsGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetMaintenanceWindows.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetMaintenanceWindows.json
      */
     /**
      * Sample code: Gets maintenance window settings for a selected SQL Analytics pool.

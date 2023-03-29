@@ -20,8 +20,8 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     /*
      * Integration runtime state, only valid for managed dedicated integration runtime.
      */
-    @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
-    private IntegrationRuntimeState state;
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private IntegrationRuntimeState provisioningState;
 
     /*
      * Managed integration runtime properties.
@@ -40,12 +40,13 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     }
 
     /**
-     * Get the state property: Integration runtime state, only valid for managed dedicated integration runtime.
+     * Get the provisioningState property: Integration runtime state, only valid for managed dedicated integration
+     * runtime.
      *
-     * @return the state value.
+     * @return the provisioningState value.
      */
-    public IntegrationRuntimeState state() {
-        return this.state;
+    public IntegrationRuntimeState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -116,6 +117,32 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
             this.innerTypeProperties = new ManagedIntegrationRuntimeTypeProperties();
         }
         this.innerTypeProperties().withSsisProperties(ssisProperties);
+        return this;
+    }
+
+    /**
+     * Get the customerVirtualNetwork property: The name of virtual network to which Azure-SSIS integration runtime will
+     * join.
+     *
+     * @return the customerVirtualNetwork value.
+     */
+    public IntegrationRuntimeCustomerVirtualNetwork customerVirtualNetwork() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().customerVirtualNetwork();
+    }
+
+    /**
+     * Set the customerVirtualNetwork property: The name of virtual network to which Azure-SSIS integration runtime will
+     * join.
+     *
+     * @param customerVirtualNetwork the customerVirtualNetwork value to set.
+     * @return the ManagedIntegrationRuntime object itself.
+     */
+    public ManagedIntegrationRuntime withCustomerVirtualNetwork(
+        IntegrationRuntimeCustomerVirtualNetwork customerVirtualNetwork) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new ManagedIntegrationRuntimeTypeProperties();
+        }
+        this.innerTypeProperties().withCustomerVirtualNetwork(customerVirtualNetwork);
         return this;
     }
 

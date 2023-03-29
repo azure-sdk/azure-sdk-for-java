@@ -64,8 +64,7 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     public interface PrivateLinkHubPrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs/{privateLinkHubName}/privateLinkResources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}/privateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceListResult>> list(
@@ -79,8 +78,7 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs/{privateLinkHubName}/privateLinkResources/{privateLinkResourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}/privateLinkResources/{privateLinkResourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceInner>> get(
@@ -140,7 +138,6 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
             return Mono
                 .error(new IllegalArgumentException("Parameter privateLinkHubName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -148,7 +145,7 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
                     service
                         .list(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             privateLinkHubName,
@@ -203,13 +200,12 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
             return Mono
                 .error(new IllegalArgumentException("Parameter privateLinkHubName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 privateLinkHubName,
@@ -344,7 +340,6 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
                 .error(
                     new IllegalArgumentException("Parameter privateLinkResourceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -352,7 +347,7 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             privateLinkHubName,
@@ -405,13 +400,12 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
                 .error(
                     new IllegalArgumentException("Parameter privateLinkResourceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 privateLinkHubName,

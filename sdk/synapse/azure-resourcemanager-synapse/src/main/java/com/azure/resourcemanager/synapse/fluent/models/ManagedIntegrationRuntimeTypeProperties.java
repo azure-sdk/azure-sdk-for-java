@@ -6,6 +6,7 @@ package com.azure.resourcemanager.synapse.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeComputeProperties;
+import com.azure.resourcemanager.synapse.models.IntegrationRuntimeCustomerVirtualNetwork;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeSsisProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,6 +24,12 @@ public final class ManagedIntegrationRuntimeTypeProperties {
      */
     @JsonProperty(value = "ssisProperties")
     private IntegrationRuntimeSsisProperties ssisProperties;
+
+    /*
+     * The name of virtual network to which Azure-SSIS integration runtime will join
+     */
+    @JsonProperty(value = "customerVirtualNetwork")
+    private IntegrationRuntimeCustomerVirtualNetwork customerVirtualNetwork;
 
     /** Creates an instance of ManagedIntegrationRuntimeTypeProperties class. */
     public ManagedIntegrationRuntimeTypeProperties() {
@@ -70,6 +77,29 @@ public final class ManagedIntegrationRuntimeTypeProperties {
     }
 
     /**
+     * Get the customerVirtualNetwork property: The name of virtual network to which Azure-SSIS integration runtime will
+     * join.
+     *
+     * @return the customerVirtualNetwork value.
+     */
+    public IntegrationRuntimeCustomerVirtualNetwork customerVirtualNetwork() {
+        return this.customerVirtualNetwork;
+    }
+
+    /**
+     * Set the customerVirtualNetwork property: The name of virtual network to which Azure-SSIS integration runtime will
+     * join.
+     *
+     * @param customerVirtualNetwork the customerVirtualNetwork value to set.
+     * @return the ManagedIntegrationRuntimeTypeProperties object itself.
+     */
+    public ManagedIntegrationRuntimeTypeProperties withCustomerVirtualNetwork(
+        IntegrationRuntimeCustomerVirtualNetwork customerVirtualNetwork) {
+        this.customerVirtualNetwork = customerVirtualNetwork;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -80,6 +110,9 @@ public final class ManagedIntegrationRuntimeTypeProperties {
         }
         if (ssisProperties() != null) {
             ssisProperties().validate();
+        }
+        if (customerVirtualNetwork() != null) {
+            customerVirtualNetwork().validate();
         }
     }
 }

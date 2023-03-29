@@ -66,8 +66,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
     public interface ExtendedSqlPoolBlobAuditingPoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/extendedAuditingSettings/{blobAuditingPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/extendedAuditingSettings/{blobAuditingPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ExtendedSqlPoolBlobAuditingPolicyInner>> get(
@@ -83,8 +82,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/extendedAuditingSettings/{blobAuditingPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/extendedAuditingSettings/{blobAuditingPolicyName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ExtendedSqlPoolBlobAuditingPolicyInner>> createOrUpdate(
@@ -101,8 +99,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/extendedAuditingSettings")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/extendedAuditingSettings")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ExtendedSqlPoolBlobAuditingPolicyListResult>> listBySqlPool(
@@ -163,7 +160,6 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         return FluxUtil
@@ -172,7 +168,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -221,14 +217,13 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -337,7 +332,6 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         return FluxUtil
@@ -346,7 +340,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -406,14 +400,13 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -529,7 +522,6 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -537,7 +529,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
                     service
                         .listBySqlPool(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -594,13 +586,12 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listBySqlPool(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

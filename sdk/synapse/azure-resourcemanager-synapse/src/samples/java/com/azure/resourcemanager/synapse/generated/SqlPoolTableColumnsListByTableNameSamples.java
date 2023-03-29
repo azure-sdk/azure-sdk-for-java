@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolTableColumns ListByTableName. */
 public final class SqlPoolTableColumnsListByTableNameSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListSqlPoolColumns.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ListSqlPoolColumns.json
      */
     /**
      * Sample code: List the columns in a table of a given schema in a SQL Analytics pool.

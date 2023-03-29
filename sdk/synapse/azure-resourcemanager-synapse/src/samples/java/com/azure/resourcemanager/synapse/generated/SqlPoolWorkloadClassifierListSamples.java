@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolWorkloadClassifier List. */
 public final class SqlPoolWorkloadClassifierListSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetSqlPoolWorkloadGroupWorkloadClassifierList.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetSqlPoolWorkloadGroupWorkloadClassifierList.json
      */
     /**
      * Sample code: Get the list of workload classifiers of a SQL Analytics pool's workload group.
