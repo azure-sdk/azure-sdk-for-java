@@ -225,7 +225,7 @@ import java.util.Map;
 /** Samples for BatchDeployments CreateOrUpdate. */
 public final class BatchDeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Batch Deployment.
@@ -304,7 +304,7 @@ public final class BatchDeploymentsCreateOrUpdateSamples {
 /** Samples for BatchDeployments Delete. */
 public final class BatchDeploymentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/delete.json
      */
     /**
      * Sample code: Delete Batch Deployment.
@@ -330,7 +330,7 @@ public final class BatchDeploymentsDeleteSamples {
 /** Samples for BatchDeployments Get. */
 public final class BatchDeploymentsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/get.json
      */
     /**
      * Sample code: Get Batch Deployment.
@@ -356,7 +356,7 @@ public final class BatchDeploymentsGetSamples {
 /** Samples for BatchDeployments List. */
 public final class BatchDeploymentsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/list.json
      */
     /**
      * Sample code: List Batch Deployment.
@@ -383,7 +383,7 @@ import java.util.Map;
 /** Samples for BatchDeployments Update. */
 public final class BatchDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/update.json
      */
     /**
      * Sample code: Update Batch Deployment.
@@ -438,7 +438,7 @@ import java.util.Map;
 /** Samples for BatchEndpoints CreateOrUpdate. */
 public final class BatchEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Batch Endpoint.
@@ -493,7 +493,7 @@ public final class BatchEndpointsCreateOrUpdateSamples {
 /** Samples for BatchEndpoints Delete. */
 public final class BatchEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/delete.json
      */
     /**
      * Sample code: Delete Batch Endpoint.
@@ -514,7 +514,7 @@ public final class BatchEndpointsDeleteSamples {
 /** Samples for BatchEndpoints Get. */
 public final class BatchEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/get.json
      */
     /**
      * Sample code: Get Batch Endpoint.
@@ -535,7 +535,7 @@ public final class BatchEndpointsGetSamples {
 /** Samples for BatchEndpoints List. */
 public final class BatchEndpointsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/list.json
      */
     /**
      * Sample code: List Batch Endpoint.
@@ -554,7 +554,7 @@ public final class BatchEndpointsListSamples {
 /** Samples for BatchEndpoints ListKeys. */
 public final class BatchEndpointsListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/listKeys.json
      */
     /**
      * Sample code: ListKeys Batch Endpoint.
@@ -584,7 +584,7 @@ import java.util.Map;
 /** Samples for BatchEndpoints Update. */
 public final class BatchEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/update.json
      */
     /**
      * Sample code: Update Batch Endpoint.
@@ -636,7 +636,7 @@ import java.util.Map;
 /** Samples for CodeContainers CreateOrUpdate. */
 public final class CodeContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Code Container.
@@ -675,7 +675,7 @@ public final class CodeContainersCreateOrUpdateSamples {
 /** Samples for CodeContainers Delete. */
 public final class CodeContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeContainer/delete.json
      */
     /**
      * Sample code: Delete Code Container.
@@ -696,7 +696,7 @@ public final class CodeContainersDeleteSamples {
 /** Samples for CodeContainers Get. */
 public final class CodeContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeContainer/get.json
      */
     /**
      * Sample code: Get Code Container.
@@ -717,7 +717,7 @@ public final class CodeContainersGetSamples {
 /** Samples for CodeContainers List. */
 public final class CodeContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeContainer/list.json
      */
     /**
      * Sample code: List Code Container.
@@ -740,7 +740,7 @@ import java.util.Map;
 /** Samples for CodeVersions CreateOrUpdate. */
 public final class CodeVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Code Version.
@@ -782,7 +782,7 @@ public final class CodeVersionsCreateOrUpdateSamples {
 /** Samples for CodeVersions Delete. */
 public final class CodeVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeVersion/delete.json
      */
     /**
      * Sample code: Delete Code Version.
@@ -803,7 +803,7 @@ public final class CodeVersionsDeleteSamples {
 /** Samples for CodeVersions Get. */
 public final class CodeVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeVersion/get.json
      */
     /**
      * Sample code: Get Code Version.
@@ -824,7 +824,7 @@ public final class CodeVersionsGetSamples {
 /** Samples for CodeVersions List. */
 public final class CodeVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeVersion/list.json
      */
     /**
      * Sample code: List Code Version.
@@ -849,7 +849,7 @@ import java.util.Map;
 /** Samples for ComponentContainers CreateOrUpdate. */
 public final class ComponentContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Component Container.
@@ -889,7 +889,7 @@ public final class ComponentContainersCreateOrUpdateSamples {
 /** Samples for ComponentContainers Delete. */
 public final class ComponentContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentContainer/delete.json
      */
     /**
      * Sample code: Delete Component Container.
@@ -911,7 +911,7 @@ public final class ComponentContainersDeleteSamples {
 /** Samples for ComponentContainers Get. */
 public final class ComponentContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentContainer/get.json
      */
     /**
      * Sample code: Get Component Container.
@@ -932,7 +932,7 @@ public final class ComponentContainersGetSamples {
 /** Samples for ComponentContainers List. */
 public final class ComponentContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentContainer/list.json
      */
     /**
      * Sample code: List Component Container.
@@ -959,7 +959,7 @@ import java.util.Map;
 /** Samples for ComponentVersions CreateOrUpdate. */
 public final class ComponentVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Component Version.
@@ -1007,7 +1007,7 @@ public final class ComponentVersionsCreateOrUpdateSamples {
 /** Samples for ComponentVersions Delete. */
 public final class ComponentVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentVersion/delete.json
      */
     /**
      * Sample code: Delete Component Version.
@@ -1029,7 +1029,7 @@ public final class ComponentVersionsDeleteSamples {
 /** Samples for ComponentVersions Get. */
 public final class ComponentVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentVersion/get.json
      */
     /**
      * Sample code: Get Component Version.
@@ -1050,7 +1050,7 @@ public final class ComponentVersionsGetSamples {
 /** Samples for ComponentVersions List. */
 public final class ComponentVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentVersion/list.json
      */
     /**
      * Sample code: List Component Version.
@@ -1078,27 +1078,44 @@ import com.azure.resourcemanager.machinelearning.models.ComputeInstance;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceAuthorizationType;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceProperties;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceSshSettings;
+import com.azure.resourcemanager.machinelearning.models.ComputePowerAction;
+import com.azure.resourcemanager.machinelearning.models.ComputeSchedules;
+import com.azure.resourcemanager.machinelearning.models.ComputeStartStopSchedule;
+import com.azure.resourcemanager.machinelearning.models.Cron;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
 import com.azure.resourcemanager.machinelearning.models.DataFactory;
+import com.azure.resourcemanager.machinelearning.models.Docker;
+import com.azure.resourcemanager.machinelearning.models.Endpoint;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVariable;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVariableType;
+import com.azure.resourcemanager.machinelearning.models.Image;
+import com.azure.resourcemanager.machinelearning.models.ImageType;
 import com.azure.resourcemanager.machinelearning.models.InstanceTypeSchema;
 import com.azure.resourcemanager.machinelearning.models.InstanceTypeSchemaResources;
 import com.azure.resourcemanager.machinelearning.models.Kubernetes;
 import com.azure.resourcemanager.machinelearning.models.KubernetesProperties;
 import com.azure.resourcemanager.machinelearning.models.OsType;
 import com.azure.resourcemanager.machinelearning.models.PersonalComputeInstanceSettings;
+import com.azure.resourcemanager.machinelearning.models.Protocol;
 import com.azure.resourcemanager.machinelearning.models.RemoteLoginPortPublicAccess;
 import com.azure.resourcemanager.machinelearning.models.ResourceId;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettings;
+import com.azure.resourcemanager.machinelearning.models.ScheduleStatus;
 import com.azure.resourcemanager.machinelearning.models.SshPublicAccess;
+import com.azure.resourcemanager.machinelearning.models.TriggerType;
 import com.azure.resourcemanager.machinelearning.models.VirtualMachineImage;
 import com.azure.resourcemanager.machinelearning.models.VmPriority;
+import com.azure.resourcemanager.machinelearning.models.VolumeDefinition;
+import com.azure.resourcemanager.machinelearning.models.VolumeDefinitionType;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Compute CreateOrUpdate. */
 public final class ComputeCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/BasicAKSCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/BasicAKSCompute.json
      */
     /**
      * Sample code: Create an AKS Compute.
@@ -1116,7 +1133,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/AKSCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/AKSCompute.json
      */
     /**
      * Sample code: Update an AKS Compute.
@@ -1139,7 +1156,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/KubernetesCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/KubernetesCompute.json
      */
     /**
      * Sample code: Attach a Kubernetes Compute.
@@ -1176,7 +1193,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/ComputeInstanceWithSchedules.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/ComputeInstanceWithSchedules.json
      */
     /**
      * Sample code: Create an ComputeInstance Compute with Schedules.
@@ -1204,12 +1221,26 @@ public final class ComputeCreateOrUpdateSamples {
                                     .withAssignedUser(
                                         new AssignedUser()
                                             .withObjectId("00000000-0000-0000-0000-000000000000")
-                                            .withTenantId("00000000-0000-0000-0000-000000000000")))))
+                                            .withTenantId("00000000-0000-0000-0000-000000000000")))
+                            .withSchedules(
+                                new ComputeSchedules()
+                                    .withComputeStartStop(
+                                        Arrays
+                                            .asList(
+                                                new ComputeStartStopSchedule()
+                                                    .withStatus(ScheduleStatus.ENABLED)
+                                                    .withAction(ComputePowerAction.STOP)
+                                                    .withTriggerType(TriggerType.CRON)
+                                                    .withCron(
+                                                        new Cron()
+                                                            .withStartTime("2021-04-23T01:30:00")
+                                                            .withTimeZone("Pacific Standard Time")
+                                                            .withExpression("0 18 * * *")))))))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/BasicAmlCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/BasicAmlCompute.json
      */
     /**
      * Sample code: Create a AML Compute.
@@ -1245,7 +1276,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/ComputeInstance.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/ComputeInstance.json
      */
     /**
      * Sample code: Create an ComputeInstance Compute.
@@ -1268,6 +1299,41 @@ public final class ComputeCreateOrUpdateSamples {
                             .withApplicationSharingPolicy(ApplicationSharingPolicy.PERSONAL)
                             .withSshSettings(
                                 new ComputeInstanceSshSettings().withSshPublicAccess(SshPublicAccess.DISABLED))
+                            .withCustomServices(
+                                Arrays
+                                    .asList(
+                                        new CustomService()
+                                            .withName("rstudio")
+                                            .withImage(
+                                                new Image()
+                                                    .withType(ImageType.DOCKER)
+                                                    .withReference("ghcr.io/azure/rocker-rstudio-ml-verse:latest")
+                                                    .withAdditionalProperties(mapOf()))
+                                            .withEnvironmentVariables(
+                                                mapOf(
+                                                    "test_variable",
+                                                    new EnvironmentVariable()
+                                                        .withType(EnvironmentVariableType.LOCAL)
+                                                        .withValue("test_value")
+                                                        .withAdditionalProperties(mapOf())))
+                                            .withDocker(
+                                                new Docker().withPrivileged(true).withAdditionalProperties(mapOf()))
+                                            .withEndpoints(
+                                                Arrays
+                                                    .asList(
+                                                        new Endpoint()
+                                                            .withProtocol(Protocol.HTTP)
+                                                            .withName("connect")
+                                                            .withTarget(8787)
+                                                            .withPublished(8787)))
+                                            .withVolumes(
+                                                Arrays
+                                                    .asList(
+                                                        new VolumeDefinition()
+                                                            .withType(VolumeDefinitionType.BIND)
+                                                            .withSource("/home/azureuser/cloudfiles")
+                                                            .withTarget("/home/azureuser/cloudfiles")))
+                                            .withAdditionalProperties(mapOf())))
                             .withComputeInstanceAuthorizationType(ComputeInstanceAuthorizationType.PERSONAL)
                             .withPersonalComputeInstanceSettings(
                                 new PersonalComputeInstanceSettings()
@@ -1279,7 +1345,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/ComputeInstanceMinimal.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/ComputeInstanceMinimal.json
      */
     /**
      * Sample code: Create an ComputeInstance Compute with minimal inputs.
@@ -1299,7 +1365,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/AmlCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/AmlCompute.json
      */
     /**
      * Sample code: Update a AML Compute.
@@ -1326,7 +1392,7 @@ public final class ComputeCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/createOrUpdate/BasicDataFactoryCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/createOrUpdate/BasicDataFactoryCompute.json
      */
     /**
      * Sample code: Create a DataFactory Compute.
@@ -1365,7 +1431,7 @@ import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction
 /** Samples for Compute Delete. */
 public final class ComputeDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/delete.json
      */
     /**
      * Sample code: Delete Compute.
@@ -1391,7 +1457,7 @@ public final class ComputeDeleteSamples {
 /** Samples for Compute Get. */
 public final class ComputeGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/AKSCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/get/AKSCompute.json
      */
     /**
      * Sample code: Get a AKS Compute.
@@ -1405,7 +1471,7 @@ public final class ComputeGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/KubernetesCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/get/KubernetesCompute.json
      */
     /**
      * Sample code: Get a Kubernetes Compute.
@@ -1419,7 +1485,7 @@ public final class ComputeGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/ComputeInstance.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/get/ComputeInstance.json
      */
     /**
      * Sample code: Get an ComputeInstance.
@@ -1433,7 +1499,7 @@ public final class ComputeGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/get/AmlCompute.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/get/AmlCompute.json
      */
     /**
      * Sample code: Get a AML Compute.
@@ -1454,7 +1520,7 @@ public final class ComputeGetSamples {
 /** Samples for Compute List. */
 public final class ComputeListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/list.json
      */
     /**
      * Sample code: Get Computes.
@@ -1473,7 +1539,7 @@ public final class ComputeListSamples {
 /** Samples for Compute ListKeys. */
 public final class ComputeListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/listKeys.json
      */
     /**
      * Sample code: List AKS Compute Keys.
@@ -1494,7 +1560,7 @@ public final class ComputeListKeysSamples {
 /** Samples for Compute ListNodes. */
 public final class ComputeListNodesSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/listNodes.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/listNodes.json
      */
     /**
      * Sample code: Get compute nodes information for a compute.
@@ -1514,7 +1580,7 @@ public final class ComputeListNodesSamples {
 /** Samples for Compute Restart. */
 public final class ComputeRestartSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/restart.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/restart.json
      */
     /**
      * Sample code: Restart ComputeInstance Compute.
@@ -1534,7 +1600,7 @@ public final class ComputeRestartSamples {
 /** Samples for Compute Start. */
 public final class ComputeStartSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/start.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/start.json
      */
     /**
      * Sample code: Start ComputeInstance Compute.
@@ -1554,7 +1620,7 @@ public final class ComputeStartSamples {
 /** Samples for Compute Stop. */
 public final class ComputeStopSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/stop.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/stop.json
      */
     /**
      * Sample code: Stop ComputeInstance Compute.
@@ -1579,7 +1645,7 @@ import java.time.Duration;
 /** Samples for Compute Update. */
 public final class ComputeUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Compute/patch.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Compute/patch.json
      */
     /**
      * Sample code: Update a AmlCompute Compute.
@@ -1618,7 +1684,7 @@ import java.util.Map;
 /** Samples for DataContainers CreateOrUpdate. */
 public final class DataContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Data Container.
@@ -1659,7 +1725,7 @@ public final class DataContainersCreateOrUpdateSamples {
 /** Samples for DataContainers Delete. */
 public final class DataContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataContainer/delete.json
      */
     /**
      * Sample code: Delete Data Container.
@@ -1680,7 +1746,7 @@ public final class DataContainersDeleteSamples {
 /** Samples for DataContainers Get. */
 public final class DataContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataContainer/get.json
      */
     /**
      * Sample code: Get Data Container.
@@ -1701,7 +1767,7 @@ public final class DataContainersGetSamples {
 /** Samples for DataContainers List. */
 public final class DataContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataContainer/list.json
      */
     /**
      * Sample code: List Data Container.
@@ -1724,7 +1790,7 @@ import java.util.Map;
 /** Samples for DataVersions CreateOrUpdate. */
 public final class DataVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataVersionBase/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Data Version Base.
@@ -1766,7 +1832,7 @@ public final class DataVersionsCreateOrUpdateSamples {
 /** Samples for DataVersions Delete. */
 public final class DataVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataVersionBase/delete.json
      */
     /**
      * Sample code: Delete Data Version Base.
@@ -1787,7 +1853,7 @@ public final class DataVersionsDeleteSamples {
 /** Samples for DataVersions Get. */
 public final class DataVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataVersionBase/get.json
      */
     /**
      * Sample code: Get Data Version Base.
@@ -1808,7 +1874,7 @@ public final class DataVersionsGetSamples {
 /** Samples for DataVersions List. */
 public final class DataVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/DataVersionBase/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/DataVersionBase/list.json
      */
     /**
      * Sample code: List Data Version Base.
@@ -1850,7 +1916,7 @@ import java.util.UUID;
 /** Samples for Datastores CreateOrUpdate. */
 public final class DatastoresCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureDataLakeGen1WServicePrincipal/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/AzureDataLakeGen1WServicePrincipal/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (Azure Data Lake Gen1 w/ ServicePrincipal).
@@ -1881,7 +1947,7 @@ public final class DatastoresCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureDataLakeGen2WServicePrincipal/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/AzureDataLakeGen2WServicePrincipal/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (Azure Data Lake Gen2 w/ Service Principal).
@@ -1915,7 +1981,7 @@ public final class DatastoresCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureBlobWAccountKey/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/AzureBlobWAccountKey/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (AzureBlob w/ AccountKey).
@@ -1944,7 +2010,7 @@ public final class DatastoresCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/AzureFileWAccountKey/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/AzureFileWAccountKey/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate datastore (Azure File store w/ AccountKey).
@@ -1991,7 +2057,7 @@ public final class DatastoresCreateOrUpdateSamples {
 /** Samples for Datastores Delete. */
 public final class DatastoresDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/delete.json
      */
     /**
      * Sample code: Delete datastore.
@@ -2012,7 +2078,7 @@ public final class DatastoresDeleteSamples {
 /** Samples for Datastores Get. */
 public final class DatastoresGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/get.json
      */
     /**
      * Sample code: Get datastore.
@@ -2033,7 +2099,7 @@ import java.util.Arrays;
 /** Samples for Datastores List. */
 public final class DatastoresListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/list.json
      */
     /**
      * Sample code: List datastores.
@@ -2064,7 +2130,7 @@ public final class DatastoresListSamples {
 /** Samples for Datastores ListSecrets. */
 public final class DatastoresListSecretsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/listSecrets.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Datastore/listSecrets.json
      */
     /**
      * Sample code: Get datastore secrets.
@@ -2089,7 +2155,7 @@ import java.util.Map;
 /** Samples for EnvironmentContainers CreateOrUpdate. */
 public final class EnvironmentContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Environment Container.
@@ -2131,7 +2197,7 @@ public final class EnvironmentContainersCreateOrUpdateSamples {
 /** Samples for EnvironmentContainers Delete. */
 public final class EnvironmentContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentContainer/delete.json
      */
     /**
      * Sample code: Delete Environment Container.
@@ -2153,7 +2219,7 @@ public final class EnvironmentContainersDeleteSamples {
 /** Samples for EnvironmentContainers Get. */
 public final class EnvironmentContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentContainer/get.json
      */
     /**
      * Sample code: Get Environment Container.
@@ -2175,7 +2241,7 @@ public final class EnvironmentContainersGetSamples {
 /** Samples for EnvironmentContainers List. */
 public final class EnvironmentContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentContainer/list.json
      */
     /**
      * Sample code: List Environment Container.
@@ -2204,7 +2270,7 @@ import java.util.Map;
 /** Samples for EnvironmentVersions CreateOrUpdate. */
 public final class EnvironmentVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Environment Version.
@@ -2257,7 +2323,7 @@ public final class EnvironmentVersionsCreateOrUpdateSamples {
 /** Samples for EnvironmentVersions Delete. */
 public final class EnvironmentVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentVersion/delete.json
      */
     /**
      * Sample code: Delete Environment Version.
@@ -2279,7 +2345,7 @@ public final class EnvironmentVersionsDeleteSamples {
 /** Samples for EnvironmentVersions Get. */
 public final class EnvironmentVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentVersion/get.json
      */
     /**
      * Sample code: Get Environment Version.
@@ -2300,7 +2366,7 @@ public final class EnvironmentVersionsGetSamples {
 /** Samples for EnvironmentVersions List. */
 public final class EnvironmentVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/EnvironmentVersion/list.json
      */
     /**
      * Sample code: List Environment Version.
@@ -2322,7 +2388,7 @@ public final class EnvironmentVersionsListSamples {
 /** Samples for Jobs Cancel. */
 public final class JobsCancelSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/cancel.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/cancel.json
      */
     /**
      * Sample code: Cancel Job.
@@ -2373,7 +2439,7 @@ import java.util.Map;
 /** Samples for Jobs CreateOrUpdate. */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/AutoMLJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate AutoML Job.
@@ -2441,7 +2507,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/SweepJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Sweep Job.
@@ -2506,7 +2572,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/PipelineJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Pipeline Job.
@@ -2551,7 +2617,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/CommandJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Command Job.
@@ -2630,7 +2696,7 @@ public final class JobsCreateOrUpdateSamples {
 /** Samples for Jobs Delete. */
 public final class JobsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/delete.json
      */
     /**
      * Sample code: Delete Job.
@@ -2649,7 +2715,7 @@ public final class JobsDeleteSamples {
 /** Samples for Jobs Get. */
 public final class JobsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/CommandJob/get.json
      */
     /**
      * Sample code: Get Command Job.
@@ -2661,7 +2727,7 @@ public final class JobsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/AutoMLJob/get.json
      */
     /**
      * Sample code: Get AutoML Job.
@@ -2673,7 +2739,7 @@ public final class JobsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/SweepJob/get.json
      */
     /**
      * Sample code: Get Sweep Job.
@@ -2685,7 +2751,7 @@ public final class JobsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/PipelineJob/get.json
      */
     /**
      * Sample code: Get Pipeline Job.
@@ -2704,7 +2770,7 @@ public final class JobsGetSamples {
 /** Samples for Jobs List. */
 public final class JobsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/CommandJob/list.json
      */
     /**
      * Sample code: List Command Job.
@@ -2718,7 +2784,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/PipelineJob/list.json
      */
     /**
      * Sample code: List Pipeline Job.
@@ -2732,7 +2798,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/SweepJob/list.json
      */
     /**
      * Sample code: List Sweep Job.
@@ -2746,7 +2812,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Job/AutoMLJob/list.json
      */
     /**
      * Sample code: List AutoML Job.
@@ -2769,7 +2835,7 @@ import java.util.Map;
 /** Samples for ModelContainers CreateOrUpdate. */
 public final class ModelContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Model Container.
@@ -2808,7 +2874,7 @@ public final class ModelContainersCreateOrUpdateSamples {
 /** Samples for ModelContainers Delete. */
 public final class ModelContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelContainer/delete.json
      */
     /**
      * Sample code: Delete Model Container.
@@ -2829,7 +2895,7 @@ public final class ModelContainersDeleteSamples {
 /** Samples for ModelContainers Get. */
 public final class ModelContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelContainer/get.json
      */
     /**
      * Sample code: Get Model Container.
@@ -2850,7 +2916,7 @@ public final class ModelContainersGetSamples {
 /** Samples for ModelContainers List. */
 public final class ModelContainersListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelContainer/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelContainer/list.json
      */
     /**
      * Sample code: List Model Container.
@@ -2874,7 +2940,7 @@ import java.util.Map;
 /** Samples for ModelVersions CreateOrUpdate. */
 public final class ModelVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Model Version.
@@ -2918,7 +2984,7 @@ public final class ModelVersionsCreateOrUpdateSamples {
 /** Samples for ModelVersions Delete. */
 public final class ModelVersionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelVersion/delete.json
      */
     /**
      * Sample code: Delete Model Version.
@@ -2939,7 +3005,7 @@ public final class ModelVersionsDeleteSamples {
 /** Samples for ModelVersions Get. */
 public final class ModelVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelVersion/get.json
      */
     /**
      * Sample code: Get Model Version.
@@ -2960,7 +3026,7 @@ public final class ModelVersionsGetSamples {
 /** Samples for ModelVersions List. */
 public final class ModelVersionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ModelVersion/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ModelVersion/list.json
      */
     /**
      * Sample code: List Model Version.
@@ -3012,7 +3078,7 @@ import java.util.Map;
 /** Samples for OnlineDeployments CreateOrUpdate. */
 public final class OnlineDeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/KubernetesOnlineDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Kubernetes Online Deployment.
@@ -3077,7 +3143,7 @@ public final class OnlineDeploymentsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/ManagedOnlineDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Managed Online Deployment.
@@ -3158,7 +3224,7 @@ public final class OnlineDeploymentsCreateOrUpdateSamples {
 /** Samples for OnlineDeployments Delete. */
 public final class OnlineDeploymentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/delete.json
      */
     /**
      * Sample code: Delete Online Deployment.
@@ -3180,7 +3246,7 @@ public final class OnlineDeploymentsDeleteSamples {
 /** Samples for OnlineDeployments Get. */
 public final class OnlineDeploymentsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/KubernetesOnlineDeployment/get.json
      */
     /**
      * Sample code: Get Kubernetes Online Deployment.
@@ -3200,7 +3266,7 @@ public final class OnlineDeploymentsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/ManagedOnlineDeployment/get.json
      */
     /**
      * Sample code: Get Managed Online Deployment.
@@ -3230,7 +3296,7 @@ import com.azure.resourcemanager.machinelearning.models.DeploymentLogsRequest;
 /** Samples for OnlineDeployments GetLogs. */
 public final class OnlineDeploymentsGetLogsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/getLogs.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/getLogs.json
      */
     /**
      * Sample code: Get Online Deployment Logs.
@@ -3258,7 +3324,7 @@ public final class OnlineDeploymentsGetLogsSamples {
 /** Samples for OnlineDeployments List. */
 public final class OnlineDeploymentsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/list.json
      */
     /**
      * Sample code: List Online Deployments.
@@ -3280,7 +3346,7 @@ public final class OnlineDeploymentsListSamples {
 /** Samples for OnlineDeployments ListSkus. */
 public final class OnlineDeploymentsListSkusSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/listSkus.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/ManagedOnlineDeployment/listSkus.json
      */
     /**
      * Sample code: List Managed Online Deployment Skus.
@@ -3302,7 +3368,7 @@ public final class OnlineDeploymentsListSkusSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/listSkus.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/KubernetesOnlineDeployment/listSkus.json
      */
     /**
      * Sample code: List Kubernetes Online Deployment Skus.
@@ -3337,7 +3403,7 @@ import java.util.Map;
 /** Samples for OnlineDeployments Update. */
 public final class OnlineDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Managed Online Deployment.
@@ -3370,7 +3436,7 @@ public final class OnlineDeploymentsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Kubernetes Online Deployment.
@@ -3431,7 +3497,7 @@ import java.util.Map;
 /** Samples for OnlineEndpoints CreateOrUpdate. */
 public final class OnlineEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Online Endpoint.
@@ -3487,7 +3553,7 @@ public final class OnlineEndpointsCreateOrUpdateSamples {
 /** Samples for OnlineEndpoints Delete. */
 public final class OnlineEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/delete.json
      */
     /**
      * Sample code: Delete Online Endpoint.
@@ -3508,7 +3574,7 @@ public final class OnlineEndpointsDeleteSamples {
 /** Samples for OnlineEndpoints Get. */
 public final class OnlineEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/get.json
      */
     /**
      * Sample code: Get Online Endpoint.
@@ -3529,7 +3595,7 @@ public final class OnlineEndpointsGetSamples {
 /** Samples for OnlineEndpoints GetToken. */
 public final class OnlineEndpointsGetTokenSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/getToken.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/getToken.json
      */
     /**
      * Sample code: GetToken Online Endpoint.
@@ -3554,7 +3620,7 @@ import com.azure.resourcemanager.machinelearning.models.OrderString;
 /** Samples for OnlineEndpoints List. */
 public final class OnlineEndpointsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/list.json
      */
     /**
      * Sample code: List Online Endpoint.
@@ -3585,7 +3651,7 @@ public final class OnlineEndpointsListSamples {
 /** Samples for OnlineEndpoints ListKeys. */
 public final class OnlineEndpointsListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/listKeys.json
      */
     /**
      * Sample code: ListKeys Online Endpoint.
@@ -3610,7 +3676,7 @@ import com.azure.resourcemanager.machinelearning.models.RegenerateEndpointKeysRe
 /** Samples for OnlineEndpoints RegenerateKeys. */
 public final class OnlineEndpointsRegenerateKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/regenerateKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/regenerateKeys.json
      */
     /**
      * Sample code: RegenerateKeys Online Endpoint.
@@ -3646,7 +3712,7 @@ import java.util.Map;
 /** Samples for OnlineEndpoints Update. */
 public final class OnlineEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/update.json
      */
     /**
      * Sample code: Update Online Endpoint.
@@ -3694,7 +3760,7 @@ public final class OnlineEndpointsUpdateSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/operationsList.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/operationsList.json
      */
     /**
      * Sample code: OperationsList.
@@ -3716,7 +3782,7 @@ import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnec
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/PrivateEndpointConnection/createOrUpdate.json
      */
     /**
      * Sample code: WorkspacePutPrivateEndpointConnection.
@@ -3744,7 +3810,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/PrivateEndpointConnection/delete.json
      */
     /**
      * Sample code: WorkspaceDeletePrivateEndpointConnection.
@@ -3767,7 +3833,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/PrivateEndpointConnection/get.json
      */
     /**
      * Sample code: WorkspaceGetPrivateEndpointConnection.
@@ -3790,7 +3856,7 @@ public final class PrivateEndpointConnectionsGetSamples {
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/PrivateEndpointConnection/list.json
      */
     /**
      * Sample code: StorageAccountListPrivateEndpointConnections.
@@ -3810,7 +3876,7 @@ public final class PrivateEndpointConnectionsListSamples {
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateLinkResource/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/PrivateLinkResource/list.json
      */
     /**
      * Sample code: WorkspaceListPrivateLinkResources.
@@ -3830,7 +3896,7 @@ public final class PrivateLinkResourcesListSamples {
 /** Samples for Quotas List. */
 public final class QuotasListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Quota/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Quota/list.json
      */
     /**
      * Sample code: List workspace quotas by VMFamily.
@@ -3855,7 +3921,7 @@ import java.util.Arrays;
 /** Samples for Quotas Update. */
 public final class QuotasUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Quota/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Quota/update.json
      */
     /**
      * Sample code: update quotas.
@@ -3903,7 +3969,7 @@ import java.util.Map;
 /** Samples for Schedules CreateOrUpdate. */
 public final class SchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Schedule/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Schedule.
@@ -3960,7 +4026,7 @@ public final class SchedulesCreateOrUpdateSamples {
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Schedule/delete.json
      */
     /**
      * Sample code: Delete Schedule.
@@ -3979,7 +4045,7 @@ public final class SchedulesDeleteSamples {
 /** Samples for Schedules Get. */
 public final class SchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Schedule/get.json
      */
     /**
      * Sample code: Get Schedule.
@@ -3998,7 +4064,7 @@ public final class SchedulesGetSamples {
 /** Samples for Schedules List. */
 public final class SchedulesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Schedule/list.json
      */
     /**
      * Sample code: List Schedules.
@@ -4017,7 +4083,7 @@ public final class SchedulesListSamples {
 /** Samples for Usages List. */
 public final class UsagesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Usage/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Usage/list.json
      */
     /**
      * Sample code: List Usages.
@@ -4036,7 +4102,7 @@ public final class UsagesListSamples {
 /** Samples for VirtualMachineSizes List. */
 public final class VirtualMachineSizesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/VirtualMachineSize/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/VirtualMachineSize/list.json
      */
     /**
      * Sample code: List VM Sizes.
@@ -4058,7 +4124,7 @@ import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceCon
 /** Samples for WorkspaceConnections Create. */
 public final class WorkspaceConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/WorkspaceConnection/create.json
      */
     /**
      * Sample code: CreateWorkspaceConnection.
@@ -4086,7 +4152,7 @@ public final class WorkspaceConnectionsCreateSamples {
 /** Samples for WorkspaceConnections Delete. */
 public final class WorkspaceConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/WorkspaceConnection/delete.json
      */
     /**
      * Sample code: DeleteWorkspaceConnection.
@@ -4108,7 +4174,7 @@ public final class WorkspaceConnectionsDeleteSamples {
 /** Samples for WorkspaceConnections Get. */
 public final class WorkspaceConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/WorkspaceConnection/get.json
      */
     /**
      * Sample code: GetWorkspaceConnection.
@@ -4130,7 +4196,7 @@ public final class WorkspaceConnectionsGetSamples {
 /** Samples for WorkspaceConnections List. */
 public final class WorkspaceConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/WorkspaceConnection/list.json
      */
     /**
      * Sample code: ListWorkspaceConnections.
@@ -4157,7 +4223,7 @@ public final class WorkspaceConnectionsListSamples {
 /** Samples for WorkspaceFeatures List. */
 public final class WorkspaceFeaturesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceFeature/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/WorkspaceFeature/list.json
      */
     /**
      * Sample code: List Workspace features.
@@ -4189,7 +4255,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/create.json
      */
     /**
      * Sample code: Create Workspace.
@@ -4264,7 +4330,7 @@ public final class WorkspacesCreateOrUpdateSamples {
 /** Samples for Workspaces Delete. */
 public final class WorkspacesDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/delete.json
      */
     /**
      * Sample code: Delete Workspace.
@@ -4288,7 +4354,7 @@ import java.util.Map;
 /** Samples for Workspaces Diagnose. */
 public final class WorkspacesDiagnoseSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/diagnose.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/diagnose.json
      */
     /**
      * Sample code: Diagnose Workspace.
@@ -4335,7 +4401,7 @@ public final class WorkspacesDiagnoseSamples {
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/get.json
      */
     /**
      * Sample code: Get Workspace.
@@ -4356,7 +4422,7 @@ public final class WorkspacesGetByResourceGroupSamples {
 /** Samples for Workspaces List. */
 public final class WorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listBySubscription.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/listBySubscription.json
      */
     /**
      * Sample code: Get Workspaces by subscription.
@@ -4376,7 +4442,7 @@ public final class WorkspacesListSamples {
 /** Samples for Workspaces ListByResourceGroup. */
 public final class WorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listByResourceGroup.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/listByResourceGroup.json
      */
     /**
      * Sample code: Get Workspaces by Resource Group.
@@ -4396,7 +4462,7 @@ public final class WorkspacesListByResourceGroupSamples {
 /** Samples for Workspaces ListKeys. */
 public final class WorkspacesListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/listKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4415,7 +4481,7 @@ public final class WorkspacesListKeysSamples {
 /** Samples for Workspaces ListNotebookAccessToken. */
 public final class WorkspacesListNotebookAccessTokenSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listNotebookAccessToken.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/listNotebookAccessToken.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4436,7 +4502,7 @@ public final class WorkspacesListNotebookAccessTokenSamples {
 /** Samples for Workspaces ListNotebookKeys. */
 public final class WorkspacesListNotebookKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Notebook/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Notebook/listKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4457,7 +4523,7 @@ public final class WorkspacesListNotebookKeysSamples {
 /** Samples for Workspaces ListOutboundNetworkDependenciesEndpoints. */
 public final class WorkspacesListOutboundNetworkDependenciesEndpointsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ExternalFQDN/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ExternalFQDN/get.json
      */
     /**
      * Sample code: ListOutboundNetworkDependenciesEndpoints.
@@ -4480,7 +4546,7 @@ public final class WorkspacesListOutboundNetworkDependenciesEndpointsSamples {
 /** Samples for Workspaces ListStorageAccountKeys. */
 public final class WorkspacesListStorageAccountKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listStorageAccountKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/listStorageAccountKeys.json
      */
     /**
      * Sample code: List Workspace Keys.
@@ -4501,7 +4567,7 @@ public final class WorkspacesListStorageAccountKeysSamples {
 /** Samples for Workspaces PrepareNotebook. */
 public final class WorkspacesPrepareNotebookSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Notebook/prepare.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Notebook/prepare.json
      */
     /**
      * Sample code: Prepare Notebook.
@@ -4520,7 +4586,7 @@ public final class WorkspacesPrepareNotebookSamples {
 /** Samples for Workspaces ResyncKeys. */
 public final class WorkspacesResyncKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/resyncKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/resyncKeys.json
      */
     /**
      * Sample code: Resync Workspace Keys.
@@ -4542,7 +4608,7 @@ import com.azure.resourcemanager.machinelearning.models.Workspace;
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/Workspace/update.json
      */
     /**
      * Sample code: Update Workspace.

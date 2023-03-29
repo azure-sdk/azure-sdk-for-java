@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for BatchEndpoints Update. */
 public final class BatchEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchEndpoint/update.json
      */
     /**
      * Sample code: Update Batch Endpoint.

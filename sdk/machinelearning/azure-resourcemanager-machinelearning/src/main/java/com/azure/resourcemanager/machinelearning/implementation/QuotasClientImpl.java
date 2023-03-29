@@ -61,8 +61,7 @@ public final class QuotasClientImpl implements QuotasClient {
     public interface QuotasService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.MachineLearningServices/locations/{location}"
-                + "/updateQuotas")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.MachineLearningServices/locations/{location}/updateQuotas")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UpdateWorkspaceQuotasResultInner>> update(

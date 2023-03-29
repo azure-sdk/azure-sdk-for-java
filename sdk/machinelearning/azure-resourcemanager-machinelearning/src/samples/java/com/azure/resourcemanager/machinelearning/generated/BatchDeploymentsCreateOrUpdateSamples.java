@@ -26,7 +26,7 @@ import java.util.Map;
 /** Samples for BatchDeployments CreateOrUpdate. */
 public final class BatchDeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/BatchDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Batch Deployment.

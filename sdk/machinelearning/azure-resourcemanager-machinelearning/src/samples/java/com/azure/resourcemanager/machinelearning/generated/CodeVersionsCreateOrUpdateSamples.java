@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for CodeVersions CreateOrUpdate. */
 public final class CodeVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/CodeVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/CodeVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Code Version.

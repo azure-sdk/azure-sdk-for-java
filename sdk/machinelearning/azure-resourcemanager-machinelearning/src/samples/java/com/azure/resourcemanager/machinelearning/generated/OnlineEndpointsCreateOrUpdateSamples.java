@@ -17,7 +17,7 @@ import java.util.Map;
 /** Samples for OnlineEndpoints CreateOrUpdate. */
 public final class OnlineEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/OnlineEndpoint/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Online Endpoint.

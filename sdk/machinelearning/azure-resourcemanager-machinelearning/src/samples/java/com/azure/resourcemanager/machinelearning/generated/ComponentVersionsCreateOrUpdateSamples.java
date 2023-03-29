@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for ComponentVersions CreateOrUpdate. */
 public final class ComponentVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ComponentVersion/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-04-01/examples/ComponentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Component Version.
