@@ -47,6 +47,13 @@ public final class SasAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /** {@inheritDoc} */
     @Override
+    public SasAuthTypeWorkspaceConnectionProperties withExpiryTime(String expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public SasAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;

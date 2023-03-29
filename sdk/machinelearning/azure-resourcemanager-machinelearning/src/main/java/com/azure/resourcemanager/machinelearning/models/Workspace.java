@@ -64,6 +64,13 @@ public interface Workspace {
     Sku sku();
 
     /**
+     * Gets the kind property: The kind property.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -257,6 +264,50 @@ public interface Workspace {
     Boolean v1LegacyMode();
 
     /**
+     * Gets the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    String softDeletedAt();
+
+    /**
+     * Gets the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    String scheduledPurgeDate();
+
+    /**
+     * Gets the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    String systemDatastoresAuthMode();
+
+    /**
+     * Gets the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    FeatureStoreSettings featureStoreSettings();
+
+    /**
+     * Gets the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    Integer softDeleteRetentionInDays();
+
+    /**
+     * Gets the enableDataIsolation property: A flag to determine if workspace has data isolation enabled. The flag can
+     * only be set at the creation phase, it can't be updated.
+     *
+     * @return the enableDataIsolation value.
+     */
+    Boolean enableDataIsolation();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -312,6 +363,7 @@ public interface Workspace {
                 DefinitionStages.WithTags,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithSku,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithFriendlyName,
                 DefinitionStages.WithKeyVault,
@@ -327,7 +379,11 @@ public interface Workspace {
                 DefinitionStages.WithSharedPrivateLinkResources,
                 DefinitionStages.WithServiceManagedResourcesSettings,
                 DefinitionStages.WithPrimaryUserAssignedIdentity,
-                DefinitionStages.WithV1LegacyMode {
+                DefinitionStages.WithV1LegacyMode,
+                DefinitionStages.WithSystemDatastoresAuthMode,
+                DefinitionStages.WithFeatureStoreSettings,
+                DefinitionStages.WithSoftDeleteRetentionInDays,
+                DefinitionStages.WithEnableDataIsolation {
             /**
              * Executes the create request.
              *
@@ -390,6 +446,16 @@ public interface Workspace {
              * @return the next definition stage.
              */
             WithCreate withSku(Sku sku);
+        }
+        /** The stage of the Workspace definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: The kind property..
+             *
+             * @param kind The kind property.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
         }
         /** The stage of the Workspace definition allowing to specify description. */
         interface WithDescription {
@@ -568,6 +634,50 @@ public interface Workspace {
              */
             WithCreate withV1LegacyMode(Boolean v1LegacyMode);
         }
+        /** The stage of the Workspace definition allowing to specify systemDatastoresAuthMode. */
+        interface WithSystemDatastoresAuthMode {
+            /**
+             * Specifies the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores
+             * of the workspace.
+             *
+             * @param systemDatastoresAuthMode The auth mode used for accessing the system datastores of the workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withSystemDatastoresAuthMode(String systemDatastoresAuthMode);
+        }
+        /** The stage of the Workspace definition allowing to specify featureStoreSettings. */
+        interface WithFeatureStoreSettings {
+            /**
+             * Specifies the featureStoreSettings property: Settings for feature store type workspace..
+             *
+             * @param featureStoreSettings Settings for feature store type workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings);
+        }
+        /** The stage of the Workspace definition allowing to specify softDeleteRetentionInDays. */
+        interface WithSoftDeleteRetentionInDays {
+            /**
+             * Specifies the softDeleteRetentionInDays property: Retention time in days after workspace get soft
+             * deleted..
+             *
+             * @param softDeleteRetentionInDays Retention time in days after workspace get soft deleted.
+             * @return the next definition stage.
+             */
+            WithCreate withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays);
+        }
+        /** The stage of the Workspace definition allowing to specify enableDataIsolation. */
+        interface WithEnableDataIsolation {
+            /**
+             * Specifies the enableDataIsolation property: A flag to determine if workspace has data isolation enabled.
+             * The flag can only be set at the creation phase, it can't be updated..
+             *
+             * @param enableDataIsolation A flag to determine if workspace has data isolation enabled. The flag can only
+             *     be set at the creation phase, it can't be updated.
+             * @return the next definition stage.
+             */
+            WithCreate withEnableDataIsolation(Boolean enableDataIsolation);
+        }
     }
     /**
      * Begins update for the Workspace resource.
@@ -588,7 +698,9 @@ public interface Workspace {
             UpdateStages.WithPrimaryUserAssignedIdentity,
             UpdateStages.WithPublicNetworkAccess,
             UpdateStages.WithApplicationInsights,
-            UpdateStages.WithContainerRegistry {
+            UpdateStages.WithContainerRegistry,
+            UpdateStages.WithEncryption,
+            UpdateStages.WithFeatureStoreSettings {
         /**
          * Executes the update request.
          *
@@ -719,6 +831,26 @@ public interface Workspace {
              * @return the next definition stage.
              */
             Update withContainerRegistry(String containerRegistry);
+        }
+        /** The stage of the Workspace update allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: The encryption settings of the workspace..
+             *
+             * @param encryption The encryption settings of the workspace.
+             * @return the next definition stage.
+             */
+            Update withEncryption(EncryptionUpdateProperties encryption);
+        }
+        /** The stage of the Workspace update allowing to specify featureStoreSettings. */
+        interface WithFeatureStoreSettings {
+            /**
+             * Specifies the featureStoreSettings property: Settings for feature store type workspace..
+             *
+             * @param featureStoreSettings Settings for feature store type workspace.
+             * @return the next definition stage.
+             */
+            Update withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings);
         }
     }
     /**
