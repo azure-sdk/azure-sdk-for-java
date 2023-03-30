@@ -47,6 +47,13 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /** {@inheritDoc} */
     @Override
+    public PatAuthTypeWorkspaceConnectionProperties withExpiryTime(String expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public PatAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;

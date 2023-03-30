@@ -196,6 +196,57 @@ public interface WorkspaceProperties {
     Boolean v1LegacyMode();
 
     /**
+     * Gets the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    String softDeletedAt();
+
+    /**
+     * Gets the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    String scheduledPurgeDate();
+
+    /**
+     * Gets the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    String systemDatastoresAuthMode();
+
+    /**
+     * Gets the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    FeatureStoreSettings featureStoreSettings();
+
+    /**
+     * Gets the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    Integer softDeleteRetentionInDays();
+
+    /**
+     * Gets the enableDataIsolation property: A flag to determine if workspace has data isolation enabled. The flag can
+     * only be set at the creation phase, it can't be updated.
+     *
+     * @return the enableDataIsolation value.
+     */
+    Boolean enableDataIsolation();
+
+    /**
+     * Gets the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    ManagedNetworkSettings managedNetwork();
+
+    /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner object.
      *
      * @return the inner object.

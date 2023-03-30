@@ -10,7 +10,7 @@ import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceCon
 /** Samples for WorkspaceConnections Create. */
 public final class WorkspaceConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-04-01-preview/examples/WorkspaceConnection/create.json
      */
     /**
      * Sample code: CreateWorkspaceConnection.
@@ -25,6 +25,7 @@ public final class WorkspaceConnectionsCreateSamples {
             .withExistingWorkspace("resourceGroup-1", "workspace-1")
             .withProperties(
                 new NoneAuthTypeWorkspaceConnectionProperties()
+                    .withExpiryTime("2024-03-15T14:30:00Z")
                     .withCategory(ConnectionCategory.CONTAINER_REGISTRY)
                     .withTarget("www.facebook.com"))
             .create();
