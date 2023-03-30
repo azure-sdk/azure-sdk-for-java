@@ -30,7 +30,7 @@ public final class Sku {
      * If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible
      * for the resource this may be omitted.
      */
-    @JsonProperty(value = "capacity")
+    @JsonProperty(value = "capacity", access = JsonProperty.Access.WRITE_ONLY)
     private Integer capacity;
 
     /** Creates an instance of Sku class. */
@@ -85,18 +85,6 @@ public final class Sku {
      */
     public Integer capacity() {
         return this.capacity;
-    }
-
-    /**
-     * Set the capacity property: If the SKU supports scale out/in then the capacity integer should be included. If
-     * scale out/in is not possible for the resource this may be omitted.
-     *
-     * @param capacity the capacity value to set.
-     * @return the Sku object itself.
-     */
-    public Sku withCapacity(Integer capacity) {
-        this.capacity = capacity;
-        return this;
     }
 
     /**

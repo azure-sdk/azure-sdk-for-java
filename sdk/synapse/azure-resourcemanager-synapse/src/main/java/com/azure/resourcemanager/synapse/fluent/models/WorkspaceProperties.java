@@ -145,7 +145,7 @@ public final class WorkspaceProperties {
      * Enable or Disable AzureADOnlyAuthentication on All Workspace subresource
      */
     @JsonProperty(value = "azureADOnlyAuthentication")
-    private Boolean azureADOnlyAuthentication;
+    private Object azureADOnlyAuthentication;
 
     /*
      * Is trustedServiceBypassEnabled for the workspace
@@ -489,7 +489,7 @@ public final class WorkspaceProperties {
      *
      * @return the azureADOnlyAuthentication value.
      */
-    public Boolean azureADOnlyAuthentication() {
+    public Object azureADOnlyAuthentication() {
         return this.azureADOnlyAuthentication;
     }
 
@@ -500,7 +500,7 @@ public final class WorkspaceProperties {
      * @param azureADOnlyAuthentication the azureADOnlyAuthentication value to set.
      * @return the WorkspaceProperties object itself.
      */
-    public WorkspaceProperties withAzureADOnlyAuthentication(Boolean azureADOnlyAuthentication) {
+    public WorkspaceProperties withAzureADOnlyAuthentication(Object azureADOnlyAuthentication) {
         this.azureADOnlyAuthentication = azureADOnlyAuthentication;
         return this;
     }

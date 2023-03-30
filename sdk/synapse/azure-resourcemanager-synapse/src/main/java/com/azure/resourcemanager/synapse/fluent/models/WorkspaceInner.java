@@ -452,7 +452,7 @@ public final class WorkspaceInner extends Resource {
      *
      * @return the azureADOnlyAuthentication value.
      */
-    public Boolean azureADOnlyAuthentication() {
+    public Object azureADOnlyAuthentication() {
         return this.innerProperties() == null ? null : this.innerProperties().azureADOnlyAuthentication();
     }
 
@@ -463,7 +463,7 @@ public final class WorkspaceInner extends Resource {
      * @param azureADOnlyAuthentication the azureADOnlyAuthentication value to set.
      * @return the WorkspaceInner object itself.
      */
-    public WorkspaceInner withAzureADOnlyAuthentication(Boolean azureADOnlyAuthentication) {
+    public WorkspaceInner withAzureADOnlyAuthentication(Object azureADOnlyAuthentication) {
         if (this.innerProperties() == null) {
             this.innerProperties = new WorkspaceProperties();
         }

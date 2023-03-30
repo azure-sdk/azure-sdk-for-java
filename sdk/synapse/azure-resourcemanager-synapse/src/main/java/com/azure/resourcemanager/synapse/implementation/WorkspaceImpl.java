@@ -156,7 +156,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
-    public Boolean azureADOnlyAuthentication() {
+    public Object azureADOnlyAuthentication() {
         return this.innerModel().azureADOnlyAuthentication();
     }
 
@@ -397,7 +397,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this;
     }
 
-    public WorkspaceImpl withAzureADOnlyAuthentication(Boolean azureADOnlyAuthentication) {
+    public WorkspaceImpl withAzureADOnlyAuthentication(Object azureADOnlyAuthentication) {
         this.innerModel().withAzureADOnlyAuthentication(azureADOnlyAuthentication);
         return this;
     }

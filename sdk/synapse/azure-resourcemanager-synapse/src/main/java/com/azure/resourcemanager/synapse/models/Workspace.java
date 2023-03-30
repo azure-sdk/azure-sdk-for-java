@@ -199,7 +199,7 @@ public interface Workspace {
      *
      * @return the azureADOnlyAuthentication value.
      */
-    Boolean azureADOnlyAuthentication();
+    Object azureADOnlyAuthentication();
 
     /**
      * Gets the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
@@ -483,7 +483,7 @@ public interface Workspace {
              *     subresource.
              * @return the next definition stage.
              */
-            WithCreate withAzureADOnlyAuthentication(Boolean azureADOnlyAuthentication);
+            WithCreate withAzureADOnlyAuthentication(Object azureADOnlyAuthentication);
         }
         /** The stage of the Workspace definition allowing to specify trustedServiceBypassEnabled. */
         interface WithTrustedServiceBypassEnabled {
