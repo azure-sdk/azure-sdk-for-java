@@ -24,6 +24,10 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
     @JsonProperty(value = "properties")
     private ActivityEntityQueriesProperties innerProperties;
 
+    /** Creates an instance of ActivityCustomEntityQuery class. */
+    public ActivityCustomEntityQuery() {
+    }
+
     /**
      * Get the innerProperties property: Activity entity query properties.
      *

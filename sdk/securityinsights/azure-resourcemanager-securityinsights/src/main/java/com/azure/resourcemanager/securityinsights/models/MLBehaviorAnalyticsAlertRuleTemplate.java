@@ -24,6 +24,10 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
     @JsonProperty(value = "properties")
     private MLBehaviorAnalyticsAlertRuleTemplateProperties innerProperties;
 
+    /** Creates an instance of MLBehaviorAnalyticsAlertRuleTemplate class. */
+    public MLBehaviorAnalyticsAlertRuleTemplate() {
+    }
+
     /**
      * Get the innerProperties property: MLBehaviorAnalytics alert rule template properties.
      *

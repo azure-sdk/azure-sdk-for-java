@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** Office PowerBI requirements check properties. */
 @Fluent
 public final class OfficePowerBICheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of OfficePowerBICheckRequirementsProperties class. */
+    public OfficePowerBICheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public OfficePowerBICheckRequirementsProperties withTenantId(String tenantId) {

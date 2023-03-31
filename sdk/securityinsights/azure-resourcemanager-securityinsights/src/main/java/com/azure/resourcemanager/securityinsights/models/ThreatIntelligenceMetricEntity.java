@@ -22,6 +22,10 @@ public final class ThreatIntelligenceMetricEntity {
     @JsonProperty(value = "metricValue")
     private Integer metricValue;
 
+    /** Creates an instance of ThreatIntelligenceMetricEntity class. */
+    public ThreatIntelligenceMetricEntity() {
+    }
+
     /**
      * Get the metricName property: Metric name.
      *
