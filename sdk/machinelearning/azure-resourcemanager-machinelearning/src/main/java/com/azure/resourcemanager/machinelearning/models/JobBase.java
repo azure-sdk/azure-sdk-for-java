@@ -142,12 +142,12 @@ public interface JobBase {
         /** The stage of the JobBase update allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: [Required] Additional attributes of the entity..
+             * Specifies the properties property: Additional attributes of the entity..
              *
-             * @param properties [Required] Additional attributes of the entity.
+             * @param properties Additional attributes of the entity.
              * @return the next definition stage.
              */
-            Update withProperties(JobBaseProperties properties);
+            Update withProperties(PartialJobBase properties);
         }
     }
     /**

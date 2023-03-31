@@ -37,6 +37,7 @@ public interface ComponentVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param stage Component stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -52,6 +53,7 @@ public interface ComponentVersionsClient {
         String orderBy,
         Integer top,
         String skip,
+        String stage,
         ListViewType listViewType,
         Context context);
 
