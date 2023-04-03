@@ -47,15 +47,6 @@ public final class GrafanasImpl implements Grafanas {
         return Utils.mapPage(inner, inner1 -> new ManagedGrafanaImpl(inner1, this.manager()));
     }
 
-    public ManagedGrafana getByResourceGroup(String resourceGroupName, String workspaceName) {
-        ManagedGrafanaInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new ManagedGrafanaImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ManagedGrafana> getByResourceGroupWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         Response<ManagedGrafanaInner> inner =
@@ -66,6 +57,15 @@ public final class GrafanasImpl implements Grafanas {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ManagedGrafanaImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ManagedGrafana getByResourceGroup(String resourceGroupName, String workspaceName) {
+        ManagedGrafanaInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new ManagedGrafanaImpl(inner, this.manager());
         } else {
             return null;
         }

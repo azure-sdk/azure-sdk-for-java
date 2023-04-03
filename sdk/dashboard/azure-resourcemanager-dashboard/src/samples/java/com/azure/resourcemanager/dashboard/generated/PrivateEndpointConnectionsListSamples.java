@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class PrivateEndpointConnectionsListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().list("myResourceGroup", "myWorkspace", Context.NONE);
+        manager.privateEndpointConnections().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

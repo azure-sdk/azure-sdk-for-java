@@ -94,8 +94,6 @@ public final class GrafanaCreateSamples {
 ### Grafana_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Grafana Delete. */
 public final class GrafanaDeleteSamples {
     /*
@@ -107,7 +105,7 @@ public final class GrafanaDeleteSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().delete("myResourceGroup", "myWorkspace", Context.NONE);
+        manager.grafanas().delete("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -115,8 +113,6 @@ public final class GrafanaDeleteSamples {
 ### Grafana_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Grafana GetByResourceGroup. */
 public final class GrafanaGetByResourceGroupSamples {
     /*
@@ -128,7 +124,9 @@ public final class GrafanaGetByResourceGroupSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", Context.NONE);
+        manager
+            .grafanas()
+            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -136,8 +134,6 @@ public final class GrafanaGetByResourceGroupSamples {
 ### Grafana_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Grafana List. */
 public final class GrafanaListSamples {
     /*
@@ -149,7 +145,7 @@ public final class GrafanaListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().list(Context.NONE);
+        manager.grafanas().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -157,8 +153,6 @@ public final class GrafanaListSamples {
 ### Grafana_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Grafana ListByResourceGroup. */
 public final class GrafanaListByResourceGroupSamples {
     /*
@@ -170,7 +164,7 @@ public final class GrafanaListByResourceGroupSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaListByResourceGroup(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().listByResourceGroup("myResourceGroup", Context.NONE);
+        manager.grafanas().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -178,7 +172,6 @@ public final class GrafanaListByResourceGroupSamples {
 ### Grafana_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.dashboard.models.ApiKey;
 import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
 import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
@@ -203,7 +196,7 @@ public final class GrafanaUpdateSamples {
         ManagedGrafana resource =
             manager
                 .grafanas()
-                .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -239,8 +232,6 @@ public final class GrafanaUpdateSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -252,7 +243,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void operationsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -283,8 +274,6 @@ public final class PrivateEndpointConnectionsApproveSamples {
 ### PrivateEndpointConnections_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
@@ -296,7 +285,9 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().delete("myResourceGroup", "myWorkspace", "myConnection", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .delete("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -304,8 +295,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 ### PrivateEndpointConnections_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
@@ -319,7 +308,7 @@ public final class PrivateEndpointConnectionsGetSamples {
     public static void privateEndpointConnectionsGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
         manager
             .privateEndpointConnections()
-            .getWithResponse("myResourceGroup", "myWorkspace", "myConnection", Context.NONE);
+            .getWithResponse("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -327,8 +316,6 @@ public final class PrivateEndpointConnectionsGetSamples {
 ### PrivateEndpointConnections_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
@@ -340,7 +327,7 @@ public final class PrivateEndpointConnectionsListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().list("myResourceGroup", "myWorkspace", Context.NONE);
+        manager.privateEndpointConnections().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -348,8 +335,6 @@ public final class PrivateEndpointConnectionsListSamples {
 ### PrivateLinkResources_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
@@ -361,7 +346,9 @@ public final class PrivateLinkResourcesGetSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateLinkResourcesGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateLinkResources().getWithResponse("myResourceGroup", "myWorkspace", "grafana", Context.NONE);
+        manager
+            .privateLinkResources()
+            .getWithResponse("myResourceGroup", "myWorkspace", "grafana", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -369,8 +356,6 @@ public final class PrivateLinkResourcesGetSamples {
 ### PrivateLinkResources_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
@@ -382,7 +367,7 @@ public final class PrivateLinkResourcesListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateLinkResourcesList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateLinkResources().list("myResourceGroup", "myWorkspace", Context.NONE);
+        manager.privateLinkResources().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
