@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
@@ -74,14 +75,14 @@ public interface ModelVersion {
         /** The stage of the ModelVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, modelName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param modelName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingModel(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingModel(String resourceGroupName, String registryName, String modelName);
         }
         /** The stage of the ModelVersion definition allowing to specify properties. */
         interface WithProperties {
@@ -165,4 +166,28 @@ public interface ModelVersion {
      * @return the refreshed resource.
      */
     ModelVersion refresh(Context context);
+
+    /**
+     * Generate a storage location and credential for the client to upload a model asset to.
+     *
+     * @param body Pending upload request object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<PendingUploadResponseDto> createOrGetStartPendingUploadWithResponse(
+        PendingUploadRequestDto body, Context context);
+
+    /**
+     * Generate a storage location and credential for the client to upload a model asset to.
+     *
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    PendingUploadResponseDto createOrGetStartPendingUpload(PendingUploadRequestDto body);
 }

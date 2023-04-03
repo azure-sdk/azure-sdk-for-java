@@ -39,14 +39,14 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     private final WorkspaceConnectionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of WorkspaceConnectionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspaceConnectionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    WorkspaceConnectionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy
                 .create(WorkspaceConnectionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
@@ -54,7 +54,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesWorkspaceConnections to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesWorkspaceConnections to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
@@ -62,8 +62,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     public interface WorkspaceConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> create(
@@ -79,8 +78,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> get(
@@ -95,8 +93,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -111,8 +108,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult>> list(

@@ -47,6 +47,13 @@ public final class UsernamePasswordAuthTypeWorkspaceConnectionProperties extends
 
     /** {@inheritDoc} */
     @Override
+    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withExpiryTime(String expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
@@ -169,6 +170,85 @@ public final class WorkspacePropertiesInner {
      */
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
+
+    /*
+     * The timestamp when the workspace was soft deleted
+     */
+    @JsonProperty(value = "softDeletedAt", access = JsonProperty.Access.WRITE_ONLY)
+    private String softDeletedAt;
+
+    /*
+     * The timestamp when the soft deleted workspace is going to be purged
+     */
+    @JsonProperty(value = "scheduledPurgeDate", access = JsonProperty.Access.WRITE_ONLY)
+    private String scheduledPurgeDate;
+
+    /*
+     * The auth mode used for accessing the system datastores of the workspace
+     */
+    @JsonProperty(value = "systemDatastoresAuthMode")
+    private String systemDatastoresAuthMode;
+
+    /*
+     * Settings for feature store type workspace.
+     */
+    @JsonProperty(value = "featureStoreSettings")
+    private FeatureStoreSettings featureStoreSettings;
+
+    /*
+     * Retention time in days after workspace get soft deleted.
+     */
+    @JsonProperty(value = "softDeleteRetentionInDays")
+    private Integer softDeleteRetentionInDays;
+
+    /*
+     * A flag to determine if workspace has data isolation enabled. The flag can only be set at the creation phase, it
+     * can't be updated.
+     */
+    @JsonProperty(value = "enableDataIsolation")
+    private Boolean enableDataIsolation;
+
+    /*
+     * : A list of storage accounts used by Hub.
+     */
+    @JsonProperty(value = "storageAccounts")
+    private List<String> storageAccounts;
+
+    /*
+     * A list of key vaults used by Hub.
+     */
+    @JsonProperty(value = "keyVaults")
+    private List<String> keyVaults;
+
+    /*
+     * A list of container registries used by Hub.
+     */
+    @JsonProperty(value = "containerRegistries")
+    private List<String> containerRegistries;
+
+    /*
+     * A list of existing workspaces used by Hub to perform convert.
+     */
+    @JsonProperty(value = "existingWorkspaces")
+    private List<String> existingWorkspaces;
+
+    /*
+     * Resource Id of Hub used for lean workspace.
+     */
+    @JsonProperty(value = "hubResourceId")
+    private String hubResourceId;
+
+    /*
+     * A list of lean workspaces associated with Hub.
+     */
+    @JsonProperty(value = "associatedWorkspaces", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> associatedWorkspaces;
+
+    /*
+     * Managed Network settings for a machine learning workspace.
+     */
+    @JsonProperty(value = "managedNetwork")
+    private ManagedNetworkSettingsInner managedNetwork;
 
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
@@ -596,6 +676,237 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.softDeletedAt;
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.scheduledPurgeDate;
+    }
+
+    /**
+     * Get the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    public String systemDatastoresAuthMode() {
+        return this.systemDatastoresAuthMode;
+    }
+
+    /**
+     * Set the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @param systemDatastoresAuthMode the systemDatastoresAuthMode value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        this.systemDatastoresAuthMode = systemDatastoresAuthMode;
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.featureStoreSettings;
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        this.featureStoreSettings = featureStoreSettings;
+        return this;
+    }
+
+    /**
+     * Get the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    public Integer softDeleteRetentionInDays() {
+        return this.softDeleteRetentionInDays;
+    }
+
+    /**
+     * Set the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
+        this.softDeleteRetentionInDays = softDeleteRetentionInDays;
+        return this;
+    }
+
+    /**
+     * Get the enableDataIsolation property: A flag to determine if workspace has data isolation enabled. The flag can
+     * only be set at the creation phase, it can't be updated.
+     *
+     * @return the enableDataIsolation value.
+     */
+    public Boolean enableDataIsolation() {
+        return this.enableDataIsolation;
+    }
+
+    /**
+     * Set the enableDataIsolation property: A flag to determine if workspace has data isolation enabled. The flag can
+     * only be set at the creation phase, it can't be updated.
+     *
+     * @param enableDataIsolation the enableDataIsolation value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withEnableDataIsolation(Boolean enableDataIsolation) {
+        this.enableDataIsolation = enableDataIsolation;
+        return this;
+    }
+
+    /**
+     * Get the storageAccounts property: : A list of storage accounts used by Hub.
+     *
+     * @return the storageAccounts value.
+     */
+    public List<String> storageAccounts() {
+        return this.storageAccounts;
+    }
+
+    /**
+     * Set the storageAccounts property: : A list of storage accounts used by Hub.
+     *
+     * @param storageAccounts the storageAccounts value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withStorageAccounts(List<String> storageAccounts) {
+        this.storageAccounts = storageAccounts;
+        return this;
+    }
+
+    /**
+     * Get the keyVaults property: A list of key vaults used by Hub.
+     *
+     * @return the keyVaults value.
+     */
+    public List<String> keyVaults() {
+        return this.keyVaults;
+    }
+
+    /**
+     * Set the keyVaults property: A list of key vaults used by Hub.
+     *
+     * @param keyVaults the keyVaults value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withKeyVaults(List<String> keyVaults) {
+        this.keyVaults = keyVaults;
+        return this;
+    }
+
+    /**
+     * Get the containerRegistries property: A list of container registries used by Hub.
+     *
+     * @return the containerRegistries value.
+     */
+    public List<String> containerRegistries() {
+        return this.containerRegistries;
+    }
+
+    /**
+     * Set the containerRegistries property: A list of container registries used by Hub.
+     *
+     * @param containerRegistries the containerRegistries value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withContainerRegistries(List<String> containerRegistries) {
+        this.containerRegistries = containerRegistries;
+        return this;
+    }
+
+    /**
+     * Get the existingWorkspaces property: A list of existing workspaces used by Hub to perform convert.
+     *
+     * @return the existingWorkspaces value.
+     */
+    public List<String> existingWorkspaces() {
+        return this.existingWorkspaces;
+    }
+
+    /**
+     * Set the existingWorkspaces property: A list of existing workspaces used by Hub to perform convert.
+     *
+     * @param existingWorkspaces the existingWorkspaces value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withExistingWorkspaces(List<String> existingWorkspaces) {
+        this.existingWorkspaces = existingWorkspaces;
+        return this;
+    }
+
+    /**
+     * Get the hubResourceId property: Resource Id of Hub used for lean workspace.
+     *
+     * @return the hubResourceId value.
+     */
+    public String hubResourceId() {
+        return this.hubResourceId;
+    }
+
+    /**
+     * Set the hubResourceId property: Resource Id of Hub used for lean workspace.
+     *
+     * @param hubResourceId the hubResourceId value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withHubResourceId(String hubResourceId) {
+        this.hubResourceId = hubResourceId;
+        return this;
+    }
+
+    /**
+     * Get the associatedWorkspaces property: A list of lean workspaces associated with Hub.
+     *
+     * @return the associatedWorkspaces value.
+     */
+    public List<String> associatedWorkspaces() {
+        return this.associatedWorkspaces;
+    }
+
+    /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.managedNetwork;
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.managedNetwork = managedNetwork;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -615,6 +926,12 @@ public final class WorkspacePropertiesInner {
         }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (featureStoreSettings() != null) {
+            featureStoreSettings().validate();
+        }
+        if (managedNetwork() != null) {
+            managedNetwork().validate();
         }
     }
 }

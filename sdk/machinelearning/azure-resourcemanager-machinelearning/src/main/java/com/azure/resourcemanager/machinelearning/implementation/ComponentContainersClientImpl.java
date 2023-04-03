@@ -40,21 +40,21 @@ public final class ComponentContainersClientImpl implements ComponentContainersC
     private final ComponentContainersService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ComponentContainersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ComponentContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ComponentContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(ComponentContainersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesComponentContainers to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesComponentContainers to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
@@ -62,8 +62,7 @@ public final class ComponentContainersClientImpl implements ComponentContainersC
     public interface ComponentContainersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComponentContainerResourceArmPaginatedResult>> list(
@@ -79,8 +78,7 @@ public final class ComponentContainersClientImpl implements ComponentContainersC
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -95,8 +93,7 @@ public final class ComponentContainersClientImpl implements ComponentContainersC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComponentContainerInner>> get(
@@ -111,8 +108,7 @@ public final class ComponentContainersClientImpl implements ComponentContainersC
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComponentContainerInner>> createOrUpdate(
