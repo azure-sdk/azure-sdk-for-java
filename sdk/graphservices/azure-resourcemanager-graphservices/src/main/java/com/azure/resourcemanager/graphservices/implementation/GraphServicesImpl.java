@@ -168,7 +168,7 @@ public final class GraphServicesImpl implements GraphServices {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-22-preview";
+        this.apiVersion = "2022-09-22";
         this.accounts = new AccountsClientImpl(this);
         this.accountOperations = new AccountOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);

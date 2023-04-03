@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for AccountOperation Update. */
 public final class AccountOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Update.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Update.json
      */
     /**
      * Sample code: Update account resource.

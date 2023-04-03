@@ -7,7 +7,7 @@ package com.azure.resourcemanager.graphservices.generated;
 /** Samples for AccountOperation GetByResourceGroup. */
 public final class AccountOperationGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Get.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Get.json
      */
     /**
      * Sample code: Get accounts.

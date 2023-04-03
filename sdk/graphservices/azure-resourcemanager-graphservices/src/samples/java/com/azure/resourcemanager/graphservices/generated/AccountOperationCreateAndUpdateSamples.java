@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for AccountOperation CreateAndUpdate. */
 public final class AccountOperationCreateAndUpdateSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Create.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Create.json
      */
     /**
      * Sample code: Create Account resource.

@@ -26,7 +26,7 @@ import java.util.Map;
 /** Samples for AccountOperation CreateAndUpdate. */
 public final class AccountOperationCreateAndUpdateSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Create.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Create.json
      */
     /**
      * Sample code: Create Account resource.
@@ -63,7 +63,7 @@ public final class AccountOperationCreateAndUpdateSamples {
 /** Samples for AccountOperation Delete. */
 public final class AccountOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Delete.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Delete.json
      */
     /**
      * Sample code: Delete account resource.
@@ -85,7 +85,7 @@ public final class AccountOperationDeleteSamples {
 /** Samples for AccountOperation GetByResourceGroup. */
 public final class AccountOperationGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Get.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Get.json
      */
     /**
      * Sample code: Get accounts.
@@ -111,7 +111,7 @@ import java.util.Map;
 /** Samples for AccountOperation Update. */
 public final class AccountOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_Update.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_Update.json
      */
     /**
      * Sample code: Update account resource.
@@ -147,7 +147,7 @@ public final class AccountOperationUpdateSamples {
 /** Samples for Accounts List. */
 public final class AccountsListSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_List_Sub.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_List_Sub.json
      */
     /**
      * Sample code: Get list of accounts by subscription.
@@ -167,7 +167,7 @@ public final class AccountsListSamples {
 /** Samples for Accounts ListByResourceGroup. */
 public final class AccountsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Accounts_List.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Accounts_List.json
      */
     /**
      * Sample code: Create or update account resource.
@@ -187,7 +187,7 @@ public final class AccountsListByResourceGroupSamples {
 /** Samples for Operation List. */
 public final class OperationListSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/preview/2022-09-22-preview/examples/Operations_List.json
+     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2022-09-22/examples/Operations_List.json
      */
     /**
      * Sample code: Get list of operations.
