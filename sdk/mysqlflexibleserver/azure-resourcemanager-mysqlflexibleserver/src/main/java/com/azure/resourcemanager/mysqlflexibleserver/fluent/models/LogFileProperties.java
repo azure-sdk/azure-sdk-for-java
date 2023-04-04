@@ -8,11 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of a logFile. */
+/** The properties of a log file. */
 @Fluent
 public final class LogFileProperties {
     /*
-     * The size in kb of the logFile.
+     * Size of the log file.
      */
     @JsonProperty(value = "sizeInKB")
     private Long sizeInKB;
@@ -20,20 +20,20 @@ public final class LogFileProperties {
     /*
      * Creation timestamp of the log file.
      */
-    @JsonProperty(value = "createdTime")
+    @JsonProperty(value = "createdTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime createdTime;
+
+    /*
+     * Last modified timestamp of the log file.
+     */
+    @JsonProperty(value = "lastModifiedTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastModifiedTime;
 
     /*
      * Type of the log file.
      */
     @JsonProperty(value = "type")
     private String type;
-
-    /*
-     * Last modified timestamp of the log file.
-     */
-    @JsonProperty(value = "lastModifiedTime")
-    private OffsetDateTime lastModifiedTime;
 
     /*
      * The url to download the log file from.
@@ -46,7 +46,7 @@ public final class LogFileProperties {
     }
 
     /**
-     * Get the sizeInKB property: The size in kb of the logFile.
+     * Get the sizeInKB property: Size of the log file.
      *
      * @return the sizeInKB value.
      */
@@ -55,7 +55,7 @@ public final class LogFileProperties {
     }
 
     /**
-     * Set the sizeInKB property: The size in kb of the logFile.
+     * Set the sizeInKB property: Size of the log file.
      *
      * @param sizeInKB the sizeInKB value to set.
      * @return the LogFileProperties object itself.
@@ -75,14 +75,12 @@ public final class LogFileProperties {
     }
 
     /**
-     * Set the createdTime property: Creation timestamp of the log file.
+     * Get the lastModifiedTime property: Last modified timestamp of the log file.
      *
-     * @param createdTime the createdTime value to set.
-     * @return the LogFileProperties object itself.
+     * @return the lastModifiedTime value.
      */
-    public LogFileProperties withCreatedTime(OffsetDateTime createdTime) {
-        this.createdTime = createdTime;
-        return this;
+    public OffsetDateTime lastModifiedTime() {
+        return this.lastModifiedTime;
     }
 
     /**
@@ -102,26 +100,6 @@ public final class LogFileProperties {
      */
     public LogFileProperties withType(String type) {
         this.type = type;
-        return this;
-    }
-
-    /**
-     * Get the lastModifiedTime property: Last modified timestamp of the log file.
-     *
-     * @return the lastModifiedTime value.
-     */
-    public OffsetDateTime lastModifiedTime() {
-        return this.lastModifiedTime;
-    }
-
-    /**
-     * Set the lastModifiedTime property: Last modified timestamp of the log file.
-     *
-     * @param lastModifiedTime the lastModifiedTime value to set.
-     * @return the LogFileProperties object itself.
-     */
-    public LogFileProperties withLastModifiedTime(OffsetDateTime lastModifiedTime) {
-        this.lastModifiedTime = lastModifiedTime;
         return this;
     }
 
