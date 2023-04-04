@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The CodelessUiConnectorConfigPropertiesSampleQueriesItem model. */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesSampleQueriesItem extends SampleQueries {
+    /** Creates an instance of CodelessUiConnectorConfigPropertiesSampleQueriesItem class. */
+    public CodelessUiConnectorConfigPropertiesSampleQueriesItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public CodelessUiConnectorConfigPropertiesSampleQueriesItem withDescription(String description) {

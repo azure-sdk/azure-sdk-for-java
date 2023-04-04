@@ -14,6 +14,12 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class IncidentCommentProperties {
     /*
+     * The comment message
+     */
+    @JsonProperty(value = "message", required = true)
+    private String message;
+
+    /*
      * The time the comment was created
      */
     @JsonProperty(value = "createdTimeUtc", access = JsonProperty.Access.WRITE_ONLY)
@@ -26,33 +32,13 @@ public final class IncidentCommentProperties {
     private OffsetDateTime lastModifiedTimeUtc;
 
     /*
-     * The comment message
-     */
-    @JsonProperty(value = "message", required = true)
-    private String message;
-
-    /*
      * Describes the client that created the comment
      */
     @JsonProperty(value = "author", access = JsonProperty.Access.WRITE_ONLY)
     private ClientInfo author;
 
-    /**
-     * Get the createdTimeUtc property: The time the comment was created.
-     *
-     * @return the createdTimeUtc value.
-     */
-    public OffsetDateTime createdTimeUtc() {
-        return this.createdTimeUtc;
-    }
-
-    /**
-     * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     *
-     * @return the lastModifiedTimeUtc value.
-     */
-    public OffsetDateTime lastModifiedTimeUtc() {
-        return this.lastModifiedTimeUtc;
+    /** Creates an instance of IncidentCommentProperties class. */
+    public IncidentCommentProperties() {
     }
 
     /**
@@ -73,6 +59,24 @@ public final class IncidentCommentProperties {
     public IncidentCommentProperties withMessage(String message) {
         this.message = message;
         return this;
+    }
+
+    /**
+     * Get the createdTimeUtc property: The time the comment was created.
+     *
+     * @return the createdTimeUtc value.
+     */
+    public OffsetDateTime createdTimeUtc() {
+        return this.createdTimeUtc;
+    }
+
+    /**
+     * Get the lastModifiedTimeUtc property: The time the comment was updated.
+     *
+     * @return the lastModifiedTimeUtc value.
+     */
+    public OffsetDateTime lastModifiedTimeUtc() {
+        return this.lastModifiedTimeUtc;
     }
 
     /**

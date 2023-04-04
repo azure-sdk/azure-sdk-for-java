@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.NicEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,13 +16,17 @@ import java.util.Map;
 /** Represents an network interface entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Nic")
-@Fluent
+@Immutable
 public final class NicEntity extends EntityInner {
     /*
      * Network interface entity properties
      */
     @JsonProperty(value = "properties")
     private NicEntityProperties innerProperties;
+
+    /** Creates an instance of NicEntity class. */
+    public NicEntity() {
+    }
 
     /**
      * Get the innerProperties property: Network interface entity properties.
