@@ -31,14 +31,14 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private final PrivateLinkResourcesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of PrivateLinkResourcesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateLinkResourcesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    PrivateLinkResourcesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy
                 .create(PrivateLinkResourcesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
@@ -46,7 +46,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesPrivateLinkResources to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesPrivateLinkResources to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
@@ -54,8 +54,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateLinkResources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceListResultInner>> list(

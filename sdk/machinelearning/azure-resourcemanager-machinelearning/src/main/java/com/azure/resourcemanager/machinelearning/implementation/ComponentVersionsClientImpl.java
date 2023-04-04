@@ -40,30 +40,29 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
     private final ComponentVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ComponentVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ComponentVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ComponentVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(ComponentVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesComponentVersions to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesComponentVersions to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
     public interface ComponentVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComponentVersionResourceArmPaginatedResult>> list(
@@ -76,14 +75,14 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
             @QueryParam("$orderBy") String orderBy,
             @QueryParam("$top") Integer top,
             @QueryParam("$skip") String skip,
+            @QueryParam("stage") String stage,
             @QueryParam("listViewType") ListViewType listViewType,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -99,8 +98,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComponentVersionInner>> get(
@@ -116,8 +114,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComponentVersionInner>> createOrUpdate(
@@ -152,6 +149,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param stage Component stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -167,6 +165,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         String orderBy,
         Integer top,
         String skip,
+        String stage,
         ListViewType listViewType) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -205,6 +204,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
                             orderBy,
                             top,
                             skip,
+                            stage,
                             listViewType,
                             accept,
                             context))
@@ -229,6 +229,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param stage Component stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -245,6 +246,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         String orderBy,
         Integer top,
         String skip,
+        String stage,
         ListViewType listViewType,
         Context context) {
         if (this.client.getEndpoint() == null) {
@@ -282,6 +284,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
                 orderBy,
                 top,
                 skip,
+                stage,
                 listViewType,
                 accept,
                 context)
@@ -305,6 +308,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param stage Component stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -319,9 +323,10 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         String orderBy,
         Integer top,
         String skip,
+        String stage,
         ListViewType listViewType) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, stage, listViewType),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -341,9 +346,10 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         final String orderBy = null;
         final Integer top = null;
         final String skip = null;
+        final String stage = null;
         final ListViewType listViewType = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, stage, listViewType),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -356,6 +362,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param stage Component stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -371,11 +378,13 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         String orderBy,
         Integer top,
         String skip,
+        String stage,
         ListViewType listViewType,
         Context context) {
         return new PagedFlux<>(
             () ->
-                listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context),
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, stage, listViewType, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -395,8 +404,10 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         final String orderBy = null;
         final Integer top = null;
         final String skip = null;
+        final String stage = null;
         final ListViewType listViewType = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType));
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, stage, listViewType));
     }
 
     /**
@@ -408,6 +419,7 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param stage Component stage.
      * @param listViewType View type for including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -423,10 +435,11 @@ public final class ComponentVersionsClientImpl implements ComponentVersionsClien
         String orderBy,
         Integer top,
         String skip,
+        String stage,
         ListViewType listViewType,
         Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, stage, listViewType, context));
     }
 
     /**
