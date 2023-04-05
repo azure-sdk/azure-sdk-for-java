@@ -23,6 +23,10 @@ public final class EntityAnalytics extends SettingsInner {
     @JsonProperty(value = "properties")
     private EntityAnalyticsProperties innerProperties;
 
+    /** Creates an instance of EntityAnalytics class. */
+    public EntityAnalytics() {
+    }
+
     /**
      * Get the innerProperties property: EntityAnalytics properties.
      *
