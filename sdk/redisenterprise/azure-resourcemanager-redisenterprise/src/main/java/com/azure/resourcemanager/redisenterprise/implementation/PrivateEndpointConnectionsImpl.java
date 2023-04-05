@@ -68,15 +68,13 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
-        return this
-            .serviceClient()
-            .deleteWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, context);
-    }
-
     public void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName) {
         this.serviceClient().delete(resourceGroupName, clusterName, privateEndpointConnectionName);
+    }
+
+    public void delete(
+        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context) {
+        this.serviceClient().delete(resourceGroupName, clusterName, privateEndpointConnectionName, context);
     }
 
     public PrivateEndpointConnection getById(String id) {
@@ -168,10 +166,10 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
                                 "The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.",
                                 id)));
         }
-        this.deleteWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, Context.NONE);
+        this.delete(resourceGroupName, clusterName, privateEndpointConnectionName, Context.NONE);
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -198,7 +196,7 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
                                 "The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.",
                                 id)));
         }
-        return this.deleteWithResponse(resourceGroupName, clusterName, privateEndpointConnectionName, context);
+        this.delete(resourceGroupName, clusterName, privateEndpointConnectionName, context);
     }
 
     private PrivateEndpointConnectionsClient serviceClient() {

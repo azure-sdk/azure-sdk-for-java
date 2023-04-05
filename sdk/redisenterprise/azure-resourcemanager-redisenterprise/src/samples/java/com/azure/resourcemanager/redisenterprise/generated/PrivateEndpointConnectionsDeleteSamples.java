@@ -16,8 +16,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void redisEnterpriseDeletePrivateEndpointConnection(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .privateEndpointConnections()
-            .deleteWithResponse("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections().delete("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
     }
 }
