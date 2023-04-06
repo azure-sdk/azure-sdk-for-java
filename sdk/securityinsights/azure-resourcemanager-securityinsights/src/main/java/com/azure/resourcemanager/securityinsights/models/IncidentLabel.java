@@ -23,6 +23,10 @@ public final class IncidentLabel {
     @JsonProperty(value = "labelType", access = JsonProperty.Access.WRITE_ONLY)
     private IncidentLabelType labelType;
 
+    /** Creates an instance of IncidentLabel class. */
+    public IncidentLabel() {
+    }
+
     /**
      * Get the labelName property: The name of the label.
      *

@@ -25,6 +25,10 @@ public final class AlertRuleTemplatesList {
     @JsonProperty(value = "value", required = true)
     private List<AlertRuleTemplateInner> value;
 
+    /** Creates an instance of AlertRuleTemplatesList class. */
+    public AlertRuleTemplatesList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of alert rule templates.
      *
