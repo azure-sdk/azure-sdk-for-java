@@ -59,6 +59,38 @@ public final class SecureScoresImpl implements SecureScores {
         }
     }
 
+    public PagedIterable<SecureScoreItem> list() {
+        PagedIterable<SecureScoreItemInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new SecureScoreItemImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SecureScoreItem> list(Context context) {
+        PagedIterable<SecureScoreItemInner> inner = this.serviceClient().list(context);
+        return Utils.mapPage(inner, inner1 -> new SecureScoreItemImpl(inner1, this.manager()));
+    }
+
+    public Response<SecureScoreItem> getWithResponse(String secureScoreName, Context context) {
+        Response<SecureScoreItemInner> inner = this.serviceClient().getWithResponse(secureScoreName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new SecureScoreItemImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SecureScoreItem get(String secureScoreName) {
+        SecureScoreItemInner inner = this.serviceClient().get(secureScoreName);
+        if (inner != null) {
+            return new SecureScoreItemImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     private SecureScoresClient serviceClient() {
         return this.innerClient;
     }

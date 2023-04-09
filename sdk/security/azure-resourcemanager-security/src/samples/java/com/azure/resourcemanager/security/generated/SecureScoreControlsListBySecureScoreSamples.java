@@ -36,4 +36,33 @@ public final class SecureScoreControlsListBySecureScoreSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager.secureScoreControls().listBySecureScore("ascScore", null, com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/secureScores/ListSecureScoreControlsForNameWithExpand_builtin_example.json
+     */
+    /**
+     * Sample code: Get security controls and their current score for the specified initiative with the expand
+     * parameter.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSecurityControlsAndTheirCurrentScoreForTheSpecifiedInitiativeWithTheExpandParameter(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .secureScoreControls()
+            .listBySecureScore("ascScore", ExpandControlsEnum.DEFINITION, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/secureScores/ListSecureScoreControlsForName_builtin_example.json
+     */
+    /**
+     * Sample code: Get security controls and their current score for the specified initiative.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSecurityControlsAndTheirCurrentScoreForTheSpecifiedInitiative(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.secureScoreControls().listBySecureScore("ascScore", null, com.azure.core.util.Context.NONE);
+    }
 }
