@@ -37,6 +37,10 @@ public final class EntityTimelineParameters {
     @JsonProperty(value = "numberOfBucket")
     private Integer numberOfBucket;
 
+    /** Creates an instance of EntityTimelineParameters class. */
+    public EntityTimelineParameters() {
+    }
+
     /**
      * Get the kinds property: Array of timeline Item kinds.
      *

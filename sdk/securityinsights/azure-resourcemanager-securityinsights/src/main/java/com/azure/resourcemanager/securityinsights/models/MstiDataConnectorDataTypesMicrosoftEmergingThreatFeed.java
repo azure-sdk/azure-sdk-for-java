@@ -17,6 +17,10 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
     @JsonProperty(value = "lookbackPeriod", required = true)
     private String lookbackPeriod;
 
+    /** Creates an instance of MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed class. */
+    public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed() {
+    }
+
     /**
      * Get the lookbackPeriod property: lookback period.
      *

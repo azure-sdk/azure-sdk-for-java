@@ -13,9 +13,11 @@ import com.azure.resourcemanager.securityinsights.models.AwsS3DataConnector;
 import com.azure.resourcemanager.securityinsights.models.CodelessApiPollingDataConnector;
 import com.azure.resourcemanager.securityinsights.models.CodelessUiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnector;
+import com.azure.resourcemanager.securityinsights.models.GcpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.IoTDataConnector;
 import com.azure.resourcemanager.securityinsights.models.McasDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MdatpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MstiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MtpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectDataConnector;
@@ -45,9 +47,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "AzureSecurityCenter", value = AscDataConnector.class),
     @JsonSubTypes.Type(name = "AmazonWebServicesCloudTrail", value = AwsCloudTrailDataConnector.class),
     @JsonSubTypes.Type(name = "AmazonWebServicesS3", value = AwsS3DataConnector.class),
+    @JsonSubTypes.Type(name = "GCP", value = GcpDataConnector.class),
     @JsonSubTypes.Type(name = "MicrosoftCloudAppSecurity", value = McasDataConnector.class),
     @JsonSubTypes.Type(name = "Dynamics365", value = Dynamics365DataConnector.class),
     @JsonSubTypes.Type(name = "OfficeATP", value = OfficeAtpDataConnector.class),
+    @JsonSubTypes.Type(
+        name = "MicrosoftPurviewInformationProtection",
+        value = MicrosoftPurviewInformationProtectionDataConnector.class),
     @JsonSubTypes.Type(name = "Office365Project", value = Office365ProjectDataConnector.class),
     @JsonSubTypes.Type(name = "OfficePowerBI", value = OfficePowerBIDataConnector.class),
     @JsonSubTypes.Type(name = "OfficeIRM", value = OfficeIrmDataConnector.class),
@@ -61,6 +67,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class DataConnectorInner extends ResourceWithEtag {
+    /** Creates an instance of DataConnectorInner class. */
+    public DataConnectorInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public DataConnectorInner withEtag(String etag) {
