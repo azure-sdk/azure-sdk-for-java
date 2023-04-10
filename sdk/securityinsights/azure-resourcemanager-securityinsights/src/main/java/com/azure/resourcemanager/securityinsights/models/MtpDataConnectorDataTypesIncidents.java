@@ -6,9 +6,13 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Data type for Microsoft Threat Protection Platforms data connector. */
+/** Incidents data type for Microsoft Threat Protection Platforms data connector. */
 @Fluent
 public final class MtpDataConnectorDataTypesIncidents extends DataConnectorDataTypeCommon {
+    /** Creates an instance of MtpDataConnectorDataTypesIncidents class. */
+    public MtpDataConnectorDataTypesIncidents() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public MtpDataConnectorDataTypesIncidents withState(DataTypeState state) {

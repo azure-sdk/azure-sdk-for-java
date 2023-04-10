@@ -22,6 +22,10 @@ public class LastDataReceivedDataType {
     @JsonProperty(value = "lastDataReceivedQuery")
     private String lastDataReceivedQuery;
 
+    /** Creates an instance of LastDataReceivedDataType class. */
+    public LastDataReceivedDataType() {
+    }
+
     /**
      * Get the name property: Name of the data type to show in the graph. can be use with {{graphQueriesTableName}}
      * placeholder.
