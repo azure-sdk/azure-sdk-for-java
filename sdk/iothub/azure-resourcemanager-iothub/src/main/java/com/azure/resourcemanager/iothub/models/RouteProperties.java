@@ -42,8 +42,12 @@ public final class RouteProperties {
     /*
      * Used to specify whether a route is enabled.
      */
-    @JsonProperty(value = "isEnabled", required = true)
-    private boolean isEnabled;
+    @JsonProperty(value = "isEnabled")
+    private Boolean isEnabled;
+
+    /** Creates an instance of RouteProperties class. */
+    public RouteProperties() {
+    }
 
     /**
      * Get the name property: The name of the route. The name can only include alphanumeric characters, periods,
@@ -138,7 +142,7 @@ public final class RouteProperties {
      *
      * @return the isEnabled value.
      */
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return this.isEnabled;
     }
 
@@ -148,7 +152,7 @@ public final class RouteProperties {
      * @param isEnabled the isEnabled value to set.
      * @return the RouteProperties object itself.
      */
-    public RouteProperties withIsEnabled(boolean isEnabled) {
+    public RouteProperties withIsEnabled(Boolean isEnabled) {
         this.isEnabled = isEnabled;
         return this;
     }
