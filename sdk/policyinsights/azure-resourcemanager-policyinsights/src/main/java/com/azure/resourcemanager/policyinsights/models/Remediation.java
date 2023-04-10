@@ -65,7 +65,8 @@ public interface Remediation {
     ResourceDiscoveryMode resourceDiscoveryMode();
 
     /**
-     * Gets the provisioningState property: The status of the remediation.
+     * Gets the provisioningState property: The status of the remediation. This refers to the entire remediation task,
+     * not individual deployments. Allowed values are Evaluating, Canceled, Cancelling, Failed, Complete, or Succeeded.
      *
      * @return the provisioningState value.
      */

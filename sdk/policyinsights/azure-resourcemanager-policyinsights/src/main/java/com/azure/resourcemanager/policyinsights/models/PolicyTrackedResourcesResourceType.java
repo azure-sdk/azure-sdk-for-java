@@ -14,6 +14,15 @@ public final class PolicyTrackedResourcesResourceType extends ExpandableStringEn
     public static final PolicyTrackedResourcesResourceType DEFAULT = fromString("default");
 
     /**
+     * Creates a new instance of PolicyTrackedResourcesResourceType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PolicyTrackedResourcesResourceType() {
+    }
+
+    /**
      * Creates or finds a PolicyTrackedResourcesResourceType from its string representation.
      *
      * @param name a name to look for.

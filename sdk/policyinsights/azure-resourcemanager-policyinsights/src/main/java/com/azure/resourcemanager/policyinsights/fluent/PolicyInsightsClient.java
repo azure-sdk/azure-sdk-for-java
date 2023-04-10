@@ -66,13 +66,6 @@ public interface PolicyInsightsClient {
     PolicyStatesClient getPolicyStates();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the PolicyMetadatasClient object to access its operations.
      *
      * @return the PolicyMetadatasClient object.
@@ -85,6 +78,20 @@ public interface PolicyInsightsClient {
      * @return the PolicyRestrictionsClient object.
      */
     PolicyRestrictionsClient getPolicyRestrictions();
+
+    /**
+     * Gets the ComponentPolicyStatesClient object to access its operations.
+     *
+     * @return the ComponentPolicyStatesClient object.
+     */
+    ComponentPolicyStatesClient getComponentPolicyStates();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 
     /**
      * Gets the AttestationsClient object to access its operations.

@@ -17,6 +17,15 @@ public final class PolicyStatesResource extends ExpandableStringEnum<PolicyState
     public static final PolicyStatesResource LATEST = fromString("latest");
 
     /**
+     * Creates a new instance of PolicyStatesResource value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PolicyStatesResource() {
+    }
+
+    /**
      * Creates or finds a PolicyStatesResource from its string representation.
      *
      * @param name a name to look for.

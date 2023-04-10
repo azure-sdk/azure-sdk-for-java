@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtManagementGroup. */
 public final class RemediationsListDeploymentsAtManagementGroupSamples {
     /*
@@ -18,6 +16,8 @@ public final class RemediationsListDeploymentsAtManagementGroupSamples {
      */
     public static void listDeploymentsForARemediationAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listDeploymentsAtManagementGroup("financeMg", "myRemediation", null, Context.NONE);
+        manager
+            .remediations()
+            .listDeploymentsAtManagementGroup("financeMg", "myRemediation", null, com.azure.core.util.Context.NONE);
     }
 }
