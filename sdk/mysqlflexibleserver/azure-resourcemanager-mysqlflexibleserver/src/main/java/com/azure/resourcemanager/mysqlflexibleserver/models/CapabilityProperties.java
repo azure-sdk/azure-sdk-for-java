@@ -10,20 +10,6 @@ import java.util.List;
 /** An immutable client-side representation of CapabilityProperties. */
 public interface CapabilityProperties {
     /**
-     * Gets the zone property: zone name.
-     *
-     * @return the zone value.
-     */
-    String zone();
-
-    /**
-     * Gets the supportedHAMode property: Supported high availability mode.
-     *
-     * @return the supportedHAMode value.
-     */
-    List<String> supportedHAMode();
-
-    /**
      * Gets the supportedGeoBackupRegions property: supported geo backup regions.
      *
      * @return the supportedGeoBackupRegions value.
@@ -36,6 +22,13 @@ public interface CapabilityProperties {
      * @return the supportedFlexibleServerEditions value.
      */
     List<ServerEditionCapability> supportedFlexibleServerEditions();
+
+    /**
+     * Gets the supportedServerVersions property: A list of supported server versions.
+     *
+     * @return the supportedServerVersions value.
+     */
+    List<ServerVersionCapability> supportedServerVersions();
 
     /**
      * Gets the inner com.azure.resourcemanager.mysqlflexibleserver.fluent.models.CapabilityPropertiesInner object.

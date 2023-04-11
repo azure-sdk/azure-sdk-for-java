@@ -18,16 +18,28 @@ public final class ServerEditionCapability {
     private String name;
 
     /*
+     * Default Sku name
+     */
+    @JsonProperty(value = "defaultSku", access = JsonProperty.Access.WRITE_ONLY)
+    private String defaultSku;
+
+    /*
+     * Default storage size
+     */
+    @JsonProperty(value = "defaultStorageSize", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer defaultStorageSize;
+
+    /*
      * A list of supported storage editions
      */
     @JsonProperty(value = "supportedStorageEditions", access = JsonProperty.Access.WRITE_ONLY)
     private List<StorageEditionCapability> supportedStorageEditions;
 
     /*
-     * A list of supported server versions.
+     * A list of supported Skus
      */
-    @JsonProperty(value = "supportedServerVersions", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ServerVersionCapability> supportedServerVersions;
+    @JsonProperty(value = "supportedSkus", access = JsonProperty.Access.WRITE_ONLY)
+    private List<SkuCapability> supportedSkus;
 
     /** Creates an instance of ServerEditionCapability class. */
     public ServerEditionCapability() {
@@ -43,6 +55,24 @@ public final class ServerEditionCapability {
     }
 
     /**
+     * Get the defaultSku property: Default Sku name.
+     *
+     * @return the defaultSku value.
+     */
+    public String defaultSku() {
+        return this.defaultSku;
+    }
+
+    /**
+     * Get the defaultStorageSize property: Default storage size.
+     *
+     * @return the defaultStorageSize value.
+     */
+    public Integer defaultStorageSize() {
+        return this.defaultStorageSize;
+    }
+
+    /**
      * Get the supportedStorageEditions property: A list of supported storage editions.
      *
      * @return the supportedStorageEditions value.
@@ -52,12 +82,12 @@ public final class ServerEditionCapability {
     }
 
     /**
-     * Get the supportedServerVersions property: A list of supported server versions.
+     * Get the supportedSkus property: A list of supported Skus.
      *
-     * @return the supportedServerVersions value.
+     * @return the supportedSkus value.
      */
-    public List<ServerVersionCapability> supportedServerVersions() {
-        return this.supportedServerVersions;
+    public List<SkuCapability> supportedSkus() {
+        return this.supportedSkus;
     }
 
     /**
@@ -69,8 +99,8 @@ public final class ServerEditionCapability {
         if (supportedStorageEditions() != null) {
             supportedStorageEditions().forEach(e -> e.validate());
         }
-        if (supportedServerVersions() != null) {
-            supportedServerVersions().forEach(e -> e.validate());
+        if (supportedSkus() != null) {
+            supportedSkus().forEach(e -> e.validate());
         }
     }
 }

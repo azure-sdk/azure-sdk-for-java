@@ -274,7 +274,6 @@ public interface Server {
                 DefinitionStages.WithCreateMode,
                 DefinitionStages.WithSourceServerResourceId,
                 DefinitionStages.WithRestorePointInTime,
-                DefinitionStages.WithReplicationRole,
                 DefinitionStages.WithDataEncryption,
                 DefinitionStages.WithStorage,
                 DefinitionStages.WithBackup,
@@ -400,16 +399,6 @@ public interface Server {
              */
             WithCreate withRestorePointInTime(OffsetDateTime restorePointInTime);
         }
-        /** The stage of the Server definition allowing to specify replicationRole. */
-        interface WithReplicationRole {
-            /**
-             * Specifies the replicationRole property: The replication role..
-             *
-             * @param replicationRole The replication role.
-             * @return the next definition stage.
-             */
-            WithCreate withReplicationRole(ReplicationRole replicationRole);
-        }
         /** The stage of the Server definition allowing to specify dataEncryption. */
         interface WithDataEncryption {
             /**
@@ -479,7 +468,6 @@ public interface Server {
             UpdateStages.WithBackup,
             UpdateStages.WithHighAvailability,
             UpdateStages.WithMaintenanceWindow,
-            UpdateStages.WithReplicationRole,
             UpdateStages.WithDataEncryption {
         /**
          * Executes the update request.
@@ -588,16 +576,6 @@ public interface Server {
              */
             Update withMaintenanceWindow(MaintenanceWindow maintenanceWindow);
         }
-        /** The stage of the Server update allowing to specify replicationRole. */
-        interface WithReplicationRole {
-            /**
-             * Specifies the replicationRole property: The replication role of the server..
-             *
-             * @param replicationRole The replication role of the server.
-             * @return the next definition stage.
-             */
-            Update withReplicationRole(ReplicationRole replicationRole);
-        }
         /** The stage of the Server update allowing to specify dataEncryption. */
         interface WithDataEncryption {
             /**
@@ -698,4 +676,25 @@ public interface Server {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void stop(Context context);
+
+    /**
+     * Resets GTID on a server.
+     *
+     * @param parameters The required parameters for resetting GTID on a server.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resetGtid(ServerGtidSetParameter parameters);
+
+    /**
+     * Resets GTID on a server.
+     *
+     * @param parameters The required parameters for resetting GTID on a server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resetGtid(ServerGtidSetParameter parameters, Context context);
 }

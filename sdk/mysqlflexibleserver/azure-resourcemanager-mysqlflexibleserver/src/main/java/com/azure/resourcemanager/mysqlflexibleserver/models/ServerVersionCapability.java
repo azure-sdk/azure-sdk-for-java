@@ -6,7 +6,6 @@ package com.azure.resourcemanager.mysqlflexibleserver.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /** Server version capabilities. */
 @Immutable
@@ -16,12 +15,6 @@ public final class ServerVersionCapability {
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
-
-    /*
-     * A list of supported Skus
-     */
-    @JsonProperty(value = "supportedSkus", access = JsonProperty.Access.WRITE_ONLY)
-    private List<SkuCapability> supportedSkus;
 
     /** Creates an instance of ServerVersionCapability class. */
     public ServerVersionCapability() {
@@ -37,22 +30,10 @@ public final class ServerVersionCapability {
     }
 
     /**
-     * Get the supportedSkus property: A list of supported Skus.
-     *
-     * @return the supportedSkus value.
-     */
-    public List<SkuCapability> supportedSkus() {
-        return this.supportedSkus;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (supportedSkus() != null) {
-            supportedSkus().forEach(e -> e.validate());
-        }
     }
 }

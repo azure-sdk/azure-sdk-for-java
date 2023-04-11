@@ -18,6 +18,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForUpdate;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
@@ -274,6 +275,14 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         serviceManager.servers().stop(resourceGroupName, serverName, context);
     }
 
+    public void resetGtid(ServerGtidSetParameter parameters) {
+        serviceManager.servers().resetGtid(resourceGroupName, serverName, parameters);
+    }
+
+    public void resetGtid(ServerGtidSetParameter parameters, Context context) {
+        serviceManager.servers().resetGtid(resourceGroupName, serverName, parameters, context);
+    }
+
     public ServerImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -357,16 +366,6 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
     public ServerImpl withRestorePointInTime(OffsetDateTime restorePointInTime) {
         this.innerModel().withRestorePointInTime(restorePointInTime);
         return this;
-    }
-
-    public ServerImpl withReplicationRole(ReplicationRole replicationRole) {
-        if (isInCreateMode()) {
-            this.innerModel().withReplicationRole(replicationRole);
-            return this;
-        } else {
-            this.updateParameters.withReplicationRole(replicationRole);
-            return this;
-        }
     }
 
     public ServerImpl withDataEncryption(DataEncryption dataEncryption) {

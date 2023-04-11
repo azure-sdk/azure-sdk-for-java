@@ -303,20 +303,6 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Set the replicationRole property: The replication role.
-     *
-     * @param replicationRole the replicationRole value to set.
-     * @return the ServerInner object itself.
-     */
-    public ServerInner withReplicationRole(ReplicationRole replicationRole) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerProperties();
-        }
-        this.innerProperties().withReplicationRole(replicationRole);
-        return this;
-    }
-
-    /**
      * Get the replicaCapacity property: The maximum number of replicas that a primary server can have.
      *
      * @return the replicaCapacity value.

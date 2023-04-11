@@ -67,8 +67,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     public interface ConfigurationsService {
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL"
-                + "/flexibleServers/{serverName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/flexibleServers/{serverName}/configurations/{configurationName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -84,8 +83,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL"
-                + "/flexibleServers/{serverName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/flexibleServers/{serverName}/configurations/{configurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ConfigurationInner>> get(
@@ -100,8 +98,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL"
-                + "/flexibleServers/{serverName}/updateConfigurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/flexibleServers/{serverName}/updateConfigurations")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> batchUpdate(
@@ -116,8 +113,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL"
-                + "/flexibleServers/{serverName}/configurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/flexibleServers/{serverName}/configurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ConfigurationListResultInner>> listByServer(
@@ -187,6 +183,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -194,7 +191,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                     service
                         .update(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -253,12 +250,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .update(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,
@@ -491,6 +489,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configurationName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -498,7 +497,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -547,12 +546,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configurationName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,
@@ -650,6 +650,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -657,7 +658,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                     service
                         .batchUpdate(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -706,12 +707,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         } else {
             parameters.validate();
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .batchUpdate(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,
@@ -919,6 +921,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -926,7 +929,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                     service
                         .listByServer(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -992,12 +995,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByServer(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,

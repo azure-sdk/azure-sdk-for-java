@@ -259,20 +259,6 @@ public final class ServerForUpdate {
     }
 
     /**
-     * Set the replicationRole property: The replication role of the server.
-     *
-     * @param replicationRole the replicationRole value to set.
-     * @return the ServerForUpdate object itself.
-     */
-    public ServerForUpdate withReplicationRole(ReplicationRole replicationRole) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerPropertiesForUpdate();
-        }
-        this.innerProperties().withReplicationRole(replicationRole);
-        return this;
-    }
-
-    /**
      * Get the dataEncryption property: The Data Encryption for CMK.
      *
      * @return the dataEncryption value.

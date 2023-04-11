@@ -67,7 +67,7 @@ public final class ServerProperties {
     /*
      * The replication role.
      */
-    @JsonProperty(value = "replicationRole")
+    @JsonProperty(value = "replicationRole", access = JsonProperty.Access.WRITE_ONLY)
     private ReplicationRole replicationRole;
 
     /*
@@ -281,17 +281,6 @@ public final class ServerProperties {
      */
     public ReplicationRole replicationRole() {
         return this.replicationRole;
-    }
-
-    /**
-     * Set the replicationRole property: The replication role.
-     *
-     * @param replicationRole the replicationRole value to set.
-     * @return the ServerProperties object itself.
-     */
-    public ServerProperties withReplicationRole(ReplicationRole replicationRole) {
-        this.replicationRole = replicationRole;
-        return this;
     }
 
     /**

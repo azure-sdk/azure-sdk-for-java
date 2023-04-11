@@ -6,6 +6,7 @@ package com.azure.resourcemanager.mysqlflexibleserver.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** Sku capability. */
 @Immutable
@@ -33,6 +34,18 @@ public final class SkuCapability {
      */
     @JsonProperty(value = "supportedMemoryPerVCoreMB", access = JsonProperty.Access.WRITE_ONLY)
     private Long supportedMemoryPerVCoreMB;
+
+    /*
+     * Supported zones
+     */
+    @JsonProperty(value = "supportedZones", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> supportedZones;
+
+    /*
+     * Supported high availability mode
+     */
+    @JsonProperty(value = "supportedHAMode", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> supportedHAMode;
 
     /** Creates an instance of SkuCapability class. */
     public SkuCapability() {
@@ -72,6 +85,24 @@ public final class SkuCapability {
      */
     public Long supportedMemoryPerVCoreMB() {
         return this.supportedMemoryPerVCoreMB;
+    }
+
+    /**
+     * Get the supportedZones property: Supported zones.
+     *
+     * @return the supportedZones value.
+     */
+    public List<String> supportedZones() {
+        return this.supportedZones;
+    }
+
+    /**
+     * Get the supportedHAMode property: Supported high availability mode.
+     *
+     * @return the supportedHAMode value.
+     */
+    public List<String> supportedHAMode() {
+        return this.supportedHAMode;
     }
 
     /**

@@ -6,24 +6,13 @@ package com.azure.resourcemanager.mysqlflexibleserver.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerEditionCapability;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersionCapability;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Location capabilities. */
 @Immutable
 public final class CapabilityPropertiesInner {
-    /*
-     * zone name
-     */
-    @JsonProperty(value = "zone", access = JsonProperty.Access.WRITE_ONLY)
-    private String zone;
-
-    /*
-     * Supported high availability mode
-     */
-    @JsonProperty(value = "supportedHAMode", access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> supportedHAMode;
-
     /*
      * supported geo backup regions
      */
@@ -36,26 +25,14 @@ public final class CapabilityPropertiesInner {
     @JsonProperty(value = "supportedFlexibleServerEditions", access = JsonProperty.Access.WRITE_ONLY)
     private List<ServerEditionCapability> supportedFlexibleServerEditions;
 
+    /*
+     * A list of supported server versions.
+     */
+    @JsonProperty(value = "supportedServerVersions", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ServerVersionCapability> supportedServerVersions;
+
     /** Creates an instance of CapabilityPropertiesInner class. */
     public CapabilityPropertiesInner() {
-    }
-
-    /**
-     * Get the zone property: zone name.
-     *
-     * @return the zone value.
-     */
-    public String zone() {
-        return this.zone;
-    }
-
-    /**
-     * Get the supportedHAMode property: Supported high availability mode.
-     *
-     * @return the supportedHAMode value.
-     */
-    public List<String> supportedHAMode() {
-        return this.supportedHAMode;
     }
 
     /**
@@ -77,6 +54,15 @@ public final class CapabilityPropertiesInner {
     }
 
     /**
+     * Get the supportedServerVersions property: A list of supported server versions.
+     *
+     * @return the supportedServerVersions value.
+     */
+    public List<ServerVersionCapability> supportedServerVersions() {
+        return this.supportedServerVersions;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -84,6 +70,9 @@ public final class CapabilityPropertiesInner {
     public void validate() {
         if (supportedFlexibleServerEditions() != null) {
             supportedFlexibleServerEditions().forEach(e -> e.validate());
+        }
+        if (supportedServerVersions() != null) {
+            supportedServerVersions().forEach(e -> e.validate());
         }
     }
 }
