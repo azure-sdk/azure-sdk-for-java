@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The WorkspaceConnectionManagedIdentity model. */
 @Fluent
-public class WorkspaceConnectionManagedIdentity {
+public final class WorkspaceConnectionManagedIdentity {
     /*
      * The resourceId property.
      */
