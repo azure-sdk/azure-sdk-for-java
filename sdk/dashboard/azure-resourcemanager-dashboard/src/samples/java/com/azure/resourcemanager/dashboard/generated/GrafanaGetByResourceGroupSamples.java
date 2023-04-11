@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Grafana GetByResourceGroup. */
 public final class GrafanaGetByResourceGroupSamples {
     /*
@@ -17,6 +15,8 @@ public final class GrafanaGetByResourceGroupSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", Context.NONE);
+        manager
+            .grafanas()
+            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
