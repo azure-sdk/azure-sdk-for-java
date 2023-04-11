@@ -12,11 +12,14 @@ import java.util.Map;
 @Fluent
 public final class IotConnectorPatchResource extends ResourceTags {
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServiceManagedIdentityIdentity identity;
+
+    /** Creates an instance of IotConnectorPatchResource class. */
+    public IotConnectorPatchResource() {
+    }
 
     /**
      * Get the identity property: Setting indicating whether the service has a managed identity associated with it.
