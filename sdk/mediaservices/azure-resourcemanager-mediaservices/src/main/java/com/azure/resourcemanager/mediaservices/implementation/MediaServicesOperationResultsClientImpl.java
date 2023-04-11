@@ -57,8 +57,7 @@ public final class MediaServicesOperationResultsClientImpl implements MediaServi
     public interface MediaServicesOperationResultsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Media/locations/{locationName}"
-                + "/mediaServicesOperationResults/{operationId}")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.Media/locations/{locationName}/mediaServicesOperationResults/{operationId}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<MediaServicesOperationResultsGetResponse> get(
