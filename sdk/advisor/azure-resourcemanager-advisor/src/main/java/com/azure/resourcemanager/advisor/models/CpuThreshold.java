@@ -10,7 +10,7 @@ import java.util.Collection;
 
 /**
  * Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values:
- * 5 (default), 10, 15 or 20.
+ * 5, 10, 15, 20 or 100 (default).
  */
 public final class CpuThreshold extends ExpandableStringEnum<CpuThreshold> {
     /** Static value 5 for CpuThreshold. */
@@ -24,6 +24,9 @@ public final class CpuThreshold extends ExpandableStringEnum<CpuThreshold> {
 
     /** Static value 20 for CpuThreshold. */
     public static final CpuThreshold TWO_ZERO = fromString("20");
+
+    /** Static value 100 for CpuThreshold. */
+    public static final CpuThreshold ONE_ZERO_ZERO = fromString("100");
 
     /**
      * Creates a new instance of CpuThreshold value.

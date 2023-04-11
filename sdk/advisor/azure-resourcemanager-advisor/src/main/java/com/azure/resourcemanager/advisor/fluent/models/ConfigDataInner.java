@@ -6,8 +6,10 @@ package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -20,6 +22,12 @@ public final class ConfigDataInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ConfigDataProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of ConfigDataInner class. */
     public ConfigDataInner() {
     }
@@ -31,6 +39,15 @@ public final class ConfigDataInner extends ProxyResource {
      */
     private ConfigDataProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -58,7 +75,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Get the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
-     * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
+     * only for subscriptions. Valid values: 5, 10, 15, 20 or 100 (default).
      *
      * @return the lowCpuThreshold value.
      */
@@ -68,7 +85,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Set the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
-     * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
+     * only for subscriptions. Valid values: 5, 10, 15, 20 or 100 (default).
      *
      * @param lowCpuThreshold the lowCpuThreshold value to set.
      * @return the ConfigDataInner object itself.
@@ -78,6 +95,31 @@ public final class ConfigDataInner extends ProxyResource {
             this.innerProperties = new ConfigDataProperties();
         }
         this.innerProperties().withLowCpuThreshold(lowCpuThreshold);
+        return this;
+    }
+
+    /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.innerProperties() == null ? null : this.innerProperties().duration();
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @param duration the duration value to set.
+     * @return the ConfigDataInner object itself.
+     */
+    public ConfigDataInner withDuration(DurationModel duration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigDataProperties();
+        }
+        this.innerProperties().withDuration(duration);
         return this;
     }
 
