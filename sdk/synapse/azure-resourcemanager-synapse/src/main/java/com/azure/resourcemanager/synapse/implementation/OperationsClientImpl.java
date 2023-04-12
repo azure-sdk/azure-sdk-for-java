@@ -27,6 +27,7 @@ import com.azure.resourcemanager.synapse.fluent.OperationsClient;
 import com.azure.resourcemanager.synapse.fluent.models.AvailableRpOperationInner;
 import com.azure.resourcemanager.synapse.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.synapse.fluent.models.OperationResourceInner;
+import com.azure.resourcemanager.synapse.fluent.models.WorkspaceUsageQuotaResponseInner;
 import com.azure.resourcemanager.synapse.models.CheckNameAvailabilityRequest;
 import java.util.List;
 import reactor.core.publisher.Mono;
@@ -78,8 +79,7 @@ public final class OperationsClientImpl implements OperationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/operationResults/{operationId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/operationResults/{operationId}")
         @ExpectedResponses({200, 201, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> getLocationHeaderResult(
@@ -94,8 +94,7 @@ public final class OperationsClientImpl implements OperationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/operationStatuses/{operationId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/operationStatuses/{operationId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OperationResourceInner>> getAzureAsyncHeaderResult(
@@ -105,6 +104,18 @@ public final class OperationsClientImpl implements OperationsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
             @PathParam("operationId") String operationId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Synapse/locations/{location}/usages")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkspaceUsageQuotaResponseInner>> getWorkspacePerSubscriptionQuota(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("location") String location,
             @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -673,5 +684,132 @@ public final class OperationsClientImpl implements OperationsClient {
         String resourceGroupName, String workspaceName, String operationId) {
         return getAzureAsyncHeaderResultWithResponse(resourceGroupName, workspaceName, operationId, Context.NONE)
             .getValue();
+    }
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkspaceUsageQuotaResponseInner>> getWorkspacePerSubscriptionQuotaWithResponseAsync(
+        String location) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        final String apiVersion = "2021-06-01";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getWorkspacePerSubscriptionQuota(
+                            this.client.getEndpoint(),
+                            apiVersion,
+                            this.client.getSubscriptionId(),
+                            location,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkspaceUsageQuotaResponseInner>> getWorkspacePerSubscriptionQuotaWithResponseAsync(
+        String location, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        final String apiVersion = "2021-06-01";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getWorkspacePerSubscriptionQuota(
+                this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), location, accept, context);
+    }
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkspaceUsageQuotaResponseInner> getWorkspacePerSubscriptionQuotaAsync(String location) {
+        return getWorkspacePerSubscriptionQuotaWithResponseAsync(location)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkspaceUsageQuotaResponseInner> getWorkspacePerSubscriptionQuotaWithResponse(
+        String location, Context context) {
+        return getWorkspacePerSubscriptionQuotaWithResponseAsync(location, context).block();
+    }
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkspaceUsageQuotaResponseInner getWorkspacePerSubscriptionQuota(String location) {
+        return getWorkspacePerSubscriptionQuotaWithResponse(location, Context.NONE).getValue();
     }
 }

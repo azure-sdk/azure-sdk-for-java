@@ -187,6 +187,7 @@
 - [CheckNameAvailability](#operations_checknameavailability)
 - [GetAzureAsyncHeaderResult](#operations_getazureasyncheaderresult)
 - [GetLocationHeaderResult](#operations_getlocationheaderresult)
+- [GetWorkspacePerSubscriptionQuota](#operations_getworkspacepersubscriptionquota)
 - [List](#operations_list)
 
 ## PrivateEndpointConnections
@@ -3272,6 +3273,26 @@ public final class OperationsGetLocationHeaderResultSamples {
                 "workspace1",
                 "01234567-89ab-4def-0123-456789abcdef",
                 com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_GetWorkspacePerSubscriptionQuota
+
+```java
+/** Samples for Operations GetWorkspacePerSubscriptionQuota. */
+public final class OperationsGetWorkspacePerSubscriptionQuotaSamples {
+    /*
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/WorkspacePerSubscriptionUsageGet.json
+     */
+    /**
+     * Sample code: Workspace per subscription usage in given location.
+     *
+     * @param manager Entry point to SynapseManager.
+     */
+    public static void workspacePerSubscriptionUsageInGivenLocation(
+        com.azure.resourcemanager.synapse.SynapseManager manager) {
+        manager.operations().getWorkspacePerSubscriptionQuotaWithResponse("WestUS", com.azure.core.util.Context.NONE);
     }
 }
 ```

@@ -12,11 +12,13 @@ import com.azure.resourcemanager.synapse.fluent.OperationsClient;
 import com.azure.resourcemanager.synapse.fluent.models.AvailableRpOperationInner;
 import com.azure.resourcemanager.synapse.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.synapse.fluent.models.OperationResourceInner;
+import com.azure.resourcemanager.synapse.fluent.models.WorkspaceUsageQuotaResponseInner;
 import com.azure.resourcemanager.synapse.models.AvailableRpOperation;
 import com.azure.resourcemanager.synapse.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.synapse.models.CheckNameAvailabilityResponse;
 import com.azure.resourcemanager.synapse.models.OperationResource;
 import com.azure.resourcemanager.synapse.models.Operations;
+import com.azure.resourcemanager.synapse.models.WorkspaceUsageQuotaResponse;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -123,6 +125,30 @@ public final class OperationsImpl implements Operations {
             this.serviceClient().getAzureAsyncHeaderResult(resourceGroupName, workspaceName, operationId);
         if (inner != null) {
             return new OperationResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<WorkspaceUsageQuotaResponse> getWorkspacePerSubscriptionQuotaWithResponse(
+        String location, Context context) {
+        Response<WorkspaceUsageQuotaResponseInner> inner =
+            this.serviceClient().getWorkspacePerSubscriptionQuotaWithResponse(location, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new WorkspaceUsageQuotaResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public WorkspaceUsageQuotaResponse getWorkspacePerSubscriptionQuota(String location) {
+        WorkspaceUsageQuotaResponseInner inner = this.serviceClient().getWorkspacePerSubscriptionQuota(location);
+        if (inner != null) {
+            return new WorkspaceUsageQuotaResponseImpl(inner, this.manager());
         } else {
             return null;
         }

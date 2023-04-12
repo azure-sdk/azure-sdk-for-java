@@ -124,4 +124,28 @@ public interface Operations {
      * @return the status of an operation.
      */
     OperationResource getAzureAsyncHeaderResult(String resourceGroupName, String workspaceName, String operationId);
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region along with {@link Response}.
+     */
+    Response<WorkspaceUsageQuotaResponse> getWorkspacePerSubscriptionQuotaWithResponse(
+        String location, Context context);
+
+    /**
+     * Gets the current usage and quota of workspaces in a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of workspaces in a subscription/region.
+     */
+    WorkspaceUsageQuotaResponse getWorkspacePerSubscriptionQuota(String location);
 }
