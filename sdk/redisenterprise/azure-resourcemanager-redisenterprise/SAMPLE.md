@@ -36,6 +36,7 @@
 
 ## RedisEnterprise
 
+- [CheckNameAvailability](#redisenterprise_checknameavailability)
 - [Create](#redisenterprise_create)
 - [Delete](#redisenterprise_delete)
 - [GetByResourceGroup](#redisenterprise_getbyresourcegroup)
@@ -456,9 +457,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void redisEnterpriseDeletePrivateEndpointConnection(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
-        manager
-            .privateEndpointConnections()
-            .deleteWithResponse("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections().delete("rg1", "cache1", "pectest01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -552,6 +551,31 @@ public final class PrivateLinkResourcesListByClusterSamples {
     public static void redisEnterpriseListPrivateLinkResources(
         com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
         manager.privateLinkResources().listByCluster("rg1", "cache1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RedisEnterprise_CheckNameAvailability
+
+```java
+import com.azure.resourcemanager.redisenterprise.models.CheckNameAvailabilityParameters;
+
+/** Samples for RedisEnterprise CheckNameAvailability. */
+public final class RedisEnterpriseCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseCheckNameAvailability.json
+     */
+    /**
+     * Sample code: RedisCacheList.
+     *
+     * @param manager Entry point to RedisEnterpriseManager.
+     */
+    public static void redisCacheList(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager
+            .redisEnterprises()
+            .checkNameAvailabilityWithResponse(
+                new CheckNameAvailabilityParameters().withName("cacheName").withType("Microsoft.Cache/redisenterprise"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
