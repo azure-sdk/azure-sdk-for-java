@@ -68,9 +68,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
     public interface SqlPoolWorkloadClassifiersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers"
-                + "/{workloadClassifierName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers/{workloadClassifierName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadClassifierInner>> get(
@@ -87,9 +85,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers"
-                + "/{workloadClassifierName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers/{workloadClassifierName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -107,9 +103,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers"
-                + "/{workloadClassifierName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers/{workloadClassifierName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -125,8 +119,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/workloadGroups/{workloadGroupName}/workloadClassifiers")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadClassifierListResult>> list(
@@ -205,7 +198,6 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                 .error(
                     new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -213,7 +205,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -281,13 +273,12 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                 .error(
                     new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -442,7 +433,6 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -450,7 +440,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -526,13 +516,12 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -882,14 +871,13 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                 .error(
                     new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -955,12 +943,11 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                 .error(
                     new IllegalArgumentException("Parameter workloadClassifierName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1244,7 +1231,6 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono
                 .error(new IllegalArgumentException("Parameter workloadGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1252,7 +1238,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                     service
                         .list(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1317,13 +1303,12 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
             return Mono
                 .error(new IllegalArgumentException("Parameter workloadGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

@@ -9,7 +9,7 @@ import com.azure.resourcemanager.synapse.fluent.models.WorkspaceAadAdminInfoInne
 /** Samples for WorkspaceSqlAadAdmins CreateOrUpdate. */
 public final class WorkspaceSqlAadAdminsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/CreateOrUpdateWorkspaceAadAdmin.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/CreateOrUpdateWorkspaceAadAdmin.json
      */
     /**
      * Sample code: Create or update workspace active directory admin.

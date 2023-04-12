@@ -71,8 +71,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     public interface IntegrationRuntimesService {
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeResourceInner>> update(
@@ -88,8 +87,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
         @ExpectedResponses({200, 304})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeResourceInner>> get(
@@ -105,8 +103,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -123,8 +120,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -139,8 +135,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/upgrade")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/upgrade")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> upgrade(
@@ -155,8 +150,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeListResponse>> listByWorkspace(
@@ -170,8 +164,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -186,8 +179,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -202,8 +194,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/outboundNetworkDependenciesEndpoints")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/outboundNetworkDependenciesEndpoints")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseInner>>
@@ -219,8 +210,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/enableInteractiveQuery")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/enableInteractiveQuery")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> enableInteractiveQuery(
@@ -235,8 +225,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/disableInteractiveQuery")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/disableInteractiveQuery")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> disableInteractiveQuery(
@@ -312,7 +301,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         } else {
             updateIntegrationRuntimeRequest.validate();
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -320,7 +308,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .update(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -385,13 +373,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         } else {
             updateIntegrationRuntimeRequest.validate();
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .update(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -520,7 +507,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -528,7 +514,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -586,13 +572,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -724,7 +709,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         } else {
             integrationRuntime.validate();
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -732,7 +716,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .create(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -799,13 +783,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         } else {
             integrationRuntime.validate();
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1162,7 +1145,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1170,7 +1152,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1221,13 +1203,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1441,7 +1422,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1449,7 +1429,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .upgrade(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1500,13 +1480,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .upgrade(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1606,7 +1585,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1614,7 +1592,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .listByWorkspace(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1668,13 +1646,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByWorkspace(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1809,7 +1786,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1817,7 +1793,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .start(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1868,13 +1844,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .start(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -2103,7 +2078,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2111,7 +2085,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .stop(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -2162,13 +2136,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .stop(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -2384,7 +2357,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2392,7 +2364,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .listOutboundNetworkDependenciesEndpoints(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -2445,13 +2417,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listOutboundNetworkDependenciesEndpoints(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -2566,7 +2537,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2574,7 +2544,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .enableInteractiveQuery(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -2623,13 +2593,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .enableInteractiveQuery(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -2831,7 +2800,6 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2839,7 +2807,7 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                     service
                         .disableInteractiveQuery(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -2888,13 +2856,12 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .disableInteractiveQuery(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

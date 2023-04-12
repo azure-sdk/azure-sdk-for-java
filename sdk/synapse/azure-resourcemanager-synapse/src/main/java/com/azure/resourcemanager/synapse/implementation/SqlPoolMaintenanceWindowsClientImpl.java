@@ -57,8 +57,7 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
     public interface SqlPoolMaintenanceWindowsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/maintenancewindows/current")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/maintenancewindows/current")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MaintenanceWindowsInner>> get(
@@ -74,8 +73,7 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/maintenancewindows/current")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/maintenancewindows/current")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> createOrUpdate(
@@ -131,7 +129,6 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
             return Mono
                 .error(new IllegalArgumentException("Parameter maintenanceWindowName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -139,7 +136,7 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -196,13 +193,12 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
             return Mono
                 .error(new IllegalArgumentException("Parameter maintenanceWindowName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -325,14 +321,13 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -396,12 +391,11 @@ public final class SqlPoolMaintenanceWindowsClientImpl implements SqlPoolMainten
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

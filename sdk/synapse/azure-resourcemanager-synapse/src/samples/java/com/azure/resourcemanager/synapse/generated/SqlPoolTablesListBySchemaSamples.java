@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolTables ListBySchema. */
 public final class SqlPoolTablesListBySchemaSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListSqlPoolTables.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ListSqlPoolTables.json
      */
     /**
      * Sample code: List the tables of a given schema in a SQL Analytics pool.

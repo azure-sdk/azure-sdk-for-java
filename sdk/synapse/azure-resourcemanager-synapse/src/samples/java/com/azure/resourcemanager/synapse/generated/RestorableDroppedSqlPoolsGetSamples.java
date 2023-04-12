@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for RestorableDroppedSqlPools Get. */
 public final class RestorableDroppedSqlPoolsGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/RestorableDroppedSqlPoolGet.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/RestorableDroppedSqlPoolGet.json
      */
     /**
      * Sample code: Get a restorable dropped Sql pool.

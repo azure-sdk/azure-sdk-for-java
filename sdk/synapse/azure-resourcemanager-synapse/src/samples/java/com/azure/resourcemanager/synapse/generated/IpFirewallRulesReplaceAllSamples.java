@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for IpFirewallRules ReplaceAll. */
 public final class IpFirewallRulesReplaceAllSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ReplaceAllIpFirewallRules.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ReplaceAllIpFirewallRules.json
      */
     /**
      * Sample code: Replace all IP firewall rules in a workspace.

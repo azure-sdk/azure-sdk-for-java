@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
     /*
-     * The reference name of the managed virtual network.
+     * The reference name of the managed virtual network
      */
     @JsonProperty(value = "referenceName")
     private String referenceName;

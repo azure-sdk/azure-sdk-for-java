@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolSecurityAlertPolicies List. */
 public final class SqlPoolSecurityAlertPoliciesListSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/SqlPoolSecurityAlertPolicies_List.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/SqlPoolSecurityAlertPolicies_List.json
      */
     /**
      * Sample code: Get a security alert of a SQL Analytics pool.

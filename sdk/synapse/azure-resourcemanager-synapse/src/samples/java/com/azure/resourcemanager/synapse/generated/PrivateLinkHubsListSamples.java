@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for PrivateLinkHubs List. */
 public final class PrivateLinkHubsListSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListPrivateLinkHubsInSubscription.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ListPrivateLinkHubsInSubscription.json
      */
     /**
      * Sample code: List privateLinkHubs in subscription.

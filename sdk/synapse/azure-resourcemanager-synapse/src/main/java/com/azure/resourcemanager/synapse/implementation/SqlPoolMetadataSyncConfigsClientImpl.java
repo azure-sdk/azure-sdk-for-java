@@ -57,9 +57,11 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     public interface SqlPoolMetadataSyncConfigsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/metadataSync/config")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/metadataSync/config")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataSyncConfigInner>> get(
             @HostParam("$host") String endpoint,
@@ -73,9 +75,11 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/metadataSync/config")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/metadataSync/config")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataSyncConfigInner>> create(
             @HostParam("$host") String endpoint,
@@ -99,6 +103,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param sqlPoolName SQL pool name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata sync configuration for a SQL pool along with {@link Response} on successful completion of
      *     {@link Mono}.
@@ -128,7 +133,6 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -136,7 +140,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -157,6 +161,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata sync configuration for a SQL pool along with {@link Response} on successful completion of
      *     {@link Mono}.
@@ -186,13 +191,12 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -211,6 +215,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param sqlPoolName SQL pool name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata sync configuration for a SQL pool on successful completion of {@link Mono}.
      */
@@ -231,6 +236,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata sync configuration for a SQL pool along with {@link Response}.
      */
@@ -250,6 +256,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param sqlPoolName SQL pool name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata sync configuration for a SQL pool.
      */
@@ -269,6 +276,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param metadataSyncConfiguration Metadata sync configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return metadata sync configuration along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -308,7 +316,6 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         } else {
             metadataSyncConfiguration.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -316,7 +323,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
                     service
                         .create(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -339,6 +346,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return metadata sync configuration along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -379,13 +387,12 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         } else {
             metadataSyncConfiguration.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -406,6 +413,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param metadataSyncConfiguration Metadata sync configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return metadata sync configuration on successful completion of {@link Mono}.
      */
@@ -431,6 +439,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return metadata sync configuration along with {@link Response}.
      */
@@ -457,6 +466,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @param metadataSyncConfiguration Metadata sync configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return metadata sync configuration.
      */

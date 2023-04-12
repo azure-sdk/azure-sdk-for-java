@@ -62,8 +62,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
     public interface SqlPoolBlobAuditingPoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/auditingSettings/{blobAuditingPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/auditingSettings/{blobAuditingPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlPoolBlobAuditingPolicyInner>> get(
@@ -79,8 +78,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/auditingSettings/{blobAuditingPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/auditingSettings/{blobAuditingPolicyName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlPoolBlobAuditingPolicyInner>> createOrUpdate(
@@ -97,8 +95,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/auditingSettings")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/auditingSettings")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlPoolBlobAuditingPolicyListResult>> listBySqlPool(
@@ -160,7 +157,6 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         return FluxUtil
@@ -169,7 +165,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -219,14 +215,13 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -338,7 +333,6 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         return FluxUtil
@@ -347,7 +341,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -408,14 +402,13 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String blobAuditingPolicyName = "default";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -531,7 +524,6 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -539,7 +531,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
                     service
                         .listBySqlPool(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -596,13 +588,12 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listBySqlPool(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

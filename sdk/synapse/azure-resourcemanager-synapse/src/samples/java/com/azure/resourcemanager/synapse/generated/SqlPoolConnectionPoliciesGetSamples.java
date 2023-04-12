@@ -9,7 +9,7 @@ import com.azure.resourcemanager.synapse.models.ConnectionPolicyName;
 /** Samples for SqlPoolConnectionPolicies Get. */
 public final class SqlPoolConnectionPoliciesGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetSqlPoolConnectionPolicy.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetSqlPoolConnectionPolicy.json
      */
     /**
      * Sample code: Get a connection policy of a SQL Analytics pool.
