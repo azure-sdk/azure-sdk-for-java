@@ -7,84 +7,113 @@ package com.azure.resourcemanager.confidentialledger.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner;
 
-/** Resource collection API of Ledgers. */
-public interface Ledgers {
+/** Resource collection API of ManagedCcfs. */
+public interface ManagedCcfs {
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response}.
+     * @return managed CCF along with {@link Response}.
      */
-    Response<ConfidentialLedger> getByResourceGroupWithResponse(
-        String resourceGroupName, String ledgerName, Context context);
+    Response<ManagedCcf> getByResourceGroupWithResponse(String resourceGroupName, String appName, Context context);
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
+     * @return managed CCF.
      */
-    ConfidentialLedger getByResourceGroup(String resourceGroupName, String ledgerName);
+    ManagedCcf getByResourceGroup(String resourceGroupName, String appName);
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroupName, String ledgerName);
+    void deleteByResourceGroup(String resourceGroupName, String appName);
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String ledgerName, Context context);
+    void delete(String resourceGroupName, String appName, Context context);
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Update Managed CCF properties
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Updates properties of Managed CCF.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf);
+
+    /**
+     * Update Managed CCF properties
+     *
+     * <p>Updates properties of Managed CCF.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context);
+
+    /**
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
-    PagedIterable<ConfidentialLedger> listByResourceGroup(String resourceGroupName);
+    PagedIterable<ManagedCcf> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -92,69 +121,69 @@ public interface Ledgers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
-    PagedIterable<ConfidentialLedger> listByResourceGroup(String resourceGroupName, String filter, Context context);
+    PagedIterable<ManagedCcf> listByResourceGroup(String resourceGroupName, String filter, Context context);
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
-    PagedIterable<ConfidentialLedger> list();
+    PagedIterable<ManagedCcf> list();
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
-    PagedIterable<ConfidentialLedger> list(String filter, Context context);
+    PagedIterable<ManagedCcf> list(String filter, Context context);
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response}.
+     * @return managed CCF along with {@link Response}.
      */
-    ConfidentialLedger getById(String id);
+    ManagedCcf getById(String id);
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response}.
+     * @return managed CCF along with {@link Response}.
      */
-    Response<ConfidentialLedger> getByIdWithResponse(String id, Context context);
+    Response<ManagedCcf> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -164,9 +193,9 @@ public interface Ledgers {
     void deleteById(String id);
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -177,10 +206,10 @@ public interface Ledgers {
     void deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new ConfidentialLedger resource.
+     * Begins definition for a new ManagedCcf resource.
      *
      * @param name resource name.
-     * @return the first stage of the new ConfidentialLedger definition.
+     * @return the first stage of the new ManagedCcf definition.
      */
-    ConfidentialLedger.DefinitionStages.Blank define(String name);
+    ManagedCcf.DefinitionStages.Blank define(String name);
 }

@@ -7,20 +7,20 @@ package com.azure.resourcemanager.confidentialledger.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.confidentialledger.models.LedgerProperties;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Confidential Ledger. Contains the properties of Confidential Ledger Resource. */
+/** Managed CCF. Contains the properties of Managed CCF Resource. */
 @Fluent
-public final class ConfidentialLedgerInner extends Resource {
+public final class ManagedCcfInner extends Resource {
     /*
-     * LedgerProperties
+     * ManagedCCFProperties
      *
-     * Properties of Confidential Ledger Resource.
+     * Properties of Managed CCF Resource.
      */
     @JsonProperty(value = "properties")
-    private LedgerProperties properties;
+    private ManagedCcfProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -28,30 +28,30 @@ public final class ConfidentialLedgerInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ConfidentialLedgerInner class. */
-    public ConfidentialLedgerInner() {
+    /** Creates an instance of ManagedCcfInner class. */
+    public ManagedCcfInner() {
     }
 
     /**
-     * Get the properties property: LedgerProperties
+     * Get the properties property: ManagedCCFProperties
      *
-     * <p>Properties of Confidential Ledger Resource.
+     * <p>Properties of Managed CCF Resource.
      *
      * @return the properties value.
      */
-    public LedgerProperties properties() {
+    public ManagedCcfProperties properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties property: LedgerProperties
+     * Set the properties property: ManagedCCFProperties
      *
-     * <p>Properties of Confidential Ledger Resource.
+     * <p>Properties of Managed CCF Resource.
      *
      * @param properties the properties value to set.
-     * @return the ConfidentialLedgerInner object itself.
+     * @return the ManagedCcfInner object itself.
      */
-    public ConfidentialLedgerInner withProperties(LedgerProperties properties) {
+    public ManagedCcfInner withProperties(ManagedCcfProperties properties) {
         this.properties = properties;
         return this;
     }
@@ -67,14 +67,14 @@ public final class ConfidentialLedgerInner extends Resource {
 
     /** {@inheritDoc} */
     @Override
-    public ConfidentialLedgerInner withLocation(String location) {
+    public ManagedCcfInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ConfidentialLedgerInner withTags(Map<String, String> tags) {
+    public ManagedCcfInner withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
     }

@@ -7,11 +7,11 @@ package com.azure.resourcemanager.confidentialledger.models;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerInner;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner;
 import java.util.Map;
 
-/** An immutable client-side representation of ConfidentialLedger. */
-public interface ConfidentialLedger {
+/** An immutable client-side representation of ManagedCcf. */
+public interface ManagedCcf {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      *
@@ -48,13 +48,13 @@ public interface ConfidentialLedger {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: LedgerProperties
+     * Gets the properties property: ManagedCCFProperties
      *
-     * <p>Properties of Confidential Ledger Resource.
+     * <p>Properties of Managed CCF Resource.
      *
      * @return the properties value.
      */
-    LedgerProperties properties();
+    ManagedCcfProperties properties();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -78,32 +78,25 @@ public interface ConfidentialLedger {
     String regionName();
 
     /**
-     * Gets the name of the resource group.
-     *
-     * @return the name of the resource group.
-     */
-    String resourceGroupName();
-
-    /**
-     * Gets the inner com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerInner object.
+     * Gets the inner com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner object.
      *
      * @return the inner object.
      */
-    ConfidentialLedgerInner innerModel();
+    ManagedCcfInner innerModel();
 
-    /** The entirety of the ConfidentialLedger definition. */
+    /** The entirety of the ManagedCcf definition. */
     interface Definition
         extends DefinitionStages.Blank,
             DefinitionStages.WithLocation,
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
-    /** The ConfidentialLedger definition stages. */
+    /** The ManagedCcf definition stages. */
     interface DefinitionStages {
-        /** The first stage of the ConfidentialLedger definition. */
+        /** The first stage of the ManagedCcf definition. */
         interface Blank extends WithLocation {
         }
-        /** The stage of the ConfidentialLedger definition allowing to specify location. */
+        /** The stage of the ManagedCcf definition allowing to specify location. */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
@@ -121,7 +114,7 @@ public interface ConfidentialLedger {
              */
             WithResourceGroup withRegion(String location);
         }
-        /** The stage of the ConfidentialLedger definition allowing to specify parent resource. */
+        /** The stage of the ManagedCcf definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
@@ -132,8 +125,8 @@ public interface ConfidentialLedger {
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
         /**
-         * The stage of the ConfidentialLedger definition which contains all the minimum required properties for the
-         * resource to be created, but also allows for any other optional properties to be specified.
+         * The stage of the ManagedCcf definition which contains all the minimum required properties for the resource to
+         * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
             /**
@@ -141,7 +134,7 @@ public interface ConfidentialLedger {
              *
              * @return the created resource.
              */
-            ConfidentialLedger create();
+            ManagedCcf create();
 
             /**
              * Executes the create request.
@@ -149,9 +142,9 @@ public interface ConfidentialLedger {
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
-            ConfidentialLedger create(Context context);
+            ManagedCcf create(Context context);
         }
-        /** The stage of the ConfidentialLedger definition allowing to specify tags. */
+        /** The stage of the ManagedCcf definition allowing to specify tags. */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
@@ -161,68 +154,18 @@ public interface ConfidentialLedger {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the ConfidentialLedger definition allowing to specify properties. */
+        /** The stage of the ManagedCcf definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: LedgerProperties
+             * Specifies the properties property: ManagedCCFProperties
              *
-             * <p>Properties of Confidential Ledger Resource..
+             * <p>Properties of Managed CCF Resource..
              *
-             * @param properties LedgerProperties
-             *     <p>Properties of Confidential Ledger Resource.
+             * @param properties ManagedCCFProperties
+             *     <p>Properties of Managed CCF Resource.
              * @return the next definition stage.
              */
-            WithCreate withProperties(LedgerProperties properties);
-        }
-    }
-    /**
-     * Begins update for the ConfidentialLedger resource.
-     *
-     * @return the stage of resource update.
-     */
-    ConfidentialLedger.Update update();
-
-    /** The template for ConfidentialLedger update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
-        /**
-         * Executes the update request.
-         *
-         * @return the updated resource.
-         */
-        ConfidentialLedger apply();
-
-        /**
-         * Executes the update request.
-         *
-         * @param context The context to associate with this operation.
-         * @return the updated resource.
-         */
-        ConfidentialLedger apply(Context context);
-    }
-    /** The ConfidentialLedger update stages. */
-    interface UpdateStages {
-        /** The stage of the ConfidentialLedger update allowing to specify tags. */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             *
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-        /** The stage of the ConfidentialLedger update allowing to specify properties. */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: LedgerProperties
-             *
-             * <p>Properties of Confidential Ledger Resource..
-             *
-             * @param properties LedgerProperties
-             *     <p>Properties of Confidential Ledger Resource.
-             * @return the next definition stage.
-             */
-            Update withProperties(LedgerProperties properties);
+            WithCreate withProperties(ManagedCcfProperties properties);
         }
     }
     /**
@@ -230,7 +173,7 @@ public interface ConfidentialLedger {
      *
      * @return the refreshed resource.
      */
-    ConfidentialLedger refresh();
+    ManagedCcf refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
@@ -238,5 +181,5 @@ public interface ConfidentialLedger {
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
-    ConfidentialLedger refresh(Context context);
+    ManagedCcf refresh(Context context);
 }
