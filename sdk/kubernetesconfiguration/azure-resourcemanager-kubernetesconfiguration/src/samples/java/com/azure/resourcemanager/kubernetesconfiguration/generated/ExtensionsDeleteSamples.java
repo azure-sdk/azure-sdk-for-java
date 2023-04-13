@@ -4,12 +4,13 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/DeleteExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/DeleteExtension.json
      */
     /**
      * Sample code: Delete Extension.
@@ -22,11 +23,11 @@ public final class ExtensionsDeleteSamples {
             .extensions()
             .delete(
                 "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
+                KubernetesClusterResourceProviderName.MICROSOFT_KUBERNETES,
+                KubernetesClusterResourceName.CONNECTED_CLUSTERS,
                 "clusterName1",
                 "ClusterMonitor",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

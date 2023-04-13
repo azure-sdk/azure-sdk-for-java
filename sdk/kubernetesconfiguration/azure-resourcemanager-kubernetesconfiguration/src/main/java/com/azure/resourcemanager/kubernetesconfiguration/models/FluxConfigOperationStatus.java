@@ -20,18 +20,20 @@ public interface FluxConfigOperationStatus {
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return async Operation status.
+     * @return async Operation status along with {@link Response}.
      */
-    OperationStatusResult get(
+    Response<OperationStatusResult> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
-        String operationId);
+        String operationId,
+        Context context);
 
     /**
      * Get Async Operation status.
@@ -44,18 +46,16 @@ public interface FluxConfigOperationStatus {
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
      * @param operationId operation Id.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return async Operation status along with {@link Response}.
+     * @return async Operation status.
      */
-    Response<OperationStatusResult> getWithResponse(
+    OperationStatusResult get(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
-        String operationId,
-        Context context);
+        String operationId);
 }

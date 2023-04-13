@@ -11,6 +11,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.FluxConfigOperationStatusClient;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigOperationStatus;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import com.azure.resourcemanager.kubernetesconfiguration.models.OperationStatusResult;
 
 public final class FluxConfigOperationStatusImpl implements FluxConfigOperationStatus {
@@ -27,29 +29,10 @@ public final class FluxConfigOperationStatusImpl implements FluxConfigOperationS
         this.serviceManager = serviceManager;
     }
 
-    public OperationStatusResult get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName,
-        String operationId) {
-        OperationStatusResultInner inner =
-            this
-                .serviceClient()
-                .get(
-                    resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, operationId);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<OperationStatusResult> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         String operationId,
@@ -71,6 +54,25 @@ public final class FluxConfigOperationStatusImpl implements FluxConfigOperationS
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new OperationStatusResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatusResult get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String fluxConfigurationName,
+        String operationId) {
+        OperationStatusResultInner inner =
+            this
+                .serviceClient()
+                .get(
+                    resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, operationId);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
         } else {
             return null;
         }

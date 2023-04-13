@@ -13,32 +13,11 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.FluxConfigurationInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationPatch;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 
 /** An instance of this class provides access to all the operations defined in FluxConfigurationsClient. */
 public interface FluxConfigurationsClient {
-    /**
-     * Gets details of the Flux Configuration.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param fluxConfigurationName Name of the Flux Configuration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the Flux Configuration.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    FluxConfigurationInner get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName);
-
     /**
      * Gets details of the Flux Configuration.
      *
@@ -58,11 +37,34 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FluxConfigurationInner> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Context context);
+
+    /**
+     * Gets details of the Flux Configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param fluxConfigurationName Name of the Flux Configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the Flux Configuration.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    FluxConfigurationInner get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String fluxConfigurationName);
 
     /**
      * Create a new Kubernetes Flux Configuration.
@@ -83,8 +85,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginCreateOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration);
@@ -109,8 +111,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginCreateOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -135,8 +137,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     FluxConfigurationInner createOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration);
@@ -161,8 +163,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     FluxConfigurationInner createOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -187,8 +189,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch);
@@ -213,8 +215,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -239,8 +241,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     FluxConfigurationInner update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch);
@@ -265,8 +267,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     FluxConfigurationInner update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -283,7 +285,6 @@ public interface FluxConfigurationsClient {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -292,11 +293,10 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String fluxConfigurationName,
-        Boolean forceDelete);
+        String fluxConfigurationName);
 
     /**
      * This will delete the YAML file used to set up the Flux Configuration, thus stopping future sync from the source
@@ -319,8 +319,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -337,7 +337,6 @@ public interface FluxConfigurationsClient {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -345,32 +344,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName,
-        Boolean forceDelete);
-
-    /**
-     * This will delete the YAML file used to set up the Flux Configuration, thus stopping future sync from the source
-     * repo.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param fluxConfigurationName Name of the Flux Configuration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName);
 
@@ -394,8 +369,8 @@ public interface FluxConfigurationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -417,7 +392,10 @@ public interface FluxConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FluxConfigurationInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName);
 
     /**
      * List all Flux Configurations.
@@ -436,5 +414,9 @@ public interface FluxConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FluxConfigurationInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context);
 }

@@ -29,8 +29,8 @@ public interface Extensions {
      */
     Extension create(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         ExtensionInner extension);
@@ -54,34 +54,12 @@ public interface Extensions {
      */
     Extension create(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         ExtensionInner extension,
         Context context);
-
-    /**
-     * Gets Kubernetes Cluster Extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param extensionName Name of the Extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return kubernetes Cluster Extension.
-     */
-    Extension get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String extensionName);
 
     /**
      * Gets Kubernetes Cluster Extension.
@@ -101,14 +79,14 @@ public interface Extensions {
      */
     Response<Extension> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         Context context);
 
     /**
-     * Delete a Kubernetes Cluster Extension. This will cause the Agent to Uninstall the extension from the cluster.
+     * Gets Kubernetes Cluster Extension.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
@@ -117,18 +95,17 @@ public interface Extensions {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param extensionName Name of the Extension.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return kubernetes Cluster Extension.
      */
-    void delete(
+    Extension get(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String extensionName,
-        Boolean forceDelete);
+        String extensionName);
 
     /**
      * Delete a Kubernetes Cluster Extension. This will cause the Agent to Uninstall the extension from the cluster.
@@ -146,8 +123,8 @@ public interface Extensions {
      */
     void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName);
 
@@ -169,8 +146,8 @@ public interface Extensions {
      */
     void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         Boolean forceDelete,
@@ -194,8 +171,8 @@ public interface Extensions {
      */
     Extension update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         PatchExtension patchExtension);
@@ -219,8 +196,8 @@ public interface Extensions {
      */
     Extension update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         PatchExtension patchExtension,
@@ -241,7 +218,10 @@ public interface Extensions {
      * @return result of the request to list Extensions as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Extension> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName);
 
     /**
      * List all Extensions in the cluster.
@@ -259,5 +239,9 @@ public interface Extensions {
      * @return result of the request to list Extensions as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Extension> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context);
 }

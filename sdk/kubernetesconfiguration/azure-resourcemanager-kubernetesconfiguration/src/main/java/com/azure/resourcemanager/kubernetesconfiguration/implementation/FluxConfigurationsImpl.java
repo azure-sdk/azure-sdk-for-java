@@ -14,6 +14,8 @@ import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.FluxConfi
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfiguration;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationPatch;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurations;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 
 public final class FluxConfigurationsImpl implements FluxConfigurations {
     private static final ClientLogger LOGGER = new ClientLogger(FluxConfigurationsImpl.class);
@@ -29,27 +31,10 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
         this.serviceManager = serviceManager;
     }
 
-    public FluxConfiguration get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName) {
-        FluxConfigurationInner inner =
-            this
-                .serviceClient()
-                .get(resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName);
-        if (inner != null) {
-            return new FluxConfigurationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FluxConfiguration> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Context context) {
@@ -69,10 +54,27 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
         }
     }
 
+    public FluxConfiguration get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String fluxConfigurationName) {
+        FluxConfigurationInner inner =
+            this
+                .serviceClient()
+                .get(resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName);
+        if (inner != null) {
+            return new FluxConfigurationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public FluxConfiguration createOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration) {
@@ -95,8 +97,8 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
 
     public FluxConfiguration createOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -121,8 +123,8 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
 
     public FluxConfiguration update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch) {
@@ -145,8 +147,8 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
 
     public FluxConfiguration update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -171,20 +173,8 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
 
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName,
-        Boolean forceDelete) {
-        this
-            .serviceClient()
-            .delete(resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, forceDelete);
-    }
-
-    public void delete(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName) {
         this
@@ -194,8 +184,8 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
 
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -213,14 +203,21 @@ public final class FluxConfigurationsImpl implements FluxConfigurations {
     }
 
     public PagedIterable<FluxConfiguration> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         PagedIterable<FluxConfigurationInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName);
         return Utils.mapPage(inner, inner1 -> new FluxConfigurationImpl(inner1, this.manager()));
     }
 
     public PagedIterable<FluxConfiguration> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         PagedIterable<FluxConfigurationInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new FluxConfigurationImpl(inner1, this.manager()));

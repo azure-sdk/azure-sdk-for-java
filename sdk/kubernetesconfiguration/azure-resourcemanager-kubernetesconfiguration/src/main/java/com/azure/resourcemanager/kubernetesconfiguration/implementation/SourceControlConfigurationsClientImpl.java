@@ -33,6 +33,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.SourceControlConfigurationsClient;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.SourceControlConfigurationInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceControlConfigurationList;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -65,20 +67,18 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @Host("{$host}")
     @ServiceInterface(name = "SourceControlConfigu")
-    private interface SourceControlConfigurationsService {
+    public interface SourceControlConfigurationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration"
-                + "/sourceControlConfigurations/{sourceControlConfigurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/{sourceControlConfigurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SourceControlConfigurationInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("sourceControlConfigurationName") String sourceControlConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -87,17 +87,15 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration"
-                + "/sourceControlConfigurations/{sourceControlConfigurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/{sourceControlConfigurationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SourceControlConfigurationInner>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("sourceControlConfigurationName") String sourceControlConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -107,17 +105,15 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration"
-                + "/sourceControlConfigurations/{sourceControlConfigurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/{sourceControlConfigurationName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("sourceControlConfigurationName") String sourceControlConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -126,17 +122,15 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration"
-                + "/sourceControlConfigurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SourceControlConfigurationList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -172,8 +166,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SourceControlConfigurationInner>> getWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         if (this.client.getEndpoint() == null) {
@@ -247,8 +241,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SourceControlConfigurationInner>> getWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -318,46 +312,13 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SourceControlConfigurationInner> getAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName)
-            .flatMap(
-                (Response<SourceControlConfigurationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets details of the Source Control Configuration.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param sourceControlConfigurationName Name of the Source Control Configuration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the Source Control Configuration.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SourceControlConfigurationInner get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String sourceControlConfigurationName) {
-        return getAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName)
-            .block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -379,14 +340,46 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SourceControlConfigurationInner> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName, context)
             .block();
+    }
+
+    /**
+     * Gets details of the Source Control Configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param sourceControlConfigurationName Name of the Source Control Configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the Source Control Configuration.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SourceControlConfigurationInner get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String sourceControlConfigurationName) {
+        return getWithResponse(
+                resourceGroupName,
+                clusterRp,
+                clusterResourceName,
+                clusterName,
+                sourceControlConfigurationName,
+                Context.NONE)
+            .getValue();
     }
 
     /**
@@ -409,8 +402,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SourceControlConfigurationInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         SourceControlConfigurationInner sourceControlConfiguration) {
@@ -495,8 +488,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SourceControlConfigurationInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         SourceControlConfigurationInner sourceControlConfiguration,
@@ -578,8 +571,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SourceControlConfigurationInner> createOrUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         SourceControlConfigurationInner sourceControlConfiguration) {
@@ -590,48 +583,7 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
                 clusterName,
                 sourceControlConfigurationName,
                 sourceControlConfiguration)
-            .flatMap(
-                (Response<SourceControlConfigurationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Create a new Kubernetes Source Control Configuration.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param sourceControlConfigurationName Name of the Source Control Configuration.
-     * @param sourceControlConfiguration Properties necessary to Create KubernetesConfiguration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SourceControl Configuration object returned in Get &amp; Put response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SourceControlConfigurationInner createOrUpdate(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String sourceControlConfigurationName,
-        SourceControlConfigurationInner sourceControlConfiguration) {
-        return createOrUpdateAsync(
-                resourceGroupName,
-                clusterRp,
-                clusterResourceName,
-                clusterName,
-                sourceControlConfigurationName,
-                sourceControlConfiguration)
-            .block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -654,8 +606,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SourceControlConfigurationInner> createOrUpdateWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         SourceControlConfigurationInner sourceControlConfiguration,
@@ -669,6 +621,41 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
                 sourceControlConfiguration,
                 context)
             .block();
+    }
+
+    /**
+     * Create a new Kubernetes Source Control Configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param sourceControlConfigurationName Name of the Source Control Configuration.
+     * @param sourceControlConfiguration Properties necessary to Create KubernetesConfiguration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the SourceControl Configuration object returned in Get &amp; Put response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SourceControlConfigurationInner createOrUpdate(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String sourceControlConfigurationName,
+        SourceControlConfigurationInner sourceControlConfiguration) {
+        return createOrUpdateWithResponse(
+                resourceGroupName,
+                clusterRp,
+                clusterResourceName,
+                clusterName,
+                sourceControlConfigurationName,
+                sourceControlConfiguration,
+                Context.NONE)
+            .getValue();
     }
 
     /**
@@ -690,8 +677,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         if (this.client.getEndpoint() == null) {
@@ -765,8 +752,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -837,8 +824,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -870,8 +857,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -908,11 +895,12 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
-        return beginDeleteAsync(
+        return this
+            .beginDeleteAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName)
             .getSyncPoller();
     }
@@ -937,12 +925,13 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
-        return beginDeleteAsync(
+        return this
+            .beginDeleteAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName, context)
             .getSyncPoller();
     }
@@ -966,8 +955,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         return beginDeleteAsync(
@@ -996,8 +985,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -1025,8 +1014,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         deleteAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName)
@@ -1052,8 +1041,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -1079,7 +1068,10 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SourceControlConfigurationInner>> listSinglePageAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1151,7 +1143,11 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SourceControlConfigurationInner>> listSinglePageAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1218,7 +1214,10 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SourceControlConfigurationInner> listAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -1241,7 +1240,11 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SourceControlConfigurationInner> listAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
@@ -1264,7 +1267,10 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SourceControlConfigurationInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         return new PagedIterable<>(listAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName));
     }
 
@@ -1286,14 +1292,19 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SourceControlConfigurationInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1329,7 +1340,8 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

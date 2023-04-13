@@ -13,6 +13,8 @@ import com.azure.resourcemanager.kubernetesconfiguration.fluent.ExtensionsClient
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.ExtensionInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Extension;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Extensions;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import com.azure.resourcemanager.kubernetesconfiguration.models.PatchExtension;
 
 public final class ExtensionsImpl implements Extensions {
@@ -31,8 +33,8 @@ public final class ExtensionsImpl implements Extensions {
 
     public Extension create(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         ExtensionInner extension) {
@@ -49,8 +51,8 @@ public final class ExtensionsImpl implements Extensions {
 
     public Extension create(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         ExtensionInner extension,
@@ -67,25 +69,10 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public Extension get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String extensionName) {
-        ExtensionInner inner =
-            this.serviceClient().get(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName);
-        if (inner != null) {
-            return new ExtensionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Extension> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         Context context) {
@@ -105,22 +92,25 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public void delete(
+    public Extension get(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String extensionName,
-        Boolean forceDelete) {
-        this
-            .serviceClient()
-            .delete(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, forceDelete);
+        String extensionName) {
+        ExtensionInner inner =
+            this.serviceClient().get(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName);
+        if (inner != null) {
+            return new ExtensionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName) {
         this.serviceClient().delete(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName);
@@ -128,8 +118,8 @@ public final class ExtensionsImpl implements Extensions {
 
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         Boolean forceDelete,
@@ -142,8 +132,8 @@ public final class ExtensionsImpl implements Extensions {
 
     public Extension update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         PatchExtension patchExtension) {
@@ -160,8 +150,8 @@ public final class ExtensionsImpl implements Extensions {
 
     public Extension update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         PatchExtension patchExtension,
@@ -185,14 +175,21 @@ public final class ExtensionsImpl implements Extensions {
     }
 
     public PagedIterable<Extension> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         PagedIterable<ExtensionInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName);
         return Utils.mapPage(inner, inner1 -> new ExtensionImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Extension> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         PagedIterable<ExtensionInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new ExtensionImpl(inner1, this.manager()));

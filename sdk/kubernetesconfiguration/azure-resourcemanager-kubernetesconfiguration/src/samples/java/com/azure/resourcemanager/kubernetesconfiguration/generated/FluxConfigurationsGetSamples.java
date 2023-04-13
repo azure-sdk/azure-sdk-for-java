@@ -4,12 +4,13 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 
 /** Samples for FluxConfigurations Get. */
 public final class FluxConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetFluxConfiguration.json
      */
     /**
      * Sample code: Get Flux Configuration.
@@ -21,6 +22,11 @@ public final class FluxConfigurationsGetSamples {
         manager
             .fluxConfigurations()
             .getWithResponse(
-                "rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig", Context.NONE);
+                "rg1",
+                KubernetesClusterResourceProviderName.MICROSOFT_KUBERNETES,
+                KubernetesClusterResourceName.CONNECTED_CLUSTERS,
+                "clusterName1",
+                "srs-fluxconfig",
+                com.azure.core.util.Context.NONE);
     }
 }

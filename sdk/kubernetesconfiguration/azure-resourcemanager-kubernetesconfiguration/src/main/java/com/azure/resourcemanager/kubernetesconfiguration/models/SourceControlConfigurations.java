@@ -21,17 +21,19 @@ public interface SourceControlConfigurations {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param sourceControlConfigurationName Name of the Source Control Configuration.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the Source Control Configuration.
+     * @return details of the Source Control Configuration along with {@link Response}.
      */
-    SourceControlConfiguration get(
+    Response<SourceControlConfiguration> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String sourceControlConfigurationName);
+        String sourceControlConfigurationName,
+        Context context);
 
     /**
      * Gets details of the Source Control Configuration.
@@ -43,43 +45,17 @@ public interface SourceControlConfigurations {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param sourceControlConfigurationName Name of the Source Control Configuration.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the Source Control Configuration along with {@link Response}.
+     * @return details of the Source Control Configuration.
      */
-    Response<SourceControlConfiguration> getWithResponse(
+    SourceControlConfiguration get(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String sourceControlConfigurationName,
-        Context context);
-
-    /**
-     * Create a new Kubernetes Source Control Configuration.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param sourceControlConfigurationName Name of the Source Control Configuration.
-     * @param sourceControlConfiguration Properties necessary to Create KubernetesConfiguration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SourceControl Configuration object returned in Get &amp; Put response.
-     */
-    SourceControlConfiguration createOrUpdate(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String sourceControlConfigurationName,
-        SourceControlConfigurationInner sourceControlConfiguration);
+        String sourceControlConfigurationName);
 
     /**
      * Create a new Kubernetes Source Control Configuration.
@@ -100,12 +76,36 @@ public interface SourceControlConfigurations {
      */
     Response<SourceControlConfiguration> createOrUpdateWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         SourceControlConfigurationInner sourceControlConfiguration,
         Context context);
+
+    /**
+     * Create a new Kubernetes Source Control Configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param sourceControlConfigurationName Name of the Source Control Configuration.
+     * @param sourceControlConfiguration Properties necessary to Create KubernetesConfiguration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the SourceControl Configuration object returned in Get &amp; Put response.
+     */
+    SourceControlConfiguration createOrUpdate(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String sourceControlConfigurationName,
+        SourceControlConfigurationInner sourceControlConfiguration);
 
     /**
      * This will delete the YAML file used to set up the Source control configuration, thus stopping future sync from
@@ -124,8 +124,8 @@ public interface SourceControlConfigurations {
      */
     void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName);
 
@@ -147,8 +147,8 @@ public interface SourceControlConfigurations {
      */
     void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context);
@@ -169,7 +169,10 @@ public interface SourceControlConfigurations {
      *     PagedIterable}.
      */
     PagedIterable<SourceControlConfiguration> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName);
 
     /**
      * List all Source Control Configurations.
@@ -188,5 +191,9 @@ public interface SourceControlConfigurations {
      *     PagedIterable}.
      */
     PagedIterable<SourceControlConfiguration> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context);
 }

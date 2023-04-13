@@ -21,18 +21,20 @@ public interface OperationStatus {
      * @param clusterName The name of the kubernetes cluster.
      * @param extensionName Name of the Extension.
      * @param operationId operation Id.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return async Operation status.
+     * @return async Operation status along with {@link Response}.
      */
-    OperationStatusResult get(
+    Response<OperationStatusResult> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
-        String operationId);
+        String operationId,
+        Context context);
 
     /**
      * Get Async Operation status.
@@ -45,20 +47,18 @@ public interface OperationStatus {
      * @param clusterName The name of the kubernetes cluster.
      * @param extensionName Name of the Extension.
      * @param operationId operation Id.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return async Operation status along with {@link Response}.
+     * @return async Operation status.
      */
-    Response<OperationStatusResult> getWithResponse(
+    OperationStatusResult get(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
-        String operationId,
-        Context context);
+        String operationId);
 
     /**
      * List Async Operations, currently in progress, in a cluster.
@@ -75,7 +75,10 @@ public interface OperationStatus {
      * @return the async operations in progress, in the cluster as paginated response with {@link PagedIterable}.
      */
     PagedIterable<OperationStatusResult> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName);
 
     /**
      * List Async Operations, currently in progress, in a cluster.
@@ -93,5 +96,9 @@ public interface OperationStatus {
      * @return the async operations in progress, in the cluster as paginated response with {@link PagedIterable}.
      */
     PagedIterable<OperationStatusResult> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context);
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context);
 }

@@ -4,12 +4,13 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 
 /** Samples for Extensions List. */
 public final class ExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListExtensions.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListExtensions.json
      */
     /**
      * Sample code: List Extensions.
@@ -18,6 +19,13 @@ public final class ExtensionsListSamples {
      */
     public static void listExtensions(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.extensions().list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", Context.NONE);
+        manager
+            .extensions()
+            .list(
+                "rg1",
+                KubernetesClusterResourceProviderName.MICROSOFT_KUBERNETES,
+                KubernetesClusterResourceName.CONNECTED_CLUSTERS,
+                "clusterName1",
+                com.azure.core.util.Context.NONE);
     }
 }

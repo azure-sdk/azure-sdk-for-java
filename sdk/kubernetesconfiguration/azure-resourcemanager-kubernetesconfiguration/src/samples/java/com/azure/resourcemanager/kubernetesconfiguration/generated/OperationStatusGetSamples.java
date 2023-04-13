@@ -4,12 +4,13 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 
 /** Samples for OperationStatus Get. */
 public final class OperationStatusGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetExtensionAsyncOperationStatus.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetExtensionAsyncOperationStatus.json
      */
     /**
      * Sample code: ExtensionAsyncOperationStatus Get.
@@ -22,11 +23,11 @@ public final class OperationStatusGetSamples {
             .operationStatus()
             .getWithResponse(
                 "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
+                KubernetesClusterResourceProviderName.MICROSOFT_KUBERNETES,
+                KubernetesClusterResourceName.CONNECTED_CLUSTERS,
                 "clusterName1",
                 "ClusterMonitor",
                 "99999999-9999-9999-9999-999999999999",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -27,6 +27,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.OperationStatusClient;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.OperationStatusResultInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import com.azure.resourcemanager.kubernetesconfiguration.models.OperationStatusList;
 import reactor.core.publisher.Mono;
 
@@ -55,20 +57,18 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SourceControlConfigu")
-    private interface OperationStatusService {
+    public interface OperationStatusService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/extensions"
-                + "/{extensionName}/operations/{operationId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/extensions/{extensionName}/operations/{operationId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OperationStatusResultInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("extensionName") String extensionName,
             @QueryParam("api-version") String apiVersion,
@@ -78,16 +78,15 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/operations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/operations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OperationStatusList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -123,8 +122,8 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationStatusResultInner>> getWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         String operationId) {
@@ -200,8 +199,8 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationStatusResultInner>> getWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         String operationId,
@@ -274,49 +273,14 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> getAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         String operationId) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, operationId)
-            .flatMap(
-                (Response<OperationStatusResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get Async Operation status.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param extensionName Name of the Extension.
-     * @param operationId operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return async Operation status.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String extensionName,
-        String operationId) {
-        return getAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, operationId)
-            .block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -339,8 +303,8 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationStatusResultInner> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         String operationId,
@@ -348,6 +312,41 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, operationId, context)
             .block();
+    }
+
+    /**
+     * Get Async Operation status.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param extensionName Name of the Extension.
+     * @param operationId operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return async Operation status.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationStatusResultInner get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String extensionName,
+        String operationId) {
+        return getWithResponse(
+                resourceGroupName,
+                clusterRp,
+                clusterResourceName,
+                clusterName,
+                extensionName,
+                operationId,
+                Context.NONE)
+            .getValue();
     }
 
     /**
@@ -367,7 +366,10 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OperationStatusResultInner>> listSinglePageAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -439,7 +441,11 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OperationStatusResultInner>> listSinglePageAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -506,7 +512,10 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OperationStatusResultInner> listAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -529,7 +538,11 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OperationStatusResultInner> listAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
@@ -551,7 +564,10 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OperationStatusResultInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         return new PagedIterable<>(listAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName));
     }
 
@@ -572,14 +588,19 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OperationStatusResultInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -615,7 +636,8 @@ public final class OperationStatusClientImpl implements OperationStatusClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

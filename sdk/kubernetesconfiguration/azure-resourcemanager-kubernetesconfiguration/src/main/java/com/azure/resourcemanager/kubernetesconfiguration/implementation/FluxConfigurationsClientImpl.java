@@ -36,6 +36,8 @@ import com.azure.resourcemanager.kubernetesconfiguration.fluent.FluxConfiguratio
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.FluxConfigurationInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationPatch;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationsList;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -65,20 +67,18 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @Host("{$host}")
     @ServiceInterface(name = "SourceControlConfigu")
-    private interface FluxConfigurationsService {
+    public interface FluxConfigurationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations"
-                + "/{fluxConfigurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/{fluxConfigurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluxConfigurationInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("fluxConfigurationName") String fluxConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -87,17 +87,15 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations"
-                + "/{fluxConfigurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/{fluxConfigurationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("fluxConfigurationName") String fluxConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -107,17 +105,15 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations"
-                + "/{fluxConfigurationName}")
-        @ExpectedResponses({202})
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/{fluxConfigurationName}")
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("fluxConfigurationName") String fluxConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -127,17 +123,15 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations"
-                + "/{fluxConfigurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/{fluxConfigurationName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @PathParam("fluxConfigurationName") String fluxConfigurationName,
             @QueryParam("api-version") String apiVersion,
@@ -147,16 +141,15 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
-                + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/fluxConfigurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluxConfigurationsList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("clusterRp") String clusterRp,
-            @PathParam("clusterResourceName") String clusterResourceName,
+            @PathParam("clusterRp") KubernetesClusterResourceProviderName clusterRp,
+            @PathParam("clusterResourceName") KubernetesClusterResourceName clusterResourceName,
             @PathParam("clusterName") String clusterName,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -191,8 +184,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FluxConfigurationInner>> getWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName) {
         if (this.client.getEndpoint() == null) {
@@ -263,8 +256,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FluxConfigurationInner>> getWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Context context) {
@@ -332,45 +325,13 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluxConfigurationInner> getAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName)
-            .flatMap(
-                (Response<FluxConfigurationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets details of the Flux Configuration.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param fluxConfigurationName Name of the Flux Configuration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the Flux Configuration.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluxConfigurationInner get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName) {
-        return getAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -392,14 +353,41 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FluxConfigurationInner> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Context context) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, context)
             .block();
+    }
+
+    /**
+     * Gets details of the Flux Configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param fluxConfigurationName Name of the Flux Configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the Flux Configuration.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluxConfigurationInner get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String fluxConfigurationName) {
+        return getWithResponse(
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -422,8 +410,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration) {
@@ -504,8 +492,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -582,8 +570,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration) {
@@ -625,8 +613,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -670,12 +658,13 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginCreateOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName,
                 clusterRp,
                 clusterResourceName,
@@ -705,13 +694,14 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginCreateOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName,
                 clusterRp,
                 clusterResourceName,
@@ -742,8 +732,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluxConfigurationInner> createOrUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration) {
@@ -779,8 +769,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluxConfigurationInner> createOrUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -816,8 +806,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FluxConfigurationInner createOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration) {
@@ -851,8 +841,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FluxConfigurationInner createOrUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationInner fluxConfiguration,
@@ -888,8 +878,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch) {
@@ -971,8 +961,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -1050,8 +1040,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch) {
@@ -1093,8 +1083,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginUpdateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -1138,12 +1128,13 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch) {
-        return beginUpdateAsync(
+        return this
+            .beginUpdateAsync(
                 resourceGroupName,
                 clusterRp,
                 clusterResourceName,
@@ -1173,13 +1164,14 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FluxConfigurationInner>, FluxConfigurationInner> beginUpdate(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
         Context context) {
-        return beginUpdateAsync(
+        return this
+            .beginUpdateAsync(
                 resourceGroupName,
                 clusterRp,
                 clusterResourceName,
@@ -1210,8 +1202,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluxConfigurationInner> updateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch) {
@@ -1247,8 +1239,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluxConfigurationInner> updateAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -1284,8 +1276,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FluxConfigurationInner update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch) {
@@ -1319,8 +1311,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FluxConfigurationInner update(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         FluxConfigurationPatch fluxConfigurationPatch,
@@ -1356,8 +1348,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete) {
@@ -1432,8 +1424,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -1505,11 +1497,44 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, forceDelete);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * This will delete the YAML file used to set up the Flux Configuration, thus stopping future sync from the source
+     * repo.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param fluxConfigurationName Name of the Flux Configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String fluxConfigurationName) {
+        final Boolean forceDelete = null;
         Mono<Response<Flux<ByteBuffer>>> mono =
             deleteWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, forceDelete);
@@ -1540,8 +1565,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -1572,7 +1597,6 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1581,12 +1605,13 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String fluxConfigurationName,
-        Boolean forceDelete) {
-        return beginDeleteAsync(
+        String fluxConfigurationName) {
+        final Boolean forceDelete = null;
+        return this
+            .beginDeleteAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, forceDelete)
             .getSyncPoller();
     }
@@ -1612,13 +1637,14 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
         Context context) {
-        return beginDeleteAsync(
+        return this
+            .beginDeleteAsync(
                 resourceGroupName,
                 clusterRp,
                 clusterResourceName,
@@ -1649,8 +1675,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete) {
@@ -1679,8 +1705,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName) {
         final Boolean forceDelete = null;
@@ -1711,8 +1737,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -1740,7 +1766,6 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param fluxConfigurationName Name of the Flux Configuration.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1748,35 +1773,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String fluxConfigurationName,
-        Boolean forceDelete) {
-        deleteAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, forceDelete)
-            .block();
-    }
-
-    /**
-     * This will delete the YAML file used to set up the Flux Configuration, thus stopping future sync from the source
-     * repo.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param fluxConfigurationName Name of the Flux Configuration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName) {
         final Boolean forceDelete = null;
@@ -1804,8 +1802,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String fluxConfigurationName,
         Boolean forceDelete,
@@ -1838,7 +1836,10 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FluxConfigurationInner>> listSinglePageAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1910,7 +1911,11 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FluxConfigurationInner>> listSinglePageAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1977,7 +1982,10 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<FluxConfigurationInner> listAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -2000,7 +2008,11 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<FluxConfigurationInner> listAsync(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
@@ -2022,7 +2034,10 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FluxConfigurationInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         return new PagedIterable<>(listAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName));
     }
 
@@ -2043,14 +2058,19 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FluxConfigurationInner> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2086,7 +2106,8 @@ public final class FluxConfigurationsClientImpl implements FluxConfigurationsCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

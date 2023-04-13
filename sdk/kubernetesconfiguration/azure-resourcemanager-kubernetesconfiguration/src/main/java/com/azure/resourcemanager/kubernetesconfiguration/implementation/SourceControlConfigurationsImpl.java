@@ -11,6 +11,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.SourceControlConfigurationsClient;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.SourceControlConfigurationInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceControlConfiguration;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceControlConfigurations;
 
@@ -28,27 +30,10 @@ public final class SourceControlConfigurationsImpl implements SourceControlConfi
         this.serviceManager = serviceManager;
     }
 
-    public SourceControlConfiguration get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String sourceControlConfigurationName) {
-        SourceControlConfigurationInner inner =
-            this
-                .serviceClient()
-                .get(resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName);
-        if (inner != null) {
-            return new SourceControlConfigurationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SourceControlConfiguration> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -73,23 +58,16 @@ public final class SourceControlConfigurationsImpl implements SourceControlConfi
         }
     }
 
-    public SourceControlConfiguration createOrUpdate(
+    public SourceControlConfiguration get(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
-        String sourceControlConfigurationName,
-        SourceControlConfigurationInner sourceControlConfiguration) {
+        String sourceControlConfigurationName) {
         SourceControlConfigurationInner inner =
             this
                 .serviceClient()
-                .createOrUpdate(
-                    resourceGroupName,
-                    clusterRp,
-                    clusterResourceName,
-                    clusterName,
-                    sourceControlConfigurationName,
-                    sourceControlConfiguration);
+                .get(resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName);
         if (inner != null) {
             return new SourceControlConfigurationImpl(inner, this.manager());
         } else {
@@ -99,8 +77,8 @@ public final class SourceControlConfigurationsImpl implements SourceControlConfi
 
     public Response<SourceControlConfiguration> createOrUpdateWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         SourceControlConfigurationInner sourceControlConfiguration,
@@ -127,10 +105,34 @@ public final class SourceControlConfigurationsImpl implements SourceControlConfi
         }
     }
 
+    public SourceControlConfiguration createOrUpdate(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String sourceControlConfigurationName,
+        SourceControlConfigurationInner sourceControlConfiguration) {
+        SourceControlConfigurationInner inner =
+            this
+                .serviceClient()
+                .createOrUpdate(
+                    resourceGroupName,
+                    clusterRp,
+                    clusterResourceName,
+                    clusterName,
+                    sourceControlConfigurationName,
+                    sourceControlConfiguration);
+        if (inner != null) {
+            return new SourceControlConfigurationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName) {
         this
@@ -140,8 +142,8 @@ public final class SourceControlConfigurationsImpl implements SourceControlConfi
 
     public void delete(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String sourceControlConfigurationName,
         Context context) {
@@ -157,14 +159,21 @@ public final class SourceControlConfigurationsImpl implements SourceControlConfi
     }
 
     public PagedIterable<SourceControlConfiguration> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         PagedIterable<SourceControlConfigurationInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName);
         return Utils.mapPage(inner, inner1 -> new SourceControlConfigurationImpl(inner1, this.manager()));
     }
 
     public PagedIterable<SourceControlConfiguration> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         PagedIterable<SourceControlConfigurationInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new SourceControlConfigurationImpl(inner1, this.manager()));

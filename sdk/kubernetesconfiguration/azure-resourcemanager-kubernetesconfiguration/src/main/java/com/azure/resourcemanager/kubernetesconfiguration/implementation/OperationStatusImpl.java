@@ -11,6 +11,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.OperationStatusClient;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.OperationStatusResultInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KubernetesClusterResourceProviderName;
 import com.azure.resourcemanager.kubernetesconfiguration.models.OperationStatus;
 import com.azure.resourcemanager.kubernetesconfiguration.models.OperationStatusResult;
 
@@ -28,28 +30,10 @@ public final class OperationStatusImpl implements OperationStatus {
         this.serviceManager = serviceManager;
     }
 
-    public OperationStatusResult get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String extensionName,
-        String operationId) {
-        OperationStatusResultInner inner =
-            this
-                .serviceClient()
-                .get(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, operationId);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<OperationStatusResult> getWithResponse(
         String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
         String clusterName,
         String extensionName,
         String operationId,
@@ -76,15 +60,40 @@ public final class OperationStatusImpl implements OperationStatus {
         }
     }
 
+    public OperationStatusResult get(
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        String extensionName,
+        String operationId) {
+        OperationStatusResultInner inner =
+            this
+                .serviceClient()
+                .get(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, operationId);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PagedIterable<OperationStatusResult> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName) {
         PagedIterable<OperationStatusResultInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName);
         return Utils.mapPage(inner, inner1 -> new OperationStatusResultImpl(inner1, this.manager()));
     }
 
     public PagedIterable<OperationStatusResult> list(
-        String resourceGroupName, String clusterRp, String clusterResourceName, String clusterName, Context context) {
+        String resourceGroupName,
+        KubernetesClusterResourceProviderName clusterRp,
+        KubernetesClusterResourceName clusterResourceName,
+        String clusterName,
+        Context context) {
         PagedIterable<OperationStatusResultInner> inner =
             this.serviceClient().list(resourceGroupName, clusterRp, clusterResourceName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new OperationStatusResultImpl(inner1, this.manager()));
