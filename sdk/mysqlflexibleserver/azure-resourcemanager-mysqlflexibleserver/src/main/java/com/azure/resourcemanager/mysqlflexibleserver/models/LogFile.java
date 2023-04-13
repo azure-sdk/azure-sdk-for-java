@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.LogFileInner;
 import java.time.OffsetDateTime;
 
@@ -32,14 +31,7 @@ public interface LogFile {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
-     * Gets the sizeInKB property: The size in kb of the logFile.
+     * Gets the sizeInKB property: Size of the log file.
      *
      * @return the sizeInKB value.
      */
@@ -53,18 +45,18 @@ public interface LogFile {
     OffsetDateTime createdTime();
 
     /**
-     * Gets the typePropertiesType property: Type of the log file.
-     *
-     * @return the typePropertiesType value.
-     */
-    String typePropertiesType();
-
-    /**
      * Gets the lastModifiedTime property: Last modified timestamp of the log file.
      *
      * @return the lastModifiedTime value.
      */
     OffsetDateTime lastModifiedTime();
+
+    /**
+     * Gets the typePropertiesType property: Type of the log file.
+     *
+     * @return the typePropertiesType value.
+     */
+    String typePropertiesType();
 
     /**
      * Gets the url property: The url to download the log file from.
