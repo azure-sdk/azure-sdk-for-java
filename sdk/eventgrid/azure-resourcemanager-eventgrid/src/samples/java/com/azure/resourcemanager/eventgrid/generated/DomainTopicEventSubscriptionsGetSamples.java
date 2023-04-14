@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions Get. */
 public final class DomainTopicEventSubscriptionsGetSamples {
     /*
@@ -20,6 +18,10 @@ public final class DomainTopicEventSubscriptionsGetSamples {
         manager
             .domainTopicEventSubscriptions()
             .getWithResponse(
-                "examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }

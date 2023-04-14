@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions GetDeliveryAttributes. */
 public final class DomainEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -20,6 +18,7 @@ public final class DomainEventSubscriptionsGetDeliveryAttributesSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainEventSubscriptions()
-            .getDeliveryAttributesWithResponse("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+            .getDeliveryAttributesWithResponse(
+                "examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

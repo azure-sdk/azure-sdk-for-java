@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Topics GetByResourceGroup. */
 public final class TopicsGetByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class TopicsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().getByResourceGroupWithResponse("examplerg", "exampletopic2", Context.NONE);
+        manager.topics().getByResourceGroupWithResponse("examplerg", "exampletopic2", com.azure.core.util.Context.NONE);
     }
 }

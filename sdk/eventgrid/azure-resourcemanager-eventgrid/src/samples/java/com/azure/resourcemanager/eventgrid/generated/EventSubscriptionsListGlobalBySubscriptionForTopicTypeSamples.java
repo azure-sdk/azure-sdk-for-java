@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListGlobalBySubscriptionForTopicType. */
 public final class EventSubscriptionsListGlobalBySubscriptionForTopicTypeSamples {
     /*
@@ -20,6 +18,7 @@ public final class EventSubscriptionsListGlobalBySubscriptionForTopicTypeSamples
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .eventSubscriptions()
-            .listGlobalBySubscriptionForTopicType("Microsoft.Resources.Subscriptions", null, null, Context.NONE);
+            .listGlobalBySubscriptionForTopicType(
+                "Microsoft.Resources.Subscriptions", null, null, com.azure.core.util.Context.NONE);
     }
 }

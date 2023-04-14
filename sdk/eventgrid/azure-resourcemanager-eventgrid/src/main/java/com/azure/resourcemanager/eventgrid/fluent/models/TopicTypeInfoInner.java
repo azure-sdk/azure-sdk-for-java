@@ -21,6 +21,10 @@ public final class TopicTypeInfoInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private TopicTypeProperties innerProperties;
 
+    /** Creates an instance of TopicTypeInfoInner class. */
+    public TopicTypeInfoInner() {
+    }
+
     /**
      * Get the innerProperties property: Properties of the topic type info.
      *

@@ -18,6 +18,10 @@ public final class ChannelUpdateParameters {
     @JsonProperty(value = "properties")
     private ChannelUpdateParametersProperties innerProperties;
 
+    /** Creates an instance of ChannelUpdateParameters class. */
+    public ChannelUpdateParameters() {
+    }
+
     /**
      * Get the innerProperties property: Properties of the channel update parameters.
      *

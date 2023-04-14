@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListRegionalBySubscription. */
 public final class EventSubscriptionsListRegionalBySubscriptionSamples {
     /*
@@ -18,6 +16,8 @@ public final class EventSubscriptionsListRegionalBySubscriptionSamples {
      */
     public static void eventSubscriptionsListRegionalBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().listRegionalBySubscription("westus2", null, null, Context.NONE);
+        manager
+            .eventSubscriptions()
+            .listRegionalBySubscription("westus2", null, null, com.azure.core.util.Context.NONE);
     }
 }

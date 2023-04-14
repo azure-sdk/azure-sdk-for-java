@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics CreateOrUpdate. */
 public final class DomainTopicsCreateOrUpdateSamples {
     /*
@@ -17,6 +15,8 @@ public final class DomainTopicsCreateOrUpdateSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsCreateOrUpdate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().createOrUpdate("examplerg", "exampledomain1", "exampledomaintopic1", Context.NONE);
+        manager
+            .domainTopics()
+            .createOrUpdate("examplerg", "exampledomain1", "exampledomaintopic1", com.azure.core.util.Context.NONE);
     }
 }

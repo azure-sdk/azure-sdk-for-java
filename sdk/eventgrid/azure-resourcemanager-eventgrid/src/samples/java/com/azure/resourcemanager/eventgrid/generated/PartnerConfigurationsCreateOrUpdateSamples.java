@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.PartnerConfigurationInner;
 import com.azure.resourcemanager.eventgrid.models.Partner;
 import com.azure.resourcemanager.eventgrid.models.PartnerAuthorization;
@@ -47,6 +46,6 @@ public final class PartnerConfigurationsCreateOrUpdateSamples {
                                             .withPartnerName("fabrikam.HR")
                                             .withAuthorizationExpirationTimeInUtc(
                                                 OffsetDateTime.parse("2022-02-20T01:00:00.142Z"))))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

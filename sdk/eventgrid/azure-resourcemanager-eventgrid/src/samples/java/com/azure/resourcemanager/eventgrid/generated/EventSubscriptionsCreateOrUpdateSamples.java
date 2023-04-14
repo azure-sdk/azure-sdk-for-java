@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.AzureFunctionEventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventHubEventSubscriptionDestination;
@@ -43,7 +42,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -65,7 +64,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                     .withDestination(
                         new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
                     .withFilter(new EventSubscriptionFilter().withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -98,7 +97,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -124,7 +123,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -152,7 +151,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -178,7 +177,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -211,7 +210,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -245,7 +244,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -278,7 +277,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -311,7 +310,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -344,6 +343,6 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

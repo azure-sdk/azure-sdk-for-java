@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics Deactivate. */
 public final class PartnerTopicsDeactivateSamples {
     /*
@@ -17,6 +15,8 @@ public final class PartnerTopicsDeactivateSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsDeactivate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().deactivateWithResponse("examplerg", "examplePartnerTopic1", Context.NONE);
+        manager
+            .partnerTopics()
+            .deactivateWithResponse("examplerg", "examplePartnerTopic1", com.azure.core.util.Context.NONE);
     }
 }

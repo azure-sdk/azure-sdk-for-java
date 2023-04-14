@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Channels Get. */
 public final class ChannelsGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class ChannelsGetSamples {
     public static void channelsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .channels()
-            .getWithResponse("examplerg", "examplePartnerNamespaceName1", "exampleChannelName1", Context.NONE);
+            .getWithResponse(
+                "examplerg", "examplePartnerNamespaceName1", "exampleChannelName1", com.azure.core.util.Context.NONE);
     }
 }

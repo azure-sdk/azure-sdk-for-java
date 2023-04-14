@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -35,6 +34,6 @@ public final class DomainEventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

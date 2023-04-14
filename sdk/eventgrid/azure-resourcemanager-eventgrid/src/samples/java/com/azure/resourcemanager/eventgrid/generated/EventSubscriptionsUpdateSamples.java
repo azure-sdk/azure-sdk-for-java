@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.AzureFunctionEventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventHubEventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
@@ -45,7 +44,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -78,7 +77,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -105,7 +104,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -140,7 +139,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -169,7 +168,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -198,7 +197,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -231,7 +230,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -258,7 +257,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -285,7 +284,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -314,7 +313,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -341,6 +340,6 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

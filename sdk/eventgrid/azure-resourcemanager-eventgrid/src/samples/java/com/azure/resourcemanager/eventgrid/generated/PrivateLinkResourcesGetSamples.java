@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
@@ -17,6 +17,13 @@ public final class PrivateLinkResourcesGetSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void privateLinkResourcesGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.privateLinkResources().getWithResponse("examplerg", "topics", "exampletopic1", "topic", Context.NONE);
+        manager
+            .privateLinkResources()
+            .getWithResponse(
+                "examplerg",
+                PrivateEndpointConnectionsParentType.TOPICS,
+                "exampletopic1",
+                "topic",
+                com.azure.core.util.Context.NONE);
     }
 }

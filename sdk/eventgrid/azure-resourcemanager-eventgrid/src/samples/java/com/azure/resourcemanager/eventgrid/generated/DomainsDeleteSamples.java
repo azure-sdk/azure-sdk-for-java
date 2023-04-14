@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Domains Delete. */
 public final class DomainsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class DomainsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().delete("examplerg", "exampledomain1", Context.NONE);
+        manager.domains().delete("examplerg", "exampledomain1", com.azure.core.util.Context.NONE);
     }
 }

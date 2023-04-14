@@ -66,11 +66,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @Host("{$host}")
     @ServiceInterface(name = "EventGridManagementC")
-    private interface PrivateEndpointConnectionsService {
+    public interface PrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
-                + "/{parentType}/{parentName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/{parentType}/{parentName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> get(
@@ -86,8 +85,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
-                + "/{parentType}/{parentName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/{parentType}/{parentName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -104,8 +102,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
-                + "/{parentType}/{parentName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/{parentType}/{parentName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -120,8 +117,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
-                + "/{parentType}/{parentName}/privateEndpointConnections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/{parentType}/{parentName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionListResult>> listByResource(
@@ -148,7 +144,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Get a specific private endpoint connection.
+     *
+     * <p>Get a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -215,7 +213,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Get a specific private endpoint connection.
+     *
+     * <p>Get a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -281,7 +281,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Get a specific private endpoint connection.
+     *
+     * <p>Get a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -306,30 +308,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Get a specific private endpoint connection.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
-     * @param privateEndpointConnectionName The name of the private endpoint connection connection.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific private endpoint connection under a topic, domain, or partner namespace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(
-        String resourceGroupName,
-        PrivateEndpointConnectionsParentType parentType,
-        String parentName,
-        String privateEndpointConnectionName) {
-        return getAsync(resourceGroupName, parentType, parentName, privateEndpointConnectionName).block();
-    }
-
-    /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * <p>Get a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -356,7 +337,35 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Get a specific private endpoint connection.
+     *
+     * <p>Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
+     *     \'partnerNamespaces\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
+     *     namespace name).
+     * @param privateEndpointConnectionName The name of the private endpoint connection connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a specific private endpoint connection under a topic, domain, or partner namespace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner get(
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String privateEndpointConnectionName) {
+        return getWithResponse(resourceGroupName, parentType, parentName, privateEndpointConnectionName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -433,7 +442,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -509,7 +520,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -544,7 +557,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -587,7 +602,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -608,13 +625,16 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         String parentName,
         String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection) {
-        return beginUpdateAsync(
+        return this
+            .beginUpdateAsync(
                 resourceGroupName, parentType, parentName, privateEndpointConnectionName, privateEndpointConnection)
             .getSyncPoller();
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -637,7 +657,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection,
         Context context) {
-        return beginUpdateAsync(
+        return this
+            .beginUpdateAsync(
                 resourceGroupName,
                 parentType,
                 parentName,
@@ -648,7 +669,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -676,7 +699,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -711,7 +736,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -738,7 +765,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic, domain or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -772,7 +801,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -836,7 +867,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -899,7 +932,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -927,7 +962,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -957,7 +994,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -976,12 +1015,15 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         PrivateEndpointConnectionsParentType parentType,
         String parentName,
         String privateEndpointConnectionName) {
-        return beginDeleteAsync(resourceGroupName, parentType, parentName, privateEndpointConnectionName)
+        return this
+            .beginDeleteAsync(resourceGroupName, parentType, parentName, privateEndpointConnectionName)
             .getSyncPoller();
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1002,12 +1044,15 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         String parentName,
         String privateEndpointConnectionName,
         Context context) {
-        return beginDeleteAsync(resourceGroupName, parentType, parentName, privateEndpointConnectionName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, parentType, parentName, privateEndpointConnectionName, context)
             .getSyncPoller();
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1032,7 +1077,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1059,7 +1106,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1081,7 +1130,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1105,7 +1156,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1184,7 +1237,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1262,7 +1317,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1296,7 +1353,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1320,7 +1379,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1356,7 +1417,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1378,7 +1441,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -1415,7 +1480,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1451,7 +1517,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

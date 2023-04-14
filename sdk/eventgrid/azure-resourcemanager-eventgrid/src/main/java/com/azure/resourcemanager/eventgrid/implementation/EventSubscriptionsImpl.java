@@ -32,15 +32,6 @@ public final class EventSubscriptionsImpl implements EventSubscriptions {
         this.serviceManager = serviceManager;
     }
 
-    public EventSubscription get(String scope, String eventSubscriptionName) {
-        EventSubscriptionInner inner = this.serviceClient().get(scope, eventSubscriptionName);
-        if (inner != null) {
-            return new EventSubscriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EventSubscription> getWithResponse(String scope, String eventSubscriptionName, Context context) {
         Response<EventSubscriptionInner> inner =
             this.serviceClient().getWithResponse(scope, eventSubscriptionName, context);
@@ -50,6 +41,15 @@ public final class EventSubscriptionsImpl implements EventSubscriptions {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EventSubscriptionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EventSubscription get(String scope, String eventSubscriptionName) {
+        EventSubscriptionInner inner = this.serviceClient().get(scope, eventSubscriptionName);
+        if (inner != null) {
+            return new EventSubscriptionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -112,15 +112,6 @@ public final class EventSubscriptionsImpl implements EventSubscriptions {
         }
     }
 
-    public EventSubscriptionFullUrl getFullUrl(String scope, String eventSubscriptionName) {
-        EventSubscriptionFullUrlInner inner = this.serviceClient().getFullUrl(scope, eventSubscriptionName);
-        if (inner != null) {
-            return new EventSubscriptionFullUrlImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EventSubscriptionFullUrl> getFullUrlWithResponse(
         String scope, String eventSubscriptionName, Context context) {
         Response<EventSubscriptionFullUrlInner> inner =
@@ -131,6 +122,15 @@ public final class EventSubscriptionsImpl implements EventSubscriptions {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EventSubscriptionFullUrlImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EventSubscriptionFullUrl getFullUrl(String scope, String eventSubscriptionName) {
+        EventSubscriptionFullUrlInner inner = this.serviceClient().getFullUrl(scope, eventSubscriptionName);
+        if (inner != null) {
+            return new EventSubscriptionFullUrlImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -280,16 +280,6 @@ public final class EventSubscriptionsImpl implements EventSubscriptions {
         return Utils.mapPage(inner, inner1 -> new EventSubscriptionImpl(inner1, this.manager()));
     }
 
-    public DeliveryAttributeListResult getDeliveryAttributes(String scope, String eventSubscriptionName) {
-        DeliveryAttributeListResultInner inner =
-            this.serviceClient().getDeliveryAttributes(scope, eventSubscriptionName);
-        if (inner != null) {
-            return new DeliveryAttributeListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(
         String scope, String eventSubscriptionName, Context context) {
         Response<DeliveryAttributeListResultInner> inner =
@@ -300,6 +290,16 @@ public final class EventSubscriptionsImpl implements EventSubscriptions {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new DeliveryAttributeListResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DeliveryAttributeListResult getDeliveryAttributes(String scope, String eventSubscriptionName) {
+        DeliveryAttributeListResultInner inner =
+            this.serviceClient().getDeliveryAttributes(scope, eventSubscriptionName);
+        if (inner != null) {
+            return new DeliveryAttributeListResultImpl(inner, this.manager());
         } else {
             return null;
         }

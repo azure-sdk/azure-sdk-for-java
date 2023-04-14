@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions GetFullUrl. */
 public final class PartnerTopicEventSubscriptionsGetFullUrlSamples {
     /*
@@ -20,6 +18,7 @@ public final class PartnerTopicEventSubscriptionsGetFullUrlSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .getFullUrlWithResponse("examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+            .getFullUrlWithResponse(
+                "examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

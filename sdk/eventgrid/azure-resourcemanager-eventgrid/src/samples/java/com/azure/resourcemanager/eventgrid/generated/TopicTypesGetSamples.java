@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for TopicTypes Get. */
 public final class TopicTypesGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class TopicTypesGetSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicTypesGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicTypes().getWithResponse("Microsoft.Storage.StorageAccounts", Context.NONE);
+        manager.topicTypes().getWithResponse("Microsoft.Storage.StorageAccounts", com.azure.core.util.Context.NONE);
     }
 }

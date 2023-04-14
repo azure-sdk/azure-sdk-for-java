@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.eventgrid.models.ConnectionState;
 import com.azure.resourcemanager.eventgrid.models.PersistedConnectionStatus;
@@ -34,6 +33,6 @@ public final class PrivateEndpointConnectionsUpdateSamples {
                             .withStatus(PersistedConnectionStatus.APPROVED)
                             .withDescription("approving connection")
                             .withActionsRequired("None")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

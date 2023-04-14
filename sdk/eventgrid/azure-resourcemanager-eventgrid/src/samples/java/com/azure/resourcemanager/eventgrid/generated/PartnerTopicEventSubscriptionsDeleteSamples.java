@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions Delete. */
 public final class PartnerTopicEventSubscriptionsDeleteSamples {
     /*
@@ -20,6 +18,6 @@ public final class PartnerTopicEventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .delete("examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+            .delete("examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

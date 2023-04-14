@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VerifiedPartners List. */
 public final class VerifiedPartnersListSamples {
     /*
@@ -17,6 +15,6 @@ public final class VerifiedPartnersListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void verifiedPartnersList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.verifiedPartners().list(null, null, Context.NONE);
+        manager.verifiedPartners().list(null, null, com.azure.core.util.Context.NONE);
     }
 }

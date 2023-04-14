@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerRegistrations List. */
 public final class PartnerRegistrationsListSamples {
     /*
@@ -18,6 +16,6 @@ public final class PartnerRegistrationsListSamples {
      */
     public static void partnerRegistrationsListBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerRegistrations().list(null, null, Context.NONE);
+        manager.partnerRegistrations().list(null, null, com.azure.core.util.Context.NONE);
     }
 }

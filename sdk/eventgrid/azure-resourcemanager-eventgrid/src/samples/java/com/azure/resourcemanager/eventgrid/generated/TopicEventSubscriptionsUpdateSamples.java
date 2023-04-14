@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.EventSubscription;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -24,7 +23,8 @@ public final class TopicEventSubscriptionsUpdateSamples {
         EventSubscription resource =
             manager
                 .topicEventSubscriptions()
-                .getWithResponse("examplerg", "exampleTopic1", "exampleEventSubscriptionName1", Context.NONE)
+                .getWithResponse(
+                    "examplerg", "exampleTopic1", "exampleEventSubscriptionName1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

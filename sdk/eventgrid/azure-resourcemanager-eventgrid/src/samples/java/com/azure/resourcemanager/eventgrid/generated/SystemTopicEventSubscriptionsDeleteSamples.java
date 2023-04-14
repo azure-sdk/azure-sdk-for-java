@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions Delete. */
 public final class SystemTopicEventSubscriptionsDeleteSamples {
     /*
@@ -20,6 +18,6 @@ public final class SystemTopicEventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .systemTopicEventSubscriptions()
-            .delete("examplerg", "exampleSystemTopic1", "examplesubscription1", Context.NONE);
+            .delete("examplerg", "exampleSystemTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

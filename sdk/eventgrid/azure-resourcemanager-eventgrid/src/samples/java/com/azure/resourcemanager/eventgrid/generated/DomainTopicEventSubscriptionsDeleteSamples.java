@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions Delete. */
 public final class DomainTopicEventSubscriptionsDeleteSamples {
     /*
@@ -20,6 +18,11 @@ public final class DomainTopicEventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainTopicEventSubscriptions()
-            .delete("examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+            .delete(
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }

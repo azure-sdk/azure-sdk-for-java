@@ -33,6 +33,10 @@ public final class TopicUpdateParameters {
     @JsonProperty(value = "properties")
     private TopicUpdateParameterProperties innerProperties;
 
+    /** Creates an instance of TopicUpdateParameters class. */
+    public TopicUpdateParameters() {
+    }
+
     /**
      * Get the tags property: Tags of the Topic resource.
      *

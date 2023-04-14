@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerRegistrations GetByResourceGroup. */
 public final class PartnerRegistrationsGetByResourceGroupSamples {
     /*
@@ -19,6 +17,7 @@ public final class PartnerRegistrationsGetByResourceGroupSamples {
     public static void partnerRegistrationsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerRegistrations()
-            .getByResourceGroupWithResponse("examplerg", "examplePartnerRegistrationName1", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE);
     }
 }

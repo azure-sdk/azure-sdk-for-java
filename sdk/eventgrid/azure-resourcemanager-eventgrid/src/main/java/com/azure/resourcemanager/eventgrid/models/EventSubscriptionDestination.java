@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class EventSubscriptionDestination {
+    /** Creates an instance of EventSubscriptionDestination class. */
+    public EventSubscriptionDestination() {
+    }
+
     /**
      * Validates the instance.
      *

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics Delete. */
 public final class DomainTopicsDeleteSamples {
     /*
@@ -17,6 +15,8 @@ public final class DomainTopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().delete("examplerg", "exampledomain1", "exampledomaintopic1", Context.NONE);
+        manager
+            .domainTopics()
+            .delete("examplerg", "exampledomain1", "exampledomaintopic1", com.azure.core.util.Context.NONE);
     }
 }

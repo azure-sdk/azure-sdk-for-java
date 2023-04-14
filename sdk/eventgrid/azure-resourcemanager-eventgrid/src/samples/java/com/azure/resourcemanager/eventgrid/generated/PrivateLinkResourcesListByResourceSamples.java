@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateLinkResources ListByResource. */
 public final class PrivateLinkResourcesListByResourceSamples {
@@ -18,6 +18,14 @@ public final class PrivateLinkResourcesListByResourceSamples {
      */
     public static void privateLinkResourcesListByResource(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.privateLinkResources().listByResource("examplerg", "topics", "exampletopic1", null, null, Context.NONE);
+        manager
+            .privateLinkResources()
+            .listByResource(
+                "examplerg",
+                PrivateEndpointConnectionsParentType.TOPICS,
+                "exampletopic1",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }

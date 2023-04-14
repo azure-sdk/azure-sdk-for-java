@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ExtensionTopics Get. */
 public final class ExtensionTopicsGetSamples {
     /*
@@ -21,6 +19,6 @@ public final class ExtensionTopicsGetSamples {
             .extensionTopics()
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/microsoft.storage/storageaccounts/exampleResourceName/providers/Microsoft.eventgrid/extensionTopics/default",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

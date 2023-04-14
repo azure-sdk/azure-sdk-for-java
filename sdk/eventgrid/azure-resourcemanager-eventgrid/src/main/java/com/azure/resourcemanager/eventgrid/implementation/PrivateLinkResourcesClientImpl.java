@@ -27,6 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.eventgrid.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.eventgrid.fluent.models.PrivateLinkResourceInner;
+import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 import com.azure.resourcemanager.eventgrid.models.PrivateLinkResourcesListResult;
 import reactor.core.publisher.Mono;
 
@@ -56,18 +57,17 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @Host("{$host}")
     @ServiceInterface(name = "EventGridManagementC")
-    private interface PrivateLinkResourcesService {
+    public interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
-                + "/{parentType}/{parentName}/privateLinkResources/{privateLinkResourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/{parentType}/{parentName}/privateLinkResources/{privateLinkResourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("parentType") String parentType,
+            @PathParam("parentType") PrivateEndpointConnectionsParentType parentType,
             @PathParam("parentName") String parentName,
             @PathParam("privateLinkResourceName") String privateLinkResourceName,
             @QueryParam("api-version") String apiVersion,
@@ -76,15 +76,14 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
-                + "/{parentType}/{parentName}/privateLinkResources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/{parentType}/{parentName}/privateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourcesListResult>> listByResource(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("parentType") String parentType,
+            @PathParam("parentType") PrivateEndpointConnectionsParentType parentType,
             @PathParam("parentName") String parentName,
             @QueryParam("api-version") String apiVersion,
             @QueryParam("$filter") String filter,
@@ -104,7 +103,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -120,7 +121,10 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateLinkResourceInner>> getWithResponseAsync(
-        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String privateLinkResourceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -167,7 +171,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -185,7 +191,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateLinkResourceInner>> getWithResponseAsync(
         String resourceGroupName,
-        String parentType,
+        PrivateEndpointConnectionsParentType parentType,
         String parentName,
         String privateLinkResourceName,
         Context context) {
@@ -232,7 +238,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -247,33 +255,18 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateLinkResourceInner> getAsync(
-        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String privateLinkResourceName) {
         return getWithResponseAsync(resourceGroupName, parentType, parentName, privateLinkResourceName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
-     * @param privateLinkResourceName The name of private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a private link resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(
-        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName) {
-        return getAsync(resourceGroupName, parentType, parentName, privateLinkResourceName).block();
-    }
-
-    /**
-     * Get properties of a private link resource.
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -290,7 +283,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName,
-        String parentType,
+        PrivateEndpointConnectionsParentType parentType,
         String parentName,
         String privateLinkResourceName,
         Context context) {
@@ -299,7 +292,35 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
+     *     \'partnerNamespaces\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
+     *     namespace name).
+     * @param privateLinkResourceName The name of private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a private link resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String privateLinkResourceName) {
+        return getWithResponse(resourceGroupName, parentType, parentName, privateLinkResourceName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -322,7 +343,11 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateLinkResourceInner>> listByResourceSinglePageAsync(
-        String resourceGroupName, String parentType, String parentName, String filter, Integer top) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String filter,
+        Integer top) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -374,7 +399,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -398,7 +425,12 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateLinkResourceInner>> listByResourceSinglePageAsync(
-        String resourceGroupName, String parentType, String parentName, String filter, Integer top, Context context) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String filter,
+        Integer top,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -447,7 +479,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -469,14 +503,20 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateLinkResourceInner> listByResourceAsync(
-        String resourceGroupName, String parentType, String parentName, String filter, Integer top) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String filter,
+        Integer top) {
         return new PagedFlux<>(
             () -> listByResourceSinglePageAsync(resourceGroupName, parentType, parentName, filter, top),
             nextLink -> listByResourceNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -490,7 +530,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateLinkResourceInner> listByResourceAsync(
-        String resourceGroupName, String parentType, String parentName) {
+        String resourceGroupName, PrivateEndpointConnectionsParentType parentType, String parentName) {
         final String filter = null;
         final Integer top = null;
         return new PagedFlux<>(
@@ -499,7 +539,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -522,14 +564,21 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateLinkResourceInner> listByResourceAsync(
-        String resourceGroupName, String parentType, String parentName, String filter, Integer top, Context context) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String filter,
+        Integer top,
+        Context context) {
         return new PagedFlux<>(
             () -> listByResourceSinglePageAsync(resourceGroupName, parentType, parentName, filter, top, context),
             nextLink -> listByResourceNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -543,14 +592,16 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateLinkResourceInner> listByResource(
-        String resourceGroupName, String parentType, String parentName) {
+        String resourceGroupName, PrivateEndpointConnectionsParentType parentType, String parentName) {
         final String filter = null;
         final Integer top = null;
         return new PagedIterable<>(listByResourceAsync(resourceGroupName, parentType, parentName, filter, top));
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -573,7 +624,12 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateLinkResourceInner> listByResource(
-        String resourceGroupName, String parentType, String parentName, String filter, Integer top, Context context) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String filter,
+        Integer top,
+        Context context) {
         return new PagedIterable<>(
             listByResourceAsync(resourceGroupName, parentType, parentName, filter, top, context));
     }
@@ -581,7 +637,8 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -617,7 +674,8 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

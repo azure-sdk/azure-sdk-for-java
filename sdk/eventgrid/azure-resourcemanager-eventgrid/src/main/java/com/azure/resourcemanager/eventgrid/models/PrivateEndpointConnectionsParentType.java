@@ -21,6 +21,15 @@ public final class PrivateEndpointConnectionsParentType
     public static final PrivateEndpointConnectionsParentType PARTNER_NAMESPACES = fromString("partnerNamespaces");
 
     /**
+     * Creates a new instance of PrivateEndpointConnectionsParentType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PrivateEndpointConnectionsParentType() {
+    }
+
+    /**
      * Creates or finds a PrivateEndpointConnectionsParentType from its string representation.
      *
      * @param name a name to look for.

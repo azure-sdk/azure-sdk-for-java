@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Topics Delete. */
 public final class TopicsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class TopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().delete("examplerg", "exampletopic1", Context.NONE);
+        manager.topics().delete("examplerg", "exampletopic1", com.azure.core.util.Context.NONE);
     }
 }

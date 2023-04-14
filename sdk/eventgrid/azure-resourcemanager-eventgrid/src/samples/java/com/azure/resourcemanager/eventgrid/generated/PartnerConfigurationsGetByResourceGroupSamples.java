@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerConfigurations GetByResourceGroup. */
 public final class PartnerConfigurationsGetByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class PartnerConfigurationsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerConfigurationsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerConfigurations().getByResourceGroupWithResponse("examplerg", Context.NONE);
+        manager.partnerConfigurations().getByResourceGroupWithResponse("examplerg", com.azure.core.util.Context.NONE);
     }
 }

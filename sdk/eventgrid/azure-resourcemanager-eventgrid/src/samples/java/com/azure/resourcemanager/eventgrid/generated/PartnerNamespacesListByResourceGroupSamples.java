@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces ListByResourceGroup. */
 public final class PartnerNamespacesListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class PartnerNamespacesListByResourceGroupSamples {
      */
     public static void partnerNamespacesListByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerNamespaces().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.partnerNamespaces().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }

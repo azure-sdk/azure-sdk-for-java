@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Domains List. */
 public final class DomainsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class DomainsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsListBySubscription(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().list(null, null, Context.NONE);
+        manager.domains().list(null, null, com.azure.core.util.Context.NONE);
     }
 }

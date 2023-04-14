@@ -333,16 +333,9 @@ public interface Channel {
     Channel refresh(Context context);
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL of a partner destination channel.
-     */
-    EventSubscriptionFullUrl getFullUrl();
-
-    /**
-     * Get the full endpoint URL of a partner destination channel.
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -351,4 +344,15 @@ public interface Channel {
      * @return the full endpoint URL of a partner destination channel along with {@link Response}.
      */
     Response<EventSubscriptionFullUrl> getFullUrlWithResponse(Context context);
+
+    /**
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the full endpoint URL of a partner destination channel.
+     */
+    EventSubscriptionFullUrl getFullUrl();
 }

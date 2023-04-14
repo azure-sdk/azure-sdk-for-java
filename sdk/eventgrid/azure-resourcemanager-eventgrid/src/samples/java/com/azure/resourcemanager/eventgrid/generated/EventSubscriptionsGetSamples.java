@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions Get. */
 public final class EventSubscriptionsGetSamples {
     /*
@@ -23,7 +21,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -41,7 +39,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -59,7 +57,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg",
                 "examplesubscription2",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -77,7 +75,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -93,7 +91,9 @@ public final class EventSubscriptionsGetSamples {
         manager
             .eventSubscriptions()
             .getWithResponse(
-                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4", "examplesubscription3", Context.NONE);
+                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4",
+                "examplesubscription3",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -111,7 +111,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -129,7 +129,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -147,7 +147,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -165,7 +165,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -182,7 +182,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/examplenamespace1",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -200,6 +200,6 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

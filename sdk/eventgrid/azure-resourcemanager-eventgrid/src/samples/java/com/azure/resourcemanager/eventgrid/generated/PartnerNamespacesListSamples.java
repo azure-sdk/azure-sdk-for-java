@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces List. */
 public final class PartnerNamespacesListSamples {
     /*
@@ -18,6 +16,6 @@ public final class PartnerNamespacesListSamples {
      */
     public static void partnerNamespacesListBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerNamespaces().list(null, null, Context.NONE);
+        manager.partnerNamespaces().list(null, null, com.azure.core.util.Context.NONE);
     }
 }

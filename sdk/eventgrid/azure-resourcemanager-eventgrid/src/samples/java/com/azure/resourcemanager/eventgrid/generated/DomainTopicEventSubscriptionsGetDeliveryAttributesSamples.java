@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions GetDeliveryAttributes. */
 public final class DomainTopicEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -21,6 +19,10 @@ public final class DomainTopicEventSubscriptionsGetDeliveryAttributesSamples {
         manager
             .domainTopicEventSubscriptions()
             .getDeliveryAttributesWithResponse(
-                "examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }

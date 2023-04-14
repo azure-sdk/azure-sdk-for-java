@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions Get. */
 public final class SystemTopicEventSubscriptionsGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class SystemTopicEventSubscriptionsGetSamples {
     public static void systemTopicEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .systemTopicEventSubscriptions()
-            .getWithResponse("examplerg", "exampleSystemTopic1", "examplesubscription1", Context.NONE);
+            .getWithResponse(
+                "examplerg", "exampleSystemTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

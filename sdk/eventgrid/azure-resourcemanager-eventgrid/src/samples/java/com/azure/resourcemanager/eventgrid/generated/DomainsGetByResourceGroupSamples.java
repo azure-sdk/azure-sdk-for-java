@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Domains GetByResourceGroup. */
 public final class DomainsGetByResourceGroupSamples {
     /*
@@ -17,6 +15,8 @@ public final class DomainsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().getByResourceGroupWithResponse("examplerg", "exampledomain2", Context.NONE);
+        manager
+            .domains()
+            .getByResourceGroupWithResponse("examplerg", "exampledomain2", com.azure.core.util.Context.NONE);
     }
 }

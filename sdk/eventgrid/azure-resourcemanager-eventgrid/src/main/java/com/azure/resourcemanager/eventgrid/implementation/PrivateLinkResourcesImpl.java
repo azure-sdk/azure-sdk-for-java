@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.eventgrid.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.eventgrid.fluent.models.PrivateLinkResourceInner;
+import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 import com.azure.resourcemanager.eventgrid.models.PrivateLinkResource;
 import com.azure.resourcemanager.eventgrid.models.PrivateLinkResources;
 
@@ -27,20 +28,9 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         this.serviceManager = serviceManager;
     }
 
-    public PrivateLinkResource get(
-        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName) {
-        PrivateLinkResourceInner inner =
-            this.serviceClient().get(resourceGroupName, parentType, parentName, privateLinkResourceName);
-        if (inner != null) {
-            return new PrivateLinkResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PrivateLinkResource> getWithResponse(
         String resourceGroupName,
-        String parentType,
+        PrivateEndpointConnectionsParentType parentType,
         String parentName,
         String privateLinkResourceName,
         Context context) {
@@ -59,15 +49,34 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         }
     }
 
+    public PrivateLinkResource get(
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String privateLinkResourceName) {
+        PrivateLinkResourceInner inner =
+            this.serviceClient().get(resourceGroupName, parentType, parentName, privateLinkResourceName);
+        if (inner != null) {
+            return new PrivateLinkResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PagedIterable<PrivateLinkResource> listByResource(
-        String resourceGroupName, String parentType, String parentName) {
+        String resourceGroupName, PrivateEndpointConnectionsParentType parentType, String parentName) {
         PagedIterable<PrivateLinkResourceInner> inner =
             this.serviceClient().listByResource(resourceGroupName, parentType, parentName);
         return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<PrivateLinkResource> listByResource(
-        String resourceGroupName, String parentType, String parentName, String filter, Integer top, Context context) {
+        String resourceGroupName,
+        PrivateEndpointConnectionsParentType parentType,
+        String parentName,
+        String filter,
+        Integer top,
+        Context context) {
         PagedIterable<PrivateLinkResourceInner> inner =
             this.serviceClient().listByResource(resourceGroupName, parentType, parentName, filter, top, context);
         return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));

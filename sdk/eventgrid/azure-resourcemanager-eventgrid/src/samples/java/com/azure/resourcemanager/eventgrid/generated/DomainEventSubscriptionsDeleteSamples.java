@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions Delete. */
 public final class DomainEventSubscriptionsDeleteSamples {
     /*
@@ -17,6 +15,8 @@ public final class DomainEventSubscriptionsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainEventSubscriptionsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainEventSubscriptions().delete("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+        manager
+            .domainEventSubscriptions()
+            .delete("examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

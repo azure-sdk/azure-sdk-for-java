@@ -212,20 +212,14 @@ public final class PartnerNamespaceImpl
         return this;
     }
 
-    public PartnerNamespaceSharedAccessKeys listSharedAccessKeys() {
-        return serviceManager.partnerNamespaces().listSharedAccessKeys(resourceGroupName, partnerNamespaceName);
-    }
-
     public Response<PartnerNamespaceSharedAccessKeys> listSharedAccessKeysWithResponse(Context context) {
         return serviceManager
             .partnerNamespaces()
             .listSharedAccessKeysWithResponse(resourceGroupName, partnerNamespaceName, context);
     }
 
-    public PartnerNamespaceSharedAccessKeys regenerateKey(PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest) {
-        return serviceManager
-            .partnerNamespaces()
-            .regenerateKey(resourceGroupName, partnerNamespaceName, regenerateKeyRequest);
+    public PartnerNamespaceSharedAccessKeys listSharedAccessKeys() {
+        return serviceManager.partnerNamespaces().listSharedAccessKeys(resourceGroupName, partnerNamespaceName);
     }
 
     public Response<PartnerNamespaceSharedAccessKeys> regenerateKeyWithResponse(
@@ -233,6 +227,12 @@ public final class PartnerNamespaceImpl
         return serviceManager
             .partnerNamespaces()
             .regenerateKeyWithResponse(resourceGroupName, partnerNamespaceName, regenerateKeyRequest, context);
+    }
+
+    public PartnerNamespaceSharedAccessKeys regenerateKey(PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest) {
+        return serviceManager
+            .partnerNamespaces()
+            .regenerateKey(resourceGroupName, partnerNamespaceName, regenerateKeyRequest);
     }
 
     public PartnerNamespaceImpl withRegion(Region location) {

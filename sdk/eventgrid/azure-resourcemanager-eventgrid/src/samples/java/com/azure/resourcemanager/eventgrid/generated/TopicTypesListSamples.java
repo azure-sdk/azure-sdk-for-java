@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for TopicTypes List. */
 public final class TopicTypesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class TopicTypesListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicTypesList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicTypes().list(Context.NONE);
+        manager.topicTypes().list(com.azure.core.util.Context.NONE);
     }
 }

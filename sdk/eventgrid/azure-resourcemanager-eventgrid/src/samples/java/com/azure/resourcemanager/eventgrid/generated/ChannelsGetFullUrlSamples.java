@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Channels GetFullUrl. */
 public final class ChannelsGetFullUrlSamples {
     /*
@@ -17,6 +15,9 @@ public final class ChannelsGetFullUrlSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void channelsGetFullUrl(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.channels().getFullUrlWithResponse("examplerg", "examplenamespace", "examplechannel", Context.NONE);
+        manager
+            .channels()
+            .getFullUrlWithResponse(
+                "examplerg", "examplenamespace", "examplechannel", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions Get. */
 public final class PartnerTopicEventSubscriptionsGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class PartnerTopicEventSubscriptionsGetSamples {
     public static void partnerTopicEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .getWithResponse("examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+            .getWithResponse(
+                "examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

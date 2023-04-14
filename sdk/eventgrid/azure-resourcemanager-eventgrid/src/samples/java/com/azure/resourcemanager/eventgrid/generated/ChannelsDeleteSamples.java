@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Channels Delete. */
 public final class ChannelsDeleteSamples {
     /*
@@ -19,6 +17,10 @@ public final class ChannelsDeleteSamples {
     public static void channelsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .channels()
-            .delete("examplerg", "examplePartnerNamespaceName1", "exampleEventChannelName1", Context.NONE);
+            .delete(
+                "examplerg",
+                "examplePartnerNamespaceName1",
+                "exampleEventChannelName1",
+                com.azure.core.util.Context.NONE);
     }
 }

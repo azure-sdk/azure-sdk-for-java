@@ -21,6 +21,10 @@ public final class StorageQueueEventSubscriptionDestination extends EventSubscri
     @JsonProperty(value = "properties")
     private StorageQueueEventSubscriptionDestinationProperties innerProperties;
 
+    /** Creates an instance of StorageQueueEventSubscriptionDestination class. */
+    public StorageQueueEventSubscriptionDestination() {
+    }
+
     /**
      * Get the innerProperties property: Storage Queue Properties of the event subscription destination.
      *

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopics Delete. */
 public final class SystemTopicsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class SystemTopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void systemTopicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.systemTopics().delete("examplerg", "exampleSystemTopic1", Context.NONE);
+        manager.systemTopics().delete("examplerg", "exampleSystemTopic1", com.azure.core.util.Context.NONE);
     }
 }

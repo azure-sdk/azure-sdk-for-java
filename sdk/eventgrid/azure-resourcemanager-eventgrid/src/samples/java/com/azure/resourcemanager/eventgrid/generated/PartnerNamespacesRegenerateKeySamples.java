@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerNamespaceRegenerateKeyRequest;
 
 /** Samples for PartnerNamespaces RegenerateKey. */
@@ -23,7 +22,7 @@ public final class PartnerNamespacesRegenerateKeySamples {
             .regenerateKeyWithResponse(
                 "examplerg",
                 "examplePartnerNamespaceName1",
-                new PartnerNamespaceRegenerateKeyRequest().withKeyName("key1"),
-                Context.NONE);
+                new PartnerNamespaceRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }

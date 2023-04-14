@@ -39,6 +39,10 @@ public final class DomainInner extends Resource {
     @JsonProperty(value = "identity")
     private IdentityInfo identity;
 
+    /** Creates an instance of DomainInner class. */
+    public DomainInner() {
+    }
+
     /**
      * Get the innerProperties property: Properties of the Event Grid Domain resource.
      *

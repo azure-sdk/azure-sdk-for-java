@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics ListByDomain. */
 public final class DomainTopicsListByDomainSamples {
     /*
@@ -17,6 +15,8 @@ public final class DomainTopicsListByDomainSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsListByDomain(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().listByDomain("examplerg", "exampledomain2", null, null, Context.NONE);
+        manager
+            .domainTopics()
+            .listByDomain("examplerg", "exampledomain2", null, null, com.azure.core.util.Context.NONE);
     }
 }

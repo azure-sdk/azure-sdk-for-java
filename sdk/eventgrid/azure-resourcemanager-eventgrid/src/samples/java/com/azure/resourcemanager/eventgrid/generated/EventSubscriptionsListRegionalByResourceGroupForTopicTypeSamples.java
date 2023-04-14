@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListRegionalByResourceGroupForTopicType. */
 public final class EventSubscriptionsListRegionalByResourceGroupForTopicTypeSamples {
     /*
@@ -21,6 +19,6 @@ public final class EventSubscriptionsListRegionalByResourceGroupForTopicTypeSamp
         manager
             .eventSubscriptions()
             .listRegionalByResourceGroupForTopicType(
-                "examplerg", "westus2", "Microsoft.EventHub.namespaces", null, null, Context.NONE);
+                "examplerg", "westus2", "Microsoft.EventHub.namespaces", null, null, com.azure.core.util.Context.NONE);
     }
 }

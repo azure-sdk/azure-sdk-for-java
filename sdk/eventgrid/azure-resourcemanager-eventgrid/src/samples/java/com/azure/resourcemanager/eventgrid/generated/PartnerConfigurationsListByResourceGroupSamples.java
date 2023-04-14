@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerConfigurations ListByResourceGroup. */
 public final class PartnerConfigurationsListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class PartnerConfigurationsListByResourceGroupSamples {
      */
     public static void partnerConfigurationsListByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerConfigurations().listByResourceGroup("examplerg", Context.NONE);
+        manager.partnerConfigurations().listByResourceGroup("examplerg", com.azure.core.util.Context.NONE);
     }
 }

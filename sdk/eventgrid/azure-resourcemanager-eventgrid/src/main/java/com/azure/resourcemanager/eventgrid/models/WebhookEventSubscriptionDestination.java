@@ -22,6 +22,10 @@ public final class WebhookEventSubscriptionDestination extends EventSubscription
     @JsonProperty(value = "properties")
     private WebhookEventSubscriptionDestinationProperties innerProperties;
 
+    /** Creates an instance of WebhookEventSubscriptionDestination class. */
+    public WebhookEventSubscriptionDestination() {
+    }
+
     /**
      * Get the innerProperties property: WebHook Properties of the event subscription destination.
      *

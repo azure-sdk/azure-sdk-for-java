@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions Get. */
 public final class DomainEventSubscriptionsGetSamples {
     /*
@@ -19,6 +17,6 @@ public final class DomainEventSubscriptionsGetSamples {
     public static void domainEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainEventSubscriptions()
-            .getWithResponse("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+            .getWithResponse("examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

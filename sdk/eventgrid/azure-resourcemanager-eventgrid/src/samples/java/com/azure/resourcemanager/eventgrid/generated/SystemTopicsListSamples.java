@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopics List. */
 public final class SystemTopicsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class SystemTopicsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void systemTopicsListBySubscription(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.systemTopics().list(null, null, Context.NONE);
+        manager.systemTopics().list(null, null, com.azure.core.util.Context.NONE);
     }
 }

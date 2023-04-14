@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions GetDeliveryAttributes. */
 public final class PartnerTopicEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -21,6 +19,6 @@ public final class PartnerTopicEventSubscriptionsGetDeliveryAttributesSamples {
         manager
             .partnerTopicEventSubscriptions()
             .getDeliveryAttributesWithResponse(
-                "examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+                "examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

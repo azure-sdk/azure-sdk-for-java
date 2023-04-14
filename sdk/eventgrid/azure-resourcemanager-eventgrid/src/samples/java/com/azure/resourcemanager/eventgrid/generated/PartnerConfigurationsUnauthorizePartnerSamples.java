@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.Partner;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -29,6 +28,6 @@ public final class PartnerConfigurationsUnauthorizePartnerSamples {
                     .withPartnerRegistrationImmutableId(UUID.fromString("941892bc-f5d0-4d1c-8fb5-477570fc2b71"))
                     .withPartnerName("Contoso.Finance")
                     .withAuthorizationExpirationTimeInUtc(OffsetDateTime.parse("2022-01-28T01:20:55.142Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

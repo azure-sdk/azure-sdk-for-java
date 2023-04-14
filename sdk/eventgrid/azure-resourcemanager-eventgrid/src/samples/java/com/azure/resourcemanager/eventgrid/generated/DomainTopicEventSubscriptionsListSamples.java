@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions List. */
 public final class DomainTopicEventSubscriptionsListSamples {
     /*
@@ -19,6 +17,6 @@ public final class DomainTopicEventSubscriptionsListSamples {
     public static void domainTopicEventSubscriptionsList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainTopicEventSubscriptions()
-            .list("examplerg", "exampleDomain1", "exampleDomainTopic1", null, null, Context.NONE);
+            .list("examplerg", "exampleDomain1", "exampleDomainTopic1", null, null, com.azure.core.util.Context.NONE);
     }
 }

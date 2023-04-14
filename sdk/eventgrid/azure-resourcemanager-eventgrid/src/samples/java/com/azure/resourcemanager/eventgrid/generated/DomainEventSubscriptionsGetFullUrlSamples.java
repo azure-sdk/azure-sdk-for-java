@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions GetFullUrl. */
 public final class DomainEventSubscriptionsGetFullUrlSamples {
     /*
@@ -20,6 +18,7 @@ public final class DomainEventSubscriptionsGetFullUrlSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainEventSubscriptions()
-            .getFullUrlWithResponse("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+            .getFullUrlWithResponse(
+                "examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }

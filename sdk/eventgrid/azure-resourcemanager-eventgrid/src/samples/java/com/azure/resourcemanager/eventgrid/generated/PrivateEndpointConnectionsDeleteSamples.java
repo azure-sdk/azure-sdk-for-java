@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateEndpointConnections Delete. */
@@ -25,6 +24,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
                 PrivateEndpointConnectionsParentType.TOPICS,
                 "exampletopic1",
                 "BMTPE5.8A30D251-4C61-489D-A1AA-B37C4A329B8B",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

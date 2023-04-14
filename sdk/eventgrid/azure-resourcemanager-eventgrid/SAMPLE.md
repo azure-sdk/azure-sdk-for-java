@@ -229,8 +229,6 @@ public final class ChannelsCreateOrUpdateSamples {
 ### Channels_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Channels Delete. */
 public final class ChannelsDeleteSamples {
     /*
@@ -244,7 +242,11 @@ public final class ChannelsDeleteSamples {
     public static void channelsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .channels()
-            .delete("examplerg", "examplePartnerNamespaceName1", "exampleEventChannelName1", Context.NONE);
+            .delete(
+                "examplerg",
+                "examplePartnerNamespaceName1",
+                "exampleEventChannelName1",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -252,8 +254,6 @@ public final class ChannelsDeleteSamples {
 ### Channels_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Channels Get. */
 public final class ChannelsGetSamples {
     /*
@@ -267,7 +267,8 @@ public final class ChannelsGetSamples {
     public static void channelsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .channels()
-            .getWithResponse("examplerg", "examplePartnerNamespaceName1", "exampleChannelName1", Context.NONE);
+            .getWithResponse(
+                "examplerg", "examplePartnerNamespaceName1", "exampleChannelName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -275,8 +276,6 @@ public final class ChannelsGetSamples {
 ### Channels_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Channels GetFullUrl. */
 public final class ChannelsGetFullUrlSamples {
     /*
@@ -288,7 +287,10 @@ public final class ChannelsGetFullUrlSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void channelsGetFullUrl(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.channels().getFullUrlWithResponse("examplerg", "examplenamespace", "examplechannel", Context.NONE);
+        manager
+            .channels()
+            .getFullUrlWithResponse(
+                "examplerg", "examplenamespace", "examplechannel", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -296,8 +298,6 @@ public final class ChannelsGetFullUrlSamples {
 ### Channels_ListByPartnerNamespace
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Channels ListByPartnerNamespace. */
 public final class ChannelsListByPartnerNamespaceSamples {
     /*
@@ -311,7 +311,8 @@ public final class ChannelsListByPartnerNamespaceSamples {
     public static void channelsListByPartnerNamespace(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .channels()
-            .listByPartnerNamespace("examplerg", "examplePartnerNamespaceName1", null, null, Context.NONE);
+            .listByPartnerNamespace(
+                "examplerg", "examplePartnerNamespaceName1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -319,7 +320,6 @@ public final class ChannelsListByPartnerNamespaceSamples {
 ### Channels_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.ChannelUpdateParameters;
 import java.time.OffsetDateTime;
 
@@ -342,7 +342,7 @@ public final class ChannelsUpdateSamples {
                 "exampleChannelName1",
                 new ChannelUpdateParameters()
                     .withExpirationTimeIfNotActivatedUtc(OffsetDateTime.parse("2022-03-23T23:06:11.785Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -350,7 +350,6 @@ public final class ChannelsUpdateSamples {
 ### DomainEventSubscriptions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -381,7 +380,7 @@ public final class DomainEventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -389,8 +388,6 @@ public final class DomainEventSubscriptionsCreateOrUpdateSamples {
 ### DomainEventSubscriptions_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions Delete. */
 public final class DomainEventSubscriptionsDeleteSamples {
     /*
@@ -402,7 +399,9 @@ public final class DomainEventSubscriptionsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainEventSubscriptionsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainEventSubscriptions().delete("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+        manager
+            .domainEventSubscriptions()
+            .delete("examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -410,8 +409,6 @@ public final class DomainEventSubscriptionsDeleteSamples {
 ### DomainEventSubscriptions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions Get. */
 public final class DomainEventSubscriptionsGetSamples {
     /*
@@ -425,7 +422,7 @@ public final class DomainEventSubscriptionsGetSamples {
     public static void domainEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainEventSubscriptions()
-            .getWithResponse("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+            .getWithResponse("examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -433,8 +430,6 @@ public final class DomainEventSubscriptionsGetSamples {
 ### DomainEventSubscriptions_GetDeliveryAttributes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions GetDeliveryAttributes. */
 public final class DomainEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -449,7 +444,8 @@ public final class DomainEventSubscriptionsGetDeliveryAttributesSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainEventSubscriptions()
-            .getDeliveryAttributesWithResponse("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+            .getDeliveryAttributesWithResponse(
+                "examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -457,8 +453,6 @@ public final class DomainEventSubscriptionsGetDeliveryAttributesSamples {
 ### DomainEventSubscriptions_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions GetFullUrl. */
 public final class DomainEventSubscriptionsGetFullUrlSamples {
     /*
@@ -473,7 +467,8 @@ public final class DomainEventSubscriptionsGetFullUrlSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainEventSubscriptions()
-            .getFullUrlWithResponse("examplerg", "exampleDomain1", "examplesubscription1", Context.NONE);
+            .getFullUrlWithResponse(
+                "examplerg", "exampleDomain1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -481,8 +476,6 @@ public final class DomainEventSubscriptionsGetFullUrlSamples {
 ### DomainEventSubscriptions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainEventSubscriptions List. */
 public final class DomainEventSubscriptionsListSamples {
     /*
@@ -494,7 +487,9 @@ public final class DomainEventSubscriptionsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainEventSubscriptionsList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainEventSubscriptions().list("examplerg", "exampleDomain1", null, null, Context.NONE);
+        manager
+            .domainEventSubscriptions()
+            .list("examplerg", "exampleDomain1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -502,7 +497,6 @@ public final class DomainEventSubscriptionsListSamples {
 ### DomainEventSubscriptions_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -534,7 +528,7 @@ public final class DomainEventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -542,7 +536,6 @@ public final class DomainEventSubscriptionsUpdateSamples {
 ### DomainTopicEventSubscriptions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -574,7 +567,7 @@ public final class DomainTopicEventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -582,8 +575,6 @@ public final class DomainTopicEventSubscriptionsCreateOrUpdateSamples {
 ### DomainTopicEventSubscriptions_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions Delete. */
 public final class DomainTopicEventSubscriptionsDeleteSamples {
     /*
@@ -598,7 +589,12 @@ public final class DomainTopicEventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainTopicEventSubscriptions()
-            .delete("examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+            .delete(
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -606,8 +602,6 @@ public final class DomainTopicEventSubscriptionsDeleteSamples {
 ### DomainTopicEventSubscriptions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions Get. */
 public final class DomainTopicEventSubscriptionsGetSamples {
     /*
@@ -622,7 +616,11 @@ public final class DomainTopicEventSubscriptionsGetSamples {
         manager
             .domainTopicEventSubscriptions()
             .getWithResponse(
-                "examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -630,8 +628,6 @@ public final class DomainTopicEventSubscriptionsGetSamples {
 ### DomainTopicEventSubscriptions_GetDeliveryAttributes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions GetDeliveryAttributes. */
 public final class DomainTopicEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -647,7 +643,11 @@ public final class DomainTopicEventSubscriptionsGetDeliveryAttributesSamples {
         manager
             .domainTopicEventSubscriptions()
             .getDeliveryAttributesWithResponse(
-                "examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -655,8 +655,6 @@ public final class DomainTopicEventSubscriptionsGetDeliveryAttributesSamples {
 ### DomainTopicEventSubscriptions_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions GetFullUrl. */
 public final class DomainTopicEventSubscriptionsGetFullUrlSamples {
     /*
@@ -672,7 +670,11 @@ public final class DomainTopicEventSubscriptionsGetFullUrlSamples {
         manager
             .domainTopicEventSubscriptions()
             .getFullUrlWithResponse(
-                "examplerg", "exampleDomain1", "exampleDomainTopic1", "examplesubscription1", Context.NONE);
+                "examplerg",
+                "exampleDomain1",
+                "exampleDomainTopic1",
+                "examplesubscription1",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -680,8 +682,6 @@ public final class DomainTopicEventSubscriptionsGetFullUrlSamples {
 ### DomainTopicEventSubscriptions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopicEventSubscriptions List. */
 public final class DomainTopicEventSubscriptionsListSamples {
     /*
@@ -695,7 +695,7 @@ public final class DomainTopicEventSubscriptionsListSamples {
     public static void domainTopicEventSubscriptionsList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainTopicEventSubscriptions()
-            .list("examplerg", "exampleDomain1", "exampleDomainTopic1", null, null, Context.NONE);
+            .list("examplerg", "exampleDomain1", "exampleDomainTopic1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -703,7 +703,6 @@ public final class DomainTopicEventSubscriptionsListSamples {
 ### DomainTopicEventSubscriptions_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -737,7 +736,7 @@ public final class DomainTopicEventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -745,8 +744,6 @@ public final class DomainTopicEventSubscriptionsUpdateSamples {
 ### DomainTopics_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics CreateOrUpdate. */
 public final class DomainTopicsCreateOrUpdateSamples {
     /*
@@ -758,7 +755,9 @@ public final class DomainTopicsCreateOrUpdateSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsCreateOrUpdate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().createOrUpdate("examplerg", "exampledomain1", "exampledomaintopic1", Context.NONE);
+        manager
+            .domainTopics()
+            .createOrUpdate("examplerg", "exampledomain1", "exampledomaintopic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -766,8 +765,6 @@ public final class DomainTopicsCreateOrUpdateSamples {
 ### DomainTopics_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics Delete. */
 public final class DomainTopicsDeleteSamples {
     /*
@@ -779,7 +776,9 @@ public final class DomainTopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().delete("examplerg", "exampledomain1", "exampledomaintopic1", Context.NONE);
+        manager
+            .domainTopics()
+            .delete("examplerg", "exampledomain1", "exampledomaintopic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -787,8 +786,6 @@ public final class DomainTopicsDeleteSamples {
 ### DomainTopics_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics Get. */
 public final class DomainTopicsGetSamples {
     /*
@@ -800,7 +797,9 @@ public final class DomainTopicsGetSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().getWithResponse("examplerg", "exampledomain2", "topic1", Context.NONE);
+        manager
+            .domainTopics()
+            .getWithResponse("examplerg", "exampledomain2", "topic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -808,8 +807,6 @@ public final class DomainTopicsGetSamples {
 ### DomainTopics_ListByDomain
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DomainTopics ListByDomain. */
 public final class DomainTopicsListByDomainSamples {
     /*
@@ -821,7 +818,9 @@ public final class DomainTopicsListByDomainSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainTopicsListByDomain(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domainTopics().listByDomain("examplerg", "exampledomain2", null, null, Context.NONE);
+        manager
+            .domainTopics()
+            .listByDomain("examplerg", "exampledomain2", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -878,8 +877,6 @@ public final class DomainsCreateOrUpdateSamples {
 ### Domains_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Domains Delete. */
 public final class DomainsDeleteSamples {
     /*
@@ -891,7 +888,7 @@ public final class DomainsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().delete("examplerg", "exampledomain1", Context.NONE);
+        manager.domains().delete("examplerg", "exampledomain1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -899,8 +896,6 @@ public final class DomainsDeleteSamples {
 ### Domains_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Domains GetByResourceGroup. */
 public final class DomainsGetByResourceGroupSamples {
     /*
@@ -912,7 +907,9 @@ public final class DomainsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().getByResourceGroupWithResponse("examplerg", "exampledomain2", Context.NONE);
+        manager
+            .domains()
+            .getByResourceGroupWithResponse("examplerg", "exampledomain2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -920,8 +917,6 @@ public final class DomainsGetByResourceGroupSamples {
 ### Domains_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Domains List. */
 public final class DomainsListSamples {
     /*
@@ -933,7 +928,7 @@ public final class DomainsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsListBySubscription(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().list(null, null, Context.NONE);
+        manager.domains().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -941,8 +936,6 @@ public final class DomainsListSamples {
 ### Domains_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Domains ListByResourceGroup. */
 public final class DomainsListByResourceGroupSamples {
     /*
@@ -954,7 +947,7 @@ public final class DomainsListByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsListByResourceGroup(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.domains().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -962,8 +955,6 @@ public final class DomainsListByResourceGroupSamples {
 ### Domains_ListSharedAccessKeys
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Domains ListSharedAccessKeys. */
 public final class DomainsListSharedAccessKeysSamples {
     /*
@@ -975,7 +966,9 @@ public final class DomainsListSharedAccessKeysSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void domainsListSharedAccessKeys(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.domains().listSharedAccessKeysWithResponse("examplerg", "exampledomain2", Context.NONE);
+        manager
+            .domains()
+            .listSharedAccessKeysWithResponse("examplerg", "exampledomain2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -983,7 +976,6 @@ public final class DomainsListSharedAccessKeysSamples {
 ### Domains_RegenerateKey
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.DomainRegenerateKeyRequest;
 
 /** Samples for Domains RegenerateKey. */
@@ -1000,7 +992,10 @@ public final class DomainsRegenerateKeySamples {
         manager
             .domains()
             .regenerateKeyWithResponse(
-                "examplerg", "exampledomain2", new DomainRegenerateKeyRequest().withKeyName("key1"), Context.NONE);
+                "examplerg",
+                "exampledomain2",
+                new DomainRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1008,7 +1003,6 @@ public final class DomainsRegenerateKeySamples {
 ### Domains_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.Domain;
 import com.azure.resourcemanager.eventgrid.models.InboundIpRule;
 import com.azure.resourcemanager.eventgrid.models.IpActionType;
@@ -1029,7 +1023,10 @@ public final class DomainsUpdateSamples {
      */
     public static void domainsUpdate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         Domain resource =
-            manager.domains().getByResourceGroupWithResponse("examplerg", "exampledomain1", Context.NONE).getValue();
+            manager
+                .domains()
+                .getByResourceGroupWithResponse("examplerg", "exampledomain1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
@@ -1058,7 +1055,6 @@ public final class DomainsUpdateSamples {
 ### EventSubscriptions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.AzureFunctionEventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventHubEventSubscriptionDestination;
@@ -1097,7 +1093,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1119,7 +1115,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                     .withDestination(
                         new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
                     .withFilter(new EventSubscriptionFilter().withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1152,7 +1148,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1178,7 +1174,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1206,7 +1202,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1232,7 +1228,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1265,7 +1261,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1299,7 +1295,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1332,7 +1328,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1365,7 +1361,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1398,7 +1394,7 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1406,8 +1402,6 @@ public final class EventSubscriptionsCreateOrUpdateSamples {
 ### EventSubscriptions_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions Delete. */
 public final class EventSubscriptionsDeleteSamples {
     /*
@@ -1425,7 +1419,7 @@ public final class EventSubscriptionsDeleteSamples {
             .delete(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1443,7 +1437,7 @@ public final class EventSubscriptionsDeleteSamples {
             .delete(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg",
                 "examplesubscription2",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1458,7 +1452,10 @@ public final class EventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .eventSubscriptions()
-            .delete("subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4", "examplesubscription3", Context.NONE);
+            .delete(
+                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4",
+                "examplesubscription3",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1476,7 +1473,7 @@ public final class EventSubscriptionsDeleteSamples {
             .delete(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/examplenamespace1",
                 "examplesubscription10",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1484,8 +1481,6 @@ public final class EventSubscriptionsDeleteSamples {
 ### EventSubscriptions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions Get. */
 public final class EventSubscriptionsGetSamples {
     /*
@@ -1503,7 +1498,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1521,7 +1516,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1539,7 +1534,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg",
                 "examplesubscription2",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1557,7 +1552,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1573,7 +1568,9 @@ public final class EventSubscriptionsGetSamples {
         manager
             .eventSubscriptions()
             .getWithResponse(
-                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4", "examplesubscription3", Context.NONE);
+                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4",
+                "examplesubscription3",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1591,7 +1588,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1609,7 +1606,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1627,7 +1624,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1645,7 +1642,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1662,7 +1659,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/examplenamespace1",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1680,7 +1677,7 @@ public final class EventSubscriptionsGetSamples {
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1688,8 +1685,6 @@ public final class EventSubscriptionsGetSamples {
 ### EventSubscriptions_GetDeliveryAttributes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions GetDeliveryAttributes. */
 public final class EventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -1704,7 +1699,8 @@ public final class EventSubscriptionsGetDeliveryAttributesSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .eventSubscriptions()
-            .getDeliveryAttributesWithResponse("aaaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaa", Context.NONE);
+            .getDeliveryAttributesWithResponse(
+                "aaaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaa", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1712,8 +1708,6 @@ public final class EventSubscriptionsGetDeliveryAttributesSamples {
 ### EventSubscriptions_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions GetFullUrl. */
 public final class EventSubscriptionsGetFullUrlSamples {
     /*
@@ -1731,7 +1725,7 @@ public final class EventSubscriptionsGetFullUrlSamples {
             .getFullUrlWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/examplenamespace1",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1749,7 +1743,7 @@ public final class EventSubscriptionsGetFullUrlSamples {
             .getFullUrlWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg",
                 "examplesubscription2",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1765,7 +1759,9 @@ public final class EventSubscriptionsGetFullUrlSamples {
         manager
             .eventSubscriptions()
             .getFullUrlWithResponse(
-                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4", "examplesubscription3", Context.NONE);
+                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4",
+                "examplesubscription3",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1783,7 +1779,7 @@ public final class EventSubscriptionsGetFullUrlSamples {
             .getFullUrlWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1791,8 +1787,6 @@ public final class EventSubscriptionsGetFullUrlSamples {
 ### EventSubscriptions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions List. */
 public final class EventSubscriptionsListSamples {
     /*
@@ -1805,7 +1799,7 @@ public final class EventSubscriptionsListSamples {
      */
     public static void eventSubscriptionsListGlobalBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().list(null, null, Context.NONE);
+        manager.eventSubscriptions().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1813,8 +1807,6 @@ public final class EventSubscriptionsListSamples {
 ### EventSubscriptions_ListByDomainTopic
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListByDomainTopic. */
 public final class EventSubscriptionsListByDomainTopicSamples {
     /*
@@ -1827,7 +1819,9 @@ public final class EventSubscriptionsListByDomainTopicSamples {
      */
     public static void eventSubscriptionsListByDomainTopic(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().listByDomainTopic("examplerg", "domain1", "topic1", null, null, Context.NONE);
+        manager
+            .eventSubscriptions()
+            .listByDomainTopic("examplerg", "domain1", "topic1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1835,8 +1829,6 @@ public final class EventSubscriptionsListByDomainTopicSamples {
 ### EventSubscriptions_ListByResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListByResource. */
 public final class EventSubscriptionsListByResourceSamples {
     /*
@@ -1850,7 +1842,14 @@ public final class EventSubscriptionsListByResourceSamples {
     public static void eventSubscriptionsListByResource(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .eventSubscriptions()
-            .listByResource("examplerg", "Microsoft.EventGrid", "topics", "exampletopic2", null, null, Context.NONE);
+            .listByResource(
+                "examplerg",
+                "Microsoft.EventGrid",
+                "topics",
+                "exampletopic2",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1858,8 +1857,6 @@ public final class EventSubscriptionsListByResourceSamples {
 ### EventSubscriptions_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListByResourceGroup. */
 public final class EventSubscriptionsListByResourceGroupSamples {
     /*
@@ -1872,7 +1869,7 @@ public final class EventSubscriptionsListByResourceGroupSamples {
      */
     public static void eventSubscriptionsListGlobalByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.eventSubscriptions().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1880,8 +1877,6 @@ public final class EventSubscriptionsListByResourceGroupSamples {
 ### EventSubscriptions_ListGlobalByResourceGroupForTopicType
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListGlobalByResourceGroupForTopicType. */
 public final class EventSubscriptionsListGlobalByResourceGroupForTopicTypeSamples {
     /*
@@ -1897,7 +1892,7 @@ public final class EventSubscriptionsListGlobalByResourceGroupForTopicTypeSample
         manager
             .eventSubscriptions()
             .listGlobalByResourceGroupForTopicType(
-                "examplerg", "Microsoft.Resources.ResourceGroups", null, null, Context.NONE);
+                "examplerg", "Microsoft.Resources.ResourceGroups", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1905,8 +1900,6 @@ public final class EventSubscriptionsListGlobalByResourceGroupForTopicTypeSample
 ### EventSubscriptions_ListGlobalBySubscriptionForTopicType
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListGlobalBySubscriptionForTopicType. */
 public final class EventSubscriptionsListGlobalBySubscriptionForTopicTypeSamples {
     /*
@@ -1921,7 +1914,8 @@ public final class EventSubscriptionsListGlobalBySubscriptionForTopicTypeSamples
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .eventSubscriptions()
-            .listGlobalBySubscriptionForTopicType("Microsoft.Resources.Subscriptions", null, null, Context.NONE);
+            .listGlobalBySubscriptionForTopicType(
+                "Microsoft.Resources.Subscriptions", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1929,8 +1923,6 @@ public final class EventSubscriptionsListGlobalBySubscriptionForTopicTypeSamples
 ### EventSubscriptions_ListRegionalByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListRegionalByResourceGroup. */
 public final class EventSubscriptionsListRegionalByResourceGroupSamples {
     /*
@@ -1943,7 +1935,9 @@ public final class EventSubscriptionsListRegionalByResourceGroupSamples {
      */
     public static void eventSubscriptionsListRegionalByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().listRegionalByResourceGroup("examplerg", "westus2", null, null, Context.NONE);
+        manager
+            .eventSubscriptions()
+            .listRegionalByResourceGroup("examplerg", "westus2", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1951,8 +1945,6 @@ public final class EventSubscriptionsListRegionalByResourceGroupSamples {
 ### EventSubscriptions_ListRegionalByResourceGroupForTopicType
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListRegionalByResourceGroupForTopicType. */
 public final class EventSubscriptionsListRegionalByResourceGroupForTopicTypeSamples {
     /*
@@ -1968,7 +1960,7 @@ public final class EventSubscriptionsListRegionalByResourceGroupForTopicTypeSamp
         manager
             .eventSubscriptions()
             .listRegionalByResourceGroupForTopicType(
-                "examplerg", "westus2", "Microsoft.EventHub.namespaces", null, null, Context.NONE);
+                "examplerg", "westus2", "Microsoft.EventHub.namespaces", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1976,8 +1968,6 @@ public final class EventSubscriptionsListRegionalByResourceGroupForTopicTypeSamp
 ### EventSubscriptions_ListRegionalBySubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListRegionalBySubscription. */
 public final class EventSubscriptionsListRegionalBySubscriptionSamples {
     /*
@@ -1990,7 +1980,9 @@ public final class EventSubscriptionsListRegionalBySubscriptionSamples {
      */
     public static void eventSubscriptionsListRegionalBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().listRegionalBySubscription("westus2", null, null, Context.NONE);
+        manager
+            .eventSubscriptions()
+            .listRegionalBySubscription("westus2", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1998,8 +1990,6 @@ public final class EventSubscriptionsListRegionalBySubscriptionSamples {
 ### EventSubscriptions_ListRegionalBySubscriptionForTopicType
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListRegionalBySubscriptionForTopicType. */
 public final class EventSubscriptionsListRegionalBySubscriptionForTopicTypeSamples {
     /*
@@ -2015,7 +2005,7 @@ public final class EventSubscriptionsListRegionalBySubscriptionForTopicTypeSampl
         manager
             .eventSubscriptions()
             .listRegionalBySubscriptionForTopicType(
-                "westus2", "Microsoft.EventHub.namespaces", null, null, Context.NONE);
+                "westus2", "Microsoft.EventHub.namespaces", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2023,7 +2013,6 @@ public final class EventSubscriptionsListRegionalBySubscriptionForTopicTypeSampl
 ### EventSubscriptions_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.AzureFunctionEventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventHubEventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
@@ -2064,7 +2053,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2097,7 +2086,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2124,7 +2113,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2159,7 +2148,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2188,7 +2177,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2217,7 +2206,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2250,7 +2239,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withResourceId(
                                 "/subscriptions/55f3dcd4-cac7-43b4-990b-a139d62a1eb2/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/contosostg")
                             .withBlobContainerName("contosocontainer")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2277,7 +2266,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2304,7 +2293,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2333,7 +2322,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2360,7 +2349,7 @@ public final class EventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2368,8 +2357,6 @@ public final class EventSubscriptionsUpdateSamples {
 ### ExtensionTopics_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for ExtensionTopics Get. */
 public final class ExtensionTopicsGetSamples {
     /*
@@ -2385,7 +2372,7 @@ public final class ExtensionTopicsGetSamples {
             .extensionTopics()
             .getWithResponse(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/microsoft.storage/storageaccounts/exampleResourceName/providers/Microsoft.eventgrid/extensionTopics/default",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2393,8 +2380,6 @@ public final class ExtensionTopicsGetSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -2406,7 +2391,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void operationsList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2414,7 +2399,6 @@ public final class OperationsListSamples {
 ### PartnerConfigurations_AuthorizePartner
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.Partner;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -2439,7 +2423,7 @@ public final class PartnerConfigurationsAuthorizePartnerSamples {
                     .withPartnerRegistrationImmutableId(UUID.fromString("941892bc-f5d0-4d1c-8fb5-477570fc2b71"))
                     .withPartnerName("Contoso.Finance")
                     .withAuthorizationExpirationTimeInUtc(OffsetDateTime.parse("2022-01-28T01:20:55.142Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2447,7 +2431,6 @@ public final class PartnerConfigurationsAuthorizePartnerSamples {
 ### PartnerConfigurations_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.PartnerConfigurationInner;
 import com.azure.resourcemanager.eventgrid.models.Partner;
 import com.azure.resourcemanager.eventgrid.models.PartnerAuthorization;
@@ -2490,7 +2473,7 @@ public final class PartnerConfigurationsCreateOrUpdateSamples {
                                             .withPartnerName("fabrikam.HR")
                                             .withAuthorizationExpirationTimeInUtc(
                                                 OffsetDateTime.parse("2022-02-20T01:00:00.142Z"))))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2498,8 +2481,6 @@ public final class PartnerConfigurationsCreateOrUpdateSamples {
 ### PartnerConfigurations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerConfigurations Delete. */
 public final class PartnerConfigurationsDeleteSamples {
     /*
@@ -2511,7 +2492,7 @@ public final class PartnerConfigurationsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerConfigurationsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerConfigurations().delete("examplerg", Context.NONE);
+        manager.partnerConfigurations().delete("examplerg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2519,8 +2500,6 @@ public final class PartnerConfigurationsDeleteSamples {
 ### PartnerConfigurations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerConfigurations GetByResourceGroup. */
 public final class PartnerConfigurationsGetByResourceGroupSamples {
     /*
@@ -2532,7 +2511,7 @@ public final class PartnerConfigurationsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerConfigurationsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerConfigurations().getByResourceGroupWithResponse("examplerg", Context.NONE);
+        manager.partnerConfigurations().getByResourceGroupWithResponse("examplerg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2540,8 +2519,6 @@ public final class PartnerConfigurationsGetByResourceGroupSamples {
 ### PartnerConfigurations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerConfigurations List. */
 public final class PartnerConfigurationsListSamples {
     /*
@@ -2554,7 +2531,7 @@ public final class PartnerConfigurationsListSamples {
      */
     public static void partnerConfigurationsListBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerConfigurations().list(null, null, Context.NONE);
+        manager.partnerConfigurations().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2562,8 +2539,6 @@ public final class PartnerConfigurationsListSamples {
 ### PartnerConfigurations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerConfigurations ListByResourceGroup. */
 public final class PartnerConfigurationsListByResourceGroupSamples {
     /*
@@ -2576,7 +2551,7 @@ public final class PartnerConfigurationsListByResourceGroupSamples {
      */
     public static void partnerConfigurationsListByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerConfigurations().listByResourceGroup("examplerg", Context.NONE);
+        manager.partnerConfigurations().listByResourceGroup("examplerg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2584,7 +2559,6 @@ public final class PartnerConfigurationsListByResourceGroupSamples {
 ### PartnerConfigurations_UnauthorizePartner
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.Partner;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -2609,7 +2583,7 @@ public final class PartnerConfigurationsUnauthorizePartnerSamples {
                     .withPartnerRegistrationImmutableId(UUID.fromString("941892bc-f5d0-4d1c-8fb5-477570fc2b71"))
                     .withPartnerName("Contoso.Finance")
                     .withAuthorizationExpirationTimeInUtc(OffsetDateTime.parse("2022-01-28T01:20:55.142Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2617,7 +2591,6 @@ public final class PartnerConfigurationsUnauthorizePartnerSamples {
 ### PartnerConfigurations_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerConfigurationUpdateParameters;
 import java.util.HashMap;
 import java.util.Map;
@@ -2640,7 +2613,7 @@ public final class PartnerConfigurationsUpdateSamples {
                 new PartnerConfigurationUpdateParameters()
                     .withTags(mapOf("tag1", "value11", "tag2", "value22"))
                     .withDefaultMaximumExpirationTimeInDays(100),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
@@ -2700,8 +2673,6 @@ public final class PartnerNamespacesCreateOrUpdateSamples {
 ### PartnerNamespaces_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces Delete. */
 public final class PartnerNamespacesDeleteSamples {
     /*
@@ -2713,7 +2684,9 @@ public final class PartnerNamespacesDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerNamespacesDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerNamespaces().delete("examplerg", "examplePartnerNamespaceName1", Context.NONE);
+        manager
+            .partnerNamespaces()
+            .delete("examplerg", "examplePartnerNamespaceName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2721,8 +2694,6 @@ public final class PartnerNamespacesDeleteSamples {
 ### PartnerNamespaces_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces GetByResourceGroup. */
 public final class PartnerNamespacesGetByResourceGroupSamples {
     /*
@@ -2736,7 +2707,8 @@ public final class PartnerNamespacesGetByResourceGroupSamples {
     public static void partnerNamespacesGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerNamespaces()
-            .getByResourceGroupWithResponse("examplerg", "examplePartnerNamespaceName1", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "examplerg", "examplePartnerNamespaceName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2744,8 +2716,6 @@ public final class PartnerNamespacesGetByResourceGroupSamples {
 ### PartnerNamespaces_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces List. */
 public final class PartnerNamespacesListSamples {
     /*
@@ -2758,7 +2728,7 @@ public final class PartnerNamespacesListSamples {
      */
     public static void partnerNamespacesListBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerNamespaces().list(null, null, Context.NONE);
+        manager.partnerNamespaces().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2766,8 +2736,6 @@ public final class PartnerNamespacesListSamples {
 ### PartnerNamespaces_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces ListByResourceGroup. */
 public final class PartnerNamespacesListByResourceGroupSamples {
     /*
@@ -2780,7 +2748,7 @@ public final class PartnerNamespacesListByResourceGroupSamples {
      */
     public static void partnerNamespacesListByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerNamespaces().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.partnerNamespaces().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2788,8 +2756,6 @@ public final class PartnerNamespacesListByResourceGroupSamples {
 ### PartnerNamespaces_ListSharedAccessKeys
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces ListSharedAccessKeys. */
 public final class PartnerNamespacesListSharedAccessKeysSamples {
     /*
@@ -2804,7 +2770,8 @@ public final class PartnerNamespacesListSharedAccessKeysSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerNamespaces()
-            .listSharedAccessKeysWithResponse("examplerg", "examplePartnerNamespaceName1", Context.NONE);
+            .listSharedAccessKeysWithResponse(
+                "examplerg", "examplePartnerNamespaceName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2812,7 +2779,6 @@ public final class PartnerNamespacesListSharedAccessKeysSamples {
 ### PartnerNamespaces_RegenerateKey
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerNamespaceRegenerateKeyRequest;
 
 /** Samples for PartnerNamespaces RegenerateKey. */
@@ -2831,8 +2797,8 @@ public final class PartnerNamespacesRegenerateKeySamples {
             .regenerateKeyWithResponse(
                 "examplerg",
                 "examplePartnerNamespaceName1",
-                new PartnerNamespaceRegenerateKeyRequest().withKeyName("key1"),
-                Context.NONE);
+                new PartnerNamespaceRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2840,7 +2806,6 @@ public final class PartnerNamespacesRegenerateKeySamples {
 ### PartnerNamespaces_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerNamespace;
 import java.util.HashMap;
 import java.util.Map;
@@ -2859,7 +2824,8 @@ public final class PartnerNamespacesUpdateSamples {
         PartnerNamespace resource =
             manager
                 .partnerNamespaces()
-                .getByResourceGroupWithResponse("examplerg", "examplePartnerNamespaceName1", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "examplerg", "examplePartnerNamespaceName1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
@@ -2920,8 +2886,6 @@ public final class PartnerRegistrationsCreateOrUpdateSamples {
 ### PartnerRegistrations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerRegistrations Delete. */
 public final class PartnerRegistrationsDeleteSamples {
     /*
@@ -2933,7 +2897,9 @@ public final class PartnerRegistrationsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerRegistrationsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerRegistrations().delete("examplerg", "examplePartnerRegistrationName1", Context.NONE);
+        manager
+            .partnerRegistrations()
+            .delete("examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2941,8 +2907,6 @@ public final class PartnerRegistrationsDeleteSamples {
 ### PartnerRegistrations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerRegistrations GetByResourceGroup. */
 public final class PartnerRegistrationsGetByResourceGroupSamples {
     /*
@@ -2956,7 +2920,8 @@ public final class PartnerRegistrationsGetByResourceGroupSamples {
     public static void partnerRegistrationsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerRegistrations()
-            .getByResourceGroupWithResponse("examplerg", "examplePartnerRegistrationName1", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2964,8 +2929,6 @@ public final class PartnerRegistrationsGetByResourceGroupSamples {
 ### PartnerRegistrations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerRegistrations List. */
 public final class PartnerRegistrationsListSamples {
     /*
@@ -2978,7 +2941,7 @@ public final class PartnerRegistrationsListSamples {
      */
     public static void partnerRegistrationsListBySubscription(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerRegistrations().list(null, null, Context.NONE);
+        manager.partnerRegistrations().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2986,8 +2949,6 @@ public final class PartnerRegistrationsListSamples {
 ### PartnerRegistrations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerRegistrations ListByResourceGroup. */
 public final class PartnerRegistrationsListByResourceGroupSamples {
     /*
@@ -3000,7 +2961,7 @@ public final class PartnerRegistrationsListByResourceGroupSamples {
      */
     public static void partnerRegistrationsListByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerRegistrations().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.partnerRegistrations().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3008,7 +2969,6 @@ public final class PartnerRegistrationsListByResourceGroupSamples {
 ### PartnerRegistrations_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerRegistration;
 import java.util.HashMap;
 import java.util.Map;
@@ -3027,7 +2987,8 @@ public final class PartnerRegistrationsUpdateSamples {
         PartnerRegistration resource =
             manager
                 .partnerRegistrations()
-                .getByResourceGroupWithResponse("examplerg", "examplePartnerRegistrationName1", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -3048,7 +3009,6 @@ public final class PartnerRegistrationsUpdateSamples {
 ### PartnerTopicEventSubscriptions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -3079,7 +3039,7 @@ public final class PartnerTopicEventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3087,8 +3047,6 @@ public final class PartnerTopicEventSubscriptionsCreateOrUpdateSamples {
 ### PartnerTopicEventSubscriptions_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions Delete. */
 public final class PartnerTopicEventSubscriptionsDeleteSamples {
     /*
@@ -3103,7 +3061,7 @@ public final class PartnerTopicEventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .delete("examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+            .delete("examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3111,8 +3069,6 @@ public final class PartnerTopicEventSubscriptionsDeleteSamples {
 ### PartnerTopicEventSubscriptions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions Get. */
 public final class PartnerTopicEventSubscriptionsGetSamples {
     /*
@@ -3126,7 +3082,8 @@ public final class PartnerTopicEventSubscriptionsGetSamples {
     public static void partnerTopicEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .getWithResponse("examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+            .getWithResponse(
+                "examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3134,8 +3091,6 @@ public final class PartnerTopicEventSubscriptionsGetSamples {
 ### PartnerTopicEventSubscriptions_GetDeliveryAttributes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions GetDeliveryAttributes. */
 public final class PartnerTopicEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -3151,7 +3106,7 @@ public final class PartnerTopicEventSubscriptionsGetDeliveryAttributesSamples {
         manager
             .partnerTopicEventSubscriptions()
             .getDeliveryAttributesWithResponse(
-                "examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+                "examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3159,8 +3114,6 @@ public final class PartnerTopicEventSubscriptionsGetDeliveryAttributesSamples {
 ### PartnerTopicEventSubscriptions_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions GetFullUrl. */
 public final class PartnerTopicEventSubscriptionsGetFullUrlSamples {
     /*
@@ -3175,7 +3128,8 @@ public final class PartnerTopicEventSubscriptionsGetFullUrlSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .getFullUrlWithResponse("examplerg", "examplePartnerTopic1", "examplesubscription1", Context.NONE);
+            .getFullUrlWithResponse(
+                "examplerg", "examplePartnerTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3183,8 +3137,6 @@ public final class PartnerTopicEventSubscriptionsGetFullUrlSamples {
 ### PartnerTopicEventSubscriptions_ListByPartnerTopic
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopicEventSubscriptions ListByPartnerTopic. */
 public final class PartnerTopicEventSubscriptionsListByPartnerTopicSamples {
     /*
@@ -3199,7 +3151,7 @@ public final class PartnerTopicEventSubscriptionsListByPartnerTopicSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerTopicEventSubscriptions()
-            .listByPartnerTopic("examplerg", "examplePartnerTopic1", null, null, Context.NONE);
+            .listByPartnerTopic("examplerg", "examplePartnerTopic1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3207,7 +3159,6 @@ public final class PartnerTopicEventSubscriptionsListByPartnerTopicSamples {
 ### PartnerTopicEventSubscriptions_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -3240,7 +3191,7 @@ public final class PartnerTopicEventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3248,8 +3199,6 @@ public final class PartnerTopicEventSubscriptionsUpdateSamples {
 ### PartnerTopics_Activate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics Activate. */
 public final class PartnerTopicsActivateSamples {
     /*
@@ -3261,7 +3210,9 @@ public final class PartnerTopicsActivateSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsActivate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().activateWithResponse("examplerg", "examplePartnerTopic1", Context.NONE);
+        manager
+            .partnerTopics()
+            .activateWithResponse("examplerg", "examplePartnerTopic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3301,8 +3252,6 @@ public final class PartnerTopicsCreateOrUpdateSamples {
 ### PartnerTopics_Deactivate
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics Deactivate. */
 public final class PartnerTopicsDeactivateSamples {
     /*
@@ -3314,7 +3263,9 @@ public final class PartnerTopicsDeactivateSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsDeactivate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().deactivateWithResponse("examplerg", "examplePartnerTopic1", Context.NONE);
+        manager
+            .partnerTopics()
+            .deactivateWithResponse("examplerg", "examplePartnerTopic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3322,8 +3273,6 @@ public final class PartnerTopicsDeactivateSamples {
 ### PartnerTopics_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics Delete. */
 public final class PartnerTopicsDeleteSamples {
     /*
@@ -3335,7 +3284,7 @@ public final class PartnerTopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().delete("examplerg", "examplePartnerTopicName1", Context.NONE);
+        manager.partnerTopics().delete("examplerg", "examplePartnerTopicName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3343,8 +3292,6 @@ public final class PartnerTopicsDeleteSamples {
 ### PartnerTopics_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics GetByResourceGroup. */
 public final class PartnerTopicsGetByResourceGroupSamples {
     /*
@@ -3356,7 +3303,9 @@ public final class PartnerTopicsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().getByResourceGroupWithResponse("examplerg", "examplePartnerTopicName1", Context.NONE);
+        manager
+            .partnerTopics()
+            .getByResourceGroupWithResponse("examplerg", "examplePartnerTopicName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3364,8 +3313,6 @@ public final class PartnerTopicsGetByResourceGroupSamples {
 ### PartnerTopics_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics List. */
 public final class PartnerTopicsListSamples {
     /*
@@ -3377,7 +3324,7 @@ public final class PartnerTopicsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsListBySubscription(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().list(null, null, Context.NONE);
+        manager.partnerTopics().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3385,8 +3332,6 @@ public final class PartnerTopicsListSamples {
 ### PartnerTopics_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PartnerTopics ListByResourceGroup. */
 public final class PartnerTopicsListByResourceGroupSamples {
     /*
@@ -3398,7 +3343,7 @@ public final class PartnerTopicsListByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void partnerTopicsListByResourceGroup(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.partnerTopics().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.partnerTopics().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3406,7 +3351,6 @@ public final class PartnerTopicsListByResourceGroupSamples {
 ### PartnerTopics_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerTopic;
 import java.util.HashMap;
 import java.util.Map;
@@ -3425,7 +3369,8 @@ public final class PartnerTopicsUpdateSamples {
         PartnerTopic resource =
             manager
                 .partnerTopics()
-                .getByResourceGroupWithResponse("examplerg", "examplePartnerTopicName1", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "examplerg", "examplePartnerTopicName1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -3446,7 +3391,6 @@ public final class PartnerTopicsUpdateSamples {
 ### PrivateEndpointConnections_Delete
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateEndpointConnections Delete. */
@@ -3467,7 +3411,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
                 PrivateEndpointConnectionsParentType.TOPICS,
                 "exampletopic1",
                 "BMTPE5.8A30D251-4C61-489D-A1AA-B37C4A329B8B",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3475,7 +3419,6 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 ### PrivateEndpointConnections_Get
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateEndpointConnections Get. */
@@ -3496,7 +3439,7 @@ public final class PrivateEndpointConnectionsGetSamples {
                 PrivateEndpointConnectionsParentType.TOPICS,
                 "exampletopic1",
                 "BMTPE5.8A30D251-4C61-489D-A1AA-B37C4A329B8B",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3504,7 +3447,6 @@ public final class PrivateEndpointConnectionsGetSamples {
 ### PrivateEndpointConnections_ListByResource
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateEndpointConnections ListByResource. */
@@ -3522,7 +3464,12 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
         manager
             .privateEndpointConnections()
             .listByResource(
-                "examplerg", PrivateEndpointConnectionsParentType.TOPICS, "exampletopic1", null, null, Context.NONE);
+                "examplerg",
+                PrivateEndpointConnectionsParentType.TOPICS,
+                "exampletopic1",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3530,7 +3477,6 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
 ### PrivateEndpointConnections_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.eventgrid.models.ConnectionState;
 import com.azure.resourcemanager.eventgrid.models.PersistedConnectionStatus;
@@ -3560,7 +3506,7 @@ public final class PrivateEndpointConnectionsUpdateSamples {
                             .withStatus(PersistedConnectionStatus.APPROVED)
                             .withDescription("approving connection")
                             .withActionsRequired("None")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3568,7 +3514,7 @@ public final class PrivateEndpointConnectionsUpdateSamples {
 ### PrivateLinkResources_Get
 
 ```java
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
@@ -3581,7 +3527,14 @@ public final class PrivateLinkResourcesGetSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void privateLinkResourcesGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.privateLinkResources().getWithResponse("examplerg", "topics", "exampletopic1", "topic", Context.NONE);
+        manager
+            .privateLinkResources()
+            .getWithResponse(
+                "examplerg",
+                PrivateEndpointConnectionsParentType.TOPICS,
+                "exampletopic1",
+                "topic",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3589,7 +3542,7 @@ public final class PrivateLinkResourcesGetSamples {
 ### PrivateLinkResources_ListByResource
 
 ```java
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsParentType;
 
 /** Samples for PrivateLinkResources ListByResource. */
 public final class PrivateLinkResourcesListByResourceSamples {
@@ -3603,7 +3556,15 @@ public final class PrivateLinkResourcesListByResourceSamples {
      */
     public static void privateLinkResourcesListByResource(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.privateLinkResources().listByResource("examplerg", "topics", "exampletopic1", null, null, Context.NONE);
+        manager
+            .privateLinkResources()
+            .listByResource(
+                "examplerg",
+                PrivateEndpointConnectionsParentType.TOPICS,
+                "exampletopic1",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3611,7 +3572,6 @@ public final class PrivateLinkResourcesListByResourceSamples {
 ### SystemTopicEventSubscriptions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -3642,7 +3602,7 @@ public final class SystemTopicEventSubscriptionsCreateOrUpdateSamples {
                             .withSubjectBeginsWith("ExamplePrefix")
                             .withSubjectEndsWith("ExampleSuffix")
                             .withIsSubjectCaseSensitive(false)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3650,8 +3610,6 @@ public final class SystemTopicEventSubscriptionsCreateOrUpdateSamples {
 ### SystemTopicEventSubscriptions_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions Delete. */
 public final class SystemTopicEventSubscriptionsDeleteSamples {
     /*
@@ -3666,7 +3624,7 @@ public final class SystemTopicEventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .systemTopicEventSubscriptions()
-            .delete("examplerg", "exampleSystemTopic1", "examplesubscription1", Context.NONE);
+            .delete("examplerg", "exampleSystemTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3674,8 +3632,6 @@ public final class SystemTopicEventSubscriptionsDeleteSamples {
 ### SystemTopicEventSubscriptions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions Get. */
 public final class SystemTopicEventSubscriptionsGetSamples {
     /*
@@ -3689,7 +3645,8 @@ public final class SystemTopicEventSubscriptionsGetSamples {
     public static void systemTopicEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .systemTopicEventSubscriptions()
-            .getWithResponse("examplerg", "exampleSystemTopic1", "examplesubscription1", Context.NONE);
+            .getWithResponse(
+                "examplerg", "exampleSystemTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3697,8 +3654,6 @@ public final class SystemTopicEventSubscriptionsGetSamples {
 ### SystemTopicEventSubscriptions_GetDeliveryAttributes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions GetDeliveryAttributes. */
 public final class SystemTopicEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -3714,7 +3669,7 @@ public final class SystemTopicEventSubscriptionsGetDeliveryAttributesSamples {
         manager
             .systemTopicEventSubscriptions()
             .getDeliveryAttributesWithResponse(
-                "examplerg", "exampleSystemTopic1", "examplesubscription1", Context.NONE);
+                "examplerg", "exampleSystemTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3722,8 +3677,6 @@ public final class SystemTopicEventSubscriptionsGetDeliveryAttributesSamples {
 ### SystemTopicEventSubscriptions_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions GetFullUrl. */
 public final class SystemTopicEventSubscriptionsGetFullUrlSamples {
     /*
@@ -3738,7 +3691,8 @@ public final class SystemTopicEventSubscriptionsGetFullUrlSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .systemTopicEventSubscriptions()
-            .getFullUrlWithResponse("examplerg", "exampleSystemTopic1", "examplesubscription1", Context.NONE);
+            .getFullUrlWithResponse(
+                "examplerg", "exampleSystemTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3746,8 +3700,6 @@ public final class SystemTopicEventSubscriptionsGetFullUrlSamples {
 ### SystemTopicEventSubscriptions_ListBySystemTopic
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopicEventSubscriptions ListBySystemTopic. */
 public final class SystemTopicEventSubscriptionsListBySystemTopicSamples {
     /*
@@ -3762,7 +3714,7 @@ public final class SystemTopicEventSubscriptionsListBySystemTopicSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .systemTopicEventSubscriptions()
-            .listBySystemTopic("examplerg", "exampleSystemTopic1", null, null, Context.NONE);
+            .listBySystemTopic("examplerg", "exampleSystemTopic1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3770,7 +3722,6 @@ public final class SystemTopicEventSubscriptionsListBySystemTopicSamples {
 ### SystemTopicEventSubscriptions_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -3803,7 +3754,7 @@ public final class SystemTopicEventSubscriptionsUpdateSamples {
                             .withSubjectEndsWith("newSuffix")
                             .withIsSubjectCaseSensitive(true))
                     .withLabels(Arrays.asList("label1", "label2")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3853,8 +3804,6 @@ public final class SystemTopicsCreateOrUpdateSamples {
 ### SystemTopics_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopics Delete. */
 public final class SystemTopicsDeleteSamples {
     /*
@@ -3866,7 +3815,7 @@ public final class SystemTopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void systemTopicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.systemTopics().delete("examplerg", "exampleSystemTopic1", Context.NONE);
+        manager.systemTopics().delete("examplerg", "exampleSystemTopic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3874,8 +3823,6 @@ public final class SystemTopicsDeleteSamples {
 ### SystemTopics_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopics GetByResourceGroup. */
 public final class SystemTopicsGetByResourceGroupSamples {
     /*
@@ -3887,7 +3834,9 @@ public final class SystemTopicsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void systemTopicsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.systemTopics().getByResourceGroupWithResponse("examplerg", "exampleSystemTopic2", Context.NONE);
+        manager
+            .systemTopics()
+            .getByResourceGroupWithResponse("examplerg", "exampleSystemTopic2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3895,8 +3844,6 @@ public final class SystemTopicsGetByResourceGroupSamples {
 ### SystemTopics_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopics List. */
 public final class SystemTopicsListSamples {
     /*
@@ -3908,7 +3855,7 @@ public final class SystemTopicsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void systemTopicsListBySubscription(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.systemTopics().list(null, null, Context.NONE);
+        manager.systemTopics().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3916,8 +3863,6 @@ public final class SystemTopicsListSamples {
 ### SystemTopics_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for SystemTopics ListByResourceGroup. */
 public final class SystemTopicsListByResourceGroupSamples {
     /*
@@ -3929,7 +3874,7 @@ public final class SystemTopicsListByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void systemTopicsListByResourceGroup(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.systemTopics().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.systemTopics().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3937,7 +3882,6 @@ public final class SystemTopicsListByResourceGroupSamples {
 ### SystemTopics_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.SystemTopic;
 import java.util.HashMap;
 import java.util.Map;
@@ -3956,7 +3900,7 @@ public final class SystemTopicsUpdateSamples {
         SystemTopic resource =
             manager
                 .systemTopics()
-                .getByResourceGroupWithResponse("examplerg", "exampleSystemTopic1", Context.NONE)
+                .getByResourceGroupWithResponse("examplerg", "exampleSystemTopic1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -4010,8 +3954,6 @@ public final class TopicEventSubscriptionsCreateOrUpdateSamples {
 ### TopicEventSubscriptions_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicEventSubscriptions Delete. */
 public final class TopicEventSubscriptionsDeleteSamples {
     /*
@@ -4023,7 +3965,9 @@ public final class TopicEventSubscriptionsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicEventSubscriptionsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicEventSubscriptions().delete("examplerg", "exampleTopic1", "examplesubscription1", Context.NONE);
+        manager
+            .topicEventSubscriptions()
+            .delete("examplerg", "exampleTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4031,8 +3975,6 @@ public final class TopicEventSubscriptionsDeleteSamples {
 ### TopicEventSubscriptions_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicEventSubscriptions Get. */
 public final class TopicEventSubscriptionsGetSamples {
     /*
@@ -4046,7 +3988,7 @@ public final class TopicEventSubscriptionsGetSamples {
     public static void topicEventSubscriptionsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .topicEventSubscriptions()
-            .getWithResponse("examplerg", "exampleTopic1", "examplesubscription1", Context.NONE);
+            .getWithResponse("examplerg", "exampleTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4054,8 +3996,6 @@ public final class TopicEventSubscriptionsGetSamples {
 ### TopicEventSubscriptions_GetDeliveryAttributes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicEventSubscriptions GetDeliveryAttributes. */
 public final class TopicEventSubscriptionsGetDeliveryAttributesSamples {
     /*
@@ -4070,7 +4010,8 @@ public final class TopicEventSubscriptionsGetDeliveryAttributesSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .topicEventSubscriptions()
-            .getDeliveryAttributesWithResponse("examplerg", "exampleTopic1", "examplesubscription1", Context.NONE);
+            .getDeliveryAttributesWithResponse(
+                "examplerg", "exampleTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4078,8 +4019,6 @@ public final class TopicEventSubscriptionsGetDeliveryAttributesSamples {
 ### TopicEventSubscriptions_GetFullUrl
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicEventSubscriptions GetFullUrl. */
 public final class TopicEventSubscriptionsGetFullUrlSamples {
     /*
@@ -4093,7 +4032,8 @@ public final class TopicEventSubscriptionsGetFullUrlSamples {
     public static void topicEventSubscriptionsGetFullUrl(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .topicEventSubscriptions()
-            .getFullUrlWithResponse("examplerg", "exampleTopic1", "examplesubscription1", Context.NONE);
+            .getFullUrlWithResponse(
+                "examplerg", "exampleTopic1", "examplesubscription1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4101,8 +4041,6 @@ public final class TopicEventSubscriptionsGetFullUrlSamples {
 ### TopicEventSubscriptions_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicEventSubscriptions List. */
 public final class TopicEventSubscriptionsListSamples {
     /*
@@ -4114,7 +4052,9 @@ public final class TopicEventSubscriptionsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicEventSubscriptionsList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicEventSubscriptions().list("examplerg", "exampleTopic1", null, null, Context.NONE);
+        manager
+            .topicEventSubscriptions()
+            .list("examplerg", "exampleTopic1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4122,7 +4062,6 @@ public final class TopicEventSubscriptionsListSamples {
 ### TopicEventSubscriptions_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.EventSubscription;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
@@ -4142,7 +4081,8 @@ public final class TopicEventSubscriptionsUpdateSamples {
         EventSubscription resource =
             manager
                 .topicEventSubscriptions()
-                .getWithResponse("examplerg", "exampleTopic1", "exampleEventSubscriptionName1", Context.NONE)
+                .getWithResponse(
+                    "examplerg", "exampleTopic1", "exampleEventSubscriptionName1", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -4161,8 +4101,6 @@ public final class TopicEventSubscriptionsUpdateSamples {
 ### TopicTypes_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicTypes Get. */
 public final class TopicTypesGetSamples {
     /*
@@ -4174,7 +4112,7 @@ public final class TopicTypesGetSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicTypesGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicTypes().getWithResponse("Microsoft.Storage.StorageAccounts", Context.NONE);
+        manager.topicTypes().getWithResponse("Microsoft.Storage.StorageAccounts", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4182,8 +4120,6 @@ public final class TopicTypesGetSamples {
 ### TopicTypes_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicTypes List. */
 public final class TopicTypesListSamples {
     /*
@@ -4195,7 +4131,7 @@ public final class TopicTypesListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicTypesList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicTypes().list(Context.NONE);
+        manager.topicTypes().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4203,8 +4139,6 @@ public final class TopicTypesListSamples {
 ### TopicTypes_ListEventTypes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for TopicTypes ListEventTypes. */
 public final class TopicTypesListEventTypesSamples {
     /*
@@ -4216,7 +4150,7 @@ public final class TopicTypesListEventTypesSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicTypesListEventTypes(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topicTypes().listEventTypes("Microsoft.Storage.StorageAccounts", Context.NONE);
+        manager.topicTypes().listEventTypes("Microsoft.Storage.StorageAccounts", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4273,8 +4207,6 @@ public final class TopicsCreateOrUpdateSamples {
 ### Topics_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topics Delete. */
 public final class TopicsDeleteSamples {
     /*
@@ -4286,7 +4218,7 @@ public final class TopicsDeleteSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsDelete(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().delete("examplerg", "exampletopic1", Context.NONE);
+        manager.topics().delete("examplerg", "exampletopic1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4294,8 +4226,6 @@ public final class TopicsDeleteSamples {
 ### Topics_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topics GetByResourceGroup. */
 public final class TopicsGetByResourceGroupSamples {
     /*
@@ -4307,7 +4237,7 @@ public final class TopicsGetByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().getByResourceGroupWithResponse("examplerg", "exampletopic2", Context.NONE);
+        manager.topics().getByResourceGroupWithResponse("examplerg", "exampletopic2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4315,8 +4245,6 @@ public final class TopicsGetByResourceGroupSamples {
 ### Topics_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topics List. */
 public final class TopicsListSamples {
     /*
@@ -4328,7 +4256,7 @@ public final class TopicsListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsListBySubscription(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().list(null, null, Context.NONE);
+        manager.topics().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4336,8 +4264,6 @@ public final class TopicsListSamples {
 ### Topics_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topics ListByResourceGroup. */
 public final class TopicsListByResourceGroupSamples {
     /*
@@ -4349,7 +4275,7 @@ public final class TopicsListByResourceGroupSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsListByResourceGroup(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.topics().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4357,8 +4283,6 @@ public final class TopicsListByResourceGroupSamples {
 ### Topics_ListEventTypes
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topics ListEventTypes. */
 public final class TopicsListEventTypesSamples {
     /*
@@ -4372,7 +4296,12 @@ public final class TopicsListEventTypesSamples {
     public static void topicsListEventTypes(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .topics()
-            .listEventTypes("examplerg", "Microsoft.Storage", "storageAccounts", "ExampleStorageAccount", Context.NONE);
+            .listEventTypes(
+                "examplerg",
+                "Microsoft.Storage",
+                "storageAccounts",
+                "ExampleStorageAccount",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4380,8 +4309,6 @@ public final class TopicsListEventTypesSamples {
 ### Topics_ListSharedAccessKeys
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Topics ListSharedAccessKeys. */
 public final class TopicsListSharedAccessKeysSamples {
     /*
@@ -4393,7 +4320,9 @@ public final class TopicsListSharedAccessKeysSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsListSharedAccessKeys(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().listSharedAccessKeysWithResponse("examplerg", "exampletopic2", Context.NONE);
+        manager
+            .topics()
+            .listSharedAccessKeysWithResponse("examplerg", "exampletopic2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4401,7 +4330,6 @@ public final class TopicsListSharedAccessKeysSamples {
 ### Topics_RegenerateKey
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.TopicRegenerateKeyRequest;
 
 /** Samples for Topics RegenerateKey. */
@@ -4418,7 +4346,10 @@ public final class TopicsRegenerateKeySamples {
         manager
             .topics()
             .regenerateKey(
-                "examplerg", "exampletopic2", new TopicRegenerateKeyRequest().withKeyName("key1"), Context.NONE);
+                "examplerg",
+                "exampletopic2",
+                new TopicRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4426,7 +4357,6 @@ public final class TopicsRegenerateKeySamples {
 ### Topics_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.InboundIpRule;
 import com.azure.resourcemanager.eventgrid.models.IpActionType;
 import com.azure.resourcemanager.eventgrid.models.PublicNetworkAccess;
@@ -4447,7 +4377,10 @@ public final class TopicsUpdateSamples {
      */
     public static void topicsUpdate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         Topic resource =
-            manager.topics().getByResourceGroupWithResponse("examplerg", "exampletopic1", Context.NONE).getValue();
+            manager
+                .topics()
+                .getByResourceGroupWithResponse("examplerg", "exampletopic1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
@@ -4476,8 +4409,6 @@ public final class TopicsUpdateSamples {
 ### VerifiedPartners_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VerifiedPartners Get. */
 public final class VerifiedPartnersGetSamples {
     /*
@@ -4489,7 +4420,7 @@ public final class VerifiedPartnersGetSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void verifiedPartnersGet(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.verifiedPartners().getWithResponse("Contoso.Finance", Context.NONE);
+        manager.verifiedPartners().getWithResponse("Contoso.Finance", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4497,8 +4428,6 @@ public final class VerifiedPartnersGetSamples {
 ### VerifiedPartners_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VerifiedPartners List. */
 public final class VerifiedPartnersListSamples {
     /*
@@ -4510,7 +4439,7 @@ public final class VerifiedPartnersListSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void verifiedPartnersList(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.verifiedPartners().list(null, null, Context.NONE);
+        manager.verifiedPartners().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```

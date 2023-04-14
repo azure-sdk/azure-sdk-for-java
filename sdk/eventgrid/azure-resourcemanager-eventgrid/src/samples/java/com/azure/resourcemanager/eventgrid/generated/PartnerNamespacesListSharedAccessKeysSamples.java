@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PartnerNamespaces ListSharedAccessKeys. */
 public final class PartnerNamespacesListSharedAccessKeysSamples {
     /*
@@ -20,6 +18,7 @@ public final class PartnerNamespacesListSharedAccessKeysSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .partnerNamespaces()
-            .listSharedAccessKeysWithResponse("examplerg", "examplePartnerNamespaceName1", Context.NONE);
+            .listSharedAccessKeysWithResponse(
+                "examplerg", "examplePartnerNamespaceName1", com.azure.core.util.Context.NONE);
     }
 }

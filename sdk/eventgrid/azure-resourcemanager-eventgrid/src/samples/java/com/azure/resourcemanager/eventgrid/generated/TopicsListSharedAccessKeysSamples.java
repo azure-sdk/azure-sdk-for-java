@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Topics ListSharedAccessKeys. */
 public final class TopicsListSharedAccessKeysSamples {
     /*
@@ -17,6 +15,8 @@ public final class TopicsListSharedAccessKeysSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicsListSharedAccessKeys(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.topics().listSharedAccessKeysWithResponse("examplerg", "exampletopic2", Context.NONE);
+        manager
+            .topics()
+            .listSharedAccessKeysWithResponse("examplerg", "exampletopic2", com.azure.core.util.Context.NONE);
     }
 }

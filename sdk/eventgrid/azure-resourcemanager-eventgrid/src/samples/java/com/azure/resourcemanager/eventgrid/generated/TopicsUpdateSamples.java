@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.InboundIpRule;
 import com.azure.resourcemanager.eventgrid.models.IpActionType;
 import com.azure.resourcemanager.eventgrid.models.PublicNetworkAccess;
@@ -25,7 +24,10 @@ public final class TopicsUpdateSamples {
      */
     public static void topicsUpdate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         Topic resource =
-            manager.topics().getByResourceGroupWithResponse("examplerg", "exampletopic1", Context.NONE).getValue();
+            manager
+                .topics()
+                .getByResourceGroupWithResponse("examplerg", "exampletopic1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))

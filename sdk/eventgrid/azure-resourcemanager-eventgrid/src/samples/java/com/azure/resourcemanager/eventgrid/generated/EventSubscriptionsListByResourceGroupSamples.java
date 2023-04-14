@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions ListByResourceGroup. */
 public final class EventSubscriptionsListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class EventSubscriptionsListByResourceGroupSamples {
      */
     public static void eventSubscriptionsListGlobalByResourceGroup(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager.eventSubscriptions().listByResourceGroup("examplerg", null, null, Context.NONE);
+        manager.eventSubscriptions().listByResourceGroup("examplerg", null, null, com.azure.core.util.Context.NONE);
     }
 }

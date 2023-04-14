@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.eventgrid.models.PartnerConfigurationUpdateParameters;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +26,7 @@ public final class PartnerConfigurationsUpdateSamples {
                 new PartnerConfigurationUpdateParameters()
                     .withTags(mapOf("tag1", "value11", "tag2", "value22"))
                     .withDefaultMaximumExpirationTimeInDays(100),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

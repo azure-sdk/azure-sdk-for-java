@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EventSubscriptions Delete. */
 public final class EventSubscriptionsDeleteSamples {
     /*
@@ -23,7 +21,7 @@ public final class EventSubscriptionsDeleteSamples {
             .delete(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1",
                 "examplesubscription1",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -41,7 +39,7 @@ public final class EventSubscriptionsDeleteSamples {
             .delete(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg",
                 "examplesubscription2",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -56,7 +54,10 @@ public final class EventSubscriptionsDeleteSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .eventSubscriptions()
-            .delete("subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4", "examplesubscription3", Context.NONE);
+            .delete(
+                "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4",
+                "examplesubscription3",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -74,6 +75,6 @@ public final class EventSubscriptionsDeleteSamples {
             .delete(
                 "subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/examplenamespace1",
                 "examplesubscription10",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
