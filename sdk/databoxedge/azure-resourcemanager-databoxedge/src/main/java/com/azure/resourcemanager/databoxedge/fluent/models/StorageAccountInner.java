@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.DataPolicy;
@@ -20,6 +21,12 @@ public final class StorageAccountInner extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private StorageAccountProperties innerProperties = new StorageAccountProperties();
 
+    /*
+     * Metadata pertaining to creation and last modification of StorageAccount
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of StorageAccountInner class. */
     public StorageAccountInner() {
     }
@@ -31,6 +38,15 @@ public final class StorageAccountInner extends ArmBaseModel {
      */
     private StorageAccountProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of StorageAccount.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

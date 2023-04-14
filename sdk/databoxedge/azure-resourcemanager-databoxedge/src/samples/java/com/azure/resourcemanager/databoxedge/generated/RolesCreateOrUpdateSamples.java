@@ -17,7 +17,7 @@ import java.util.Arrays;
 /** Samples for Roles CreateOrUpdate. */
 public final class RolesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/RolePut.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/RolePut.json
      */
     /**
      * Sample code: RolePut.
