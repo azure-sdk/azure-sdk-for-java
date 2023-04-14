@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The mode to create a new MySQL server. */
+/** The mode to create a new server. */
 public final class CreateMode extends ExpandableStringEnum<CreateMode> {
     /** Static value Default for CreateMode. */
     public static final CreateMode DEFAULT = fromString("Default");
@@ -16,11 +16,11 @@ public final class CreateMode extends ExpandableStringEnum<CreateMode> {
     /** Static value PointInTimeRestore for CreateMode. */
     public static final CreateMode POINT_IN_TIME_RESTORE = fromString("PointInTimeRestore");
 
-    /** Static value Replica for CreateMode. */
-    public static final CreateMode REPLICA = fromString("Replica");
-
     /** Static value GeoRestore for CreateMode. */
     public static final CreateMode GEO_RESTORE = fromString("GeoRestore");
+
+    /** Static value Replica for CreateMode. */
+    public static final CreateMode REPLICA = fromString("Replica");
 
     /**
      * Creates a new instance of CreateMode value.
