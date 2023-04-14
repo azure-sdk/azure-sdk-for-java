@@ -43,7 +43,7 @@
 /** Samples for MarketplaceAgreements CreateOrUpdate. */
 public final class MarketplaceAgreementsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/MarketplaceAgreements_Create.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/MarketplaceAgreements_Create.json
      */
     /**
      * Sample code: MarketplaceAgreements_CreateOrUpdate.
@@ -63,7 +63,7 @@ public final class MarketplaceAgreementsCreateOrUpdateSamples {
 /** Samples for MarketplaceAgreements List. */
 public final class MarketplaceAgreementsListSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/MarketplaceAgreements_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/MarketplaceAgreements_List.json
      */
     /**
      * Sample code: MarketplaceAgreements_List.
@@ -82,7 +82,7 @@ public final class MarketplaceAgreementsListSamples {
 /** Samples for Monitors Create. */
 public final class MonitorsCreateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Monitors_Create.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Monitors_Create.json
      */
     /**
      * Sample code: Monitors_Create.
@@ -106,7 +106,7 @@ public final class MonitorsCreateSamples {
 /** Samples for Monitors Delete. */
 public final class MonitorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Monitors_Delete.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Monitors_Delete.json
      */
     /**
      * Sample code: Monitors_Delete.
@@ -125,7 +125,7 @@ public final class MonitorsDeleteSamples {
 /** Samples for Monitors GetByResourceGroup. */
 public final class MonitorsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Monitors_Get.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Monitors_Get.json
      */
     /**
      * Sample code: Monitors_Get.
@@ -146,7 +146,7 @@ public final class MonitorsGetByResourceGroupSamples {
 /** Samples for Monitors GetDefaultKey. */
 public final class MonitorsGetDefaultKeySamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/ApiKeys_GetDefaultKey.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/ApiKeys_GetDefaultKey.json
      */
     /**
      * Sample code: Monitors_GetDefaultKey.
@@ -165,7 +165,7 @@ public final class MonitorsGetDefaultKeySamples {
 /** Samples for Monitors List. */
 public final class MonitorsListSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Monitors_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Monitors_List.json
      */
     /**
      * Sample code: Monitors_List.
@@ -184,7 +184,7 @@ public final class MonitorsListSamples {
 /** Samples for Monitors ListApiKeys. */
 public final class MonitorsListApiKeysSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/ApiKeys_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/ApiKeys_List.json
      */
     /**
      * Sample code: Monitors_ListApiKeys.
@@ -203,7 +203,7 @@ public final class MonitorsListApiKeysSamples {
 /** Samples for Monitors ListByResourceGroup. */
 public final class MonitorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Monitors_ListByResourceGroup.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Monitors_ListByResourceGroup.json
      */
     /**
      * Sample code: Monitors_ListByResourceGroup.
@@ -222,7 +222,7 @@ public final class MonitorsListByResourceGroupSamples {
 /** Samples for Monitors ListHosts. */
 public final class MonitorsListHostsSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Hosts_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Hosts_List.json
      */
     /**
      * Sample code: Monitors_ListHosts.
@@ -241,7 +241,7 @@ public final class MonitorsListHostsSamples {
 /** Samples for Monitors ListLinkedResources. */
 public final class MonitorsListLinkedResourcesSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/LinkedResources_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/LinkedResources_List.json
      */
     /**
      * Sample code: Monitors_ListLinkedResources.
@@ -260,7 +260,7 @@ public final class MonitorsListLinkedResourcesSamples {
 /** Samples for Monitors ListMonitoredResources. */
 public final class MonitorsListMonitoredResourcesSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/MonitoredResources_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/MonitoredResources_List.json
      */
     /**
      * Sample code: Monitors_ListMonitoredResources.
@@ -280,7 +280,7 @@ public final class MonitorsListMonitoredResourcesSamples {
 /** Samples for Monitors RefreshSetPasswordLink. */
 public final class MonitorsRefreshSetPasswordLinkSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/RefreshSetPassword_Get.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/RefreshSetPassword_Get.json
      */
     /**
      * Sample code: Monitors_RefreshSetPasswordLink.
@@ -302,7 +302,7 @@ public final class MonitorsRefreshSetPasswordLinkSamples {
 /** Samples for Monitors SetDefaultKey. */
 public final class MonitorsSetDefaultKeySamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/ApiKeys_SetDefaultKey.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/ApiKeys_SetDefaultKey.json
      */
     /**
      * Sample code: Monitors_SetDefaultKey.
@@ -325,7 +325,7 @@ import com.azure.resourcemanager.datadog.models.DatadogMonitorResource;
 /** Samples for Monitors Update. */
 public final class MonitorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Monitors_Update.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Monitors_Update.json
      */
     /**
      * Sample code: Monitors_Update.
@@ -349,7 +349,7 @@ public final class MonitorsUpdateSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/Operations_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -368,7 +368,7 @@ public final class OperationsListSamples {
 /** Samples for SingleSignOnConfigurations CreateOrUpdate. */
 public final class SingleSignOnConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/SingleSignOnConfigurations_CreateOrUpdate.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/SingleSignOnConfigurations_CreateOrUpdate.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_CreateOrUpdate.
@@ -392,7 +392,7 @@ public final class SingleSignOnConfigurationsCreateOrUpdateSamples {
 /** Samples for SingleSignOnConfigurations Get. */
 public final class SingleSignOnConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/SingleSignOnConfigurations_Get.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/SingleSignOnConfigurations_Get.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_Get.
@@ -414,7 +414,7 @@ public final class SingleSignOnConfigurationsGetSamples {
 /** Samples for SingleSignOnConfigurations List. */
 public final class SingleSignOnConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/SingleSignOnConfigurations_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/SingleSignOnConfigurations_List.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_List.
@@ -434,7 +434,7 @@ public final class SingleSignOnConfigurationsListSamples {
 /** Samples for TagRules CreateOrUpdate. */
 public final class TagRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/TagRules_CreateOrUpdate.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/TagRules_CreateOrUpdate.json
      */
     /**
      * Sample code: TagRules_CreateOrUpdate.
@@ -453,7 +453,7 @@ public final class TagRulesCreateOrUpdateSamples {
 /** Samples for TagRules Get. */
 public final class TagRulesGetSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/TagRules_Get.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/TagRules_Get.json
      */
     /**
      * Sample code: TagRules_Get.
@@ -472,7 +472,7 @@ public final class TagRulesGetSamples {
 /** Samples for TagRules List. */
 public final class TagRulesListSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2021-03-01/examples/TagRules_List.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2022-06-01/examples/TagRules_List.json
      */
     /**
      * Sample code: TagRules_List.

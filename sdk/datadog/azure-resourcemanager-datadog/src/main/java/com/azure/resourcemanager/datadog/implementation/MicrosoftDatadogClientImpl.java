@@ -194,7 +194,7 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-03-01";
+        this.apiVersion = "2022-06-01";
         this.marketplaceAgreements = new MarketplaceAgreementsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
