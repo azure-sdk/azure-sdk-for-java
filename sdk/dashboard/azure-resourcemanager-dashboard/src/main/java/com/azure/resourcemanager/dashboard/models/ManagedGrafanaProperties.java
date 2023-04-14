@@ -79,6 +79,10 @@ public final class ManagedGrafanaProperties {
     @JsonProperty(value = "grafanaIntegrations")
     private GrafanaIntegrations grafanaIntegrations;
 
+    /** Creates an instance of ManagedGrafanaProperties class. */
+    public ManagedGrafanaProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the resource.
      *
