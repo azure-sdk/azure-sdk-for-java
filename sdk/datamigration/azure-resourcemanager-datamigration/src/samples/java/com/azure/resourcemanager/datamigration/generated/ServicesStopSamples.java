@@ -7,7 +7,7 @@ package com.azure.resourcemanager.datamigration.generated;
 /** Samples for Services Stop. */
 public final class ServicesStopSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_Stop.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_Stop.json
      */
     /**
      * Sample code: Services_Stop.

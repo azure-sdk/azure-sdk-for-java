@@ -27,7 +27,7 @@ public interface ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName);
+    PagedIterable<ProjectInner> list(String groupName, String serviceName);
 
     /**
      * Get projects in a service
@@ -44,7 +44,7 @@ public interface ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName, Context context);
+    PagedIterable<ProjectInner> list(String groupName, String serviceName, Context context);
 
     /**
      * Create or update project
