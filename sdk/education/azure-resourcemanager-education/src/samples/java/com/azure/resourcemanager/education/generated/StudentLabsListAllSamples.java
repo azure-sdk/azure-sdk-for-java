@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for StudentLabs ListAll. */
 public final class StudentLabsListAllSamples {
     /*
@@ -17,6 +15,6 @@ public final class StudentLabsListAllSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void studentLabList(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.studentLabs().listAll(Context.NONE);
+        manager.studentLabs().listAll(com.azure.core.util.Context.NONE);
     }
 }

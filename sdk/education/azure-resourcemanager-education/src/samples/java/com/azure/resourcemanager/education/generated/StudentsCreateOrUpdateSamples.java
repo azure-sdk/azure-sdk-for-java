@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.education.fluent.models.Amount;
 import com.azure.resourcemanager.education.fluent.models.StudentDetailsInner;
 import com.azure.resourcemanager.education.models.StudentRole;
@@ -35,6 +34,6 @@ public final class StudentsCreateOrUpdateSamples {
                     .withRole(StudentRole.STUDENT)
                     .withBudget(new Amount().withCurrency("USD").withValue(100.0F))
                     .withExpirationDate(OffsetDateTime.parse("2021-11-09T22:13:21.795Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

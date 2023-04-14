@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Labs Delete. */
 public final class LabsDeleteSamples {
     /*
@@ -19,6 +17,10 @@ public final class LabsDeleteSamples {
     public static void deleteLab(com.azure.resourcemanager.education.EducationManager manager) {
         manager
             .labs()
-            .deleteWithResponse("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}", Context.NONE);
+            .deleteWithResponse(
+                "{billingAccountName}",
+                "{billingProfileName}",
+                "{invoiceSectionName}",
+                com.azure.core.util.Context.NONE);
     }
 }
