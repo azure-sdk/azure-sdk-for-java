@@ -59,6 +59,13 @@ public final class ProjectProperties extends ProjectUpdateProperties {
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public ProjectProperties withMaxDevBoxesPerUser(Integer maxDevBoxesPerUser) {
+        super.withMaxDevBoxesPerUser(maxDevBoxesPerUser);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *

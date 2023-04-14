@@ -136,13 +136,6 @@ public interface DevCenterManagementClient {
     OperationStatusesClient getOperationStatuses();
 
     /**
-     * Gets the UsagesClient object to access its operations.
-     *
-     * @return the UsagesClient object.
-     */
-    UsagesClient getUsages();
-
-    /**
      * Gets the CheckNameAvailabilitiesClient object to access its operations.
      *
      * @return the CheckNameAvailabilitiesClient object.
