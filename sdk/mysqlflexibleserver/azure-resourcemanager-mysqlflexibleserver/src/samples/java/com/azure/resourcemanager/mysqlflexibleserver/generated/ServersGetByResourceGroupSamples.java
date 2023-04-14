@@ -7,26 +7,14 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 /** Samples for Servers GetByResourceGroup. */
 public final class ServersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/ServerGetWithVnet.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2017-12-01/examples/ServerGet.json
      */
     /**
-     * Sample code: Get a server with vnet.
+     * Sample code: ServerGet.
      *
      * @param manager Entry point to MySqlManager.
      */
-    public static void getAServerWithVnet(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
-        manager.servers().getByResourceGroupWithResponse("testrg", "mysqltestserver", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/ServerGet.json
-     */
-    /**
-     * Sample code: Get a server.
-     *
-     * @param manager Entry point to MySqlManager.
-     */
-    public static void getAServer(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
-        manager.servers().getByResourceGroupWithResponse("testrg", "mysqltestserver", com.azure.core.util.Context.NONE);
+    public static void serverGet(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+        manager.servers().getByResourceGroupWithResponse("testrg", "mysqltestsvc4", com.azure.core.util.Context.NONE);
     }
 }
