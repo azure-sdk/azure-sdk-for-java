@@ -26,6 +26,10 @@ public final class PatchableResourceSyncRule {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /** Creates an instance of PatchableResourceSyncRule class. */
+    public PatchableResourceSyncRule() {
+    }
+
     /**
      * Get the innerProperties property: The Resource Sync Rules patchable properties.
      *
