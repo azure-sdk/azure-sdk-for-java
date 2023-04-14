@@ -46,21 +46,6 @@ public interface WorkspacePrivateEndpointConnections {
      * @param workspaceName The name of workspace resource.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      *     resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the workspace.
-     */
-    PrivateEndpointConnectionDescription get(
-        String resourceGroupName, String workspaceName, String privateEndpointConnectionName);
-
-    /**
-     * Gets the specified private endpoint connection associated with the workspace.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     *     resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -69,6 +54,21 @@ public interface WorkspacePrivateEndpointConnections {
      */
     Response<PrivateEndpointConnectionDescription> getWithResponse(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName, Context context);
+
+    /**
+     * Gets the specified private endpoint connection associated with the workspace.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
+     *     resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private endpoint connection associated with the workspace.
+     */
+    PrivateEndpointConnectionDescription get(
+        String resourceGroupName, String workspaceName, String privateEndpointConnectionName);
 
     /**
      * Update the state of the specified private endpoint connection associated with the workspace.

@@ -65,11 +65,10 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface IotConnectorsService {
+    public interface IotConnectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/workspaces/{workspaceName}/iotconnectors")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IotConnectorCollection>> listByWorkspace(
@@ -83,8 +82,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IotConnectorInner>> get(
@@ -99,8 +97,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -116,8 +113,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -133,8 +129,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -460,30 +455,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IotConnectorInner> getAsync(String resourceGroupName, String workspaceName, String iotConnectorName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, iotConnectorName)
-            .flatMap(
-                (Response<IotConnectorInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the properties of the specified IoT Connector.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param iotConnectorName The name of IoT Connector resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified IoT Connector.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IotConnectorInner get(String resourceGroupName, String workspaceName, String iotConnectorName) {
-        return getAsync(resourceGroupName, workspaceName, iotConnectorName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -502,6 +474,22 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     public Response<IotConnectorInner> getWithResponse(
         String resourceGroupName, String workspaceName, String iotConnectorName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, iotConnectorName, context).block();
+    }
+
+    /**
+     * Gets the properties of the specified IoT Connector.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param iotConnectorName The name of IoT Connector resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified IoT Connector.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IotConnectorInner get(String resourceGroupName, String workspaceName, String iotConnectorName) {
+        return getWithResponse(resourceGroupName, workspaceName, iotConnectorName, Context.NONE).getValue();
     }
 
     /**
@@ -699,7 +687,8 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<IotConnectorInner>, IotConnectorInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String iotConnectorName, IotConnectorInner iotConnector) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, iotConnectorName, iotConnector)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, workspaceName, iotConnectorName, iotConnector)
             .getSyncPoller();
     }
 
@@ -723,7 +712,8 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
         String iotConnectorName,
         IotConnectorInner iotConnector,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, iotConnectorName, iotConnector, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, workspaceName, iotConnectorName, iotConnector, context)
             .getSyncPoller();
     }
 
@@ -1024,7 +1014,8 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
         String iotConnectorName,
         String workspaceName,
         IotConnectorPatchResource iotConnectorPatchResource) {
-        return beginUpdateAsync(resourceGroupName, iotConnectorName, workspaceName, iotConnectorPatchResource)
+        return this
+            .beginUpdateAsync(resourceGroupName, iotConnectorName, workspaceName, iotConnectorPatchResource)
             .getSyncPoller();
     }
 
@@ -1048,7 +1039,8 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
         String workspaceName,
         IotConnectorPatchResource iotConnectorPatchResource,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, iotConnectorName, workspaceName, iotConnectorPatchResource, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, iotConnectorName, workspaceName, iotConnectorPatchResource, context)
             .getSyncPoller();
     }
 
@@ -1310,7 +1302,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String iotConnectorName, String workspaceName) {
-        return beginDeleteAsync(resourceGroupName, iotConnectorName, workspaceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, iotConnectorName, workspaceName).getSyncPoller();
     }
 
     /**
@@ -1328,7 +1320,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String iotConnectorName, String workspaceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, iotConnectorName, workspaceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, iotConnectorName, workspaceName, context).getSyncPoller();
     }
 
     /**
@@ -1403,7 +1395,8 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1438,7 +1431,8 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

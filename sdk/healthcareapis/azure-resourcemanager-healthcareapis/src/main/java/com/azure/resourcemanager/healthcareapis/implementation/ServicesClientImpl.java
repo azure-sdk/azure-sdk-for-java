@@ -67,11 +67,10 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface ServicesService {
+    public interface ServicesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/services/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/services/{resourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ServicesDescriptionInner>> getByResourceGroup(
@@ -85,8 +84,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/services/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/services/{resourceName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -101,8 +99,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/services/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/services/{resourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -117,8 +114,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/services/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/services/{resourceName}")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -143,8 +139,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
-                + "/services")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/services")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ServicesDescriptionListResult>> listByResourceGroup(
@@ -295,29 +290,7 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServicesDescriptionInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<ServicesDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get the metadata of a service instance.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of a service instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName) {
-        return getByResourceGroupAsync(resourceGroupName, resourceName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -335,6 +308,21 @@ public final class ServicesClientImpl implements ServicesClient {
     public Response<ServicesDescriptionInner> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName, context).block();
+    }
+
+    /**
+     * Get the metadata of a service instance.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of a service instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -515,7 +503,7 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServicesDescriptionInner>, ServicesDescriptionInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, ServicesDescriptionInner serviceDescription) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, serviceDescription).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, serviceDescription).getSyncPoller();
     }
 
     /**
@@ -533,7 +521,9 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServicesDescriptionInner>, ServicesDescriptionInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, ServicesDescriptionInner serviceDescription, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, serviceDescription, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, resourceName, serviceDescription, context)
+            .getSyncPoller();
     }
 
     /**
@@ -796,7 +786,7 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServicesDescriptionInner>, ServicesDescriptionInner> beginUpdate(
         String resourceGroupName, String resourceName, ServicesPatchDescription servicePatchDescription) {
-        return beginUpdateAsync(resourceGroupName, resourceName, servicePatchDescription).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, resourceName, servicePatchDescription).getSyncPoller();
     }
 
     /**
@@ -817,7 +807,7 @@ public final class ServicesClientImpl implements ServicesClient {
         String resourceName,
         ServicesPatchDescription servicePatchDescription,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, resourceName, servicePatchDescription, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, resourceName, servicePatchDescription, context).getSyncPoller();
     }
 
     /**
@@ -1045,7 +1035,7 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
@@ -1062,7 +1052,7 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
@@ -1545,30 +1535,7 @@ public final class ServicesClientImpl implements ServicesClient {
     private Mono<ServicesNameAvailabilityInfoInner> checkNameAvailabilityAsync(
         CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
         return checkNameAvailabilityWithResponseAsync(checkNameAvailabilityInputs)
-            .flatMap(
-                (Response<ServicesNameAvailabilityInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Check if a service instance name is available.
-     *
-     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
-     *     name of the service instance to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given service name is available.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ServicesNameAvailabilityInfoInner checkNameAvailability(
-        CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
-        return checkNameAvailabilityAsync(checkNameAvailabilityInputs).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1589,9 +1556,26 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
+     * Check if a service instance name is available.
+     *
+     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
+     *     name of the service instance to check.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties indicating whether a given service name is available.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ServicesNameAvailabilityInfoInner checkNameAvailability(
+        CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
+        return checkNameAvailabilityWithResponse(checkNameAvailabilityInputs, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1627,7 +1611,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1664,7 +1649,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1701,7 +1687,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -12,11 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class FhirServiceAccessPolicyEntry {
     /*
-     * An Azure AD object ID (User or Apps) that is allowed access to the FHIR
-     * service.
+     * An Azure AD object ID (User or Apps) that is allowed access to the FHIR service.
      */
     @JsonProperty(value = "objectId", required = true)
     private String objectId;
+
+    /** Creates an instance of FhirServiceAccessPolicyEntry class. */
+    public FhirServiceAccessPolicyEntry() {
+    }
 
     /**
      * Get the objectId property: An Azure AD object ID (User or Apps) that is allowed access to the FHIR service.
