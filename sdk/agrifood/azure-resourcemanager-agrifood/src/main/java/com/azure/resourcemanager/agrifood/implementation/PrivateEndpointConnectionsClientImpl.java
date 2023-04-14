@@ -65,11 +65,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface PrivateEndpointConnectionsService {
+    public interface PrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> createOrUpdate(
@@ -85,9 +84,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> get(
             @HostParam("$host") String endpoint,
@@ -101,8 +102,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -117,8 +117,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateEndpointConnections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionListResult>> listByResource(
@@ -141,7 +140,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of {@link
+     * @return the private endpoint connection resource along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -210,7 +209,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of {@link
+     * @return the private endpoint connection resource along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -276,7 +275,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource on successful completion of {@link Mono}.
+     * @return the private endpoint connection resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> createOrUpdateAsync(
@@ -296,33 +295,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param body Request object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner createOrUpdate(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body) {
-        return createOrUpdateAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body)
-            .block();
-    }
-
-    /**
-     * Approves or Rejects a Private endpoint connection request.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response}.
+     * @return the private endpoint connection resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateEndpointConnectionInner> createOrUpdateWithResponse(
@@ -337,6 +314,29 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
+     * Approves or Rejects a Private endpoint connection request.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param privateEndpointConnectionName Private endpoint connection name.
+     * @param body Request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private endpoint connection resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner createOrUpdate(
+        String resourceGroupName,
+        String farmBeatsResourceName,
+        String privateEndpointConnectionName,
+        PrivateEndpointConnectionInner body) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get Private endpoint connection object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -344,6 +344,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private endpoint connection object along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -402,6 +403,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private endpoint connection object along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -456,6 +458,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private endpoint connection object on successful completion of {@link Mono}.
      */
@@ -472,26 +475,10 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName).block();
-    }
-
-    /**
-     * Get Private endpoint connection object.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private endpoint connection object along with {@link Response}.
      */
@@ -500,6 +487,25 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
         return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
             .block();
+    }
+
+    /**
+     * Get Private endpoint connection object.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param privateEndpointConnectionName Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner get(
+        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
+        return getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -673,7 +679,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName)
+        return this
+            .beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName)
             .getSyncPoller();
     }
 
@@ -692,7 +699,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
             .getSyncPoller();
     }
 

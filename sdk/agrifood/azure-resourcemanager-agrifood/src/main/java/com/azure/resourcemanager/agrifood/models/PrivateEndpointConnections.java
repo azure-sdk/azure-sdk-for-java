@@ -16,13 +16,16 @@ public interface PrivateEndpointConnections {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection object.
+     * @return private endpoint connection object along with {@link Response}.
      */
-    PrivateEndpointConnection get(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName);
+    Response<PrivateEndpointConnection> getWithResponse(
+        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context);
 
     /**
      * Get Private endpoint connection object.
@@ -30,14 +33,15 @@ public interface PrivateEndpointConnections {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection object along with {@link Response}.
+     * @return private endpoint connection object.
      */
-    Response<PrivateEndpointConnection> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context);
+    PrivateEndpointConnection get(
+        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName);
 
     /**
      * Delete Private endpoint connection request.
@@ -97,6 +101,8 @@ public interface PrivateEndpointConnections {
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private endpoint connection object along with {@link Response}.
      */
@@ -109,6 +115,8 @@ public interface PrivateEndpointConnections {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private endpoint connection object along with {@link Response}.
      */
