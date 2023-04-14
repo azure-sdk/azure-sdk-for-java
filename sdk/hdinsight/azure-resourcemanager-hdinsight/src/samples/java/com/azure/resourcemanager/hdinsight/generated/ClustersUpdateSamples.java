@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.Cluster;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,10 @@ public final class ClustersUpdateSamples {
      */
     public static void patchHDInsightLinuxClusters(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
         Cluster resource =
-            manager.clusters().getByResourceGroupWithResponse("rg1", "cluster1", Context.NONE).getValue();
+            manager
+                .clusters()
+                .getByResourceGroupWithResponse("rg1", "cluster1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("key1", "val1", "key2", "val2")).apply();
     }
 

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Configurations Get. */
 public final class ConfigurationsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class ConfigurationsGetSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void getCoreSiteSettings(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.configurations().getWithResponse("rg1", "cluster1", "core-site", Context.NONE);
+        manager.configurations().getWithResponse("rg1", "cluster1", "core-site", com.azure.core.util.Context.NONE);
     }
 }

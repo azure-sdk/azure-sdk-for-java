@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.NameAvailabilityCheckRequestParameters;
 
 /** Samples for Locations CheckNameAvailability. */
@@ -24,6 +23,6 @@ public final class LocationsCheckNameAvailabilitySamples {
             .checkNameAvailabilityWithResponse(
                 "westus",
                 new NameAvailabilityCheckRequestParameters().withName("test123").withType("clusters"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
