@@ -7,14 +7,14 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 /** Samples for FirewallRules Get. */
 public final class FirewallRulesGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/preview/2021-12-01-preview/examples/FirewallRuleGet.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2017-12-01/examples/FirewallRuleGet.json
      */
     /**
-     * Sample code: Get a firewall rule.
+     * Sample code: FirewallRuleGet.
      *
      * @param manager Entry point to MySqlManager.
      */
-    public static void getAFirewallRule(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+    public static void firewallRuleGet(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
         manager.firewallRules().getWithResponse("TestGroup", "testserver", "rule1", com.azure.core.util.Context.NONE);
     }
 }
