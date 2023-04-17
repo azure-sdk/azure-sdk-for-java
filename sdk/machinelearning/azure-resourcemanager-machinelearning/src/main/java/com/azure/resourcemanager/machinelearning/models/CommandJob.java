@@ -18,6 +18,12 @@ import java.util.Map;
 @Fluent
 public final class CommandJob extends JobBaseProperties {
     /*
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
+     */
+    @JsonProperty(value = "autologgerSettings")
+    private AutologgerSettings autologgerSettings;
+
+    /*
      * ARM resource ID of the code asset.
      */
     @JsonProperty(value = "codeId")
@@ -30,7 +36,7 @@ public final class CommandJob extends JobBaseProperties {
     private String command;
 
     /*
-     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, Ray, or null.
      */
     @JsonProperty(value = "distribution")
     private DistributionConfiguration distribution;
@@ -75,6 +81,12 @@ public final class CommandJob extends JobBaseProperties {
     private Object parameters;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
@@ -82,6 +94,28 @@ public final class CommandJob extends JobBaseProperties {
 
     /** Creates an instance of CommandJob class. */
     public CommandJob() {
+    }
+
+    /**
+     * Get the autologgerSettings property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     *
+     * @return the autologgerSettings value.
+     */
+    public AutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     *
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the CommandJob object itself.
+     */
+    public CommandJob withAutologgerSettings(AutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
+        return this;
     }
 
     /**
@@ -126,7 +160,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
-     * Tensorflow, PyTorch, or null.
+     * Tensorflow, PyTorch, Ray, or null.
      *
      * @return the distribution value.
      */
@@ -136,7 +170,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
-     * Tensorflow, PyTorch, or null.
+     * Tensorflow, PyTorch, Ray, or null.
      *
      * @param distribution the distribution value to set.
      * @return the CommandJob object itself.
@@ -256,6 +290,26 @@ public final class CommandJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     *
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     *
+     * @param queueSettings the queueSettings value to set.
+     * @return the CommandJob object itself.
+     */
+    public CommandJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
      * Get the resources property: Compute Resource configuration for the job.
      *
      * @return the resources value.
@@ -319,6 +373,20 @@ public final class CommandJob extends JobBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public CommandJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CommandJob withSecretsConfiguration(Map<String, SecretConfiguration> secretsConfiguration) {
+        super.withSecretsConfiguration(secretsConfiguration);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public CommandJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
@@ -353,6 +421,9 @@ public final class CommandJob extends JobBaseProperties {
     @Override
     public void validate() {
         super.validate();
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (command() == null) {
             throw LOGGER
                 .logExceptionAsError(
@@ -388,6 +459,9 @@ public final class CommandJob extends JobBaseProperties {
                             e.validate();
                         }
                     });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (resources() != null) {
             resources().validate();

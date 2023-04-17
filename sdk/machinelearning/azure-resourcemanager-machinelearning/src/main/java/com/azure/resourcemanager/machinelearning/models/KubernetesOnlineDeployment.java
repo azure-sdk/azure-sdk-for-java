@@ -55,6 +55,13 @@ public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties
 
     /** {@inheritDoc} */
     @Override
+    public KubernetesOnlineDeployment withDataCollector(DataCollector dataCollector) {
+        super.withDataCollector(dataCollector);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public KubernetesOnlineDeployment withEgressPublicNetworkAccess(
         EgressPublicNetworkAccessType egressPublicNetworkAccess) {
         super.withEgressPublicNetworkAccess(egressPublicNetworkAccess);
