@@ -19,6 +19,10 @@ public final class MetadataPatch extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private MetadataPropertiesPatch innerProperties;
 
+    /** Creates an instance of MetadataPatch class. */
+    public MetadataPatch() {
+    }
+
     /**
      * Get the innerProperties property: Metadata patch request body.
      *

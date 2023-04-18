@@ -23,6 +23,15 @@ public final class AntispamMailDirection extends ExpandableStringEnum<AntispamMa
     public static final AntispamMailDirection INTRAORG = fromString("Intraorg");
 
     /**
+     * Creates a new instance of AntispamMailDirection value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AntispamMailDirection() {
+    }
+
+    /**
      * Creates or finds a AntispamMailDirection from its string representation.
      *
      * @param name a name to look for.

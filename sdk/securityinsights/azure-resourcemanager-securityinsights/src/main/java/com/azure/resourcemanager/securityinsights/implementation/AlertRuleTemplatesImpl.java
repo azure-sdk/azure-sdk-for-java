@@ -39,15 +39,6 @@ public final class AlertRuleTemplatesImpl implements AlertRuleTemplates {
         return Utils.mapPage(inner, inner1 -> new AlertRuleTemplateImpl(inner1, this.manager()));
     }
 
-    public AlertRuleTemplate get(String resourceGroupName, String workspaceName, String alertRuleTemplateId) {
-        AlertRuleTemplateInner inner = this.serviceClient().get(resourceGroupName, workspaceName, alertRuleTemplateId);
-        if (inner != null) {
-            return new AlertRuleTemplateImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AlertRuleTemplate> getWithResponse(
         String resourceGroupName, String workspaceName, String alertRuleTemplateId, Context context) {
         Response<AlertRuleTemplateInner> inner =
@@ -58,6 +49,15 @@ public final class AlertRuleTemplatesImpl implements AlertRuleTemplates {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new AlertRuleTemplateImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AlertRuleTemplate get(String resourceGroupName, String workspaceName, String alertRuleTemplateId) {
+        AlertRuleTemplateInner inner = this.serviceClient().get(resourceGroupName, workspaceName, alertRuleTemplateId);
+        if (inner != null) {
+            return new AlertRuleTemplateImpl(inner, this.manager());
         } else {
             return null;
         }
