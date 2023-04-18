@@ -55,8 +55,7 @@ public final class ContainerHostMappingsClientImpl implements ContainerHostMappi
     public interface ContainerHostMappingsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/locations"
-                + "/{location}/checkContainerHostMapping")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/locations/{location}/checkContainerHostMapping")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContainerHostMappingInner>> getContainerHostMapping(
