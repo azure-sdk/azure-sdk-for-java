@@ -47,6 +47,10 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
     @JsonProperty(value = "lastModifiedUtc", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastModifiedUtc;
 
+    /** Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleProperties class. */
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
      *

@@ -30,6 +30,10 @@ public final class SecurityGroupEntityProperties extends EntityCommonProperties 
     @JsonProperty(value = "sid", access = JsonProperty.Access.WRITE_ONLY)
     private String sid;
 
+    /** Creates an instance of SecurityGroupEntityProperties class. */
+    public SecurityGroupEntityProperties() {
+    }
+
     /**
      * Get the distinguishedName property: The group distinguished name.
      *
