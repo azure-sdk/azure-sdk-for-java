@@ -6,10 +6,8 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.LegacyReservationRecommendation;
 import com.azure.resourcemanager.consumption.models.ModernReservationRecommendation;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -30,8 +28,6 @@ import java.util.Map;
 })
 @Immutable
 public class ReservationRecommendationInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationInner.class);
-
     /*
      * The etag for the resource.
      */
@@ -56,6 +52,10 @@ public class ReservationRecommendationInner extends ProxyResource {
      */
     @JsonProperty(value = "sku", access = JsonProperty.Access.WRITE_ONLY)
     private String sku;
+
+    /** Creates an instance of ReservationRecommendationInner class. */
+    public ReservationRecommendationInner() {
+    }
 
     /**
      * Get the etag property: The etag for the resource.

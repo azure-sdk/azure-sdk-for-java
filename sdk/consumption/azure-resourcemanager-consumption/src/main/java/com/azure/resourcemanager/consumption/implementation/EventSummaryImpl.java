@@ -127,6 +127,10 @@ public final class EventSummaryImpl implements EventSummary {
         return this.innerModel().closedBalanceInBillingCurrency();
     }
 
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
+    }
+
     public String etagPropertiesEtag() {
         return this.innerModel().etagPropertiesEtag();
     }
