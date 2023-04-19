@@ -77,6 +77,12 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
     private String multiVmGroupId;
 
     /*
+     * The replication protection cluster Id.
+     */
+    @JsonProperty(value = "protectionClusterId")
+    private String protectionClusterId;
+
+    /*
      * The boot diagnostic storage account.
      */
     @JsonProperty(value = "recoveryBootDiagStorageAccountId")
@@ -325,6 +331,26 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
      */
     public A2AEnableProtectionInput withMultiVmGroupId(String multiVmGroupId) {
         this.multiVmGroupId = multiVmGroupId;
+        return this;
+    }
+
+    /**
+     * Get the protectionClusterId property: The replication protection cluster Id.
+     *
+     * @return the protectionClusterId value.
+     */
+    public String protectionClusterId() {
+        return this.protectionClusterId;
+    }
+
+    /**
+     * Set the protectionClusterId property: The replication protection cluster Id.
+     *
+     * @param protectionClusterId the protectionClusterId value to set.
+     * @return the A2AEnableProtectionInput object itself.
+     */
+    public A2AEnableProtectionInput withProtectionClusterId(String protectionClusterId) {
+        this.protectionClusterId = protectionClusterId;
         return this;
     }
 

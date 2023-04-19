@@ -40,6 +40,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.Rep
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationPoliciesImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectableItemsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectedItemsImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionClustersImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionContainerMappingsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionContainersImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionIntentsImpl;
@@ -69,6 +70,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.Replication
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationPolicies;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectableItems;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectedItems;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionClusters;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionContainerMappings;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionContainers;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionIntents;
@@ -121,6 +123,8 @@ public final class SiteRecoveryManager {
     private RecoveryPoints recoveryPoints;
 
     private TargetComputeSizes targetComputeSizes;
+
+    private ReplicationProtectionClusters replicationProtectionClusters;
 
     private ReplicationProtectionContainerMappings replicationProtectionContainerMappings;
 
@@ -568,6 +572,19 @@ public final class SiteRecoveryManager {
             this.targetComputeSizes = new TargetComputeSizesImpl(clientObject.getTargetComputeSizes(), this);
         }
         return targetComputeSizes;
+    }
+
+    /**
+     * Gets the resource collection API of ReplicationProtectionClusters. It manages ReplicationProtectionCluster.
+     *
+     * @return Resource collection API of ReplicationProtectionClusters.
+     */
+    public ReplicationProtectionClusters replicationProtectionClusters() {
+        if (this.replicationProtectionClusters == null) {
+            this.replicationProtectionClusters =
+                new ReplicationProtectionClustersImpl(clientObject.getReplicationProtectionClusters(), this);
+        }
+        return replicationProtectionClusters;
     }
 
     /**
