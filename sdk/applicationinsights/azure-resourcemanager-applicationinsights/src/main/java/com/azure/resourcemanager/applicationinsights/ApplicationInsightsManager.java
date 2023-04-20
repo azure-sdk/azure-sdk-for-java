@@ -74,7 +74,7 @@ import java.util.stream.Collectors;
 
 /** Entry point to ApplicationInsightsManager. Composite Swagger for Application Insights Management Client. */
 public final class ApplicationInsightsManager {
-    private Operations operations;
+    private Components components;
 
     private Annotations annotations;
 
@@ -102,17 +102,17 @@ public final class ApplicationInsightsManager {
 
     private AnalyticsItems analyticsItems;
 
+    private Operations operations;
+
     private WorkbookTemplates workbookTemplates;
 
     private MyWorkbooks myWorkbooks;
 
     private Workbooks workbooks;
 
-    private Components components;
+    private LiveTokens liveTokens;
 
     private ComponentLinkedStorageAccountsOperations componentLinkedStorageAccountsOperations;
-
-    private LiveTokens liveTokens;
 
     private final ApplicationInsightsManagementClient clientObject;
 
@@ -279,7 +279,7 @@ public final class ApplicationInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.applicationinsights")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -337,15 +337,15 @@ public final class ApplicationInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of Components. It manages ApplicationInsightsComponent.
      *
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of Components.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public Components components() {
+        if (this.components == null) {
+            this.components = new ComponentsImpl(clientObject.getComponents(), this);
         }
-        return operations;
+        return components;
     }
 
     /**
@@ -510,6 +510,18 @@ public final class ApplicationInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
      * Gets the resource collection API of WorkbookTemplates. It manages WorkbookTemplate.
      *
      * @return Resource collection API of WorkbookTemplates.
@@ -546,15 +558,15 @@ public final class ApplicationInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of Components. It manages ApplicationInsightsComponent.
+     * Gets the resource collection API of LiveTokens.
      *
-     * @return Resource collection API of Components.
+     * @return Resource collection API of LiveTokens.
      */
-    public Components components() {
-        if (this.components == null) {
-            this.components = new ComponentsImpl(clientObject.getComponents(), this);
+    public LiveTokens liveTokens() {
+        if (this.liveTokens == null) {
+            this.liveTokens = new LiveTokensImpl(clientObject.getLiveTokens(), this);
         }
-        return components;
+        return liveTokens;
     }
 
     /**
@@ -570,18 +582,6 @@ public final class ApplicationInsightsManager {
                     clientObject.getComponentLinkedStorageAccountsOperations(), this);
         }
         return componentLinkedStorageAccountsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of LiveTokens.
-     *
-     * @return Resource collection API of LiveTokens.
-     */
-    public LiveTokens liveTokens() {
-        if (this.liveTokens == null) {
-            this.liveTokens = new LiveTokensImpl(clientObject.getLiveTokens(), this);
-        }
-        return liveTokens;
     }
 
     /**
