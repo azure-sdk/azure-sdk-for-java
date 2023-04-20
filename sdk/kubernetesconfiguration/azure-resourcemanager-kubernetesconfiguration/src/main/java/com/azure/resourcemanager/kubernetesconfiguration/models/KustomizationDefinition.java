@@ -5,15 +5,16 @@
 package com.azure.resourcemanager.kubernetesconfiguration.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
 /** The Kustomization defining how to reconcile the artifact pulled by the source type on the cluster. */
 @Fluent
 public final class KustomizationDefinition {
     /*
-     * Name of the Kustomization, matching the key in the Kustomizations object
-     * map.
+     * Name of the Kustomization, matching the key in the Kustomizations object map.
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
@@ -25,16 +26,14 @@ public final class KustomizationDefinition {
     private String path;
 
     /*
-     * Specifies other Kustomizations that this Kustomization depends on. This
-     * Kustomization will not reconcile until all dependencies have completed
-     * their reconciliation.
+     * Specifies other Kustomizations that this Kustomization depends on. This Kustomization will not reconcile until
+     * all dependencies have completed their reconciliation.
      */
     @JsonProperty(value = "dependsOn")
     private List<String> dependsOn;
 
     /*
-     * The maximum time to attempt to reconcile the Kustomization on the
-     * cluster.
+     * The maximum time to attempt to reconcile the Kustomization on the cluster.
      */
     @JsonProperty(value = "timeoutInSeconds")
     private Long timeoutInSeconds;
@@ -46,25 +45,41 @@ public final class KustomizationDefinition {
     private Long syncIntervalInSeconds;
 
     /*
-     * The interval at which to re-reconcile the Kustomization on the cluster
-     * in the event of failure on reconciliation.
+     * The interval at which to re-reconcile the Kustomization on the cluster in the event of failure on
+     * reconciliation.
      */
     @JsonProperty(value = "retryIntervalInSeconds")
     private Long retryIntervalInSeconds;
 
     /*
-     * Enable/disable garbage collections of Kubernetes objects created by this
-     * Kustomization.
+     * Enable/disable garbage collections of Kubernetes objects created by this Kustomization.
      */
     @JsonProperty(value = "prune")
     private Boolean prune;
 
     /*
-     * Enable/disable re-creating Kubernetes resources on the cluster when
-     * patching fails due to an immutable field change.
+     * Enable/disable re-creating Kubernetes resources on the cluster when patching fails due to an immutable field
+     * change.
      */
     @JsonProperty(value = "force")
     private Boolean force;
+
+    /*
+     * Enable/disable health check for all Kubernetes objects created by this Kustomization.
+     */
+    @JsonProperty(value = "wait")
+    private Boolean wait;
+
+    /*
+     * Used for variable substitution for this Kustomization after kustomize build.
+     */
+    @JsonProperty(value = "postBuild")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, PostBuildDefinition> postBuild;
+
+    /** Creates an instance of KustomizationDefinition class. */
+    public KustomizationDefinition() {
+    }
 
     /**
      * Get the name property: Name of the Kustomization, matching the key in the Kustomizations object map.
@@ -222,10 +237,60 @@ public final class KustomizationDefinition {
     }
 
     /**
+     * Get the wait property: Enable/disable health check for all Kubernetes objects created by this Kustomization.
+     *
+     * @return the wait value.
+     */
+    public Boolean wait() {
+        return this.wait;
+    }
+
+    /**
+     * Set the wait property: Enable/disable health check for all Kubernetes objects created by this Kustomization.
+     *
+     * @param wait the wait value to set.
+     * @return the KustomizationDefinition object itself.
+     */
+    public KustomizationDefinition withWait(Boolean wait) {
+        this.wait = wait;
+        return this;
+    }
+
+    /**
+     * Get the postBuild property: Used for variable substitution for this Kustomization after kustomize build.
+     *
+     * @return the postBuild value.
+     */
+    public Map<String, PostBuildDefinition> postBuild() {
+        return this.postBuild;
+    }
+
+    /**
+     * Set the postBuild property: Used for variable substitution for this Kustomization after kustomize build.
+     *
+     * @param postBuild the postBuild value to set.
+     * @return the KustomizationDefinition object itself.
+     */
+    public KustomizationDefinition withPostBuild(Map<String, PostBuildDefinition> postBuild) {
+        this.postBuild = postBuild;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (postBuild() != null) {
+            postBuild()
+                .values()
+                .forEach(
+                    e -> {
+                        if (e != null) {
+                            e.validate();
+                        }
+                    });
+        }
     }
 }

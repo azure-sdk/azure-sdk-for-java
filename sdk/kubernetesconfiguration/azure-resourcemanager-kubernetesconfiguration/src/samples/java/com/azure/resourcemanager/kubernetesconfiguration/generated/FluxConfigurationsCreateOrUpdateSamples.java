@@ -4,11 +4,11 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.FluxConfigurationInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.BucketDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.PostBuildDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.RepositoryRefDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeType;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceKindType;
@@ -19,7 +19,7 @@ import java.util.Map;
 /** Samples for FluxConfigurations CreateOrUpdate. */
 public final class FluxConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/CreateFluxConfiguration.json
      */
     /**
      * Sample code: Create Flux Configuration.
@@ -55,7 +55,14 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
                                 .withPath("./test/path")
                                 .withDependsOn(Arrays.asList())
                                 .withTimeoutInSeconds(600L)
-                                .withSyncIntervalInSeconds(600L),
+                                .withSyncIntervalInSeconds(600L)
+                                .withWait(true)
+                                .withPostBuild(
+                                    mapOf(
+                                        "substitute",
+                                        new PostBuildDefinition(),
+                                        "substituteFrom",
+                                        new PostBuildDefinition())),
                             "srs-kustomization2",
                             new KustomizationDefinition()
                                 .withPath("./other/test/path")
@@ -63,12 +70,16 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
                                 .withTimeoutInSeconds(600L)
                                 .withSyncIntervalInSeconds(600L)
                                 .withRetryIntervalInSeconds(600L)
-                                .withPrune(false))),
-                Context.NONE);
+                                .withPrune(false)
+                                .withWait(false)
+                                .withPostBuild(mapOf("substituteFrom", new PostBuildDefinition()))))
+                    .withWaitForReconciliation(true)
+                    .withReconciliationWaitDuration("PT30M"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateFluxConfigurationWithBucket.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/CreateFluxConfigurationWithBucket.json
      */
     /**
      * Sample code: Create Flux Configuration with Bucket Source Kind.
@@ -96,7 +107,7 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
                             .withBucketName("flux")
                             .withTimeoutInSeconds(1000L)
                             .withSyncIntervalInSeconds(1000L)
-                            .withAccessKey("fluxminiotest"))
+                            .withAccessKey("fakeTokenPlaceholder"))
                     .withKustomizations(
                         mapOf(
                             "srs-kustomization1",
@@ -113,7 +124,7 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
                                 .withSyncIntervalInSeconds(600L)
                                 .withRetryIntervalInSeconds(600L)
                                 .withPrune(false))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
