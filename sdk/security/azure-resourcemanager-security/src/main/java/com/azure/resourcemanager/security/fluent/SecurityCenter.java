@@ -325,6 +325,20 @@ public interface SecurityCenter {
     ConnectorsClient getConnectors();
 
     /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the SensitivitySettingsClient object to access its operations.
+     *
+     * @return the SensitivitySettingsClient object.
+     */
+    SensitivitySettingsClient getSensitivitySettings();
+
+    /**
      * Gets the AlertsClient object to access its operations.
      *
      * @return the AlertsClient object.
