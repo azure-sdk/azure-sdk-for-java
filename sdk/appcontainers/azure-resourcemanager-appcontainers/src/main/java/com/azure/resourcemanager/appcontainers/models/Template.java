@@ -21,6 +21,15 @@ public final class Template {
     private String revisionSuffix;
 
     /*
+     * Optional duration in seconds the Container App Instance needs to terminate gracefully. Value must be
+     * non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut
+     * down). If this value is nil, the default grace period will be used instead. Set this value longer than the
+     * expected cleanup time for your process. Defaults to 30 seconds.
+     */
+    @JsonProperty(value = "terminationGracePeriodSeconds")
+    private Long terminationGracePeriodSeconds;
+
+    /*
      * List of specialized containers that run before app containers.
      */
     @JsonProperty(value = "initContainers")
@@ -65,6 +74,32 @@ public final class Template {
      */
     public Template withRevisionSuffix(String revisionSuffix) {
         this.revisionSuffix = revisionSuffix;
+        return this;
+    }
+
+    /**
+     * Get the terminationGracePeriodSeconds property: Optional duration in seconds the Container App Instance needs to
+     * terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill
+     * signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. Set
+     * this value longer than the expected cleanup time for your process. Defaults to 30 seconds.
+     *
+     * @return the terminationGracePeriodSeconds value.
+     */
+    public Long terminationGracePeriodSeconds() {
+        return this.terminationGracePeriodSeconds;
+    }
+
+    /**
+     * Set the terminationGracePeriodSeconds property: Optional duration in seconds the Container App Instance needs to
+     * terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill
+     * signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. Set
+     * this value longer than the expected cleanup time for your process. Defaults to 30 seconds.
+     *
+     * @param terminationGracePeriodSeconds the terminationGracePeriodSeconds value to set.
+     * @return the Template object itself.
+     */
+    public Template withTerminationGracePeriodSeconds(Long terminationGracePeriodSeconds) {
+        this.terminationGracePeriodSeconds = terminationGracePeriodSeconds;
         return this;
     }
 

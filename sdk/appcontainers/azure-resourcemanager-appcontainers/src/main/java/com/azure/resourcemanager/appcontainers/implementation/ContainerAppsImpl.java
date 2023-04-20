@@ -86,15 +86,6 @@ public final class ContainerAppsImpl implements ContainerApps {
         this.serviceClient().delete(resourceGroupName, containerAppName, context);
     }
 
-    public void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope) {
-        this.serviceClient().update(resourceGroupName, containerAppName, containerAppEnvelope);
-    }
-
-    public void update(
-        String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context) {
-        this.serviceClient().update(resourceGroupName, containerAppName, containerAppEnvelope, context);
-    }
-
     public Response<CustomHostnameAnalysisResult> listCustomHostnameAnalysisWithResponse(
         String resourceGroupName, String containerAppName, String customHostname, Context context) {
         Response<CustomHostnameAnalysisResultInner> inner =
@@ -168,6 +159,22 @@ public final class ContainerAppsImpl implements ContainerApps {
         } else {
             return null;
         }
+    }
+
+    public void start(String resourceGroupName, String containerAppName) {
+        this.serviceClient().start(resourceGroupName, containerAppName);
+    }
+
+    public void start(String resourceGroupName, String containerAppName, Context context) {
+        this.serviceClient().start(resourceGroupName, containerAppName, context);
+    }
+
+    public void stop(String resourceGroupName, String containerAppName) {
+        this.serviceClient().stop(resourceGroupName, containerAppName);
+    }
+
+    public void stop(String resourceGroupName, String containerAppName, Context context) {
+        this.serviceClient().stop(resourceGroupName, containerAppName, context);
     }
 
     public ContainerApp getById(String id) {
