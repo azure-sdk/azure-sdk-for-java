@@ -40,6 +40,10 @@ public final class FileMetadata {
     @JsonProperty(value = "deleteStatus", access = JsonProperty.Access.WRITE_ONLY)
     private DeleteStatus deleteStatus;
 
+    /** Creates an instance of FileMetadata class. */
+    public FileMetadata() {
+    }
+
     /**
      * Get the fileFormat property: The format of the file.
      *

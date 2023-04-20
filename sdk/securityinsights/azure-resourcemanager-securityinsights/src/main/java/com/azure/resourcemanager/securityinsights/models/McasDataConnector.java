@@ -22,6 +22,10 @@ public final class McasDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private McasDataConnectorProperties innerProperties;
 
+    /** Creates an instance of McasDataConnector class. */
+    public McasDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: MCAS (Microsoft Cloud App Security) data connector properties.
      *
