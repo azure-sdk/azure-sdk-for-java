@@ -11,7 +11,9 @@ import com.azure.resourcemanager.scvmm.fluent.models.VirtualMachineInner;
 import com.azure.resourcemanager.scvmm.models.AvailabilitySetListItem;
 import com.azure.resourcemanager.scvmm.models.Checkpoint;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
+import com.azure.resourcemanager.scvmm.models.GuestAgentProfile;
 import com.azure.resourcemanager.scvmm.models.HardwareProfile;
+import com.azure.resourcemanager.scvmm.models.Identity;
 import com.azure.resourcemanager.scvmm.models.NetworkProfile;
 import com.azure.resourcemanager.scvmm.models.OsProfile;
 import com.azure.resourcemanager.scvmm.models.StopVirtualMachineOptions;
@@ -64,6 +66,10 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this.innerModel().extendedLocation();
     }
 
+    public Identity identity() {
+        return this.innerModel().identity();
+    }
+
     public String inventoryItemId() {
         return this.innerModel().inventoryItemId();
     }
@@ -82,6 +88,10 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
 
     public String checkpointType() {
         return this.innerModel().checkpointType();
+    }
+
+    public Checkpoint lastRestoredVMCheckpoint() {
+        return this.innerModel().lastRestoredVMCheckpoint();
     }
 
     public List<Checkpoint> checkpoints() {
@@ -134,6 +144,10 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this.innerModel().powerState();
     }
 
+    public GuestAgentProfile guestAgentProfile() {
+        return this.innerModel().guestAgentProfile();
+    }
+
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -144,6 +158,10 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public VirtualMachineInner innerModel() {
@@ -239,10 +257,6 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this;
     }
 
-    public void stop(StopVirtualMachineOptions body) {
-        serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName, body);
-    }
-
     public void stop() {
         serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName);
     }
@@ -267,10 +281,6 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         serviceManager.virtualMachines().restart(resourceGroupName, virtualMachineName, context);
     }
 
-    public void createCheckpoint(VirtualMachineCreateCheckpoint body) {
-        serviceManager.virtualMachines().createCheckpoint(resourceGroupName, virtualMachineName, body);
-    }
-
     public void createCheckpoint() {
         serviceManager.virtualMachines().createCheckpoint(resourceGroupName, virtualMachineName);
     }
@@ -279,20 +289,12 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         serviceManager.virtualMachines().createCheckpoint(resourceGroupName, virtualMachineName, body, context);
     }
 
-    public void deleteCheckpoint(VirtualMachineDeleteCheckpoint body) {
-        serviceManager.virtualMachines().deleteCheckpoint(resourceGroupName, virtualMachineName, body);
-    }
-
     public void deleteCheckpoint() {
         serviceManager.virtualMachines().deleteCheckpoint(resourceGroupName, virtualMachineName);
     }
 
     public void deleteCheckpoint(VirtualMachineDeleteCheckpoint body, Context context) {
         serviceManager.virtualMachines().deleteCheckpoint(resourceGroupName, virtualMachineName, body, context);
-    }
-
-    public void restoreCheckpoint(VirtualMachineRestoreCheckpoint body) {
-        serviceManager.virtualMachines().restoreCheckpoint(resourceGroupName, virtualMachineName, body);
     }
 
     public void restoreCheckpoint() {
@@ -324,6 +326,16 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
             return this;
         } else {
             this.updateBody.withTags(tags);
+            return this;
+        }
+    }
+
+    public VirtualMachineImpl withIdentity(Identity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateBody.withIdentity(identity);
             return this;
         }
     }
@@ -395,6 +407,11 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
 
     public VirtualMachineImpl withGeneration(Integer generation) {
         this.innerModel().withGeneration(generation);
+        return this;
+    }
+
+    public VirtualMachineImpl withGuestAgentProfile(GuestAgentProfile guestAgentProfile) {
+        this.innerModel().withGuestAgentProfile(guestAgentProfile);
         return this;
     }
 
