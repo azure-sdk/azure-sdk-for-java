@@ -42,6 +42,12 @@ public final class WsfcDomainProfile {
     private String sqlServiceAccount;
 
     /*
+     * The flag to check if SQL service account is GMSA.
+     */
+    @JsonProperty(value = "isSqlServiceAccountGmsa")
+    private Boolean isSqlServiceAccountGmsa;
+
+    /*
      * Optional path for fileshare witness.
      */
     @JsonProperty(value = "fileShareWitnessPath")
@@ -64,6 +70,10 @@ public final class WsfcDomainProfile {
      */
     @JsonProperty(value = "clusterSubnetType")
     private ClusterSubnetType clusterSubnetType;
+
+    /** Creates an instance of WsfcDomainProfile class. */
+    public WsfcDomainProfile() {
+    }
 
     /**
      * Get the domainFqdn property: Fully qualified name of the domain.
@@ -168,6 +178,26 @@ public final class WsfcDomainProfile {
      */
     public WsfcDomainProfile withSqlServiceAccount(String sqlServiceAccount) {
         this.sqlServiceAccount = sqlServiceAccount;
+        return this;
+    }
+
+    /**
+     * Get the isSqlServiceAccountGmsa property: The flag to check if SQL service account is GMSA.
+     *
+     * @return the isSqlServiceAccountGmsa value.
+     */
+    public Boolean isSqlServiceAccountGmsa() {
+        return this.isSqlServiceAccountGmsa;
+    }
+
+    /**
+     * Set the isSqlServiceAccountGmsa property: The flag to check if SQL service account is GMSA.
+     *
+     * @param isSqlServiceAccountGmsa the isSqlServiceAccountGmsa value to set.
+     * @return the WsfcDomainProfile object itself.
+     */
+    public WsfcDomainProfile withIsSqlServiceAccountGmsa(Boolean isSqlServiceAccountGmsa) {
+        this.isSqlServiceAccountGmsa = isSqlServiceAccountGmsa;
         return this;
     }
 

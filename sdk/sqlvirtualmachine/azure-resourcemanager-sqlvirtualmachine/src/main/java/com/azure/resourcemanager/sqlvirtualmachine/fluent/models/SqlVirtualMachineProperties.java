@@ -15,6 +15,7 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.SqlImageSku;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlManagementMode;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlServerLicenseType;
 import com.azure.resourcemanager.sqlvirtualmachine.models.StorageConfigurationSettings;
+import com.azure.resourcemanager.sqlvirtualmachine.models.TroubleshootingStatus;
 import com.azure.resourcemanager.sqlvirtualmachine.models.WsfcDomainCredentials;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -46,7 +47,8 @@ public final class SqlVirtualMachineProperties {
     private SqlServerLicenseType sqlServerLicenseType;
 
     /*
-     * SQL Server Management type.
+     * SQL Server Management type. NOTE: This parameter is not used anymore. API will automatically detect the Sql
+     * Management, refrain from using it.
      */
     @JsonProperty(value = "sqlManagement")
     private SqlManagementMode sqlManagement;
@@ -112,7 +114,13 @@ public final class SqlVirtualMachineProperties {
     private StorageConfigurationSettings storageConfigurationSettings;
 
     /*
-     * Assessment Settings.
+     * Troubleshooting status
+     */
+    @JsonProperty(value = "troubleshootingStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private TroubleshootingStatus troubleshootingStatus;
+
+    /*
+     * SQL best practices Assessment Settings.
      */
     @JsonProperty(value = "assessmentSettings")
     private AssessmentSettings assessmentSettings;
@@ -122,6 +130,10 @@ public final class SqlVirtualMachineProperties {
      */
     @JsonProperty(value = "enableAutomaticUpgrade")
     private Boolean enableAutomaticUpgrade;
+
+    /** Creates an instance of SqlVirtualMachineProperties class. */
+    public SqlVirtualMachineProperties() {
+    }
 
     /**
      * Get the virtualMachineResourceId property: ARM Resource id of underlying virtual machine created from SQL
@@ -195,7 +207,8 @@ public final class SqlVirtualMachineProperties {
     }
 
     /**
-     * Get the sqlManagement property: SQL Server Management type.
+     * Get the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
      *
      * @return the sqlManagement value.
      */
@@ -204,7 +217,8 @@ public final class SqlVirtualMachineProperties {
     }
 
     /**
-     * Set the sqlManagement property: SQL Server Management type.
+     * Set the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
      *
      * @param sqlManagement the sqlManagement value to set.
      * @return the SqlVirtualMachineProperties object itself.
@@ -426,7 +440,16 @@ public final class SqlVirtualMachineProperties {
     }
 
     /**
-     * Get the assessmentSettings property: Assessment Settings.
+     * Get the troubleshootingStatus property: Troubleshooting status.
+     *
+     * @return the troubleshootingStatus value.
+     */
+    public TroubleshootingStatus troubleshootingStatus() {
+        return this.troubleshootingStatus;
+    }
+
+    /**
+     * Get the assessmentSettings property: SQL best practices Assessment Settings.
      *
      * @return the assessmentSettings value.
      */
@@ -435,7 +458,7 @@ public final class SqlVirtualMachineProperties {
     }
 
     /**
-     * Set the assessmentSettings property: Assessment Settings.
+     * Set the assessmentSettings property: SQL best practices Assessment Settings.
      *
      * @param assessmentSettings the assessmentSettings value to set.
      * @return the SqlVirtualMachineProperties object itself.
@@ -488,6 +511,9 @@ public final class SqlVirtualMachineProperties {
         }
         if (storageConfigurationSettings() != null) {
             storageConfigurationSettings().validate();
+        }
+        if (troubleshootingStatus() != null) {
+            troubleshootingStatus().validate();
         }
         if (assessmentSettings() != null) {
             assessmentSettings().validate();
