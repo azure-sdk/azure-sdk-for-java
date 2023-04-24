@@ -17,28 +17,28 @@ import java.util.List;
 @Fluent
 public final class AgreementProperties {
     /*
-     * The URL to download the agreement.
-     */
-    @JsonProperty(value = "agreementLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String agreementLink;
-
-    /*
-     * The category of the agreement signed by a customer.
-     */
-    @JsonProperty(value = "category", access = JsonProperty.Access.WRITE_ONLY)
-    private Category category;
-
-    /*
      * The mode of acceptance for an agreement.
      */
     @JsonProperty(value = "acceptanceMode", access = JsonProperty.Access.WRITE_ONLY)
     private AcceptanceMode acceptanceMode;
 
     /*
+     * The URL to download the agreement.
+     */
+    @JsonProperty(value = "agreementLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String agreementLink;
+
+    /*
      * The list of billing profiles associated with agreement and present only for specific agreements.
      */
     @JsonProperty(value = "billingProfileInfo", access = JsonProperty.Access.WRITE_ONLY)
     private BillingProfileInfo billingProfileInfo;
+
+    /*
+     * The category of the agreement signed by a customer.
+     */
+    @JsonProperty(value = "category", access = JsonProperty.Access.WRITE_ONLY)
+    private Category category;
 
     /*
      * The date from which the agreement is effective.
@@ -69,30 +69,21 @@ public final class AgreementProperties {
     }
 
     /**
-     * Get the agreementLink property: The URL to download the agreement.
-     *
-     * @return the agreementLink value.
-     */
-    public String agreementLink() {
-        return this.agreementLink;
-    }
-
-    /**
-     * Get the category property: The category of the agreement signed by a customer.
-     *
-     * @return the category value.
-     */
-    public Category category() {
-        return this.category;
-    }
-
-    /**
      * Get the acceptanceMode property: The mode of acceptance for an agreement.
      *
      * @return the acceptanceMode value.
      */
     public AcceptanceMode acceptanceMode() {
         return this.acceptanceMode;
+    }
+
+    /**
+     * Get the agreementLink property: The URL to download the agreement.
+     *
+     * @return the agreementLink value.
+     */
+    public String agreementLink() {
+        return this.agreementLink;
     }
 
     /**
@@ -103,6 +94,15 @@ public final class AgreementProperties {
      */
     public BillingProfileInfo billingProfileInfo() {
         return this.billingProfileInfo;
+    }
+
+    /**
+     * Get the category property: The category of the agreement signed by a customer.
+     *
+     * @return the category value.
+     */
+    public Category category() {
+        return this.category;
     }
 
     /**

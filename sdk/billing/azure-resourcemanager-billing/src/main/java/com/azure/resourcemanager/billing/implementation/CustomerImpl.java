@@ -33,12 +33,12 @@ public final class CustomerImpl implements Customer {
         return this.innerModel().type();
     }
 
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
     public String billingProfileDisplayName() {
         return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
     }
 
     public String displayName() {

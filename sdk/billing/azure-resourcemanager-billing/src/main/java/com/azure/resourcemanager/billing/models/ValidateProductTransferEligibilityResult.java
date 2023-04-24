@@ -9,18 +9,18 @@ import com.azure.resourcemanager.billing.fluent.models.ValidateProductTransferEl
 /** An immutable client-side representation of ValidateProductTransferEligibilityResult. */
 public interface ValidateProductTransferEligibilityResult {
     /**
-     * Gets the isMoveEligible property: Specifies whether the transfer is eligible or not.
-     *
-     * @return the isMoveEligible value.
-     */
-    Boolean isMoveEligible();
-
-    /**
      * Gets the errorDetails property: Validation error details.
      *
      * @return the errorDetails value.
      */
     ValidateProductTransferEligibilityError errorDetails();
+
+    /**
+     * Gets the isMoveEligible property: Specifies whether the transfer is eligible or not.
+     *
+     * @return the isMoveEligible value.
+     */
+    Boolean isMoveEligible();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.ValidateProductTransferEligibilityResultInner

@@ -13,28 +13,19 @@ import java.util.List;
 @Immutable
 public final class BillingAccountListResult {
     /*
-     * The list of billing accounts.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<BillingAccountInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of billing accounts.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<BillingAccountInner> value;
+
     /** Creates an instance of BillingAccountListResult class. */
     public BillingAccountListResult() {
-    }
-
-    /**
-     * Get the value property: The list of billing accounts.
-     *
-     * @return the value value.
-     */
-    public List<BillingAccountInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class BillingAccountListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of billing accounts.
+     *
+     * @return the value value.
+     */
+    public List<BillingAccountInner> value() {
+        return this.value;
     }
 
     /**

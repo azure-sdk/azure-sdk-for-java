@@ -40,32 +40,20 @@ public final class BillingAccountImpl implements BillingAccount {
         return this.innerModel().type();
     }
 
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public AddressDetails soldTo() {
-        return this.innerModel().soldTo();
-    }
-
-    public AgreementType agreementType() {
-        return this.innerModel().agreementType();
+    public AccountStatus accountStatus() {
+        return this.innerModel().accountStatus();
     }
 
     public AccountType accountType() {
         return this.innerModel().accountType();
     }
 
-    public AccountStatus accountStatus() {
-        return this.innerModel().accountStatus();
+    public AgreementType agreementType() {
+        return this.innerModel().agreementType();
     }
 
     public BillingProfilesOnExpand billingProfiles() {
         return this.innerModel().billingProfiles();
-    }
-
-    public Enrollment enrollmentDetails() {
-        return this.innerModel().enrollmentDetails();
     }
 
     public List<Department> departments() {
@@ -77,6 +65,10 @@ public final class BillingAccountImpl implements BillingAccount {
         }
     }
 
+    public String displayName() {
+        return this.innerModel().displayName();
+    }
+
     public List<EnrollmentAccount> enrollmentAccounts() {
         List<EnrollmentAccount> inner = this.innerModel().enrollmentAccounts();
         if (inner != null) {
@@ -86,12 +78,20 @@ public final class BillingAccountImpl implements BillingAccount {
         }
     }
 
+    public Enrollment enrollmentDetails() {
+        return this.innerModel().enrollmentDetails();
+    }
+
     public Boolean hasReadAccess() {
         return this.innerModel().hasReadAccess();
     }
 
     public String notificationEmailAddress() {
         return this.innerModel().notificationEmailAddress();
+    }
+
+    public AddressDetails soldTo() {
+        return this.innerModel().soldTo();
     }
 
     public BillingAccountInner innerModel() {

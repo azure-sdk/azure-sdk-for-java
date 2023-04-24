@@ -5,13 +5,13 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of a role definition. */
 @Fluent
-public final class BillingRoleDefinitionInner extends ProxyResource {
+public final class BillingRoleDefinitionInner extends ArmResource {
     /*
      * The properties of the a role definition.
      */
@@ -77,7 +77,9 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

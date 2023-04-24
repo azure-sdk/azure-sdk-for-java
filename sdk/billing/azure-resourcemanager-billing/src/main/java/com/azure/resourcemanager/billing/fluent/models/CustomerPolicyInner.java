@@ -5,13 +5,13 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.ViewCharges;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The customer's Policy. */
 @Fluent
-public final class CustomerPolicyInner extends ProxyResource {
+public final class CustomerPolicyInner extends ArmResource {
     /*
      * The properties of a customer's policy.
      */
@@ -61,7 +61,9 @@ public final class CustomerPolicyInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }
