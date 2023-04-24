@@ -6,9 +6,11 @@ package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -25,6 +27,12 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private RecommendationProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of ResourceRecommendationBaseInner class. */
     public ResourceRecommendationBaseInner() {
     }
@@ -36,6 +44,15 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
      */
     private RecommendationProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -196,6 +213,29 @@ public final class ResourceRecommendationBaseInner extends ProxyResource {
             this.innerProperties = new RecommendationProperties();
         }
         this.innerProperties().withRecommendationTypeId(recommendationTypeId);
+        return this;
+    }
+
+    /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     *
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.innerProperties() == null ? null : this.innerProperties().risk();
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     *
+     * @param risk the risk value to set.
+     * @return the ResourceRecommendationBaseInner object itself.
+     */
+    public ResourceRecommendationBaseInner withRisk(Risk risk) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RecommendationProperties();
+        }
+        this.innerProperties().withRisk(risk);
         return this;
     }
 
