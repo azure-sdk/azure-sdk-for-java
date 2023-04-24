@@ -132,7 +132,7 @@ public interface Budget {
              *     for Management Group scope,
              *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}'
              *     for billingProfile scope,
-             *     'providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}'
+             *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}'
              *     for invoiceSection scope.
              * @return the next definition stage.
              */
