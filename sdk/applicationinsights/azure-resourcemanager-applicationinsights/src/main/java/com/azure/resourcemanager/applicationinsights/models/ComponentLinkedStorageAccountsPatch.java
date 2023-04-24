@@ -17,6 +17,10 @@ public final class ComponentLinkedStorageAccountsPatch {
     @JsonProperty(value = "properties")
     private LinkedStorageAccountsProperties innerProperties;
 
+    /** Creates an instance of ComponentLinkedStorageAccountsPatch class. */
+    public ComponentLinkedStorageAccountsPatch() {
+    }
+
     /**
      * Get the innerProperties property: The properties of the linked storage accounts.
      *
