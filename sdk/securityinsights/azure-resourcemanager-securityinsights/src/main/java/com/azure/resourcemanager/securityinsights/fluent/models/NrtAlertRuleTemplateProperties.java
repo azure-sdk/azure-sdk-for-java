@@ -12,6 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -63,6 +64,16 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
      */
     @JsonProperty(value = "eventGroupingSettings")
     private EventGroupingSettings eventGroupingSettings;
+
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /** Creates an instance of NrtAlertRuleTemplateProperties class. */
+    public NrtAlertRuleTemplateProperties() {
+    }
 
     /**
      * Get the query property: The query that creates alerts for this rule.
@@ -206,6 +217,27 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         return this;
     }
 
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleTemplateProperties object itself.
+     */
+    public NrtAlertRuleTemplateProperties withSentinelEntitiesMappings(
+        List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public NrtAlertRuleTemplateProperties withTactics(List<AttackTactic> tactics) {
@@ -273,6 +305,9 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 }
