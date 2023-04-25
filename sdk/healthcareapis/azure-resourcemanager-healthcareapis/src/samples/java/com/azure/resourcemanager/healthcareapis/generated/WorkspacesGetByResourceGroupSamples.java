@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/workspaces/Workspaces_Get.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/workspaces/Workspaces_Get.json
      */
     /**
      * Sample code: Get workspace.
@@ -17,6 +15,6 @@ public final class WorkspacesGetByResourceGroupSamples {
      * @param manager Entry point to HealthcareApisManager.
      */
     public static void getWorkspace(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.workspaces().getByResourceGroupWithResponse("testRG", "workspace1", Context.NONE);
+        manager.workspaces().getByResourceGroupWithResponse("testRG", "workspace1", com.azure.core.util.Context.NONE);
     }
 }

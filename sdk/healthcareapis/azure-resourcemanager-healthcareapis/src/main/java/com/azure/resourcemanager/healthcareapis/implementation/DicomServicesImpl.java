@@ -40,15 +40,6 @@ public final class DicomServicesImpl implements DicomServices {
         return Utils.mapPage(inner, inner1 -> new DicomServiceImpl(inner1, this.manager()));
     }
 
-    public DicomService get(String resourceGroupName, String workspaceName, String dicomServiceName) {
-        DicomServiceInner inner = this.serviceClient().get(resourceGroupName, workspaceName, dicomServiceName);
-        if (inner != null) {
-            return new DicomServiceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DicomService> getWithResponse(
         String resourceGroupName, String workspaceName, String dicomServiceName, Context context) {
         Response<DicomServiceInner> inner =
@@ -59,6 +50,15 @@ public final class DicomServicesImpl implements DicomServices {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new DicomServiceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DicomService get(String resourceGroupName, String workspaceName, String dicomServiceName) {
+        DicomServiceInner inner = this.serviceClient().get(resourceGroupName, workspaceName, dicomServiceName);
+        if (inner != null) {
+            return new DicomServiceImpl(inner, this.manager());
         } else {
             return null;
         }

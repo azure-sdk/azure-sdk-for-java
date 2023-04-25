@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FhirServices ListByWorkspace. */
 public final class FhirServicesListByWorkspaceSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/fhirservices/FhirServices_List.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/fhirservices/FhirServices_List.json
      */
     /**
      * Sample code: List fhirservices.
@@ -17,6 +15,6 @@ public final class FhirServicesListByWorkspaceSamples {
      * @param manager Entry point to HealthcareApisManager.
      */
     public static void listFhirservices(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.fhirServices().listByWorkspace("testRG", "workspace1", Context.NONE);
+        manager.fhirServices().listByWorkspace("testRG", "workspace1", com.azure.core.util.Context.NONE);
     }
 }

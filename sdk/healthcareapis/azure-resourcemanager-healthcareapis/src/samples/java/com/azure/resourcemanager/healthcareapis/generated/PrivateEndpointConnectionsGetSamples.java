@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceGetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServiceGetPrivateEndpointConnection.json
      */
     /**
      * Sample code: PrivateEndpointConnection_GetConnection.
@@ -18,6 +16,8 @@ public final class PrivateEndpointConnectionsGetSamples {
      */
     public static void privateEndpointConnectionGetConnection(
         com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.privateEndpointConnections().getWithResponse("rgname", "service1", "myConnection", Context.NONE);
+        manager
+            .privateEndpointConnections()
+            .getWithResponse("rgname", "service1", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
