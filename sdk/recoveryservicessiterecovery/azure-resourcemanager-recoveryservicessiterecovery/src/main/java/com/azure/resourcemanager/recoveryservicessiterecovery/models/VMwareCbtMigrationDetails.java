@@ -31,6 +31,12 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
     private String osType;
 
     /*
+     * The name of the OS on the VM.
+     */
+    @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
+    private String osName;
+
+    /*
      * The firmware type.
      */
     @JsonProperty(value = "firmwareType", access = JsonProperty.Access.WRITE_ONLY)
@@ -113,6 +119,18 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
      */
     @JsonProperty(value = "targetProximityPlacementGroupId")
     private String targetProximityPlacementGroupId;
+
+    /*
+     * The confidential VM key vault Id for ADE installation.
+     */
+    @JsonProperty(value = "confidentialVmKeyVaultId")
+    private String confidentialVmKeyVaultId;
+
+    /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private VMwareCbtSecurityProfileProperties targetVmSecurityProfile;
 
     /*
      * The target boot diagnostics storage account ARM Id.
@@ -250,6 +268,12 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetDiskTags;
 
+    /*
+     * List of supported inplace OS Upgrade versions.
+     */
+    @JsonProperty(value = "supportedOSVersions")
+    private List<String> supportedOSVersions;
+
     /** Creates an instance of VMwareCbtMigrationDetails class. */
     public VMwareCbtMigrationDetails() {
     }
@@ -270,6 +294,15 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
      */
     public String osType() {
         return this.osType;
+    }
+
+    /**
+     * Get the osName property: The name of the OS on the VM.
+     *
+     * @return the osName value.
+     */
+    public String osName() {
+        return this.osName;
     }
 
     /**
@@ -484,6 +517,47 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
      */
     public VMwareCbtMigrationDetails withTargetProximityPlacementGroupId(String targetProximityPlacementGroupId) {
         this.targetProximityPlacementGroupId = targetProximityPlacementGroupId;
+        return this;
+    }
+
+    /**
+     * Get the confidentialVmKeyVaultId property: The confidential VM key vault Id for ADE installation.
+     *
+     * @return the confidentialVmKeyVaultId value.
+     */
+    public String confidentialVmKeyVaultId() {
+        return this.confidentialVmKeyVaultId;
+    }
+
+    /**
+     * Set the confidentialVmKeyVaultId property: The confidential VM key vault Id for ADE installation.
+     *
+     * @param confidentialVmKeyVaultId the confidentialVmKeyVaultId value to set.
+     * @return the VMwareCbtMigrationDetails object itself.
+     */
+    public VMwareCbtMigrationDetails withConfidentialVmKeyVaultId(String confidentialVmKeyVaultId) {
+        this.confidentialVmKeyVaultId = confidentialVmKeyVaultId;
+        return this;
+    }
+
+    /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     *
+     * @return the targetVmSecurityProfile value.
+     */
+    public VMwareCbtSecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     *
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the VMwareCbtMigrationDetails object itself.
+     */
+    public VMwareCbtMigrationDetails withTargetVmSecurityProfile(
+        VMwareCbtSecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
         return this;
     }
 
@@ -797,6 +871,26 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
     }
 
     /**
+     * Get the supportedOSVersions property: List of supported inplace OS Upgrade versions.
+     *
+     * @return the supportedOSVersions value.
+     */
+    public List<String> supportedOSVersions() {
+        return this.supportedOSVersions;
+    }
+
+    /**
+     * Set the supportedOSVersions property: List of supported inplace OS Upgrade versions.
+     *
+     * @param supportedOSVersions the supportedOSVersions value to set.
+     * @return the VMwareCbtMigrationDetails object itself.
+     */
+    public VMwareCbtMigrationDetails withSupportedOSVersions(List<String> supportedOSVersions) {
+        this.supportedOSVersions = supportedOSVersions;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -804,6 +898,9 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
     @Override
     public void validate() {
         super.validate();
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
+        }
         if (protectedDisks() != null) {
             protectedDisks().forEach(e -> e.validate());
         }
