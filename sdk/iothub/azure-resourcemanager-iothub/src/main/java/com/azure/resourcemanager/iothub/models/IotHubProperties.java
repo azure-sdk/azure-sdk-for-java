@@ -188,12 +188,6 @@ public final class IotHubProperties {
     @JsonProperty(value = "rootCertificate")
     private RootCertificateProperties rootCertificate;
 
-    /*
-     * This property specifies the IP Version the hub is currently utilizing.
-     */
-    @JsonProperty(value = "ipVersion")
-    private IpVersion ipVersion;
-
     /** Creates an instance of IotHubProperties class. */
     public IotHubProperties() {
     }
@@ -717,26 +711,6 @@ public final class IotHubProperties {
      */
     public IotHubProperties withRootCertificate(RootCertificateProperties rootCertificate) {
         this.rootCertificate = rootCertificate;
-        return this;
-    }
-
-    /**
-     * Get the ipVersion property: This property specifies the IP Version the hub is currently utilizing.
-     *
-     * @return the ipVersion value.
-     */
-    public IpVersion ipVersion() {
-        return this.ipVersion;
-    }
-
-    /**
-     * Set the ipVersion property: This property specifies the IP Version the hub is currently utilizing.
-     *
-     * @param ipVersion the ipVersion value to set.
-     * @return the IotHubProperties object itself.
-     */
-    public IotHubProperties withIpVersion(IpVersion ipVersion) {
-        this.ipVersion = ipVersion;
         return this;
     }
 
