@@ -210,6 +210,15 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
+     * Get the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    public String latestReadyRevisionName() {
+        return this.innerProperties() == null ? null : this.innerProperties().latestReadyRevisionName();
+    }
+
+    /**
      * Get the latestRevisionFqdn property: Fully Qualified Domain Name of the latest revision of the Container App.
      *
      * @return the latestRevisionFqdn value.

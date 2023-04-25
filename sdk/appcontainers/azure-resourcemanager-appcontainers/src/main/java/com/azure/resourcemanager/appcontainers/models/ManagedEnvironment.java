@@ -50,6 +50,13 @@ public interface ManagedEnvironment {
     Map<String, String> tags();
 
     /**
+     * Gets the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the sku property: SKU properties of the Environment.
      *
      * @return the sku value.
@@ -224,6 +231,7 @@ public interface ManagedEnvironment {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithDaprAIInstrumentationKey,
                 DefinitionStages.WithDaprAIConnectionString,
@@ -256,6 +264,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
         }
         /** The stage of the ManagedEnvironment definition allowing to specify sku. */
         interface WithSku {
@@ -354,6 +372,7 @@ public interface ManagedEnvironment {
     /** The template for ManagedEnvironment update. */
     interface Update
         extends UpdateStages.WithTags,
+            UpdateStages.WithKind,
             UpdateStages.WithSku,
             UpdateStages.WithDaprAIInstrumentationKey,
             UpdateStages.WithDaprAIConnectionString,
@@ -387,6 +406,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Kind of the Environment..
+             *
+             * @param kind Kind of the Environment.
+             * @return the next definition stage.
+             */
+            Update withKind(String kind);
         }
         /** The stage of the ManagedEnvironment update allowing to specify sku. */
         interface WithSku {

@@ -84,6 +84,10 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         return this.innerModel().latestRevisionName();
     }
 
+    public String latestReadyRevisionName() {
+        return this.innerModel().latestReadyRevisionName();
+    }
+
     public String latestRevisionFqdn() {
         return this.innerModel().latestRevisionFqdn();
     }
@@ -175,7 +179,7 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
             serviceManager
                 .serviceClient()
                 .getContainerApps()
-                .createOrUpdate(resourceGroupName, containerAppName, this.innerModel(), Context.NONE);
+                .update(resourceGroupName, containerAppName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -184,7 +188,7 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
             serviceManager
                 .serviceClient()
                 .getContainerApps()
-                .createOrUpdate(resourceGroupName, containerAppName, this.innerModel(), context);
+                .update(resourceGroupName, containerAppName, this.innerModel(), context);
         return this;
     }
 

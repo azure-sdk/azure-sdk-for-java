@@ -107,6 +107,13 @@ public interface ContainerApp {
     String latestRevisionName();
 
     /**
+     * Gets the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    String latestReadyRevisionName();
+
+    /**
      * Gets the latestRevisionFqdn property: Fully Qualified Domain Name of the latest revision of the Container App.
      *
      * @return the latestRevisionFqdn value.
@@ -488,7 +495,10 @@ public interface ContainerApp {
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return auth token for a container app along with {@link Response}.
      */
@@ -497,7 +507,10 @@ public interface ContainerApp {
     /**
      * Get auth token for a container app.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return auth token for a container app.
      */
