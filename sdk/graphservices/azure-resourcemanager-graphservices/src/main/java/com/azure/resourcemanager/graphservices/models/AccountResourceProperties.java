@@ -20,11 +20,11 @@ public final class AccountResourceProperties {
     /*
      * Customer owned application ID
      */
-    @JsonProperty(value = "appId", required = true)
-    private String appId;
+    @JsonProperty(value = "applicationId", required = true)
+    private String applicationId;
 
     /*
-     * Billing Plan Id
+     * Billing plan Id
      */
     @JsonProperty(value = "billingPlanId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingPlanId;
@@ -43,27 +43,27 @@ public final class AccountResourceProperties {
     }
 
     /**
-     * Get the appId property: Customer owned application ID.
+     * Get the applicationId property: Customer owned application ID.
      *
-     * @return the appId value.
+     * @return the applicationId value.
      */
-    public String appId() {
-        return this.appId;
+    public String applicationId() {
+        return this.applicationId;
     }
 
     /**
-     * Set the appId property: Customer owned application ID.
+     * Set the applicationId property: Customer owned application ID.
      *
-     * @param appId the appId value to set.
+     * @param applicationId the applicationId value to set.
      * @return the AccountResourceProperties object itself.
      */
-    public AccountResourceProperties withAppId(String appId) {
-        this.appId = appId;
+    public AccountResourceProperties withApplicationId(String applicationId) {
+        this.applicationId = applicationId;
         return this;
     }
 
     /**
-     * Get the billingPlanId property: Billing Plan Id.
+     * Get the billingPlanId property: Billing plan Id.
      *
      * @return the billingPlanId value.
      */
@@ -77,10 +77,11 @@ public final class AccountResourceProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (appId() == null) {
+        if (applicationId() == null) {
             throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property appId in model AccountResourceProperties"));
+                    new IllegalArgumentException(
+                        "Missing required property applicationId in model AccountResourceProperties"));
         }
     }
 

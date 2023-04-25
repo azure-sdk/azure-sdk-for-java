@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.graphservices.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.graphservices.fluent.models.AccountResourceInner;
 import java.util.Map;
@@ -51,7 +52,7 @@ public interface AccountResource {
      *
      * @return the systemData value.
      */
-    AccountResourceSystemData systemData();
+    SystemData systemData();
 
     /**
      * Gets the properties property: Property bag from billing account.

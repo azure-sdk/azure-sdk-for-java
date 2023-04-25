@@ -5,12 +5,12 @@
 package com.azure.resourcemanager.graphservices.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.graphservices.fluent.models.AccountResourceInner;
 import com.azure.resourcemanager.graphservices.models.AccountPatchResource;
 import com.azure.resourcemanager.graphservices.models.AccountResource;
 import com.azure.resourcemanager.graphservices.models.AccountResourceProperties;
-import com.azure.resourcemanager.graphservices.models.AccountResourceSystemData;
 import java.util.Collections;
 import java.util.Map;
 
@@ -44,7 +44,7 @@ public final class AccountResourceImpl implements AccountResource, AccountResour
         }
     }
 
-    public AccountResourceSystemData systemData() {
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 
