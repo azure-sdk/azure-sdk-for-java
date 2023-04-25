@@ -78,11 +78,4 @@ public interface AppConfigurationManagementClient {
      * @return the KeyValuesClient object.
      */
     KeyValuesClient getKeyValues();
-
-    /**
-     * Gets the ReplicasClient object to access its operations.
-     *
-     * @return the ReplicasClient object.
-     */
-    ReplicasClient getReplicas();
 }
