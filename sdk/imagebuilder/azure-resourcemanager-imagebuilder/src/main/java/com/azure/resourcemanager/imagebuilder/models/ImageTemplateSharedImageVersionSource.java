@@ -10,32 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an image source that is an image version in an Azure Compute Gallery or a Direct Shared Gallery. */
+/** Describes an image source that is an image version in a shared image gallery. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("SharedImageVersion")
 @Fluent
 public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSource {
     /*
-     * ARM resource id of the image version. When image version name is 'latest', the version is evaluated when the
-     * image build takes place.
+     * ARM resource id of the image version in the shared image gallery
      */
     @JsonProperty(value = "imageVersionId", required = true)
     private String imageVersionId;
-
-    /*
-     * Exact ARM resource id of the image version. This readonly field differs from the image version Id in
-     * 'imageVersionId' only if the version name specified in 'imageVersionId' field is 'latest'.
-     */
-    @JsonProperty(value = "exactVersion", access = JsonProperty.Access.WRITE_ONLY)
-    private String exactVersion;
 
     /** Creates an instance of ImageTemplateSharedImageVersionSource class. */
     public ImageTemplateSharedImageVersionSource() {
     }
 
     /**
-     * Get the imageVersionId property: ARM resource id of the image version. When image version name is 'latest', the
-     * version is evaluated when the image build takes place.
+     * Get the imageVersionId property: ARM resource id of the image version in the shared image gallery.
      *
      * @return the imageVersionId value.
      */
@@ -44,8 +35,7 @@ public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSo
     }
 
     /**
-     * Set the imageVersionId property: ARM resource id of the image version. When image version name is 'latest', the
-     * version is evaluated when the image build takes place.
+     * Set the imageVersionId property: ARM resource id of the image version in the shared image gallery.
      *
      * @param imageVersionId the imageVersionId value to set.
      * @return the ImageTemplateSharedImageVersionSource object itself.
@@ -53,16 +43,6 @@ public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSo
     public ImageTemplateSharedImageVersionSource withImageVersionId(String imageVersionId) {
         this.imageVersionId = imageVersionId;
         return this;
-    }
-
-    /**
-     * Get the exactVersion property: Exact ARM resource id of the image version. This readonly field differs from the
-     * image version Id in 'imageVersionId' only if the version name specified in 'imageVersionId' field is 'latest'.
-     *
-     * @return the exactVersion value.
-     */
-    public String exactVersion() {
-        return this.exactVersion;
     }
 
     /**

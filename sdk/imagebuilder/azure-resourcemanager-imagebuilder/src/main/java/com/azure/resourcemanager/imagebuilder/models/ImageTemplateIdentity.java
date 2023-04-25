@@ -20,14 +20,13 @@ public final class ImageTemplateIdentity {
     private ResourceIdentityType type;
 
     /*
-     * The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys
-     * will be ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
-     * The dictionary values can be empty objects ({}) in requests.
+     * The list of user identities associated with the image template. The user identity dictionary key references will
+     * be ARM resource ids in the form:
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, UserAssignedIdentity> userAssignedIdentities;
+    private Map<String, ImageTemplateIdentityUserAssignedIdentities> userAssignedIdentities;
 
     /** Creates an instance of ImageTemplateIdentity class. */
     public ImageTemplateIdentity() {
@@ -56,27 +55,26 @@ public final class ImageTemplateIdentity {
     }
 
     /**
-     * Get the userAssignedIdentities property: The set of user assigned identities associated with the resource. The
-     * userAssignedIdentities dictionary keys will be ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
-     * The dictionary values can be empty objects ({}) in requests.
+     * Get the userAssignedIdentities property: The list of user identities associated with the image template. The user
+     * identity dictionary key references will be ARM resource ids in the form:
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      *
      * @return the userAssignedIdentities value.
      */
-    public Map<String, UserAssignedIdentity> userAssignedIdentities() {
+    public Map<String, ImageTemplateIdentityUserAssignedIdentities> userAssignedIdentities() {
         return this.userAssignedIdentities;
     }
 
     /**
-     * Set the userAssignedIdentities property: The set of user assigned identities associated with the resource. The
-     * userAssignedIdentities dictionary keys will be ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
-     * The dictionary values can be empty objects ({}) in requests.
+     * Set the userAssignedIdentities property: The list of user identities associated with the image template. The user
+     * identity dictionary key references will be ARM resource ids in the form:
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      *
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the ImageTemplateIdentity object itself.
      */
-    public ImageTemplateIdentity withUserAssignedIdentities(Map<String, UserAssignedIdentity> userAssignedIdentities) {
+    public ImageTemplateIdentity withUserAssignedIdentities(
+        Map<String, ImageTemplateIdentityUserAssignedIdentities> userAssignedIdentities) {
         this.userAssignedIdentities = userAssignedIdentities;
         return this;
     }

@@ -5,13 +5,6 @@
 
 - [List](#operations_list)
 
-## Triggers
-
-- [CreateOrUpdate](#triggers_createorupdate)
-- [Delete](#triggers_delete)
-- [Get](#triggers_get)
-- [ListByImageTemplate](#triggers_listbyimagetemplate)
-
 ## VirtualMachineImageTemplates
 
 - [Cancel](#virtualmachineimagetemplates_cancel)
@@ -30,7 +23,7 @@
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/OperationsList.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/OperationsList.json
      */
     /**
      * Sample code: Retrieve operations list.
@@ -43,99 +36,13 @@ public final class OperationsListSamples {
 }
 ```
 
-### Triggers_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.imagebuilder.models.SourceImageTriggerProperties;
-
-/** Samples for Triggers CreateOrUpdate. */
-public final class TriggersCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateSourceImageTrigger.json
-     */
-    /**
-     * Sample code: Create or update a source image type trigger.
-     *
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void createOrUpdateASourceImageTypeTrigger(
-        com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager
-            .triggers()
-            .define("source")
-            .withExistingImageTemplate("myResourceGroup", "myImageTemplate")
-            .withProperties(new SourceImageTriggerProperties())
-            .create();
-    }
-}
-```
-
-### Triggers_Delete
-
-```java
-/** Samples for Triggers Delete. */
-public final class TriggersDeleteSamples {
-    /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/DeleteTrigger.json
-     */
-    /**
-     * Sample code: Delete a trigger resource.
-     *
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void deleteATriggerResource(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.triggers().delete("myResourceGroup", "myImageTemplate", "trigger1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Triggers_Get
-
-```java
-/** Samples for Triggers Get. */
-public final class TriggersGetSamples {
-    /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetTrigger.json
-     */
-    /**
-     * Sample code: Get a trigger resource.
-     *
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void getATriggerResource(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager
-            .triggers()
-            .getWithResponse("myResourceGroup", "myImageTemplate", "source", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Triggers_ListByImageTemplate
-
-```java
-/** Samples for Triggers ListByImageTemplate. */
-public final class TriggersListByImageTemplateSamples {
-    /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListTriggers.json
-     */
-    /**
-     * Sample code: List triggers by image template.
-     *
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void listTriggersByImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.triggers().listByImageTemplate("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### VirtualMachineImageTemplates_Cancel
 
 ```java
 /** Samples for VirtualMachineImageTemplates Cancel. */
 public final class VirtualMachineImageTemplatesCancelSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CancelImageBuild.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/CancelImageBuild.json
      */
     /**
      * Sample code: Cancel the image build based on the imageTemplate.
@@ -155,6 +62,7 @@ public final class VirtualMachineImageTemplatesCancelSamples {
 
 ```java
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentityUserAssignedIdentities;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateManagedImageDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateManagedImageSource;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePowerShellCustomizer;
@@ -163,7 +71,6 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateShellCustomize
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateWindowsUpdateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ResourceIdentityType;
-import com.azure.resourcemanager.imagebuilder.models.UserAssignedIdentity;
 import com.azure.resourcemanager.imagebuilder.models.VirtualNetworkConfig;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -172,7 +79,7 @@ import java.util.Map;
 /** Samples for VirtualMachineImageTemplates CreateOrUpdate. */
 public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateImageTemplateLinux.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/CreateImageTemplateLinux.json
      */
     /**
      * Sample code: Create an Image Template for Linux.
@@ -192,7 +99,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
                     .withUserAssignedIdentities(
                         mapOf(
                             "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity_1",
-                            new UserAssignedIdentity())))
+                            new ImageTemplateIdentityUserAssignedIdentities())))
             .withTags(mapOf("imagetemplate_tag1", "IT_T1", "imagetemplate_tag2", "IT_T2"))
             .withSource(
                 new ImageTemplateManagedImageSource()
@@ -225,7 +132,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateImageTemplateWindows.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/CreateImageTemplateWindows.json
      */
     /**
      * Sample code: Create an Image Template for Windows.
@@ -245,7 +152,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
                     .withUserAssignedIdentities(
                         mapOf(
                             "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity_1",
-                            new UserAssignedIdentity())))
+                            new ImageTemplateIdentityUserAssignedIdentities())))
             .withTags(mapOf("imagetemplate_tag1", "IT_T1", "imagetemplate_tag2", "IT_T2"))
             .withSource(
                 new ImageTemplateManagedImageSource()
@@ -333,7 +240,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
 /** Samples for VirtualMachineImageTemplates Delete. */
 public final class VirtualMachineImageTemplatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/DeleteImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/DeleteImageTemplate.json
      */
     /**
      * Sample code: Delete an Image Template.
@@ -354,7 +261,7 @@ public final class VirtualMachineImageTemplatesDeleteSamples {
 /** Samples for VirtualMachineImageTemplates GetByResourceGroup. */
 public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/GetImageTemplate.json
      */
     /**
      * Sample code: Retrieve an Image Template.
@@ -375,7 +282,7 @@ public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
 /** Samples for VirtualMachineImageTemplates GetRunOutput. */
 public final class VirtualMachineImageTemplatesGetRunOutputSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetRunOutput.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/GetRunOutput.json
      */
     /**
      * Sample code: Retrieve single runOutput.
@@ -397,7 +304,7 @@ public final class VirtualMachineImageTemplatesGetRunOutputSamples {
 /** Samples for VirtualMachineImageTemplates List. */
 public final class VirtualMachineImageTemplatesListSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListImageTemplates.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/ListImageTemplates.json
      */
     /**
      * Sample code: List images by subscription.
@@ -416,7 +323,7 @@ public final class VirtualMachineImageTemplatesListSamples {
 /** Samples for VirtualMachineImageTemplates ListByResourceGroup. */
 public final class VirtualMachineImageTemplatesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListImageTemplatesByRg.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/ListImageTemplatesByRg.json
      */
     /**
      * Sample code: List images by resource group.
@@ -435,7 +342,7 @@ public final class VirtualMachineImageTemplatesListByResourceGroupSamples {
 /** Samples for VirtualMachineImageTemplates ListRunOutputs. */
 public final class VirtualMachineImageTemplatesListRunOutputsSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListRunOutputs.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/ListRunOutputs.json
      */
     /**
      * Sample code: Retrieve a list of all outputs created by the last run of an Image Template.
@@ -457,7 +364,7 @@ public final class VirtualMachineImageTemplatesListRunOutputsSamples {
 /** Samples for VirtualMachineImageTemplates Run. */
 public final class VirtualMachineImageTemplatesRunSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/RunImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/RunImageTemplate.json
      */
     /**
      * Sample code: Create image(s) from existing imageTemplate.
@@ -485,7 +392,7 @@ import java.util.Map;
 /** Samples for VirtualMachineImageTemplates Update. */
 public final class VirtualMachineImageTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/UpdateImageTemplateToRemoveIdentities.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/UpdateImageTemplateToRemoveIdentities.json
      */
     /**
      * Sample code: Remove identities for an Image Template.
@@ -503,7 +410,7 @@ public final class VirtualMachineImageTemplatesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/UpdateImageTemplateTags.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/UpdateImageTemplateTags.json
      */
     /**
      * Sample code: Update the tags for an Image Template.

@@ -19,8 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("ImageTemplateInVMValidator")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Shell", value = ImageTemplateShellValidator.class),
-    @JsonSubTypes.Type(name = "PowerShell", value = ImageTemplatePowerShellValidator.class),
-    @JsonSubTypes.Type(name = "File", value = ImageTemplateFileValidator.class)
+    @JsonSubTypes.Type(name = "PowerShell", value = ImageTemplatePowerShellValidator.class)
 })
 @Fluent
 public class ImageTemplateInVMValidator {

@@ -12,7 +12,6 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
@@ -148,29 +147,6 @@ public final class ImageTemplateInner extends Resource {
     }
 
     /**
-     * Get the optimize property: Specifies optimization to be performed on image.
-     *
-     * @return the optimize value.
-     */
-    public ImageTemplatePropertiesOptimize optimize() {
-        return this.innerProperties() == null ? null : this.innerProperties().optimize();
-    }
-
-    /**
-     * Set the optimize property: Specifies optimization to be performed on image.
-     *
-     * @param optimize the optimize value to set.
-     * @return the ImageTemplateInner object itself.
-     */
-    public ImageTemplateInner withOptimize(ImageTemplatePropertiesOptimize optimize) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ImageTemplateProperties();
-        }
-        this.innerProperties().withOptimize(optimize);
-        return this;
-    }
-
-    /**
      * Get the validation property: Configuration options and list of validations to be performed on the resulting
      * image.
      *
@@ -247,7 +223,7 @@ public final class ImageTemplateInner extends Resource {
 
     /**
      * Get the buildTimeoutInMinutes property: Maximum duration to wait while building the image template (includes all
-     * customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     * customizations, validations, and distributions). Omit or specify 0 to use the default (4 hours).
      *
      * @return the buildTimeoutInMinutes value.
      */
@@ -257,7 +233,7 @@ public final class ImageTemplateInner extends Resource {
 
     /**
      * Set the buildTimeoutInMinutes property: Maximum duration to wait while building the image template (includes all
-     * customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     * customizations, validations, and distributions). Omit or specify 0 to use the default (4 hours).
      *
      * @param buildTimeoutInMinutes the buildTimeoutInMinutes value to set.
      * @return the ImageTemplateInner object itself.

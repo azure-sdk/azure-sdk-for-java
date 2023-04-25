@@ -7,27 +7,27 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** User assigned identity properties. */
+/** The ImageTemplateIdentityUserAssignedIdentities model. */
 @Immutable
-public final class UserAssignedIdentity {
+public final class ImageTemplateIdentityUserAssignedIdentities {
     /*
-     * The principal ID of the assigned identity.
+     * The principal id of user assigned identity.
      */
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
     private String principalId;
 
     /*
-     * The client ID of the assigned identity.
+     * The client id of user assigned identity.
      */
     @JsonProperty(value = "clientId", access = JsonProperty.Access.WRITE_ONLY)
     private String clientId;
 
-    /** Creates an instance of UserAssignedIdentity class. */
-    public UserAssignedIdentity() {
+    /** Creates an instance of ImageTemplateIdentityUserAssignedIdentities class. */
+    public ImageTemplateIdentityUserAssignedIdentities() {
     }
 
     /**
-     * Get the principalId property: The principal ID of the assigned identity.
+     * Get the principalId property: The principal id of user assigned identity.
      *
      * @return the principalId value.
      */
@@ -36,7 +36,7 @@ public final class UserAssignedIdentity {
     }
 
     /**
-     * Get the clientId property: The client ID of the assigned identity.
+     * Get the clientId property: The client id of user assigned identity.
      *
      * @return the clientId value.
      */

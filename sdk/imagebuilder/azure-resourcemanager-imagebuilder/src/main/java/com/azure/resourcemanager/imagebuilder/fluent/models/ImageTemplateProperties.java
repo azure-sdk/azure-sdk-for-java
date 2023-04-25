@@ -9,7 +9,6 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
@@ -32,12 +31,6 @@ public final class ImageTemplateProperties {
      */
     @JsonProperty(value = "customize")
     private List<ImageTemplateCustomizer> customize;
-
-    /*
-     * Specifies optimization to be performed on image.
-     */
-    @JsonProperty(value = "optimize")
-    private ImageTemplatePropertiesOptimize optimize;
 
     /*
      * Configuration options and list of validations to be performed on the resulting image.
@@ -70,8 +63,8 @@ public final class ImageTemplateProperties {
     private ImageTemplateLastRunStatus lastRunStatus;
 
     /*
-     * Maximum duration to wait while building the image template (includes all customizations, optimization,
-     * validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     * Maximum duration to wait while building the image template (includes all customizations, validations, and
+     * distributions). Omit or specify 0 to use the default (4 hours).
      */
     @JsonProperty(value = "buildTimeoutInMinutes")
     private Integer buildTimeoutInMinutes;
@@ -149,26 +142,6 @@ public final class ImageTemplateProperties {
     }
 
     /**
-     * Get the optimize property: Specifies optimization to be performed on image.
-     *
-     * @return the optimize value.
-     */
-    public ImageTemplatePropertiesOptimize optimize() {
-        return this.optimize;
-    }
-
-    /**
-     * Set the optimize property: Specifies optimization to be performed on image.
-     *
-     * @param optimize the optimize value to set.
-     * @return the ImageTemplateProperties object itself.
-     */
-    public ImageTemplateProperties withOptimize(ImageTemplatePropertiesOptimize optimize) {
-        this.optimize = optimize;
-        return this;
-    }
-
-    /**
      * Get the validation property: Configuration options and list of validations to be performed on the resulting
      * image.
      *
@@ -239,7 +212,7 @@ public final class ImageTemplateProperties {
 
     /**
      * Get the buildTimeoutInMinutes property: Maximum duration to wait while building the image template (includes all
-     * customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     * customizations, validations, and distributions). Omit or specify 0 to use the default (4 hours).
      *
      * @return the buildTimeoutInMinutes value.
      */
@@ -249,7 +222,7 @@ public final class ImageTemplateProperties {
 
     /**
      * Set the buildTimeoutInMinutes property: Maximum duration to wait while building the image template (includes all
-     * customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     * customizations, validations, and distributions). Omit or specify 0 to use the default (4 hours).
      *
      * @param buildTimeoutInMinutes the buildTimeoutInMinutes value to set.
      * @return the ImageTemplateProperties object itself.
@@ -337,9 +310,6 @@ public final class ImageTemplateProperties {
         }
         if (customize() != null) {
             customize().forEach(e -> e.validate());
-        }
-        if (optimize() != null) {
-            optimize().validate();
         }
         if (validation() != null) {
             validation().validate();

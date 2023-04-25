@@ -53,13 +53,6 @@ public interface ImageBuilderClient {
     VirtualMachineImageTemplatesClient getVirtualMachineImageTemplates();
 
     /**
-     * Gets the TriggersClient object to access its operations.
-     *
-     * @return the TriggersClient object.
-     */
-    TriggersClient getTriggers();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.

@@ -18,9 +18,6 @@ public enum RunSubState {
     /** Enum value Customizing. */
     CUSTOMIZING("Customizing"),
 
-    /** Enum value Optimizing. */
-    OPTIMIZING("Optimizing"),
-
     /** Enum value Validating. */
     VALIDATING("Validating"),
 

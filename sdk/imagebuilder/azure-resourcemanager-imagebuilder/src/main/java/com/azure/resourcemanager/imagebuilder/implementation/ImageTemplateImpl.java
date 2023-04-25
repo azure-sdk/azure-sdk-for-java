@@ -13,7 +13,6 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateUpdateParameters;
@@ -73,10 +72,6 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public ImageTemplatePropertiesOptimize optimize() {
-        return this.innerModel().optimize();
     }
 
     public ImageTemplatePropertiesValidate validation() {
@@ -279,11 +274,6 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
 
     public ImageTemplateImpl withCustomize(List<ImageTemplateCustomizer> customize) {
         this.innerModel().withCustomize(customize);
-        return this;
-    }
-
-    public ImageTemplateImpl withOptimize(ImageTemplatePropertiesOptimize optimize) {
-        this.innerModel().withOptimize(optimize);
         return this;
     }
 

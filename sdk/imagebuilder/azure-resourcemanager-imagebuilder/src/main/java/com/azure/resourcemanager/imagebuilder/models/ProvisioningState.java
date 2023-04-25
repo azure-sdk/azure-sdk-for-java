@@ -22,10 +22,7 @@ public enum ProvisioningState {
     FAILED("Failed"),
 
     /** Enum value Deleting. */
-    DELETING("Deleting"),
-
-    /** Enum value Canceled. */
-    CANCELED("Canceled");
+    DELETING("Deleting");
 
     /** The actual serialized value for a ProvisioningState instance. */
     private final String value;

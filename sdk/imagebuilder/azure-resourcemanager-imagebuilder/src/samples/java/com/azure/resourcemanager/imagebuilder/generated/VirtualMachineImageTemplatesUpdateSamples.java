@@ -13,7 +13,7 @@ import java.util.Map;
 /** Samples for VirtualMachineImageTemplates Update. */
 public final class VirtualMachineImageTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/UpdateImageTemplateToRemoveIdentities.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/UpdateImageTemplateToRemoveIdentities.json
      */
     /**
      * Sample code: Remove identities for an Image Template.
@@ -31,7 +31,7 @@ public final class VirtualMachineImageTemplatesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/UpdateImageTemplateTags.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-02-14/examples/UpdateImageTemplateTags.json
      */
     /**
      * Sample code: Update the tags for an Image Template.
