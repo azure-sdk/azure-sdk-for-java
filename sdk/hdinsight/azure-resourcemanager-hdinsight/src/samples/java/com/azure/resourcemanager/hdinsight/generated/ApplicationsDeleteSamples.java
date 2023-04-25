@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Applications Delete. */
 public final class ApplicationsDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class ApplicationsDeleteSamples {
      */
     public static void deleteApplicationFromHDInsightCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.applications().delete("rg1", "cluster1", "hue", Context.NONE);
+        manager.applications().delete("rg1", "cluster1", "hue", com.azure.core.util.Context.NONE);
     }
 }

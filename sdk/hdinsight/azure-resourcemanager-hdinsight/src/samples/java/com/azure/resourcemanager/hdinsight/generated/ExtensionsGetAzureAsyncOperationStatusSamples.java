@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions GetAzureAsyncOperationStatus. */
 public final class ExtensionsGetAzureAsyncOperationStatusSamples {
     /*
@@ -20,6 +18,10 @@ public final class ExtensionsGetAzureAsyncOperationStatusSamples {
         manager
             .extensions()
             .getAzureAsyncOperationStatusWithResponse(
-                "rg1", "cluster1", "azuremonitor", "CF938302-6B4D-44A0-A6D2-C0D67E847AEC", Context.NONE);
+                "rg1",
+                "cluster1",
+                "azuremonitor",
+                "CF938302-6B4D-44A0-A6D2-C0D67E847AEC",
+                com.azure.core.util.Context.NONE);
     }
 }

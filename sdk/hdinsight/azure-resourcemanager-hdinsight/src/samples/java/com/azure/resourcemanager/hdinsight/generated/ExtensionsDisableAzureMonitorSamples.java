@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions DisableAzureMonitor. */
 public final class ExtensionsDisableAzureMonitorSamples {
     /*
@@ -17,6 +15,6 @@ public final class ExtensionsDisableAzureMonitorSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void enableClusterMonitoring(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.extensions().disableAzureMonitor("rg1", "cluster1", Context.NONE);
+        manager.extensions().disableAzureMonitor("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

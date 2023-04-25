@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.UpdateGatewaySettingsParameters;
 
 /** Samples for Clusters UpdateGatewaySettings. */
@@ -20,6 +19,7 @@ public final class ClustersUpdateGatewaySettingsSamples {
     public static void enableHTTPConnectivity(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
         manager
             .clusters()
-            .updateGatewaySettings("rg1", "cluster1", new UpdateGatewaySettingsParameters(), Context.NONE);
+            .updateGatewaySettings(
+                "rg1", "cluster1", new UpdateGatewaySettingsParameters(), com.azure.core.util.Context.NONE);
     }
 }
