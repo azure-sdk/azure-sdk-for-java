@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PolicyStates TriggerSubscriptionEvaluation. */
 public final class PolicyStatesTriggerSubscriptionEvaluationSamples {
     /*
@@ -18,6 +16,8 @@ public final class PolicyStatesTriggerSubscriptionEvaluationSamples {
      */
     public static void triggerEvaluationsForAllResourcesInASubscription(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyStates().triggerSubscriptionEvaluation("fffedd8f-ffff-fffd-fffd-fffed2f84852", Context.NONE);
+        manager
+            .policyStates()
+            .triggerSubscriptionEvaluation("fffedd8f-ffff-fffd-fffd-fffed2f84852", com.azure.core.util.Context.NONE);
     }
 }

@@ -61,11 +61,10 @@ public final class RemediationsClientImpl implements RemediationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface RemediationsService {
+    public interface RemediationsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtManagementGroup(
@@ -80,8 +79,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> cancelAtManagementGroup(
@@ -95,8 +93,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationListResult>> listForManagementGroup(
@@ -111,8 +108,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> createOrUpdateAtManagementGroup(
@@ -127,8 +123,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> getAtManagementGroup(
@@ -142,8 +137,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> deleteAtManagementGroup(
@@ -157,8 +151,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}"
-                + "/listDeployments")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtSubscription(
@@ -235,8 +228,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}/listDeployments")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtResourceGroup(
@@ -251,8 +243,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}/cancel")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> cancelAtResourceGroup(
@@ -266,8 +257,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationListResult>> listByResourceGroup(
@@ -282,8 +272,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> createOrUpdateAtResourceGroup(
@@ -298,8 +287,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> getByResourceGroup(
@@ -313,8 +301,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationInner>> delete(

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForSubscriptionLevelPolicyAssignment. */
@@ -33,7 +32,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignm
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -60,6 +59,6 @@ public final class PolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignm
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

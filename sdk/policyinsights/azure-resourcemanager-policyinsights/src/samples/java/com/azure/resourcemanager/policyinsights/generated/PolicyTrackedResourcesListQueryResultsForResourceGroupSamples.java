@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyTrackedResourcesResourceType;
 
 /** Samples for PolicyTrackedResources ListQueryResultsForResourceGroup. */
@@ -29,7 +28,7 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceGroupSamples
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Authorization/policyAssignments/myPolicyAssignment'"
                     + " AND TrackedResourceId eq"
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Example/exampleResourceType/myResource/nestedResourceType/TrackedResource1'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -45,6 +44,10 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceGroupSamples
         manager
             .policyTrackedResources()
             .listQueryResultsForResourceGroup(
-                "myResourceGroup", PolicyTrackedResourcesResourceType.DEFAULT, null, null, Context.NONE);
+                "myResourceGroup",
+                PolicyTrackedResourcesResourceType.DEFAULT,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }

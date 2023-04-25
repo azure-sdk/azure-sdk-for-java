@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Attestations ListByResourceGroup. */
 public final class AttestationsListByResourceGroupSamples {
     /*
@@ -26,7 +24,7 @@ public final class AttestationsListByResourceGroupSamples {
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'"
                     + " AND PolicyDefinitionReferenceId eq '0b158b46-ff42-4799-8e39-08a5c23b4551'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -39,6 +37,6 @@ public final class AttestationsListByResourceGroupSamples {
      */
     public static void listAttestationsAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.attestations().listByResourceGroup("myRg", null, null, Context.NONE);
+        manager.attestations().listByResourceGroup("myRg", null, null, com.azure.core.util.Context.NONE);
     }
 }

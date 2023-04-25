@@ -20,6 +20,15 @@ public final class ComplianceState extends ExpandableStringEnum<ComplianceState>
     public static final ComplianceState UNKNOWN = fromString("Unknown");
 
     /**
+     * Creates a new instance of ComplianceState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ComplianceState() {
+    }
+
+    /**
      * Creates or finds a ComplianceState from its string representation.
      *
      * @param name a name to look for.

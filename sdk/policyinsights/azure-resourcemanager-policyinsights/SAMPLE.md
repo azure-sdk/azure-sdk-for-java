@@ -16,6 +16,15 @@
 - [ListByResourceGroup](#attestations_listbyresourcegroup)
 - [ListForResource](#attestations_listforresource)
 
+## ComponentPolicyStates
+
+- [ListQueryResultsForPolicyDefinition](#componentpolicystates_listqueryresultsforpolicydefinition)
+- [ListQueryResultsForResource](#componentpolicystates_listqueryresultsforresource)
+- [ListQueryResultsForResourceGroup](#componentpolicystates_listqueryresultsforresourcegroup)
+- [ListQueryResultsForResourceGroupLevelPolicyAssignment](#componentpolicystates_listqueryresultsforresourcegrouplevelpolicyassignment)
+- [ListQueryResultsForSubscription](#componentpolicystates_listqueryresultsforsubscription)
+- [ListQueryResultsForSubscriptionLevelPolicyAssignment](#componentpolicystates_listqueryresultsforsubscriptionlevelpolicyassignment)
+
 ## Operations
 
 - [List](#operations_list)
@@ -100,7 +109,6 @@
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner;
 import com.azure.resourcemanager.policyinsights.models.AttestationEvidence;
@@ -146,7 +154,7 @@ public final class AttestationsCreateOrUpdateAtResourceSamples {
                             .createDefaultManagementSerializerAdapter()
                             .deserialize(
                                 "{\"departmentId\":\"NYC-MARKETING-1\"}", Object.class, SerializerEncoding.JSON)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -205,7 +213,6 @@ public final class AttestationsCreateOrUpdateAtResourceGroupSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner;
 import com.azure.resourcemanager.policyinsights.models.AttestationEvidence;
@@ -234,7 +241,7 @@ public final class AttestationsCreateOrUpdateAtSubscriptionSamples {
                     .withPolicyAssignmentId(
                         "/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5")
                     .withComplianceState(ComplianceState.COMPLIANT),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -271,7 +278,7 @@ public final class AttestationsCreateOrUpdateAtSubscriptionSamples {
                             .createDefaultManagementSerializerAdapter()
                             .deserialize(
                                 "{\"departmentId\":\"NYC-MARKETING-1\"}", Object.class, SerializerEncoding.JSON)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -279,8 +286,6 @@ public final class AttestationsCreateOrUpdateAtSubscriptionSamples {
 ### Attestations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations Delete. */
 public final class AttestationsDeleteSamples {
     /*
@@ -295,7 +300,8 @@ public final class AttestationsDeleteSamples {
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
         manager
             .attestations()
-            .deleteByResourceGroupWithResponse("myRg", "790996e6-9871-4b1f-9cd9-ec42cd6ced1e", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "myRg", "790996e6-9871-4b1f-9cd9-ec42cd6ced1e", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -303,8 +309,6 @@ public final class AttestationsDeleteSamples {
 ### Attestations_DeleteAtResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations DeleteAtResource. */
 public final class AttestationsDeleteAtResourceSamples {
     /*
@@ -322,7 +326,7 @@ public final class AttestationsDeleteAtResourceSamples {
             .deleteAtResourceWithResponse(
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myrg/providers/microsoft.compute/virtualMachines/devVM",
                 "790996e6-9871-4b1f-9cd9-ec42cd6ced1e",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -330,8 +334,6 @@ public final class AttestationsDeleteAtResourceSamples {
 ### Attestations_DeleteAtSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations DeleteAtSubscription. */
 public final class AttestationsDeleteAtSubscriptionSamples {
     /*
@@ -344,7 +346,9 @@ public final class AttestationsDeleteAtSubscriptionSamples {
      */
     public static void deleteAttestationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.attestations().deleteAtSubscriptionWithResponse("790996e6-9871-4b1f-9cd9-ec42cd6ced1e", Context.NONE);
+        manager
+            .attestations()
+            .deleteAtSubscriptionWithResponse("790996e6-9871-4b1f-9cd9-ec42cd6ced1e", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -352,8 +356,6 @@ public final class AttestationsDeleteAtSubscriptionSamples {
 ### Attestations_GetAtResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations GetAtResource. */
 public final class AttestationsGetAtResourceSamples {
     /*
@@ -371,7 +373,7 @@ public final class AttestationsGetAtResourceSamples {
             .getAtResourceWithResponse(
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myrg/providers/microsoft.compute/virtualMachines/devVM",
                 "790996e6-9871-4b1f-9cd9-ec42cd6ced1e",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -379,8 +381,6 @@ public final class AttestationsGetAtResourceSamples {
 ### Attestations_GetAtSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations GetAtSubscription. */
 public final class AttestationsGetAtSubscriptionSamples {
     /*
@@ -393,7 +393,9 @@ public final class AttestationsGetAtSubscriptionSamples {
      */
     public static void getAttestationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.attestations().getAtSubscriptionWithResponse("790996e6-9871-4b1f-9cd9-ec42cd6ced1e", Context.NONE);
+        manager
+            .attestations()
+            .getAtSubscriptionWithResponse("790996e6-9871-4b1f-9cd9-ec42cd6ced1e", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -401,8 +403,6 @@ public final class AttestationsGetAtSubscriptionSamples {
 ### Attestations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations GetByResourceGroup. */
 public final class AttestationsGetByResourceGroupSamples {
     /*
@@ -417,7 +417,8 @@ public final class AttestationsGetByResourceGroupSamples {
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
         manager
             .attestations()
-            .getByResourceGroupWithResponse("myRg", "790996e6-9871-4b1f-9cd9-ec42cd6ced1e", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "myRg", "790996e6-9871-4b1f-9cd9-ec42cd6ced1e", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -425,8 +426,6 @@ public final class AttestationsGetByResourceGroupSamples {
 ### Attestations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations List. */
 public final class AttestationsListSamples {
     /*
@@ -439,7 +438,7 @@ public final class AttestationsListSamples {
      */
     public static void listAttestationsAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.attestations().list(null, null, Context.NONE);
+        manager.attestations().list(null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -459,7 +458,7 @@ public final class AttestationsListSamples {
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'"
                     + " AND PolicyDefinitionReferenceId eq '0b158b46-ff42-4799-8e39-08a5c23b4551'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -467,8 +466,6 @@ public final class AttestationsListSamples {
 ### Attestations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations ListByResourceGroup. */
 public final class AttestationsListByResourceGroupSamples {
     /*
@@ -489,7 +486,7 @@ public final class AttestationsListByResourceGroupSamples {
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'"
                     + " AND PolicyDefinitionReferenceId eq '0b158b46-ff42-4799-8e39-08a5c23b4551'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -502,7 +499,7 @@ public final class AttestationsListByResourceGroupSamples {
      */
     public static void listAttestationsAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.attestations().listByResourceGroup("myRg", null, null, Context.NONE);
+        manager.attestations().listByResourceGroup("myRg", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -510,8 +507,6 @@ public final class AttestationsListByResourceGroupSamples {
 ### Attestations_ListForResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Attestations ListForResource. */
 public final class AttestationsListForResourceSamples {
     /*
@@ -532,7 +527,7 @@ public final class AttestationsListForResourceSamples {
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'"
                     + " AND PolicyDefinitionReferenceId eq '0b158b46-ff42-4799-8e39-08a5c23b4551'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -551,7 +546,381 @@ public final class AttestationsListForResourceSamples {
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myrg/providers/microsoft.compute/virtualMachines/devVM",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForPolicyDefinition
+
+```java
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForPolicyDefinition. */
+public final class ComponentPolicyStatesListQueryResultsForPolicyDefinitionSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionLevelPolicyDefinitionScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at subscription level policy definition scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtSubscriptionLevelPolicyDefinitionScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForPolicyDefinitionWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "24813039-7534-408a-9842-eb99f45721b1",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForResource
+
+```java
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForResource. */
+public final class ComponentPolicyStatesListQueryResultsForResourceSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScopeFilterByComponentId.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state at resource scope filtered by given component id.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyComplianceStateAtResourceScopeFilteredByGivenComponentId(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "componentId eq cert-RSA-cert-3",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryNestedResourceScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at nested resource scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtNestedResourceScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVault",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScopeGroupByComponentTypeWithAggregate.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state count grouped by component type at resource scope
+     * filtered by given assignment.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void
+        queryLatestComponentPolicyComplianceStateCountGroupedByComponentTypeAtResourceScopeFilteredByGivenAssignment(
+            com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "policyAssignmentId eq"
+                    + " '/subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/providers/microsoft.authorization/policyassignments/560050f83dbb4a24974323f8'",
+                "groupby((componentType,complianceState),aggregate($count as count))",
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at resource scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtResourceScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScopeExpandPolicyEvaluationDetails.json
+     */
+    /**
+     * Sample code: Query latest component policy states at resource scope and expand policyEvaluationDetails.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtResourceScopeAndExpandPolicyEvaluationDetails(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "componentType eq 'pod' AND componentId eq 'default/test-pod' AND componentName eq 'test-pod'",
+                null,
+                "PolicyEvaluationDetails",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForResourceGroup
+
+```java
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForResourceGroup. */
+public final class ComponentPolicyStatesListQueryResultsForResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceGroupScopeGroupByComponentTypeWithAggregate.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state count grouped by component type at resource group
+     * scope filtered by given assignment.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void
+        queryLatestComponentPolicyComplianceStateCountGroupedByComponentTypeAtResourceGroupScopeFilteredByGivenAssignment(
+            com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceGroupWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "myResourceGroup",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "policyAssignmentId eq"
+                    + " '/subscriptions/fffedd8f-ffff-fffd-fffd-fffed2f84852/providers/microsoft.authorization/policyassignments/560050f83dbb4a24974323f8'",
+                "groupby((type,complianceState),aggregate($count as count))",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceGroupScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at resource group scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtResourceGroupScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceGroupWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "myResourceGroup",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForResourceGroupLevelPolicyAssignment
+
+```java
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForResourceGroupLevelPolicyAssignment. */
+public final class ComponentPolicyStatesListQueryResultsForResourceGroupLevelPolicyAssignmentSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceGroupLevelPolicyAssignmentScope.json
+     */
+    /**
+     * Sample code: Query latest at resource group level policy assignment scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestAtResourceGroupLevelPolicyAssignmentScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceGroupLevelPolicyAssignmentWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "myResourceGroup",
+                "myPolicyAssignment",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForSubscription
+
+```java
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForSubscription. */
+public final class ComponentPolicyStatesListQueryResultsForSubscriptionSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionScopeGroupByComponentTypeWithAggregate.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state count grouped by component type at subscription scope
+     * filtered by given assignment.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void
+        queryLatestComponentPolicyComplianceStateCountGroupedByComponentTypeAtSubscriptionScopeFilteredByGivenAssignment(
+            com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForSubscriptionWithResponse(
+                "e78961ba-36fe-4739-9212-e3031b4c8db7",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "policyAssignmentId eq"
+                    + " '/subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/providers/microsoft.authorization/policyassignments/560050f83dbb4a24974323f8'",
+                "groupby((componentType,complianceState),aggregate($count as count))",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at subscription scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtSubscriptionScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForSubscriptionWithResponse(
+                "fff10b27-fff3-fff5-fff8-fffbe01e86a5",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForSubscriptionLevelPolicyAssignment
+
+```java
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForSubscriptionLevelPolicyAssignment. */
+public final class ComponentPolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignmentSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionLevelPolicyAssignmentScope.json
+     */
+    /**
+     * Sample code: Query latest at subscription level policy assignment scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestAtSubscriptionLevelPolicyAssignmentScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForSubscriptionLevelPolicyAssignmentWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "ec8f9645-8ecb-4abb-9c0b-5292f19d4003",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -559,12 +928,10 @@ public final class AttestationsListForResourceSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_ListOperations.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/Operations_ListOperations.json
      */
     /**
      * Sample code: List operations.
@@ -572,7 +939,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to PolicyInsightsManager.
      */
     public static void listOperations(com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.operations().listWithResponse(Context.NONE);
+        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -580,7 +947,6 @@ public final class OperationsListSamples {
 ### PolicyEvents_ListQueryResultsForManagementGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForManagementGroup. */
@@ -608,7 +974,7 @@ public final class PolicyEventsListQueryResultsForManagementGroupSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -634,7 +1000,7 @@ public final class PolicyEventsListQueryResultsForManagementGroupSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -642,7 +1008,6 @@ public final class PolicyEventsListQueryResultsForManagementGroupSamples {
 ### PolicyEvents_ListQueryResultsForPolicyDefinition
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForPolicyDefinition. */
@@ -671,7 +1036,7 @@ public final class PolicyEventsListQueryResultsForPolicyDefinitionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -698,7 +1063,7 @@ public final class PolicyEventsListQueryResultsForPolicyDefinitionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -706,7 +1071,6 @@ public final class PolicyEventsListQueryResultsForPolicyDefinitionSamples {
 ### PolicyEvents_ListQueryResultsForPolicySetDefinition
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForPolicySetDefinition. */
@@ -735,7 +1099,7 @@ public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -762,7 +1126,7 @@ public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -770,7 +1134,6 @@ public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
 ### PolicyEvents_ListQueryResultsForResource
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForResource. */
@@ -799,7 +1162,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -826,7 +1189,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -853,7 +1216,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -879,7 +1242,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -907,7 +1270,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 null,
                 "components",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -938,7 +1301,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 "components($apply=groupby((tenantId, principalOid, policyDefinitionAction), aggregate($count as"
                     + " totalActions)))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -965,7 +1328,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -973,7 +1336,6 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
 ### PolicyEvents_ListQueryResultsForResourceGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForResourceGroup. */
@@ -1002,7 +1364,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1029,7 +1391,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1037,7 +1399,6 @@ public final class PolicyEventsListQueryResultsForResourceGroupSamples {
 ### PolicyEvents_ListQueryResultsForResourceGroupLevelPolicyAssignment
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForResourceGroupLevelPolicyAssignment. */
@@ -1067,7 +1428,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssign
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1095,7 +1456,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssign
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1103,7 +1464,6 @@ public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssign
 ### PolicyEvents_ListQueryResultsForSubscription
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 import java.time.OffsetDateTime;
 
@@ -1132,7 +1492,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1157,7 +1517,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "PolicyDefinitionAction eq 'deny'",
                 "aggregate($count as NumDenyEvents)",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1183,7 +1543,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "PolicyDefinitionAction ne 'audit' and PolicyDefinitionAction ne 'append'",
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1209,7 +1569,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1235,7 +1595,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, ResourceId))/groupby((PolicyAssignmentId,"
                     + " PolicyDefinitionId), aggregate($count as NumDeniedResources))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1262,7 +1622,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId), aggregate($count"
                     + " as NumEvents))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1288,7 +1648,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1296,7 +1656,6 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
 ### PolicyEvents_ListQueryResultsForSubscriptionLevelPolicyAssignment
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForSubscriptionLevelPolicyAssignment. */
@@ -1325,7 +1684,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1352,7 +1711,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1360,8 +1719,6 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
 ### PolicyMetadata_GetResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PolicyMetadata GetResource. */
 public final class PolicyMetadataGetResourceSamples {
     /*
@@ -1374,7 +1731,7 @@ public final class PolicyMetadataGetResourceSamples {
      */
     public static void getASinglePolicyMetadataResource(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyMetadatas().getResourceWithResponse("NIST_SP_800-53_R4_AC-2", Context.NONE);
+        manager.policyMetadatas().getResourceWithResponse("NIST_SP_800-53_R4_AC-2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1382,8 +1739,6 @@ public final class PolicyMetadataGetResourceSamples {
 ### PolicyMetadata_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PolicyMetadata List. */
 public final class PolicyMetadataListSamples {
     /*
@@ -1396,7 +1751,7 @@ public final class PolicyMetadataListSamples {
      */
     public static void getCollectionOfPolicyMetadataResources(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyMetadatas().list(null, Context.NONE);
+        manager.policyMetadatas().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1409,7 +1764,7 @@ public final class PolicyMetadataListSamples {
      */
     public static void getCollectionOfPolicyMetadataResourcesUsingTopQueryParameter(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyMetadatas().list(1, Context.NONE);
+        manager.policyMetadatas().list(1, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1417,7 +1772,6 @@ public final class PolicyMetadataListSamples {
 ### PolicyRestrictions_CheckAtManagementGroupScope
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.CheckManagementGroupRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.PendingField;
 import java.util.Arrays;
@@ -1440,7 +1794,7 @@ public final class PolicyRestrictionsCheckAtManagementGroupScopeSamples {
                 "financeMg",
                 new CheckManagementGroupRestrictionsRequest()
                     .withPendingFields(Arrays.asList(new PendingField().withField("type"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1449,7 +1803,6 @@ public final class PolicyRestrictionsCheckAtManagementGroupScopeSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsResourceDetails;
@@ -1492,7 +1845,7 @@ public final class PolicyRestrictionsCheckAtResourceGroupScopeSamples {
                                     .withField("location")
                                     .withValues(Arrays.asList("eastus", "westus", "westus2", "westeurope")),
                                 new PendingField().withField("tags"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1501,7 +1854,6 @@ public final class PolicyRestrictionsCheckAtResourceGroupScopeSamples {
 
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsResourceDetails;
@@ -1543,7 +1895,7 @@ public final class PolicyRestrictionsCheckAtSubscriptionScopeSamples {
                                     .withField("location")
                                     .withValues(Arrays.asList("eastus", "westus", "westus2", "westeurope")),
                                 new PendingField().withField("tags"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1551,7 +1903,6 @@ public final class PolicyRestrictionsCheckAtSubscriptionScopeSamples {
 ### PolicyStates_ListQueryResultsForManagementGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForManagementGroup. */
@@ -1579,7 +1930,7 @@ public final class PolicyStatesListQueryResultsForManagementGroupSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1605,7 +1956,7 @@ public final class PolicyStatesListQueryResultsForManagementGroupSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1613,7 +1964,6 @@ public final class PolicyStatesListQueryResultsForManagementGroupSamples {
 ### PolicyStates_ListQueryResultsForPolicyDefinition
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForPolicyDefinition. */
@@ -1642,7 +1992,7 @@ public final class PolicyStatesListQueryResultsForPolicyDefinitionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1669,7 +2019,7 @@ public final class PolicyStatesListQueryResultsForPolicyDefinitionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1677,7 +2027,6 @@ public final class PolicyStatesListQueryResultsForPolicyDefinitionSamples {
 ### PolicyStates_ListQueryResultsForPolicySetDefinition
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForPolicySetDefinition. */
@@ -1706,7 +2055,7 @@ public final class PolicyStatesListQueryResultsForPolicySetDefinitionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1733,7 +2082,7 @@ public final class PolicyStatesListQueryResultsForPolicySetDefinitionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1741,7 +2090,6 @@ public final class PolicyStatesListQueryResultsForPolicySetDefinitionSamples {
 ### PolicyStates_ListQueryResultsForResource
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForResource. */
@@ -1770,7 +2118,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 "PolicyEvaluationDetails",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1797,7 +2145,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1824,7 +2172,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1852,7 +2200,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 "components($filter=ComplianceState eq 'NonCompliant' or ComplianceState eq 'Compliant')",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1883,7 +2231,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 "components($filter=ComplianceState eq 'NonCompliant' or ComplianceState eq"
                     + " 'Compliant';$apply=groupby((complianceState),aggregate($count as count)))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1910,7 +2258,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1937,7 +2285,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1964,7 +2312,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1972,7 +2320,6 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
 ### PolicyStates_ListQueryResultsForResourceGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForResourceGroup. */
@@ -2001,7 +2348,7 @@ public final class PolicyStatesListQueryResultsForResourceGroupSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2028,7 +2375,7 @@ public final class PolicyStatesListQueryResultsForResourceGroupSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2036,7 +2383,6 @@ public final class PolicyStatesListQueryResultsForResourceGroupSamples {
 ### PolicyStates_ListQueryResultsForResourceGroupLevelPolicyAssignment
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForResourceGroupLevelPolicyAssignment. */
@@ -2066,7 +2412,7 @@ public final class PolicyStatesListQueryResultsForResourceGroupLevelPolicyAssign
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2094,7 +2440,7 @@ public final class PolicyStatesListQueryResultsForResourceGroupLevelPolicyAssign
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2102,7 +2448,6 @@ public final class PolicyStatesListQueryResultsForResourceGroupLevelPolicyAssign
 ### PolicyStates_ListQueryResultsForSubscription
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 import java.time.OffsetDateTime;
 
@@ -2131,7 +2476,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2157,7 +2502,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2184,7 +2529,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2209,7 +2554,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "PolicyDefinitionAction eq 'deny'",
                 "aggregate($count as NumDenyStates)",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2235,7 +2580,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "IsCompliant eq false and (PolicyDefinitionAction ne 'audit' and PolicyDefinitionAction ne 'append')",
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2262,7 +2607,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                     + " ResourceId))/groupby((PolicyAssignmentId, PolicySetDefinitionId, PolicyDefinitionId,"
                     + " PolicyDefinitionReferenceId), aggregate($count as NumNonCompliantResources))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2289,7 +2634,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId), aggregate($count"
                     + " as NumAuditDenyNonComplianceRecords))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2297,7 +2642,6 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
 ### PolicyStates_ListQueryResultsForSubscriptionLevelPolicyAssignment
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForSubscriptionLevelPolicyAssignment. */
@@ -2326,7 +2670,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignm
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2353,7 +2697,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignm
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2361,7 +2705,6 @@ public final class PolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignm
 ### PolicyStates_SummarizeForManagementGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 import java.time.OffsetDateTime;
 
@@ -2386,7 +2729,7 @@ public final class PolicyStatesSummarizeForManagementGroupSamples {
                 OffsetDateTime.parse("2019-10-05T18:00:00Z"),
                 OffsetDateTime.parse("2019-10-06T18:00:00Z"),
                 "PolicyDefinitionAction eq 'deny' or PolicyDefinitionAction eq 'audit'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2394,7 +2737,6 @@ public final class PolicyStatesSummarizeForManagementGroupSamples {
 ### PolicyStates_SummarizeForPolicyDefinition
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForPolicyDefinition. */
@@ -2419,7 +2761,7 @@ public final class PolicyStatesSummarizeForPolicyDefinitionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2427,7 +2769,6 @@ public final class PolicyStatesSummarizeForPolicyDefinitionSamples {
 ### PolicyStates_SummarizeForPolicySetDefinition
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 import java.time.OffsetDateTime;
 
@@ -2453,7 +2794,7 @@ public final class PolicyStatesSummarizeForPolicySetDefinitionSamples {
                 OffsetDateTime.parse("2019-10-05T18:00:00Z"),
                 OffsetDateTime.parse("2019-10-06T18:00:00Z"),
                 "PolicyDefinitionAction eq 'deny'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2461,7 +2802,6 @@ public final class PolicyStatesSummarizeForPolicySetDefinitionSamples {
 ### PolicyStates_SummarizeForResource
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForResource. */
@@ -2485,7 +2825,7 @@ public final class PolicyStatesSummarizeForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2493,7 +2833,6 @@ public final class PolicyStatesSummarizeForResourceSamples {
 ### PolicyStates_SummarizeForResourceGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForResourceGroup. */
@@ -2518,7 +2857,7 @@ public final class PolicyStatesSummarizeForResourceGroupSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2526,7 +2865,6 @@ public final class PolicyStatesSummarizeForResourceGroupSamples {
 ### PolicyStates_SummarizeForResourceGroupLevelPolicyAssignment
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForResourceGroupLevelPolicyAssignment. */
@@ -2552,7 +2890,7 @@ public final class PolicyStatesSummarizeForResourceGroupLevelPolicyAssignmentSam
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2560,7 +2898,6 @@ public final class PolicyStatesSummarizeForResourceGroupLevelPolicyAssignmentSam
 ### PolicyStates_SummarizeForSubscription
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForSubscription. */
@@ -2584,7 +2921,7 @@ public final class PolicyStatesSummarizeForSubscriptionSamples {
                 null,
                 null,
                 "'group1' IN PolicyDefinitionGroupNames",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2606,7 +2943,7 @@ public final class PolicyStatesSummarizeForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2614,7 +2951,6 @@ public final class PolicyStatesSummarizeForSubscriptionSamples {
 ### PolicyStates_SummarizeForSubscriptionLevelPolicyAssignment
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForSubscriptionLevelPolicyAssignment. */
@@ -2639,7 +2975,7 @@ public final class PolicyStatesSummarizeForSubscriptionLevelPolicyAssignmentSamp
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2647,8 +2983,6 @@ public final class PolicyStatesSummarizeForSubscriptionLevelPolicyAssignmentSamp
 ### PolicyStates_TriggerResourceGroupEvaluation
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PolicyStates TriggerResourceGroupEvaluation. */
 public final class PolicyStatesTriggerResourceGroupEvaluationSamples {
     /*
@@ -2663,7 +2997,8 @@ public final class PolicyStatesTriggerResourceGroupEvaluationSamples {
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
         manager
             .policyStates()
-            .triggerResourceGroupEvaluation("fffedd8f-ffff-fffd-fffd-fffed2f84852", "myResourceGroup", Context.NONE);
+            .triggerResourceGroupEvaluation(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852", "myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2671,8 +3006,6 @@ public final class PolicyStatesTriggerResourceGroupEvaluationSamples {
 ### PolicyStates_TriggerSubscriptionEvaluation
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for PolicyStates TriggerSubscriptionEvaluation. */
 public final class PolicyStatesTriggerSubscriptionEvaluationSamples {
     /*
@@ -2685,7 +3018,9 @@ public final class PolicyStatesTriggerSubscriptionEvaluationSamples {
      */
     public static void triggerEvaluationsForAllResourcesInASubscription(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.policyStates().triggerSubscriptionEvaluation("fffedd8f-ffff-fffd-fffd-fffed2f84852", Context.NONE);
+        manager
+            .policyStates()
+            .triggerSubscriptionEvaluation("fffedd8f-ffff-fffd-fffd-fffed2f84852", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2693,7 +3028,6 @@ public final class PolicyStatesTriggerSubscriptionEvaluationSamples {
 ### PolicyTrackedResources_ListQueryResultsForManagementGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyTrackedResourcesResourceType;
 
 /** Samples for PolicyTrackedResources ListQueryResultsForManagementGroup. */
@@ -2718,7 +3052,7 @@ public final class PolicyTrackedResourcesListQueryResultsForManagementGroupSampl
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Authorization/policyAssignments/myPolicyAssignment'"
                     + " AND TrackedResourceId eq"
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Example/exampleResourceType/exampleTrackedResourceName'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2734,7 +3068,11 @@ public final class PolicyTrackedResourcesListQueryResultsForManagementGroupSampl
         manager
             .policyTrackedResources()
             .listQueryResultsForManagementGroup(
-                "myManagementGroup", PolicyTrackedResourcesResourceType.DEFAULT, null, null, Context.NONE);
+                "myManagementGroup",
+                PolicyTrackedResourcesResourceType.DEFAULT,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2742,7 +3080,6 @@ public final class PolicyTrackedResourcesListQueryResultsForManagementGroupSampl
 ### PolicyTrackedResources_ListQueryResultsForResource
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyTrackedResourcesResourceType;
 
 /** Samples for PolicyTrackedResources ListQueryResultsForResource. */
@@ -2767,7 +3104,7 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceSamples {
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Authorization/policyAssignments/myPolicyAssignment'"
                     + " AND TrackedResourceId eq"
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Example/exampleResourceType/myResource/nestedResourceType/TrackedResource1'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2786,7 +3123,7 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceSamples {
                 PolicyTrackedResourcesResourceType.DEFAULT,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2794,7 +3131,6 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceSamples {
 ### PolicyTrackedResources_ListQueryResultsForResourceGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyTrackedResourcesResourceType;
 
 /** Samples for PolicyTrackedResources ListQueryResultsForResourceGroup. */
@@ -2819,7 +3155,7 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceGroupSamples
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Authorization/policyAssignments/myPolicyAssignment'"
                     + " AND TrackedResourceId eq"
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Example/exampleResourceType/myResource/nestedResourceType/TrackedResource1'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2835,7 +3171,11 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceGroupSamples
         manager
             .policyTrackedResources()
             .listQueryResultsForResourceGroup(
-                "myResourceGroup", PolicyTrackedResourcesResourceType.DEFAULT, null, null, Context.NONE);
+                "myResourceGroup",
+                PolicyTrackedResourcesResourceType.DEFAULT,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2843,7 +3183,6 @@ public final class PolicyTrackedResourcesListQueryResultsForResourceGroupSamples
 ### PolicyTrackedResources_ListQueryResultsForSubscription
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyTrackedResourcesResourceType;
 
 /** Samples for PolicyTrackedResources ListQueryResultsForSubscription. */
@@ -2867,7 +3206,7 @@ public final class PolicyTrackedResourcesListQueryResultsForSubscriptionSamples 
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Authorization/policyAssignments/myPolicyAssignment'"
                     + " AND TrackedResourceId eq"
                     + " '/subscriptions/fff8dfdb-fff3-fff0-fff4-fffdcbe6b2ef/resourceGroups/myResourceGroup/providers/Microsoft.Example/exampleResourceType/exampleTrackedResourceName'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -2882,7 +3221,8 @@ public final class PolicyTrackedResourcesListQueryResultsForSubscriptionSamples 
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
         manager
             .policyTrackedResources()
-            .listQueryResultsForSubscription(PolicyTrackedResourcesResourceType.DEFAULT, null, null, Context.NONE);
+            .listQueryResultsForSubscription(
+                PolicyTrackedResourcesResourceType.DEFAULT, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2890,8 +3230,6 @@ public final class PolicyTrackedResourcesListQueryResultsForSubscriptionSamples 
 ### Remediations_CancelAtManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations CancelAtManagementGroup. */
 public final class RemediationsCancelAtManagementGroupSamples {
     /*
@@ -2904,7 +3242,9 @@ public final class RemediationsCancelAtManagementGroupSamples {
      */
     public static void cancelARemediationAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().cancelAtManagementGroupWithResponse("financeMg", "myRemediation", Context.NONE);
+        manager
+            .remediations()
+            .cancelAtManagementGroupWithResponse("financeMg", "myRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2912,8 +3252,6 @@ public final class RemediationsCancelAtManagementGroupSamples {
 ### Remediations_CancelAtResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations CancelAtResource. */
 public final class RemediationsCancelAtResourceSamples {
     /*
@@ -2931,7 +3269,7 @@ public final class RemediationsCancelAtResourceSamples {
             .cancelAtResourceWithResponse(
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 "myRemediation",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2939,8 +3277,6 @@ public final class RemediationsCancelAtResourceSamples {
 ### Remediations_CancelAtResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations CancelAtResourceGroup. */
 public final class RemediationsCancelAtResourceGroupSamples {
     /*
@@ -2953,7 +3289,9 @@ public final class RemediationsCancelAtResourceGroupSamples {
      */
     public static void cancelARemediationAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().cancelAtResourceGroupWithResponse("myResourceGroup", "myRemediation", Context.NONE);
+        manager
+            .remediations()
+            .cancelAtResourceGroupWithResponse("myResourceGroup", "myRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2961,8 +3299,6 @@ public final class RemediationsCancelAtResourceGroupSamples {
 ### Remediations_CancelAtSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations CancelAtSubscription. */
 public final class RemediationsCancelAtSubscriptionSamples {
     /*
@@ -2975,7 +3311,7 @@ public final class RemediationsCancelAtSubscriptionSamples {
      */
     public static void cancelARemediationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().cancelAtSubscriptionWithResponse("myRemediation", Context.NONE);
+        manager.remediations().cancelAtSubscriptionWithResponse("myRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2983,7 +3319,6 @@ public final class RemediationsCancelAtSubscriptionSamples {
 ### Remediations_CreateOrUpdateAtManagementGroup
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.fluent.models.RemediationInner;
 
 /** Samples for Remediations CreateOrUpdateAtManagementGroup. */
@@ -3006,7 +3341,7 @@ public final class RemediationsCreateOrUpdateAtManagementGroupSamples {
                 new RemediationInner()
                     .withPolicyAssignmentId(
                         "/providers/microsoft.management/managementGroups/financeMg/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3014,7 +3349,6 @@ public final class RemediationsCreateOrUpdateAtManagementGroupSamples {
 ### Remediations_CreateOrUpdateAtResource
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.fluent.models.RemediationInner;
 
 /** Samples for Remediations CreateOrUpdateAtResource. */
@@ -3037,7 +3371,7 @@ public final class RemediationsCreateOrUpdateAtResourceSamples {
                 new RemediationInner()
                     .withPolicyAssignmentId(
                         "/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourceGroups/myResourceGroup/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3071,7 +3405,6 @@ public final class RemediationsCreateOrUpdateAtResourceGroupSamples {
 ### Remediations_CreateOrUpdateAtSubscription
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.fluent.models.RemediationInner;
 import com.azure.resourcemanager.policyinsights.models.RemediationFilters;
 import com.azure.resourcemanager.policyinsights.models.RemediationPropertiesFailureThreshold;
@@ -3097,7 +3430,7 @@ public final class RemediationsCreateOrUpdateAtSubscriptionSamples {
                 new RemediationInner()
                     .withPolicyAssignmentId(
                         "/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3123,7 +3456,7 @@ public final class RemediationsCreateOrUpdateAtSubscriptionSamples {
                     .withResourceCount(42)
                     .withParallelDeployments(6)
                     .withFailureThreshold(new RemediationPropertiesFailureThreshold().withPercentage(0.1F)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3131,8 +3464,6 @@ public final class RemediationsCreateOrUpdateAtSubscriptionSamples {
 ### Remediations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations Delete. */
 public final class RemediationsDeleteSamples {
     /*
@@ -3145,7 +3476,10 @@ public final class RemediationsDeleteSamples {
      */
     public static void deleteRemediationAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().deleteByResourceGroupWithResponse("myResourceGroup", "storageRemediation", Context.NONE);
+        manager
+            .remediations()
+            .deleteByResourceGroupWithResponse(
+                "myResourceGroup", "storageRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3153,8 +3487,6 @@ public final class RemediationsDeleteSamples {
 ### Remediations_DeleteAtManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations DeleteAtManagementGroup. */
 public final class RemediationsDeleteAtManagementGroupSamples {
     /*
@@ -3167,7 +3499,9 @@ public final class RemediationsDeleteAtManagementGroupSamples {
      */
     public static void deleteRemediationAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().deleteAtManagementGroupWithResponse("financeMg", "storageRemediation", Context.NONE);
+        manager
+            .remediations()
+            .deleteAtManagementGroupWithResponse("financeMg", "storageRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3175,8 +3509,6 @@ public final class RemediationsDeleteAtManagementGroupSamples {
 ### Remediations_DeleteAtResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations DeleteAtResource. */
 public final class RemediationsDeleteAtResourceSamples {
     /*
@@ -3194,7 +3526,7 @@ public final class RemediationsDeleteAtResourceSamples {
             .deleteAtResourceWithResponse(
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 "storageRemediation",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3202,8 +3534,6 @@ public final class RemediationsDeleteAtResourceSamples {
 ### Remediations_DeleteAtSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations DeleteAtSubscription. */
 public final class RemediationsDeleteAtSubscriptionSamples {
     /*
@@ -3216,7 +3546,7 @@ public final class RemediationsDeleteAtSubscriptionSamples {
      */
     public static void deleteRemediationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().deleteAtSubscriptionWithResponse("storageRemediation", Context.NONE);
+        manager.remediations().deleteAtSubscriptionWithResponse("storageRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3224,8 +3554,6 @@ public final class RemediationsDeleteAtSubscriptionSamples {
 ### Remediations_GetAtManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations GetAtManagementGroup. */
 public final class RemediationsGetAtManagementGroupSamples {
     /*
@@ -3238,7 +3566,9 @@ public final class RemediationsGetAtManagementGroupSamples {
      */
     public static void getRemediationAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().getAtManagementGroupWithResponse("financeMg", "storageRemediation", Context.NONE);
+        manager
+            .remediations()
+            .getAtManagementGroupWithResponse("financeMg", "storageRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3246,8 +3576,6 @@ public final class RemediationsGetAtManagementGroupSamples {
 ### Remediations_GetAtResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations GetAtResource. */
 public final class RemediationsGetAtResourceSamples {
     /*
@@ -3265,7 +3593,7 @@ public final class RemediationsGetAtResourceSamples {
             .getAtResourceWithResponse(
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 "storageRemediation",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3273,8 +3601,6 @@ public final class RemediationsGetAtResourceSamples {
 ### Remediations_GetAtSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations GetAtSubscription. */
 public final class RemediationsGetAtSubscriptionSamples {
     /*
@@ -3287,7 +3613,7 @@ public final class RemediationsGetAtSubscriptionSamples {
      */
     public static void getRemediationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().getAtSubscriptionWithResponse("storageRemediation", Context.NONE);
+        manager.remediations().getAtSubscriptionWithResponse("storageRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3295,8 +3621,6 @@ public final class RemediationsGetAtSubscriptionSamples {
 ### Remediations_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations GetByResourceGroup. */
 public final class RemediationsGetByResourceGroupSamples {
     /*
@@ -3309,7 +3633,9 @@ public final class RemediationsGetByResourceGroupSamples {
      */
     public static void getRemediationAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().getByResourceGroupWithResponse("myResourceGroup", "storageRemediation", Context.NONE);
+        manager
+            .remediations()
+            .getByResourceGroupWithResponse("myResourceGroup", "storageRemediation", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3317,8 +3643,6 @@ public final class RemediationsGetByResourceGroupSamples {
 ### Remediations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations List. */
 public final class RemediationsListSamples {
     /*
@@ -3338,7 +3662,7 @@ public final class RemediationsListSamples {
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'"
                     + " AND PolicyDefinitionReferenceId eq 'storageSkuDef'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3351,7 +3675,7 @@ public final class RemediationsListSamples {
      */
     public static void listRemediationsAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().list(null, null, Context.NONE);
+        manager.remediations().list(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3359,8 +3683,6 @@ public final class RemediationsListSamples {
 ### Remediations_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListByResourceGroup. */
 public final class RemediationsListByResourceGroupSamples {
     /*
@@ -3380,7 +3702,7 @@ public final class RemediationsListByResourceGroupSamples {
                 1,
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourceGroups/myResourceGroup/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3393,7 +3715,7 @@ public final class RemediationsListByResourceGroupSamples {
      */
     public static void listRemediationsAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listByResourceGroup("myResourceGroup", null, null, Context.NONE);
+        manager.remediations().listByResourceGroup("myResourceGroup", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3401,8 +3723,6 @@ public final class RemediationsListByResourceGroupSamples {
 ### Remediations_ListDeploymentsAtManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtManagementGroup. */
 public final class RemediationsListDeploymentsAtManagementGroupSamples {
     /*
@@ -3415,7 +3735,9 @@ public final class RemediationsListDeploymentsAtManagementGroupSamples {
      */
     public static void listDeploymentsForARemediationAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listDeploymentsAtManagementGroup("financeMg", "myRemediation", null, Context.NONE);
+        manager
+            .remediations()
+            .listDeploymentsAtManagementGroup("financeMg", "myRemediation", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3423,8 +3745,6 @@ public final class RemediationsListDeploymentsAtManagementGroupSamples {
 ### Remediations_ListDeploymentsAtResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtResource. */
 public final class RemediationsListDeploymentsAtResourceSamples {
     /*
@@ -3443,7 +3763,7 @@ public final class RemediationsListDeploymentsAtResourceSamples {
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 "myRemediation",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3451,8 +3771,6 @@ public final class RemediationsListDeploymentsAtResourceSamples {
 ### Remediations_ListDeploymentsAtResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtResourceGroup. */
 public final class RemediationsListDeploymentsAtResourceGroupSamples {
     /*
@@ -3465,7 +3783,9 @@ public final class RemediationsListDeploymentsAtResourceGroupSamples {
      */
     public static void listDeploymentsForARemediationAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listDeploymentsAtResourceGroup("myResourceGroup", "myRemediation", null, Context.NONE);
+        manager
+            .remediations()
+            .listDeploymentsAtResourceGroup("myResourceGroup", "myRemediation", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3473,8 +3793,6 @@ public final class RemediationsListDeploymentsAtResourceGroupSamples {
 ### Remediations_ListDeploymentsAtSubscription
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtSubscription. */
 public final class RemediationsListDeploymentsAtSubscriptionSamples {
     /*
@@ -3487,7 +3805,7 @@ public final class RemediationsListDeploymentsAtSubscriptionSamples {
      */
     public static void listDeploymentsForARemediationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listDeploymentsAtSubscription("myRemediation", null, Context.NONE);
+        manager.remediations().listDeploymentsAtSubscription("myRemediation", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3495,8 +3813,6 @@ public final class RemediationsListDeploymentsAtSubscriptionSamples {
 ### Remediations_ListForManagementGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListForManagementGroup. */
 public final class RemediationsListForManagementGroupSamples {
     /*
@@ -3509,7 +3825,7 @@ public final class RemediationsListForManagementGroupSamples {
      */
     public static void listRemediationsAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listForManagementGroup("financeMg", null, null, Context.NONE);
+        manager.remediations().listForManagementGroup("financeMg", null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3529,7 +3845,7 @@ public final class RemediationsListForManagementGroupSamples {
                 1,
                 "PolicyAssignmentId eq"
                     + " '/providers/microsoft.management/managementGroups/financeMg/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3537,8 +3853,6 @@ public final class RemediationsListForManagementGroupSamples {
 ### Remediations_ListForResource
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListForResource. */
 public final class RemediationsListForResourceSamples {
     /*
@@ -3557,7 +3871,7 @@ public final class RemediationsListForResourceSamples {
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -3577,7 +3891,7 @@ public final class RemediationsListForResourceSamples {
                 1,
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
