@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for OnlineEndpoints Delete. */
 public final class OnlineEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineEndpoint/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/OnlineEndpoint/delete.json
      */
     /**
-     * Sample code: Delete Online Endpoint.
+     * Sample code: Delete Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteOnlineEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void deleteWorkspaceOnlineEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .onlineEndpoints()
             .delete("test-rg", "my-aml-workspace", "testEndpointName", com.azure.core.util.Context.NONE);

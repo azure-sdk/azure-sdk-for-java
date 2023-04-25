@@ -39,21 +39,21 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
     private final CodeVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of CodeVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    CodeVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    CodeVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(CodeVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesCodeVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesCodeVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -61,8 +61,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
     public interface CodeVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeVersionResourceArmPaginatedResult>> list(
@@ -80,8 +79,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -97,8 +95,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeVersionInner>> get(
@@ -114,8 +111,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeVersionInner>> createOrUpdate(

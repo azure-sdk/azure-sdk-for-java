@@ -39,14 +39,14 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     private final PrivateEndpointConnectionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of PrivateEndpointConnectionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateEndpointConnectionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    PrivateEndpointConnectionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy
                 .create(
@@ -55,16 +55,15 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesPrivateEndpointConnections to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesPrivateEndpointConnections to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
     public interface PrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionListResult>> list(
@@ -78,9 +77,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections"
-                + "/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> get(
@@ -95,9 +92,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections"
-                + "/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionInner>> createOrUpdate(
@@ -113,9 +108,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections"
-                + "/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
