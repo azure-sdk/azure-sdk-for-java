@@ -34,12 +34,6 @@ public final class GcpOrganizationalDataOrganization extends GcpOrganizationalDa
     @JsonProperty(value = "workloadIdentityProviderId")
     private String workloadIdentityProviderId;
 
-    /*
-     * GCP organization name
-     */
-    @JsonProperty(value = "organizationName", access = JsonProperty.Access.WRITE_ONLY)
-    private String organizationName;
-
     /** Creates an instance of GcpOrganizationalDataOrganization class. */
     public GcpOrganizationalDataOrganization() {
     }
@@ -108,15 +102,6 @@ public final class GcpOrganizationalDataOrganization extends GcpOrganizationalDa
     public GcpOrganizationalDataOrganization withWorkloadIdentityProviderId(String workloadIdentityProviderId) {
         this.workloadIdentityProviderId = workloadIdentityProviderId;
         return this;
-    }
-
-    /**
-     * Get the organizationName property: GCP organization name.
-     *
-     * @return the organizationName value.
-     */
-    public String organizationName() {
-        return this.organizationName;
     }
 
     /**

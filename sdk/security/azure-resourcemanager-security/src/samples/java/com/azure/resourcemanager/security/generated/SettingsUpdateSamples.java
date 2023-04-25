@@ -21,6 +21,6 @@ public final class SettingsUpdateSamples {
         manager
             .settings()
             .updateWithResponse(
-                SettingName.WDATP, new DataExportSettings().withEnabled(true), com.azure.core.util.Context.NONE);
+                SettingName.MCAS, new DataExportSettings().withEnabled(true), com.azure.core.util.Context.NONE);
     }
 }

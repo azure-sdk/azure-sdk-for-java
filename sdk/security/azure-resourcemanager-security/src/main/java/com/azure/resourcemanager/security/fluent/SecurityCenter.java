@@ -353,6 +353,13 @@ public interface SecurityCenter {
     SoftwareInventoriesClient getSoftwareInventories();
 
     /**
+     * Gets the SecurityConnectorsClient object to access its operations.
+     *
+     * @return the SecurityConnectorsClient object.
+     */
+    SecurityConnectorsClient getSecurityConnectors();
+
+    /**
      * Gets the GovernanceRulesClient object to access its operations.
      *
      * @return the GovernanceRulesClient object.
@@ -416,20 +423,6 @@ public interface SecurityCenter {
     ApiCollectionOffboardingsClient getApiCollectionOffboardings();
 
     /**
-     * Gets the HealthReportsClient object to access its operations.
-     *
-     * @return the HealthReportsClient object.
-     */
-    HealthReportsClient getHealthReports();
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    HealthReportOperationsClient getHealthReportOperations();
-
-    /**
      * Gets the SqlVulnerabilityAssessmentScansClient object to access its operations.
      *
      * @return the SqlVulnerabilityAssessmentScansClient object.
@@ -449,18 +442,4 @@ public interface SecurityCenter {
      * @return the SqlVulnerabilityAssessmentBaselineRulesClient object.
      */
     SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules();
-
-    /**
-     * Gets the SecurityConnectorsClient object to access its operations.
-     *
-     * @return the SecurityConnectorsClient object.
-     */
-    SecurityConnectorsClient getSecurityConnectors();
-
-    /**
-     * Gets the SecurityOperatorsClient object to access its operations.
-     *
-     * @return the SecurityOperatorsClient object.
-     */
-    SecurityOperatorsClient getSecurityOperators();
 }

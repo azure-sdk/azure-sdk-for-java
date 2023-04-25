@@ -49,8 +49,6 @@ import com.azure.resourcemanager.security.implementation.DiscoveredSecuritySolut
 import com.azure.resourcemanager.security.implementation.ExternalSecuritySolutionsImpl;
 import com.azure.resourcemanager.security.implementation.GovernanceAssignmentsImpl;
 import com.azure.resourcemanager.security.implementation.GovernanceRulesImpl;
-import com.azure.resourcemanager.security.implementation.HealthReportOperationsImpl;
-import com.azure.resourcemanager.security.implementation.HealthReportsImpl;
 import com.azure.resourcemanager.security.implementation.InformationProtectionPoliciesImpl;
 import com.azure.resourcemanager.security.implementation.IngestionSettingsImpl;
 import com.azure.resourcemanager.security.implementation.IotSecuritySolutionAnalyticsImpl;
@@ -73,7 +71,6 @@ import com.azure.resourcemanager.security.implementation.SecurityConnectorApplic
 import com.azure.resourcemanager.security.implementation.SecurityConnectorApplicationsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityConnectorsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityContactsImpl;
-import com.azure.resourcemanager.security.implementation.SecurityOperatorsImpl;
 import com.azure.resourcemanager.security.implementation.SecuritySolutionsImpl;
 import com.azure.resourcemanager.security.implementation.SecuritySolutionsReferenceDatasImpl;
 import com.azure.resourcemanager.security.implementation.ServerVulnerabilityAssessmentsImpl;
@@ -111,8 +108,6 @@ import com.azure.resourcemanager.security.models.DiscoveredSecuritySolutions;
 import com.azure.resourcemanager.security.models.ExternalSecuritySolutions;
 import com.azure.resourcemanager.security.models.GovernanceAssignments;
 import com.azure.resourcemanager.security.models.GovernanceRules;
-import com.azure.resourcemanager.security.models.HealthReportOperations;
-import com.azure.resourcemanager.security.models.HealthReports;
 import com.azure.resourcemanager.security.models.InformationProtectionPolicies;
 import com.azure.resourcemanager.security.models.IngestionSettings;
 import com.azure.resourcemanager.security.models.IotSecuritySolutionAnalytics;
@@ -134,7 +129,6 @@ import com.azure.resourcemanager.security.models.SecurityConnectorApplicationOpe
 import com.azure.resourcemanager.security.models.SecurityConnectorApplications;
 import com.azure.resourcemanager.security.models.SecurityConnectors;
 import com.azure.resourcemanager.security.models.SecurityContacts;
-import com.azure.resourcemanager.security.models.SecurityOperators;
 import com.azure.resourcemanager.security.models.SecuritySolutions;
 import com.azure.resourcemanager.security.models.SecuritySolutionsReferenceDatas;
 import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessments;
@@ -246,6 +240,8 @@ public final class SecurityManager {
 
     private SoftwareInventories softwareInventories;
 
+    private SecurityConnectors securityConnectors;
+
     private GovernanceRules governanceRules;
 
     private GovernanceAssignments governanceAssignments;
@@ -264,19 +260,11 @@ public final class SecurityManager {
 
     private ApiCollectionOffboardings apiCollectionOffboardings;
 
-    private HealthReports healthReports;
-
-    private HealthReportOperations healthReportOperations;
-
     private SqlVulnerabilityAssessmentScans sqlVulnerabilityAssessmentScans;
 
     private SqlVulnerabilityAssessmentScanResults sqlVulnerabilityAssessmentScanResults;
 
     private SqlVulnerabilityAssessmentBaselineRules sqlVulnerabilityAssessmentBaselineRules;
-
-    private SecurityConnectors securityConnectors;
-
-    private SecurityOperators securityOperators;
 
     private final SecurityCenter clientObject;
 
@@ -443,7 +431,7 @@ public final class SecurityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.security")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1063,6 +1051,18 @@ public final class SecurityManager {
     }
 
     /**
+     * Gets the resource collection API of SecurityConnectors. It manages SecurityConnector.
+     *
+     * @return Resource collection API of SecurityConnectors.
+     */
+    public SecurityConnectors securityConnectors() {
+        if (this.securityConnectors == null) {
+            this.securityConnectors = new SecurityConnectorsImpl(clientObject.getSecurityConnectors(), this);
+        }
+        return securityConnectors;
+    }
+
+    /**
      * Gets the resource collection API of GovernanceRules. It manages GovernanceRule.
      *
      * @return Resource collection API of GovernanceRules.
@@ -1176,31 +1176,6 @@ public final class SecurityManager {
     }
 
     /**
-     * Gets the resource collection API of HealthReports.
-     *
-     * @return Resource collection API of HealthReports.
-     */
-    public HealthReports healthReports() {
-        if (this.healthReports == null) {
-            this.healthReports = new HealthReportsImpl(clientObject.getHealthReports(), this);
-        }
-        return healthReports;
-    }
-
-    /**
-     * Gets the resource collection API of HealthReportOperations.
-     *
-     * @return Resource collection API of HealthReportOperations.
-     */
-    public HealthReportOperations healthReportOperations() {
-        if (this.healthReportOperations == null) {
-            this.healthReportOperations =
-                new HealthReportOperationsImpl(clientObject.getHealthReportOperations(), this);
-        }
-        return healthReportOperations;
-    }
-
-    /**
      * Gets the resource collection API of SqlVulnerabilityAssessmentScans.
      *
      * @return Resource collection API of SqlVulnerabilityAssessmentScans.
@@ -1239,30 +1214,6 @@ public final class SecurityManager {
                     clientObject.getSqlVulnerabilityAssessmentBaselineRules(), this);
         }
         return sqlVulnerabilityAssessmentBaselineRules;
-    }
-
-    /**
-     * Gets the resource collection API of SecurityConnectors. It manages SecurityConnector.
-     *
-     * @return Resource collection API of SecurityConnectors.
-     */
-    public SecurityConnectors securityConnectors() {
-        if (this.securityConnectors == null) {
-            this.securityConnectors = new SecurityConnectorsImpl(clientObject.getSecurityConnectors(), this);
-        }
-        return securityConnectors;
-    }
-
-    /**
-     * Gets the resource collection API of SecurityOperators.
-     *
-     * @return Resource collection API of SecurityOperators.
-     */
-    public SecurityOperators securityOperators() {
-        if (this.securityOperators == null) {
-            this.securityOperators = new SecurityOperatorsImpl(clientObject.getSecurityOperators(), this);
-        }
-        return securityOperators;
     }
 
     /**

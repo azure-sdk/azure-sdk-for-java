@@ -17,6 +17,6 @@ public final class SettingsGetSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void getASettingOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.settings().getWithResponse(SettingName.WDATP, com.azure.core.util.Context.NONE);
+        manager.settings().getWithResponse(SettingName.MCAS, com.azure.core.util.Context.NONE);
     }
 }

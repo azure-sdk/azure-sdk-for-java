@@ -47,8 +47,6 @@ import com.azure.resourcemanager.security.fluent.DiscoveredSecuritySolutionsClie
 import com.azure.resourcemanager.security.fluent.ExternalSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceRulesClient;
-import com.azure.resourcemanager.security.fluent.HealthReportOperationsClient;
-import com.azure.resourcemanager.security.fluent.HealthReportsClient;
 import com.azure.resourcemanager.security.fluent.InformationProtectionPoliciesClient;
 import com.azure.resourcemanager.security.fluent.IngestionSettingsClient;
 import com.azure.resourcemanager.security.fluent.IotSecuritySolutionAnalyticsClient;
@@ -71,7 +69,6 @@ import com.azure.resourcemanager.security.fluent.SecurityConnectorApplicationOpe
 import com.azure.resourcemanager.security.fluent.SecurityConnectorApplicationsClient;
 import com.azure.resourcemanager.security.fluent.SecurityConnectorsClient;
 import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
-import com.azure.resourcemanager.security.fluent.SecurityOperatorsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsReferenceDatasClient;
 import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsClient;
@@ -696,6 +693,18 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.softwareInventories;
     }
 
+    /** The SecurityConnectorsClient object to access its operations. */
+    private final SecurityConnectorsClient securityConnectors;
+
+    /**
+     * Gets the SecurityConnectorsClient object to access its operations.
+     *
+     * @return the SecurityConnectorsClient object.
+     */
+    public SecurityConnectorsClient getSecurityConnectors() {
+        return this.securityConnectors;
+    }
+
     /** The GovernanceRulesClient object to access its operations. */
     private final GovernanceRulesClient governanceRules;
 
@@ -804,30 +813,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.apiCollectionOffboardings;
     }
 
-    /** The HealthReportsClient object to access its operations. */
-    private final HealthReportsClient healthReports;
-
-    /**
-     * Gets the HealthReportsClient object to access its operations.
-     *
-     * @return the HealthReportsClient object.
-     */
-    public HealthReportsClient getHealthReports() {
-        return this.healthReports;
-    }
-
-    /** The HealthReportOperationsClient object to access its operations. */
-    private final HealthReportOperationsClient healthReportOperations;
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    public HealthReportOperationsClient getHealthReportOperations() {
-        return this.healthReportOperations;
-    }
-
     /** The SqlVulnerabilityAssessmentScansClient object to access its operations. */
     private final SqlVulnerabilityAssessmentScansClient sqlVulnerabilityAssessmentScans;
 
@@ -862,30 +847,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules() {
         return this.sqlVulnerabilityAssessmentBaselineRules;
-    }
-
-    /** The SecurityConnectorsClient object to access its operations. */
-    private final SecurityConnectorsClient securityConnectors;
-
-    /**
-     * Gets the SecurityConnectorsClient object to access its operations.
-     *
-     * @return the SecurityConnectorsClient object.
-     */
-    public SecurityConnectorsClient getSecurityConnectors() {
-        return this.securityConnectors;
-    }
-
-    /** The SecurityOperatorsClient object to access its operations. */
-    private final SecurityOperatorsClient securityOperators;
-
-    /**
-     * Gets the SecurityOperatorsClient object to access its operations.
-     *
-     * @return the SecurityOperatorsClient object.
-     */
-    public SecurityOperatorsClient getSecurityOperators() {
-        return this.securityOperators;
     }
 
     /**
@@ -957,6 +918,7 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.settings = new SettingsClientImpl(this);
         this.ingestionSettings = new IngestionSettingsClientImpl(this);
         this.softwareInventories = new SoftwareInventoriesClientImpl(this);
+        this.securityConnectors = new SecurityConnectorsClientImpl(this);
         this.governanceRules = new GovernanceRulesClientImpl(this);
         this.governanceAssignments = new GovernanceAssignmentsClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);
@@ -966,13 +928,9 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.apiCollections = new ApiCollectionsClientImpl(this);
         this.apiCollectionOnboardings = new ApiCollectionOnboardingsClientImpl(this);
         this.apiCollectionOffboardings = new ApiCollectionOffboardingsClientImpl(this);
-        this.healthReports = new HealthReportsClientImpl(this);
-        this.healthReportOperations = new HealthReportOperationsClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
         this.sqlVulnerabilityAssessmentScanResults = new SqlVulnerabilityAssessmentScanResultsClientImpl(this);
         this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
-        this.securityConnectors = new SecurityConnectorsClientImpl(this);
-        this.securityOperators = new SecurityOperatorsClientImpl(this);
     }
 
     /**
