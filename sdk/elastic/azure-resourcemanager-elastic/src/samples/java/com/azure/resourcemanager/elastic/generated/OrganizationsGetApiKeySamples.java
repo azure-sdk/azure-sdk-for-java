@@ -15,6 +15,6 @@ public final class OrganizationsGetApiKeySamples {
      * @param manager Entry point to ElasticManager.
      */
     public static void organizationsGetApiKey(com.azure.resourcemanager.elastic.ElasticManager manager) {
-        manager.organizations().getApiKeyWithResponse(null, com.azure.core.util.Context.NONE);
+        manager.organizations().getApiKeyWithResponse("myResourceGroup", null, com.azure.core.util.Context.NONE);
     }
 }

@@ -59,13 +59,6 @@ public interface MicrosoftElastic {
     MonitorsClient getMonitors();
 
     /**
-     * Gets the ElasticVersionsClient object to access its operations.
-     *
-     * @return the ElasticVersionsClient object.
-     */
-    ElasticVersionsClient getElasticVersions();
-
-    /**
      * Gets the MonitoredResourcesClient object to access its operations.
      *
      * @return the MonitoredResourcesClient object.

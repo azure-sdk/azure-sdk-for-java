@@ -31,7 +31,6 @@ import com.azure.resourcemanager.elastic.implementation.CreateAndAssociatePLFilt
 import com.azure.resourcemanager.elastic.implementation.DeploymentInfoesImpl;
 import com.azure.resourcemanager.elastic.implementation.DetachAndDeleteTrafficFiltersImpl;
 import com.azure.resourcemanager.elastic.implementation.DetachTrafficFiltersImpl;
-import com.azure.resourcemanager.elastic.implementation.ElasticVersionsImpl;
 import com.azure.resourcemanager.elastic.implementation.ExternalUsersImpl;
 import com.azure.resourcemanager.elastic.implementation.ListAssociatedTrafficFiltersImpl;
 import com.azure.resourcemanager.elastic.implementation.MicrosoftElasticBuilder;
@@ -53,7 +52,6 @@ import com.azure.resourcemanager.elastic.models.CreateAndAssociatePLFilters;
 import com.azure.resourcemanager.elastic.models.DeploymentInfoes;
 import com.azure.resourcemanager.elastic.models.DetachAndDeleteTrafficFilters;
 import com.azure.resourcemanager.elastic.models.DetachTrafficFilters;
-import com.azure.resourcemanager.elastic.models.ElasticVersions;
 import com.azure.resourcemanager.elastic.models.ExternalUsers;
 import com.azure.resourcemanager.elastic.models.ListAssociatedTrafficFilters;
 import com.azure.resourcemanager.elastic.models.MonitorOperations;
@@ -79,8 +77,6 @@ public final class ElasticManager {
     private Operations operations;
 
     private Monitors monitors;
-
-    private ElasticVersions elasticVersions;
 
     private MonitoredResources monitoredResources;
 
@@ -283,7 +279,7 @@ public final class ElasticManager {
                 .append("-")
                 .append("com.azure.resourcemanager.elastic")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -362,18 +358,6 @@ public final class ElasticManager {
             this.monitors = new MonitorsImpl(clientObject.getMonitors(), this);
         }
         return monitors;
-    }
-
-    /**
-     * Gets the resource collection API of ElasticVersions.
-     *
-     * @return Resource collection API of ElasticVersions.
-     */
-    public ElasticVersions elasticVersions() {
-        if (this.elasticVersions == null) {
-            this.elasticVersions = new ElasticVersionsImpl(clientObject.getElasticVersions(), this);
-        }
-        return elasticVersions;
     }
 
     /**

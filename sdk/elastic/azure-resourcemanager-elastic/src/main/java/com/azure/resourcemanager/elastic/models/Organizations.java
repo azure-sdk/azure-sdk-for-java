@@ -13,6 +13,7 @@ public interface Organizations {
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
      * @param body Email Id parameter of the User Organization, of which the API Key must be returned.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -21,16 +22,18 @@ public interface Organizations {
      * @return the User Api Key created for the Organization associated with the User Email Id that was passed in the
      *     request along with {@link Response}.
      */
-    Response<UserApiKeyResponse> getApiKeyWithResponse(UserEmailId body, Context context);
+    Response<UserApiKeyResponse> getApiKeyWithResponse(String resourceGroupName, UserEmailId body, Context context);
 
     /**
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the User Api Key created for the Organization associated with the User Email Id that was passed in the
      *     request.
      */
-    UserApiKeyResponse getApiKey();
+    UserApiKeyResponse getApiKey(String resourceGroupName);
 }

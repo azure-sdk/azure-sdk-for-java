@@ -11,19 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class MarketplaceSaaSInfo {
     /*
-     * Marketplace Subscription
+     * Marketplace Subscription Id
      */
     @JsonProperty(value = "marketplaceSubscription")
     private MarketplaceSaaSInfoMarketplaceSubscription marketplaceSubscription;
 
     /*
-     * Marketplace Subscription Details: SAAS Name
+     * Subscription Details: Marketplace SAAS Name
      */
     @JsonProperty(value = "marketplaceName")
     private String marketplaceName;
 
     /*
-     * Marketplace Subscription Details: Resource URI
+     * Subscription Details: Marketplace Resource URI
      */
     @JsonProperty(value = "marketplaceResourceId")
     private String marketplaceResourceId;
@@ -33,7 +33,7 @@ public final class MarketplaceSaaSInfo {
     }
 
     /**
-     * Get the marketplaceSubscription property: Marketplace Subscription.
+     * Get the marketplaceSubscription property: Marketplace Subscription Id.
      *
      * @return the marketplaceSubscription value.
      */
@@ -42,7 +42,7 @@ public final class MarketplaceSaaSInfo {
     }
 
     /**
-     * Set the marketplaceSubscription property: Marketplace Subscription.
+     * Set the marketplaceSubscription property: Marketplace Subscription Id.
      *
      * @param marketplaceSubscription the marketplaceSubscription value to set.
      * @return the MarketplaceSaaSInfo object itself.
@@ -54,7 +54,7 @@ public final class MarketplaceSaaSInfo {
     }
 
     /**
-     * Get the marketplaceName property: Marketplace Subscription Details: SAAS Name.
+     * Get the marketplaceName property: Subscription Details: Marketplace SAAS Name.
      *
      * @return the marketplaceName value.
      */
@@ -63,7 +63,7 @@ public final class MarketplaceSaaSInfo {
     }
 
     /**
-     * Set the marketplaceName property: Marketplace Subscription Details: SAAS Name.
+     * Set the marketplaceName property: Subscription Details: Marketplace SAAS Name.
      *
      * @param marketplaceName the marketplaceName value to set.
      * @return the MarketplaceSaaSInfo object itself.
@@ -74,7 +74,7 @@ public final class MarketplaceSaaSInfo {
     }
 
     /**
-     * Get the marketplaceResourceId property: Marketplace Subscription Details: Resource URI.
+     * Get the marketplaceResourceId property: Subscription Details: Marketplace Resource URI.
      *
      * @return the marketplaceResourceId value.
      */
@@ -83,7 +83,7 @@ public final class MarketplaceSaaSInfo {
     }
 
     /**
-     * Set the marketplaceResourceId property: Marketplace Subscription Details: Resource URI.
+     * Set the marketplaceResourceId property: Subscription Details: Marketplace Resource URI.
      *
      * @param marketplaceResourceId the marketplaceResourceId value to set.
      * @return the MarketplaceSaaSInfo object itself.

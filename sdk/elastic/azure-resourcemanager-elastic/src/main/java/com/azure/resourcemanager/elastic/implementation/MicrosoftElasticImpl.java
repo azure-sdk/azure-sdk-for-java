@@ -29,7 +29,6 @@ import com.azure.resourcemanager.elastic.fluent.CreateAndAssociatePLFiltersClien
 import com.azure.resourcemanager.elastic.fluent.DeploymentInfoesClient;
 import com.azure.resourcemanager.elastic.fluent.DetachAndDeleteTrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.DetachTrafficFiltersClient;
-import com.azure.resourcemanager.elastic.fluent.ElasticVersionsClient;
 import com.azure.resourcemanager.elastic.fluent.ExternalUsersClient;
 import com.azure.resourcemanager.elastic.fluent.ListAssociatedTrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.MicrosoftElastic;
@@ -150,18 +149,6 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
      */
     public MonitorsClient getMonitors() {
         return this.monitors;
-    }
-
-    /** The ElasticVersionsClient object to access its operations. */
-    private final ElasticVersionsClient elasticVersions;
-
-    /**
-     * Gets the ElasticVersionsClient object to access its operations.
-     *
-     * @return the ElasticVersionsClient object.
-     */
-    public ElasticVersionsClient getElasticVersions() {
-        return this.elasticVersions;
     }
 
     /** The MonitoredResourcesClient object to access its operations. */
@@ -406,7 +393,6 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         this.apiVersion = "2023-02-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
-        this.elasticVersions = new ElasticVersionsClientImpl(this);
         this.monitoredResources = new MonitoredResourcesClientImpl(this);
         this.deploymentInfoes = new DeploymentInfoesClientImpl(this);
         this.externalUsers = new ExternalUsersClientImpl(this);

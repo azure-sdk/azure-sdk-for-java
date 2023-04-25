@@ -29,10 +29,6 @@
 
 - [Update](#detachtrafficfilter_update)
 
-## ElasticVersions
-
-- [List](#elasticversions_list)
-
 ## ExternalUser
 
 - [CreateOrUpdate](#externaluser_createorupdate)
@@ -245,25 +241,6 @@ public final class DetachTrafficFilterUpdateSamples {
             .detachTrafficFilters()
             .update(
                 "myResourceGroup", "myMonitor", "31d91b5afb6f4c2eaaf104c97b1991dd", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ElasticVersions_List
-
-```java
-/** Samples for ElasticVersions List. */
-public final class ElasticVersionsListSamples {
-    /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/ElasticVersions_List.json
-     */
-    /**
-     * Sample code: ElasticVersions_List.
-     *
-     * @param manager Entry point to ElasticManager.
-     */
-    public static void elasticVersionsList(com.azure.resourcemanager.elastic.ElasticManager manager) {
-        manager.elasticVersions().listWithResponse("myregion", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -509,7 +486,7 @@ public final class OrganizationsGetApiKeySamples {
      * @param manager Entry point to ElasticManager.
      */
     public static void organizationsGetApiKey(com.azure.resourcemanager.elastic.ElasticManager manager) {
-        manager.organizations().getApiKeyWithResponse(null, com.azure.core.util.Context.NONE);
+        manager.organizations().getApiKeyWithResponse("myResourceGroup", null, com.azure.core.util.Context.NONE);
     }
 }
 ```

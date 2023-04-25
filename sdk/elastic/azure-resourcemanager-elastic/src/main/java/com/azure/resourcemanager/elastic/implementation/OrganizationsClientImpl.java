@@ -54,13 +54,15 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     @ServiceInterface(name = "MicrosoftElasticOrga")
     public interface OrganizationsService {
         @Headers({"Content-Type: application/json"})
-        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/getOrganizationApiKey")
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/getOrganizationApiKey")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UserApiKeyResponseInner>> getApiKey(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
             @BodyParam("application/json") UserEmailId body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -70,6 +72,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
      * @param body Email Id parameter of the User Organization, of which the API Key must be returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -78,7 +81,8 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      *     request along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<UserApiKeyResponseInner>> getApiKeyWithResponseAsync(UserEmailId body) {
+    private Mono<Response<UserApiKeyResponseInner>> getApiKeyWithResponseAsync(
+        String resourceGroupName, UserEmailId body) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -90,6 +94,10 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (body != null) {
             body.validate();
@@ -103,6 +111,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
                             this.client.getEndpoint(),
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            resourceGroupName,
                             body,
                             accept,
                             context))
@@ -113,6 +122,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
      * @param body Email Id parameter of the User Organization, of which the API Key must be returned.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +132,8 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      *     request along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<UserApiKeyResponseInner>> getApiKeyWithResponseAsync(UserEmailId body, Context context) {
+    private Mono<Response<UserApiKeyResponseInner>> getApiKeyWithResponseAsync(
+        String resourceGroupName, UserEmailId body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -135,6 +146,10 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
         if (body != null) {
             body.validate();
         }
@@ -145,6 +160,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
                 this.client.getEndpoint(),
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                resourceGroupName,
                 body,
                 accept,
                 context);
@@ -154,21 +170,24 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the User Api Key created for the Organization associated with the User Email Id that was passed in the
      *     request on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<UserApiKeyResponseInner> getApiKeyAsync() {
+    private Mono<UserApiKeyResponseInner> getApiKeyAsync(String resourceGroupName) {
         final UserEmailId body = null;
-        return getApiKeyWithResponseAsync(body).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return getApiKeyWithResponseAsync(resourceGroupName, body).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
      * @param body Email Id parameter of the User Organization, of which the API Key must be returned.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,22 +197,25 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      *     request along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<UserApiKeyResponseInner> getApiKeyWithResponse(UserEmailId body, Context context) {
-        return getApiKeyWithResponseAsync(body, context).block();
+    public Response<UserApiKeyResponseInner> getApiKeyWithResponse(
+        String resourceGroupName, UserEmailId body, Context context) {
+        return getApiKeyWithResponseAsync(resourceGroupName, body, context).block();
     }
 
     /**
      * Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch
      * Organization.
      *
+     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the User Api Key created for the Organization associated with the User Email Id that was passed in the
      *     request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public UserApiKeyResponseInner getApiKey() {
+    public UserApiKeyResponseInner getApiKey(String resourceGroupName) {
         final UserEmailId body = null;
-        return getApiKeyWithResponse(body, Context.NONE).getValue();
+        return getApiKeyWithResponse(resourceGroupName, body, Context.NONE).getValue();
     }
 }

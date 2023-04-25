@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Marketplace Subscription. */
+/** Marketplace Subscription Id. */
 @Fluent
 public final class MarketplaceSaaSInfoMarketplaceSubscription {
     /*

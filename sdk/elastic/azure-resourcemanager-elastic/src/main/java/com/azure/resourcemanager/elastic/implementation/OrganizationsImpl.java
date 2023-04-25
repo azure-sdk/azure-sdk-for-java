@@ -27,8 +27,10 @@ public final class OrganizationsImpl implements Organizations {
         this.serviceManager = serviceManager;
     }
 
-    public Response<UserApiKeyResponse> getApiKeyWithResponse(UserEmailId body, Context context) {
-        Response<UserApiKeyResponseInner> inner = this.serviceClient().getApiKeyWithResponse(body, context);
+    public Response<UserApiKeyResponse> getApiKeyWithResponse(
+        String resourceGroupName, UserEmailId body, Context context) {
+        Response<UserApiKeyResponseInner> inner =
+            this.serviceClient().getApiKeyWithResponse(resourceGroupName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -40,8 +42,8 @@ public final class OrganizationsImpl implements Organizations {
         }
     }
 
-    public UserApiKeyResponse getApiKey() {
-        UserApiKeyResponseInner inner = this.serviceClient().getApiKey();
+    public UserApiKeyResponse getApiKey(String resourceGroupName) {
+        UserApiKeyResponseInner inner = this.serviceClient().getApiKey(resourceGroupName);
         if (inner != null) {
             return new UserApiKeyResponseImpl(inner, this.manager());
         } else {
