@@ -18,7 +18,7 @@ public final class SkuDetail {
      * The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)
      */
     @JsonProperty(value = "name")
-    private SkuName name;
+    private Name name;
 
     /** Creates an instance of SkuDetail class. */
     public SkuDetail() {
@@ -30,7 +30,7 @@ public final class SkuDetail {
      *
      * @return the name value.
      */
-    public SkuName name() {
+    public Name name() {
         return this.name;
     }
 
@@ -41,7 +41,7 @@ public final class SkuDetail {
      * @param name the name value to set.
      * @return the SkuDetail object itself.
      */
-    public SkuDetail withName(SkuName name) {
+    public SkuDetail withName(Name name) {
         this.name = name;
         return this;
     }
