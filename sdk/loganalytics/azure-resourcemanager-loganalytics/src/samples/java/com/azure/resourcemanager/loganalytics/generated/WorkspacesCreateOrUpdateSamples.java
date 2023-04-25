@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesCreate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesCreate.json
      */
     /**
      * Sample code: WorkspacesCreate.
