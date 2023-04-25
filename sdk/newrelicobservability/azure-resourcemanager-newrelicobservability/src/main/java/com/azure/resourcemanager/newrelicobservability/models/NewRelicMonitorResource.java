@@ -502,9 +502,9 @@ public interface NewRelicMonitorResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic.
+     * @return the {@link Response}.
      */
-    Response<NewRelicMonitorResource> switchBillingWithResponse(SwitchBillingRequest request, Context context);
+    Response<Void> switchBillingWithResponse(SwitchBillingRequest request, Context context);
 
     /**
      * Switches the billing for NewRelic monitor resource.
@@ -513,9 +513,8 @@ public interface NewRelicMonitorResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic.
      */
-    NewRelicMonitorResource switchBilling(SwitchBillingRequest request);
+    void switchBilling(SwitchBillingRequest request);
 
     /**
      * List the compute vm resources currently being monitored by the NewRelic resource.

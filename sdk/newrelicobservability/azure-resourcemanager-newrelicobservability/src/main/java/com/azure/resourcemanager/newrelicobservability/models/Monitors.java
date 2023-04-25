@@ -203,9 +203,9 @@ public interface Monitors {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic.
+     * @return the {@link Response}.
      */
-    Response<NewRelicMonitorResource> switchBillingWithResponse(
+    Response<Void> switchBillingWithResponse(
         String resourceGroupName, String monitorName, SwitchBillingRequest request, Context context);
 
     /**
@@ -217,9 +217,8 @@ public interface Monitors {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic.
      */
-    NewRelicMonitorResource switchBilling(String resourceGroupName, String monitorName, SwitchBillingRequest request);
+    void switchBilling(String resourceGroupName, String monitorName, SwitchBillingRequest request);
 
     /**
      * List the compute vm resources currently being monitored by the NewRelic resource.
