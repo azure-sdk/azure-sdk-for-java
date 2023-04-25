@@ -10,6 +10,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerInner;
 import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedger;
 import com.azure.resourcemanager.confidentialledger.models.LedgerProperties;
+import com.azure.resourcemanager.confidentialledger.models.RunningState;
 import java.util.Collections;
 import java.util.Map;
 
@@ -35,13 +36,8 @@ public final class ConfidentialLedgerImpl
         return this.innerModel().location();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
+    public RunningState runningState() {
+        return this.innerModel().runningState();
     }
 
     public LedgerProperties properties() {
@@ -50,6 +46,15 @@ public final class ConfidentialLedgerImpl
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Region region() {
@@ -169,6 +174,11 @@ public final class ConfidentialLedgerImpl
 
     public ConfidentialLedgerImpl withTags(Map<String, String> tags) {
         this.innerModel().withTags(tags);
+        return this;
+    }
+
+    public ConfidentialLedgerImpl withRunningState(RunningState runningState) {
+        this.innerModel().withRunningState(runningState);
         return this;
     }
 
