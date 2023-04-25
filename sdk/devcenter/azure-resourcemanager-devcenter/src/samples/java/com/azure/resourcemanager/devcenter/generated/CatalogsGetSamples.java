@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Catalogs Get. */
 public final class CatalogsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class CatalogsGetSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void catalogsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().getWithResponse("rg1", "Contoso", "CentralCatalog", Context.NONE);
+        manager.catalogs().getWithResponse("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
     }
 }

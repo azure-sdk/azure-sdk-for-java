@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.models.CheckNameAvailabilityRequest;
 
 /** Samples for CheckNameAvailability Execute. */
@@ -22,6 +21,6 @@ public final class CheckNameAvailabilityExecuteSamples {
             .checkNameAvailabilities()
             .executeWithResponse(
                 new CheckNameAvailabilityRequest().withName("name1").withType("Microsoft.DevCenter/devcenters"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

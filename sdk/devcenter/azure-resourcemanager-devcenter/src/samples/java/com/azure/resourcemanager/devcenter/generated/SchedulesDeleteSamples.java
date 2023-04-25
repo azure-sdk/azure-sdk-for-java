@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
@@ -17,6 +15,8 @@ public final class SchedulesDeleteSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void schedulesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.schedules().delete("rg1", "TestProject", "DevPool", "autoShutdown", null, Context.NONE);
+        manager
+            .schedules()
+            .delete("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE);
     }
 }

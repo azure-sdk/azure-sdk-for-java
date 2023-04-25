@@ -29,6 +29,15 @@ public final class HealthCheckStatus extends ExpandableStringEnum<HealthCheckSta
     public static final HealthCheckStatus UNKNOWN = fromString("Unknown");
 
     /**
+     * Creates a new instance of HealthCheckStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public HealthCheckStatus() {
+    }
+
+    /**
      * Creates or finds a HealthCheckStatus from its string representation.
      *
      * @param name a name to look for.

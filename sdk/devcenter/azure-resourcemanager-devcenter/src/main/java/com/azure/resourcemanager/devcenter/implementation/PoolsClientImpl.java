@@ -67,8 +67,7 @@ public final class PoolsClientImpl implements PoolsClient {
     public interface PoolsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects"
-                + "/{projectName}/pools")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PoolListResult>> listByProject(
@@ -83,8 +82,7 @@ public final class PoolsClientImpl implements PoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects"
-                + "/{projectName}/pools/{poolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools/{poolName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PoolInner>> get(
@@ -99,8 +97,7 @@ public final class PoolsClientImpl implements PoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects"
-                + "/{projectName}/pools/{poolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools/{poolName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -116,8 +113,7 @@ public final class PoolsClientImpl implements PoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects"
-                + "/{projectName}/pools/{poolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools/{poolName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -133,8 +129,7 @@ public final class PoolsClientImpl implements PoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects"
-                + "/{projectName}/pools/{poolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools/{poolName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -702,7 +697,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PoolInner>, PoolInner> beginCreateOrUpdate(
         String resourceGroupName, String projectName, String poolName, PoolInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, body).getSyncPoller();
     }
 
     /**
@@ -721,7 +716,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PoolInner>, PoolInner> beginCreateOrUpdate(
         String resourceGroupName, String projectName, String poolName, PoolInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, projectName, poolName, body, context).getSyncPoller();
     }
 
     /**
@@ -981,7 +976,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PoolInner>, PoolInner> beginUpdate(
         String resourceGroupName, String projectName, String poolName, PoolUpdate body) {
-        return beginUpdateAsync(resourceGroupName, projectName, poolName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, projectName, poolName, body).getSyncPoller();
     }
 
     /**
@@ -1000,7 +995,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PoolInner>, PoolInner> beginUpdate(
         String resourceGroupName, String projectName, String poolName, PoolUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, projectName, poolName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, projectName, poolName, body, context).getSyncPoller();
     }
 
     /**
@@ -1242,7 +1237,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String projectName, String poolName) {
-        return beginDeleteAsync(resourceGroupName, projectName, poolName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, projectName, poolName).getSyncPoller();
     }
 
     /**
@@ -1260,7 +1255,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String projectName, String poolName, Context context) {
-        return beginDeleteAsync(resourceGroupName, projectName, poolName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, projectName, poolName, context).getSyncPoller();
     }
 
     /**

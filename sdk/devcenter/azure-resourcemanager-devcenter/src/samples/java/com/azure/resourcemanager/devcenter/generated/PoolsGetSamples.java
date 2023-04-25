@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Pools Get. */
 public final class PoolsGetSamples {
     /*
@@ -17,6 +15,6 @@ public final class PoolsGetSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void poolsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().getWithResponse("rg1", "DevProject", "DevPool", Context.NONE);
+        manager.pools().getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
     }
 }

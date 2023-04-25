@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetworkConnections ListHealthDetails. */
 public final class NetworkConnectionsListHealthDetailsSamples {
     /*
@@ -18,6 +16,6 @@ public final class NetworkConnectionsListHealthDetailsSamples {
      */
     public static void networkConnectionsListHealthDetails(
         com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().listHealthDetails("rg1", "uswest3network", null, Context.NONE);
+        manager.networkConnections().listHealthDetails("rg1", "uswest3network", null, com.azure.core.util.Context.NONE);
     }
 }

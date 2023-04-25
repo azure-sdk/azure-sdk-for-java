@@ -83,8 +83,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NetworkConnectionListResult>> listByResourceGroup(
@@ -98,8 +97,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NetworkConnectionInner>> getByResourceGroup(
@@ -113,8 +111,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -129,8 +126,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -145,8 +141,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -160,8 +155,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}/healthChecks")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}/healthChecks")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<HealthCheckStatusDetailsListResult>> listHealthDetails(
@@ -176,8 +170,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}/healthChecks/latest")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}/healthChecks/latest")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<HealthCheckStatusDetailsInner>> getHealthDetails(
@@ -191,8 +184,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter"
-                + "/networkConnections/{networkConnectionName}/runHealthChecks")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}/runHealthChecks")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> runHealthChecks(
@@ -919,7 +911,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginCreateOrUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
     }
 
     /**
@@ -937,7 +929,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginCreateOrUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
     }
 
     /**
@@ -1191,7 +1183,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionUpdate body) {
-        return beginUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, networkConnectionName, body).getSyncPoller();
     }
 
     /**
@@ -1209,7 +1201,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkConnectionInner>, NetworkConnectionInner> beginUpdate(
         String resourceGroupName, String networkConnectionName, NetworkConnectionUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, networkConnectionName, body, context).getSyncPoller();
     }
 
     /**
@@ -1436,7 +1428,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String networkConnectionName) {
-        return beginDeleteAsync(resourceGroupName, networkConnectionName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, networkConnectionName).getSyncPoller();
     }
 
     /**
@@ -1453,7 +1445,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String networkConnectionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
     }
 
     /**
@@ -2035,7 +2027,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRunHealthChecks(
         String resourceGroupName, String networkConnectionName) {
-        return beginRunHealthChecksAsync(resourceGroupName, networkConnectionName).getSyncPoller();
+        return this.beginRunHealthChecksAsync(resourceGroupName, networkConnectionName).getSyncPoller();
     }
 
     /**
@@ -2053,7 +2045,7 @@ public final class NetworkConnectionsClientImpl implements NetworkConnectionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRunHealthChecks(
         String resourceGroupName, String networkConnectionName, Context context) {
-        return beginRunHealthChecksAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
+        return this.beginRunHealthChecksAsync(resourceGroupName, networkConnectionName, context).getSyncPoller();
     }
 
     /**

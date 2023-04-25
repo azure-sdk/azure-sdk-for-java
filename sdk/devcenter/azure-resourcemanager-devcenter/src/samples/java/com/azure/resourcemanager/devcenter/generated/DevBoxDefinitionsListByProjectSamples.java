@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DevBoxDefinitions ListByProject. */
 public final class DevBoxDefinitionsListByProjectSamples {
     /*
@@ -17,6 +15,6 @@ public final class DevBoxDefinitionsListByProjectSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void devBoxDefinitionsListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().listByProject("rg1", "ContosoProject", null, Context.NONE);
+        manager.devBoxDefinitions().listByProject("rg1", "ContosoProject", null, com.azure.core.util.Context.NONE);
     }
 }

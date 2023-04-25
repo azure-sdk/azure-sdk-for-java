@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.models.EnableStatus;
 import com.azure.resourcemanager.devcenter.models.EnvironmentRole;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
@@ -27,7 +26,10 @@ public final class ProjectEnvironmentTypesUpdateSamples {
      */
     public static void projectEnvironmentTypesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
         ProjectEnvironmentType resource =
-            manager.projectEnvironmentTypes().getWithResponse("rg1", "ContosoProj", "DevTest", Context.NONE).getValue();
+            manager
+                .projectEnvironmentTypes()
+                .getWithResponse("rg1", "ContosoProj", "DevTest", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("CostCenter", "RnD"))

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Images Get. */
 public final class ImagesGetSamples {
     /*
@@ -17,6 +15,9 @@ public final class ImagesGetSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void imagesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.images().getWithResponse("rg1", "Contoso", "DefaultDevGallery", "ContosoBaseImage", Context.NONE);
+        manager
+            .images()
+            .getWithResponse(
+                "rg1", "Contoso", "DefaultDevGallery", "ContosoBaseImage", com.azure.core.util.Context.NONE);
     }
 }

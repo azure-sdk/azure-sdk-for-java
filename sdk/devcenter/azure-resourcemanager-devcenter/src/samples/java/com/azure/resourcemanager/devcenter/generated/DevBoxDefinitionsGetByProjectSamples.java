@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DevBoxDefinitions GetByProject. */
 public final class DevBoxDefinitionsGetByProjectSamples {
     /*
@@ -17,6 +15,8 @@ public final class DevBoxDefinitionsGetByProjectSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void devBoxDefinitionsGetByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().getByProjectWithResponse("rg1", "ContosoProject", "WebDevBox", Context.NONE);
+        manager
+            .devBoxDefinitions()
+            .getByProjectWithResponse("rg1", "ContosoProject", "WebDevBox", com.azure.core.util.Context.NONE);
     }
 }

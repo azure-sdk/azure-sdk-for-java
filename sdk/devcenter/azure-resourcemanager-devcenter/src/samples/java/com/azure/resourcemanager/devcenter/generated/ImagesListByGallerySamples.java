@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Images ListByGallery. */
 public final class ImagesListByGallerySamples {
     /*
@@ -17,6 +15,6 @@ public final class ImagesListByGallerySamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void imagesListByGallery(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.images().listByGallery("rg1", "Contoso", "DevGallery", null, Context.NONE);
+        manager.images().listByGallery("rg1", "Contoso", "DevGallery", null, com.azure.core.util.Context.NONE);
     }
 }

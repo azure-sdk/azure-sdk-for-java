@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetworkConnections GetByResourceGroup. */
 public final class NetworkConnectionsGetByResourceGroupSamples {
     /*
@@ -17,6 +15,8 @@ public final class NetworkConnectionsGetByResourceGroupSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void networkConnectionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().getByResourceGroupWithResponse("rg1", "uswest3network", Context.NONE);
+        manager
+            .networkConnections()
+            .getByResourceGroupWithResponse("rg1", "uswest3network", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Projects List. */
 public final class ProjectsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class ProjectsListSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void projectsListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projects().list(null, Context.NONE);
+        manager.projects().list(null, com.azure.core.util.Context.NONE);
     }
 }

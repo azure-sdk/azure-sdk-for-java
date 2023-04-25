@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ImageVersions Get. */
 public final class ImageVersionsGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class ImageVersionsGetSamples {
      * @param manager Entry point to DevCenterManager.
      */
     public static void versionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.imageVersions().getWithResponse("rg1", "Contoso", "DefaultDevGallery", "Win11", "1.0.0", Context.NONE);
+        manager
+            .imageVersions()
+            .getWithResponse("rg1", "Contoso", "DefaultDevGallery", "Win11", "1.0.0", com.azure.core.util.Context.NONE);
     }
 }

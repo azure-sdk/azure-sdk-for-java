@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.models.Schedule;
 
 /** Samples for Schedules Update. */
@@ -21,7 +20,8 @@ public final class SchedulesUpdateSamples {
         Schedule resource =
             manager
                 .schedules()
-                .getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, Context.NONE)
+                .getWithResponse(
+                    "rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTime("18:00").apply();
     }

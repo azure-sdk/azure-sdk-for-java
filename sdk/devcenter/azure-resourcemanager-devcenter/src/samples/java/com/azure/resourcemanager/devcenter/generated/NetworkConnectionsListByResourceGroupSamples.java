@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetworkConnections ListByResourceGroup. */
 public final class NetworkConnectionsListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class NetworkConnectionsListByResourceGroupSamples {
      */
     public static void networkConnectionsListByResourceGroup(
         com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().listByResourceGroup("rg1", null, Context.NONE);
+        manager.networkConnections().listByResourceGroup("rg1", null, com.azure.core.util.Context.NONE);
     }
 }
