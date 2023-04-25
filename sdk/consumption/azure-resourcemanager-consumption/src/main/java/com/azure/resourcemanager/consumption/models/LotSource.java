@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LotSource. */
+/** The source of the lot. */
 public final class LotSource extends ExpandableStringEnum<LotSource> {
     /** Static value PurchasedCredit for LotSource. */
     public static final LotSource PURCHASED_CREDIT = fromString("PurchasedCredit");
@@ -18,6 +18,15 @@ public final class LotSource extends ExpandableStringEnum<LotSource> {
 
     /** Static value ConsumptionCommitment for LotSource. */
     public static final LotSource CONSUMPTION_COMMITMENT = fromString("ConsumptionCommitment");
+
+    /**
+     * Creates a new instance of LotSource value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public LotSource() {
+    }
 
     /**
      * Creates or finds a LotSource from its string representation.
@@ -30,7 +39,11 @@ public final class LotSource extends ExpandableStringEnum<LotSource> {
         return fromString(name, LotSource.class);
     }
 
-    /** @return known LotSource values. */
+    /**
+     * Gets known LotSource values.
+     *
+     * @return known LotSource values.
+     */
     public static Collection<LotSource> values() {
         return values(LotSource.class);
     }

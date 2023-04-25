@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for LotsOperation ListByBillingAccount. */
 public final class LotsOperationListByBillingAccountSamples {
     /*
@@ -17,7 +15,7 @@ public final class LotsOperationListByBillingAccountSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void lotsListByBillingAccount(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.lotsOperations().listByBillingAccount("1234:5678", null, Context.NONE);
+        manager.lotsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -33,6 +31,8 @@ public final class LotsOperationListByBillingAccountSamples {
         manager
             .lotsOperations()
             .listByBillingAccount(
-                "1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'", Context.NONE);
+                "1234:5678",
+                "status eq 'active' AND source eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
     }
 }
