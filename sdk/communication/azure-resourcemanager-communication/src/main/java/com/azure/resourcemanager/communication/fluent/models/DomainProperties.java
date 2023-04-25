@@ -11,7 +11,9 @@ import com.azure.resourcemanager.communication.models.DomainPropertiesVerificati
 import com.azure.resourcemanager.communication.models.DomainPropertiesVerificationStates;
 import com.azure.resourcemanager.communication.models.DomainsProvisioningState;
 import com.azure.resourcemanager.communication.models.UserEngagementTracking;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** A class that describes the properties of a Domains resource. */
 @Fluent
@@ -57,6 +59,13 @@ public final class DomainProperties {
      */
     @JsonProperty(value = "verificationRecords", access = JsonProperty.Access.WRITE_ONLY)
     private DomainPropertiesVerificationRecords verificationRecords;
+
+    /*
+     * Collection of valid sender usernames. This is a key-value pair where key=username and value=display name.
+     */
+    @JsonProperty(value = "validSenderUsernames")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> validSenderUsernames;
 
     /*
      * Describes whether user engagement tracking is enabled or disabled.
@@ -140,6 +149,28 @@ public final class DomainProperties {
      */
     public DomainPropertiesVerificationRecords verificationRecords() {
         return this.verificationRecords;
+    }
+
+    /**
+     * Get the validSenderUsernames property: Collection of valid sender usernames. This is a key-value pair where
+     * key=username and value=display name.
+     *
+     * @return the validSenderUsernames value.
+     */
+    public Map<String, String> validSenderUsernames() {
+        return this.validSenderUsernames;
+    }
+
+    /**
+     * Set the validSenderUsernames property: Collection of valid sender usernames. This is a key-value pair where
+     * key=username and value=display name.
+     *
+     * @param validSenderUsernames the validSenderUsernames value to set.
+     * @return the DomainProperties object itself.
+     */
+    public DomainProperties withValidSenderUsernames(Map<String, String> validSenderUsernames) {
+        this.validSenderUsernames = validSenderUsernames;
+        return this;
     }
 
     /**

@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for CommunicationServiceManagementClient class. */
 public interface CommunicationServiceManagementClient {
     /**
-     * Gets The ID of the target subscription. The value must be an UUID.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -71,11 +71,4 @@ public interface CommunicationServiceManagementClient {
      * @return the EmailServicesClient object.
      */
     EmailServicesClient getEmailServices();
-
-    /**
-     * Gets the SenderUsernamesClient object to access its operations.
-     *
-     * @return the SenderUsernamesClient object.
-     */
-    SenderUsernamesClient getSenderUsernames();
 }

@@ -156,8 +156,7 @@ public final class CommunicationServiceResourceImpl
             serviceManager
                 .serviceClient()
                 .getCommunicationServices()
-                .updateWithResponse(resourceGroupName, communicationServiceName, updateParameters, Context.NONE)
-                .getValue();
+                .update(resourceGroupName, communicationServiceName, updateParameters, Context.NONE);
         return this;
     }
 
@@ -166,8 +165,7 @@ public final class CommunicationServiceResourceImpl
             serviceManager
                 .serviceClient()
                 .getCommunicationServices()
-                .updateWithResponse(resourceGroupName, communicationServiceName, updateParameters, context)
-                .getValue();
+                .update(resourceGroupName, communicationServiceName, updateParameters, context);
         return this;
     }
 
@@ -222,17 +220,16 @@ public final class CommunicationServiceResourceImpl
         return serviceManager.communicationServices().listKeys(resourceGroupName, communicationServiceName);
     }
 
-    public Response<CommunicationServiceKeys> regenerateKeyWithResponse(
-        RegenerateKeyParameters parameters, Context context) {
-        return serviceManager
-            .communicationServices()
-            .regenerateKeyWithResponse(resourceGroupName, communicationServiceName, parameters, context);
-    }
-
     public CommunicationServiceKeys regenerateKey(RegenerateKeyParameters parameters) {
         return serviceManager
             .communicationServices()
             .regenerateKey(resourceGroupName, communicationServiceName, parameters);
+    }
+
+    public CommunicationServiceKeys regenerateKey(RegenerateKeyParameters parameters, Context context) {
+        return serviceManager
+            .communicationServices()
+            .regenerateKey(resourceGroupName, communicationServiceName, parameters, context);
     }
 
     public CommunicationServiceResourceImpl withRegion(Region location) {
