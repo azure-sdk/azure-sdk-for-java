@@ -35,6 +35,10 @@ public final class VirtualMachineUpdateProperties {
     @JsonProperty(value = "availabilitySets")
     private List<AvailabilitySetListItem> availabilitySets;
 
+    /** Creates an instance of VirtualMachineUpdateProperties class. */
+    public VirtualMachineUpdateProperties() {
+    }
+
     /**
      * Get the hardwareProfile property: Defines the resource properties.
      *

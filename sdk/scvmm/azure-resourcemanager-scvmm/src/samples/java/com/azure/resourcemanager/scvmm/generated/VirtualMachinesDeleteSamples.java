@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Delete. */
 public final class VirtualMachinesDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class VirtualMachinesDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().delete("testrg", "DemoVM", null, null, Context.NONE);
+        manager.virtualMachines().delete("testrg", "DemoVM", null, null, com.azure.core.util.Context.NONE);
     }
 }

@@ -108,8 +108,6 @@ public final class AvailabilitySetsCreateOrUpdateSamples {
 ### AvailabilitySets_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilitySets Delete. */
 public final class AvailabilitySetsDeleteSamples {
     /*
@@ -121,7 +119,7 @@ public final class AvailabilitySetsDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteAvailabilitySet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().delete("testrg", "HRAvailabilitySet", null, Context.NONE);
+        manager.availabilitySets().delete("testrg", "HRAvailabilitySet", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -129,8 +127,6 @@ public final class AvailabilitySetsDeleteSamples {
 ### AvailabilitySets_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilitySets GetByResourceGroup. */
 public final class AvailabilitySetsGetByResourceGroupSamples {
     /*
@@ -142,7 +138,9 @@ public final class AvailabilitySetsGetByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void getAvailabilitySet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().getByResourceGroupWithResponse("testrg", "HRAvailabilitySet", Context.NONE);
+        manager
+            .availabilitySets()
+            .getByResourceGroupWithResponse("testrg", "HRAvailabilitySet", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -150,8 +148,6 @@ public final class AvailabilitySetsGetByResourceGroupSamples {
 ### AvailabilitySets_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilitySets List. */
 public final class AvailabilitySetsListSamples {
     /*
@@ -163,7 +159,7 @@ public final class AvailabilitySetsListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listAvailabilitySetsBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().list(Context.NONE);
+        manager.availabilitySets().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -171,8 +167,6 @@ public final class AvailabilitySetsListSamples {
 ### AvailabilitySets_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilitySets ListByResourceGroup. */
 public final class AvailabilitySetsListByResourceGroupSamples {
     /*
@@ -184,7 +178,7 @@ public final class AvailabilitySetsListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listAvailabilitySetsByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().listByResourceGroup("testrg", Context.NONE);
+        manager.availabilitySets().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -192,7 +186,6 @@ public final class AvailabilitySetsListByResourceGroupSamples {
 ### AvailabilitySets_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.AvailabilitySet;
 import java.util.HashMap;
 import java.util.Map;
@@ -211,7 +204,7 @@ public final class AvailabilitySetsUpdateSamples {
         AvailabilitySet resource =
             manager
                 .availabilitySets()
-                .getByResourceGroupWithResponse("testrg", "HRAvailabilitySet", Context.NONE)
+                .getByResourceGroupWithResponse("testrg", "HRAvailabilitySet", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -266,8 +259,6 @@ public final class CloudsCreateOrUpdateSamples {
 ### Clouds_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Clouds Delete. */
 public final class CloudsDeleteSamples {
     /*
@@ -279,7 +270,7 @@ public final class CloudsDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteCloud(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().delete("testrg", "HRCloud", null, Context.NONE);
+        manager.clouds().delete("testrg", "HRCloud", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -287,8 +278,6 @@ public final class CloudsDeleteSamples {
 ### Clouds_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Clouds GetByResourceGroup. */
 public final class CloudsGetByResourceGroupSamples {
     /*
@@ -300,7 +289,7 @@ public final class CloudsGetByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void getCloud(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().getByResourceGroupWithResponse("testrg", "HRCloud", Context.NONE);
+        manager.clouds().getByResourceGroupWithResponse("testrg", "HRCloud", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -308,8 +297,6 @@ public final class CloudsGetByResourceGroupSamples {
 ### Clouds_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Clouds List. */
 public final class CloudsListSamples {
     /*
@@ -321,7 +308,7 @@ public final class CloudsListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listCloudsBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().list(Context.NONE);
+        manager.clouds().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -329,8 +316,6 @@ public final class CloudsListSamples {
 ### Clouds_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Clouds ListByResourceGroup. */
 public final class CloudsListByResourceGroupSamples {
     /*
@@ -342,7 +327,7 @@ public final class CloudsListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listCloudsByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().listByResourceGroup("testrg", Context.NONE);
+        manager.clouds().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -350,7 +335,6 @@ public final class CloudsListByResourceGroupSamples {
 ### Clouds_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.Cloud;
 import java.util.HashMap;
 import java.util.Map;
@@ -366,7 +350,11 @@ public final class CloudsUpdateSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void updateCloud(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        Cloud resource = manager.clouds().getByResourceGroupWithResponse("testrg", "HRCloud", Context.NONE).getValue();
+        Cloud resource =
+            manager
+                .clouds()
+                .getByResourceGroupWithResponse("testrg", "HRCloud", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -386,6 +374,8 @@ public final class CloudsUpdateSamples {
 ### InventoryItems_Create
 
 ```java
+import com.azure.resourcemanager.scvmm.models.CloudInventoryItem;
+
 /** Samples for InventoryItems Create. */
 public final class InventoryItemsCreateSamples {
     /*
@@ -401,6 +391,7 @@ public final class InventoryItemsCreateSamples {
             .inventoryItems()
             .define("12345678-1234-1234-1234-123456789abc")
             .withExistingVmmServer("testrg", "ContosoVMMServer")
+            .withProperties(new CloudInventoryItem())
             .create();
     }
 }
@@ -409,8 +400,6 @@ public final class InventoryItemsCreateSamples {
 ### InventoryItems_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for InventoryItems Delete. */
 public final class InventoryItemsDeleteSamples {
     /*
@@ -424,7 +413,8 @@ public final class InventoryItemsDeleteSamples {
     public static void deleteInventoryItem(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         manager
             .inventoryItems()
-            .deleteWithResponse("testrg", "ContosoVMMServer", "12345678-1234-1234-1234-123456789abc", Context.NONE);
+            .deleteWithResponse(
+                "testrg", "ContosoVMMServer", "12345678-1234-1234-1234-123456789abc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -432,8 +422,6 @@ public final class InventoryItemsDeleteSamples {
 ### InventoryItems_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for InventoryItems Get. */
 public final class InventoryItemsGetSamples {
     /*
@@ -447,7 +435,8 @@ public final class InventoryItemsGetSamples {
     public static void getInventoryItem(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         manager
             .inventoryItems()
-            .getWithResponse("testrg", "ContosoVMMServer", "12345678-1234-1234-1234-123456789abc", Context.NONE);
+            .getWithResponse(
+                "testrg", "ContosoVMMServer", "12345678-1234-1234-1234-123456789abc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -455,8 +444,6 @@ public final class InventoryItemsGetSamples {
 ### InventoryItems_ListByVmmServer
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for InventoryItems ListByVmmServer. */
 public final class InventoryItemsListByVmmServerSamples {
     /*
@@ -468,7 +455,7 @@ public final class InventoryItemsListByVmmServerSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void inventoryItemsListByVMMServer(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.inventoryItems().listByVmmServer("testrg", "ContosoVMMServer", Context.NONE);
+        manager.inventoryItems().listByVmmServer("testrg", "ContosoVMMServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -476,8 +463,6 @@ public final class InventoryItemsListByVmmServerSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -489,7 +474,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listOperations(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -531,8 +516,6 @@ public final class VirtualMachineTemplatesCreateOrUpdateSamples {
 ### VirtualMachineTemplates_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachineTemplates Delete. */
 public final class VirtualMachineTemplatesDeleteSamples {
     /*
@@ -544,7 +527,9 @@ public final class VirtualMachineTemplatesDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteVirtualMachineTemplate(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().delete("testrg", "HRVirtualMachineTemplate", null, Context.NONE);
+        manager
+            .virtualMachineTemplates()
+            .delete("testrg", "HRVirtualMachineTemplate", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -552,8 +537,6 @@ public final class VirtualMachineTemplatesDeleteSamples {
 ### VirtualMachineTemplates_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachineTemplates GetByResourceGroup. */
 public final class VirtualMachineTemplatesGetByResourceGroupSamples {
     /*
@@ -567,7 +550,7 @@ public final class VirtualMachineTemplatesGetByResourceGroupSamples {
     public static void getVirtualMachineTemplate(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         manager
             .virtualMachineTemplates()
-            .getByResourceGroupWithResponse("testrg", "HRVirtualMachineTemplate", Context.NONE);
+            .getByResourceGroupWithResponse("testrg", "HRVirtualMachineTemplate", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -575,8 +558,6 @@ public final class VirtualMachineTemplatesGetByResourceGroupSamples {
 ### VirtualMachineTemplates_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachineTemplates List. */
 public final class VirtualMachineTemplatesListSamples {
     /*
@@ -588,7 +569,7 @@ public final class VirtualMachineTemplatesListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualMachineTemplatesBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().list(Context.NONE);
+        manager.virtualMachineTemplates().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -596,8 +577,6 @@ public final class VirtualMachineTemplatesListSamples {
 ### VirtualMachineTemplates_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachineTemplates ListByResourceGroup. */
 public final class VirtualMachineTemplatesListByResourceGroupSamples {
     /*
@@ -610,7 +589,7 @@ public final class VirtualMachineTemplatesListByResourceGroupSamples {
      */
     public static void listVirtualMachineTemplatesByResourceGroup(
         com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().listByResourceGroup("testrg", Context.NONE);
+        manager.virtualMachineTemplates().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -618,7 +597,6 @@ public final class VirtualMachineTemplatesListByResourceGroupSamples {
 ### VirtualMachineTemplates_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineTemplate;
 import java.util.HashMap;
 import java.util.Map;
@@ -637,7 +615,7 @@ public final class VirtualMachineTemplatesUpdateSamples {
         VirtualMachineTemplate resource =
             manager
                 .virtualMachineTemplates()
-                .getByResourceGroupWithResponse("testrg", "HRVirtualMachineTemplate", Context.NONE)
+                .getByResourceGroupWithResponse("testrg", "HRVirtualMachineTemplate", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -658,7 +636,6 @@ public final class VirtualMachineTemplatesUpdateSamples {
 ### VirtualMachines_CreateCheckpoint
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineCreateCheckpoint;
 
 /** Samples for VirtualMachines CreateCheckpoint. */
@@ -680,7 +657,7 @@ public final class VirtualMachinesCreateCheckpointSamples {
                 new VirtualMachineCreateCheckpoint()
                     .withName("Demo Checkpoint name")
                     .withDescription("Demo Checkpoint description"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -727,8 +704,6 @@ public final class VirtualMachinesCreateOrUpdateSamples {
 ### VirtualMachines_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Delete. */
 public final class VirtualMachinesDeleteSamples {
     /*
@@ -740,7 +715,7 @@ public final class VirtualMachinesDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().delete("testrg", "DemoVM", null, null, Context.NONE);
+        manager.virtualMachines().delete("testrg", "DemoVM", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -748,7 +723,6 @@ public final class VirtualMachinesDeleteSamples {
 ### VirtualMachines_DeleteCheckpoint
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineDeleteCheckpoint;
 
 /** Samples for VirtualMachines DeleteCheckpoint. */
@@ -765,7 +739,10 @@ public final class VirtualMachinesDeleteCheckpointSamples {
         manager
             .virtualMachines()
             .deleteCheckpoint(
-                "testrg", "DemoVM", new VirtualMachineDeleteCheckpoint().withId("Demo CheckpointID"), Context.NONE);
+                "testrg",
+                "DemoVM",
+                new VirtualMachineDeleteCheckpoint().withId("Demo CheckpointID"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -773,8 +750,6 @@ public final class VirtualMachinesDeleteCheckpointSamples {
 ### VirtualMachines_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines GetByResourceGroup. */
 public final class VirtualMachinesGetByResourceGroupSamples {
     /*
@@ -786,7 +761,7 @@ public final class VirtualMachinesGetByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void getVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().getByResourceGroupWithResponse("testrg", "DemoVM", Context.NONE);
+        manager.virtualMachines().getByResourceGroupWithResponse("testrg", "DemoVM", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -794,8 +769,6 @@ public final class VirtualMachinesGetByResourceGroupSamples {
 ### VirtualMachines_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines List. */
 public final class VirtualMachinesListSamples {
     /*
@@ -807,7 +780,7 @@ public final class VirtualMachinesListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualMachinesBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().list(Context.NONE);
+        manager.virtualMachines().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -815,8 +788,6 @@ public final class VirtualMachinesListSamples {
 ### VirtualMachines_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines ListByResourceGroup. */
 public final class VirtualMachinesListByResourceGroupSamples {
     /*
@@ -828,7 +799,7 @@ public final class VirtualMachinesListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualMachinesByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().listByResourceGroup("testrg", Context.NONE);
+        manager.virtualMachines().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -836,8 +807,6 @@ public final class VirtualMachinesListByResourceGroupSamples {
 ### VirtualMachines_Restart
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Restart. */
 public final class VirtualMachinesRestartSamples {
     /*
@@ -849,7 +818,7 @@ public final class VirtualMachinesRestartSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void restartVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().restart("testrg", "DemoVM", Context.NONE);
+        manager.virtualMachines().restart("testrg", "DemoVM", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -857,7 +826,6 @@ public final class VirtualMachinesRestartSamples {
 ### VirtualMachines_RestoreCheckpoint
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineRestoreCheckpoint;
 
 /** Samples for VirtualMachines RestoreCheckpoint. */
@@ -874,7 +842,10 @@ public final class VirtualMachinesRestoreCheckpointSamples {
         manager
             .virtualMachines()
             .restoreCheckpoint(
-                "testrg", "DemoVM", new VirtualMachineRestoreCheckpoint().withId("Demo CheckpointID"), Context.NONE);
+                "testrg",
+                "DemoVM",
+                new VirtualMachineRestoreCheckpoint().withId("Demo CheckpointID"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -882,8 +853,6 @@ public final class VirtualMachinesRestoreCheckpointSamples {
 ### VirtualMachines_Start
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Start. */
 public final class VirtualMachinesStartSamples {
     /*
@@ -895,7 +864,7 @@ public final class VirtualMachinesStartSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void startVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachines().start("testrg", "DemoVM", Context.NONE);
+        manager.virtualMachines().start("testrg", "DemoVM", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -903,7 +872,6 @@ public final class VirtualMachinesStartSamples {
 ### VirtualMachines_Stop
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.StopVirtualMachineOptions;
 
 /** Samples for VirtualMachines Stop. */
@@ -919,7 +887,11 @@ public final class VirtualMachinesStopSamples {
     public static void stopVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         manager
             .virtualMachines()
-            .stop("testrg", "DemoVM", new StopVirtualMachineOptions().withSkipShutdown(true), Context.NONE);
+            .stop(
+                "testrg",
+                "DemoVM",
+                new StopVirtualMachineOptions().withSkipShutdown(true),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -927,7 +899,6 @@ public final class VirtualMachinesStopSamples {
 ### VirtualMachines_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.AllocationMethod;
 import com.azure.resourcemanager.scvmm.models.HardwareProfileUpdate;
 import com.azure.resourcemanager.scvmm.models.NetworkInterfacesUpdate;
@@ -952,7 +923,10 @@ public final class VirtualMachinesUpdateSamples {
      */
     public static void updateVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         VirtualMachine resource =
-            manager.virtualMachines().getByResourceGroupWithResponse("testrg", "DemoVM", Context.NONE).getValue();
+            manager
+                .virtualMachines()
+                .getByResourceGroupWithResponse("testrg", "DemoVM", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
@@ -1025,8 +999,6 @@ public final class VirtualNetworksCreateOrUpdateSamples {
 ### VirtualNetworks_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualNetworks Delete. */
 public final class VirtualNetworksDeleteSamples {
     /*
@@ -1038,7 +1010,7 @@ public final class VirtualNetworksDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteVirtualNetwork(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().delete("testrg", "HRVirtualNetwork", null, Context.NONE);
+        manager.virtualNetworks().delete("testrg", "HRVirtualNetwork", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1046,8 +1018,6 @@ public final class VirtualNetworksDeleteSamples {
 ### VirtualNetworks_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualNetworks GetByResourceGroup. */
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
@@ -1059,7 +1029,9 @@ public final class VirtualNetworksGetByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void getVirtualNetwork(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().getByResourceGroupWithResponse("testrg", "HRVirtualNetwork", Context.NONE);
+        manager
+            .virtualNetworks()
+            .getByResourceGroupWithResponse("testrg", "HRVirtualNetwork", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1067,8 +1039,6 @@ public final class VirtualNetworksGetByResourceGroupSamples {
 ### VirtualNetworks_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualNetworks List. */
 public final class VirtualNetworksListSamples {
     /*
@@ -1080,7 +1050,7 @@ public final class VirtualNetworksListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualNetworksBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().list(Context.NONE);
+        manager.virtualNetworks().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1088,8 +1058,6 @@ public final class VirtualNetworksListSamples {
 ### VirtualNetworks_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualNetworks ListByResourceGroup. */
 public final class VirtualNetworksListByResourceGroupSamples {
     /*
@@ -1101,7 +1069,7 @@ public final class VirtualNetworksListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualNetworksByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().listByResourceGroup("testrg", Context.NONE);
+        manager.virtualNetworks().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1109,7 +1077,6 @@ public final class VirtualNetworksListByResourceGroupSamples {
 ### VirtualNetworks_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualNetwork;
 import java.util.HashMap;
 import java.util.Map;
@@ -1128,7 +1095,7 @@ public final class VirtualNetworksUpdateSamples {
         VirtualNetwork resource =
             manager
                 .virtualNetworks()
-                .getByResourceGroupWithResponse("testrg", "HRVirtualNetwork", Context.NONE)
+                .getByResourceGroupWithResponse("testrg", "HRVirtualNetwork", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -1174,7 +1141,8 @@ public final class VmmServersCreateOrUpdateSamples {
                     .withName(
                         "/subscriptions/a5015e1c-867f-4533-8541-85cd470d0cfb/resourceGroups/demoRG/providers/Microsoft.Arc/customLocations/contoso"))
             .withFqdn("VMM.contoso.com")
-            .withCredentials(new VmmServerPropertiesCredentials().withUsername("testuser").withPassword("password"))
+            .withCredentials(
+                new VmmServerPropertiesCredentials().withUsername("testuser").withPassword("fakeTokenPlaceholder"))
             .withPort(1234)
             .create();
     }
@@ -1184,8 +1152,6 @@ public final class VmmServersCreateOrUpdateSamples {
 ### VmmServers_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VmmServers Delete. */
 public final class VmmServersDeleteSamples {
     /*
@@ -1197,7 +1163,7 @@ public final class VmmServersDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteVMMServer(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().delete("testrg", "ContosoVMMServer", null, Context.NONE);
+        manager.vmmServers().delete("testrg", "ContosoVMMServer", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1205,8 +1171,6 @@ public final class VmmServersDeleteSamples {
 ### VmmServers_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VmmServers GetByResourceGroup. */
 public final class VmmServersGetByResourceGroupSamples {
     /*
@@ -1218,7 +1182,9 @@ public final class VmmServersGetByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void getVMMServer(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().getByResourceGroupWithResponse("testrg", "ContosoVMMServer", Context.NONE);
+        manager
+            .vmmServers()
+            .getByResourceGroupWithResponse("testrg", "ContosoVMMServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1226,8 +1192,6 @@ public final class VmmServersGetByResourceGroupSamples {
 ### VmmServers_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VmmServers List. */
 public final class VmmServersListSamples {
     /*
@@ -1239,7 +1203,7 @@ public final class VmmServersListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVmmServersBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().list(Context.NONE);
+        manager.vmmServers().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1247,8 +1211,6 @@ public final class VmmServersListSamples {
 ### VmmServers_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VmmServers ListByResourceGroup. */
 public final class VmmServersListByResourceGroupSamples {
     /*
@@ -1260,7 +1222,7 @@ public final class VmmServersListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVmmServersByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().listByResourceGroup("testrg", Context.NONE);
+        manager.vmmServers().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1268,7 +1230,6 @@ public final class VmmServersListByResourceGroupSamples {
 ### VmmServers_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VmmServer;
 import java.util.HashMap;
 import java.util.Map;
@@ -1285,7 +1246,10 @@ public final class VmmServersUpdateSamples {
      */
     public static void updateVMMServer(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         VmmServer resource =
-            manager.vmmServers().getByResourceGroupWithResponse("testrg", "ContosoVMMServer", Context.NONE).getValue();
+            manager
+                .vmmServers()
+                .getByResourceGroupWithResponse("testrg", "ContosoVMMServer", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

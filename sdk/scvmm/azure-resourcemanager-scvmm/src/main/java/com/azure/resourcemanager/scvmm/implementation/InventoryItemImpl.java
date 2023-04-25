@@ -8,6 +8,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.fluent.models.InventoryItemInner;
 import com.azure.resourcemanager.scvmm.models.InventoryItem;
+import com.azure.resourcemanager.scvmm.models.InventoryItemProperties;
 
 public final class InventoryItemImpl implements InventoryItem, InventoryItem.Definition {
     private InventoryItemInner innerObject;
@@ -31,28 +32,16 @@ public final class InventoryItemImpl implements InventoryItem, InventoryItem.Def
         return this.innerModel().type();
     }
 
+    public InventoryItemProperties properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
 
     public String kind() {
         return this.innerModel().kind();
-    }
-
-    public String managedResourceId() {
-        return this.innerModel().managedResourceId();
-    }
-
-    public String uuid() {
-        return this.innerModel().uuid();
-    }
-
-    public String inventoryItemName() {
-        return this.innerModel().inventoryItemName();
-    }
-
-    public String provisioningState() {
-        return this.innerModel().provisioningState();
     }
 
     public InventoryItemInner innerModel() {
@@ -119,6 +108,11 @@ public final class InventoryItemImpl implements InventoryItem, InventoryItem.Def
                 .getInventoryItems()
                 .getWithResponse(resourceGroupName, vmmServerName, inventoryItemName, context)
                 .getValue();
+        return this;
+    }
+
+    public InventoryItemImpl withProperties(InventoryItemProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 

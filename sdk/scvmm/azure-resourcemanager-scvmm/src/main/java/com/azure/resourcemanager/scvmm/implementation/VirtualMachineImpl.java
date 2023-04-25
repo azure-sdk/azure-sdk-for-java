@@ -146,6 +146,10 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public VirtualMachineInner innerModel() {
         return this.innerObject;
     }
@@ -239,10 +243,6 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this;
     }
 
-    public void stop(StopVirtualMachineOptions body) {
-        serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName, body);
-    }
-
     public void stop() {
         serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName);
     }
@@ -267,10 +267,6 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         serviceManager.virtualMachines().restart(resourceGroupName, virtualMachineName, context);
     }
 
-    public void createCheckpoint(VirtualMachineCreateCheckpoint body) {
-        serviceManager.virtualMachines().createCheckpoint(resourceGroupName, virtualMachineName, body);
-    }
-
     public void createCheckpoint() {
         serviceManager.virtualMachines().createCheckpoint(resourceGroupName, virtualMachineName);
     }
@@ -279,20 +275,12 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         serviceManager.virtualMachines().createCheckpoint(resourceGroupName, virtualMachineName, body, context);
     }
 
-    public void deleteCheckpoint(VirtualMachineDeleteCheckpoint body) {
-        serviceManager.virtualMachines().deleteCheckpoint(resourceGroupName, virtualMachineName, body);
-    }
-
     public void deleteCheckpoint() {
         serviceManager.virtualMachines().deleteCheckpoint(resourceGroupName, virtualMachineName);
     }
 
     public void deleteCheckpoint(VirtualMachineDeleteCheckpoint body, Context context) {
         serviceManager.virtualMachines().deleteCheckpoint(resourceGroupName, virtualMachineName, body, context);
-    }
-
-    public void restoreCheckpoint(VirtualMachineRestoreCheckpoint body) {
-        serviceManager.virtualMachines().restoreCheckpoint(resourceGroupName, virtualMachineName, body);
     }
 
     public void restoreCheckpoint() {

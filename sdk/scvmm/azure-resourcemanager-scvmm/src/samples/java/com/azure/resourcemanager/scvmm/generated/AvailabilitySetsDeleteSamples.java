@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AvailabilitySets Delete. */
 public final class AvailabilitySetsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class AvailabilitySetsDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteAvailabilitySet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().delete("testrg", "HRAvailabilitySet", null, Context.NONE);
+        manager.availabilitySets().delete("testrg", "HRAvailabilitySet", null, com.azure.core.util.Context.NONE);
     }
 }

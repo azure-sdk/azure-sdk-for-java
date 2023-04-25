@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineTemplate;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public final class VirtualMachineTemplatesUpdateSamples {
         VirtualMachineTemplate resource =
             manager
                 .virtualMachineTemplates()
-                .getByResourceGroupWithResponse("testrg", "HRVirtualMachineTemplate", Context.NONE)
+                .getByResourceGroupWithResponse("testrg", "HRVirtualMachineTemplate", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }

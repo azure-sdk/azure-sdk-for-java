@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VmmServers ListByResourceGroup. */
 public final class VmmServersListByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class VmmServersListByResourceGroupSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVmmServersByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().listByResourceGroup("testrg", Context.NONE);
+        manager.vmmServers().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }

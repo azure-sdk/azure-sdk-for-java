@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineCreateCheckpoint;
 
 /** Samples for VirtualMachines CreateCheckpoint. */
@@ -26,6 +25,6 @@ public final class VirtualMachinesCreateCheckpointSamples {
                 new VirtualMachineCreateCheckpoint()
                     .withName("Demo Checkpoint name")
                     .withDescription("Demo Checkpoint description"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

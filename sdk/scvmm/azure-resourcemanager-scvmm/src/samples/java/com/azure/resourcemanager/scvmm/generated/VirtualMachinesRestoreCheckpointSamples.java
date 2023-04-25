@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineRestoreCheckpoint;
 
 /** Samples for VirtualMachines RestoreCheckpoint. */
@@ -21,6 +20,9 @@ public final class VirtualMachinesRestoreCheckpointSamples {
         manager
             .virtualMachines()
             .restoreCheckpoint(
-                "testrg", "DemoVM", new VirtualMachineRestoreCheckpoint().withId("Demo CheckpointID"), Context.NONE);
+                "testrg",
+                "DemoVM",
+                new VirtualMachineRestoreCheckpoint().withId("Demo CheckpointID"),
+                com.azure.core.util.Context.NONE);
     }
 }

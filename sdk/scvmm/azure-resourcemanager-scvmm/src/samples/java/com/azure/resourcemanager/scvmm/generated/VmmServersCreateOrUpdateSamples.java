@@ -29,7 +29,8 @@ public final class VmmServersCreateOrUpdateSamples {
                     .withName(
                         "/subscriptions/a5015e1c-867f-4533-8541-85cd470d0cfb/resourceGroups/demoRG/providers/Microsoft.Arc/customLocations/contoso"))
             .withFqdn("VMM.contoso.com")
-            .withCredentials(new VmmServerPropertiesCredentials().withUsername("testuser").withPassword("password"))
+            .withCredentials(
+                new VmmServerPropertiesCredentials().withUsername("testuser").withPassword("fakeTokenPlaceholder"))
             .withPort(1234)
             .create();
     }

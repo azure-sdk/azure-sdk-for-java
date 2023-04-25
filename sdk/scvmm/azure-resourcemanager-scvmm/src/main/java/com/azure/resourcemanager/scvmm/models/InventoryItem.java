@@ -32,6 +32,13 @@ public interface InventoryItem {
     String type();
 
     /**
+     * Gets the properties property: Resource properties.
+     *
+     * @return the properties value.
+     */
+    InventoryItemProperties properties();
+
+    /**
      * Gets the systemData property: The system data.
      *
      * @return the systemData value.
@@ -48,34 +55,6 @@ public interface InventoryItem {
     String kind();
 
     /**
-     * Gets the managedResourceId property: Gets the tracked resource id corresponding to the inventory resource.
-     *
-     * @return the managedResourceId value.
-     */
-    String managedResourceId();
-
-    /**
-     * Gets the uuid property: Gets the UUID (which is assigned by VMM) for the inventory item.
-     *
-     * @return the uuid value.
-     */
-    String uuid();
-
-    /**
-     * Gets the inventoryItemName property: Gets the Managed Object name in VMM for the inventory item.
-     *
-     * @return the inventoryItemName value.
-     */
-    String inventoryItemName();
-
-    /**
-     * Gets the provisioningState property: Gets the provisioning state.
-     *
-     * @return the provisioningState value.
-     */
-    String provisioningState();
-
-    /**
      * Gets the inner com.azure.resourcemanager.scvmm.fluent.models.InventoryItemInner object.
      *
      * @return the inner object.
@@ -84,7 +63,10 @@ public interface InventoryItem {
 
     /** The entirety of the InventoryItem definition. */
     interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank,
+            DefinitionStages.WithParentResource,
+            DefinitionStages.WithProperties,
+            DefinitionStages.WithCreate {
     }
     /** The InventoryItem definition stages. */
     interface DefinitionStages {
@@ -100,7 +82,17 @@ public interface InventoryItem {
              * @param vmmServerName Name of the VMMServer.
              * @return the next definition stage.
              */
-            WithCreate withExistingVmmServer(String resourceGroupName, String vmmServerName);
+            WithProperties withExistingVmmServer(String resourceGroupName, String vmmServerName);
+        }
+        /** The stage of the InventoryItem definition allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Resource properties..
+             *
+             * @param properties Resource properties.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(InventoryItemProperties properties);
         }
         /**
          * The stage of the InventoryItem definition which contains all the minimum required properties for the resource

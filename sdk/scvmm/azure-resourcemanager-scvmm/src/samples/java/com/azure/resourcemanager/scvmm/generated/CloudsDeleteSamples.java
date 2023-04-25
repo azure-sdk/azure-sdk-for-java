@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clouds Delete. */
 public final class CloudsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class CloudsDeleteSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void deleteCloud(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().delete("testrg", "HRCloud", null, Context.NONE);
+        manager.clouds().delete("testrg", "HRCloud", null, com.azure.core.util.Context.NONE);
     }
 }

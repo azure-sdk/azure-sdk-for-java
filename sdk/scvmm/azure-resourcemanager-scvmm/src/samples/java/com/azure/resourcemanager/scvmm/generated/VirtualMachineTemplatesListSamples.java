@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachineTemplates List. */
 public final class VirtualMachineTemplatesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class VirtualMachineTemplatesListSamples {
      * @param manager Entry point to ScvmmManager.
      */
     public static void listVirtualMachineTemplatesBySubscription(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().list(Context.NONE);
+        manager.virtualMachineTemplates().list(com.azure.core.util.Context.NONE);
     }
 }
