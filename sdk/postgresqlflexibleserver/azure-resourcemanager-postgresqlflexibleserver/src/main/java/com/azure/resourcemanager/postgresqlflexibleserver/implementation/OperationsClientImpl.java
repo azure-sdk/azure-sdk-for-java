@@ -70,17 +70,17 @@ public final class OperationsClientImpl implements OperationsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<OperationListResultInner>> listWithResponseAsync() {
+    private Mono<Response<OperationListResultInner>> listWithResponseAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2017-12-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -102,9 +102,10 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2017-12-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context);
+        return service.list(this.client.getEndpoint(), apiVersion, accept, context);
     }
 
     /**
@@ -115,7 +116,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return a list of resource provider operations on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<OperationListResultInner> listAsync() {
+    private Mono<OperationListResultInner> listAsync() {
         return listWithResponseAsync().flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 

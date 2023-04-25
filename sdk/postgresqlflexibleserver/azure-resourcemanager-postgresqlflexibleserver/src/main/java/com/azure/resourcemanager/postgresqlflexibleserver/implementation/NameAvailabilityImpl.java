@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.implementation;
 
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.NameAvailabilityInner;
-import com.azure.resourcemanager.postgresqlflexibleserver.models.CheckNameAvailabilityReason;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.NameAvailability;
 
 public final class NameAvailabilityImpl implements NameAvailability {
@@ -20,24 +19,16 @@ public final class NameAvailabilityImpl implements NameAvailability {
         this.serviceManager = serviceManager;
     }
 
-    public Boolean nameAvailable() {
-        return this.innerModel().nameAvailable();
-    }
-
-    public CheckNameAvailabilityReason reason() {
-        return this.innerModel().reason();
-    }
-
     public String message() {
         return this.innerModel().message();
     }
 
-    public String name() {
-        return this.innerModel().name();
+    public Boolean nameAvailable() {
+        return this.innerModel().nameAvailable();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public String reason() {
+        return this.innerModel().reason();
     }
 
     public NameAvailabilityInner innerModel() {
