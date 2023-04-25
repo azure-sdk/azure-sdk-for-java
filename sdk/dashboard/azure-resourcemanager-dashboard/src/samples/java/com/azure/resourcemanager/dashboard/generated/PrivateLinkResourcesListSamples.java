@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources List. */
 public final class PrivateLinkResourcesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class PrivateLinkResourcesListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateLinkResourcesList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateLinkResources().list("myResourceGroup", "myWorkspace", Context.NONE);
+        manager.privateLinkResources().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
