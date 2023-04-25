@@ -30,7 +30,7 @@ public final class UsagesProperties {
     private ResourceName name;
 
     /*
-     * The name of the resource type. Optional field.
+     * The name of the resource type.
      */
     @JsonProperty(value = "resourceType")
     private String resourceType;
@@ -114,7 +114,7 @@ public final class UsagesProperties {
     }
 
     /**
-     * Get the resourceType property: The name of the resource type. Optional field.
+     * Get the resourceType property: The name of the resource type.
      *
      * @return the resourceType value.
      */
@@ -123,7 +123,7 @@ public final class UsagesProperties {
     }
 
     /**
-     * Set the resourceType property: The name of the resource type. Optional field.
+     * Set the resourceType property: The name of the resource type.
      *
      * @param resourceType the resourceType value to set.
      * @return the UsagesProperties object itself.

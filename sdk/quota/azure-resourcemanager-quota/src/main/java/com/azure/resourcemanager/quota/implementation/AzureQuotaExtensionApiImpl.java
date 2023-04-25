@@ -166,7 +166,7 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-02-01";
+        this.apiVersion = "2021-03-15-preview";
         this.usages = new UsagesClientImpl(this);
         this.quotas = new QuotasClientImpl(this);
         this.quotaRequestStatus = new QuotaRequestStatusClientImpl(this);

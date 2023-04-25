@@ -30,7 +30,7 @@ public final class QuotaProperties {
     private ResourceName name;
 
     /*
-     * The name of the resource type. Optional field.
+     * Resource type name.
      */
     @JsonProperty(value = "resourceType")
     private String resourceType;
@@ -114,7 +114,7 @@ public final class QuotaProperties {
     }
 
     /**
-     * Get the resourceType property: The name of the resource type. Optional field.
+     * Get the resourceType property: Resource type name.
      *
      * @return the resourceType value.
      */
@@ -123,7 +123,7 @@ public final class QuotaProperties {
     }
 
     /**
-     * Set the resourceType property: The name of the resource type. Optional field.
+     * Set the resourceType property: Resource type name.
      *
      * @param resourceType the resourceType value to set.
      * @return the QuotaProperties object itself.

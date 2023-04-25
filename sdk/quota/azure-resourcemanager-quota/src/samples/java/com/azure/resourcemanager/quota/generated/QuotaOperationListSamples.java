@@ -7,7 +7,7 @@ package com.azure.resourcemanager.quota.generated;
 /** Samples for QuotaOperation List. */
 public final class QuotaOperationListSamples {
     /*
-     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/GetOperations.json
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2021-03-15-preview/examples/GetOperations.json
      */
     /**
      * Sample code: GetOperations.
