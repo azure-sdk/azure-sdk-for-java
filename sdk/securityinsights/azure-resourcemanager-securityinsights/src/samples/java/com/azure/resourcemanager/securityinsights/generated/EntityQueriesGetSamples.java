@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EntityQueries Get. */
 public final class EntityQueriesGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entityQueries/GetActivityEntityQueryById.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/entityQueries/GetActivityEntityQueryById.json
      */
     /**
      * Sample code: Get an Activity entity query.
@@ -20,11 +18,12 @@ public final class EntityQueriesGetSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .entityQueries()
-            .getWithResponse("myRg", "myWorkspace", "07da3cc8-c8ad-4710-a44e-334cdcb7882b", Context.NONE);
+            .getWithResponse(
+                "myRg", "myWorkspace", "07da3cc8-c8ad-4710-a44e-334cdcb7882b", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entityQueries/GetExpansionEntityQueryById.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-02-01-preview/examples/entityQueries/GetExpansionEntityQueryById.json
      */
     /**
      * Sample code: Get an Expansion entity query.
@@ -35,6 +34,7 @@ public final class EntityQueriesGetSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .entityQueries()
-            .getWithResponse("myRg", "myWorkspace", "07da3cc8-c8ad-4710-a44e-334cdcb7882b", Context.NONE);
+            .getWithResponse(
+                "myRg", "myWorkspace", "07da3cc8-c8ad-4710-a44e-334cdcb7882b", com.azure.core.util.Context.NONE);
     }
 }
