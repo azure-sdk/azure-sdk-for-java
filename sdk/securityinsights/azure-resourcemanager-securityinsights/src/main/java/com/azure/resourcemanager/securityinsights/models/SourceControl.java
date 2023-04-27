@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner;
@@ -96,6 +97,13 @@ public interface SourceControl {
     Repository repository();
 
     /**
+     * Gets the servicePrincipal property: Service principal metadata.
+     *
+     * @return the servicePrincipal value.
+     */
+    ServicePrincipal servicePrincipal();
+
+    /**
      * Gets the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      *
      * @return the repositoryResourceInfo value.
@@ -108,6 +116,13 @@ public interface SourceControl {
      * @return the lastDeploymentInfo value.
      */
     DeploymentInfo lastDeploymentInfo();
+
+    /**
+     * Gets the pullRequest property: Information regarding the pull request of the source control.
+     *
+     * @return the pullRequest value.
+     */
+    PullRequest pullRequest();
 
     /**
      * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner object.
@@ -149,8 +164,10 @@ public interface SourceControl {
                 DefinitionStages.WithRepoType,
                 DefinitionStages.WithContentTypes,
                 DefinitionStages.WithRepository,
+                DefinitionStages.WithServicePrincipal,
                 DefinitionStages.WithRepositoryResourceInfo,
-                DefinitionStages.WithLastDeploymentInfo {
+                DefinitionStages.WithLastDeploymentInfo,
+                DefinitionStages.WithPullRequest {
             /**
              * Executes the create request.
              *
@@ -246,6 +263,16 @@ public interface SourceControl {
              */
             WithCreate withRepository(Repository repository);
         }
+        /** The stage of the SourceControl definition allowing to specify servicePrincipal. */
+        interface WithServicePrincipal {
+            /**
+             * Specifies the servicePrincipal property: Service principal metadata..
+             *
+             * @param servicePrincipal Service principal metadata.
+             * @return the next definition stage.
+             */
+            WithCreate withServicePrincipal(ServicePrincipal servicePrincipal);
+        }
         /** The stage of the SourceControl definition allowing to specify repositoryResourceInfo. */
         interface WithRepositoryResourceInfo {
             /**
@@ -268,6 +295,16 @@ public interface SourceControl {
              */
             WithCreate withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo);
         }
+        /** The stage of the SourceControl definition allowing to specify pullRequest. */
+        interface WithPullRequest {
+            /**
+             * Specifies the pullRequest property: Information regarding the pull request of the source control..
+             *
+             * @param pullRequest Information regarding the pull request of the source control.
+             * @return the next definition stage.
+             */
+            WithCreate withPullRequest(PullRequest pullRequest);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -283,4 +320,23 @@ public interface SourceControl {
      * @return the refreshed resource.
      */
     SourceControl refresh(Context context);
+
+    /**
+     * Delete a source control.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteWithResponse(Context context);
+
+    /**
+     * Delete a source control.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete();
 }

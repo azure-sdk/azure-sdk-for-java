@@ -38,15 +38,6 @@ public final class SourceControlsOperationsImpl implements SourceControlsOperati
         return Utils.mapPage(inner, inner1 -> new SourceControlImpl(inner1, this.manager()));
     }
 
-    public SourceControl get(String resourceGroupName, String workspaceName, String sourceControlId) {
-        SourceControlInner inner = this.serviceClient().get(resourceGroupName, workspaceName, sourceControlId);
-        if (inner != null) {
-            return new SourceControlImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SourceControl> getWithResponse(
         String resourceGroupName, String workspaceName, String sourceControlId, Context context) {
         Response<SourceControlInner> inner =
@@ -62,13 +53,22 @@ public final class SourceControlsOperationsImpl implements SourceControlsOperati
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String sourceControlId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, sourceControlId);
+    public SourceControl get(String resourceGroupName, String workspaceName, String sourceControlId) {
+        SourceControlInner inner = this.serviceClient().get(resourceGroupName, workspaceName, sourceControlId);
+        if (inner != null) {
+            return new SourceControlImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String sourceControlId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, sourceControlId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String sourceControlId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, sourceControlId);
     }
 
     public SourceControl getById(String id) {
@@ -123,60 +123,6 @@ public final class SourceControlsOperationsImpl implements SourceControlsOperati
                             .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
         }
         return this.getWithResponse(resourceGroupName, workspaceName, sourceControlId, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String sourceControlId = Utils.getValueFromIdByName(id, "sourcecontrols");
-        if (sourceControlId == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, sourceControlId, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String sourceControlId = Utils.getValueFromIdByName(id, "sourcecontrols");
-        if (sourceControlId == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, sourceControlId, context);
     }
 
     private SourceControlsOperationsClient serviceClient() {

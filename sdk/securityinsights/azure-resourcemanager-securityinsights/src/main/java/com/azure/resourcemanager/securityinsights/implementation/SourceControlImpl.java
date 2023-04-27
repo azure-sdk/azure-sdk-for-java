@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.securityinsights.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.SourceControl;
 import com.azure.resourcemanager.securityinsights.models.Version;
 import java.util.Collections;
@@ -82,12 +85,20 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this.innerModel().repository();
     }
 
+    public ServicePrincipal servicePrincipal() {
+        return this.innerModel().servicePrincipal();
+    }
+
     public RepositoryResourceInfo repositoryResourceInfo() {
         return this.innerModel().repositoryResourceInfo();
     }
 
     public DeploymentInfo lastDeploymentInfo() {
         return this.innerModel().lastDeploymentInfo();
+    }
+
+    public PullRequest pullRequest() {
+        return this.innerModel().pullRequest();
     }
 
     public SourceControlInner innerModel() {
@@ -156,6 +167,16 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this;
     }
 
+    public Response<Void> deleteWithResponse(Context context) {
+        return serviceManager
+            .sourceControlsOperations()
+            .deleteWithResponse(resourceGroupName, workspaceName, sourceControlId, context);
+    }
+
+    public void delete() {
+        serviceManager.sourceControlsOperations().delete(resourceGroupName, workspaceName, sourceControlId);
+    }
+
     public SourceControlImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
         return this;
@@ -196,6 +217,11 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this;
     }
 
+    public SourceControlImpl withServicePrincipal(ServicePrincipal servicePrincipal) {
+        this.innerModel().withServicePrincipal(servicePrincipal);
+        return this;
+    }
+
     public SourceControlImpl withRepositoryResourceInfo(RepositoryResourceInfo repositoryResourceInfo) {
         this.innerModel().withRepositoryResourceInfo(repositoryResourceInfo);
         return this;
@@ -203,6 +229,11 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
 
     public SourceControlImpl withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
         this.innerModel().withLastDeploymentInfo(lastDeploymentInfo);
+        return this;
+    }
+
+    public SourceControlImpl withPullRequest(PullRequest pullRequest) {
+        this.innerModel().withPullRequest(pullRequest);
         return this;
     }
 }

@@ -8,12 +8,13 @@ import com.azure.resourcemanager.securityinsights.models.ContentPathMap;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import java.util.Arrays;
 
 /** Samples for SourceControlsOperation Create. */
 public final class SourceControlsOperationCreateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/sourcecontrols/CreateSourceControl.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-05-01-preview/examples/sourcecontrols/CreateSourceControl.json
      */
     /**
      * Sample code: Creates a source control.
@@ -45,6 +46,7 @@ public final class SourceControlsOperationCreateSamples {
                                 new ContentPathMap()
                                     .withContentType(ContentType.WORKBOOK)
                                     .withPath("path/to/workbooks"))))
+            .withServicePrincipal(new ServicePrincipal().withPasswordExpirationTimeframe(90210))
             .create();
     }
 }

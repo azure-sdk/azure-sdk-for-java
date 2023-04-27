@@ -29,6 +29,10 @@ public class InstructionSteps {
     @JsonProperty(value = "instructions")
     private List<InstructionStepsInstructionsItem> instructions;
 
+    /** Creates an instance of InstructionSteps class. */
+    public InstructionSteps() {
+    }
+
     /**
      * Get the title property: Instruction step title.
      *

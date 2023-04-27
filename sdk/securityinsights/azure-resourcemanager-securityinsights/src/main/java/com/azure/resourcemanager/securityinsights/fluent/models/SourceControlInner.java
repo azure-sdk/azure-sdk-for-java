@@ -7,10 +7,12 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -23,6 +25,10 @@ public final class SourceControlInner extends ResourceWithEtag {
      */
     @JsonProperty(value = "properties")
     private SourceControlProperties innerProperties;
+
+    /** Creates an instance of SourceControlInner class. */
+    public SourceControlInner() {
+    }
 
     /**
      * Get the innerProperties property: source control properties.
@@ -202,6 +208,29 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     *
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.innerProperties() == null ? null : this.innerProperties().servicePrincipal();
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     *
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlInner object itself.
+     */
+    public SourceControlInner withServicePrincipal(ServicePrincipal servicePrincipal) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SourceControlProperties();
+        }
+        this.innerProperties().withServicePrincipal(servicePrincipal);
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      *
      * @return the repositoryResourceInfo value.
@@ -244,6 +273,29 @@ public final class SourceControlInner extends ResourceWithEtag {
             this.innerProperties = new SourceControlProperties();
         }
         this.innerProperties().withLastDeploymentInfo(lastDeploymentInfo);
+        return this;
+    }
+
+    /**
+     * Get the pullRequest property: Information regarding the pull request of the source control.
+     *
+     * @return the pullRequest value.
+     */
+    public PullRequest pullRequest() {
+        return this.innerProperties() == null ? null : this.innerProperties().pullRequest();
+    }
+
+    /**
+     * Set the pullRequest property: Information regarding the pull request of the source control.
+     *
+     * @param pullRequest the pullRequest value to set.
+     * @return the SourceControlInner object itself.
+     */
+    public SourceControlInner withPullRequest(PullRequest pullRequest) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SourceControlProperties();
+        }
+        this.innerProperties().withPullRequest(pullRequest);
         return this;
     }
 

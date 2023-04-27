@@ -8,9 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -61,6 +63,12 @@ public final class SourceControlProperties {
     private Repository repository;
 
     /*
+     * Service principal metadata.
+     */
+    @JsonProperty(value = "servicePrincipal")
+    private ServicePrincipal servicePrincipal;
+
+    /*
      * Information regarding the resources created in user's repository.
      */
     @JsonProperty(value = "repositoryResourceInfo")
@@ -71,6 +79,16 @@ public final class SourceControlProperties {
      */
     @JsonProperty(value = "lastDeploymentInfo")
     private DeploymentInfo lastDeploymentInfo;
+
+    /*
+     * Information regarding the pull request of the source control.
+     */
+    @JsonProperty(value = "pullRequest")
+    private PullRequest pullRequest;
+
+    /** Creates an instance of SourceControlProperties class. */
+    public SourceControlProperties() {
+    }
 
     /**
      * Get the id property: The id (a Guid) of the source control.
@@ -213,6 +231,26 @@ public final class SourceControlProperties {
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     *
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.servicePrincipal;
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     *
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withServicePrincipal(ServicePrincipal servicePrincipal) {
+        this.servicePrincipal = servicePrincipal;
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      *
      * @return the repositoryResourceInfo value.
@@ -253,6 +291,26 @@ public final class SourceControlProperties {
     }
 
     /**
+     * Get the pullRequest property: Information regarding the pull request of the source control.
+     *
+     * @return the pullRequest value.
+     */
+    public PullRequest pullRequest() {
+        return this.pullRequest;
+    }
+
+    /**
+     * Set the pullRequest property: Information regarding the pull request of the source control.
+     *
+     * @param pullRequest the pullRequest value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withPullRequest(PullRequest pullRequest) {
+        this.pullRequest = pullRequest;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -284,11 +342,17 @@ public final class SourceControlProperties {
         } else {
             repository().validate();
         }
+        if (servicePrincipal() != null) {
+            servicePrincipal().validate();
+        }
         if (repositoryResourceInfo() != null) {
             repositoryResourceInfo().validate();
         }
         if (lastDeploymentInfo() != null) {
             lastDeploymentInfo().validate();
+        }
+        if (pullRequest() != null) {
+            pullRequest().validate();
         }
     }
 

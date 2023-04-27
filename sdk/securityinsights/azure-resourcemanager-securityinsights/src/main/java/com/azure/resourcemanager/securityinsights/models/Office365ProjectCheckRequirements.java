@@ -21,6 +21,10 @@ public final class Office365ProjectCheckRequirements extends DataConnectorsCheck
     @JsonProperty(value = "properties")
     private Office365ProjectCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of Office365ProjectCheckRequirements class. */
+    public Office365ProjectCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: Office365 Project requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class Office365ProjectCheckRequirements extends DataConnectorsCheck
      */
     private Office365ProjectCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the Office365ProjectCheckRequirements object itself.
+     */
+    public Office365ProjectCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new Office365ProjectCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**
