@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
@@ -20,6 +18,10 @@ public final class PrivateEndpointConnectionsGetSamples {
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
         manager
             .privateEndpointConnections()
-            .getWithResponse("rg1", "cluster1", "testprivateep.b3bf5fed-9b12-4560-b7d0-2abe1bba07e2", Context.NONE);
+            .getWithResponse(
+                "rg1",
+                "cluster1",
+                "testprivateep.b3bf5fed-9b12-4560-b7d0-2abe1bba07e2",
+                com.azure.core.util.Context.NONE);
     }
 }

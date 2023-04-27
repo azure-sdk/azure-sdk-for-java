@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
@@ -18,6 +16,6 @@ public final class PrivateLinkResourcesGetSamples {
      */
     public static void getSpecificPrivateLinkResourceInASpecificHDInsightCluster(
         com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.privateLinkResources().getWithResponse("rg1", "cluster1", "gateway", Context.NONE);
+        manager.privateLinkResources().getWithResponse("rg1", "cluster1", "gateway", com.azure.core.util.Context.NONE);
     }
 }

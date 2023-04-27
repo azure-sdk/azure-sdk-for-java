@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hdinsight.models.Extension;
 
 /** Samples for Extensions Create. */
@@ -28,6 +27,6 @@ public final class ExtensionsCreateSamples {
                 new Extension()
                     .withWorkspaceId("a2090ead-8c9f-4fba-b70e-533e3e003163")
                     .withPrimaryKey("fakeTokenPlaceholder"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

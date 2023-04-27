@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clusters GetByResourceGroup. */
 public final class ClustersGetByResourceGroupSamples {
     /*
@@ -17,7 +15,7 @@ public final class ClustersGetByResourceGroupSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void getHadoopOnLinuxCluster(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.clusters().getByResourceGroupWithResponse("rg1", "cluster1", Context.NONE);
+        manager.clusters().getByResourceGroupWithResponse("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +27,6 @@ public final class ClustersGetByResourceGroupSamples {
      * @param manager Entry point to HDInsightManager.
      */
     public static void getSparkOnLinuxCluster(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
-        manager.clusters().getByResourceGroupWithResponse("rg1", "cluster1", Context.NONE);
+        manager.clusters().getByResourceGroupWithResponse("rg1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
