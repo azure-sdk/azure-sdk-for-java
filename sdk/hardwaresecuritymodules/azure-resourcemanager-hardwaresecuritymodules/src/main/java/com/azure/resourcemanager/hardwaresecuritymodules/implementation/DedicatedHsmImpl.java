@@ -92,6 +92,10 @@ public final class DedicatedHsmImpl implements DedicatedHsm, DedicatedHsm.Defini
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public DedicatedHsmInner innerModel() {
         return this.innerObject;
     }

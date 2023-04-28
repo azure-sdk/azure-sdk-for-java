@@ -282,7 +282,7 @@ public final class HardwareSecurityModulesManager {
     }
 
     /**
-     * Gets the resource collection API of DedicatedHsms.
+     * Gets the resource collection API of DedicatedHsms. It manages DedicatedHsm.
      *
      * @return Resource collection API of DedicatedHsms.
      */

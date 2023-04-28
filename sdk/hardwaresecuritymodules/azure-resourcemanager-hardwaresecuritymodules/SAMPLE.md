@@ -135,8 +135,6 @@ public final class DedicatedHsmCreateOrUpdateSamples {
 ### DedicatedHsm_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm Delete. */
 public final class DedicatedHsmDeleteSamples {
     /*
@@ -149,7 +147,7 @@ public final class DedicatedHsmDeleteSamples {
      */
     public static void deleteADedicatedHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().delete("hsm-group", "hsm1", Context.NONE);
+        manager.dedicatedHsms().delete("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -157,8 +155,6 @@ public final class DedicatedHsmDeleteSamples {
 ### DedicatedHsm_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm GetByResourceGroup. */
 public final class DedicatedHsmGetByResourceGroupSamples {
     /*
@@ -171,7 +167,7 @@ public final class DedicatedHsmGetByResourceGroupSamples {
      */
     public static void getAPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE);
+        manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -184,7 +180,7 @@ public final class DedicatedHsmGetByResourceGroupSamples {
      */
     public static void getAPaymentHSMWith20181031PreviewApiVersion(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE);
+        manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -197,7 +193,7 @@ public final class DedicatedHsmGetByResourceGroupSamples {
      */
     public static void getADedicatedHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE);
+        manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -205,8 +201,6 @@ public final class DedicatedHsmGetByResourceGroupSamples {
 ### DedicatedHsm_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm List. */
 public final class DedicatedHsmListSamples {
     /*
@@ -219,7 +213,7 @@ public final class DedicatedHsmListSamples {
      */
     public static void listDedicatedHSMDevicesInASubscriptionIncludingPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().list(null, Context.NONE);
+        manager.dedicatedHsms().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -232,7 +226,7 @@ public final class DedicatedHsmListSamples {
      */
     public static void listDedicatedHSMDevicesInASubscription(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().list(null, Context.NONE);
+        manager.dedicatedHsms().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -240,8 +234,6 @@ public final class DedicatedHsmListSamples {
 ### DedicatedHsm_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm ListByResourceGroup. */
 public final class DedicatedHsmListByResourceGroupSamples {
     /*
@@ -254,7 +246,7 @@ public final class DedicatedHsmListByResourceGroupSamples {
      */
     public static void listDedicatedHSMDevicesInAResourceGroup(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().listByResourceGroup("hsm-group", null, Context.NONE);
+        manager.dedicatedHsms().listByResourceGroup("hsm-group", null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -267,7 +259,7 @@ public final class DedicatedHsmListByResourceGroupSamples {
      */
     public static void listDedicatedHSMDevicesInAResourceGroupIncludingPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().listByResourceGroup("hsm-group", null, Context.NONE);
+        manager.dedicatedHsms().listByResourceGroup("hsm-group", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -275,8 +267,6 @@ public final class DedicatedHsmListByResourceGroupSamples {
 ### DedicatedHsm_ListOutboundNetworkDependenciesEndpoints
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm ListOutboundNetworkDependenciesEndpoints. */
 public final class DedicatedHsmListOutboundNetworkDependenciesEndpointsSamples {
     /*
@@ -289,7 +279,9 @@ public final class DedicatedHsmListOutboundNetworkDependenciesEndpointsSamples {
      */
     public static void listOutboundNetworkDependenciesEndpointsByManagedCluster(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().listOutboundNetworkDependenciesEndpoints("hsm-group", "hsm1", Context.NONE);
+        manager
+            .dedicatedHsms()
+            .listOutboundNetworkDependenciesEndpoints("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -297,7 +289,6 @@ public final class DedicatedHsmListOutboundNetworkDependenciesEndpointsSamples {
 ### DedicatedHsm_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsm;
 import java.util.HashMap;
 import java.util.Map;
@@ -315,7 +306,10 @@ public final class DedicatedHsmUpdateSamples {
     public static void updateAnExistingDedicatedHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         DedicatedHsm resource =
-            manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE).getValue();
+            manager
+                .dedicatedHsms()
+                .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("Dept", "hsm", "Environment", "dogfood", "Slice", "A")).apply();
     }
 
@@ -330,7 +324,10 @@ public final class DedicatedHsmUpdateSamples {
     public static void updateAnExistingPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         DedicatedHsm resource =
-            manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE).getValue();
+            manager
+                .dedicatedHsms()
+                .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("Dept", "hsm", "Environment", "dogfood", "Slice", "A")).apply();
     }
 
@@ -350,8 +347,6 @@ public final class DedicatedHsmUpdateSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -364,7 +359,7 @@ public final class OperationsListSamples {
      */
     public static void getAListOfPaymentHSMOperations(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -377,7 +372,7 @@ public final class OperationsListSamples {
      */
     public static void getAListOfDedicatedHSMOperations(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
