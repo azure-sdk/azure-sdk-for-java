@@ -17,6 +17,12 @@ import java.time.OffsetDateTime;
 public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
     extends MigrateMySqlAzureDbForMySqlSyncTaskOutput {
     /*
+     * The migrationType property.
+     */
+    @JsonProperty(value = "migrationType", access = JsonProperty.Access.WRITE_ONLY)
+    private MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevelMigrationType migrationType;
+
+    /*
      * Migration start time
      */
     @JsonProperty(value = "startedOn", access = JsonProperty.Access.WRITE_ONLY)
@@ -54,6 +60,15 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel class. */
     public MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel() {
+    }
+
+    /**
+     * Get the migrationType property: The migrationType property.
+     *
+     * @return the migrationType value.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevelMigrationType migrationType() {
+        return this.migrationType;
     }
 
     /**

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Output for the task that migrates MySQL databases to Azure Database for MySQL for online migrations. */
+/** MySQL to Azure Database for MySQL online migration task output. */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -28,7 +28,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ErrorOutput", value = MigrateMySqlAzureDbForMySqlSyncTaskOutputError.class),
     @JsonSubTypes.Type(
         name = "DatabaseLevelErrorOutput",
-        value = MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError.class)
+        value = MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError.class),
+    @JsonSubTypes.Type(
+        name = "MigrationLevelOutput",
+        value = MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevelV2.class)
 })
 @Immutable
 public class MigrateMySqlAzureDbForMySqlSyncTaskOutput {

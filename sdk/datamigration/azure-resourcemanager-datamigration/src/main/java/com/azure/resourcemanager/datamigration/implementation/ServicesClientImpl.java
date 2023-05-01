@@ -72,8 +72,7 @@ public final class ServicesClientImpl implements ServicesClient {
     public interface ServicesService {
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -88,8 +87,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataMigrationServiceInner>> getByResourceGroup(
@@ -103,8 +101,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -119,8 +116,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -135,8 +131,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/checkStatus")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/checkStatus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatus(
@@ -150,8 +145,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -165,8 +159,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -180,8 +173,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/skus")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/skus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ServiceSkuList>> listSkus(
@@ -195,11 +187,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/checkNameAvailability")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/checkNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailability(
+        Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailability(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("groupName") String groupName,
@@ -234,15 +225,14 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/locations/{location}"
-                + "/checkNameAvailability")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/locations/{location}/checkNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NameAvailabilityResponseInner>> checkNameAvailability(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("location") String location,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NameAvailabilityRequest parameters,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -2284,7 +2274,7 @@ public final class ServicesClientImpl implements ServicesClient {
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailabilityWithResponseAsync(
+    private Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailabilityWithResponseAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2314,7 +2304,7 @@ public final class ServicesClientImpl implements ServicesClient {
             .withContext(
                 context ->
                     service
-                        .nestedCheckNameAvailability(
+                        .checkChildrenNameAvailability(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             groupName,
@@ -2342,7 +2332,7 @@ public final class ServicesClientImpl implements ServicesClient {
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailabilityWithResponseAsync(
+    private Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailabilityWithResponseAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2370,7 +2360,7 @@ public final class ServicesClientImpl implements ServicesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .nestedCheckNameAvailability(
+            .checkChildrenNameAvailability(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 groupName,
@@ -2395,9 +2385,9 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NameAvailabilityResponseInner> nestedCheckNameAvailabilityAsync(
+    private Mono<NameAvailabilityResponseInner> checkChildrenNameAvailabilityAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
-        return nestedCheckNameAvailabilityWithResponseAsync(groupName, serviceName, parameters)
+        return checkChildrenNameAvailabilityWithResponseAsync(groupName, serviceName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -2416,9 +2406,9 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NameAvailabilityResponseInner> nestedCheckNameAvailabilityWithResponse(
+    public Response<NameAvailabilityResponseInner> checkChildrenNameAvailabilityWithResponse(
         String groupName, String serviceName, NameAvailabilityRequest parameters, Context context) {
-        return nestedCheckNameAvailabilityWithResponseAsync(groupName, serviceName, parameters, context).block();
+        return checkChildrenNameAvailabilityWithResponseAsync(groupName, serviceName, parameters, context).block();
     }
 
     /**
@@ -2435,9 +2425,9 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityResponseInner nestedCheckNameAvailability(
+    public NameAvailabilityResponseInner checkChildrenNameAvailability(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
-        return nestedCheckNameAvailabilityWithResponse(groupName, serviceName, parameters, Context.NONE).getValue();
+        return checkChildrenNameAvailabilityWithResponse(groupName, serviceName, parameters, Context.NONE).getValue();
     }
 
     /**
@@ -2821,8 +2811,8 @@ public final class ServicesClientImpl implements ServicesClient {
                         .checkNameAvailability(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
                             location,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -2872,8 +2862,8 @@ public final class ServicesClientImpl implements ServicesClient {
             .checkNameAvailability(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
                 location,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);

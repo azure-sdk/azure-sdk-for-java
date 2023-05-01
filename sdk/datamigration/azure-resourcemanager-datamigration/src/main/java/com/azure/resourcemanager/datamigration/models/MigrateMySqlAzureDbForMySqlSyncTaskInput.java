@@ -6,8 +6,11 @@ package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 /** Input for the task that migrates MySQL databases to Azure Database for MySQL for online migrations. */
 @Fluent
@@ -29,6 +32,73 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
      */
     @JsonProperty(value = "selectedDatabases", required = true)
     private List<MigrateMySqlAzureDbForMySqlSyncDatabaseInput> selectedDatabases;
+
+    /*
+     * Parameter to specify when the migration started
+     */
+    @JsonProperty(value = "startedOn")
+    private OffsetDateTime startedOn;
+
+    /*
+     * Optional resource Id of the source server if it is an azure instance
+     */
+    @JsonProperty(value = "sourceServerResourceId")
+    private String sourceServerResourceId;
+
+    /*
+     * Optional resource Id of the target server
+     */
+    @JsonProperty(value = "targetServerResourceId")
+    private String targetServerResourceId;
+
+    /*
+     * Optional parameters for fine tuning the data migration
+     */
+    @JsonProperty(value = "optionalAgentSettings")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> optionalAgentSettings;
+
+    /*
+     * If true, all view definitions will be migrated in the selected databases
+     */
+    @JsonProperty(value = "migrateAllViews")
+    private Boolean migrateAllViews;
+
+    /*
+     * If true, all trigger definitions will be migrated in the selected databases
+     */
+    @JsonProperty(value = "migrateAllTriggers")
+    private Boolean migrateAllTriggers;
+
+    /*
+     * If true, all event definitions will be migrated in the selected databases
+     */
+    @JsonProperty(value = "migrateAllEvents")
+    private Boolean migrateAllEvents;
+
+    /*
+     * If true, all routine definitions will be migrated in the selected databases
+     */
+    @JsonProperty(value = "migrateAllRoutines")
+    private Boolean migrateAllRoutines;
+
+    /*
+     * If true, all table's schemas will be migrated
+     */
+    @JsonProperty(value = "migrateAllTablesSchema")
+    private Boolean migrateAllTablesSchema;
+
+    /*
+     * If true, all users/grants will be migrated
+     */
+    @JsonProperty(value = "migrateUserSystemTables")
+    private Boolean migrateUserSystemTables;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
 
     /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskInput class. */
     public MigrateMySqlAzureDbForMySqlSyncTaskInput() {
@@ -92,6 +162,228 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskInput {
     public MigrateMySqlAzureDbForMySqlSyncTaskInput withSelectedDatabases(
         List<MigrateMySqlAzureDbForMySqlSyncDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
+        return this;
+    }
+
+    /**
+     * Get the startedOn property: Parameter to specify when the migration started.
+     *
+     * @return the startedOn value.
+     */
+    public OffsetDateTime startedOn() {
+        return this.startedOn;
+    }
+
+    /**
+     * Set the startedOn property: Parameter to specify when the migration started.
+     *
+     * @param startedOn the startedOn value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withStartedOn(OffsetDateTime startedOn) {
+        this.startedOn = startedOn;
+        return this;
+    }
+
+    /**
+     * Get the sourceServerResourceId property: Optional resource Id of the source server if it is an azure instance.
+     *
+     * @return the sourceServerResourceId value.
+     */
+    public String sourceServerResourceId() {
+        return this.sourceServerResourceId;
+    }
+
+    /**
+     * Set the sourceServerResourceId property: Optional resource Id of the source server if it is an azure instance.
+     *
+     * @param sourceServerResourceId the sourceServerResourceId value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withSourceServerResourceId(String sourceServerResourceId) {
+        this.sourceServerResourceId = sourceServerResourceId;
+        return this;
+    }
+
+    /**
+     * Get the targetServerResourceId property: Optional resource Id of the target server.
+     *
+     * @return the targetServerResourceId value.
+     */
+    public String targetServerResourceId() {
+        return this.targetServerResourceId;
+    }
+
+    /**
+     * Set the targetServerResourceId property: Optional resource Id of the target server.
+     *
+     * @param targetServerResourceId the targetServerResourceId value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withTargetServerResourceId(String targetServerResourceId) {
+        this.targetServerResourceId = targetServerResourceId;
+        return this;
+    }
+
+    /**
+     * Get the optionalAgentSettings property: Optional parameters for fine tuning the data migration.
+     *
+     * @return the optionalAgentSettings value.
+     */
+    public Map<String, String> optionalAgentSettings() {
+        return this.optionalAgentSettings;
+    }
+
+    /**
+     * Set the optionalAgentSettings property: Optional parameters for fine tuning the data migration.
+     *
+     * @param optionalAgentSettings the optionalAgentSettings value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withOptionalAgentSettings(
+        Map<String, String> optionalAgentSettings) {
+        this.optionalAgentSettings = optionalAgentSettings;
+        return this;
+    }
+
+    /**
+     * Get the migrateAllViews property: If true, all view definitions will be migrated in the selected databases.
+     *
+     * @return the migrateAllViews value.
+     */
+    public Boolean migrateAllViews() {
+        return this.migrateAllViews;
+    }
+
+    /**
+     * Set the migrateAllViews property: If true, all view definitions will be migrated in the selected databases.
+     *
+     * @param migrateAllViews the migrateAllViews value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllViews(Boolean migrateAllViews) {
+        this.migrateAllViews = migrateAllViews;
+        return this;
+    }
+
+    /**
+     * Get the migrateAllTriggers property: If true, all trigger definitions will be migrated in the selected databases.
+     *
+     * @return the migrateAllTriggers value.
+     */
+    public Boolean migrateAllTriggers() {
+        return this.migrateAllTriggers;
+    }
+
+    /**
+     * Set the migrateAllTriggers property: If true, all trigger definitions will be migrated in the selected databases.
+     *
+     * @param migrateAllTriggers the migrateAllTriggers value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllTriggers(Boolean migrateAllTriggers) {
+        this.migrateAllTriggers = migrateAllTriggers;
+        return this;
+    }
+
+    /**
+     * Get the migrateAllEvents property: If true, all event definitions will be migrated in the selected databases.
+     *
+     * @return the migrateAllEvents value.
+     */
+    public Boolean migrateAllEvents() {
+        return this.migrateAllEvents;
+    }
+
+    /**
+     * Set the migrateAllEvents property: If true, all event definitions will be migrated in the selected databases.
+     *
+     * @param migrateAllEvents the migrateAllEvents value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllEvents(Boolean migrateAllEvents) {
+        this.migrateAllEvents = migrateAllEvents;
+        return this;
+    }
+
+    /**
+     * Get the migrateAllRoutines property: If true, all routine definitions will be migrated in the selected databases.
+     *
+     * @return the migrateAllRoutines value.
+     */
+    public Boolean migrateAllRoutines() {
+        return this.migrateAllRoutines;
+    }
+
+    /**
+     * Set the migrateAllRoutines property: If true, all routine definitions will be migrated in the selected databases.
+     *
+     * @param migrateAllRoutines the migrateAllRoutines value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllRoutines(Boolean migrateAllRoutines) {
+        this.migrateAllRoutines = migrateAllRoutines;
+        return this;
+    }
+
+    /**
+     * Get the migrateAllTablesSchema property: If true, all table's schemas will be migrated.
+     *
+     * @return the migrateAllTablesSchema value.
+     */
+    public Boolean migrateAllTablesSchema() {
+        return this.migrateAllTablesSchema;
+    }
+
+    /**
+     * Set the migrateAllTablesSchema property: If true, all table's schemas will be migrated.
+     *
+     * @param migrateAllTablesSchema the migrateAllTablesSchema value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateAllTablesSchema(Boolean migrateAllTablesSchema) {
+        this.migrateAllTablesSchema = migrateAllTablesSchema;
+        return this;
+    }
+
+    /**
+     * Get the migrateUserSystemTables property: If true, all users/grants will be migrated.
+     *
+     * @return the migrateUserSystemTables value.
+     */
+    public Boolean migrateUserSystemTables() {
+        return this.migrateUserSystemTables;
+    }
+
+    /**
+     * Set the migrateUserSystemTables property: If true, all users/grants will be migrated.
+     *
+     * @param migrateUserSystemTables the migrateUserSystemTables value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withMigrateUserSystemTables(Boolean migrateUserSystemTables) {
+        this.migrateUserSystemTables = migrateUserSystemTables;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncTaskInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncTaskInput withEncryptedKeyForSecureFields(
+        String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
         return this;
     }
 

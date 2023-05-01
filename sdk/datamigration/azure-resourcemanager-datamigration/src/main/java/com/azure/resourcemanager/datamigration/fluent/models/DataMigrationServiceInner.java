@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datamigration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.datamigration.models.ServiceProvisioningState;
 import com.azure.resourcemanager.datamigration.models.ServiceSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,6 +38,12 @@ public final class DataMigrationServiceInner extends Resource {
      */
     @JsonProperty(value = "sku")
     private ServiceSku sku;
+
+    /*
+     * The systemData property.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /** Creates an instance of DataMigrationServiceInner class. */
     public DataMigrationServiceInner() {
@@ -111,6 +118,15 @@ public final class DataMigrationServiceInner extends Resource {
         return this;
     }
 
+    /**
+     * Get the systemData property: The systemData property.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
     /** {@inheritDoc} */
     @Override
     public DataMigrationServiceInner withLocation(String location) {
@@ -179,6 +195,77 @@ public final class DataMigrationServiceInner extends Resource {
             this.innerProperties = new DataMigrationServiceProperties();
         }
         this.innerProperties().withVirtualSubnetId(virtualSubnetId);
+        return this;
+    }
+
+    /**
+     * Get the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+     *
+     * @return the virtualNicId value.
+     */
+    public String virtualNicId() {
+        return this.innerProperties() == null ? null : this.innerProperties().virtualNicId();
+    }
+
+    /**
+     * Set the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+     *
+     * @param virtualNicId the virtualNicId value to set.
+     * @return the DataMigrationServiceInner object itself.
+     */
+    public DataMigrationServiceInner withVirtualNicId(String virtualNicId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataMigrationServiceProperties();
+        }
+        this.innerProperties().withVirtualNicId(virtualNicId);
+        return this;
+    }
+
+    /**
+     * Get the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     *
+     * @return the autoStopDelay value.
+     */
+    public String autoStopDelay() {
+        return this.innerProperties() == null ? null : this.innerProperties().autoStopDelay();
+    }
+
+    /**
+     * Set the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     *
+     * @param autoStopDelay the autoStopDelay value to set.
+     * @return the DataMigrationServiceInner object itself.
+     */
+    public DataMigrationServiceInner withAutoStopDelay(String autoStopDelay) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataMigrationServiceProperties();
+        }
+        this.innerProperties().withAutoStopDelay(autoStopDelay);
+        return this;
+    }
+
+    /**
+     * Get the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     *
+     * @return the deleteResourcesOnStop value.
+     */
+    public Boolean deleteResourcesOnStop() {
+        return this.innerProperties() == null ? null : this.innerProperties().deleteResourcesOnStop();
+    }
+
+    /**
+     * Set the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     *
+     * @param deleteResourcesOnStop the deleteResourcesOnStop value to set.
+     * @return the DataMigrationServiceInner object itself.
+     */
+    public DataMigrationServiceInner withDeleteResourcesOnStop(Boolean deleteResourcesOnStop) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataMigrationServiceProperties();
+        }
+        this.innerProperties().withDeleteResourcesOnStop(deleteResourcesOnStop);
         return this;
     }
 

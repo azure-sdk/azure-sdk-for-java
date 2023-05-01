@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /** Database specific information for MySQL to Azure Database for MySQL migration task inputs. */
@@ -44,6 +45,44 @@ public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
     @JsonProperty(value = "targetSetting")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetSetting;
+
+    /*
+     * Mapping of source to target tables
+     */
+    @JsonProperty(value = "tableMap")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tableMap;
+
+    /*
+     * Mapping of source to target tables for schema migration
+     */
+    @JsonProperty(value = "tablesToMigrateSchema")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tablesToMigrateSchema;
+
+    /*
+     * List of views to migrate
+     */
+    @JsonProperty(value = "selectedViews")
+    private List<String> selectedViews;
+
+    /*
+     * List of triggers to migrate
+     */
+    @JsonProperty(value = "selectedTriggers")
+    private List<String> selectedTriggers;
+
+    /*
+     * List of routines to migrate
+     */
+    @JsonProperty(value = "selectedRoutines")
+    private List<String> selectedRoutines;
+
+    /*
+     * List of events to migrate
+     */
+    @JsonProperty(value = "selectedEvents")
+    private List<String> selectedEvents;
 
     /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncDatabaseInput class. */
     public MigrateMySqlAzureDbForMySqlSyncDatabaseInput() {
@@ -148,6 +187,127 @@ public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
      */
     public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTargetSetting(Map<String, String> targetSetting) {
         this.targetSetting = targetSetting;
+        return this;
+    }
+
+    /**
+     * Get the tableMap property: Mapping of source to target tables.
+     *
+     * @return the tableMap value.
+     */
+    public Map<String, String> tableMap() {
+        return this.tableMap;
+    }
+
+    /**
+     * Set the tableMap property: Mapping of source to target tables.
+     *
+     * @param tableMap the tableMap value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTableMap(Map<String, String> tableMap) {
+        this.tableMap = tableMap;
+        return this;
+    }
+
+    /**
+     * Get the tablesToMigrateSchema property: Mapping of source to target tables for schema migration.
+     *
+     * @return the tablesToMigrateSchema value.
+     */
+    public Map<String, String> tablesToMigrateSchema() {
+        return this.tablesToMigrateSchema;
+    }
+
+    /**
+     * Set the tablesToMigrateSchema property: Mapping of source to target tables for schema migration.
+     *
+     * @param tablesToMigrateSchema the tablesToMigrateSchema value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTablesToMigrateSchema(
+        Map<String, String> tablesToMigrateSchema) {
+        this.tablesToMigrateSchema = tablesToMigrateSchema;
+        return this;
+    }
+
+    /**
+     * Get the selectedViews property: List of views to migrate.
+     *
+     * @return the selectedViews value.
+     */
+    public List<String> selectedViews() {
+        return this.selectedViews;
+    }
+
+    /**
+     * Set the selectedViews property: List of views to migrate.
+     *
+     * @param selectedViews the selectedViews value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withSelectedViews(List<String> selectedViews) {
+        this.selectedViews = selectedViews;
+        return this;
+    }
+
+    /**
+     * Get the selectedTriggers property: List of triggers to migrate.
+     *
+     * @return the selectedTriggers value.
+     */
+    public List<String> selectedTriggers() {
+        return this.selectedTriggers;
+    }
+
+    /**
+     * Set the selectedTriggers property: List of triggers to migrate.
+     *
+     * @param selectedTriggers the selectedTriggers value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withSelectedTriggers(List<String> selectedTriggers) {
+        this.selectedTriggers = selectedTriggers;
+        return this;
+    }
+
+    /**
+     * Get the selectedRoutines property: List of routines to migrate.
+     *
+     * @return the selectedRoutines value.
+     */
+    public List<String> selectedRoutines() {
+        return this.selectedRoutines;
+    }
+
+    /**
+     * Set the selectedRoutines property: List of routines to migrate.
+     *
+     * @param selectedRoutines the selectedRoutines value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withSelectedRoutines(List<String> selectedRoutines) {
+        this.selectedRoutines = selectedRoutines;
+        return this;
+    }
+
+    /**
+     * Get the selectedEvents property: List of events to migrate.
+     *
+     * @return the selectedEvents value.
+     */
+    public List<String> selectedEvents() {
+        return this.selectedEvents;
+    }
+
+    /**
+     * Set the selectedEvents property: List of events to migrate.
+     *
+     * @param selectedEvents the selectedEvents value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withSelectedEvents(List<String> selectedEvents) {
+        this.selectedEvents = selectedEvents;
         return this;
     }
 

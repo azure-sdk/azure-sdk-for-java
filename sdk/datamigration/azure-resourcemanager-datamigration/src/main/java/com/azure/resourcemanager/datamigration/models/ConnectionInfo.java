@@ -19,7 +19,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("ConnectionInfo")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SqlConnectionInfo", value = SqlConnectionInfo.class),
+    @JsonSubTypes.Type(name = "MongoDbConnectionInfo", value = MongoDbConnectionInfo.class),
     @JsonSubTypes.Type(name = "MySqlConnectionInfo", value = MySqlConnectionInfo.class),
+    @JsonSubTypes.Type(name = "OracleConnectionInfo", value = OracleConnectionInfo.class),
     @JsonSubTypes.Type(name = "PostgreSqlConnectionInfo", value = PostgreSqlConnectionInfo.class),
     @JsonSubTypes.Type(name = "MiSqlConnectionInfo", value = MiSqlConnectionInfo.class)
 })
