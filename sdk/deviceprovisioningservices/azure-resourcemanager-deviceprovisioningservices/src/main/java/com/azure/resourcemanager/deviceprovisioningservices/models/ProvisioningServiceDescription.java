@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.deviceprovisioningservices.models;
 
 import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -76,6 +77,27 @@ public interface ProvisioningServiceDescription {
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the identity property: The managed identities for a provisioning service.
+     *
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the resourcegroup property: The resource group of the resource.
+     *
+     * @return the resourcegroup value.
+     */
+    String resourcegroup();
+
+    /**
+     * Gets the subscriptionid property: The subscription id of the resource.
+     *
+     * @return the subscriptionid value.
+     */
+    String subscriptionid();
 
     /**
      * Gets the region of the resource.
@@ -172,7 +194,12 @@ public interface ProvisioningServiceDescription {
          * The stage of the ProvisioningServiceDescription definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithEtag {
+        interface WithCreate
+            extends DefinitionStages.WithTags,
+                DefinitionStages.WithEtag,
+                DefinitionStages.WithIdentity,
+                DefinitionStages.WithResourcegroup,
+                DefinitionStages.WithSubscriptionid {
             /**
              * Executes the create request.
              *
@@ -209,6 +236,36 @@ public interface ProvisioningServiceDescription {
              * @return the next definition stage.
              */
             WithCreate withEtag(String etag);
+        }
+        /** The stage of the ProvisioningServiceDescription definition allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed identities for a provisioning service..
+             *
+             * @param identity The managed identities for a provisioning service.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+        /** The stage of the ProvisioningServiceDescription definition allowing to specify resourcegroup. */
+        interface WithResourcegroup {
+            /**
+             * Specifies the resourcegroup property: The resource group of the resource..
+             *
+             * @param resourcegroup The resource group of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withResourcegroup(String resourcegroup);
+        }
+        /** The stage of the ProvisioningServiceDescription definition allowing to specify subscriptionid. */
+        interface WithSubscriptionid {
+            /**
+             * Specifies the subscriptionid property: The subscription id of the resource..
+             *
+             * @param subscriptionid The subscription id of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withSubscriptionid(String subscriptionid);
         }
     }
     /**
@@ -264,7 +321,9 @@ public interface ProvisioningServiceDescription {
     ProvisioningServiceDescription refresh(Context context);
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
@@ -274,7 +333,9 @@ public interface ProvisioningServiceDescription {
     PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys();
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -284,4 +345,32 @@ public interface ProvisioningServiceDescription {
      * @return list of shared access keys as paginated response with {@link PagedIterable}.
      */
     PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys(Context context);
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param dpsFailoverDescription Failover description.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> failoverWithResponse(CustomerInitiatedFailoverInput dpsFailoverDescription, Context context);
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param dpsFailoverDescription Failover description.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void failover(CustomerInitiatedFailoverInput dpsFailoverDescription);
 }

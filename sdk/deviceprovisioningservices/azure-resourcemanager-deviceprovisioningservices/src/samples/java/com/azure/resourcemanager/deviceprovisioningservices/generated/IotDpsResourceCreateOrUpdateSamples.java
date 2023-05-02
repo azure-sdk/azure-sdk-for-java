@@ -5,15 +5,50 @@
 package com.azure.resourcemanager.deviceprovisioningservices.generated;
 
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
+import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescriptionDpsFailoverDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSku;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.deviceprovisioningservices.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for IotDpsResource CreateOrUpdate. */
 public final class IotDpsResourceCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSCreate.json
+     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2023-04-13-preview/examples/DPSUpdate.json
+     */
+    /**
+     * Sample code: DPSUpdate.
+     *
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSUpdate(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager
+            .iotDpsResources()
+            .define("myFirstProvisioningService")
+            .withRegion("East US")
+            .withExistingResourceGroup("myResourceGroup")
+            .withProperties(
+                new IotDpsPropertiesDescription()
+                    .withEnableCustomerInitiatedFailover(true)
+                    .withDpsFailoverDescription(
+                        new IotDpsPropertiesDescriptionDpsFailoverDescription().withFailoverRegion("westus")))
+            .withSku(new IotDpsSkuInfo().withName(IotDpsSku.S1).withCapacity(1L))
+            .withTags(mapOf())
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "/subscriptions/91d12660-3dec-467a-be2a-213b5544ddc0/resourcegroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity",
+                            new UserAssignedIdentity())))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2023-04-13-preview/examples/DPSCreate.json
      */
     /**
      * Sample code: DPSCreate.
@@ -26,7 +61,11 @@ public final class IotDpsResourceCreateOrUpdateSamples {
             .define("myFirstProvisioningService")
             .withRegion("East US")
             .withExistingResourceGroup("myResourceGroup")
-            .withProperties(new IotDpsPropertiesDescription().withEnableDataResidency(false))
+            .withProperties(
+                new IotDpsPropertiesDescription()
+                    .withEnableCustomerInitiatedFailover(true)
+                    .withDpsFailoverDescription(
+                        new IotDpsPropertiesDescriptionDpsFailoverDescription().withFailoverRegion("westus")))
             .withSku(new IotDpsSkuInfo().withName(IotDpsSku.S1).withCapacity(1L))
             .withTags(mapOf())
             .create();

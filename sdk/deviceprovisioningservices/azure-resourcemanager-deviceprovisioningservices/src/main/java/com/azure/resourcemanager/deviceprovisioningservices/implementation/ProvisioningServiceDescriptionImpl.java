@@ -5,12 +5,15 @@
 package com.azure.resourcemanager.deviceprovisioningservices.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
+import com.azure.resourcemanager.deviceprovisioningservices.models.CustomerInitiatedFailoverInput;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ProvisioningServiceDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRule;
 import com.azure.resourcemanager.deviceprovisioningservices.models.TagsResource;
@@ -64,6 +67,18 @@ public final class ProvisioningServiceDescriptionImpl
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
+    }
+
+    public String resourcegroup() {
+        return this.innerModel().resourcegroup();
+    }
+
+    public String subscriptionid() {
+        return this.innerModel().subscriptionid();
     }
 
     public Region region() {
@@ -182,6 +197,16 @@ public final class ProvisioningServiceDescriptionImpl
         return serviceManager.iotDpsResources().listKeys(provisioningServiceName, resourceGroupName, context);
     }
 
+    public Response<Void> failoverWithResponse(CustomerInitiatedFailoverInput dpsFailoverDescription, Context context) {
+        return serviceManager
+            .iotDpsResources()
+            .failoverWithResponse(resourceGroupName, provisioningServiceName, dpsFailoverDescription, context);
+    }
+
+    public void failover(CustomerInitiatedFailoverInput dpsFailoverDescription) {
+        serviceManager.iotDpsResources().failover(resourceGroupName, provisioningServiceName, dpsFailoverDescription);
+    }
+
     public ProvisioningServiceDescriptionImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -214,6 +239,21 @@ public final class ProvisioningServiceDescriptionImpl
 
     public ProvisioningServiceDescriptionImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withResourcegroup(String resourcegroup) {
+        this.innerModel().withResourcegroup(resourcegroup);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withSubscriptionid(String subscriptionid) {
+        this.innerModel().withSubscriptionid(subscriptionid);
         return this;
     }
 

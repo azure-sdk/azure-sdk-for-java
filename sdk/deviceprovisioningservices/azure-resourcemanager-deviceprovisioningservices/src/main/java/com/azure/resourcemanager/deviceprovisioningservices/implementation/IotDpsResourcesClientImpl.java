@@ -42,6 +42,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.Privat
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.PrivateLinkResourcesInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.models.CustomerInitiatedFailoverInput;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuDefinitionListResult;
 import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInputs;
@@ -78,11 +79,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "IotDpsClientIotDpsRe")
-    private interface IotDpsResourcesService {
+    public interface IotDpsResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<ProvisioningServiceDescriptionInner>> getByResourceGroup(
@@ -96,8 +96,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -112,8 +111,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -128,8 +126,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}")
         @ExpectedResponses({200, 202, 204, 404})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -154,8 +151,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<ProvisioningServiceDescriptionListResult>> listByResourceGroup(
@@ -168,8 +164,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}/operationresults/{operationId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/operationresults/{operationId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<AsyncOperationResultInner>> getOperationResult(
@@ -185,8 +180,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}/skus")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/skus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<IotDpsSkuDefinitionListResult>> listValidSkus(
@@ -212,8 +206,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}/listkeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/listkeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<SharedAccessSignatureAuthorizationRuleListResult>> listKeys(
@@ -227,8 +220,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{provisioningServiceName}/keys/{keyName}/listkeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/keys/{keyName}/listkeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<SharedAccessSignatureAuthorizationRuleInner>> listKeysForKeyName(
@@ -242,9 +234,23 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/failover")
+        @ExpectedResponses({202})
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<Void>> failover(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName,
+            @BodyParam("application/json") CustomerInitiatedFailoverInput dpsFailoverDescription,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{resourceName}/privateLinkResources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<PrivateLinkResourcesInner>> listPrivateLinkResources(
@@ -258,8 +264,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{resourceName}/privateLinkResources/{groupId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateLinkResources/{groupId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<GroupIdInformationInner>> getPrivateLinkResources(
@@ -274,8 +279,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{resourceName}/privateEndpointConnections")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<List<PrivateEndpointConnectionInner>>> listPrivateEndpointConnections(
@@ -289,8 +293,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<PrivateEndpointConnectionInner>> getPrivateEndpointConnection(
@@ -305,8 +308,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdatePrivateEndpointConnection(
@@ -322,8 +324,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices"
-                + "/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> deletePrivateEndpointConnection(
@@ -378,7 +379,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -429,7 +432,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -478,7 +483,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -495,23 +502,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
      *
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Name of the provisioning service to retrieve.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisioningServiceDescriptionInner getByResourceGroup(
-        String resourceGroupName, String provisioningServiceName) {
-        return getByResourceGroupAsync(resourceGroupName, provisioningServiceName).block();
-    }
-
-    /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -528,9 +521,29 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
+     *
+     * @param resourceGroupName Resource group name.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of the provisioning service without SAS keys.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisioningServiceDescriptionInner getByResourceGroup(
+        String resourceGroupName, String provisioningServiceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, provisioningServiceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -591,9 +604,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -653,9 +668,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -684,9 +701,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -718,9 +737,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -736,13 +757,17 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             String resourceGroupName,
             String provisioningServiceName,
             ProvisioningServiceDescriptionInner iotDpsDescription) {
-        return beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription)
+            .getSyncPoller();
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -760,14 +785,17 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             String provisioningServiceName,
             ProvisioningServiceDescriptionInner iotDpsDescription,
             Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context)
             .getSyncPoller();
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -788,9 +816,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -813,9 +843,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -834,9 +866,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -857,7 +891,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -917,7 +953,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -978,7 +1016,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1005,7 +1045,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1037,7 +1079,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1050,11 +1094,15 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner> beginUpdate(
         String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags) {
-        return beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags).getSyncPoller();
+        return this
+            .beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags)
+            .getSyncPoller();
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1071,12 +1119,15 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         String provisioningServiceName,
         TagsResource provisioningServiceTags,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context)
             .getSyncPoller();
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1095,7 +1146,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1118,7 +1171,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1135,7 +1190,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1156,7 +1213,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1206,7 +1265,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1254,7 +1315,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1274,7 +1337,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1296,7 +1361,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1307,11 +1374,13 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName) {
-        return beginDeleteAsync(resourceGroupName, provisioningServiceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, provisioningServiceName).getSyncPoller();
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1324,11 +1393,13 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String provisioningServiceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, provisioningServiceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, provisioningServiceName, context).getSyncPoller();
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1345,7 +1416,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1363,7 +1436,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1377,7 +1452,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1392,7 +1469,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1437,7 +1516,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1481,7 +1562,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1494,7 +1577,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1509,7 +1594,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1521,7 +1608,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1861,25 +1950,6 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @param provisioningServiceName Name of provisioning service that the operation is running on.
      * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
      *     running operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of a long running operation, such as create, update or delete a provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AsyncOperationResultInner getOperationResult(
-        String operationId, String resourceGroupName, String provisioningServiceName, String asyncinfo) {
-        return getOperationResultAsync(operationId, resourceGroupName, provisioningServiceName, asyncinfo).block();
-    }
-
-    /**
-     * Gets the status of a long running operation, such as create, update or delete a provisioning service.
-     *
-     * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service that the operation is running on.
-     * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
-     *     running operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -1900,7 +1970,30 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Gets the status of a long running operation, such as create, update or delete a provisioning service.
+     *
+     * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
+     * @param resourceGroupName Resource group identifier.
+     * @param provisioningServiceName Name of provisioning service that the operation is running on.
+     * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
+     *     running operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the status of a long running operation, such as create, update or delete a provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AsyncOperationResultInner getOperationResult(
+        String operationId, String resourceGroupName, String provisioningServiceName, String asyncinfo) {
+        return getOperationResultWithResponse(
+                operationId, resourceGroupName, provisioningServiceName, asyncinfo, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -1960,7 +2053,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2018,7 +2113,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2036,7 +2133,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2055,7 +2154,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2072,7 +2173,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2090,8 +2193,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2136,8 +2241,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2180,8 +2287,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2197,24 +2306,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
      *
-     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
-     *     to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityInfoInner checkProvisioningServiceNameAvailability(OperationInputs arguments) {
-        return checkProvisioningServiceNameAvailabilityAsync(arguments).block();
-    }
-
-    /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2231,7 +2326,27 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
+     *
+     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
+     *     to check.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of name availability.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NameAvailabilityInfoInner checkProvisioningServiceNameAvailability(OperationInputs arguments) {
+        return checkProvisioningServiceNameAvailabilityWithResponse(arguments, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2290,7 +2405,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2347,7 +2464,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2365,7 +2484,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2384,7 +2505,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2400,7 +2523,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2417,7 +2542,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2473,7 +2600,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2527,7 +2656,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2545,24 +2676,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
      *
-     * @param provisioningServiceName Name of the provisioning service.
-     * @param keyName Logical key name to get key-values for.
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SharedAccessSignatureAuthorizationRuleInner listKeysForKeyName(
-        String provisioningServiceName, String keyName, String resourceGroupName) {
-        return listKeysForKeyNameAsync(provisioningServiceName, keyName, resourceGroupName).block();
-    }
-
-    /**
-     * List primary and secondary keys for a specific key name.
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2581,7 +2697,220 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
+     *
+     * @param provisioningServiceName Name of the provisioning service.
+     * @param keyName Logical key name to get key-values for.
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of the shared access key.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SharedAccessSignatureAuthorizationRuleInner listKeysForKeyName(
+        String provisioningServiceName, String keyName, String resourceGroupName) {
+        return listKeysForKeyNameWithResponse(provisioningServiceName, keyName, resourceGroupName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param provisioningServiceName The provisioning service name to start customer initiated failover.
+     * @param dpsFailoverDescription Failover description.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> failoverWithResponseAsync(
+        String resourceGroupName,
+        String provisioningServiceName,
+        CustomerInitiatedFailoverInput dpsFailoverDescription) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (dpsFailoverDescription == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter dpsFailoverDescription is required and cannot be null."));
+        } else {
+            dpsFailoverDescription.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .failover(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            provisioningServiceName,
+                            dpsFailoverDescription,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param provisioningServiceName The provisioning service name to start customer initiated failover.
+     * @param dpsFailoverDescription Failover description.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> failoverWithResponseAsync(
+        String resourceGroupName,
+        String provisioningServiceName,
+        CustomerInitiatedFailoverInput dpsFailoverDescription,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (dpsFailoverDescription == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter dpsFailoverDescription is required and cannot be null."));
+        } else {
+            dpsFailoverDescription.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .failover(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                provisioningServiceName,
+                dpsFailoverDescription,
+                accept,
+                context);
+    }
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param provisioningServiceName The provisioning service name to start customer initiated failover.
+     * @param dpsFailoverDescription Failover description.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> failoverAsync(
+        String resourceGroupName,
+        String provisioningServiceName,
+        CustomerInitiatedFailoverInput dpsFailoverDescription) {
+        return failoverWithResponseAsync(resourceGroupName, provisioningServiceName, dpsFailoverDescription)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param provisioningServiceName The provisioning service name to start customer initiated failover.
+     * @param dpsFailoverDescription Failover description.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> failoverWithResponse(
+        String resourceGroupName,
+        String provisioningServiceName,
+        CustomerInitiatedFailoverInput dpsFailoverDescription,
+        Context context) {
+        return failoverWithResponseAsync(resourceGroupName, provisioningServiceName, dpsFailoverDescription, context)
+            .block();
+    }
+
+    /**
+     * Customer Initiated Failover for DPS
+     *
+     * <p>Start Customer Initiated Failover for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param provisioningServiceName The provisioning service name to start customer initiated failover.
+     * @param dpsFailoverDescription Failover description.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void failover(
+        String resourceGroupName,
+        String provisioningServiceName,
+        CustomerInitiatedFailoverInput dpsFailoverDescription) {
+        failoverWithResponse(resourceGroupName, provisioningServiceName, dpsFailoverDescription, Context.NONE);
+    }
+
+    /**
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2630,7 +2959,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2677,7 +3008,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2694,22 +3027,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
      *
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourcesInner listPrivateLinkResources(String resourceGroupName, String resourceName) {
-        return listPrivateLinkResourcesAsync(resourceGroupName, resourceName).block();
-    }
-
-    /**
-     * List private link resources for the given provisioning service.
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2726,7 +3046,26 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param resourceName The name of the provisioning service.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the available private link resources for a provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourcesInner listPrivateLinkResources(String resourceGroupName, String resourceName) {
+        return listPrivateLinkResourcesWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2780,7 +3119,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2832,7 +3173,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2851,24 +3194,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
      *
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param groupId The name of the private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GroupIdInformationInner getPrivateLinkResources(
-        String resourceGroupName, String resourceName, String groupId) {
-        return getPrivateLinkResourcesAsync(resourceGroupName, resourceName, groupId).block();
-    }
-
-    /**
-     * Get the specified private link resource for the given provisioning service.
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2886,7 +3214,28 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param resourceName The name of the provisioning service.
+     * @param groupId The name of the private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private link resource for the given provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GroupIdInformationInner getPrivateLinkResources(
+        String resourceGroupName, String resourceName, String groupId) {
+        return getPrivateLinkResourcesWithResponse(resourceGroupName, resourceName, groupId, Context.NONE).getValue();
+    }
+
+    /**
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2935,7 +3284,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2982,7 +3333,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3000,23 +3353,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
      *
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<PrivateEndpointConnectionInner> listPrivateEndpointConnections(
-        String resourceGroupName, String resourceName) {
-        return listPrivateEndpointConnectionsAsync(resourceGroupName, resourceName).block();
-    }
-
-    /**
-     * List private endpoint connection properties.
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3033,7 +3372,27 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param resourceName The name of the provisioning service.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of private endpoint connections for a provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<PrivateEndpointConnectionInner> listPrivateEndpointConnections(
+        String resourceGroupName, String resourceName) {
+        return listPrivateEndpointConnectionsWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3090,7 +3449,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3145,7 +3506,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3164,25 +3527,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
      *
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner getPrivateEndpointConnection(
-        String resourceGroupName, String resourceName, String privateEndpointConnectionName) {
-        return getPrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName)
-            .block();
-    }
-
-    /**
-     * Get private endpoint connection properties.
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3202,7 +3549,30 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
+     *
+     * @param resourceGroupName The name of the resource group that contains the provisioning service.
+     * @param resourceName The name of the provisioning service.
+     * @param privateEndpointConnectionName The name of the private endpoint connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner getPrivateEndpointConnection(
+        String resourceGroupName, String resourceName, String privateEndpointConnectionName) {
+        return getPrivateEndpointConnectionWithResponse(
+                resourceGroupName, resourceName, privateEndpointConnectionName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3272,7 +3642,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3341,7 +3713,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3373,7 +3747,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3408,7 +3784,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3426,13 +3804,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             String resourceName,
             String privateEndpointConnectionName,
             PrivateEndpointConnectionInner privateEndpointConnection) {
-        return beginCreateOrUpdatePrivateEndpointConnectionAsync(
+        return this
+            .beginCreateOrUpdatePrivateEndpointConnectionAsync(
                 resourceGroupName, resourceName, privateEndpointConnectionName, privateEndpointConnection)
             .getSyncPoller();
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3452,13 +3833,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             String privateEndpointConnectionName,
             PrivateEndpointConnectionInner privateEndpointConnection,
             Context context) {
-        return beginCreateOrUpdatePrivateEndpointConnectionAsync(
+        return this
+            .beginCreateOrUpdatePrivateEndpointConnectionAsync(
                 resourceGroupName, resourceName, privateEndpointConnectionName, privateEndpointConnection, context)
             .getSyncPoller();
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3482,7 +3866,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3508,7 +3894,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3531,7 +3919,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3556,7 +3946,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3613,7 +4005,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3668,7 +4062,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3696,7 +4092,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3726,7 +4124,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3740,12 +4140,15 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
         beginDeletePrivateEndpointConnection(
             String resourceGroupName, String resourceName, String privateEndpointConnectionName) {
-        return beginDeletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName)
+        return this
+            .beginDeletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName)
             .getSyncPoller();
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3760,13 +4163,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
         beginDeletePrivateEndpointConnection(
             String resourceGroupName, String resourceName, String privateEndpointConnectionName, Context context) {
-        return beginDeletePrivateEndpointConnectionAsync(
+        return this
+            .beginDeletePrivateEndpointConnectionAsync(
                 resourceGroupName, resourceName, privateEndpointConnectionName, context)
             .getSyncPoller();
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3785,7 +4191,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3806,7 +4214,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3824,7 +4234,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3846,7 +4258,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3884,7 +4297,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3922,7 +4336,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3960,7 +4375,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3998,7 +4414,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4033,7 +4450,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -4070,7 +4488,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4106,7 +4525,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.

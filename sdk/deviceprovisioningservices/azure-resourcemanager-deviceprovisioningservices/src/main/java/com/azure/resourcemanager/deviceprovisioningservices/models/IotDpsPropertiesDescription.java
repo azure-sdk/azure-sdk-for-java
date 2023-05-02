@@ -83,12 +83,26 @@ public final class IotDpsPropertiesDescription {
     private List<SharedAccessSignatureAuthorizationRuleInner> authorizationPolicies;
 
     /*
-     * Optional.
-     * Indicates if the DPS instance has Data Residency enabled, removing the
-     * cross geo-pair disaster recovery.
+     * Indicates if the DPS instance has Customer Enabled Failover enabled.
      */
-    @JsonProperty(value = "enableDataResidency")
-    private Boolean enableDataResidency;
+    @JsonProperty(value = "enableCustomerInitiatedFailover")
+    private Boolean enableCustomerInitiatedFailover;
+
+    /*
+     * The DPS failover input.
+     */
+    @JsonProperty(value = "dpsFailoverDescription")
+    private IotDpsPropertiesDescriptionDpsFailoverDescription dpsFailoverDescription;
+
+    /*
+     * Portal endpoint to enable CORS for this provisioning service.
+     */
+    @JsonProperty(value = "portalOperationsHostName")
+    private String portalOperationsHostname;
+
+    /** Creates an instance of IotDpsPropertiesDescription class. */
+    public IotDpsPropertiesDescription() {
+    }
 
     /**
      * Get the state property: Current state of the provisioning service.
@@ -280,24 +294,65 @@ public final class IotDpsPropertiesDescription {
     }
 
     /**
-     * Get the enableDataResidency property: Optional. Indicates if the DPS instance has Data Residency enabled,
-     * removing the cross geo-pair disaster recovery.
+     * Get the enableCustomerInitiatedFailover property: Indicates if the DPS instance has Customer Enabled Failover
+     * enabled.
      *
-     * @return the enableDataResidency value.
+     * @return the enableCustomerInitiatedFailover value.
      */
-    public Boolean enableDataResidency() {
-        return this.enableDataResidency;
+    public Boolean enableCustomerInitiatedFailover() {
+        return this.enableCustomerInitiatedFailover;
     }
 
     /**
-     * Set the enableDataResidency property: Optional. Indicates if the DPS instance has Data Residency enabled,
-     * removing the cross geo-pair disaster recovery.
+     * Set the enableCustomerInitiatedFailover property: Indicates if the DPS instance has Customer Enabled Failover
+     * enabled.
      *
-     * @param enableDataResidency the enableDataResidency value to set.
+     * @param enableCustomerInitiatedFailover the enableCustomerInitiatedFailover value to set.
      * @return the IotDpsPropertiesDescription object itself.
      */
-    public IotDpsPropertiesDescription withEnableDataResidency(Boolean enableDataResidency) {
-        this.enableDataResidency = enableDataResidency;
+    public IotDpsPropertiesDescription withEnableCustomerInitiatedFailover(Boolean enableCustomerInitiatedFailover) {
+        this.enableCustomerInitiatedFailover = enableCustomerInitiatedFailover;
+        return this;
+    }
+
+    /**
+     * Get the dpsFailoverDescription property: The DPS failover input.
+     *
+     * @return the dpsFailoverDescription value.
+     */
+    public IotDpsPropertiesDescriptionDpsFailoverDescription dpsFailoverDescription() {
+        return this.dpsFailoverDescription;
+    }
+
+    /**
+     * Set the dpsFailoverDescription property: The DPS failover input.
+     *
+     * @param dpsFailoverDescription the dpsFailoverDescription value to set.
+     * @return the IotDpsPropertiesDescription object itself.
+     */
+    public IotDpsPropertiesDescription withDpsFailoverDescription(
+        IotDpsPropertiesDescriptionDpsFailoverDescription dpsFailoverDescription) {
+        this.dpsFailoverDescription = dpsFailoverDescription;
+        return this;
+    }
+
+    /**
+     * Get the portalOperationsHostname property: Portal endpoint to enable CORS for this provisioning service.
+     *
+     * @return the portalOperationsHostname value.
+     */
+    public String portalOperationsHostname() {
+        return this.portalOperationsHostname;
+    }
+
+    /**
+     * Set the portalOperationsHostname property: Portal endpoint to enable CORS for this provisioning service.
+     *
+     * @param portalOperationsHostname the portalOperationsHostname value to set.
+     * @return the IotDpsPropertiesDescription object itself.
+     */
+    public IotDpsPropertiesDescription withPortalOperationsHostname(String portalOperationsHostname) {
+        this.portalOperationsHostname = portalOperationsHostname;
         return this;
     }
 
@@ -318,6 +373,9 @@ public final class IotDpsPropertiesDescription {
         }
         if (authorizationPolicies() != null) {
             authorizationPolicies().forEach(e -> e.validate());
+        }
+        if (dpsFailoverDescription() != null) {
+            dpsFailoverDescription().validate();
         }
     }
 }
