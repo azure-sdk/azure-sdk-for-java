@@ -31,6 +31,10 @@ public final class ManagedGrafanaUpdateParameters {
     @JsonProperty(value = "properties")
     private ManagedGrafanaPropertiesUpdateParameters properties;
 
+    /** Creates an instance of ManagedGrafanaUpdateParameters class. */
+    public ManagedGrafanaUpdateParameters() {
+    }
+
     /**
      * Get the identity property: The managed identity of the grafana resource.
      *
