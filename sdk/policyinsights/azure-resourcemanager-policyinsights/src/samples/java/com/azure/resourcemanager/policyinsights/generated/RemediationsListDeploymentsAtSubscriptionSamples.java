@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListDeploymentsAtSubscription. */
 public final class RemediationsListDeploymentsAtSubscriptionSamples {
     /*
@@ -18,6 +16,6 @@ public final class RemediationsListDeploymentsAtSubscriptionSamples {
      */
     public static void listDeploymentsForARemediationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listDeploymentsAtSubscription("myRemediation", null, Context.NONE);
+        manager.remediations().listDeploymentsAtSubscription("myRemediation", null, com.azure.core.util.Context.NONE);
     }
 }

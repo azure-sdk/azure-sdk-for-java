@@ -53,7 +53,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface PolicyRestrictionsService {
+    public interface PolicyRestrictionsService {
         @Headers({"Content-Type: application/json"})
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/checkPolicyRestrictions")
         @ExpectedResponses({200})
@@ -68,8 +68,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/checkPolicyRestrictions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/checkPolicyRestrictions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckRestrictionsResultInner>> checkAtResourceGroupScope(
@@ -83,8 +82,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/checkPolicyRestrictions")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/checkPolicyRestrictions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckRestrictionsResultInner>> checkAtManagementGroupScope(
@@ -127,7 +125,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2023-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -174,7 +172,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2023-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -263,7 +261,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2023-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -317,7 +315,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2023-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -415,7 +413,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2023-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -463,7 +461,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2023-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

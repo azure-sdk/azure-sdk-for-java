@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.fluent.models.RemediationInner;
 import com.azure.resourcemanager.policyinsights.models.RemediationFilters;
 import com.azure.resourcemanager.policyinsights.models.RemediationPropertiesFailureThreshold;
@@ -30,7 +29,7 @@ public final class RemediationsCreateOrUpdateAtSubscriptionSamples {
                 new RemediationInner()
                     .withPolicyAssignmentId(
                         "/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -56,6 +55,6 @@ public final class RemediationsCreateOrUpdateAtSubscriptionSamples {
                     .withResourceCount(42)
                     .withParallelDeployments(6)
                     .withFailureThreshold(new RemediationPropertiesFailureThreshold().withPercentage(0.1F)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListForManagementGroup. */
 public final class RemediationsListForManagementGroupSamples {
     /*
@@ -18,7 +16,7 @@ public final class RemediationsListForManagementGroupSamples {
      */
     public static void listRemediationsAtManagementGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().listForManagementGroup("financeMg", null, null, Context.NONE);
+        manager.remediations().listForManagementGroup("financeMg", null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -38,6 +36,6 @@ public final class RemediationsListForManagementGroupSamples {
                 1,
                 "PolicyAssignmentId eq"
                     + " '/providers/microsoft.management/managementGroups/financeMg/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

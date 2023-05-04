@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.fluent.models.RemediationInner;
 
 /** Samples for Remediations CreateOrUpdateAtManagementGroup. */
@@ -27,6 +26,6 @@ public final class RemediationsCreateOrUpdateAtManagementGroupSamples {
                 new RemediationInner()
                     .withPolicyAssignmentId(
                         "/providers/microsoft.management/managementGroups/financeMg/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

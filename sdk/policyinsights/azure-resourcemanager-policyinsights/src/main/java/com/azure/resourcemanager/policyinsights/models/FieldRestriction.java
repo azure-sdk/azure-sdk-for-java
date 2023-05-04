@@ -35,6 +35,18 @@ public final class FieldRestriction {
     @JsonProperty(value = "policy", access = JsonProperty.Access.WRITE_ONLY)
     private PolicyReference policy;
 
+    /*
+     * The effect of the policy that is causing the field restriction. http://aka.ms/policyeffects
+     */
+    @JsonProperty(value = "policyEffect", access = JsonProperty.Access.WRITE_ONLY)
+    private String policyEffect;
+
+    /*
+     * The reason for the restriction.
+     */
+    @JsonProperty(value = "reason", access = JsonProperty.Access.WRITE_ONLY)
+    private String reason;
+
     /** Creates an instance of FieldRestriction class. */
     public FieldRestriction() {
     }
@@ -73,6 +85,25 @@ public final class FieldRestriction {
      */
     public PolicyReference policy() {
         return this.policy;
+    }
+
+    /**
+     * Get the policyEffect property: The effect of the policy that is causing the field restriction.
+     * http://aka.ms/policyeffects.
+     *
+     * @return the policyEffect value.
+     */
+    public String policyEffect() {
+        return this.policyEffect;
+    }
+
+    /**
+     * Get the reason property: The reason for the restriction.
+     *
+     * @return the reason value.
+     */
+    public String reason() {
+        return this.reason;
     }
 
     /**

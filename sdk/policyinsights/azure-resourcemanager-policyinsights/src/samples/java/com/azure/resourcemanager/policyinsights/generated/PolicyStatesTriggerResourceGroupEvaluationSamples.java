@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PolicyStates TriggerResourceGroupEvaluation. */
 public final class PolicyStatesTriggerResourceGroupEvaluationSamples {
     /*
@@ -20,6 +18,7 @@ public final class PolicyStatesTriggerResourceGroupEvaluationSamples {
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
         manager
             .policyStates()
-            .triggerResourceGroupEvaluation("fffedd8f-ffff-fffd-fffd-fffed2f84852", "myResourceGroup", Context.NONE);
+            .triggerResourceGroupEvaluation(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852", "myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }

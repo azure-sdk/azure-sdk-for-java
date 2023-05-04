@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner;
 import com.azure.resourcemanager.policyinsights.models.AttestationEvidence;
@@ -51,6 +50,6 @@ public final class AttestationsCreateOrUpdateAtResourceSamples {
                             .createDefaultManagementSerializerAdapter()
                             .deserialize(
                                 "{\"departmentId\":\"NYC-MARKETING-1\"}", Object.class, SerializerEncoding.JSON)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

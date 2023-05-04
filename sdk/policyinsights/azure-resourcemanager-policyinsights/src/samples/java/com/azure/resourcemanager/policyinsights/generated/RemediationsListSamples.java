@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations List. */
 public final class RemediationsListSamples {
     /*
@@ -25,7 +23,7 @@ public final class RemediationsListSamples {
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'"
                     + " AND PolicyDefinitionReferenceId eq 'storageSkuDef'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -38,6 +36,6 @@ public final class RemediationsListSamples {
      */
     public static void listRemediationsAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().list(null, null, Context.NONE);
+        manager.remediations().list(null, null, com.azure.core.util.Context.NONE);
     }
 }

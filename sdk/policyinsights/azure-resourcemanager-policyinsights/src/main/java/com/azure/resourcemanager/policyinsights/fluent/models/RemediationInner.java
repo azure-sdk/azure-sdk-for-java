@@ -125,7 +125,8 @@ public final class RemediationInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: The status of the remediation.
+     * Get the provisioningState property: The status of the remediation. This refers to the entire remediation task,
+     * not individual deployments. Allowed values are Evaluating, Canceled, Cancelling, Failed, Complete, or Succeeded.
      *
      * @return the provisioningState value.
      */

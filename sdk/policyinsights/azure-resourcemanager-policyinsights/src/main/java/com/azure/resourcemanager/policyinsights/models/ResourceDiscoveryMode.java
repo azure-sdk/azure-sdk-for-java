@@ -17,6 +17,15 @@ public final class ResourceDiscoveryMode extends ExpandableStringEnum<ResourceDi
     public static final ResourceDiscoveryMode RE_EVALUATE_COMPLIANCE = fromString("ReEvaluateCompliance");
 
     /**
+     * Creates a new instance of ResourceDiscoveryMode value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ResourceDiscoveryMode() {
+    }
+
+    /**
      * Creates or finds a ResourceDiscoveryMode from its string representation.
      *
      * @param name a name to look for.

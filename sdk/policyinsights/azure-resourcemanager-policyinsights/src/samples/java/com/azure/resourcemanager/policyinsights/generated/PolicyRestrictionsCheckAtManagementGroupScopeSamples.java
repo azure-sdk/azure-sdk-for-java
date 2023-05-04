@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.CheckManagementGroupRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.PendingField;
 import java.util.Arrays;
@@ -12,7 +11,7 @@ import java.util.Arrays;
 /** Samples for PolicyRestrictions CheckAtManagementGroupScope. */
 public final class PolicyRestrictionsCheckAtManagementGroupScopeSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-03-01/examples/PolicyRestrictions_CheckAtManagementGroupScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2023-03-01/examples/PolicyRestrictions_CheckAtManagementGroupScope.json
      */
     /**
      * Sample code: Check policy restrictions at management group scope.
@@ -27,6 +26,6 @@ public final class PolicyRestrictionsCheckAtManagementGroupScopeSamples {
                 "financeMg",
                 new CheckManagementGroupRestrictionsRequest()
                     .withPendingFields(Arrays.asList(new PendingField().withField("type"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
