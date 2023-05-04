@@ -53,8 +53,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     public interface OperationStatusesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices"
-                + "/{accountName}/assets/{assetName}/tracks/{trackName}/operationStatuses/{operationId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/assets/{assetName}/tracks/{trackName}/operationStatuses/{operationId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AssetTrackOperationStatusInner>> get(
@@ -116,7 +115,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -188,7 +187,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-08-01";
+        final String apiVersion = "2023-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

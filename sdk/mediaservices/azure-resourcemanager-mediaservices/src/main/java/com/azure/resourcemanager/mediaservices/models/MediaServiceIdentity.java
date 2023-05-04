@@ -13,7 +13,7 @@ import java.util.UUID;
 
 /** The MediaServiceIdentity model. */
 @Fluent
-public class MediaServiceIdentity {
+public final class MediaServiceIdentity {
     /*
      * The identity type.
      */
