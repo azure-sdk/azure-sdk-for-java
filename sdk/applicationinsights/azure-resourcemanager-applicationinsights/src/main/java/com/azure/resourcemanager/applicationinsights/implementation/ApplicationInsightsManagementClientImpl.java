@@ -115,16 +115,16 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.defaultPollInterval;
     }
 
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
+    /** The ComponentsClient object to access its operations. */
+    private final ComponentsClient components;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the ComponentsClient object to access its operations.
      *
-     * @return the OperationsClient object.
+     * @return the ComponentsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public ComponentsClient getComponents() {
+        return this.components;
     }
 
     /** The AnnotationsClient object to access its operations. */
@@ -283,6 +283,18 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.analyticsItems;
     }
 
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
     /** The WorkbookTemplatesClient object to access its operations. */
     private final WorkbookTemplatesClient workbookTemplates;
 
@@ -319,16 +331,16 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.workbooks;
     }
 
-    /** The ComponentsClient object to access its operations. */
-    private final ComponentsClient components;
+    /** The LiveTokensClient object to access its operations. */
+    private final LiveTokensClient liveTokens;
 
     /**
-     * Gets the ComponentsClient object to access its operations.
+     * Gets the LiveTokensClient object to access its operations.
      *
-     * @return the ComponentsClient object.
+     * @return the LiveTokensClient object.
      */
-    public ComponentsClient getComponents() {
-        return this.components;
+    public LiveTokensClient getLiveTokens() {
+        return this.liveTokens;
     }
 
     /** The ComponentLinkedStorageAccountsOperationsClient object to access its operations. */
@@ -341,18 +353,6 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
      */
     public ComponentLinkedStorageAccountsOperationsClient getComponentLinkedStorageAccountsOperations() {
         return this.componentLinkedStorageAccountsOperations;
-    }
-
-    /** The LiveTokensClient object to access its operations. */
-    private final LiveTokensClient liveTokens;
-
-    /**
-     * Gets the LiveTokensClient object to access its operations.
-     *
-     * @return the LiveTokensClient object.
-     */
-    public LiveTokensClient getLiveTokens() {
-        return this.liveTokens;
     }
 
     /**
@@ -377,7 +377,7 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.operations = new OperationsClientImpl(this);
+        this.components = new ComponentsClientImpl(this);
         this.annotations = new AnnotationsClientImpl(this);
         this.apiKeys = new ApiKeysClientImpl(this);
         this.exportConfigurations = new ExportConfigurationsClientImpl(this);
@@ -391,12 +391,12 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         this.webTestLocations = new WebTestLocationsClientImpl(this);
         this.webTests = new WebTestsClientImpl(this);
         this.analyticsItems = new AnalyticsItemsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.workbookTemplates = new WorkbookTemplatesClientImpl(this);
         this.myWorkbooks = new MyWorkbooksClientImpl(this);
         this.workbooks = new WorkbooksClientImpl(this);
-        this.components = new ComponentsClientImpl(this);
-        this.componentLinkedStorageAccountsOperations = new ComponentLinkedStorageAccountsOperationsClientImpl(this);
         this.liveTokens = new LiveTokensClientImpl(this);
+        this.componentLinkedStorageAccountsOperations = new ComponentLinkedStorageAccountsOperationsClientImpl(this);
     }
 
     /**
