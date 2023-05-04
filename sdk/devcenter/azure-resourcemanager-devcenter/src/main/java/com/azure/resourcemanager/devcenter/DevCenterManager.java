@@ -43,7 +43,6 @@ import com.azure.resourcemanager.devcenter.implementation.ProjectEnvironmentType
 import com.azure.resourcemanager.devcenter.implementation.ProjectsImpl;
 import com.azure.resourcemanager.devcenter.implementation.SchedulesImpl;
 import com.azure.resourcemanager.devcenter.implementation.SkusImpl;
-import com.azure.resourcemanager.devcenter.implementation.UsagesImpl;
 import com.azure.resourcemanager.devcenter.models.AttachedNetworks;
 import com.azure.resourcemanager.devcenter.models.Catalogs;
 import com.azure.resourcemanager.devcenter.models.CheckNameAvailabilities;
@@ -62,7 +61,6 @@ import com.azure.resourcemanager.devcenter.models.ProjectEnvironmentTypes;
 import com.azure.resourcemanager.devcenter.models.Projects;
 import com.azure.resourcemanager.devcenter.models.Schedules;
 import com.azure.resourcemanager.devcenter.models.Skus;
-import com.azure.resourcemanager.devcenter.models.Usages;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -97,8 +95,6 @@ public final class DevCenterManager {
     private Operations operations;
 
     private OperationStatuses operationStatuses;
-
-    private Usages usages;
 
     private CheckNameAvailabilities checkNameAvailabilities;
 
@@ -275,7 +271,7 @@ public final class DevCenterManager {
                 .append("-")
                 .append("com.azure.resourcemanager.devcenter")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -488,18 +484,6 @@ public final class DevCenterManager {
             this.operationStatuses = new OperationStatusesImpl(clientObject.getOperationStatuses(), this);
         }
         return operationStatuses;
-    }
-
-    /**
-     * Gets the resource collection API of Usages.
-     *
-     * @return Resource collection API of Usages.
-     */
-    public Usages usages() {
-        if (this.usages == null) {
-            this.usages = new UsagesImpl(clientObject.getUsages(), this);
-        }
-        return usages;
     }
 
     /**
