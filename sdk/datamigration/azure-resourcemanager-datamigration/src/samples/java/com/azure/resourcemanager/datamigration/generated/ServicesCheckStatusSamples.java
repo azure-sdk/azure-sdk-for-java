@@ -7,7 +7,7 @@ package com.azure.resourcemanager.datamigration.generated;
 /** Samples for Services CheckStatus. */
 public final class ServicesCheckStatusSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Services_CheckStatus.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Services_CheckStatus.json
      */
     /**
      * Sample code: Services_CheckStatus.

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.datamigration.fluent.models.DataMigrationServiceInner;
 import java.util.Map;
@@ -69,6 +70,13 @@ public interface DataMigrationService {
     ServiceSku sku();
 
     /**
+     * Gets the systemData property: The systemData property.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the provisioningState property: The resource's provisioning state.
      *
      * @return the provisioningState value.
@@ -89,6 +97,29 @@ public interface DataMigrationService {
      * @return the virtualSubnetId value.
      */
     String virtualSubnetId();
+
+    /**
+     * Gets the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service
+     * have.
+     *
+     * @return the virtualNicId value.
+     */
+    String virtualNicId();
+
+    /**
+     * Gets the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     *
+     * @return the autoStopDelay value.
+     */
+    String autoStopDelay();
+
+    /**
+     * Gets the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     *
+     * @return the deleteResourcesOnStop value.
+     */
+    Boolean deleteResourcesOnStop();
 
     /**
      * Gets the region of the resource.
@@ -168,7 +199,10 @@ public interface DataMigrationService {
                 DefinitionStages.WithKind,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithPublicKey,
-                DefinitionStages.WithVirtualSubnetId {
+                DefinitionStages.WithVirtualSubnetId,
+                DefinitionStages.WithVirtualNicId,
+                DefinitionStages.WithAutoStopDelay,
+                DefinitionStages.WithDeleteResourcesOnStop {
             /**
              * Executes the create request.
              *
@@ -247,6 +281,39 @@ public interface DataMigrationService {
              */
             WithCreate withVirtualSubnetId(String virtualSubnetId);
         }
+        /** The stage of the DataMigrationService definition allowing to specify virtualNicId. */
+        interface WithVirtualNicId {
+            /**
+             * Specifies the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the
+             * service have.
+             *
+             * @param virtualNicId The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+             * @return the next definition stage.
+             */
+            WithCreate withVirtualNicId(String virtualNicId);
+        }
+        /** The stage of the DataMigrationService definition allowing to specify autoStopDelay. */
+        interface WithAutoStopDelay {
+            /**
+             * Specifies the autoStopDelay property: The time delay before the service is auto-stopped when idle..
+             *
+             * @param autoStopDelay The time delay before the service is auto-stopped when idle.
+             * @return the next definition stage.
+             */
+            WithCreate withAutoStopDelay(String autoStopDelay);
+        }
+        /** The stage of the DataMigrationService definition allowing to specify deleteResourcesOnStop. */
+        interface WithDeleteResourcesOnStop {
+            /**
+             * Specifies the deleteResourcesOnStop property: Whether service resources should be deleted when stopped.
+             * (Turned on by default).
+             *
+             * @param deleteResourcesOnStop Whether service resources should be deleted when stopped. (Turned on by
+             *     default).
+             * @return the next definition stage.
+             */
+            WithCreate withDeleteResourcesOnStop(Boolean deleteResourcesOnStop);
+        }
     }
     /**
      * Begins update for the DataMigrationService resource.
@@ -262,7 +329,10 @@ public interface DataMigrationService {
             UpdateStages.WithKind,
             UpdateStages.WithSku,
             UpdateStages.WithPublicKey,
-            UpdateStages.WithVirtualSubnetId {
+            UpdateStages.WithVirtualSubnetId,
+            UpdateStages.WithVirtualNicId,
+            UpdateStages.WithAutoStopDelay,
+            UpdateStages.WithDeleteResourcesOnStop {
         /**
          * Executes the update request.
          *
@@ -343,6 +413,39 @@ public interface DataMigrationService {
              */
             Update withVirtualSubnetId(String virtualSubnetId);
         }
+        /** The stage of the DataMigrationService update allowing to specify virtualNicId. */
+        interface WithVirtualNicId {
+            /**
+             * Specifies the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the
+             * service have.
+             *
+             * @param virtualNicId The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+             * @return the next definition stage.
+             */
+            Update withVirtualNicId(String virtualNicId);
+        }
+        /** The stage of the DataMigrationService update allowing to specify autoStopDelay. */
+        interface WithAutoStopDelay {
+            /**
+             * Specifies the autoStopDelay property: The time delay before the service is auto-stopped when idle..
+             *
+             * @param autoStopDelay The time delay before the service is auto-stopped when idle.
+             * @return the next definition stage.
+             */
+            Update withAutoStopDelay(String autoStopDelay);
+        }
+        /** The stage of the DataMigrationService update allowing to specify deleteResourcesOnStop. */
+        interface WithDeleteResourcesOnStop {
+            /**
+             * Specifies the deleteResourcesOnStop property: Whether service resources should be deleted when stopped.
+             * (Turned on by default).
+             *
+             * @param deleteResourcesOnStop Whether service resources should be deleted when stopped. (Turned on by
+             *     default).
+             * @return the next definition stage.
+             */
+            Update withDeleteResourcesOnStop(Boolean deleteResourcesOnStop);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -362,8 +465,8 @@ public interface DataMigrationService {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -376,8 +479,8 @@ public interface DataMigrationService {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -388,8 +491,8 @@ public interface DataMigrationService {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -399,8 +502,8 @@ public interface DataMigrationService {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -412,9 +515,9 @@ public interface DataMigrationService {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -424,9 +527,9 @@ public interface DataMigrationService {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -447,7 +550,7 @@ public interface DataMigrationService {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return indicates whether a proposed resource name is available along with {@link Response}.
      */
-    Response<NameAvailabilityResponse> nestedCheckNameAvailabilityWithResponse(
+    Response<NameAvailabilityResponse> checkChildrenNameAvailabilityWithResponse(
         NameAvailabilityRequest parameters, Context context);
 
     /**
@@ -461,5 +564,5 @@ public interface DataMigrationService {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return indicates whether a proposed resource name is available.
      */
-    NameAvailabilityResponse nestedCheckNameAvailability(NameAvailabilityRequest parameters);
+    NameAvailabilityResponse checkChildrenNameAvailability(NameAvailabilityRequest parameters);
 }

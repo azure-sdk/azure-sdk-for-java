@@ -24,6 +24,12 @@ public final class GetUserTablesSqlTaskInput {
     @JsonProperty(value = "selectedDatabases", required = true)
     private List<String> selectedDatabases;
 
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
     /** Creates an instance of GetUserTablesSqlTaskInput class. */
     public GetUserTablesSqlTaskInput() {
     }
@@ -65,6 +71,26 @@ public final class GetUserTablesSqlTaskInput {
      */
     public GetUserTablesSqlTaskInput withSelectedDatabases(List<String> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the GetUserTablesSqlTaskInput object itself.
+     */
+    public GetUserTablesSqlTaskInput withEncryptedKeyForSecureFields(String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
         return this;
     }
 
