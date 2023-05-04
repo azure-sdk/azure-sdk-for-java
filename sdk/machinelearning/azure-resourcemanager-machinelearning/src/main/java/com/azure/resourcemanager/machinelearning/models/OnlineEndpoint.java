@@ -337,7 +337,7 @@ public interface OnlineEndpoint {
     void regenerateKeys(RegenerateEndpointKeysRequest body, Context context);
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -348,7 +348,7 @@ public interface OnlineEndpoint {
     Response<EndpointAuthToken> getTokenWithResponse(Context context);
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
