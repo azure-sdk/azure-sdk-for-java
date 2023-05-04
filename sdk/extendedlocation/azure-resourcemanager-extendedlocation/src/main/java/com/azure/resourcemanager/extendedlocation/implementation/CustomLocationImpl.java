@@ -200,16 +200,16 @@ public final class CustomLocationImpl implements CustomLocation, CustomLocation.
         return this;
     }
 
-    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
-        CustomLocationFindTargetResourceGroupProperties parameters) {
-        return serviceManager.customLocations().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
-    }
-
     public Response<CustomLocationFindTargetResourceGroupResult> findTargetResourceGroupWithResponse(
         CustomLocationFindTargetResourceGroupProperties parameters, Context context) {
         return serviceManager
             .customLocations()
             .findTargetResourceGroupWithResponse(resourceGroupName, resourceName, parameters, context);
+    }
+
+    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
+        CustomLocationFindTargetResourceGroupProperties parameters) {
+        return serviceManager.customLocations().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
     }
 
     public CustomLocationImpl withRegion(Region location) {

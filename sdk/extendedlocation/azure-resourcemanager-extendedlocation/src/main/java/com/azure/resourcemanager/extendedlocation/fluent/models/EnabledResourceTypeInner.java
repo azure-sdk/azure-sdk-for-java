@@ -15,8 +15,7 @@ import java.util.List;
 @Fluent
 public final class EnabledResourceTypeInner extends ProxyResource {
     /*
-     * The set of properties for EnabledResourceType specific to a Custom
-     * Location
+     * The set of properties for EnabledResourceType specific to a Custom Location
      */
     @JsonProperty(value = "properties")
     private EnabledResourceTypeProperties innerProperties;
@@ -26,6 +25,10 @@ public final class EnabledResourceTypeInner extends ProxyResource {
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of EnabledResourceTypeInner class. */
+    public EnabledResourceTypeInner() {
+    }
 
     /**
      * Get the innerProperties property: The set of properties for EnabledResourceType specific to a Custom Location.
