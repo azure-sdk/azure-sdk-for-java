@@ -59,11 +59,10 @@ public final class LabsClientImpl implements LabsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "EducationManagementC")
-    private interface LabsService {
+    public interface LabsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/providers/Microsoft.Education/labs")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/providers/Microsoft.Education/labs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabListResult>> listAll(
@@ -78,8 +77,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabListResult>> list(
@@ -94,8 +92,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabDetailsInner>> get(
@@ -110,8 +107,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -125,8 +121,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabDetailsInner>> createOrUpdate(
@@ -141,8 +136,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default/generateInviteCode")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/providers/Microsoft.Education/labs/default/generateInviteCode")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabDetailsInner>> generateInviteCode(
@@ -180,8 +174,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeBudget May be used to include budget information.
      * @param includeDeleted May be used to show deleted items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -236,8 +230,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeBudget May be used to include budget information.
      * @param includeDeleted May be used to show deleted items.
      * @param context The context to associate with this operation.
@@ -294,8 +288,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeBudget May be used to include budget information.
      * @param includeDeleted May be used to show deleted items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -315,8 +309,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -335,8 +329,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeBudget May be used to include budget information.
      * @param includeDeleted May be used to show deleted items.
      * @param context The context to associate with this operation.
@@ -362,8 +356,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -380,8 +374,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get a list of labs associated with the provided billing account name and billing profile name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param includeBudget May be used to include budget information.
      * @param includeDeleted May be used to show deleted items.
      * @param context The context to associate with this operation.
@@ -406,9 +400,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -467,9 +461,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -530,9 +524,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -552,9 +546,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -574,9 +568,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -602,9 +596,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -623,9 +617,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -649,9 +643,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -701,9 +695,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -755,9 +749,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -776,9 +770,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param includeBudget May be used to include budget information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -802,9 +796,9 @@ public final class LabsClientImpl implements LabsClient {
      * Get the details for a specific lab associated with the provided billing account name, billing profile name, and
      * invoice section name.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -822,9 +816,9 @@ public final class LabsClientImpl implements LabsClient {
      * Delete a specific lab associated with the provided billing account name, billing profile name, and invoice
      * section name. Note all students must be removed from the lab in order to delete the lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -871,9 +865,9 @@ public final class LabsClientImpl implements LabsClient {
      * Delete a specific lab associated with the provided billing account name, billing profile name, and invoice
      * section name. Note all students must be removed from the lab in order to delete the lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -918,9 +912,9 @@ public final class LabsClientImpl implements LabsClient {
      * Delete a specific lab associated with the provided billing account name, billing profile name, and invoice
      * section name. Note all students must be removed from the lab in order to delete the lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -936,9 +930,9 @@ public final class LabsClientImpl implements LabsClient {
      * Delete a specific lab associated with the provided billing account name, billing profile name, and invoice
      * section name. Note all students must be removed from the lab in order to delete the lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -955,9 +949,9 @@ public final class LabsClientImpl implements LabsClient {
      * Delete a specific lab associated with the provided billing account name, billing profile name, and invoice
      * section name. Note all students must be removed from the lab in order to delete the lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -970,9 +964,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create a new lab or update a previously created lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to create lab resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1025,9 +1019,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create a new lab or update a previously created lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to create lab resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1082,9 +1076,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create a new lab or update a previously created lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to create lab resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1101,9 +1095,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create a new lab or update a previously created lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to create lab resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1126,9 +1120,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create a new lab or update a previously created lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to create lab resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1146,9 +1140,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate invite code for a lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to generate invite code.
      * @param onlyUpdateStudentCountParameter set this flag to true if you want to update student count without
      *     generating a new invite code.
@@ -1208,9 +1202,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate invite code for a lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to generate invite code.
      * @param onlyUpdateStudentCountParameter set this flag to true if you want to update student count without
      *     generating a new invite code.
@@ -1269,9 +1263,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate invite code for a lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to generate invite code.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1293,9 +1287,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate invite code for a lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to generate invite code.
      * @param onlyUpdateStudentCountParameter set this flag to true if you want to update student count without
      *     generating a new invite code.
@@ -1326,9 +1320,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate invite code for a lab.
      *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param parameters Request parameters that are provided to generate invite code.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
