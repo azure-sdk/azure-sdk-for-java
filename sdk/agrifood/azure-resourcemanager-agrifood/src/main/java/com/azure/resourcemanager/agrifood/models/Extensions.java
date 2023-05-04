@@ -12,20 +12,7 @@ import java.util.List;
 /** Resource collection API of Extensions. */
 public interface Extensions {
     /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    Extension create(String resourceGroupName, String farmBeatsResourceName, String extensionId);
-
-    /**
-     * Install extension.
+     * Get installed extension details by extension id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
@@ -34,9 +21,9 @@ public interface Extensions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource along with {@link Response}.
+     * @return installed extension details by extension id along with {@link Response}.
      */
-    Response<Extension> createWithResponse(
+    Response<Extension> getWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
 
     /**
@@ -53,61 +40,6 @@ public interface Extensions {
     Extension get(String resourceGroupName, String farmBeatsResourceName, String extensionId);
 
     /**
-     * Get installed extension details by extension id.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extension details by extension id along with {@link Response}.
-     */
-    Response<Extension> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
-
-    /**
-     * Upgrade to latest extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    Extension update(String resourceGroupName, String farmBeatsResourceName, String extensionId);
-
-    /**
-     * Upgrade to latest extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource along with {@link Response}.
-     */
-    Response<Extension> updateWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
-
-    /**
-     * Uninstall extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId);
-
-    /**
      * Uninstall extension.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -121,6 +53,18 @@ public interface Extensions {
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
+
+    /**
+     * Uninstall extension.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId);
 
     /**
      * Get installed extensions details.
@@ -157,4 +101,57 @@ public interface Extensions {
         Integer maxPageSize,
         String skipToken,
         Context context);
+
+    /**
+     * Get installed extension details by extension id.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extension details by extension id along with {@link Response}.
+     */
+    Extension getById(String id);
+
+    /**
+     * Get installed extension details by extension id.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extension details by extension id along with {@link Response}.
+     */
+    Response<Extension> getByIdWithResponse(String id, Context context);
+
+    /**
+     * Uninstall extension.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Uninstall extension.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByIdWithResponse(String id, Context context);
+
+    /**
+     * Begins definition for a new Extension resource.
+     *
+     * @param name resource name.
+     * @return the first stage of the new Extension definition.
+     */
+    Extension.DefinitionStages.Blank define(String name);
 }
