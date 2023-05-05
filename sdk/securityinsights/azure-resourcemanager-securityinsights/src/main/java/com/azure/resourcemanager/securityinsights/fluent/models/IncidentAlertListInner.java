@@ -19,6 +19,10 @@ public final class IncidentAlertListInner {
     @JsonProperty(value = "value", required = true)
     private List<SecurityAlert> value;
 
+    /** Creates an instance of IncidentAlertListInner class. */
+    public IncidentAlertListInner() {
+    }
+
     /**
      * Get the value property: Array of incident alerts.
      *

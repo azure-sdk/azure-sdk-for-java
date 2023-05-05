@@ -23,6 +23,15 @@ public final class DeviceImportance extends ExpandableStringEnum<DeviceImportanc
     public static final DeviceImportance HIGH = fromString("High");
 
     /**
+     * Creates a new instance of DeviceImportance value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeviceImportance() {
+    }
+
+    /**
      * Creates or finds a DeviceImportance from its string representation.
      *
      * @param name a name to look for.

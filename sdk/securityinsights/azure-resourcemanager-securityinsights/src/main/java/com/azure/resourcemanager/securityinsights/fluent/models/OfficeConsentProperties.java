@@ -22,6 +22,10 @@ public final class OfficeConsentProperties {
     @JsonProperty(value = "consentId")
     private String consentId;
 
+    /** Creates an instance of OfficeConsentProperties class. */
+    public OfficeConsentProperties() {
+    }
+
     /**
      * Get the tenantId property: The tenantId of the Office365 with the consent.
      *
