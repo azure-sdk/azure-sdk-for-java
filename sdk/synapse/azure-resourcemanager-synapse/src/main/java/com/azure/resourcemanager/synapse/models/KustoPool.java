@@ -141,6 +141,13 @@ public interface KustoPool {
     String workspaceUid();
 
     /**
+     * Gets the migrationCluster property: Properties of the peer cluster involved in a migration to/from this cluster.
+     *
+     * @return the migrationCluster value.
+     */
+    MigrationClusterProperties migrationCluster();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -471,6 +478,27 @@ public interface KustoPool {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void start(Context context);
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate(KustoPoolMigrateRequest kustoPoolMigrateRequest);
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate(KustoPoolMigrateRequest kustoPoolMigrateRequest, Context context);
 
     /**
      * Returns a list of language extensions that can run within KQL queries.

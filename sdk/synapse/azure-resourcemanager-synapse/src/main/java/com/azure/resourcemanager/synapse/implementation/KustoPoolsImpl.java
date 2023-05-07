@@ -23,6 +23,7 @@ import com.azure.resourcemanager.synapse.models.FollowerDatabaseDefinition;
 import com.azure.resourcemanager.synapse.models.KustoPool;
 import com.azure.resourcemanager.synapse.models.KustoPoolCheckNameRequest;
 import com.azure.resourcemanager.synapse.models.KustoPoolListResult;
+import com.azure.resourcemanager.synapse.models.KustoPoolMigrateRequest;
 import com.azure.resourcemanager.synapse.models.KustoPools;
 import com.azure.resourcemanager.synapse.models.LanguageExtension;
 import com.azure.resourcemanager.synapse.models.LanguageExtensionsList;
@@ -145,6 +146,23 @@ public final class KustoPoolsImpl implements KustoPools {
 
     public void start(String workspaceName, String kustoPoolName, String resourceGroupName, Context context) {
         this.serviceClient().start(workspaceName, kustoPoolName, resourceGroupName, context);
+    }
+
+    public void migrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        this.serviceClient().migrate(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest);
+    }
+
+    public void migrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context) {
+        this.serviceClient().migrate(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest, context);
     }
 
     public PagedIterable<AzureResourceSku> listSkusByResource(

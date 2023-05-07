@@ -191,6 +191,42 @@ public interface KustoPools {
     void start(String workspaceName, String kustoPoolName, String resourceGroupName, Context context);
 
     /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest);
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context);
+
+    /**
      * Returns the SKUs available for the provided resource.
      *
      * @param workspaceName The name of the workspace.

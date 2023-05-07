@@ -43,6 +43,7 @@ import com.azure.resourcemanager.synapse.fluent.models.LanguageExtensionInner;
 import com.azure.resourcemanager.synapse.fluent.models.SkuDescriptionInner;
 import com.azure.resourcemanager.synapse.models.FollowerDatabaseListResult;
 import com.azure.resourcemanager.synapse.models.KustoPoolCheckNameRequest;
+import com.azure.resourcemanager.synapse.models.KustoPoolMigrateRequest;
 import com.azure.resourcemanager.synapse.models.KustoPoolUpdate;
 import com.azure.resourcemanager.synapse.models.LanguageExtensionsList;
 import com.azure.resourcemanager.synapse.models.ListResourceSkusResult;
@@ -90,8 +91,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Synapse/locations/{location}"
-                + "/kustoPoolCheckNameAvailability")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.Synapse/locations/{location}/kustoPoolCheckNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckNameResultInner>> checkNameAvailability(
@@ -105,8 +105,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<KustoPoolListResultInner>> listByWorkspace(
@@ -120,8 +119,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<KustoPoolInner>> get(
@@ -136,8 +134,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -155,8 +152,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -173,8 +169,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -189,8 +184,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -205,8 +199,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -220,9 +213,24 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/migrate")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> migrate(
+            @HostParam("$host") String endpoint,
+            @PathParam("workspaceName") String workspaceName,
+            @PathParam("kustoPoolName") String kustoPoolName,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") KustoPoolMigrateRequest kustoPoolMigrateRequest,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/skus")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/skus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ListResourceSkusResult>> listSkusByResource(
@@ -237,8 +245,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/listLanguageExtensions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/listLanguageExtensions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LanguageExtensionsList>> listLanguageExtensions(
@@ -253,8 +260,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/addLanguageExtensions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/addLanguageExtensions")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> addLanguageExtensions(
@@ -270,8 +276,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/removeLanguageExtensions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/removeLanguageExtensions")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> removeLanguageExtensions(
@@ -287,8 +292,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/listFollowerDatabases")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/listFollowerDatabases")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FollowerDatabaseListResult>> listFollowerDatabases(
@@ -303,8 +307,7 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/kustoPools/{kustoPoolName}/detachFollowerDatabases")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/kustoPools/{kustoPoolName}/detachFollowerDatabases")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> detachFollowerDatabases(
@@ -2503,6 +2506,329 @@ public final class KustoPoolsClientImpl implements KustoPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void start(String workspaceName, String kustoPoolName, String resourceGroupName, Context context) {
         startAsync(workspaceName, kustoPoolName, resourceGroupName, context).block();
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> migrateWithResponseAsync(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (kustoPoolName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter kustoPoolName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (kustoPoolMigrateRequest == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter kustoPoolMigrateRequest is required and cannot be null."));
+        } else {
+            kustoPoolMigrateRequest.validate();
+        }
+        final String apiVersion = "2021-06-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .migrate(
+                            this.client.getEndpoint(),
+                            workspaceName,
+                            kustoPoolName,
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            apiVersion,
+                            kustoPoolMigrateRequest,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> migrateWithResponseAsync(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (kustoPoolName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter kustoPoolName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (kustoPoolMigrateRequest == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter kustoPoolMigrateRequest is required and cannot be null."));
+        } else {
+            kustoPoolMigrateRequest.validate();
+        }
+        final String apiVersion = "2021-06-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .migrate(
+                this.client.getEndpoint(),
+                workspaceName,
+                kustoPoolName,
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                apiVersion,
+                kustoPoolMigrateRequest,
+                accept,
+                context);
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginMigrateAsync(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            migrateWithResponseAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginMigrateAsync(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            migrateWithResponseAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginMigrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        return this
+            .beginMigrateAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest)
+            .getSyncPoller();
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginMigrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context) {
+        return this
+            .beginMigrateAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> migrateAsync(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        return beginMigrateAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> migrateAsync(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context) {
+        return beginMigrateAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void migrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        migrateAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest).block();
+    }
+
+    /**
+     * Migrate data from a Kusto pool to another cluster.
+     *
+     * @param workspaceName The name of the workspace.
+     * @param kustoPoolName The name of the Kusto pool.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param kustoPoolMigrateRequest The kusto pool migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void migrate(
+        String workspaceName,
+        String kustoPoolName,
+        String resourceGroupName,
+        KustoPoolMigrateRequest kustoPoolMigrateRequest,
+        Context context) {
+        migrateAsync(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest, context).block();
     }
 
     /**

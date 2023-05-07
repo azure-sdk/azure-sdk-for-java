@@ -13,9 +13,11 @@ import com.azure.resourcemanager.synapse.fluent.models.KustoPoolInner;
 import com.azure.resourcemanager.synapse.models.AzureSku;
 import com.azure.resourcemanager.synapse.models.FollowerDatabaseDefinition;
 import com.azure.resourcemanager.synapse.models.KustoPool;
+import com.azure.resourcemanager.synapse.models.KustoPoolMigrateRequest;
 import com.azure.resourcemanager.synapse.models.KustoPoolUpdate;
 import com.azure.resourcemanager.synapse.models.LanguageExtension;
 import com.azure.resourcemanager.synapse.models.LanguageExtensionsList;
+import com.azure.resourcemanager.synapse.models.MigrationClusterProperties;
 import com.azure.resourcemanager.synapse.models.OptimizedAutoscale;
 import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.azure.resourcemanager.synapse.models.State;
@@ -102,6 +104,10 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
 
     public String workspaceUid() {
         return this.innerModel().workspaceUid();
+    }
+
+    public MigrationClusterProperties migrationCluster() {
+        return this.innerModel().migrationCluster();
     }
 
     public Region region() {
@@ -250,6 +256,16 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
 
     public void start(Context context) {
         serviceManager.kustoPools().start(workspaceName, kustoPoolName, resourceGroupName, context);
+    }
+
+    public void migrate(KustoPoolMigrateRequest kustoPoolMigrateRequest) {
+        serviceManager.kustoPools().migrate(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest);
+    }
+
+    public void migrate(KustoPoolMigrateRequest kustoPoolMigrateRequest, Context context) {
+        serviceManager
+            .kustoPools()
+            .migrate(workspaceName, kustoPoolName, resourceGroupName, kustoPoolMigrateRequest, context);
     }
 
     public PagedIterable<LanguageExtension> listLanguageExtensions() {

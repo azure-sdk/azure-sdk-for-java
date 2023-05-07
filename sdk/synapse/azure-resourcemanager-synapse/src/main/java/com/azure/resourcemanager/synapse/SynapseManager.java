@@ -45,6 +45,7 @@ import com.azure.resourcemanager.synapse.implementation.KustoOperationsImpl;
 import com.azure.resourcemanager.synapse.implementation.KustoPoolAttachedDatabaseConfigurationsImpl;
 import com.azure.resourcemanager.synapse.implementation.KustoPoolChildResourcesImpl;
 import com.azure.resourcemanager.synapse.implementation.KustoPoolDataConnectionsImpl;
+import com.azure.resourcemanager.synapse.implementation.KustoPoolDatabaseOperationsImpl;
 import com.azure.resourcemanager.synapse.implementation.KustoPoolDatabasePrincipalAssignmentsImpl;
 import com.azure.resourcemanager.synapse.implementation.KustoPoolDatabasesImpl;
 import com.azure.resourcemanager.synapse.implementation.KustoPoolPrincipalAssignmentsImpl;
@@ -121,6 +122,7 @@ import com.azure.resourcemanager.synapse.models.KustoOperations;
 import com.azure.resourcemanager.synapse.models.KustoPoolAttachedDatabaseConfigurations;
 import com.azure.resourcemanager.synapse.models.KustoPoolChildResources;
 import com.azure.resourcemanager.synapse.models.KustoPoolDataConnections;
+import com.azure.resourcemanager.synapse.models.KustoPoolDatabaseOperations;
 import com.azure.resourcemanager.synapse.models.KustoPoolDatabasePrincipalAssignments;
 import com.azure.resourcemanager.synapse.models.KustoPoolDatabases;
 import com.azure.resourcemanager.synapse.models.KustoPoolPrincipalAssignments;
@@ -331,6 +333,8 @@ public final class SynapseManager {
 
     private KustoPoolPrincipalAssignments kustoPoolPrincipalAssignments;
 
+    private KustoPoolDatabaseOperations kustoPoolDatabaseOperations;
+
     private KustoPoolDatabasePrincipalAssignments kustoPoolDatabasePrincipalAssignments;
 
     private KustoPoolPrivateLinkResourcesOperations kustoPoolPrivateLinkResourcesOperations;
@@ -500,7 +504,7 @@ public final class SynapseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.synapse")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1503,6 +1507,19 @@ public final class SynapseManager {
                 new KustoPoolPrincipalAssignmentsImpl(clientObject.getKustoPoolPrincipalAssignments(), this);
         }
         return kustoPoolPrincipalAssignments;
+    }
+
+    /**
+     * Gets the resource collection API of KustoPoolDatabaseOperations.
+     *
+     * @return Resource collection API of KustoPoolDatabaseOperations.
+     */
+    public KustoPoolDatabaseOperations kustoPoolDatabaseOperations() {
+        if (this.kustoPoolDatabaseOperations == null) {
+            this.kustoPoolDatabaseOperations =
+                new KustoPoolDatabaseOperationsImpl(clientObject.getKustoPoolDatabaseOperations(), this);
+        }
+        return kustoPoolDatabaseOperations;
     }
 
     /**

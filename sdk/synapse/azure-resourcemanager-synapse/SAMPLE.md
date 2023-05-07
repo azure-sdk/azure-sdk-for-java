@@ -128,6 +128,10 @@
 - [ListByDatabase](#kustopooldataconnections_listbydatabase)
 - [Update](#kustopooldataconnections_update)
 
+## KustoPoolDatabaseOperation
+
+- [InviteFollower](#kustopooldatabaseoperation_invitefollower)
+
 ## KustoPoolDatabasePrincipalAssignments
 
 - [CheckNameAvailability](#kustopooldatabaseprincipalassignments_checknameavailability)
@@ -169,6 +173,7 @@
 - [ListFollowerDatabases](#kustopools_listfollowerdatabases)
 - [ListLanguageExtensions](#kustopools_listlanguageextensions)
 - [ListSkusByResource](#kustopools_listskusbyresource)
+- [Migrate](#kustopools_migrate)
 - [RemoveLanguageExtensions](#kustopools_removelanguageextensions)
 - [Start](#kustopools_start)
 - [Stop](#kustopools_stop)
@@ -2320,6 +2325,46 @@ public final class KustoPoolDataConnectionsUpdateSamples {
 }
 ```
 
+### KustoPoolDatabaseOperation_InviteFollower
+
+```java
+import com.azure.resourcemanager.synapse.models.DatabaseInviteFollowerRequest;
+import com.azure.resourcemanager.synapse.models.TableLevelSharingProperties;
+import java.util.Arrays;
+
+/** Samples for KustoPoolDatabaseOperation InviteFollower. */
+public final class KustoPoolDatabaseOperationInviteFollowerSamples {
+    /*
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/KustoPoolDatabaseInviteFollower.json
+     */
+    /**
+     * Sample code: KustoPoolDatabaseInviteFollower.
+     *
+     * @param manager Entry point to SynapseManager.
+     */
+    public static void kustoPoolDatabaseInviteFollower(com.azure.resourcemanager.synapse.SynapseManager manager) {
+        manager
+            .kustoPoolDatabaseOperations()
+            .inviteFollowerWithResponse(
+                "kustorptest",
+                "synapseWorkspaceName",
+                "kustopool",
+                "database",
+                new DatabaseInviteFollowerRequest()
+                    .withInviteeEmail("invitee@contoso.com")
+                    .withTableLevelSharingProperties(
+                        new TableLevelSharingProperties()
+                            .withTablesToInclude(Arrays.asList("Table1"))
+                            .withTablesToExclude(Arrays.asList("Table2"))
+                            .withExternalTablesToInclude(Arrays.asList("ExternalTable*"))
+                            .withExternalTablesToExclude(Arrays.asList())
+                            .withMaterializedViewsToInclude(Arrays.asList("MaterializedViewTable1"))
+                            .withMaterializedViewsToExclude(Arrays.asList("MaterializedViewTable2"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### KustoPoolDatabasePrincipalAssignments_CheckNameAvailability
 
 ```java
@@ -3022,6 +3067,27 @@ public final class KustoPoolsListSkusByResourceSamples {
             .kustoPools()
             .listSkusByResource(
                 "synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### KustoPools_Migrate
+
+```java
+/** Samples for KustoPools Migrate. */
+public final class KustoPoolsMigrateSamples {
+    /*
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/KustoPoolMigrate.json
+     */
+    /**
+     * Sample code: KustoClusterMigrate.
+     *
+     * @param manager Entry point to SynapseManager.
+     */
+    public static void kustoClusterMigrate(com.azure.resourcemanager.synapse.SynapseManager manager) {
+        manager
+            .kustoPools()
+            .migrate("kustorptest", "kustoclusterrptest4", "kustorptest", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
