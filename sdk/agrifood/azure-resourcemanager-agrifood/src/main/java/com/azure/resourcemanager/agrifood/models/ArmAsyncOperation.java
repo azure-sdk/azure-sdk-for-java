@@ -16,6 +16,14 @@ public interface ArmAsyncOperation {
     String status();
 
     /**
+     * Gets the error property: Arm async operation error class. Ref:
+     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#azure-asyncoperation-resource-format.
+     *
+     * @return the error value.
+     */
+    ArmAsyncOperationError error();
+
+    /**
      * Gets the inner com.azure.resourcemanager.agrifood.fluent.models.ArmAsyncOperationInner object.
      *
      * @return the inner object.
