@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mediaservices.generated;
 /** Samples for OperationResults Get. */
 public final class OperationResultsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-operation-result-by-id.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-operation-result-by-id.json
      */
     /**
      * Sample code: Get result of asynchronous operation.
