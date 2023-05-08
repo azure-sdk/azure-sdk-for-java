@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Grafana Delete. */
 public final class GrafanaDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class GrafanaDeleteSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().delete("myResourceGroup", "myWorkspace", Context.NONE);
+        manager.grafanas().delete("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Grafana List. */
 public final class GrafanaListSamples {
     /*
@@ -17,6 +15,6 @@ public final class GrafanaListSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().list(Context.NONE);
+        manager.grafanas().list(com.azure.core.util.Context.NONE);
     }
 }
