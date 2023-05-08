@@ -20,7 +20,7 @@ public final class Amount {
      * Amount value.
      */
     @JsonProperty(value = "value")
-    private Float value;
+    private Double value;
 
     /** Creates an instance of Amount class. */
     public Amount() {
@@ -40,7 +40,7 @@ public final class Amount {
      *
      * @return the value value.
      */
-    public Float value() {
+    public Double value() {
         return this.value;
     }
 
@@ -50,7 +50,7 @@ public final class Amount {
      * @param value the value value to set.
      * @return the Amount object itself.
      */
-    public Amount withValue(Float value) {
+    public Amount withValue(Double value) {
         this.value = value;
         return this;
     }

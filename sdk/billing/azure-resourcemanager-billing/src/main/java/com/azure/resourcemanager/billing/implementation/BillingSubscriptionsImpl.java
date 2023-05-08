@@ -30,30 +30,6 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<BillingSubscription> listByCustomer(String billingAccountName, String customerName) {
-        PagedIterable<BillingSubscriptionInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingSubscription> listByCustomer(
-        String billingAccountName, String customerName, Context context) {
-        PagedIterable<BillingSubscriptionInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName) {
-        PagedIterable<BillingSubscriptionInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName, Context context) {
-        PagedIterable<BillingSubscriptionInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
     public PagedIterable<BillingSubscription> listByBillingProfile(
         String billingAccountName, String billingProfileName) {
         PagedIterable<BillingSubscriptionInner> inner =
@@ -84,8 +60,21 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
         return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
     }
 
-    public Response<BillingSubscription> getWithResponse(String billingAccountName, Context context) {
-        Response<BillingSubscriptionInner> inner = this.serviceClient().getWithResponse(billingAccountName, context);
+    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName) {
+        PagedIterable<BillingSubscriptionInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName, Context context) {
+        PagedIterable<BillingSubscriptionInner> inner =
+            this.serviceClient().listByBillingAccount(billingAccountName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
+    }
+
+    public Response<BillingSubscription> getWithResponse(
+        String billingAccountName, String subscriptionId, Context context) {
+        Response<BillingSubscriptionInner> inner =
+            this.serviceClient().getWithResponse(billingAccountName, subscriptionId, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -97,8 +86,8 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
         }
     }
 
-    public BillingSubscription get(String billingAccountName) {
-        BillingSubscriptionInner inner = this.serviceClient().get(billingAccountName);
+    public BillingSubscription get(String billingAccountName, String subscriptionId) {
+        BillingSubscriptionInner inner = this.serviceClient().get(billingAccountName, subscriptionId);
         if (inner != null) {
             return new BillingSubscriptionImpl(inner, this.manager());
         } else {
@@ -107,9 +96,9 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
     }
 
     public Response<BillingSubscription> updateWithResponse(
-        String billingAccountName, BillingSubscriptionInner parameters, Context context) {
+        String billingAccountName, String subscriptionId, BillingSubscriptionInner parameters, Context context) {
         Response<BillingSubscriptionInner> inner =
-            this.serviceClient().updateWithResponse(billingAccountName, parameters, context);
+            this.serviceClient().updateWithResponse(billingAccountName, subscriptionId, parameters, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -121,8 +110,9 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
         }
     }
 
-    public BillingSubscription update(String billingAccountName, BillingSubscriptionInner parameters) {
-        BillingSubscriptionInner inner = this.serviceClient().update(billingAccountName, parameters);
+    public BillingSubscription update(
+        String billingAccountName, String subscriptionId, BillingSubscriptionInner parameters) {
+        BillingSubscriptionInner inner = this.serviceClient().update(billingAccountName, subscriptionId, parameters);
         if (inner != null) {
             return new BillingSubscriptionImpl(inner, this.manager());
         } else {
@@ -131,8 +121,8 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
     }
 
     public BillingSubscription move(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters) {
-        BillingSubscriptionInner inner = this.serviceClient().move(billingAccountName, parameters);
+        String billingAccountName, String subscriptionId, TransferBillingSubscriptionRequestProperties parameters) {
+        BillingSubscriptionInner inner = this.serviceClient().move(billingAccountName, subscriptionId, parameters);
         if (inner != null) {
             return new BillingSubscriptionImpl(inner, this.manager());
         } else {
@@ -141,8 +131,12 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
     }
 
     public BillingSubscription move(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters, Context context) {
-        BillingSubscriptionInner inner = this.serviceClient().move(billingAccountName, parameters, context);
+        String billingAccountName,
+        String subscriptionId,
+        TransferBillingSubscriptionRequestProperties parameters,
+        Context context) {
+        BillingSubscriptionInner inner =
+            this.serviceClient().move(billingAccountName, subscriptionId, parameters, context);
         if (inner != null) {
             return new BillingSubscriptionImpl(inner, this.manager());
         } else {
@@ -151,9 +145,12 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
     }
 
     public Response<ValidateSubscriptionTransferEligibilityResult> validateMoveWithResponse(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters, Context context) {
+        String billingAccountName,
+        String subscriptionId,
+        TransferBillingSubscriptionRequestProperties parameters,
+        Context context) {
         Response<ValidateSubscriptionTransferEligibilityResultInner> inner =
-            this.serviceClient().validateMoveWithResponse(billingAccountName, parameters, context);
+            this.serviceClient().validateMoveWithResponse(billingAccountName, subscriptionId, parameters, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -166,14 +163,27 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
     }
 
     public ValidateSubscriptionTransferEligibilityResult validateMove(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters) {
+        String billingAccountName, String subscriptionId, TransferBillingSubscriptionRequestProperties parameters) {
         ValidateSubscriptionTransferEligibilityResultInner inner =
-            this.serviceClient().validateMove(billingAccountName, parameters);
+            this.serviceClient().validateMove(billingAccountName, subscriptionId, parameters);
         if (inner != null) {
             return new ValidateSubscriptionTransferEligibilityResultImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public PagedIterable<BillingSubscription> listByCustomer(String billingAccountName, String customerName) {
+        PagedIterable<BillingSubscriptionInner> inner =
+            this.serviceClient().listByCustomer(billingAccountName, customerName);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingSubscription> listByCustomer(
+        String billingAccountName, String customerName, Context context) {
+        PagedIterable<BillingSubscriptionInner> inner =
+            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
     }
 
     private BillingSubscriptionsClient serviceClient() {

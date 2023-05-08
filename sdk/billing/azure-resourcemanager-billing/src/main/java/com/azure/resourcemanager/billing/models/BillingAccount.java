@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingAccountInner;
 import java.util.List;
 
 /** An immutable client-side representation of BillingAccount. */
 public interface BillingAccount {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,33 +26,25 @@ public interface BillingAccount {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: Resource type.
      *
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the displayName property: The billing account name.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
-     * @return the displayName value.
+     * @return the systemData value.
      */
-    String displayName();
+    SystemData systemData();
 
     /**
-     * Gets the soldTo property: The address of the individual or organization that is responsible for the billing
-     * account.
+     * Gets the accountStatus property: The current status of the billing account.
      *
-     * @return the soldTo value.
+     * @return the accountStatus value.
      */
-    AddressDetails soldTo();
-
-    /**
-     * Gets the agreementType property: The type of agreement.
-     *
-     * @return the agreementType value.
-     */
-    AgreementType agreementType();
+    AccountStatus accountStatus();
 
     /**
      * Gets the accountType property: The type of customer.
@@ -60,11 +54,11 @@ public interface BillingAccount {
     AccountType accountType();
 
     /**
-     * Gets the accountStatus property: The current status of the billing account.
+     * Gets the agreementType property: The type of agreement.
      *
-     * @return the accountStatus value.
+     * @return the agreementType value.
      */
-    AccountStatus accountStatus();
+    AgreementType agreementType();
 
     /**
      * Gets the billingProfiles property: The billing profiles associated with the billing account. By default this is
@@ -75,14 +69,6 @@ public interface BillingAccount {
     BillingProfilesOnExpand billingProfiles();
 
     /**
-     * Gets the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
-     * populated, unless it's specified in $expand.
-     *
-     * @return the enrollmentDetails value.
-     */
-    Enrollment enrollmentDetails();
-
-    /**
      * Gets the departments property: The departments associated to the enrollment.
      *
      * @return the departments value.
@@ -90,11 +76,26 @@ public interface BillingAccount {
     List<Department> departments();
 
     /**
+     * Gets the displayName property: The billing account name.
+     *
+     * @return the displayName value.
+     */
+    String displayName();
+
+    /**
      * Gets the enrollmentAccounts property: The accounts associated to the enrollment.
      *
      * @return the enrollmentAccounts value.
      */
     List<EnrollmentAccount> enrollmentAccounts();
+
+    /**
+     * Gets the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
+     * populated, unless it's specified in $expand.
+     *
+     * @return the enrollmentDetails value.
+     */
+    Enrollment enrollmentDetails();
 
     /**
      * Gets the hasReadAccess property: Indicates whether user has read access to the billing account.
@@ -109,6 +110,14 @@ public interface BillingAccount {
      * @return the notificationEmailAddress value.
      */
     String notificationEmailAddress();
+
+    /**
+     * Gets the soldTo property: The address of the individual or organization that is responsible for the billing
+     * account.
+     *
+     * @return the soldTo value.
+     */
+    AddressDetails soldTo();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingAccountInner object.

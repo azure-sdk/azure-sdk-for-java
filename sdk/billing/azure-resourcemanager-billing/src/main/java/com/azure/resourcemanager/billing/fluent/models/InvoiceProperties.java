@@ -22,24 +22,6 @@ import java.util.Map;
 @Immutable
 public final class InvoiceProperties {
     /*
-     * The due date for the invoice.
-     */
-    @JsonProperty(value = "dueDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime dueDate;
-
-    /*
-     * The date when the invoice was generated.
-     */
-    @JsonProperty(value = "invoiceDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime invoiceDate;
-
-    /*
-     * The current status of the invoice.
-     */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
-    private InvoiceStatus status;
-
-    /*
      * The amount due as of now.
      */
     @JsonProperty(value = "amountDue", access = JsonProperty.Access.WRITE_ONLY)
@@ -59,6 +41,25 @@ public final class InvoiceProperties {
     private Amount billedAmount;
 
     /*
+     * The Id of the active invoice which is originally billed after this invoice was voided. This field is applicable
+     * to the void invoices only.
+     */
+    @JsonProperty(value = "billedDocumentId", access = JsonProperty.Access.WRITE_ONLY)
+    private String billedDocumentId;
+
+    /*
+     * The name of the billing profile for which the invoice is generated.
+     */
+    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileDisplayName;
+
+    /*
+     * The ID of the billing profile for which the invoice is generated.
+     */
+    @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileId;
+
+    /*
      * The total refund for returns and cancellations during the invoice billing period. This field is applicable to
      * billing accounts with agreement type Microsoft Customer Agreement.
      */
@@ -66,11 +67,98 @@ public final class InvoiceProperties {
     private Amount creditAmount;
 
     /*
+     * The Id of the invoice which got voided and this credit note was issued as a result. This field is applicable to
+     * the credit notes only.
+     */
+    @JsonProperty(value = "creditForDocumentId", access = JsonProperty.Access.WRITE_ONLY)
+    private String creditForDocumentId;
+
+    /*
+     * List of documents available to download such as invoice and tax receipt.
+     */
+    @JsonProperty(value = "documents", access = JsonProperty.Access.WRITE_ONLY)
+    private List<Document> documents;
+
+    /*
+     * The type of the document.
+     */
+    @JsonProperty(value = "documentType", access = JsonProperty.Access.WRITE_ONLY)
+    private InvoiceDocumentType documentType;
+
+    /*
+     * The due date for the invoice.
+     */
+    @JsonProperty(value = "dueDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime dueDate;
+
+    /*
      * The amount of free Azure credits applied to the charges. This field is applicable to billing accounts with
      * agreement type Microsoft Customer Agreement.
      */
     @JsonProperty(value = "freeAzureCreditApplied", access = JsonProperty.Access.WRITE_ONLY)
     private Amount freeAzureCreditApplied;
+
+    /*
+     * The date when the invoice was generated.
+     */
+    @JsonProperty(value = "invoiceDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime invoiceDate;
+
+    /*
+     * The end date of the billing period for which the invoice is generated.
+     */
+    @JsonProperty(value = "invoicePeriodEndDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime invoicePeriodEndDate;
+
+    /*
+     * The start date of the billing period for which the invoice is generated.
+     */
+    @JsonProperty(value = "invoicePeriodStartDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime invoicePeriodStartDate;
+
+    /*
+     * Invoice type.
+     */
+    @JsonProperty(value = "invoiceType", access = JsonProperty.Access.WRITE_ONLY)
+    private InvoiceType invoiceType;
+
+    /*
+     * Specifies if the invoice is generated as part of monthly invoicing cycle or not. This field is applicable to
+     * billing accounts with agreement type Microsoft Customer Agreement.
+     */
+    @JsonProperty(value = "isMonthlyInvoice", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean isMonthlyInvoice;
+
+    /*
+     * List of payments.
+     */
+    @JsonProperty(value = "payments", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PaymentProperties> payments;
+
+    /*
+     * An optional purchase order number for the invoice.
+     */
+    @JsonProperty(value = "purchaseOrderNumber", access = JsonProperty.Access.WRITE_ONLY)
+    private String purchaseOrderNumber;
+
+    /*
+     * Rebill details for an invoice.
+     */
+    @JsonProperty(value = "rebillDetails", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, RebillDetails> rebillDetails;
+
+    /*
+     * The current status of the invoice.
+     */
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
+    private InvoiceStatus status;
+
+    /*
+     * The ID of the subscription for which the invoice is generated.
+     */
+    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String subscriptionId;
 
     /*
      * The pre-tax amount due. This field is applicable to billing accounts with agreement type Microsoft Customer
@@ -93,123 +181,8 @@ public final class InvoiceProperties {
     @JsonProperty(value = "totalAmount", access = JsonProperty.Access.WRITE_ONLY)
     private Amount totalAmount;
 
-    /*
-     * The start date of the billing period for which the invoice is generated.
-     */
-    @JsonProperty(value = "invoicePeriodStartDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime invoicePeriodStartDate;
-
-    /*
-     * The end date of the billing period for which the invoice is generated.
-     */
-    @JsonProperty(value = "invoicePeriodEndDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime invoicePeriodEndDate;
-
-    /*
-     * Invoice type.
-     */
-    @JsonProperty(value = "invoiceType", access = JsonProperty.Access.WRITE_ONLY)
-    private InvoiceType invoiceType;
-
-    /*
-     * Specifies if the invoice is generated as part of monthly invoicing cycle or not. This field is applicable to
-     * billing accounts with agreement type Microsoft Customer Agreement.
-     */
-    @JsonProperty(value = "isMonthlyInvoice", access = JsonProperty.Access.WRITE_ONLY)
-    private Boolean isMonthlyInvoice;
-
-    /*
-     * The ID of the billing profile for which the invoice is generated.
-     */
-    @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileId;
-
-    /*
-     * The name of the billing profile for which the invoice is generated.
-     */
-    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileDisplayName;
-
-    /*
-     * An optional purchase order number for the invoice.
-     */
-    @JsonProperty(value = "purchaseOrderNumber", access = JsonProperty.Access.WRITE_ONLY)
-    private String purchaseOrderNumber;
-
-    /*
-     * List of documents available to download such as invoice and tax receipt.
-     */
-    @JsonProperty(value = "documents", access = JsonProperty.Access.WRITE_ONLY)
-    private List<Document> documents;
-
-    /*
-     * List of payments.
-     */
-    @JsonProperty(value = "payments", access = JsonProperty.Access.WRITE_ONLY)
-    private List<PaymentProperties> payments;
-
-    /*
-     * Rebill details for an invoice.
-     */
-    @JsonProperty(value = "rebillDetails", access = JsonProperty.Access.WRITE_ONLY)
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, RebillDetails> rebillDetails;
-
-    /*
-     * The type of the document.
-     */
-    @JsonProperty(value = "documentType", access = JsonProperty.Access.WRITE_ONLY)
-    private InvoiceDocumentType documentType;
-
-    /*
-     * The Id of the active invoice which is originally billed after this invoice was voided. This field is applicable
-     * to the void invoices only.
-     */
-    @JsonProperty(value = "billedDocumentId", access = JsonProperty.Access.WRITE_ONLY)
-    private String billedDocumentId;
-
-    /*
-     * The Id of the invoice which got voided and this credit note was issued as a result. This field is applicable to
-     * the credit notes only.
-     */
-    @JsonProperty(value = "creditForDocumentId", access = JsonProperty.Access.WRITE_ONLY)
-    private String creditForDocumentId;
-
-    /*
-     * The ID of the subscription for which the invoice is generated.
-     */
-    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
-    private String subscriptionId;
-
     /** Creates an instance of InvoiceProperties class. */
     public InvoiceProperties() {
-    }
-
-    /**
-     * Get the dueDate property: The due date for the invoice.
-     *
-     * @return the dueDate value.
-     */
-    public OffsetDateTime dueDate() {
-        return this.dueDate;
-    }
-
-    /**
-     * Get the invoiceDate property: The date when the invoice was generated.
-     *
-     * @return the invoiceDate value.
-     */
-    public OffsetDateTime invoiceDate() {
-        return this.invoiceDate;
-    }
-
-    /**
-     * Get the status property: The current status of the invoice.
-     *
-     * @return the status value.
-     */
-    public InvoiceStatus status() {
-        return this.status;
     }
 
     /**
@@ -241,6 +214,34 @@ public final class InvoiceProperties {
     }
 
     /**
+     * Get the billedDocumentId property: The Id of the active invoice which is originally billed after this invoice was
+     * voided. This field is applicable to the void invoices only.
+     *
+     * @return the billedDocumentId value.
+     */
+    public String billedDocumentId() {
+        return this.billedDocumentId;
+    }
+
+    /**
+     * Get the billingProfileDisplayName property: The name of the billing profile for which the invoice is generated.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    public String billingProfileDisplayName() {
+        return this.billingProfileDisplayName;
+    }
+
+    /**
+     * Get the billingProfileId property: The ID of the billing profile for which the invoice is generated.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.billingProfileId;
+    }
+
+    /**
      * Get the creditAmount property: The total refund for returns and cancellations during the invoice billing period.
      * This field is applicable to billing accounts with agreement type Microsoft Customer Agreement.
      *
@@ -251,6 +252,43 @@ public final class InvoiceProperties {
     }
 
     /**
+     * Get the creditForDocumentId property: The Id of the invoice which got voided and this credit note was issued as a
+     * result. This field is applicable to the credit notes only.
+     *
+     * @return the creditForDocumentId value.
+     */
+    public String creditForDocumentId() {
+        return this.creditForDocumentId;
+    }
+
+    /**
+     * Get the documents property: List of documents available to download such as invoice and tax receipt.
+     *
+     * @return the documents value.
+     */
+    public List<Document> documents() {
+        return this.documents;
+    }
+
+    /**
+     * Get the documentType property: The type of the document.
+     *
+     * @return the documentType value.
+     */
+    public InvoiceDocumentType documentType() {
+        return this.documentType;
+    }
+
+    /**
+     * Get the dueDate property: The due date for the invoice.
+     *
+     * @return the dueDate value.
+     */
+    public OffsetDateTime dueDate() {
+        return this.dueDate;
+    }
+
+    /**
      * Get the freeAzureCreditApplied property: The amount of free Azure credits applied to the charges. This field is
      * applicable to billing accounts with agreement type Microsoft Customer Agreement.
      *
@@ -258,6 +296,97 @@ public final class InvoiceProperties {
      */
     public Amount freeAzureCreditApplied() {
         return this.freeAzureCreditApplied;
+    }
+
+    /**
+     * Get the invoiceDate property: The date when the invoice was generated.
+     *
+     * @return the invoiceDate value.
+     */
+    public OffsetDateTime invoiceDate() {
+        return this.invoiceDate;
+    }
+
+    /**
+     * Get the invoicePeriodEndDate property: The end date of the billing period for which the invoice is generated.
+     *
+     * @return the invoicePeriodEndDate value.
+     */
+    public OffsetDateTime invoicePeriodEndDate() {
+        return this.invoicePeriodEndDate;
+    }
+
+    /**
+     * Get the invoicePeriodStartDate property: The start date of the billing period for which the invoice is generated.
+     *
+     * @return the invoicePeriodStartDate value.
+     */
+    public OffsetDateTime invoicePeriodStartDate() {
+        return this.invoicePeriodStartDate;
+    }
+
+    /**
+     * Get the invoiceType property: Invoice type.
+     *
+     * @return the invoiceType value.
+     */
+    public InvoiceType invoiceType() {
+        return this.invoiceType;
+    }
+
+    /**
+     * Get the isMonthlyInvoice property: Specifies if the invoice is generated as part of monthly invoicing cycle or
+     * not. This field is applicable to billing accounts with agreement type Microsoft Customer Agreement.
+     *
+     * @return the isMonthlyInvoice value.
+     */
+    public Boolean isMonthlyInvoice() {
+        return this.isMonthlyInvoice;
+    }
+
+    /**
+     * Get the payments property: List of payments.
+     *
+     * @return the payments value.
+     */
+    public List<PaymentProperties> payments() {
+        return this.payments;
+    }
+
+    /**
+     * Get the purchaseOrderNumber property: An optional purchase order number for the invoice.
+     *
+     * @return the purchaseOrderNumber value.
+     */
+    public String purchaseOrderNumber() {
+        return this.purchaseOrderNumber;
+    }
+
+    /**
+     * Get the rebillDetails property: Rebill details for an invoice.
+     *
+     * @return the rebillDetails value.
+     */
+    public Map<String, RebillDetails> rebillDetails() {
+        return this.rebillDetails;
+    }
+
+    /**
+     * Get the status property: The current status of the invoice.
+     *
+     * @return the status value.
+     */
+    public InvoiceStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Get the subscriptionId property: The ID of the subscription for which the invoice is generated.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
     }
 
     /**
@@ -291,135 +420,6 @@ public final class InvoiceProperties {
     }
 
     /**
-     * Get the invoicePeriodStartDate property: The start date of the billing period for which the invoice is generated.
-     *
-     * @return the invoicePeriodStartDate value.
-     */
-    public OffsetDateTime invoicePeriodStartDate() {
-        return this.invoicePeriodStartDate;
-    }
-
-    /**
-     * Get the invoicePeriodEndDate property: The end date of the billing period for which the invoice is generated.
-     *
-     * @return the invoicePeriodEndDate value.
-     */
-    public OffsetDateTime invoicePeriodEndDate() {
-        return this.invoicePeriodEndDate;
-    }
-
-    /**
-     * Get the invoiceType property: Invoice type.
-     *
-     * @return the invoiceType value.
-     */
-    public InvoiceType invoiceType() {
-        return this.invoiceType;
-    }
-
-    /**
-     * Get the isMonthlyInvoice property: Specifies if the invoice is generated as part of monthly invoicing cycle or
-     * not. This field is applicable to billing accounts with agreement type Microsoft Customer Agreement.
-     *
-     * @return the isMonthlyInvoice value.
-     */
-    public Boolean isMonthlyInvoice() {
-        return this.isMonthlyInvoice;
-    }
-
-    /**
-     * Get the billingProfileId property: The ID of the billing profile for which the invoice is generated.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.billingProfileId;
-    }
-
-    /**
-     * Get the billingProfileDisplayName property: The name of the billing profile for which the invoice is generated.
-     *
-     * @return the billingProfileDisplayName value.
-     */
-    public String billingProfileDisplayName() {
-        return this.billingProfileDisplayName;
-    }
-
-    /**
-     * Get the purchaseOrderNumber property: An optional purchase order number for the invoice.
-     *
-     * @return the purchaseOrderNumber value.
-     */
-    public String purchaseOrderNumber() {
-        return this.purchaseOrderNumber;
-    }
-
-    /**
-     * Get the documents property: List of documents available to download such as invoice and tax receipt.
-     *
-     * @return the documents value.
-     */
-    public List<Document> documents() {
-        return this.documents;
-    }
-
-    /**
-     * Get the payments property: List of payments.
-     *
-     * @return the payments value.
-     */
-    public List<PaymentProperties> payments() {
-        return this.payments;
-    }
-
-    /**
-     * Get the rebillDetails property: Rebill details for an invoice.
-     *
-     * @return the rebillDetails value.
-     */
-    public Map<String, RebillDetails> rebillDetails() {
-        return this.rebillDetails;
-    }
-
-    /**
-     * Get the documentType property: The type of the document.
-     *
-     * @return the documentType value.
-     */
-    public InvoiceDocumentType documentType() {
-        return this.documentType;
-    }
-
-    /**
-     * Get the billedDocumentId property: The Id of the active invoice which is originally billed after this invoice was
-     * voided. This field is applicable to the void invoices only.
-     *
-     * @return the billedDocumentId value.
-     */
-    public String billedDocumentId() {
-        return this.billedDocumentId;
-    }
-
-    /**
-     * Get the creditForDocumentId property: The Id of the invoice which got voided and this credit note was issued as a
-     * result. This field is applicable to the credit notes only.
-     *
-     * @return the creditForDocumentId value.
-     */
-    public String creditForDocumentId() {
-        return this.creditForDocumentId;
-    }
-
-    /**
-     * Get the subscriptionId property: The ID of the subscription for which the invoice is generated.
-     *
-     * @return the subscriptionId value.
-     */
-    public String subscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -437,20 +437,11 @@ public final class InvoiceProperties {
         if (creditAmount() != null) {
             creditAmount().validate();
         }
-        if (freeAzureCreditApplied() != null) {
-            freeAzureCreditApplied().validate();
-        }
-        if (subTotal() != null) {
-            subTotal().validate();
-        }
-        if (taxAmount() != null) {
-            taxAmount().validate();
-        }
-        if (totalAmount() != null) {
-            totalAmount().validate();
-        }
         if (documents() != null) {
             documents().forEach(e -> e.validate());
+        }
+        if (freeAzureCreditApplied() != null) {
+            freeAzureCreditApplied().validate();
         }
         if (payments() != null) {
             payments().forEach(e -> e.validate());
@@ -464,6 +455,15 @@ public final class InvoiceProperties {
                             e.validate();
                         }
                     });
+        }
+        if (subTotal() != null) {
+            subTotal().validate();
+        }
+        if (taxAmount() != null) {
+            taxAmount().validate();
+        }
+        if (totalAmount() != null) {
+            totalAmount().validate();
         }
     }
 }

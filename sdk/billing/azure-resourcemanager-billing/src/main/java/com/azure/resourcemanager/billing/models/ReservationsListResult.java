@@ -13,12 +13,6 @@ import java.util.List;
 @Fluent
 public final class ReservationsListResult {
     /*
-     * The list of reservations.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ReservationInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
@@ -30,17 +24,14 @@ public final class ReservationsListResult {
     @JsonProperty(value = "summary")
     private ReservationSummary summary;
 
+    /*
+     * The list of reservations.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ReservationInner> value;
+
     /** Creates an instance of ReservationsListResult class. */
     public ReservationsListResult() {
-    }
-
-    /**
-     * Get the value property: The list of reservations.
-     *
-     * @return the value value.
-     */
-    public List<ReservationInner> value() {
-        return this.value;
     }
 
     /**
@@ -73,16 +64,25 @@ public final class ReservationsListResult {
     }
 
     /**
+     * Get the value property: The list of reservations.
+     *
+     * @return the value value.
+     */
+    public List<ReservationInner> value() {
+        return this.value;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
         if (summary() != null) {
             summary().validate();
+        }
+        if (value() != null) {
+            value().forEach(e -> e.validate());
         }
     }
 }

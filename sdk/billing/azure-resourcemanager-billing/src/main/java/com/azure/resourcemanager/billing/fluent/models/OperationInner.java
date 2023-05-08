@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class OperationInner {
     /*
-     * Operation name: {provider}/{resource}/{operation}.
+     * The object that represents the operation.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
+    @JsonProperty(value = "display")
+    private OperationDisplay display;
 
     /*
      * Identifies if the operation is a data operation.
@@ -24,31 +24,13 @@ public final class OperationInner {
     private Boolean isDataAction;
 
     /*
-     * The object that represents the operation.
+     * Operation name: {provider}/{resource}/{operation}.
      */
-    @JsonProperty(value = "display")
-    private OperationDisplay display;
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
 
     /** Creates an instance of OperationInner class. */
     public OperationInner() {
-    }
-
-    /**
-     * Get the name property: Operation name: {provider}/{resource}/{operation}.
-     *
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the isDataAction property: Identifies if the operation is a data operation.
-     *
-     * @return the isDataAction value.
-     */
-    public Boolean isDataAction() {
-        return this.isDataAction;
     }
 
     /**
@@ -69,6 +51,24 @@ public final class OperationInner {
     public OperationInner withDisplay(OperationDisplay display) {
         this.display = display;
         return this;
+    }
+
+    /**
+     * Get the isDataAction property: Identifies if the operation is a data operation.
+     *
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
+     * Get the name property: Operation name: {provider}/{resource}/{operation}.
+     *
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
     }
 
     /**

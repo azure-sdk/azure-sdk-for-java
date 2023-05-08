@@ -13,19 +13,28 @@ import java.util.List;
 @Fluent
 public final class InvoiceSectionListWithCreateSubPermissionResult {
     /*
-     * The list of invoice section properties with create subscription permission.
-     */
-    @JsonProperty(value = "value")
-    private List<InvoiceSectionWithCreateSubPermissionInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of invoice section properties with create subscription permission.
+     */
+    @JsonProperty(value = "value")
+    private List<InvoiceSectionWithCreateSubPermissionInner> value;
+
     /** Creates an instance of InvoiceSectionListWithCreateSubPermissionResult class. */
     public InvoiceSectionListWithCreateSubPermissionResult() {
+    }
+
+    /**
+     * Get the nextLink property: The link (url) to the next page of results.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -47,15 +56,6 @@ public final class InvoiceSectionListWithCreateSubPermissionResult {
         List<InvoiceSectionWithCreateSubPermissionInner> value) {
         this.value = value;
         return this;
-    }
-
-    /**
-     * Get the nextLink property: The link (url) to the next page of results.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
     }
 
     /**

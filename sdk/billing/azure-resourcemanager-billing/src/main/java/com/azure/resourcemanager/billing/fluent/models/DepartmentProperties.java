@@ -13,22 +13,16 @@ import java.util.List;
 @Fluent
 public final class DepartmentProperties {
     /*
-     * The name of the department.
-     */
-    @JsonProperty(value = "departmentName")
-    private String departmentName;
-
-    /*
      * The cost center associated with the department.
      */
     @JsonProperty(value = "costCenter")
     private String costCenter;
 
     /*
-     * The status of the department.
+     * The name of the department.
      */
-    @JsonProperty(value = "status")
-    private String status;
+    @JsonProperty(value = "departmentName")
+    private String departmentName;
 
     /*
      * Associated enrollment accounts. By default this is not populated, unless it's specified in $expand.
@@ -36,28 +30,14 @@ public final class DepartmentProperties {
     @JsonProperty(value = "enrollmentAccounts")
     private List<EnrollmentAccount> enrollmentAccounts;
 
+    /*
+     * The status of the department.
+     */
+    @JsonProperty(value = "status")
+    private String status;
+
     /** Creates an instance of DepartmentProperties class. */
     public DepartmentProperties() {
-    }
-
-    /**
-     * Get the departmentName property: The name of the department.
-     *
-     * @return the departmentName value.
-     */
-    public String departmentName() {
-        return this.departmentName;
-    }
-
-    /**
-     * Set the departmentName property: The name of the department.
-     *
-     * @param departmentName the departmentName value to set.
-     * @return the DepartmentProperties object itself.
-     */
-    public DepartmentProperties withDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-        return this;
     }
 
     /**
@@ -81,22 +61,22 @@ public final class DepartmentProperties {
     }
 
     /**
-     * Get the status property: The status of the department.
+     * Get the departmentName property: The name of the department.
      *
-     * @return the status value.
+     * @return the departmentName value.
      */
-    public String status() {
-        return this.status;
+    public String departmentName() {
+        return this.departmentName;
     }
 
     /**
-     * Set the status property: The status of the department.
+     * Set the departmentName property: The name of the department.
      *
-     * @param status the status value to set.
+     * @param departmentName the departmentName value to set.
      * @return the DepartmentProperties object itself.
      */
-    public DepartmentProperties withStatus(String status) {
-        this.status = status;
+    public DepartmentProperties withDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
         return this;
     }
 
@@ -119,6 +99,26 @@ public final class DepartmentProperties {
      */
     public DepartmentProperties withEnrollmentAccounts(List<EnrollmentAccount> enrollmentAccounts) {
         this.enrollmentAccounts = enrollmentAccounts;
+        return this;
+    }
+
+    /**
+     * Get the status property: The status of the department.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: The status of the department.
+     *
+     * @param status the status value to set.
+     * @return the DepartmentProperties object itself.
+     */
+    public DepartmentProperties withStatus(String status) {
+        this.status = status;
         return this;
     }
 

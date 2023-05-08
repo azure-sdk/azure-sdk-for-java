@@ -7,10 +7,10 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for InvoiceSections ListByBillingProfile. */
 public final class InvoiceSectionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionsListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoiceSectionsListByBillingProfile.json
      */
     /**
-     * Sample code: InvoiceSectionsListByBillingProfile.
+     * Sample code: invoiceSectionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */

@@ -25,20 +25,20 @@ public final class ReservationImpl implements Reservation {
         return this.innerModel().id();
     }
 
-    public String name() {
-        return this.innerModel().name();
-    }
-
-    public String type() {
-        return this.innerModel().type();
-    }
-
     public String location() {
         return this.innerModel().location();
     }
 
+    public String name() {
+        return this.innerModel().name();
+    }
+
     public ReservationSkuProperty sku() {
         return this.innerModel().sku();
+    }
+
+    public String type() {
+        return this.innerModel().type();
     }
 
     public List<String> appliedScopes() {
@@ -54,26 +54,6 @@ public final class ReservationImpl implements Reservation {
         return this.innerModel().appliedScopeType();
     }
 
-    public String reservedResourceType() {
-        return this.innerModel().reservedResourceType();
-    }
-
-    public Float quantity() {
-        return this.innerModel().quantity();
-    }
-
-    public String provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public String expiryDate() {
-        return this.innerModel().expiryDate();
-    }
-
-    public String provisioningSubState() {
-        return this.innerModel().provisioningSubState();
-    }
-
     public String displayName() {
         return this.innerModel().displayName();
     }
@@ -82,16 +62,36 @@ public final class ReservationImpl implements Reservation {
         return this.innerModel().displayProvisioningState();
     }
 
-    public String userFriendlyRenewState() {
-        return this.innerModel().userFriendlyRenewState();
-    }
-
-    public String userFriendlyAppliedScopeType() {
-        return this.innerModel().userFriendlyAppliedScopeType();
-    }
-
     public String effectiveDateTime() {
         return this.innerModel().effectiveDateTime();
+    }
+
+    public String expiryDate() {
+        return this.innerModel().expiryDate();
+    }
+
+    public String provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String provisioningSubState() {
+        return this.innerModel().provisioningSubState();
+    }
+
+    public Float quantity() {
+        return this.innerModel().quantity();
+    }
+
+    public Boolean renew() {
+        return this.innerModel().renew();
+    }
+
+    public String renewSource() {
+        return this.innerModel().renewSource();
+    }
+
+    public String reservedResourceType() {
+        return this.innerModel().reservedResourceType();
     }
 
     public String skuDescription() {
@@ -102,12 +102,12 @@ public final class ReservationImpl implements Reservation {
         return this.innerModel().term();
     }
 
-    public Boolean renew() {
-        return this.innerModel().renew();
+    public String userFriendlyAppliedScopeType() {
+        return this.innerModel().userFriendlyAppliedScopeType();
     }
 
-    public String renewSource() {
-        return this.innerModel().renewSource();
+    public String userFriendlyRenewState() {
+        return this.innerModel().userFriendlyRenewState();
     }
 
     public ReservationPropertyUtilization utilization() {
