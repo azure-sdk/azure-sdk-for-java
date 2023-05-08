@@ -17,22 +17,11 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
+import com.azure.developer.loadtesting.implementation.LoadTestAdministrationsImpl;
 
 /** Initializes a new instance of the synchronous LoadTestingClient type. */
 @ServiceClient(builder = LoadTestAdministrationClientBuilder.class)
 public final class LoadTestAdministrationClient {
-
-    @Generated private final LoadTestAdministrationAsyncClient client;
-
-    /**
-     * Initializes an instance of LoadTestAdministrationClient class.
-     *
-     * @param client the async client.
-     */
-    @Generated
-    LoadTestAdministrationClient(LoadTestAdministrationAsyncClient client) {
-        this.client = client;
-    }
 
     /**
      * Configure server metrics for a test.
@@ -99,7 +88,7 @@ public final class LoadTestAdministrationClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> createOrUpdateServerMetricsConfigWithResponse(
             String testId, BinaryData body, RequestOptions requestOptions) {
-        return this.client.createOrUpdateServerMetricsConfigWithResponse(testId, body, requestOptions).block();
+        return this.serviceClient.createOrUpdateServerMetricsConfigWithResponse(testId, body, requestOptions);
     }
 
     /**
@@ -128,17 +117,12 @@ public final class LoadTestAdministrationClient {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileName: String (Optional)
-     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
-     *             expireDateTime: OffsetDateTime (Optional)
-     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
-     *             validationFailureDetails: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     url: String (Optional)
+     *     fileName: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *     validationFailureDetails: String (Optional)
      * }
      * }</pre>
      *
@@ -154,7 +138,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listTestFiles(String testId, RequestOptions requestOptions) {
-        return new PagedIterable<>(this.client.listTestFiles(testId, requestOptions));
+        return this.serviceClient.listTestFiles(testId, requestOptions);
     }
 
     /**
@@ -318,7 +302,7 @@ public final class LoadTestAdministrationClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> createOrUpdateTestWithResponse(
             String testId, BinaryData body, RequestOptions requestOptions) {
-        return this.client.createOrUpdateTestWithResponse(testId, body, requestOptions).block();
+        return this.serviceClient.createOrUpdateTestWithResponse(testId, body, requestOptions);
     }
 
     /**
@@ -336,7 +320,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteTestWithResponse(String testId, RequestOptions requestOptions) {
-        return this.client.deleteTestWithResponse(testId, requestOptions).block();
+        return this.serviceClient.deleteTestWithResponse(testId, requestOptions);
     }
 
     /**
@@ -426,7 +410,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getTestWithResponse(String testId, RequestOptions requestOptions) {
-        return this.client.getTestWithResponse(testId, requestOptions).block();
+        return this.serviceClient.getTestWithResponse(testId, requestOptions);
     }
 
     /**
@@ -451,76 +435,71 @@ public final class LoadTestAdministrationClient {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientMetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
-     *                         aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String(continue/stop) (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String(passed/undetermined/failed) (Optional)
-     *                     }
-     *                 }
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientMetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(continue/stop) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
-     *                 }
-     *             }
-     *             certificate (Optional): {
-     *                 value: String (Optional)
-     *                 type: String(AKV_CERT_URI) (Optional)
-     *                 name: String (Optional)
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             loadTestConfiguration (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
-     *                 quickStartTest: Boolean (Optional)
-     *                 optionalLoadTestConfig (Optional): {
-     *                     endpointUrl: String (Optional)
-     *                     virtualUsers: Integer (Optional)
-     *                     rampUpTime: Integer (Optional)
-     *                     duration: Integer (Optional)
-     *                 }
-     *             }
-     *             inputArtifacts (Optional): {
-     *                 configFileInfo (Optional): {
-     *                     url: String (Optional)
-     *                     fileName: String (Optional)
-     *                     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
-     *                     expireDateTime: OffsetDateTime (Optional)
-     *                     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
-     *                     validationFailureDetails: String (Optional)
-     *                 }
-     *                 testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
-     *                 userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
-     *                 inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
-     *                 additionalFileInfo (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
+     *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             virtualUsers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileName: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *             validationFailureDetails: String (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
@@ -536,7 +515,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listTests(RequestOptions requestOptions) {
-        return new PagedIterable<>(this.client.listTests(requestOptions));
+        return this.serviceClient.listTests(requestOptions);
     }
 
     /**
@@ -618,7 +597,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getTestFileWithResponse(String testId, String fileName, RequestOptions requestOptions) {
-        return this.client.getTestFileWithResponse(testId, fileName, requestOptions).block();
+        return this.serviceClient.getTestFileWithResponse(testId, fileName, requestOptions);
     }
 
     /**
@@ -637,7 +616,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteTestFileWithResponse(String testId, String fileName, RequestOptions requestOptions) {
-        return this.client.deleteTestFileWithResponse(testId, fileName, requestOptions).block();
+        return this.serviceClient.deleteTestFileWithResponse(testId, fileName, requestOptions);
     }
 
     /**
@@ -703,7 +682,7 @@ public final class LoadTestAdministrationClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> createOrUpdateAppComponentsWithResponse(
             String testId, BinaryData body, RequestOptions requestOptions) {
-        return this.client.createOrUpdateAppComponentsWithResponse(testId, body, requestOptions).block();
+        return this.serviceClient.createOrUpdateAppComponentsWithResponse(testId, body, requestOptions);
     }
 
     /**
@@ -744,7 +723,7 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAppComponentsWithResponse(String testId, RequestOptions requestOptions) {
-        return this.client.getAppComponentsWithResponse(testId, requestOptions).block();
+        return this.serviceClient.getAppComponentsWithResponse(testId, requestOptions);
     }
 
     /**
@@ -786,6 +765,18 @@ public final class LoadTestAdministrationClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getServerMetricsConfigWithResponse(String testId, RequestOptions requestOptions) {
-        return this.client.getServerMetricsConfigWithResponse(testId, requestOptions).block();
+        return this.serviceClient.getServerMetricsConfigWithResponse(testId, requestOptions);
+    }
+
+    @Generated private final LoadTestAdministrationsImpl serviceClient;
+
+    /**
+     * Initializes an instance of LoadTestAdministrationClient class.
+     *
+     * @param serviceClient the service client implementation.
+     */
+    @Generated
+    LoadTestAdministrationClient(LoadTestAdministrationsImpl serviceClient) {
+        this.serviceClient = serviceClient;
     }
 }
