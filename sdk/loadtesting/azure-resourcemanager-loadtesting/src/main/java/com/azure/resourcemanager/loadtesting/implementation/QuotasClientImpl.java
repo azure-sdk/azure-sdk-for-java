@@ -73,8 +73,7 @@ public final class QuotasClientImpl implements QuotasClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.LoadTestService/locations/{location}/quotas"
-                + "/{quotaBucketName}")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.LoadTestService/locations/{location}/quotas/{quotaBucketName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<QuotaResourceInner>> get(
@@ -88,8 +87,7 @@ public final class QuotasClientImpl implements QuotasClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.LoadTestService/locations/{location}/quotas"
-                + "/{quotaBucketName}/checkAvailability")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.LoadTestService/locations/{location}/quotas/{quotaBucketName}/checkAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckQuotaAvailabilityResponseInner>> checkAvailability(

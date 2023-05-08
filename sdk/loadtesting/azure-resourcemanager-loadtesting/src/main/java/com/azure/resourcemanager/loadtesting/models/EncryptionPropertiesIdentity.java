@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Vault.
  */
 @Fluent
-public class EncryptionPropertiesIdentity {
+public final class EncryptionPropertiesIdentity {
     /*
      * Managed identity type to use for accessing encryption key Url
      */
