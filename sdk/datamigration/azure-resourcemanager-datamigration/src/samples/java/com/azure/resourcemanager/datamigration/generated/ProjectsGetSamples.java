@@ -7,7 +7,7 @@ package com.azure.resourcemanager.datamigration.generated;
 /** Samples for Projects Get. */
 public final class ProjectsGetSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_Get.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Projects_Get.json
      */
     /**
      * Sample code: Projects_Get.
