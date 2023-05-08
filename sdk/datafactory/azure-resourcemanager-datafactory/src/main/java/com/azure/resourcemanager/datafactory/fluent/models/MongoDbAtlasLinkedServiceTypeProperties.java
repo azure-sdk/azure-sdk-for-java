@@ -25,6 +25,13 @@ public final class MongoDbAtlasLinkedServiceTypeProperties {
     @JsonProperty(value = "database", required = true)
     private Object database;
 
+    /*
+     * The MongoDB Atlas Driver version that you want to choose. Allowed value are 2.10.4 and 2.19.0. Type: string (or
+     * Expression with resultType string).
+     */
+    @JsonProperty(value = "mongoDbAtlasDriverVersion")
+    private Object mongoDbAtlasDriverVersion;
+
     /** Creates an instance of MongoDbAtlasLinkedServiceTypeProperties class. */
     public MongoDbAtlasLinkedServiceTypeProperties() {
     }
@@ -70,6 +77,28 @@ public final class MongoDbAtlasLinkedServiceTypeProperties {
      */
     public MongoDbAtlasLinkedServiceTypeProperties withDatabase(Object database) {
         this.database = database;
+        return this;
+    }
+
+    /**
+     * Get the mongoDbAtlasDriverVersion property: The MongoDB Atlas Driver version that you want to choose. Allowed
+     * value are 2.10.4 and 2.19.0. Type: string (or Expression with resultType string).
+     *
+     * @return the mongoDbAtlasDriverVersion value.
+     */
+    public Object mongoDbAtlasDriverVersion() {
+        return this.mongoDbAtlasDriverVersion;
+    }
+
+    /**
+     * Set the mongoDbAtlasDriverVersion property: The MongoDB Atlas Driver version that you want to choose. Allowed
+     * value are 2.10.4 and 2.19.0. Type: string (or Expression with resultType string).
+     *
+     * @param mongoDbAtlasDriverVersion the mongoDbAtlasDriverVersion value to set.
+     * @return the MongoDbAtlasLinkedServiceTypeProperties object itself.
+     */
+    public MongoDbAtlasLinkedServiceTypeProperties withMongoDbAtlasDriverVersion(Object mongoDbAtlasDriverVersion) {
+        this.mongoDbAtlasDriverVersion = mongoDbAtlasDriverVersion;
         return this;
     }
 
