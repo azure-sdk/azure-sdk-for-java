@@ -65,8 +65,7 @@ public final class SingleSignOnsClientImpl implements SingleSignOnsClient {
     public interface SingleSignOnsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logz/monitors"
-                + "/{monitorName}/singleSignOnConfigurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logz/monitors/{monitorName}/singleSignOnConfigurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LogzSingleSignOnResourceListResponse>> list(
@@ -80,8 +79,7 @@ public final class SingleSignOnsClientImpl implements SingleSignOnsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logz/monitors"
-                + "/{monitorName}/singleSignOnConfigurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logz/monitors/{monitorName}/singleSignOnConfigurations/{configurationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -97,8 +95,7 @@ public final class SingleSignOnsClientImpl implements SingleSignOnsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logz/monitors"
-                + "/{monitorName}/singleSignOnConfigurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logz/monitors/{monitorName}/singleSignOnConfigurations/{configurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LogzSingleSignOnResourceInner>> get(
