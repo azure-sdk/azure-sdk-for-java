@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.education.models.RedeemRequest;
 
 /** Samples for ResourceProvider RedeemInvitationCode. */
@@ -21,7 +20,7 @@ public final class ResourceProviderRedeemInvitationCodeSamples {
         manager
             .resourceProviders()
             .redeemInvitationCodeWithResponse(
-                new RedeemRequest().withRedeemCode("exampleRedeemCode").withFirstName("test").withLastName("user"),
-                Context.NONE);
+                new RedeemRequest().withRedeemCode("fakeTokenPlaceholder").withFirstName("test").withLastName("user"),
+                com.azure.core.util.Context.NONE);
     }
 }

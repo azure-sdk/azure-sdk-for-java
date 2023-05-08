@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.education.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Grants ListAll. */
 public final class GrantsListAllSamples {
     /*
@@ -17,7 +15,7 @@ public final class GrantsListAllSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void grantListIncludeAllocatedBudget(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.grants().listAll(true, Context.NONE);
+        manager.grants().listAll(true, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -29,6 +27,6 @@ public final class GrantsListAllSamples {
      * @param manager Entry point to EducationManager.
      */
     public static void grantList(com.azure.resourcemanager.education.EducationManager manager) {
-        manager.grants().listAll(false, Context.NONE);
+        manager.grants().listAll(false, com.azure.core.util.Context.NONE);
     }
 }

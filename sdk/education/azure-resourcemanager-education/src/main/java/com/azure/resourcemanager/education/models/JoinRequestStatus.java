@@ -17,6 +17,15 @@ public final class JoinRequestStatus extends ExpandableStringEnum<JoinRequestSta
     public static final JoinRequestStatus DENIED = fromString("Denied");
 
     /**
+     * Creates a new instance of JoinRequestStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public JoinRequestStatus() {
+    }
+
+    /**
      * Creates or finds a JoinRequestStatus from its string representation.
      *
      * @param name a name to look for.
