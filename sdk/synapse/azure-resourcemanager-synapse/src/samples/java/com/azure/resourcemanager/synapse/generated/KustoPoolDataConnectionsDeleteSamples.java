@@ -19,7 +19,7 @@ public final class KustoPoolDataConnectionsDeleteSamples {
             .kustoPoolDataConnections()
             .delete(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 "kustoeventhubconnection1",

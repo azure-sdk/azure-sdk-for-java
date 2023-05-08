@@ -22,7 +22,7 @@ public final class KustoPoolDataConnectionsCheckNameAvailabilitySamples {
             .kustoPoolDataConnections()
             .checkNameAvailabilityWithResponse(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 new DataConnectionCheckNameRequest().withName("DataConnections8"),

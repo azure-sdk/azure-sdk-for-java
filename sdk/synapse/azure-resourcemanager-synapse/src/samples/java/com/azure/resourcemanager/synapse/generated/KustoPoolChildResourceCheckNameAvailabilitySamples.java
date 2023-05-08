@@ -44,7 +44,7 @@ public final class KustoPoolChildResourceCheckNameAvailabilitySamples {
         manager
             .kustoPoolChildResources()
             .checkNameAvailabilityWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustorptest",
                 new DatabaseCheckNameRequest()

@@ -18,6 +18,6 @@ public final class KustoPoolDatabasesListByKustoPoolSamples {
         manager
             .kustoPoolDatabases()
             .listByKustoPool(
-                "kustorptest", "synapseWorkspaceName", "kustoclusterrptest4", com.azure.core.util.Context.NONE);
+                "kustorptest", "synapse-workspace-name", "kustoclusterrptest4", com.azure.core.util.Context.NONE);
     }
 }

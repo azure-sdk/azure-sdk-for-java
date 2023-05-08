@@ -19,7 +19,7 @@ public final class KustoPoolDatabasesDeleteSamples {
             .kustoPoolDatabases()
             .delete(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 com.azure.core.util.Context.NONE);

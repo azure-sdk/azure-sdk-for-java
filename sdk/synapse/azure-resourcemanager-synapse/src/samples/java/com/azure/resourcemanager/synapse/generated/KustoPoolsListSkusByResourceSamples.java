@@ -18,6 +18,6 @@ public final class KustoPoolsListSkusByResourceSamples {
         manager
             .kustoPools()
             .listSkusByResource(
-                "synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
+                "synapse-workspace-name", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
     }
 }

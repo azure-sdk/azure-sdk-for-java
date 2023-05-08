@@ -551,6 +551,13 @@ public interface SynapseManagementClient {
     KustoPoolPrincipalAssignmentsClient getKustoPoolPrincipalAssignments();
 
     /**
+     * Gets the KustoPoolDatabaseOperationsClient object to access its operations.
+     *
+     * @return the KustoPoolDatabaseOperationsClient object.
+     */
+    KustoPoolDatabaseOperationsClient getKustoPoolDatabaseOperations();
+
+    /**
      * Gets the KustoPoolDatabasePrincipalAssignmentsClient object to access its operations.
      *
      * @return the KustoPoolDatabasePrincipalAssignmentsClient object.

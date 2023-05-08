@@ -21,7 +21,7 @@ public final class KustoPoolPrincipalAssignmentsCheckNameAvailabilitySamples {
         manager
             .kustoPoolPrincipalAssignments()
             .checkNameAvailabilityWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustorptest",
                 new ClusterPrincipalAssignmentCheckNameRequest().withName("kustoprincipal1"),

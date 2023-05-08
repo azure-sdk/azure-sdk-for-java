@@ -19,7 +19,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsGetSamples {
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .getWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustoprincipal1",

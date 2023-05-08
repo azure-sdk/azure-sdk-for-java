@@ -19,7 +19,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsListSamples {
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .list(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustorptest",

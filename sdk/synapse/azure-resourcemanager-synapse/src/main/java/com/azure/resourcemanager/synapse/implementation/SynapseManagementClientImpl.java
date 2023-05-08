@@ -43,6 +43,7 @@ import com.azure.resourcemanager.synapse.fluent.KustoOperationsClient;
 import com.azure.resourcemanager.synapse.fluent.KustoPoolAttachedDatabaseConfigurationsClient;
 import com.azure.resourcemanager.synapse.fluent.KustoPoolChildResourcesClient;
 import com.azure.resourcemanager.synapse.fluent.KustoPoolDataConnectionsClient;
+import com.azure.resourcemanager.synapse.fluent.KustoPoolDatabaseOperationsClient;
 import com.azure.resourcemanager.synapse.fluent.KustoPoolDatabasePrincipalAssignmentsClient;
 import com.azure.resourcemanager.synapse.fluent.KustoPoolDatabasesClient;
 import com.azure.resourcemanager.synapse.fluent.KustoPoolPrincipalAssignmentsClient;
@@ -1052,6 +1053,18 @@ public final class SynapseManagementClientImpl implements SynapseManagementClien
         return this.kustoPoolPrincipalAssignments;
     }
 
+    /** The KustoPoolDatabaseOperationsClient object to access its operations. */
+    private final KustoPoolDatabaseOperationsClient kustoPoolDatabaseOperations;
+
+    /**
+     * Gets the KustoPoolDatabaseOperationsClient object to access its operations.
+     *
+     * @return the KustoPoolDatabaseOperationsClient object.
+     */
+    public KustoPoolDatabaseOperationsClient getKustoPoolDatabaseOperations() {
+        return this.kustoPoolDatabaseOperations;
+    }
+
     /** The KustoPoolDatabasePrincipalAssignmentsClient object to access its operations. */
     private final KustoPoolDatabasePrincipalAssignmentsClient kustoPoolDatabasePrincipalAssignments;
 
@@ -1180,6 +1193,7 @@ public final class SynapseManagementClientImpl implements SynapseManagementClien
         this.kustoPoolDatabases = new KustoPoolDatabasesClientImpl(this);
         this.kustoPoolDataConnections = new KustoPoolDataConnectionsClientImpl(this);
         this.kustoPoolPrincipalAssignments = new KustoPoolPrincipalAssignmentsClientImpl(this);
+        this.kustoPoolDatabaseOperations = new KustoPoolDatabaseOperationsClientImpl(this);
         this.kustoPoolDatabasePrincipalAssignments = new KustoPoolDatabasePrincipalAssignmentsClientImpl(this);
         this.kustoPoolPrivateLinkResourcesOperations = new KustoPoolPrivateLinkResourcesOperationsClientImpl(this);
     }

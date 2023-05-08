@@ -23,7 +23,7 @@ public final class KustoPoolsCreateOrUpdateSamples {
             .kustoPools()
             .define("kustoclusterrptest4")
             .withRegion("westus")
-            .withExistingWorkspace("synapseWorkspaceName", "kustorptest")
+            .withExistingWorkspace("synapse-workspace-name", "kustorptest")
             .withSku(new AzureSku().withName(SkuName.STORAGE_OPTIMIZED).withCapacity(2).withSize(SkuSize.MEDIUM))
             .withEnableStreamingIngest(true)
             .withEnablePurge(true)

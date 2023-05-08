@@ -21,7 +21,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsCheckNameAvailabilitySam
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .checkNameAvailabilityWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustorptest",

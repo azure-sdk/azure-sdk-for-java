@@ -6,6 +6,7 @@ package com.azure.resourcemanager.synapse.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.LanguageExtensionsList;
+import com.azure.resourcemanager.synapse.models.MigrationClusterProperties;
 import com.azure.resourcemanager.synapse.models.OptimizedAutoscale;
 import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.azure.resourcemanager.synapse.models.State;
@@ -73,6 +74,12 @@ public final class KustoPoolProperties {
      */
     @JsonProperty(value = "workspaceUID")
     private String workspaceUid;
+
+    /*
+     * Properties of the peer cluster involved in a migration to/from this cluster.
+     */
+    @JsonProperty(value = "migrationCluster", access = JsonProperty.Access.WRITE_ONLY)
+    private MigrationClusterProperties migrationCluster;
 
     /** Creates an instance of KustoPoolProperties class. */
     public KustoPoolProperties() {
@@ -213,6 +220,15 @@ public final class KustoPoolProperties {
     }
 
     /**
+     * Get the migrationCluster property: Properties of the peer cluster involved in a migration to/from this cluster.
+     *
+     * @return the migrationCluster value.
+     */
+    public MigrationClusterProperties migrationCluster() {
+        return this.migrationCluster;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -223,6 +239,9 @@ public final class KustoPoolProperties {
         }
         if (languageExtensions() != null) {
             languageExtensions().validate();
+        }
+        if (migrationCluster() != null) {
+            migrationCluster().validate();
         }
     }
 }

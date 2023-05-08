@@ -21,7 +21,7 @@ public final class KustoPoolDataConnectionsUpdateSamples {
             .kustoPoolDataConnections()
             .update(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 "DataConnections8",

@@ -22,7 +22,7 @@ public final class KustoPoolPrincipalAssignmentsCreateOrUpdateSamples {
         manager
             .kustoPoolPrincipalAssignments()
             .define("kustoprincipal1")
-            .withExistingKustoPool("synapseWorkspaceName", "kustoclusterrptest4", "kustorptest")
+            .withExistingKustoPool("synapse-workspace-name", "kustoclusterrptest4", "kustorptest")
             .withPrincipalId("87654321-1234-1234-1234-123456789123")
             .withRole(ClusterPrincipalRole.ALL_DATABASES_ADMIN)
             .withTenantId("12345678-1234-1234-1234-123456789123")

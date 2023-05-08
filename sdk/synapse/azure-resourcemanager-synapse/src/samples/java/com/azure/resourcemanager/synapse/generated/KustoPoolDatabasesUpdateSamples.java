@@ -22,7 +22,7 @@ public final class KustoPoolDatabasesUpdateSamples {
             .kustoPoolDatabases()
             .update(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 new ReadWriteDatabase().withSoftDeletePeriod(Duration.parse("P1D")),

@@ -128,6 +128,10 @@
 - [ListByDatabase](#kustopooldataconnections_listbydatabase)
 - [Update](#kustopooldataconnections_update)
 
+## KustoPoolDatabaseOperation
+
+- [InviteFollower](#kustopooldatabaseoperation_invitefollower)
+
 ## KustoPoolDatabasePrincipalAssignments
 
 - [CheckNameAvailability](#kustopooldatabaseprincipalassignments_checknameavailability)
@@ -169,6 +173,7 @@
 - [ListFollowerDatabases](#kustopools_listfollowerdatabases)
 - [ListLanguageExtensions](#kustopools_listlanguageextensions)
 - [ListSkusByResource](#kustopools_listskusbyresource)
+- [Migrate](#kustopools_migrate)
 - [RemoveLanguageExtensions](#kustopools_removelanguageextensions)
 - [Start](#kustopools_start)
 - [Stop](#kustopools_stop)
@@ -2097,7 +2102,7 @@ public final class KustoPoolChildResourceCheckNameAvailabilitySamples {
         manager
             .kustoPoolChildResources()
             .checkNameAvailabilityWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustorptest",
                 new DatabaseCheckNameRequest()
@@ -2129,7 +2134,7 @@ public final class KustoPoolDataConnectionsCheckNameAvailabilitySamples {
             .kustoPoolDataConnections()
             .checkNameAvailabilityWithResponse(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 new DataConnectionCheckNameRequest().withName("DataConnections8"),
@@ -2159,7 +2164,7 @@ public final class KustoPoolDataConnectionsCreateOrUpdateSamples {
             .kustoPoolDataConnections()
             .createOrUpdate(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 "DataConnections8",
@@ -2223,7 +2228,7 @@ public final class KustoPoolDataConnectionsDeleteSamples {
             .kustoPoolDataConnections()
             .delete(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 "kustoeventhubconnection1",
@@ -2250,7 +2255,7 @@ public final class KustoPoolDataConnectionsGetSamples {
             .kustoPoolDataConnections()
             .getWithResponse(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 "DataConnections8",
@@ -2278,7 +2283,7 @@ public final class KustoPoolDataConnectionsListByDatabaseSamples {
             .kustoPoolDataConnections()
             .listByDatabase(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 com.azure.core.util.Context.NONE);
@@ -2306,7 +2311,7 @@ public final class KustoPoolDataConnectionsUpdateSamples {
             .kustoPoolDataConnections()
             .update(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 "DataConnections8",
@@ -2315,6 +2320,48 @@ public final class KustoPoolDataConnectionsUpdateSamples {
                     .withEventHubResourceId(
                         "/subscriptions/12345678-1234-1234-1234-123456789098/resourceGroups/kustorptest/providers/Microsoft.EventHub/namespaces/eventhubTestns1/eventhubs/eventhubTest1")
                     .withConsumerGroup("testConsumerGroup1"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### KustoPoolDatabaseOperation_InviteFollower
+
+```java
+import com.azure.resourcemanager.synapse.models.DatabaseInviteFollowerRequest;
+import com.azure.resourcemanager.synapse.models.TableLevelSharingProperties;
+import java.util.Arrays;
+
+/** Samples for KustoPoolDatabaseOperation InviteFollower. */
+public final class KustoPoolDatabaseOperationInviteFollowerSamples {
+    /*
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/KustoPoolDatabaseInviteFollower.json
+     */
+    /**
+     * Sample code: KustoPoolDatabaseInviteFollower.
+     *
+     * @param manager Entry point to SynapseManager.
+     */
+    public static void kustoPoolDatabaseInviteFollower(com.azure.resourcemanager.synapse.SynapseManager manager) {
+        manager
+            .kustoPoolDatabaseOperations()
+            .inviteFollowerWithResponse(
+                "kustorptest",
+                "synapse-workspace-name",
+                "kustopool",
+                "database",
+                new DatabaseInviteFollowerRequest()
+                    .withInviteeEmail("invitee@contoso.com")
+                    .withTableLevelSharingProperties(
+                        new TableLevelSharingProperties()
+                            .withTablesToInclude(Arrays.asList("Table1"))
+                            .withTablesToExclude(Arrays.asList("Table2"))
+                            .withExternalTablesToInclude(Arrays.asList("ExternalTable*"))
+                            .withExternalTablesToExclude(Arrays.asList())
+                            .withMaterializedViewsToInclude(Arrays.asList("MaterializedViewTable1"))
+                            .withMaterializedViewsToExclude(Arrays.asList("MaterializedViewTable2"))
+                            .withFunctionsToInclude(Arrays.asList("functionsToInclude1"))
+                            .withFunctionsToExclude(Arrays.asList("functionsToExclude2"))),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -2340,7 +2387,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsCheckNameAvailabilitySam
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .checkNameAvailabilityWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustorptest",
@@ -2371,7 +2418,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsCreateOrUpdateSamples {
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .define("kustoprincipal1")
-            .withExistingDatabase("synapseWorkspaceName", "kustoclusterrptest4", "Kustodatabase8", "kustorptest")
+            .withExistingDatabase("synapse-workspace-name", "kustoclusterrptest4", "Kustodatabase8", "kustorptest")
             .withPrincipalId("87654321-1234-1234-1234-123456789123")
             .withRole(DatabasePrincipalRole.ADMIN)
             .withTenantId("12345678-1234-1234-1234-123456789123")
@@ -2399,7 +2446,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsDeleteSamples {
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .delete(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustoprincipal1",
@@ -2427,7 +2474,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsGetSamples {
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .getWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustoprincipal1",
@@ -2455,7 +2502,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsListSamples {
         manager
             .kustoPoolDatabasePrincipalAssignments()
             .list(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "Kustodatabase8",
                 "kustorptest",
@@ -2485,7 +2532,7 @@ public final class KustoPoolDatabasesCreateOrUpdateSamples {
             .kustoPoolDatabases()
             .createOrUpdate(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 new ReadWriteDatabase().withLocation("westus").withSoftDeletePeriod(Duration.parse("P1D")),
@@ -2512,7 +2559,7 @@ public final class KustoPoolDatabasesDeleteSamples {
             .kustoPoolDatabases()
             .delete(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 com.azure.core.util.Context.NONE);
@@ -2538,7 +2585,7 @@ public final class KustoPoolDatabasesGetSamples {
             .kustoPoolDatabases()
             .getWithResponse(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 com.azure.core.util.Context.NONE);
@@ -2563,7 +2610,7 @@ public final class KustoPoolDatabasesListByKustoPoolSamples {
         manager
             .kustoPoolDatabases()
             .listByKustoPool(
-                "kustorptest", "synapseWorkspaceName", "kustoclusterrptest4", com.azure.core.util.Context.NONE);
+                "kustorptest", "synapse-workspace-name", "kustoclusterrptest4", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2589,7 +2636,7 @@ public final class KustoPoolDatabasesUpdateSamples {
             .kustoPoolDatabases()
             .update(
                 "kustorptest",
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "KustoDatabase8",
                 new ReadWriteDatabase().withSoftDeletePeriod(Duration.parse("P1D")),
@@ -2618,7 +2665,7 @@ public final class KustoPoolPrincipalAssignmentsCheckNameAvailabilitySamples {
         manager
             .kustoPoolPrincipalAssignments()
             .checkNameAvailabilityWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustorptest",
                 new ClusterPrincipalAssignmentCheckNameRequest().withName("kustoprincipal1"),
@@ -2648,7 +2695,7 @@ public final class KustoPoolPrincipalAssignmentsCreateOrUpdateSamples {
         manager
             .kustoPoolPrincipalAssignments()
             .define("kustoprincipal1")
-            .withExistingKustoPool("synapseWorkspaceName", "kustoclusterrptest4", "kustorptest")
+            .withExistingKustoPool("synapse-workspace-name", "kustoclusterrptest4", "kustorptest")
             .withPrincipalId("87654321-1234-1234-1234-123456789123")
             .withRole(ClusterPrincipalRole.ALL_DATABASES_ADMIN)
             .withTenantId("12345678-1234-1234-1234-123456789123")
@@ -2675,7 +2722,7 @@ public final class KustoPoolPrincipalAssignmentsDeleteSamples {
         manager
             .kustoPoolPrincipalAssignments()
             .delete(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustoprincipal1",
                 "kustorptest",
@@ -2701,7 +2748,7 @@ public final class KustoPoolPrincipalAssignmentsGetSamples {
         manager
             .kustoPoolPrincipalAssignments()
             .getWithResponse(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustoprincipal1",
                 "kustorptest",
@@ -2726,7 +2773,7 @@ public final class KustoPoolPrincipalAssignmentsListSamples {
     public static void kustoPoolPrincipalAssignmentsList(com.azure.resourcemanager.synapse.SynapseManager manager) {
         manager
             .kustoPoolPrincipalAssignments()
-            .list("synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
+            .list("synapse-workspace-name", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2836,7 +2883,7 @@ public final class KustoPoolsCreateOrUpdateSamples {
             .kustoPools()
             .define("kustoclusterrptest4")
             .withRegion("westus")
-            .withExistingWorkspace("synapseWorkspaceName", "kustorptest")
+            .withExistingWorkspace("synapse-workspace-name", "kustorptest")
             .withSku(new AzureSku().withName(SkuName.STORAGE_OPTIMIZED).withCapacity(2).withSize(SkuSize.MEDIUM))
             .withEnableStreamingIngest(true)
             .withEnablePurge(true)
@@ -2915,7 +2962,7 @@ public final class KustoPoolsGetSamples {
         manager
             .kustoPools()
             .getWithResponse(
-                "synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
+                "synapse-workspace-name", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3021,7 +3068,37 @@ public final class KustoPoolsListSkusByResourceSamples {
         manager
             .kustoPools()
             .listSkusByResource(
-                "synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
+                "synapse-workspace-name", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### KustoPools_Migrate
+
+```java
+import com.azure.resourcemanager.synapse.models.KustoPoolMigrateRequest;
+
+/** Samples for KustoPools Migrate. */
+public final class KustoPoolsMigrateSamples {
+    /*
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/KustoPoolMigrate.json
+     */
+    /**
+     * Sample code: KustoPoolMigrate.
+     *
+     * @param manager Entry point to SynapseManager.
+     */
+    public static void kustoPoolMigrate(com.azure.resourcemanager.synapse.SynapseManager manager) {
+        manager
+            .kustoPools()
+            .migrate(
+                "kustorptest",
+                "kustoclusterrptest4",
+                "kustorptest",
+                new KustoPoolMigrateRequest()
+                    .withClusterResourceId(
+                        "/subscriptions/12345678-1234-1234-1234-123456789098/resourceGroups/kustorptest/providers/Microsoft.Kusto/clusters/kustoCluster2"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3127,7 +3204,7 @@ public final class KustoPoolsUpdateSamples {
             manager
                 .kustoPools()
                 .getWithResponse(
-                    "synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE)
+                    "synapse-workspace-name", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

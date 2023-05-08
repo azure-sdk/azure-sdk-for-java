@@ -24,7 +24,7 @@ public final class KustoPoolsUpdateSamples {
             manager
                 .kustoPools()
                 .getWithResponse(
-                    "synapseWorkspaceName", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE)
+                    "synapse-workspace-name", "kustoclusterrptest4", "kustorptest", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

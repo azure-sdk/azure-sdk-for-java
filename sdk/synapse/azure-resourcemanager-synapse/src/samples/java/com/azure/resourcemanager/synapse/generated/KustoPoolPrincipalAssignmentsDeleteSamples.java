@@ -18,7 +18,7 @@ public final class KustoPoolPrincipalAssignmentsDeleteSamples {
         manager
             .kustoPoolPrincipalAssignments()
             .delete(
-                "synapseWorkspaceName",
+                "synapse-workspace-name",
                 "kustoclusterrptest4",
                 "kustoprincipal1",
                 "kustorptest",
