@@ -5,13 +5,13 @@
 package com.azure.resourcemanager.databoxedge.generated;
 
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDevice;
-import java.util.HashMap;
-import java.util.Map;
+import com.azure.resourcemanager.databoxedge.models.EdgeProfilePatch;
+import com.azure.resourcemanager.databoxedge.models.EdgeProfileSubscriptionPatch;
 
 /** Samples for Devices Update. */
 public final class DevicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDevicePatch.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2022-03-01/examples/DataBoxEdgeDevicePatch.json
      */
     /**
      * Sample code: DataBoxEdgeDevicePatch.
@@ -25,17 +25,14 @@ public final class DevicesUpdateSamples {
                 .getByResourceGroupWithResponse(
                     "GroupForEdgeAutomation", "testedgedevice", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("Key1", "value1", "Key2", "value2")).apply();
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        resource
+            .update()
+            .withEdgeProfile(
+                new EdgeProfilePatch()
+                    .withSubscription(
+                        new EdgeProfileSubscriptionPatch()
+                            .withId(
+                                "/subscriptions/0d44739e-0563-474f-97e7-24a0cdb23b29/resourceGroups/rapvs-rg/providers/Microsoft.AzureStack/linkedSubscriptions/ca014ddc-5cf2-45f8-b390-e901e4a0ae87")))
+            .apply();
     }
 }
