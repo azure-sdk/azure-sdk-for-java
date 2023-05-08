@@ -65,15 +65,6 @@ public final class CustomLocationsImpl implements CustomLocations {
         return Utils.mapPage(inner, inner1 -> new CustomLocationImpl(inner1, this.manager()));
     }
 
-    public CustomLocation getByResourceGroup(String resourceGroupName, String resourceName) {
-        CustomLocationInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
-        if (inner != null) {
-            return new CustomLocationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<CustomLocation> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         Response<CustomLocationInner> inner =
@@ -84,6 +75,15 @@ public final class CustomLocationsImpl implements CustomLocations {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new CustomLocationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CustomLocation getByResourceGroup(String resourceGroupName, String resourceName) {
+        CustomLocationInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
+        if (inner != null) {
+            return new CustomLocationImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -110,17 +110,6 @@ public final class CustomLocationsImpl implements CustomLocations {
         return Utils.mapPage(inner, inner1 -> new EnabledResourceTypeImpl(inner1, this.manager()));
     }
 
-    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
-        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
-        CustomLocationFindTargetResourceGroupResultInner inner =
-            this.serviceClient().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
-        if (inner != null) {
-            return new CustomLocationFindTargetResourceGroupResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<CustomLocationFindTargetResourceGroupResult> findTargetResourceGroupWithResponse(
         String resourceGroupName,
         String resourceName,
@@ -136,6 +125,17 @@ public final class CustomLocationsImpl implements CustomLocations {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new CustomLocationFindTargetResourceGroupResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
+        CustomLocationFindTargetResourceGroupResultInner inner =
+            this.serviceClient().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
+        if (inner != null) {
+            return new CustomLocationFindTargetResourceGroupResultImpl(inner, this.manager());
         } else {
             return null;
         }

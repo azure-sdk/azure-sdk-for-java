@@ -30,6 +30,10 @@ public final class EnabledResourceTypeProperties {
     @JsonProperty(value = "typesMetadata")
     private List<EnabledResourceTypePropertiesTypesMetadataItem> typesMetadata;
 
+    /** Creates an instance of EnabledResourceTypeProperties class. */
+    public EnabledResourceTypeProperties() {
+    }
+
     /**
      * Get the clusterExtensionId property: Cluster Extension ID.
      *

@@ -72,7 +72,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "CustomLocationsManag")
-    private interface CustomLocationsService {
+    public interface CustomLocationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.ExtendedLocation/operations")
         @ExpectedResponses({200})
@@ -96,8 +96,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomLocationListResult>> listByResourceGroup(
@@ -110,8 +109,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomLocationInner>> getByResourceGroup(
@@ -125,8 +123,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -141,8 +138,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -156,8 +152,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations/{resourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomLocationInner>> update(
@@ -172,8 +167,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations/{resourceName}/enabledResourceTypes")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}/enabledResourceTypes")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnabledResourceTypesListResult>> listEnabledResourceTypes(
@@ -187,8 +181,7 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation"
-                + "/customLocations/{resourceName}/findTargetResourceGroup")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}/findTargetResourceGroup")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomLocationFindTargetResourceGroupResultInner>> findTargetResourceGroup(
@@ -364,7 +357,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
+     * Gets a list of Custom Locations in a subscription.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
      * Location.
      *
      * @throws ManagementException thrown if the request is rejected by server.
@@ -410,7 +405,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
+     * Gets a list of Custom Locations in a subscription.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
      * Location.
      *
      * @param context The context to associate with this operation.
@@ -455,7 +452,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
+     * Gets a list of Custom Locations in a subscription.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
      * Location.
      *
      * @throws ManagementException thrown if the request is rejected by server.
@@ -469,7 +468,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
+     * Gets a list of Custom Locations in a subscription.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
      * Location.
      *
      * @param context The context to associate with this operation.
@@ -485,7 +486,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
+     * Gets a list of Custom Locations in a subscription.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
      * Location.
      *
      * @throws ManagementException thrown if the request is rejected by server.
@@ -499,7 +502,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
+     * Gets a list of Custom Locations in a subscription.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription. The operation returns properties of each Custom
      * Location.
      *
      * @param context The context to associate with this operation.
@@ -515,7 +520,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
+     * Gets a list of Custom Locations in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
      * properties of each Custom Location.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -568,7 +575,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
+     * Gets a list of Custom Locations in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
      * properties of each Custom Location.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -620,7 +629,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
+     * Gets a list of Custom Locations in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
      * properties of each Custom Location.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -638,7 +649,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
+     * Gets a list of Custom Locations in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
      * properties of each Custom Location.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -657,7 +670,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
+     * Gets a list of Custom Locations in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
      * properties of each Custom Location.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -673,7 +688,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
+     * Gets a list of Custom Locations in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Custom Locations in the specified subscription and resource group. The operation returns
      * properties of each Custom Location.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -690,7 +707,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the details of the customLocation with a specified resource group and name.
+     * Gets a Custom Location.
+     *
+     * <p>Gets the details of the customLocation with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -739,7 +758,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the details of the customLocation with a specified resource group and name.
+     * Gets a Custom Location.
+     *
+     * <p>Gets the details of the customLocation with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -786,7 +807,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the details of the customLocation with a specified resource group and name.
+     * Gets a Custom Location.
+     *
+     * <p>Gets the details of the customLocation with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -803,22 +826,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the details of the customLocation with a specified resource group and name.
+     * Gets a Custom Location.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the customLocation with a specified resource group and name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CustomLocationInner getByResourceGroup(String resourceGroupName, String resourceName) {
-        return getByResourceGroupAsync(resourceGroupName, resourceName).block();
-    }
-
-    /**
-     * Gets the details of the customLocation with a specified resource group and name.
+     * <p>Gets the details of the customLocation with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -835,7 +845,26 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Gets a Custom Location.
+     *
+     * <p>Gets the details of the customLocation with a specified resource group and name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the customLocation with a specified resource group and name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CustomLocationInner getByResourceGroup(String resourceGroupName, String resourceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -890,7 +919,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -943,7 +974,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -969,7 +1002,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -993,7 +1028,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1006,11 +1043,13 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomLocationInner>, CustomLocationInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, CustomLocationInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1024,11 +1063,13 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomLocationInner>, CustomLocationInner> beginCreateOrUpdate(
         String resourceGroupName, String resourceName, CustomLocationInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1047,7 +1088,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1067,7 +1110,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1084,7 +1129,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Creates or updates a Custom Location in the specified Subscription and Resource Group.
+     * Creates or updates a Custom Location.
+     *
+     * <p>Creates or updates a Custom Location in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1102,7 +1149,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1149,7 +1198,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1195,7 +1246,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1214,7 +1267,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1235,7 +1290,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1246,11 +1303,13 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName) {
-        return beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName).getSyncPoller();
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1263,11 +1322,13 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, resourceName, context).getSyncPoller();
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1282,7 +1343,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1300,7 +1363,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1314,7 +1379,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes a Custom Location.
+     *
+     * <p>Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1329,7 +1396,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates a Custom Location.
+     *
+     * <p>Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1384,7 +1453,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates a Custom Location.
+     *
+     * <p>Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1437,7 +1508,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates a Custom Location.
+     *
+     * <p>Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1455,24 +1528,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates a Custom Location.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CustomLocationInner update(
-        String resourceGroupName, String resourceName, PatchableCustomLocations parameters) {
-        return updateAsync(resourceGroupName, resourceName, parameters).block();
-    }
-
-    /**
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * <p>Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1490,7 +1548,28 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the list of the Enabled Resource Types.
+     * Updates a Custom Location.
+     *
+     * <p>Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CustomLocationInner update(
+        String resourceGroupName, String resourceName, PatchableCustomLocations parameters) {
+        return updateWithResponse(resourceGroupName, resourceName, parameters, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets the list of Enabled Resource Types.
+     *
+     * <p>Gets the list of the Enabled Resource Types.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1548,7 +1627,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the list of the Enabled Resource Types.
+     * Gets the list of Enabled Resource Types.
+     *
+     * <p>Gets the list of the Enabled Resource Types.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1604,7 +1685,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the list of the Enabled Resource Types.
+     * Gets the list of Enabled Resource Types.
+     *
+     * <p>Gets the list of the Enabled Resource Types.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1622,7 +1705,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the list of the Enabled Resource Types.
+     * Gets the list of Enabled Resource Types.
+     *
+     * <p>Gets the list of the Enabled Resource Types.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1641,7 +1726,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the list of the Enabled Resource Types.
+     * Gets the list of Enabled Resource Types.
+     *
+     * <p>Gets the list of the Enabled Resource Types.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1657,7 +1744,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Gets the list of the Enabled Resource Types.
+     * Gets the list of Enabled Resource Types.
+     *
+     * <p>Gets the list of the Enabled Resource Types.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1674,8 +1763,10 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * Gets matching target resource group for resource sync.
+     *
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1731,8 +1822,10 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * Gets matching target resource group for resource sync.
+     *
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1789,8 +1882,10 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * Gets matching target resource group for resource sync.
+     *
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1808,26 +1903,10 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * Gets matching target resource group for resource sync.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters Parameters of the find target resource group request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Find Target Resource Group operation response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CustomLocationFindTargetResourceGroupResultInner findTargetResourceGroup(
-        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
-        return findTargetResourceGroupAsync(resourceGroupName, resourceName, parameters).block();
-    }
-
-    /**
-     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
-     * rules passed in with the Find Target Resource Group Request.
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Custom Locations name.
@@ -1848,9 +1927,31 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
+     * Gets matching target resource group for resource sync.
+     *
+     * <p>Returns the target resource group associated with the resource sync rules of the Custom Location that match
+     * the rules passed in with the Find Target Resource Group Request.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CustomLocationFindTargetResourceGroupResultInner findTargetResourceGroup(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
+        return findTargetResourceGroupWithResponse(resourceGroupName, resourceName, parameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1886,7 +1987,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1924,7 +2026,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1961,7 +2064,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1999,7 +2103,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2036,7 +2141,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2074,7 +2180,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2111,7 +2218,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
