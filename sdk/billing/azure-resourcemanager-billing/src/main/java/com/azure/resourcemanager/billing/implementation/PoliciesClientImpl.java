@@ -55,8 +55,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public interface PoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/policies/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/policies/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyInner>> getByBillingProfile(
@@ -69,8 +68,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/policies/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/policies/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyInner>> update(
@@ -84,8 +82,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies"
-                + "/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomerPolicyInner>> getByCustomer(
@@ -98,8 +95,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies"
-                + "/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomerPolicyInner>> updateCustomer(
@@ -140,7 +136,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -150,7 +145,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
                             this.client.getEndpoint(),
                             billingAccountName,
                             billingProfileName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -185,12 +180,16 @@ public final class PoliciesClientImpl implements PoliciesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getByBillingProfile(
-                this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept, context);
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                this.client.getApiVersion(),
+                accept,
+                context);
     }
 
     /**
@@ -278,7 +277,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -286,7 +284,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
                     service
                         .update(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             parameters,
@@ -330,13 +328,12 @@ public final class PoliciesClientImpl implements PoliciesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .update(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 parameters,
@@ -426,14 +423,18 @@ public final class PoliciesClientImpl implements PoliciesClient {
         if (customerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .getByCustomer(
-                            this.client.getEndpoint(), billingAccountName, customerName, apiVersion, accept, context))
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            customerName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -465,11 +466,16 @@ public final class PoliciesClientImpl implements PoliciesClient {
         if (customerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getByCustomer(this.client.getEndpoint(), billingAccountName, customerName, apiVersion, accept, context);
+            .getByCustomer(
+                this.client.getEndpoint(),
+                billingAccountName,
+                customerName,
+                this.client.getApiVersion(),
+                accept,
+                context);
     }
 
     /**
@@ -556,7 +562,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -564,7 +569,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
                     service
                         .updateCustomer(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             customerName,
                             parameters,
@@ -607,12 +612,17 @@ public final class PoliciesClientImpl implements PoliciesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .updateCustomer(
-                this.client.getEndpoint(), apiVersion, billingAccountName, customerName, parameters, accept, context);
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                customerName,
+                parameters,
+                accept,
+                context);
     }
 
     /**

@@ -7,10 +7,10 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for Invoices ListByBillingProfile. */
 public final class InvoicesListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoicesListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingProfile.json
      */
     /**
-     * Sample code: InvoicesListByBillingProfile.
+     * Sample code: invoicesListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
@@ -26,10 +26,10 @@ public final class InvoicesListByBillingProfileSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoicesListByBillingProfileWithRebillDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingProfileWithRebillDetails.json
      */
     /**
-     * Sample code: InvoicesListByBillingProfileWithRebillDetails.
+     * Sample code: invoicesListByBillingProfileWithRebillDetails.
      *
      * @param manager Entry point to BillingManager.
      */

@@ -19,10 +19,10 @@ public final class InstructionProperties {
     private float amount;
 
     /*
-     * The date this billing instruction goes into effect.
+     * The date this billing instruction was created.
      */
-    @JsonProperty(value = "startDate", required = true)
-    private OffsetDateTime startDate;
+    @JsonProperty(value = "creationDate")
+    private OffsetDateTime creationDate;
 
     /*
      * The date this billing instruction is no longer in effect.
@@ -31,10 +31,10 @@ public final class InstructionProperties {
     private OffsetDateTime endDate;
 
     /*
-     * The date this billing instruction was created.
+     * The date this billing instruction goes into effect.
      */
-    @JsonProperty(value = "creationDate")
-    private OffsetDateTime creationDate;
+    @JsonProperty(value = "startDate", required = true)
+    private OffsetDateTime startDate;
 
     /** Creates an instance of InstructionProperties class. */
     public InstructionProperties() {
@@ -61,22 +61,22 @@ public final class InstructionProperties {
     }
 
     /**
-     * Get the startDate property: The date this billing instruction goes into effect.
+     * Get the creationDate property: The date this billing instruction was created.
      *
-     * @return the startDate value.
+     * @return the creationDate value.
      */
-    public OffsetDateTime startDate() {
-        return this.startDate;
+    public OffsetDateTime creationDate() {
+        return this.creationDate;
     }
 
     /**
-     * Set the startDate property: The date this billing instruction goes into effect.
+     * Set the creationDate property: The date this billing instruction was created.
      *
-     * @param startDate the startDate value to set.
+     * @param creationDate the creationDate value to set.
      * @return the InstructionProperties object itself.
      */
-    public InstructionProperties withStartDate(OffsetDateTime startDate) {
-        this.startDate = startDate;
+    public InstructionProperties withCreationDate(OffsetDateTime creationDate) {
+        this.creationDate = creationDate;
         return this;
     }
 
@@ -101,22 +101,22 @@ public final class InstructionProperties {
     }
 
     /**
-     * Get the creationDate property: The date this billing instruction was created.
+     * Get the startDate property: The date this billing instruction goes into effect.
      *
-     * @return the creationDate value.
+     * @return the startDate value.
      */
-    public OffsetDateTime creationDate() {
-        return this.creationDate;
+    public OffsetDateTime startDate() {
+        return this.startDate;
     }
 
     /**
-     * Set the creationDate property: The date this billing instruction was created.
+     * Set the startDate property: The date this billing instruction goes into effect.
      *
-     * @param creationDate the creationDate value to set.
+     * @param startDate the startDate value to set.
      * @return the InstructionProperties object itself.
      */
-    public InstructionProperties withCreationDate(OffsetDateTime creationDate) {
-        this.creationDate = creationDate;
+    public InstructionProperties withStartDate(OffsetDateTime startDate) {
+        this.startDate = startDate;
         return this;
     }
 
@@ -126,15 +126,15 @@ public final class InstructionProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (startDate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startDate in model InstructionProperties"));
-        }
         if (endDate() == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property endDate in model InstructionProperties"));
+        }
+        if (startDate() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property startDate in model InstructionProperties"));
         }
     }
 

@@ -26,8 +26,8 @@ public final class BillingPropertiesImpl implements BillingProperties {
         this.serviceManager = serviceManager;
     }
 
-    public Response<BillingProperty> getWithResponse(Context context) {
-        Response<BillingPropertyInner> inner = this.serviceClient().getWithResponse(context);
+    public Response<BillingProperty> getWithResponse(String subscriptionId, Context context) {
+        Response<BillingPropertyInner> inner = this.serviceClient().getWithResponse(subscriptionId, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -39,8 +39,8 @@ public final class BillingPropertiesImpl implements BillingProperties {
         }
     }
 
-    public BillingProperty get() {
-        BillingPropertyInner inner = this.serviceClient().get();
+    public BillingProperty get(String subscriptionId) {
+        BillingPropertyInner inner = this.serviceClient().get(subscriptionId);
         if (inner != null) {
             return new BillingPropertyImpl(inner, this.manager());
         } else {
@@ -48,8 +48,10 @@ public final class BillingPropertiesImpl implements BillingProperties {
         }
     }
 
-    public Response<BillingProperty> updateWithResponse(BillingPropertyInner parameters, Context context) {
-        Response<BillingPropertyInner> inner = this.serviceClient().updateWithResponse(parameters, context);
+    public Response<BillingProperty> updateWithResponse(
+        String subscriptionId, BillingPropertyInner parameters, Context context) {
+        Response<BillingPropertyInner> inner =
+            this.serviceClient().updateWithResponse(subscriptionId, parameters, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -61,8 +63,8 @@ public final class BillingPropertiesImpl implements BillingProperties {
         }
     }
 
-    public BillingProperty update(BillingPropertyInner parameters) {
-        BillingPropertyInner inner = this.serviceClient().update(parameters);
+    public BillingProperty update(String subscriptionId, BillingPropertyInner parameters) {
+        BillingPropertyInner inner = this.serviceClient().update(subscriptionId, parameters);
         if (inner != null) {
             return new BillingPropertyImpl(inner, this.manager());
         } else {
