@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForSubscriptionLevelPolicyAssignment. */
@@ -29,6 +28,6 @@ public final class PolicyStatesSummarizeForSubscriptionLevelPolicyAssignmentSamp
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -27,7 +27,13 @@ public final class PolicyEvaluationResult {
      * The detailed results of the policy expressions and values that were evaluated.
      */
     @JsonProperty(value = "evaluationDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private PolicyEvaluationDetails evaluationDetails;
+    private CheckRestrictionEvaluationDetails evaluationDetails;
+
+    /*
+     * The details of the effect that was applied to the resource.
+     */
+    @JsonProperty(value = "effectDetails", access = JsonProperty.Access.WRITE_ONLY)
+    private PolicyEffectDetails effectDetails;
 
     /** Creates an instance of PolicyEvaluationResult class. */
     public PolicyEvaluationResult() {
@@ -58,8 +64,17 @@ public final class PolicyEvaluationResult {
      *
      * @return the evaluationDetails value.
      */
-    public PolicyEvaluationDetails evaluationDetails() {
+    public CheckRestrictionEvaluationDetails evaluationDetails() {
         return this.evaluationDetails;
+    }
+
+    /**
+     * Get the effectDetails property: The details of the effect that was applied to the resource.
+     *
+     * @return the effectDetails value.
+     */
+    public PolicyEffectDetails effectDetails() {
+        return this.effectDetails;
     }
 
     /**
@@ -73,6 +88,9 @@ public final class PolicyEvaluationResult {
         }
         if (evaluationDetails() != null) {
             evaluationDetails().validate();
+        }
+        if (effectDetails() != null) {
+            effectDetails().validate();
         }
     }
 }

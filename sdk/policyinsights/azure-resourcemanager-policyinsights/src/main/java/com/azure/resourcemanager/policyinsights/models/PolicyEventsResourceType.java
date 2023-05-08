@@ -14,6 +14,15 @@ public final class PolicyEventsResourceType extends ExpandableStringEnum<PolicyE
     public static final PolicyEventsResourceType DEFAULT = fromString("default");
 
     /**
+     * Creates a new instance of PolicyEventsResourceType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PolicyEventsResourceType() {
+    }
+
+    /**
      * Creates or finds a PolicyEventsResourceType from its string representation.
      *
      * @param name a name to look for.

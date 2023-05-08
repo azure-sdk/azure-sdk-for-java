@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner;
 import com.azure.resourcemanager.policyinsights.models.AttestationEvidence;
@@ -34,7 +33,7 @@ public final class AttestationsCreateOrUpdateAtSubscriptionSamples {
                     .withPolicyAssignmentId(
                         "/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5")
                     .withComplianceState(ComplianceState.COMPLIANT),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -71,6 +70,6 @@ public final class AttestationsCreateOrUpdateAtSubscriptionSamples {
                             .createDefaultManagementSerializerAdapter()
                             .deserialize(
                                 "{\"departmentId\":\"NYC-MARKETING-1\"}", Object.class, SerializerEncoding.JSON)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

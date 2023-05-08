@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations CancelAtResourceGroup. */
 public final class RemediationsCancelAtResourceGroupSamples {
     /*
@@ -18,6 +16,8 @@ public final class RemediationsCancelAtResourceGroupSamples {
      */
     public static void cancelARemediationAtResourceGroupScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().cancelAtResourceGroupWithResponse("myResourceGroup", "myRemediation", Context.NONE);
+        manager
+            .remediations()
+            .cancelAtResourceGroupWithResponse("myResourceGroup", "myRemediation", com.azure.core.util.Context.NONE);
     }
 }

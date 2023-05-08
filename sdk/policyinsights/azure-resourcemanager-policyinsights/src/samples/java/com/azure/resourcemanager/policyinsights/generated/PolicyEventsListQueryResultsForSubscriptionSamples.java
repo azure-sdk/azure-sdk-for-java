@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 import java.time.OffsetDateTime;
 
@@ -33,7 +32,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -58,7 +57,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "PolicyDefinitionAction eq 'deny'",
                 "aggregate($count as NumDenyEvents)",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -84,7 +83,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "PolicyDefinitionAction ne 'audit' and PolicyDefinitionAction ne 'append'",
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -110,7 +109,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -136,7 +135,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, ResourceId))/groupby((PolicyAssignmentId,"
                     + " PolicyDefinitionId), aggregate($count as NumDeniedResources))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -163,7 +162,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId), aggregate($count"
                     + " as NumEvents))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -189,6 +188,6 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

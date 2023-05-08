@@ -56,7 +56,7 @@ public final class PolicyMetadatasClientImpl implements PolicyMetadatasClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface PolicyMetadatasService {
+    public interface PolicyMetadatasService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.PolicyInsights/policyMetadata/{resourceName}")
         @ExpectedResponses({200})

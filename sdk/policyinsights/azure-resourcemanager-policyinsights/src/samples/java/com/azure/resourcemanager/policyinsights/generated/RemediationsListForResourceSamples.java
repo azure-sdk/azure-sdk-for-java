@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations ListForResource. */
 public final class RemediationsListForResourceSamples {
     /*
@@ -24,7 +22,7 @@ public final class RemediationsListForResourceSamples {
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myResourceGroup/providers/microsoft.storage/storageaccounts/storAc1",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -44,6 +42,6 @@ public final class RemediationsListForResourceSamples {
                 1,
                 "PolicyAssignmentId eq"
                     + " '/subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/providers/microsoft.authorization/policyassignments/b101830944f246d8a14088c5'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
