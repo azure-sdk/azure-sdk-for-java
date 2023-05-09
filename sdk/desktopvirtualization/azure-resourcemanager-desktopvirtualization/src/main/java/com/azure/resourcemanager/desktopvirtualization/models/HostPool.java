@@ -249,12 +249,28 @@ public interface HostPool {
     Boolean cloudPcResource();
 
     /**
+     * Gets the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
+     * networks, Disabled allows this resource to only be accessed via private endpoints.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    HostpoolPublicNetworkAccess publicNetworkAccess();
+
+    /**
      * Gets the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
      *
      * @return the agentUpdate value.
      */
     AgentUpdateProperties agentUpdate();
+
+    /**
+     * Gets the privateEndpointConnections property: List of private endpoint connection associated with the specified
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
      * Gets the region of the resource.
@@ -384,6 +400,7 @@ public interface HostPool {
                 DefinitionStages.WithSsoClientSecretKeyVaultPath,
                 DefinitionStages.WithSsoSecretType,
                 DefinitionStages.WithStartVMOnConnect,
+                DefinitionStages.WithPublicNetworkAccess,
                 DefinitionStages.WithAgentUpdate {
             /**
              * Executes the create request.
@@ -612,6 +629,18 @@ public interface HostPool {
              */
             WithCreate withStartVMOnConnect(Boolean startVMOnConnect);
         }
+        /** The stage of the HostPool definition allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Enabled allows this resource to be accessed from both public
+             * and private networks, Disabled allows this resource to only be accessed via private endpoints.
+             *
+             * @param publicNetworkAccess Enabled allows this resource to be accessed from both public and private
+             *     networks, Disabled allows this resource to only be accessed via private endpoints.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess);
+        }
         /** The stage of the HostPool definition allowing to specify agentUpdate. */
         interface WithAgentUpdate {
             /**
@@ -651,6 +680,7 @@ public interface HostPool {
             UpdateStages.WithSsoSecretType,
             UpdateStages.WithPreferredAppGroupType,
             UpdateStages.WithStartVMOnConnect,
+            UpdateStages.WithPublicNetworkAccess,
             UpdateStages.WithAgentUpdate {
         /**
          * Executes the update request.
@@ -843,6 +873,17 @@ public interface HostPool {
              * @return the next definition stage.
              */
             Update withStartVMOnConnect(Boolean startVMOnConnect);
+        }
+        /** The stage of the HostPool update allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Enabled to allow this resource to be access from the public
+             * network.
+             *
+             * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
+             * @return the next definition stage.
+             */
+            Update withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess);
         }
         /** The stage of the HostPool update allowing to specify agentUpdate. */
         interface WithAgentUpdate {
