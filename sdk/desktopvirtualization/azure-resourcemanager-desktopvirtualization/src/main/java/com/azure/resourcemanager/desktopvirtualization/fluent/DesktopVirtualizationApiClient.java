@@ -73,6 +73,13 @@ public interface DesktopVirtualizationApiClient {
     ScalingPlanPooledSchedulesClient getScalingPlanPooledSchedules();
 
     /**
+     * Gets the ScalingPlanPersonalSchedulesClient object to access its operations.
+     *
+     * @return the ScalingPlanPersonalSchedulesClient object.
+     */
+    ScalingPlanPersonalSchedulesClient getScalingPlanPersonalSchedules();
+
+    /**
      * Gets the ApplicationGroupsClient object to access its operations.
      *
      * @return the ApplicationGroupsClient object.

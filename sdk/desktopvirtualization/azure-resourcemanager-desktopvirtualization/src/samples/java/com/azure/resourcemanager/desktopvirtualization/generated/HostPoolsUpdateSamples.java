@@ -5,24 +5,21 @@
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
-import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
-import com.azure.resourcemanager.desktopvirtualization.models.MaintenanceWindowPatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostComponentUpdateType;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for HostPools Update. */
 public final class HostPoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-09-09/examples/HostPool_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-01-30-preview/examples/HostPool_Update.json
      */
     /**
      * Sample code: HostPool_Update.
@@ -58,12 +55,7 @@ public final class HostPoolsUpdateSamples {
                 new AgentUpdatePatchProperties()
                     .withType(SessionHostComponentUpdateType.SCHEDULED)
                     .withUseSessionHostLocalTime(false)
-                    .withMaintenanceWindowTimeZone("Alaskan Standard Time")
-                    .withMaintenanceWindows(
-                        Arrays
-                            .asList(
-                                new MaintenanceWindowPatchProperties().withHour(7).withDayOfWeek(DayOfWeek.FRIDAY),
-                                new MaintenanceWindowPatchProperties().withHour(8).withDayOfWeek(DayOfWeek.SATURDAY))))
+                    .withMaintenanceWindowTimeZone("Alaskan Standard Time"))
             .apply();
     }
 

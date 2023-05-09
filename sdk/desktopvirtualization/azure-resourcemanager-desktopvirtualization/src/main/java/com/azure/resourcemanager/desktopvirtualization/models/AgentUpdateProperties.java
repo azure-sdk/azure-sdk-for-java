@@ -6,7 +6,6 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /** The session host configuration for updating agent, monitoring agent, and stack component. */
 @Fluent
@@ -30,12 +29,6 @@ public final class AgentUpdateProperties {
      */
     @JsonProperty(value = "maintenanceWindowTimeZone")
     private String maintenanceWindowTimeZone;
-
-    /*
-     * List of maintenance windows. Maintenance windows are 2 hours long.
-     */
-    @JsonProperty(value = "maintenanceWindows")
-    private List<MaintenanceWindowProperties> maintenanceWindows;
 
     /** Creates an instance of AgentUpdateProperties class. */
     public AgentUpdateProperties() {
@@ -106,33 +99,10 @@ public final class AgentUpdateProperties {
     }
 
     /**
-     * Get the maintenanceWindows property: List of maintenance windows. Maintenance windows are 2 hours long.
-     *
-     * @return the maintenanceWindows value.
-     */
-    public List<MaintenanceWindowProperties> maintenanceWindows() {
-        return this.maintenanceWindows;
-    }
-
-    /**
-     * Set the maintenanceWindows property: List of maintenance windows. Maintenance windows are 2 hours long.
-     *
-     * @param maintenanceWindows the maintenanceWindows value to set.
-     * @return the AgentUpdateProperties object itself.
-     */
-    public AgentUpdateProperties withMaintenanceWindows(List<MaintenanceWindowProperties> maintenanceWindows) {
-        this.maintenanceWindows = maintenanceWindows;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (maintenanceWindows() != null) {
-            maintenanceWindows().forEach(e -> e.validate());
-        }
     }
 }

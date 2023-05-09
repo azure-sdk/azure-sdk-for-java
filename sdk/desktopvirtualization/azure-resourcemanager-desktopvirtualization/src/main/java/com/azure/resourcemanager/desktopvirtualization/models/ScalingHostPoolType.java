@@ -13,6 +13,9 @@ public final class ScalingHostPoolType extends ExpandableStringEnum<ScalingHostP
     /** Static value Pooled for ScalingHostPoolType. */
     public static final ScalingHostPoolType POOLED = fromString("Pooled");
 
+    /** Static value Personal for ScalingHostPoolType. */
+    public static final ScalingHostPoolType PERSONAL = fromString("Personal");
+
     /**
      * Creates a new instance of ScalingHostPoolType value.
      *

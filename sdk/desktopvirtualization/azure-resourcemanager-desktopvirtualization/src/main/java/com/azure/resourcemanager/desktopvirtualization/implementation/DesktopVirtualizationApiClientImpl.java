@@ -30,6 +30,7 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.HostPoolsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixImagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixPackagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPersonalSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPooledSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlansClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostsClient;
@@ -168,6 +169,18 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         return this.scalingPlanPooledSchedules;
     }
 
+    /** The ScalingPlanPersonalSchedulesClient object to access its operations. */
+    private final ScalingPlanPersonalSchedulesClient scalingPlanPersonalSchedules;
+
+    /**
+     * Gets the ScalingPlanPersonalSchedulesClient object to access its operations.
+     *
+     * @return the ScalingPlanPersonalSchedulesClient object.
+     */
+    public ScalingPlanPersonalSchedulesClient getScalingPlanPersonalSchedules() {
+        return this.scalingPlanPersonalSchedules;
+    }
+
     /** The ApplicationGroupsClient object to access its operations. */
     private final ApplicationGroupsClient applicationGroups;
 
@@ -298,11 +311,12 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-09";
+        this.apiVersion = "2023-01-30-preview";
         this.operations = new OperationsClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.scalingPlans = new ScalingPlansClientImpl(this);
         this.scalingPlanPooledSchedules = new ScalingPlanPooledSchedulesClientImpl(this);
+        this.scalingPlanPersonalSchedules = new ScalingPlanPersonalSchedulesClientImpl(this);
         this.applicationGroups = new ApplicationGroupsClientImpl(this);
         this.startMenuItems = new StartMenuItemsClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);

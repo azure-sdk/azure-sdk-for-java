@@ -32,6 +32,7 @@ import com.azure.resourcemanager.desktopvirtualization.implementation.HostPoolsI
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixImagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.OperationsImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlanPersonalSchedulesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlanPooledSchedulesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlansImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostsImpl;
@@ -45,6 +46,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.HostPools;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixImages;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.Operations;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPersonalSchedules;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedules;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlans;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHosts;
@@ -67,6 +69,8 @@ public final class DesktopVirtualizationManager {
     private ScalingPlans scalingPlans;
 
     private ScalingPlanPooledSchedules scalingPlanPooledSchedules;
+
+    private ScalingPlanPersonalSchedules scalingPlanPersonalSchedules;
 
     private ApplicationGroups applicationGroups;
 
@@ -252,7 +256,7 @@ public final class DesktopVirtualizationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.desktopvirtualization")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -356,6 +360,19 @@ public final class DesktopVirtualizationManager {
                 new ScalingPlanPooledSchedulesImpl(clientObject.getScalingPlanPooledSchedules(), this);
         }
         return scalingPlanPooledSchedules;
+    }
+
+    /**
+     * Gets the resource collection API of ScalingPlanPersonalSchedules. It manages ScalingPlanPersonalSchedule.
+     *
+     * @return Resource collection API of ScalingPlanPersonalSchedules.
+     */
+    public ScalingPlanPersonalSchedules scalingPlanPersonalSchedules() {
+        if (this.scalingPlanPersonalSchedules == null) {
+            this.scalingPlanPersonalSchedules =
+                new ScalingPlanPersonalSchedulesImpl(clientObject.getScalingPlanPersonalSchedules(), this);
+        }
+        return scalingPlanPersonalSchedules;
     }
 
     /**
