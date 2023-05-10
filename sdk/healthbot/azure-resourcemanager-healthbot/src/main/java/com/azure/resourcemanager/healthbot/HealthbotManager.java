@@ -37,7 +37,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to HealthbotManager. Microsoft Healthcare Bot is a cloud platform that empowers developers in Healthcare
+ * Entry point to HealthbotManager. Azure Health Bot is a cloud platform that empowers developers in Healthcare
  * organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help
  * them improve processes and reduce costs.
  */
@@ -211,7 +211,7 @@ public final class HealthbotManager {
                 .append("-")
                 .append("com.azure.resourcemanager.healthbot")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
