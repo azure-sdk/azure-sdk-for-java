@@ -14,6 +14,15 @@ public final class GetInsightsError extends ExpandableStringEnum<GetInsightsErro
     public static final GetInsightsError INSIGHT = fromString("Insight");
 
     /**
+     * Creates a new instance of GetInsightsError value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public GetInsightsError() {
+    }
+
+    /**
      * Creates or finds a GetInsightsError from its string representation.
      *
      * @param name a name to look for.
