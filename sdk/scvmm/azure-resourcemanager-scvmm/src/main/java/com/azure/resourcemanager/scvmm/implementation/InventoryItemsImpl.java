@@ -27,15 +27,6 @@ public final class InventoryItemsImpl implements InventoryItems {
         this.serviceManager = serviceManager;
     }
 
-    public InventoryItem get(String resourceGroupName, String vmmServerName, String inventoryItemName) {
-        InventoryItemInner inner = this.serviceClient().get(resourceGroupName, vmmServerName, inventoryItemName);
-        if (inner != null) {
-            return new InventoryItemImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<InventoryItem> getWithResponse(
         String resourceGroupName, String vmmServerName, String inventoryItemName, Context context) {
         Response<InventoryItemInner> inner =
@@ -51,13 +42,22 @@ public final class InventoryItemsImpl implements InventoryItems {
         }
     }
 
-    public void delete(String resourceGroupName, String vmmServerName, String inventoryItemName) {
-        this.serviceClient().delete(resourceGroupName, vmmServerName, inventoryItemName);
+    public InventoryItem get(String resourceGroupName, String vmmServerName, String inventoryItemName) {
+        InventoryItemInner inner = this.serviceClient().get(resourceGroupName, vmmServerName, inventoryItemName);
+        if (inner != null) {
+            return new InventoryItemImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String vmmServerName, String inventoryItemName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, vmmServerName, inventoryItemName, context);
+    }
+
+    public void delete(String resourceGroupName, String vmmServerName, String inventoryItemName) {
+        this.serviceClient().delete(resourceGroupName, vmmServerName, inventoryItemName);
     }
 
     public PagedIterable<InventoryItem> listByVmmServer(String resourceGroupName, String vmmServerName) {

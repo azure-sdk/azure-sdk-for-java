@@ -7,6 +7,7 @@ package com.azure.resourcemanager.scvmm.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.scvmm.models.AvailabilitySetListItem;
 import com.azure.resourcemanager.scvmm.models.Checkpoint;
+import com.azure.resourcemanager.scvmm.models.GuestAgentProfile;
 import com.azure.resourcemanager.scvmm.models.HardwareProfile;
 import com.azure.resourcemanager.scvmm.models.NetworkProfile;
 import com.azure.resourcemanager.scvmm.models.OsProfile;
@@ -46,6 +47,12 @@ public final class VirtualMachineProperties {
      */
     @JsonProperty(value = "checkpointType")
     private String checkpointType;
+
+    /*
+     * Last restored checkpoint in the vm.
+     */
+    @JsonProperty(value = "lastRestoredVMCheckpoint", access = JsonProperty.Access.WRITE_ONLY)
+    private Checkpoint lastRestoredVMCheckpoint;
 
     /*
      * Checkpoints in the vm.
@@ -108,10 +115,20 @@ public final class VirtualMachineProperties {
     private String powerState;
 
     /*
+     * Guest agent status properties.
+     */
+    @JsonProperty(value = "guestAgentProfile")
+    private GuestAgentProfile guestAgentProfile;
+
+    /*
      * Gets or sets the provisioning state.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of VirtualMachineProperties class. */
+    public VirtualMachineProperties() {
+    }
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
@@ -211,6 +228,15 @@ public final class VirtualMachineProperties {
     public VirtualMachineProperties withCheckpointType(String checkpointType) {
         this.checkpointType = checkpointType;
         return this;
+    }
+
+    /**
+     * Get the lastRestoredVMCheckpoint property: Last restored checkpoint in the vm.
+     *
+     * @return the lastRestoredVMCheckpoint value.
+     */
+    public Checkpoint lastRestoredVMCheckpoint() {
+        return this.lastRestoredVMCheckpoint;
     }
 
     /**
@@ -403,6 +429,26 @@ public final class VirtualMachineProperties {
     }
 
     /**
+     * Get the guestAgentProfile property: Guest agent status properties.
+     *
+     * @return the guestAgentProfile value.
+     */
+    public GuestAgentProfile guestAgentProfile() {
+        return this.guestAgentProfile;
+    }
+
+    /**
+     * Set the guestAgentProfile property: Guest agent status properties.
+     *
+     * @param guestAgentProfile the guestAgentProfile value to set.
+     * @return the VirtualMachineProperties object itself.
+     */
+    public VirtualMachineProperties withGuestAgentProfile(GuestAgentProfile guestAgentProfile) {
+        this.guestAgentProfile = guestAgentProfile;
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: Gets or sets the provisioning state.
      *
      * @return the provisioningState value.
@@ -417,6 +463,9 @@ public final class VirtualMachineProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (lastRestoredVMCheckpoint() != null) {
+            lastRestoredVMCheckpoint().validate();
+        }
         if (checkpoints() != null) {
             checkpoints().forEach(e -> e.validate());
         }
@@ -434,6 +483,9 @@ public final class VirtualMachineProperties {
         }
         if (storageProfile() != null) {
             storageProfile().validate();
+        }
+        if (guestAgentProfile() != null) {
+            guestAgentProfile().validate();
         }
     }
 }

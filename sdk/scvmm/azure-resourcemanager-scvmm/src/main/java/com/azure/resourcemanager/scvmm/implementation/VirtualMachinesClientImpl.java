@@ -70,11 +70,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ScvmmClientVirtualMa")
-    private interface VirtualMachinesService {
+    public interface VirtualMachinesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineInner>> getByResourceGroup(
@@ -88,8 +87,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -104,8 +102,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -116,13 +113,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             @QueryParam("api-version") String apiVersion,
             @QueryParam("retain") Boolean retain,
             @QueryParam("force") Boolean force,
+            @QueryParam("deleteFromHost") Boolean deleteFromHost,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -137,8 +134,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -153,8 +149,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -168,8 +163,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}/restart")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}/restart")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> restart(
@@ -183,8 +177,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}/createCheckpoint")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}/createCheckpoint")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createCheckpoint(
@@ -199,8 +192,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}/deleteCheckpoint")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}/deleteCheckpoint")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> deleteCheckpoint(
@@ -215,8 +207,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines/{virtualMachineName}/restoreCheckpoint")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines/{virtualMachineName}/restoreCheckpoint")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> restoreCheckpoint(
@@ -231,8 +222,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachines")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachines")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineListResult>> listByResourceGroup(
@@ -276,7 +266,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -326,7 +318,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -374,7 +368,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -386,33 +382,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualMachineInner> getByResourceGroupAsync(String resourceGroupName, String virtualMachineName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualMachineName)
-            .flatMap(
-                (Response<VirtualMachineInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the VirtualMachines resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName) {
-        return getByResourceGroupAsync(resourceGroupName, virtualMachineName).block();
-    }
-
-    /**
-     * Implements VirtualMachine GET method.
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -429,7 +405,26 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the VirtualMachines resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, Context.NONE).getValue();
+    }
+
+    /**
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -486,7 +481,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -541,7 +538,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -567,7 +566,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -591,7 +592,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -604,11 +607,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -622,11 +627,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -645,7 +652,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -665,7 +674,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -682,7 +693,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -700,13 +713,16 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -714,7 +730,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force) {
+        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Boolean deleteFromHost) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -748,19 +764,23 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                             this.client.getApiVersion(),
                             retain,
                             force,
+                            deleteFromHost,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -769,7 +789,12 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -801,18 +826,22 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                 this.client.getApiVersion(),
                 retain,
                 force,
+                deleteFromHost,
                 accept,
                 context);
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -820,9 +849,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force) {
+        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Boolean deleteFromHost) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineName, retain, force);
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -830,13 +859,41 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualMachineName) {
+        final Boolean retain = null;
+        final Boolean force = null;
+        final Boolean deleteFromHost = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -845,42 +902,53 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineName, retain, force, context);
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineName) {
+        final Boolean retain = null;
+        final Boolean force = null;
+        final Boolean deleteFromHost = null;
+        return this
+            .beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost)
+            .getSyncPoller();
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -889,32 +957,45 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, context).getSyncPoller();
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context) {
+        return this
+            .beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost, context)
+            .getSyncPoller();
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Boolean deleteFromHost) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -927,19 +1008,23 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName) {
         final Boolean retain = null;
         final Boolean force = null;
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force)
+        final Boolean deleteFromHost = null;
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -948,31 +1033,21 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, context)
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force) {
-        deleteAsync(resourceGroupName, virtualMachineName, retain, force).block();
-    }
-
-    /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -984,17 +1059,21 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     public void delete(String resourceGroupName, String virtualMachineName) {
         final Boolean retain = null;
         final Boolean force = null;
-        deleteAsync(resourceGroupName, virtualMachineName, retain, force).block();
+        final Boolean deleteFromHost = null;
+        deleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost).block();
     }
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1002,12 +1081,19 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
-        deleteAsync(resourceGroupName, virtualMachineName, retain, force, context).block();
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context) {
+        deleteAsync(resourceGroupName, virtualMachineName, retain, force, deleteFromHost, context).block();
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1064,7 +1150,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1119,7 +1207,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1144,7 +1234,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1168,7 +1260,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1181,11 +1275,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1199,11 +1295,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1222,7 +1320,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1242,7 +1342,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1258,7 +1360,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1276,7 +1380,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1330,7 +1436,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1382,7 +1490,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1403,7 +1513,31 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStopAsync(String resourceGroupName, String virtualMachineName) {
+        final StopVirtualMachineOptions body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1426,24 +1560,27 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine stop action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStop(
-        String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        return beginStopAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String virtualMachineName) {
+        final StopVirtualMachineOptions body = null;
+        return this.beginStopAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1457,11 +1594,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStop(
         String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body, Context context) {
-        return beginStopAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginStopAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1479,7 +1618,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1497,7 +1638,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1517,22 +1660,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        stopAsync(resourceGroupName, virtualMachineName, body).block();
-    }
-
-    /**
-     * Stop virtual machine.
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1547,7 +1677,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1564,7 +1696,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1613,7 +1747,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1660,7 +1796,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1679,7 +1817,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1700,7 +1840,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1711,11 +1853,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String virtualMachineName) {
-        return beginStartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
+        return this.beginStartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1728,11 +1872,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(
         String resourceGroupName, String virtualMachineName, Context context) {
-        return beginStartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
+        return this.beginStartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1749,7 +1895,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1767,7 +1915,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1781,7 +1931,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1796,7 +1948,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1845,7 +1999,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1892,7 +2048,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1911,7 +2069,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1933,7 +2093,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1944,11 +2106,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(String resourceGroupName, String virtualMachineName) {
-        return beginRestartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
+        return this.beginRestartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1961,11 +2125,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(
         String resourceGroupName, String virtualMachineName, Context context) {
-        return beginRestartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
+        return this.beginRestartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -1982,7 +2148,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2000,7 +2168,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2014,7 +2184,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2029,7 +2201,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2083,7 +2257,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2135,7 +2311,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2157,7 +2335,33 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginCreateCheckpointAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineCreateCheckpoint body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createCheckpointWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2180,11 +2384,12 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine create checkpoint action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2192,12 +2397,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCreateCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body) {
-        return beginCreateCheckpointAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineCreateCheckpoint body = null;
+        return this.beginCreateCheckpointAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2211,11 +2419,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCreateCheckpoint(
         String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body, Context context) {
-        return beginCreateCheckpointAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginCreateCheckpointAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2234,7 +2444,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2252,7 +2464,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2272,23 +2486,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine create checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body) {
-        createCheckpointAsync(resourceGroupName, virtualMachineName, body).block();
-    }
-
-    /**
-     * Creates a checkpoint in virtual machine.
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2303,7 +2503,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2320,7 +2522,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2374,7 +2578,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2426,7 +2632,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2448,7 +2656,33 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteCheckpointAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineDeleteCheckpoint body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteCheckpointWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2471,11 +2705,12 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine delete checkpoint action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2483,12 +2718,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDeleteCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body) {
-        return beginDeleteCheckpointAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineDeleteCheckpoint body = null;
+        return this.beginDeleteCheckpointAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2502,11 +2740,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDeleteCheckpoint(
         String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body, Context context) {
-        return beginDeleteCheckpointAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginDeleteCheckpointAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2525,7 +2765,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2543,7 +2785,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2563,23 +2807,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine delete checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body) {
-        deleteCheckpointAsync(resourceGroupName, virtualMachineName, body).block();
-    }
-
-    /**
-     * Deletes a checkpoint in virtual machine.
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2594,7 +2824,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2611,7 +2843,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2665,7 +2899,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2717,7 +2953,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2739,7 +2977,33 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginRestoreCheckpointAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineRestoreCheckpoint body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            restoreCheckpointWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2762,11 +3026,12 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine restore checkpoint action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2774,12 +3039,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestoreCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body) {
-        return beginRestoreCheckpointAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineRestoreCheckpoint body = null;
+        return this.beginRestoreCheckpointAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2793,11 +3061,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestoreCheckpoint(
         String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body, Context context) {
-        return beginRestoreCheckpointAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginRestoreCheckpointAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2816,7 +3086,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2834,7 +3106,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2854,23 +3128,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine restore checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void restoreCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body) {
-        restoreCheckpointAsync(resourceGroupName, virtualMachineName, body).block();
-    }
-
-    /**
-     * Restores to a checkpoint in virtual machine.
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2885,7 +3145,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -2902,7 +3164,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2953,7 +3217,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -3003,7 +3269,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3019,7 +3287,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -3036,7 +3306,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3050,7 +3322,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -3065,7 +3339,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3109,7 +3385,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3152,7 +3430,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3165,7 +3445,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3180,7 +3462,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3192,7 +3476,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3208,7 +3494,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3244,7 +3531,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3281,7 +3569,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3317,7 +3606,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

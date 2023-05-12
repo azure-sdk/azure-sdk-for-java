@@ -150,6 +150,10 @@ public final class VirtualMachineTemplateImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public VirtualMachineTemplateInner innerModel() {
         return this.innerObject;
     }

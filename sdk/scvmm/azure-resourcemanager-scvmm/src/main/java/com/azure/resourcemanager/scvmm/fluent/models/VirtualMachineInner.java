@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.scvmm.models.AvailabilitySetListItem;
 import com.azure.resourcemanager.scvmm.models.Checkpoint;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
+import com.azure.resourcemanager.scvmm.models.GuestAgentProfile;
 import com.azure.resourcemanager.scvmm.models.HardwareProfile;
+import com.azure.resourcemanager.scvmm.models.Identity;
 import com.azure.resourcemanager.scvmm.models.NetworkProfile;
 import com.azure.resourcemanager.scvmm.models.OsProfile;
 import com.azure.resourcemanager.scvmm.models.StorageProfile;
@@ -39,6 +41,16 @@ public final class VirtualMachineInner extends Resource {
      */
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
+
+    /*
+     * The identity of the resource.
+     */
+    @JsonProperty(value = "identity")
+    private Identity identity;
+
+    /** Creates an instance of VirtualMachineInner class. */
+    public VirtualMachineInner() {
+    }
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -75,6 +87,26 @@ public final class VirtualMachineInner extends Resource {
      */
     public VirtualMachineInner withExtendedLocation(ExtendedLocation extendedLocation) {
         this.extendedLocation = extendedLocation;
+        return this;
+    }
+
+    /**
+     * Get the identity property: The identity of the resource.
+     *
+     * @return the identity value.
+     */
+    public Identity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The identity of the resource.
+     *
+     * @param identity the identity value to set.
+     * @return the VirtualMachineInner object itself.
+     */
+    public VirtualMachineInner withIdentity(Identity identity) {
+        this.identity = identity;
         return this;
     }
 
@@ -205,6 +237,15 @@ public final class VirtualMachineInner extends Resource {
         }
         this.innerProperties().withCheckpointType(checkpointType);
         return this;
+    }
+
+    /**
+     * Get the lastRestoredVMCheckpoint property: Last restored checkpoint in the vm.
+     *
+     * @return the lastRestoredVMCheckpoint value.
+     */
+    public Checkpoint lastRestoredVMCheckpoint() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastRestoredVMCheckpoint();
     }
 
     /**
@@ -424,6 +465,29 @@ public final class VirtualMachineInner extends Resource {
     }
 
     /**
+     * Get the guestAgentProfile property: Guest agent status properties.
+     *
+     * @return the guestAgentProfile value.
+     */
+    public GuestAgentProfile guestAgentProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().guestAgentProfile();
+    }
+
+    /**
+     * Set the guestAgentProfile property: Guest agent status properties.
+     *
+     * @param guestAgentProfile the guestAgentProfile value to set.
+     * @return the VirtualMachineInner object itself.
+     */
+    public VirtualMachineInner withGuestAgentProfile(GuestAgentProfile guestAgentProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualMachineProperties();
+        }
+        this.innerProperties().withGuestAgentProfile(guestAgentProfile);
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: Gets or sets the provisioning state.
      *
      * @return the provisioningState value.
@@ -453,6 +517,9 @@ public final class VirtualMachineInner extends Resource {
                         "Missing required property extendedLocation in model VirtualMachineInner"));
         } else {
             extendedLocation().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
     }
 

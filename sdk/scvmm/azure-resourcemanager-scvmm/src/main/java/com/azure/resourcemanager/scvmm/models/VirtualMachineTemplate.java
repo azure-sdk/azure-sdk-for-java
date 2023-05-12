@@ -204,6 +204,13 @@ public interface VirtualMachineTemplate {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.scvmm.fluent.models.VirtualMachineTemplateInner object.
      *
      * @return the inner object.

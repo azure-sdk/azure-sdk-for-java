@@ -18,9 +18,8 @@ public final class NetworkInterfaces {
     private String name;
 
     /*
-     * Gets the display name of the network interface as shown in the
-     * vmmServer. This is the fallback label for a NIC when the name is not
-     * set.
+     * Gets the display name of the network interface as shown in the vmmServer. This is the fallback label for a NIC
+     * when the name is not set.
      */
     @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
@@ -44,15 +43,13 @@ public final class NetworkInterfaces {
     private String macAddress;
 
     /*
-     * Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource
-     * to connect the nic.
+     * Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource to connect the nic.
      */
     @JsonProperty(value = "virtualNetworkId")
     private String virtualNetworkId;
 
     /*
-     * Gets or sets the name of the virtual network in vmmServer that the nic
-     * is connected to.
+     * Gets or sets the name of the virtual network in vmmServer that the nic is connected to.
      */
     @JsonProperty(value = "networkName", access = JsonProperty.Access.WRITE_ONLY)
     private String networkName;
@@ -80,6 +77,10 @@ public final class NetworkInterfaces {
      */
     @JsonProperty(value = "nicId")
     private String nicId;
+
+    /** Creates an instance of NetworkInterfaces class. */
+    public NetworkInterfaces() {
+    }
 
     /**
      * Get the name property: Gets or sets the name of the network interface.

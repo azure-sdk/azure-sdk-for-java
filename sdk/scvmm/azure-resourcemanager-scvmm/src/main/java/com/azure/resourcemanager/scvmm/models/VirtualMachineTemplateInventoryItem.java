@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.scvmm.fluent.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -38,6 +37,10 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
      */
     @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
+
+    /** Creates an instance of VirtualMachineTemplateInventoryItem class. */
+    public VirtualMachineTemplateInventoryItem() {
+    }
 
     /**
      * Get the cpuCount property: Gets or sets the desired number of vCPUs for the vm.
