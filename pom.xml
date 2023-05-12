@@ -162,6 +162,7 @@
     <module>sdk/selfhelp</module>
     <module>sdk/servicebus</module>
     <module>sdk/servicefabric</module>
+    <module>sdk/servicefabricmesh</module>
     <module>sdk/servicelinker</module>
     <module>sdk/servicenetworking</module>
     <module>sdk/signalr</module>
