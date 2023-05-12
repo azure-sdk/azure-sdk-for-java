@@ -10,7 +10,7 @@ import java.util.List;
 
 /** The settings for the CORS configuration of the service instance. */
 @Fluent
-public final class FhirServiceCorsConfiguration {
+public final class CorsConfiguration {
     /*
      * The origins to be allowed via CORS.
      */
@@ -41,8 +41,8 @@ public final class FhirServiceCorsConfiguration {
     @JsonProperty(value = "allowCredentials")
     private Boolean allowCredentials;
 
-    /** Creates an instance of FhirServiceCorsConfiguration class. */
-    public FhirServiceCorsConfiguration() {
+    /** Creates an instance of CorsConfiguration class. */
+    public CorsConfiguration() {
     }
 
     /**
@@ -58,9 +58,9 @@ public final class FhirServiceCorsConfiguration {
      * Set the origins property: The origins to be allowed via CORS.
      *
      * @param origins the origins value to set.
-     * @return the FhirServiceCorsConfiguration object itself.
+     * @return the CorsConfiguration object itself.
      */
-    public FhirServiceCorsConfiguration withOrigins(List<String> origins) {
+    public CorsConfiguration withOrigins(List<String> origins) {
         this.origins = origins;
         return this;
     }
@@ -78,9 +78,9 @@ public final class FhirServiceCorsConfiguration {
      * Set the headers property: The headers to be allowed via CORS.
      *
      * @param headers the headers value to set.
-     * @return the FhirServiceCorsConfiguration object itself.
+     * @return the CorsConfiguration object itself.
      */
-    public FhirServiceCorsConfiguration withHeaders(List<String> headers) {
+    public CorsConfiguration withHeaders(List<String> headers) {
         this.headers = headers;
         return this;
     }
@@ -98,9 +98,9 @@ public final class FhirServiceCorsConfiguration {
      * Set the methods property: The methods to be allowed via CORS.
      *
      * @param methods the methods value to set.
-     * @return the FhirServiceCorsConfiguration object itself.
+     * @return the CorsConfiguration object itself.
      */
-    public FhirServiceCorsConfiguration withMethods(List<String> methods) {
+    public CorsConfiguration withMethods(List<String> methods) {
         this.methods = methods;
         return this;
     }
@@ -118,9 +118,9 @@ public final class FhirServiceCorsConfiguration {
      * Set the maxAge property: The max age to be allowed via CORS.
      *
      * @param maxAge the maxAge value to set.
-     * @return the FhirServiceCorsConfiguration object itself.
+     * @return the CorsConfiguration object itself.
      */
-    public FhirServiceCorsConfiguration withMaxAge(Integer maxAge) {
+    public CorsConfiguration withMaxAge(Integer maxAge) {
         this.maxAge = maxAge;
         return this;
     }
@@ -138,9 +138,9 @@ public final class FhirServiceCorsConfiguration {
      * Set the allowCredentials property: If credentials are allowed via CORS.
      *
      * @param allowCredentials the allowCredentials value to set.
-     * @return the FhirServiceCorsConfiguration object itself.
+     * @return the CorsConfiguration object itself.
      */
-    public FhirServiceCorsConfiguration withAllowCredentials(Boolean allowCredentials) {
+    public CorsConfiguration withAllowCredentials(Boolean allowCredentials) {
         this.allowCredentials = allowCredentials;
         return this;
     }
