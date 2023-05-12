@@ -12,9 +12,9 @@ public final class DiagnosticsGetSamples {
     /**
      * Sample code: Gets a Diagnostic for a KeyVault resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
-    public static void getsADiagnosticForAKeyVaultResource(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+    public static void getsADiagnosticForAKeyVaultResource(com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .diagnostics()
             .getWithResponse(

@@ -21,10 +21,10 @@ public final class DiagnosticsImpl implements Diagnostics {
 
     private final DiagnosticsClient innerClient;
 
-    private final com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager;
+    private final com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager;
 
     public DiagnosticsImpl(
-        DiagnosticsClient innerClient, com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
+        DiagnosticsClient innerClient, com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -132,7 +132,7 @@ public final class DiagnosticsImpl implements Diagnostics {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.selfhelp.SelfHelpManager manager() {
+    private com.azure.resourcemanager.selfhelp.SelfhelpManager manager() {
         return this.serviceManager;
     }
 

@@ -38,8 +38,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to SelfHelpManager. Help RP provider. */
-public final class SelfHelpManager {
+/** Entry point to SelfhelpManager. Help RP provider. */
+public final class SelfhelpManager {
     private Operations operations;
 
     private Diagnostics diagnostics;
@@ -48,7 +48,7 @@ public final class SelfHelpManager {
 
     private final HelpRP clientObject;
 
-    private SelfHelpManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private SelfhelpManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject =
@@ -60,38 +60,38 @@ public final class SelfHelpManager {
     }
 
     /**
-     * Creates an instance of Self Help service API entry point.
+     * Creates an instance of selfhelp service API entry point.
      *
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the Self Help service API instance.
+     * @return the selfhelp service API instance.
      */
-    public static SelfHelpManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static SelfhelpManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of Self Help service API entry point.
+     * Creates an instance of selfhelp service API entry point.
      *
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the Self Help service API instance.
+     * @return the selfhelp service API instance.
      */
-    public static SelfHelpManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static SelfhelpManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new SelfHelpManager(httpPipeline, profile, null);
+        return new SelfhelpManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create SelfHelpManager with optional configuration.
+     * Gets a Configurable instance that can be used to create SelfhelpManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new SelfHelpManager.Configurable();
+        return new SelfhelpManager.Configurable();
     }
 
     /** The Configurable allowing configurations to be set. */
@@ -194,13 +194,13 @@ public final class SelfHelpManager {
         }
 
         /**
-         * Creates an instance of Self Help service API entry point.
+         * Creates an instance of selfhelp service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the Self Help service API instance.
+         * @return the selfhelp service API instance.
          */
-        public SelfHelpManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public SelfhelpManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
@@ -263,7 +263,7 @@ public final class SelfHelpManager {
                     .httpClient(httpClient)
                     .policies(policies.toArray(new HttpPipelinePolicy[0]))
                     .build();
-            return new SelfHelpManager(httpPipeline, profile, defaultPollInterval);
+            return new SelfhelpManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 

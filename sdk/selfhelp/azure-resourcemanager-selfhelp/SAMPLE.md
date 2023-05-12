@@ -27,10 +27,10 @@ public final class DiagnosticsCheckNameAvailabilitySamples {
     /**
      * Sample code: Example when name is not available for a Diagnostic resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
     public static void exampleWhenNameIsNotAvailableForADiagnosticResource(
-        com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .diagnostics()
             .checkNameAvailabilityWithResponse(
@@ -45,10 +45,10 @@ public final class DiagnosticsCheckNameAvailabilitySamples {
     /**
      * Sample code: Example when name is available for a Diagnostic resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
     public static void exampleWhenNameIsAvailableForADiagnosticResource(
-        com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .diagnostics()
             .checkNameAvailabilityWithResponse(
@@ -70,10 +70,10 @@ public final class DiagnosticsCreateSamples {
     /**
      * Sample code: Creates a Diagnostic for a KeyVault resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
     public static void createsADiagnosticForAKeyVaultResource(
-        com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .diagnostics()
             .define("VMNotWorkingInsight")
@@ -95,9 +95,9 @@ public final class DiagnosticsGetSamples {
     /**
      * Sample code: Gets a Diagnostic for a KeyVault resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
-    public static void getsADiagnosticForAKeyVaultResource(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+    public static void getsADiagnosticForAKeyVaultResource(com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .diagnostics()
             .getWithResponse(
@@ -119,10 +119,10 @@ public final class DiscoverySolutionListSamples {
     /**
      * Sample code: List DiscoverySolutions for a KeyVault resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
     public static void listDiscoverySolutionsForAKeyVaultResource(
-        com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .discoverySolutions()
             .list(
@@ -145,9 +145,9 @@ public final class OperationsListSamples {
     /**
      * Sample code: List All Operations.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
-    public static void listAllOperations(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+    public static void listAllOperations(com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

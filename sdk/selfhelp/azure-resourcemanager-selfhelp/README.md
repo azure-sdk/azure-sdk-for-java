@@ -1,8 +1,8 @@
-# Azure Resource Manager Self Help client library for Java
+# Azure Resource Manager selfhelp client library for Java
 
-Azure Resource Manager Self Help client library for Java.
+Azure Resource Manager selfhelp client library for Java.
 
-This package contains Microsoft Azure SDK for Self Help Management SDK. Help RP provider. Package tag package-2023-01-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for selfhelp Management SDK. Help RP provider. Package tag package-2023-01-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -60,7 +60,7 @@ AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-SelfHelpManager manager = SelfHelpManager
+SelfhelpManager manager = SelfhelpManager
     .authenticate(credential, profile);
 ```
 

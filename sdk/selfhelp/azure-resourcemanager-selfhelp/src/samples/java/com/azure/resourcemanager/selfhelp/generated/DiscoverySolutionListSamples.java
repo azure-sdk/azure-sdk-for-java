@@ -12,10 +12,10 @@ public final class DiscoverySolutionListSamples {
     /**
      * Sample code: List DiscoverySolutions for a KeyVault resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
     public static void listDiscoverySolutionsForAKeyVaultResource(
-        com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .discoverySolutions()
             .list(

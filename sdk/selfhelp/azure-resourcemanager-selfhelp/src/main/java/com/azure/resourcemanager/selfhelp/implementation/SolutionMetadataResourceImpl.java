@@ -13,10 +13,10 @@ import java.util.List;
 public final class SolutionMetadataResourceImpl implements SolutionMetadataResource {
     private SolutionMetadataResourceInner innerObject;
 
-    private final com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager;
+    private final com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager;
 
     SolutionMetadataResourceImpl(
-        SolutionMetadataResourceInner innerObject, com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
+        SolutionMetadataResourceInner innerObject, com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -62,7 +62,7 @@ public final class SolutionMetadataResourceImpl implements SolutionMetadataResou
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.selfhelp.SelfHelpManager manager() {
+    private com.azure.resourcemanager.selfhelp.SelfhelpManager manager() {
         return this.serviceManager;
     }
 }

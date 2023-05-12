@@ -12,10 +12,10 @@ public final class DiagnosticsCreateSamples {
     /**
      * Sample code: Creates a Diagnostic for a KeyVault resource.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
     public static void createsADiagnosticForAKeyVaultResource(
-        com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager
             .diagnostics()
             .define("VMNotWorkingInsight")

@@ -17,10 +17,10 @@ public final class DiscoverySolutionsImpl implements DiscoverySolutions {
 
     private final DiscoverySolutionsClient innerClient;
 
-    private final com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager;
+    private final com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager;
 
     public DiscoverySolutionsImpl(
-        DiscoverySolutionsClient innerClient, com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
+        DiscoverySolutionsClient innerClient, com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -41,7 +41,7 @@ public final class DiscoverySolutionsImpl implements DiscoverySolutions {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.selfhelp.SelfHelpManager manager() {
+    private com.azure.resourcemanager.selfhelp.SelfhelpManager manager() {
         return this.serviceManager;
     }
 }

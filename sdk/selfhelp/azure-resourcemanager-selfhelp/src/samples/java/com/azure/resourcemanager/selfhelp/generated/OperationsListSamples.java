@@ -12,9 +12,9 @@ public final class OperationsListSamples {
     /**
      * Sample code: List All Operations.
      *
-     * @param manager Entry point to SelfHelpManager.
+     * @param manager Entry point to SelfhelpManager.
      */
-    public static void listAllOperations(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+    public static void listAllOperations(com.azure.resourcemanager.selfhelp.SelfhelpManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

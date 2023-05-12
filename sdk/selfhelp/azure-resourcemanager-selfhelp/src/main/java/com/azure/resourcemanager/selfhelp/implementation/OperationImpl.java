@@ -13,9 +13,9 @@ import com.azure.resourcemanager.selfhelp.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager;
+    private final com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager;
 
-    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
+    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -44,7 +44,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.selfhelp.SelfHelpManager manager() {
+    private com.azure.resourcemanager.selfhelp.SelfhelpManager manager() {
         return this.serviceManager;
     }
 }

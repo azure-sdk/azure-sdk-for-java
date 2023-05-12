@@ -18,10 +18,10 @@ import java.util.Map;
 public final class DiagnosticResourceImpl implements DiagnosticResource, DiagnosticResource.Definition {
     private DiagnosticResourceInner innerObject;
 
-    private final com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager;
+    private final com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager;
 
     DiagnosticResourceImpl(
-        DiagnosticResourceInner innerObject, com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
+        DiagnosticResourceInner innerObject, com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -81,7 +81,7 @@ public final class DiagnosticResourceImpl implements DiagnosticResource, Diagnos
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.selfhelp.SelfHelpManager manager() {
+    private com.azure.resourcemanager.selfhelp.SelfhelpManager manager() {
         return this.serviceManager;
     }
 
@@ -112,7 +112,7 @@ public final class DiagnosticResourceImpl implements DiagnosticResource, Diagnos
         return this;
     }
 
-    DiagnosticResourceImpl(String name, com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
+    DiagnosticResourceImpl(String name, com.azure.resourcemanager.selfhelp.SelfhelpManager serviceManager) {
         this.innerObject = new DiagnosticResourceInner();
         this.serviceManager = serviceManager;
         this.diagnosticsResourceName = name;
