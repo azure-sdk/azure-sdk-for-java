@@ -88,7 +88,8 @@ public final class AppendVariableActivity extends ControlActivity {
     }
 
     /**
-     * Get the value property: Value to be appended. Could be a static value or Expression.
+     * Get the value property: Value to be appended. Type: could be a static value matching type of the variable item or
+     * Expression with resultType matching type of the variable item.
      *
      * @return the value value.
      */
@@ -97,7 +98,8 @@ public final class AppendVariableActivity extends ControlActivity {
     }
 
     /**
-     * Set the value property: Value to be appended. Could be a static value or Expression.
+     * Set the value property: Value to be appended. Type: could be a static value matching type of the variable item or
+     * Expression with resultType matching type of the variable item.
      *
      * @param value the value value to set.
      * @return the AppendVariableActivity object itself.
