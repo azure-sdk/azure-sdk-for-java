@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 
 /** Samples for PolicyStates ListQueryResultsForResource. */
@@ -33,7 +32,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 "PolicyEvaluationDetails",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -60,7 +59,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -87,7 +86,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -115,7 +114,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 "components($filter=ComplianceState eq 'NonCompliant' or ComplianceState eq 'Compliant')",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -146,7 +145,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 "components($filter=ComplianceState eq 'NonCompliant' or ComplianceState eq"
                     + " 'Compliant';$apply=groupby((complianceState),aggregate($count as count)))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -173,7 +172,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -200,7 +199,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -227,6 +226,6 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Attestations GetAtResource. */
 public final class AttestationsGetAtResourceSamples {
     /*
@@ -23,6 +21,6 @@ public final class AttestationsGetAtResourceSamples {
             .getAtResourceWithResponse(
                 "subscriptions/35ee058e-5fa0-414c-8145-3ebb8d09b6e2/resourcegroups/myrg/providers/microsoft.compute/virtualMachines/devVM",
                 "790996e6-9871-4b1f-9cd9-ec42cd6ced1e",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

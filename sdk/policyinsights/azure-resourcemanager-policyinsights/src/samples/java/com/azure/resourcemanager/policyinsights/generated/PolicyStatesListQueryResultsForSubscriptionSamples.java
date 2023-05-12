@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 import java.time.OffsetDateTime;
 
@@ -33,7 +32,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -59,7 +58,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 "WpmWfBSvPhkAK6QD",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -86,7 +85,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -111,7 +110,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "PolicyDefinitionAction eq 'deny'",
                 "aggregate($count as NumDenyStates)",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -137,7 +136,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "IsCompliant eq false and (PolicyDefinitionAction ne 'audit' and PolicyDefinitionAction ne 'append')",
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -164,7 +163,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                     + " ResourceId))/groupby((PolicyAssignmentId, PolicySetDefinitionId, PolicyDefinitionId,"
                     + " PolicyDefinitionReferenceId), aggregate($count as NumNonCompliantResources))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -191,6 +190,6 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId), aggregate($count"
                     + " as NumAuditDenyNonComplianceRecords))",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

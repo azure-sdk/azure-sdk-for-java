@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsResourceDetails;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 /** Samples for PolicyRestrictions CheckAtSubscriptionScope. */
 public final class PolicyRestrictionsCheckAtSubscriptionScopeSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-03-01/examples/PolicyRestrictions_CheckAtSubscriptionScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2023-03-01/examples/PolicyRestrictions_CheckAtSubscriptionScope.json
      */
     /**
      * Sample code: Check policy restrictions at subscription scope.
@@ -47,6 +46,42 @@ public final class PolicyRestrictionsCheckAtSubscriptionScopeSamples {
                                     .withField("location")
                                     .withValues(Arrays.asList("eastus", "westus", "westus2", "westeurope")),
                                 new PendingField().withField("tags"))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2023-03-01/examples/PolicyRestrictions_CheckAtSubscriptionScopeIncludeAuditEffect.json
+     */
+    /**
+     * Sample code: Check policy restrictions at subscription scope including audit effect.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void checkPolicyRestrictionsAtSubscriptionScopeIncludingAuditEffect(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) throws IOException {
+        manager
+            .policyRestrictions()
+            .checkAtSubscriptionScopeWithResponse(
+                new CheckRestrictionsRequest()
+                    .withResourceDetails(
+                        new CheckRestrictionsResourceDetails()
+                            .withResourceContent(
+                                SerializerFactory
+                                    .createDefaultManagementSerializerAdapter()
+                                    .deserialize(
+                                        "{\"type\":\"Microsoft.Compute/virtualMachines\",\"properties\":{\"priority\":\"Spot\"}}",
+                                        Object.class,
+                                        SerializerEncoding.JSON))
+                            .withApiVersion("2019-12-01"))
+                    .withPendingFields(
+                        Arrays
+                            .asList(
+                                new PendingField().withField("name").withValues(Arrays.asList("myVMName")),
+                                new PendingField()
+                                    .withField("location")
+                                    .withValues(Arrays.asList("eastus", "westus", "westus2", "westeurope")),
+                                new PendingField().withField("tags")))
+                    .withIncludeAuditEffect(true),
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Attestations GetByResourceGroup. */
 public final class AttestationsGetByResourceGroupSamples {
     /*
@@ -20,6 +18,7 @@ public final class AttestationsGetByResourceGroupSamples {
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
         manager
             .attestations()
-            .getByResourceGroupWithResponse("myRg", "790996e6-9871-4b1f-9cd9-ec42cd6ced1e", Context.NONE);
+            .getByResourceGroupWithResponse(
+                "myRg", "790996e6-9871-4b1f-9cd9-ec42cd6ced1e", com.azure.core.util.Context.NONE);
     }
 }

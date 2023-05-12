@@ -65,11 +65,10 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface PolicyStatesService {
+    public interface PolicyStatesService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers"
-                + "/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForManagementGroup(
@@ -91,8 +90,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers"
-                + "/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
+            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForManagementGroup(
@@ -110,8 +108,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForSubscription(
@@ -132,8 +129,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyStates"
-                + "/{policyStatesSummaryResource}/summarize")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForSubscription(
@@ -150,8 +146,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/policyStates/{policyStatesResource}/queryResults")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForResourceGroup(
@@ -173,8 +168,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/policyStates/{policyStatesSummaryResource}/summarize")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForResourceGroup(
@@ -241,8 +235,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/policyStates/latest/triggerEvaluation")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/policyStates/latest/triggerEvaluation")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> triggerResourceGroupEvaluation(
@@ -255,9 +248,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policySetDefinitions"
-                + "/{policySetDefinitionName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policySetDefinitions/{policySetDefinitionName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForPolicySetDefinition(
@@ -280,9 +271,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policySetDefinitions"
-                + "/{policySetDefinitionName}/providers/Microsoft.PolicyInsights/policyStates"
-                + "/{policyStatesSummaryResource}/summarize")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policySetDefinitions/{policySetDefinitionName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForPolicySetDefinition(
@@ -301,9 +290,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyDefinitions"
-                + "/{policyDefinitionName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyDefinitions/{policyDefinitionName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForPolicyDefinition(
@@ -326,9 +313,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyDefinitions"
-                + "/{policyDefinitionName}/providers/Microsoft.PolicyInsights/policyStates"
-                + "/{policyStatesSummaryResource}/summarize")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyDefinitions/{policyDefinitionName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForPolicyDefinition(
@@ -347,9 +332,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyAssignments"
-                + "/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}"
-                + "/queryResults")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForSubscriptionLevelPolicyAssignment(
@@ -372,9 +355,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyAssignments"
-                + "/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates"
-                + "/{policyStatesSummaryResource}/summarize")
+            "/subscriptions/{subscriptionId}/providers/{authorizationNamespace}/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForSubscriptionLevelPolicyAssignment(
@@ -393,9 +374,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{authorizationNamespace}"
-                + "/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates"
-                + "/{policyStatesResource}/queryResults")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{authorizationNamespace}/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesResource}/queryResults")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PolicyStatesQueryResults>> listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -419,9 +398,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{authorizationNamespace}"
-                + "/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates"
-                + "/{policyStatesSummaryResource}/summarize")
+            "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{authorizationNamespace}/policyAssignments/{policyAssignmentName}/providers/Microsoft.PolicyInsights/policyStates/{policyStatesSummaryResource}/summarize")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummarizeResultsInner>> summarizeForResourceGroupLevelPolicyAssignment(
@@ -2941,7 +2918,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginTriggerSubscriptionEvaluation(String subscriptionId) {
-        return beginTriggerSubscriptionEvaluationAsync(subscriptionId).getSyncPoller();
+        return this.beginTriggerSubscriptionEvaluationAsync(subscriptionId).getSyncPoller();
     }
 
     /**
@@ -2957,7 +2934,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginTriggerSubscriptionEvaluation(
         String subscriptionId, Context context) {
-        return beginTriggerSubscriptionEvaluationAsync(subscriptionId, context).getSyncPoller();
+        return this.beginTriggerSubscriptionEvaluationAsync(subscriptionId, context).getSyncPoller();
     }
 
     /**
@@ -3148,7 +3125,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginTriggerResourceGroupEvaluation(
         String subscriptionId, String resourceGroupName) {
-        return beginTriggerResourceGroupEvaluationAsync(subscriptionId, resourceGroupName).getSyncPoller();
+        return this.beginTriggerResourceGroupEvaluationAsync(subscriptionId, resourceGroupName).getSyncPoller();
     }
 
     /**
@@ -3165,7 +3142,9 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginTriggerResourceGroupEvaluation(
         String subscriptionId, String resourceGroupName, Context context) {
-        return beginTriggerResourceGroupEvaluationAsync(subscriptionId, resourceGroupName, context).getSyncPoller();
+        return this
+            .beginTriggerResourceGroupEvaluationAsync(subscriptionId, resourceGroupName, context)
+            .getSyncPoller();
     }
 
     /**

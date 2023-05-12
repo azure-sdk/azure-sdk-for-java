@@ -24,6 +24,12 @@ public final class CheckRestrictionsRequest {
     @JsonProperty(value = "pendingFields")
     private List<PendingField> pendingFields;
 
+    /*
+     * Whether to include policies with the 'audit' effect in the results. Defaults to false.
+     */
+    @JsonProperty(value = "includeAuditEffect")
+    private Boolean includeAuditEffect;
+
     /** Creates an instance of CheckRestrictionsRequest class. */
     public CheckRestrictionsRequest() {
     }
@@ -67,6 +73,28 @@ public final class CheckRestrictionsRequest {
      */
     public CheckRestrictionsRequest withPendingFields(List<PendingField> pendingFields) {
         this.pendingFields = pendingFields;
+        return this;
+    }
+
+    /**
+     * Get the includeAuditEffect property: Whether to include policies with the 'audit' effect in the results. Defaults
+     * to false.
+     *
+     * @return the includeAuditEffect value.
+     */
+    public Boolean includeAuditEffect() {
+        return this.includeAuditEffect;
+    }
+
+    /**
+     * Set the includeAuditEffect property: Whether to include policies with the 'audit' effect in the results. Defaults
+     * to false.
+     *
+     * @param includeAuditEffect the includeAuditEffect value to set.
+     * @return the CheckRestrictionsRequest object itself.
+     */
+    public CheckRestrictionsRequest withIncludeAuditEffect(Boolean includeAuditEffect) {
+        this.includeAuditEffect = includeAuditEffect;
         return this;
     }
 

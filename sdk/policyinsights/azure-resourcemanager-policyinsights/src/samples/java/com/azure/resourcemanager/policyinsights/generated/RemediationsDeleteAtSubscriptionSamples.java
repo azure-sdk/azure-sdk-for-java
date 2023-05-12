@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.policyinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Remediations DeleteAtSubscription. */
 public final class RemediationsDeleteAtSubscriptionSamples {
     /*
@@ -18,6 +16,6 @@ public final class RemediationsDeleteAtSubscriptionSamples {
      */
     public static void deleteRemediationAtSubscriptionScope(
         com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
-        manager.remediations().deleteAtSubscriptionWithResponse("storageRemediation", Context.NONE);
+        manager.remediations().deleteAtSubscriptionWithResponse("storageRemediation", com.azure.core.util.Context.NONE);
     }
 }

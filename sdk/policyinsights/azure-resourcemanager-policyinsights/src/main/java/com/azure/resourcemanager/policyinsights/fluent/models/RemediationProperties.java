@@ -35,7 +35,8 @@ public final class RemediationProperties {
     private ResourceDiscoveryMode resourceDiscoveryMode;
 
     /*
-     * The status of the remediation.
+     * The status of the remediation. This refers to the entire remediation task, not individual deployments. Allowed
+     * values are Evaluating, Canceled, Cancelling, Failed, Complete, or Succeeded.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
@@ -165,7 +166,8 @@ public final class RemediationProperties {
     }
 
     /**
-     * Get the provisioningState property: The status of the remediation.
+     * Get the provisioningState property: The status of the remediation. This refers to the entire remediation task,
+     * not individual deployments. Allowed values are Evaluating, Canceled, Cancelling, Failed, Complete, or Succeeded.
      *
      * @return the provisioningState value.
      */
