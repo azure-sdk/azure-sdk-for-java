@@ -98,6 +98,13 @@ public interface Asset {
     AssetStorageEncryptionFormat storageEncryptionFormat();
 
     /**
+     * Gets the encryptionScope property: The Asset container encryption scope in the storage account.
+     *
+     * @return the encryptionScope value.
+     */
+    String encryptionScope();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -139,7 +146,8 @@ public interface Asset {
             extends DefinitionStages.WithAlternateId,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithContainer,
-                DefinitionStages.WithStorageAccountName {
+                DefinitionStages.WithStorageAccountName,
+                DefinitionStages.WithEncryptionScope {
             /**
              * Executes the create request.
              *
@@ -195,6 +203,16 @@ public interface Asset {
              */
             WithCreate withStorageAccountName(String storageAccountName);
         }
+        /** The stage of the Asset definition allowing to specify encryptionScope. */
+        interface WithEncryptionScope {
+            /**
+             * Specifies the encryptionScope property: The Asset container encryption scope in the storage account..
+             *
+             * @param encryptionScope The Asset container encryption scope in the storage account.
+             * @return the next definition stage.
+             */
+            WithCreate withEncryptionScope(String encryptionScope);
+        }
     }
     /**
      * Begins update for the Asset resource.
@@ -208,7 +226,8 @@ public interface Asset {
         extends UpdateStages.WithAlternateId,
             UpdateStages.WithDescription,
             UpdateStages.WithContainer,
-            UpdateStages.WithStorageAccountName {
+            UpdateStages.WithStorageAccountName,
+            UpdateStages.WithEncryptionScope {
         /**
          * Executes the update request.
          *
@@ -265,6 +284,16 @@ public interface Asset {
              * @return the next definition stage.
              */
             Update withStorageAccountName(String storageAccountName);
+        }
+        /** The stage of the Asset update allowing to specify encryptionScope. */
+        interface WithEncryptionScope {
+            /**
+             * Specifies the encryptionScope property: The Asset container encryption scope in the storage account..
+             *
+             * @param encryptionScope The Asset container encryption scope in the storage account.
+             * @return the next definition stage.
+             */
+            Update withEncryptionScope(String encryptionScope);
         }
     }
     /**

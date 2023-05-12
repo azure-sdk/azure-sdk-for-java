@@ -61,6 +61,12 @@ public final class AssetProperties {
     @JsonProperty(value = "storageEncryptionFormat", access = JsonProperty.Access.WRITE_ONLY)
     private AssetStorageEncryptionFormat storageEncryptionFormat;
 
+    /*
+     * The Asset container encryption scope in the storage account.
+     */
+    @JsonProperty(value = "encryptionScope")
+    private String encryptionScope;
+
     /** Creates an instance of AssetProperties class. */
     public AssetProperties() {
     }
@@ -179,6 +185,26 @@ public final class AssetProperties {
      */
     public AssetStorageEncryptionFormat storageEncryptionFormat() {
         return this.storageEncryptionFormat;
+    }
+
+    /**
+     * Get the encryptionScope property: The Asset container encryption scope in the storage account.
+     *
+     * @return the encryptionScope value.
+     */
+    public String encryptionScope() {
+        return this.encryptionScope;
+    }
+
+    /**
+     * Set the encryptionScope property: The Asset container encryption scope in the storage account.
+     *
+     * @param encryptionScope the encryptionScope value to set.
+     * @return the AssetProperties object itself.
+     */
+    public AssetProperties withEncryptionScope(String encryptionScope) {
+        this.encryptionScope = encryptionScope;
+        return this;
     }
 
     /**
