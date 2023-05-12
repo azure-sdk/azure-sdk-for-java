@@ -10,24 +10,24 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.UUID;
 
-/** The properties of the legacy reservation recommendation for single scope. */
+/** The properties of the modern reservation recommendation for single scope. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scope")
 @JsonTypeName("Single")
 @Immutable
-public final class LegacySingleScopeReservationRecommendationProperties
-    extends LegacyReservationRecommendationProperties {
+public final class ModernSingleScopeReservationRecommendationProperties
+    extends ModernReservationRecommendationProperties {
     /*
-     * Subscription id associated with single scoped recommendation.
+     * Subscription ID associated with single scoped recommendation.
      */
     @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID subscriptionId;
 
-    /** Creates an instance of LegacySingleScopeReservationRecommendationProperties class. */
-    public LegacySingleScopeReservationRecommendationProperties() {
+    /** Creates an instance of ModernSingleScopeReservationRecommendationProperties class. */
+    public ModernSingleScopeReservationRecommendationProperties() {
     }
 
     /**
-     * Get the subscriptionId property: Subscription id associated with single scoped recommendation.
+     * Get the subscriptionId property: Subscription ID associated with single scoped recommendation.
      *
      * @return the subscriptionId value.
      */
