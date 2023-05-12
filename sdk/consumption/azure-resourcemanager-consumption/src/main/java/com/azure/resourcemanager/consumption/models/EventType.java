@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EventType. */
+/** Identifies the type of the event. */
 public final class EventType extends ExpandableStringEnum<EventType> {
     /** Static value SettledCharges for EventType. */
     public static final EventType SETTLED_CHARGES = fromString("SettledCharges");
@@ -31,6 +31,18 @@ public final class EventType extends ExpandableStringEnum<EventType> {
     /** Static value NewCredit for EventType. */
     public static final EventType NEW_CREDIT = fromString("NewCredit");
 
+    /** Static value CreditExpired for EventType. */
+    public static final EventType CREDIT_EXPIRED = fromString("CreditExpired");
+
+    /**
+     * Creates a new instance of EventType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EventType() {
+    }
+
     /**
      * Creates or finds a EventType from its string representation.
      *
@@ -42,7 +54,11 @@ public final class EventType extends ExpandableStringEnum<EventType> {
         return fromString(name, EventType.class);
     }
 
-    /** @return known EventType values. */
+    /**
+     * Gets known EventType values.
+     *
+     * @return known EventType values.
+     */
     public static Collection<EventType> values() {
         return values(EventType.class);
     }
