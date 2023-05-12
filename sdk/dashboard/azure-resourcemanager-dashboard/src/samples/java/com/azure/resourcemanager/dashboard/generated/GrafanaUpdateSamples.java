@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.dashboard.models.ApiKey;
 import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
 import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
@@ -29,7 +28,7 @@ public final class GrafanaUpdateSamples {
         ManagedGrafana resource =
             manager
                 .grafanas()
-                .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
