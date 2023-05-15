@@ -4,44 +4,44 @@
 
 package com.azure.ai.anomalydetector.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /**
- * Detection request for batch inference. This is an asynchronous inference which will need another API to get detection
+ * Detection request for batch inference. This is an asynchronous inference that will need another API to get detection
  * results.
  */
-@Immutable
+@Fluent
 public final class MultivariateBatchDetectionOptions {
     /*
-     * Source link to the input data to indicate an accessible Azure storage Uri,
-     * either pointed to an Azure blob storage folder, or pointed to a CSV file in
-     * Azure blob storage based on you data schema selection. The data schema should
-     * be exactly the same with those used in the training phase.
+     * Source link to the input data to indicate an accessible Azure Storage URI.
+     * It either points to an Azure Blob Storage folder or points to a CSV file in
+     * Azure Blob Storage, based on your data schema selection. The data schema should
+     * be exactly the same as those used in the training phase. The input data must
+     * contain at least slidingWindow entries preceding the start time of the data
+     * to be detected.
      */
     @JsonProperty(value = "dataSource", required = true)
     private String dataSource;
 
     /*
-     * An optional field, which is used to specify the number of top contributed
-     * variables for one anomalous timestamp in the response. The default number is
-     * 10.
+     * Number of top contributed variables for one anomalous time stamp in the response.
      */
-    @JsonProperty(value = "topContributorCount", required = true)
-    private int topContributorCount;
+    @JsonProperty(value = "topContributorCount")
+    private Integer topContributorCount;
 
     /*
-     * A required field, indicating the start time of data for detection, which should
-     * be date-time of ISO 8601 format.
+     * Start date/time of data for detection, which should
+     * be in ISO 8601 format.
      */
     @JsonProperty(value = "startTime", required = true)
     private OffsetDateTime startTime;
 
     /*
-     * A required field, indicating the end time of data for detection, which should
-     * be date-time of ISO 8601 format.
+     * End date/time of data for detection, which should
+     * be in ISO 8601 format.
      */
     @JsonProperty(value = "endTime", required = true)
     private OffsetDateTime endTime;
@@ -50,26 +50,24 @@ public final class MultivariateBatchDetectionOptions {
      * Creates an instance of MultivariateBatchDetectionOptions class.
      *
      * @param dataSource the dataSource value to set.
-     * @param topContributorCount the topContributorCount value to set.
      * @param startTime the startTime value to set.
      * @param endTime the endTime value to set.
      */
     @JsonCreator
     public MultivariateBatchDetectionOptions(
             @JsonProperty(value = "dataSource", required = true) String dataSource,
-            @JsonProperty(value = "topContributorCount", required = true) int topContributorCount,
             @JsonProperty(value = "startTime", required = true) OffsetDateTime startTime,
             @JsonProperty(value = "endTime", required = true) OffsetDateTime endTime) {
         this.dataSource = dataSource;
-        this.topContributorCount = topContributorCount;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
     /**
-     * Get the dataSource property: Source link to the input data to indicate an accessible Azure storage Uri, either
-     * pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob storage based on you data schema
-     * selection. The data schema should be exactly the same with those used in the training phase.
+     * Get the dataSource property: Source link to the input data to indicate an accessible Azure Storage URI. It either
+     * points to an Azure Blob Storage folder or points to a CSV file in Azure Blob Storage, based on your data schema
+     * selection. The data schema should be exactly the same as those used in the training phase. The input data must
+     * contain at least slidingWindow entries preceding the start time of the data to be detected.
      *
      * @return the dataSource value.
      */
@@ -78,18 +76,29 @@ public final class MultivariateBatchDetectionOptions {
     }
 
     /**
-     * Get the topContributorCount property: An optional field, which is used to specify the number of top contributed
-     * variables for one anomalous timestamp in the response. The default number is 10.
+     * Get the topContributorCount property: Number of top contributed variables for one anomalous time stamp in the
+     * response.
      *
      * @return the topContributorCount value.
      */
-    public int getTopContributorCount() {
+    public Integer getTopContributorCount() {
         return this.topContributorCount;
     }
 
     /**
-     * Get the startTime property: A required field, indicating the start time of data for detection, which should be
-     * date-time of ISO 8601 format.
+     * Set the topContributorCount property: Number of top contributed variables for one anomalous time stamp in the
+     * response.
+     *
+     * @param topContributorCount the topContributorCount value to set.
+     * @return the MultivariateBatchDetectionOptions object itself.
+     */
+    public MultivariateBatchDetectionOptions setTopContributorCount(Integer topContributorCount) {
+        this.topContributorCount = topContributorCount;
+        return this;
+    }
+
+    /**
+     * Get the startTime property: Start date/time of data for detection, which should be in ISO 8601 format.
      *
      * @return the startTime value.
      */
@@ -98,8 +107,7 @@ public final class MultivariateBatchDetectionOptions {
     }
 
     /**
-     * Get the endTime property: A required field, indicating the end time of data for detection, which should be
-     * date-time of ISO 8601 format.
+     * Get the endTime property: End date/time of data for detection, which should be in ISO 8601 format.
      *
      * @return the endTime value.
      */
