@@ -26,7 +26,7 @@ import java.util.Arrays;
 /** Samples for StreamingPolicies Create. */
 public final class StreamingPoliciesCreateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-secure-streaming.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-secure-streaming.json
      */
     /**
      * Sample code: Creates a Streaming Policy with secure streaming.
@@ -104,7 +104,7 @@ public final class StreamingPoliciesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-commonEncryptionCenc-clearKeyEncryption.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-commonEncryptionCenc-clearKeyEncryption.json
      */
     /**
      * Sample code: Creates a Streaming Policy with ClearKey encryption in commonEncryptionCenc.
@@ -146,7 +146,7 @@ public final class StreamingPoliciesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-commonEncryptionCenc-only.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-commonEncryptionCenc-only.json
      */
     /**
      * Sample code: Creates a Streaming Policy with commonEncryptionCenc only.
@@ -196,7 +196,7 @@ public final class StreamingPoliciesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-commonEncryptionCbcs-only.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-commonEncryptionCbcs-only.json
      */
     /**
      * Sample code: Creates a Streaming Policy with commonEncryptionCbcs only.
@@ -231,7 +231,7 @@ public final class StreamingPoliciesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-commonEncryptionCbcs-clearKeyEncryption.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-commonEncryptionCbcs-clearKeyEncryption.json
      */
     /**
      * Sample code: Creates a Streaming Policy with ClearKey encryption in commonEncryptionCbcs.
@@ -262,7 +262,7 @@ public final class StreamingPoliciesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-clear.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-clear.json
      */
     /**
      * Sample code: Creates a Streaming Policy with clear streaming.
@@ -287,7 +287,7 @@ public final class StreamingPoliciesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policies-create-envelopeEncryption-only.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policies-create-envelopeEncryption-only.json
      */
     /**
      * Sample code: Creates a Streaming Policy with envelopeEncryption only.

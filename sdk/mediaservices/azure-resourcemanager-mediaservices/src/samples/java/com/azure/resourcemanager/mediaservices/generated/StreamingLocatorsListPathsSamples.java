@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mediaservices.generated;
 /** Samples for StreamingLocators ListPaths. */
 public final class StreamingLocatorsListPathsSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-locators-list-paths-streaming-only.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-locators-list-paths-streaming-only.json
      */
     /**
      * Sample code: List Paths which has streaming paths only.
@@ -23,7 +23,7 @@ public final class StreamingLocatorsListPathsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-locators-list-paths-streaming-and-download.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-locators-list-paths-streaming-and-download.json
      */
     /**
      * Sample code: List Paths which has streaming paths and download paths.
