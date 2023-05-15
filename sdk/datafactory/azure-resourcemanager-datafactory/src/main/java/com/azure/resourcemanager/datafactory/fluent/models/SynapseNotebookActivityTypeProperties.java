@@ -59,10 +59,10 @@ public final class SynapseNotebookActivityTypeProperties {
 
     /*
      * Number of executors to launch for this session, which will override the 'numExecutors' of the notebook you
-     * provide.
+     * provide. Type: integer (or Expression with resultType integer).
      */
     @JsonProperty(value = "numExecutors")
-    private Integer numExecutors;
+    private Object numExecutors;
 
     /** Creates an instance of SynapseNotebookActivityTypeProperties class. */
     public SynapseNotebookActivityTypeProperties() {
@@ -200,22 +200,22 @@ public final class SynapseNotebookActivityTypeProperties {
 
     /**
      * Get the numExecutors property: Number of executors to launch for this session, which will override the
-     * 'numExecutors' of the notebook you provide.
+     * 'numExecutors' of the notebook you provide. Type: integer (or Expression with resultType integer).
      *
      * @return the numExecutors value.
      */
-    public Integer numExecutors() {
+    public Object numExecutors() {
         return this.numExecutors;
     }
 
     /**
      * Set the numExecutors property: Number of executors to launch for this session, which will override the
-     * 'numExecutors' of the notebook you provide.
+     * 'numExecutors' of the notebook you provide. Type: integer (or Expression with resultType integer).
      *
      * @param numExecutors the numExecutors value to set.
      * @return the SynapseNotebookActivityTypeProperties object itself.
      */
-    public SynapseNotebookActivityTypeProperties withNumExecutors(Integer numExecutors) {
+    public SynapseNotebookActivityTypeProperties withNumExecutors(Object numExecutors) {
         this.numExecutors = numExecutors;
         return this;
     }
