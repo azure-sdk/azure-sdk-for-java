@@ -6,7 +6,6 @@ package com.azure.resourcemanager.dataprotection.fluent;
 
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
-import java.util.UUID;
 
 /** The interface for DataProtectionClient class. */
 public interface DataProtectionClient {
@@ -15,7 +14,7 @@ public interface DataProtectionClient {
      *
      * @return the subscriptionId value.
      */
-    UUID getSubscriptionId();
+    String getSubscriptionId();
 
     /**
      * Gets server parameter.
@@ -123,6 +122,34 @@ public interface DataProtectionClient {
     RecoveryPointsClient getRecoveryPoints();
 
     /**
+     * Gets the SecondaryRPsClient object to access its operations.
+     *
+     * @return the SecondaryRPsClient object.
+     */
+    SecondaryRPsClient getSecondaryRPs();
+
+    /**
+     * Gets the CrossRegionRestoreJobsClient object to access its operations.
+     *
+     * @return the CrossRegionRestoreJobsClient object.
+     */
+    CrossRegionRestoreJobsClient getCrossRegionRestoreJobs();
+
+    /**
+     * Gets the CrossRegionRestoreJobsOperationsClient object to access its operations.
+     *
+     * @return the CrossRegionRestoreJobsOperationsClient object.
+     */
+    CrossRegionRestoreJobsOperationsClient getCrossRegionRestoreJobsOperations();
+
+    /**
+     * Gets the BackupInstancesExtensionRoutingsClient object to access its operations.
+     *
+     * @return the BackupInstancesExtensionRoutingsClient object.
+     */
+    BackupInstancesExtensionRoutingsClient getBackupInstancesExtensionRoutings();
+
+    /**
      * Gets the JobsClient object to access its operations.
      *
      * @return the JobsClient object.
@@ -163,4 +190,11 @@ public interface DataProtectionClient {
      * @return the ResourceGuardsClient object.
      */
     ResourceGuardsClient getResourceGuards();
+
+    /**
+     * Gets the DppResourceGuardProxiesClient object to access its operations.
+     *
+     * @return the DppResourceGuardProxiesClient object.
+     */
+    DppResourceGuardProxiesClient getDppResourceGuardProxies();
 }
