@@ -65,7 +65,7 @@ public final class WaitActivity extends ControlActivity {
     }
 
     /**
-     * Get the waitTimeInSeconds property: Duration in seconds.
+     * Get the waitTimeInSeconds property: Duration in seconds. Type: integer (or Expression with resultType integer).
      *
      * @return the waitTimeInSeconds value.
      */
@@ -74,7 +74,7 @@ public final class WaitActivity extends ControlActivity {
     }
 
     /**
-     * Set the waitTimeInSeconds property: Duration in seconds.
+     * Set the waitTimeInSeconds property: Duration in seconds. Type: integer (or Expression with resultType integer).
      *
      * @param waitTimeInSeconds the waitTimeInSeconds value to set.
      * @return the WaitActivity object itself.

@@ -229,22 +229,22 @@ public final class SynapseNotebookActivity extends ExecutionActivity {
 
     /**
      * Get the numExecutors property: Number of executors to launch for this session, which will override the
-     * 'numExecutors' of the notebook you provide.
+     * 'numExecutors' of the notebook you provide. Type: integer (or Expression with resultType integer).
      *
      * @return the numExecutors value.
      */
-    public Integer numExecutors() {
+    public Object numExecutors() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().numExecutors();
     }
 
     /**
      * Set the numExecutors property: Number of executors to launch for this session, which will override the
-     * 'numExecutors' of the notebook you provide.
+     * 'numExecutors' of the notebook you provide. Type: integer (or Expression with resultType integer).
      *
      * @param numExecutors the numExecutors value to set.
      * @return the SynapseNotebookActivity object itself.
      */
-    public SynapseNotebookActivity withNumExecutors(Integer numExecutors) {
+    public SynapseNotebookActivity withNumExecutors(Object numExecutors) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new SynapseNotebookActivityTypeProperties();
         }
