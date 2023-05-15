@@ -21,13 +21,23 @@ public final class DedicatedHsmOperationInner {
      * Gets or sets a value indicating whether it is a data plane action
      */
     @JsonProperty(value = "isDataAction", access = JsonProperty.Access.WRITE_ONLY)
-    private String isDataAction;
+    private Boolean isDataAction;
+
+    /*
+     * The origin of the operation
+     */
+    @JsonProperty(value = "origin")
+    private String origin;
 
     /*
      * The display string.
      */
     @JsonProperty(value = "display")
     private DedicatedHsmOperationDisplay display;
+
+    /** Creates an instance of DedicatedHsmOperationInner class. */
+    public DedicatedHsmOperationInner() {
+    }
 
     /**
      * Get the name property: The name of the Dedicated HSM Resource Provider Operation.
@@ -54,8 +64,28 @@ public final class DedicatedHsmOperationInner {
      *
      * @return the isDataAction value.
      */
-    public String isDataAction() {
+    public Boolean isDataAction() {
         return this.isDataAction;
+    }
+
+    /**
+     * Get the origin property: The origin of the operation.
+     *
+     * @return the origin value.
+     */
+    public String origin() {
+        return this.origin;
+    }
+
+    /**
+     * Set the origin property: The origin of the operation.
+     *
+     * @param origin the origin value to set.
+     * @return the DedicatedHsmOperationInner object itself.
+     */
+    public DedicatedHsmOperationInner withOrigin(String origin) {
+        this.origin = origin;
+        return this;
     }
 
     /**

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm Delete. */
 public final class DedicatedHsmDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class DedicatedHsmDeleteSamples {
      */
     public static void deleteADedicatedHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().delete("hsm-group", "hsm1", Context.NONE);
+        manager.dedicatedHsms().delete("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 }
