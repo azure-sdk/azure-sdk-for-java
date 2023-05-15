@@ -16,6 +16,7 @@ import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.DeliveryAttributeListResult;
 import com.azure.resourcemanager.eventgrid.models.EventSubscription;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFullUrl;
+import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.TopicEventSubscriptions;
 
 public final class TopicEventSubscriptionsImpl implements TopicEventSubscriptions {
@@ -30,17 +31,6 @@ public final class TopicEventSubscriptionsImpl implements TopicEventSubscription
         com.azure.resourcemanager.eventgrid.EventGridManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public DeliveryAttributeListResult getDeliveryAttributes(
-        String resourceGroupName, String topicName, String eventSubscriptionName) {
-        DeliveryAttributeListResultInner inner =
-            this.serviceClient().getDeliveryAttributes(resourceGroupName, topicName, eventSubscriptionName);
-        if (inner != null) {
-            return new DeliveryAttributeListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(
@@ -60,10 +50,12 @@ public final class TopicEventSubscriptionsImpl implements TopicEventSubscription
         }
     }
 
-    public EventSubscription get(String resourceGroupName, String topicName, String eventSubscriptionName) {
-        EventSubscriptionInner inner = this.serviceClient().get(resourceGroupName, topicName, eventSubscriptionName);
+    public DeliveryAttributeListResult getDeliveryAttributes(
+        String resourceGroupName, String topicName, String eventSubscriptionName) {
+        DeliveryAttributeListResultInner inner =
+            this.serviceClient().getDeliveryAttributes(resourceGroupName, topicName, eventSubscriptionName);
         if (inner != null) {
-            return new EventSubscriptionImpl(inner, this.manager());
+            return new DeliveryAttributeListResultImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -84,6 +76,48 @@ public final class TopicEventSubscriptionsImpl implements TopicEventSubscription
         }
     }
 
+    public EventSubscription get(String resourceGroupName, String topicName, String eventSubscriptionName) {
+        EventSubscriptionInner inner = this.serviceClient().get(resourceGroupName, topicName, eventSubscriptionName);
+        if (inner != null) {
+            return new EventSubscriptionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public EventSubscription createOrUpdate(
+        String resourceGroupName,
+        String topicName,
+        String eventSubscriptionName,
+        EventSubscriptionInner eventSubscriptionInfo) {
+        EventSubscriptionInner inner =
+            this
+                .serviceClient()
+                .createOrUpdate(resourceGroupName, topicName, eventSubscriptionName, eventSubscriptionInfo);
+        if (inner != null) {
+            return new EventSubscriptionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public EventSubscription createOrUpdate(
+        String resourceGroupName,
+        String topicName,
+        String eventSubscriptionName,
+        EventSubscriptionInner eventSubscriptionInfo,
+        Context context) {
+        EventSubscriptionInner inner =
+            this
+                .serviceClient()
+                .createOrUpdate(resourceGroupName, topicName, eventSubscriptionName, eventSubscriptionInfo, context);
+        if (inner != null) {
+            return new EventSubscriptionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String resourceGroupName, String topicName, String eventSubscriptionName) {
         this.serviceClient().delete(resourceGroupName, topicName, eventSubscriptionName);
     }
@@ -92,12 +126,35 @@ public final class TopicEventSubscriptionsImpl implements TopicEventSubscription
         this.serviceClient().delete(resourceGroupName, topicName, eventSubscriptionName, context);
     }
 
-    public EventSubscriptionFullUrl getFullUrl(
-        String resourceGroupName, String topicName, String eventSubscriptionName) {
-        EventSubscriptionFullUrlInner inner =
-            this.serviceClient().getFullUrl(resourceGroupName, topicName, eventSubscriptionName);
+    public EventSubscription update(
+        String resourceGroupName,
+        String topicName,
+        String eventSubscriptionName,
+        EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters) {
+        EventSubscriptionInner inner =
+            this
+                .serviceClient()
+                .update(resourceGroupName, topicName, eventSubscriptionName, eventSubscriptionUpdateParameters);
         if (inner != null) {
-            return new EventSubscriptionFullUrlImpl(inner, this.manager());
+            return new EventSubscriptionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public EventSubscription update(
+        String resourceGroupName,
+        String topicName,
+        String eventSubscriptionName,
+        EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters,
+        Context context) {
+        EventSubscriptionInner inner =
+            this
+                .serviceClient()
+                .update(
+                    resourceGroupName, topicName, eventSubscriptionName, eventSubscriptionUpdateParameters, context);
+        if (inner != null) {
+            return new EventSubscriptionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -118,6 +175,17 @@ public final class TopicEventSubscriptionsImpl implements TopicEventSubscription
         }
     }
 
+    public EventSubscriptionFullUrl getFullUrl(
+        String resourceGroupName, String topicName, String eventSubscriptionName) {
+        EventSubscriptionFullUrlInner inner =
+            this.serviceClient().getFullUrl(resourceGroupName, topicName, eventSubscriptionName);
+        if (inner != null) {
+            return new EventSubscriptionFullUrlImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PagedIterable<EventSubscription> list(String resourceGroupName, String topicName) {
         PagedIterable<EventSubscriptionInner> inner = this.serviceClient().list(resourceGroupName, topicName);
         return Utils.mapPage(inner, inner1 -> new EventSubscriptionImpl(inner1, this.manager()));
@@ -130,127 +198,11 @@ public final class TopicEventSubscriptionsImpl implements TopicEventSubscription
         return Utils.mapPage(inner, inner1 -> new EventSubscriptionImpl(inner1, this.manager()));
     }
 
-    public EventSubscription getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String topicName = Utils.getValueFromIdByName(id, "topics");
-        if (topicName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
-        }
-        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
-        if (eventSubscriptionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, topicName, eventSubscriptionName, Context.NONE).getValue();
-    }
-
-    public Response<EventSubscription> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String topicName = Utils.getValueFromIdByName(id, "topics");
-        if (topicName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
-        }
-        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
-        if (eventSubscriptionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, topicName, eventSubscriptionName, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String topicName = Utils.getValueFromIdByName(id, "topics");
-        if (topicName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
-        }
-        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
-        if (eventSubscriptionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
-        }
-        this.delete(resourceGroupName, topicName, eventSubscriptionName, Context.NONE);
-    }
-
-    public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String topicName = Utils.getValueFromIdByName(id, "topics");
-        if (topicName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
-        }
-        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
-        if (eventSubscriptionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
-        }
-        this.delete(resourceGroupName, topicName, eventSubscriptionName, context);
-    }
-
     private TopicEventSubscriptionsClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.eventgrid.EventGridManager manager() {
         return this.serviceManager;
-    }
-
-    public EventSubscriptionImpl define(String name) {
-        return new EventSubscriptionImpl(name, this.manager());
     }
 }

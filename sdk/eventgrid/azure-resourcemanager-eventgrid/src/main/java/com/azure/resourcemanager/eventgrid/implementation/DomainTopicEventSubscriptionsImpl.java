@@ -17,7 +17,6 @@ import com.azure.resourcemanager.eventgrid.models.DeliveryAttributeListResult;
 import com.azure.resourcemanager.eventgrid.models.DomainTopicEventSubscriptions;
 import com.azure.resourcemanager.eventgrid.models.EventSubscription;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFullUrl;
-import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 
 public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEventSubscriptions {
     private static final ClientLogger LOGGER = new ClientLogger(DomainTopicEventSubscriptionsImpl.class);
@@ -33,12 +32,30 @@ public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEvent
         this.serviceManager = serviceManager;
     }
 
-    public EventSubscription get(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName) {
-        EventSubscriptionInner inner =
-            this.serviceClient().get(resourceGroupName, domainName, topicName, eventSubscriptionName);
+    public Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context) {
+        Response<DeliveryAttributeListResultInner> inner =
+            this
+                .serviceClient()
+                .getDeliveryAttributesWithResponse(
+                    resourceGroupName, domainName, topicName, eventSubscriptionName, context);
         if (inner != null) {
-            return new EventSubscriptionImpl(inner, this.manager());
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new DeliveryAttributeListResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DeliveryAttributeListResult getDeliveryAttributes(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName) {
+        DeliveryAttributeListResultInner inner =
+            this.serviceClient().getDeliveryAttributes(resourceGroupName, domainName, topicName, eventSubscriptionName);
+        if (inner != null) {
+            return new DeliveryAttributeListResultImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -61,35 +78,10 @@ public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEvent
         }
     }
 
-    public EventSubscription createOrUpdate(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionInner eventSubscriptionInfo) {
+    public EventSubscription get(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName) {
         EventSubscriptionInner inner =
-            this
-                .serviceClient()
-                .createOrUpdate(resourceGroupName, domainName, topicName, eventSubscriptionName, eventSubscriptionInfo);
-        if (inner != null) {
-            return new EventSubscriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public EventSubscription createOrUpdate(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionInner eventSubscriptionInfo,
-        Context context) {
-        EventSubscriptionInner inner =
-            this
-                .serviceClient()
-                .createOrUpdate(
-                    resourceGroupName, domainName, topicName, eventSubscriptionName, eventSubscriptionInfo, context);
+            this.serviceClient().get(resourceGroupName, domainName, topicName, eventSubscriptionName);
         if (inner != null) {
             return new EventSubscriptionImpl(inner, this.manager());
         } else {
@@ -104,59 +96,6 @@ public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEvent
     public void delete(
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context) {
         this.serviceClient().delete(resourceGroupName, domainName, topicName, eventSubscriptionName, context);
-    }
-
-    public EventSubscription update(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters) {
-        EventSubscriptionInner inner =
-            this
-                .serviceClient()
-                .update(
-                    resourceGroupName, domainName, topicName, eventSubscriptionName, eventSubscriptionUpdateParameters);
-        if (inner != null) {
-            return new EventSubscriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public EventSubscription update(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters,
-        Context context) {
-        EventSubscriptionInner inner =
-            this
-                .serviceClient()
-                .update(
-                    resourceGroupName,
-                    domainName,
-                    topicName,
-                    eventSubscriptionName,
-                    eventSubscriptionUpdateParameters,
-                    context);
-        if (inner != null) {
-            return new EventSubscriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public EventSubscriptionFullUrl getFullUrl(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName) {
-        EventSubscriptionFullUrlInner inner =
-            this.serviceClient().getFullUrl(resourceGroupName, domainName, topicName, eventSubscriptionName);
-        if (inner != null) {
-            return new EventSubscriptionFullUrlImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<EventSubscriptionFullUrl> getFullUrlWithResponse(
@@ -176,6 +115,17 @@ public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEvent
         }
     }
 
+    public EventSubscriptionFullUrl getFullUrl(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName) {
+        EventSubscriptionFullUrlInner inner =
+            this.serviceClient().getFullUrl(resourceGroupName, domainName, topicName, eventSubscriptionName);
+        if (inner != null) {
+            return new EventSubscriptionFullUrlImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PagedIterable<EventSubscription> list(String resourceGroupName, String domainName, String topicName) {
         PagedIterable<EventSubscriptionInner> inner =
             this.serviceClient().list(resourceGroupName, domainName, topicName);
@@ -189,33 +139,146 @@ public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEvent
         return Utils.mapPage(inner, inner1 -> new EventSubscriptionImpl(inner1, this.manager()));
     }
 
-    public DeliveryAttributeListResult getDeliveryAttributes(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName) {
-        DeliveryAttributeListResultInner inner =
-            this.serviceClient().getDeliveryAttributes(resourceGroupName, domainName, topicName, eventSubscriptionName);
-        if (inner != null) {
-            return new DeliveryAttributeListResultImpl(inner, this.manager());
-        } else {
-            return null;
+    public EventSubscription getById(String id) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String domainName = Utils.getValueFromIdByName(id, "domains");
+        if (domainName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
+        }
+        String topicName = Utils.getValueFromIdByName(id, "topics");
+        if (topicName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
+        }
+        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
+        if (eventSubscriptionName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format(
+                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
+        }
+        return this
+            .getWithResponse(resourceGroupName, domainName, topicName, eventSubscriptionName, Context.NONE)
+            .getValue();
     }
 
-    public Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context) {
-        Response<DeliveryAttributeListResultInner> inner =
-            this
-                .serviceClient()
-                .getDeliveryAttributesWithResponse(
-                    resourceGroupName, domainName, topicName, eventSubscriptionName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new DeliveryAttributeListResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
+    public Response<EventSubscription> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String domainName = Utils.getValueFromIdByName(id, "domains");
+        if (domainName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
+        }
+        String topicName = Utils.getValueFromIdByName(id, "topics");
+        if (topicName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
+        }
+        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
+        if (eventSubscriptionName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format(
+                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, domainName, topicName, eventSubscriptionName, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String domainName = Utils.getValueFromIdByName(id, "domains");
+        if (domainName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
+        }
+        String topicName = Utils.getValueFromIdByName(id, "topics");
+        if (topicName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
+        }
+        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
+        if (eventSubscriptionName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format(
+                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
+        }
+        this.delete(resourceGroupName, domainName, topicName, eventSubscriptionName, Context.NONE);
+    }
+
+    public void deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String domainName = Utils.getValueFromIdByName(id, "domains");
+        if (domainName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
+        }
+        String topicName = Utils.getValueFromIdByName(id, "topics");
+        if (topicName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String.format("The resource ID '%s' is not valid. Missing path segment 'topics'.", id)));
+        }
+        String eventSubscriptionName = Utils.getValueFromIdByName(id, "eventSubscriptions");
+        if (eventSubscriptionName == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        String
+                            .format(
+                                "The resource ID '%s' is not valid. Missing path segment 'eventSubscriptions'.", id)));
+        }
+        this.delete(resourceGroupName, domainName, topicName, eventSubscriptionName, context);
     }
 
     private DomainTopicEventSubscriptionsClient serviceClient() {
@@ -224,5 +287,9 @@ public final class DomainTopicEventSubscriptionsImpl implements DomainTopicEvent
 
     private com.azure.resourcemanager.eventgrid.EventGridManager manager() {
         return this.serviceManager;
+    }
+
+    public EventSubscriptionImpl define(String name) {
+        return new EventSubscriptionImpl(name, this.manager());
     }
 }

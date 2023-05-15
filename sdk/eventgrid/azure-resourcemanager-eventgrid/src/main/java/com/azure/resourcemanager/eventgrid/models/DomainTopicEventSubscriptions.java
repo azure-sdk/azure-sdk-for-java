@@ -7,12 +7,31 @@ package com.azure.resourcemanager.eventgrid.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 
 /** Resource collection API of DomainTopicEventSubscriptions. */
 public interface DomainTopicEventSubscriptions {
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param domainName Name of the top level domain.
+     * @param topicName Name of the domain topic.
+     * @param eventSubscriptionName Name of the event subscription.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all delivery attributes for an event subscription for domain topic along with {@link Response}.
+     */
+    Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
+
+    /**
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -21,12 +40,15 @@ public interface DomainTopicEventSubscriptions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a nested event subscription for a domain topic.
+     * @return all delivery attributes for an event subscription for domain topic.
      */
-    EventSubscription get(String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
+    DeliveryAttributeListResult getDeliveryAttributes(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -42,51 +64,25 @@ public interface DomainTopicEventSubscriptions {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
      * @param topicName Name of the domain topic.
-     * @param eventSubscriptionName Name of the event subscription to be created. Event subscription names must be
-     *     between 3 and 100 characters in length and use alphanumeric letters only.
-     * @param eventSubscriptionInfo Event subscription properties containing the destination and filter information.
+     * @param eventSubscriptionName Name of the event subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription.
+     * @return properties of a nested event subscription for a domain topic.
      */
-    EventSubscription createOrUpdate(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionInner eventSubscriptionInfo);
+    EventSubscription get(String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Delete a nested event subscription for a domain topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param domainName Name of the top level domain.
-     * @param topicName Name of the domain topic.
-     * @param eventSubscriptionName Name of the event subscription to be created. Event subscription names must be
-     *     between 3 and 100 characters in length and use alphanumeric letters only.
-     * @param eventSubscriptionInfo Event subscription properties containing the destination and filter information.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription.
-     */
-    EventSubscription createOrUpdate(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionInner eventSubscriptionInfo,
-        Context context);
-
-    /**
-     * Delete a nested existing event subscription for a domain topic.
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -100,7 +96,9 @@ public interface DomainTopicEventSubscriptions {
     void delete(String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -116,64 +114,9 @@ public interface DomainTopicEventSubscriptions {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Get full URL of a nested event subscription for domain topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param domainName Name of the domain.
-     * @param topicName Name of the topic.
-     * @param eventSubscriptionName Name of the event subscription to be updated.
-     * @param eventSubscriptionUpdateParameters Updated event subscription information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription.
-     */
-    EventSubscription update(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
-
-    /**
-     * Update an existing event subscription for a domain topic.
-     *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param domainName Name of the domain.
-     * @param topicName Name of the topic.
-     * @param eventSubscriptionName Name of the event subscription to be updated.
-     * @param eventSubscriptionUpdateParameters Updated event subscription information.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription.
-     */
-    EventSubscription update(
-        String resourceGroupName,
-        String domainName,
-        String topicName,
-        String eventSubscriptionName,
-        EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters,
-        Context context);
-
-    /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
-     *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param domainName Name of the top level domain.
-     * @param topicName Name of the domain topic.
-     * @param eventSubscriptionName Name of the event subscription.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL for a nested event subscription for domain topic.
-     */
-    EventSubscriptionFullUrl getFullUrl(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
-
-    /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -189,7 +132,26 @@ public interface DomainTopicEventSubscriptions {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param domainName Name of the top level domain.
+     * @param topicName Name of the domain topic.
+     * @param eventSubscriptionName Name of the event subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the full endpoint URL for a nested event subscription for domain topic.
+     */
+    EventSubscriptionFullUrl getFullUrl(
+        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
+
+    /**
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -202,7 +164,9 @@ public interface DomainTopicEventSubscriptions {
     PagedIterable<EventSubscription> list(String resourceGroupName, String domainName, String topicName);
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -225,33 +189,62 @@ public interface DomainTopicEventSubscriptions {
         String resourceGroupName, String domainName, String topicName, String filter, Integer top, Context context);
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get a nested event subscription for domain topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param domainName Name of the top level domain.
-     * @param topicName Name of the domain topic.
-     * @param eventSubscriptionName Name of the event subscription.
+     * <p>Get properties of a nested event subscription for a domain topic.
+     *
+     * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all delivery attributes for an event subscription for domain topic.
+     * @return properties of a nested event subscription for a domain topic along with {@link Response}.
      */
-    DeliveryAttributeListResult getDeliveryAttributes(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
+    EventSubscription getById(String id);
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get a nested event subscription for domain topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param domainName Name of the top level domain.
-     * @param topicName Name of the domain topic.
-     * @param eventSubscriptionName Name of the event subscription.
+     * <p>Get properties of a nested event subscription for a domain topic.
+     *
+     * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all delivery attributes for an event subscription for domain topic along with {@link Response}.
+     * @return properties of a nested event subscription for a domain topic along with {@link Response}.
      */
-    Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(
-        String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
+    Response<EventSubscription> getByIdWithResponse(String id, Context context);
+
+    /**
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByIdWithResponse(String id, Context context);
+
+    /**
+     * Begins definition for a new EventSubscription resource.
+     *
+     * @param name resource name.
+     * @return the first stage of the new EventSubscription definition.
+     */
+    EventSubscription.DefinitionStages.Blank define(String name);
 }
