@@ -111,6 +111,29 @@ public final class SetVariableActivity extends ControlActivity {
     }
 
     /**
+     * Get the setSystemVariable property: If set to true, it sets the pipeline run return value.
+     *
+     * @return the setSystemVariable value.
+     */
+    public Boolean setSystemVariable() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().setSystemVariable();
+    }
+
+    /**
+     * Set the setSystemVariable property: If set to true, it sets the pipeline run return value.
+     *
+     * @param setSystemVariable the setSystemVariable value to set.
+     * @return the SetVariableActivity object itself.
+     */
+    public SetVariableActivity withSetSystemVariable(Boolean setSystemVariable) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new SetVariableActivityTypeProperties();
+        }
+        this.innerTypeProperties().withSetSystemVariable(setSystemVariable);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
