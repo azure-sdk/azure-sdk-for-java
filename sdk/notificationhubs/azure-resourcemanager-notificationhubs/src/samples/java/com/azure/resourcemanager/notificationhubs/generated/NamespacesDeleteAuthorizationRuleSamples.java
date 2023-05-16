@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces DeleteAuthorizationRule. */
 public final class NamespacesDeleteAuthorizationRuleSamples {
     /*
@@ -20,6 +18,7 @@ public final class NamespacesDeleteAuthorizationRuleSamples {
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager
             .namespaces()
-            .deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey", Context.NONE);
+            .deleteAuthorizationRuleWithResponse(
+                "5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey", com.azure.core.util.Context.NONE);
     }
 }

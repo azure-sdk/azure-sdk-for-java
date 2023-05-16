@@ -109,6 +109,10 @@ public final class NotificationHubResourceImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public NotificationHubResourceInner innerModel() {
         return this.innerObject;
     }
@@ -219,26 +223,26 @@ public final class NotificationHubResourceImpl
         return this;
     }
 
-    public DebugSendResponse debugSend() {
-        return serviceManager.notificationHubs().debugSend(resourceGroupName, namespaceName, notificationHubName);
-    }
-
     public Response<DebugSendResponse> debugSendWithResponse(Object parameters, Context context) {
         return serviceManager
             .notificationHubs()
             .debugSendWithResponse(resourceGroupName, namespaceName, notificationHubName, parameters, context);
     }
 
-    public PnsCredentialsResource getPnsCredentials() {
-        return serviceManager
-            .notificationHubs()
-            .getPnsCredentials(resourceGroupName, namespaceName, notificationHubName);
+    public DebugSendResponse debugSend() {
+        return serviceManager.notificationHubs().debugSend(resourceGroupName, namespaceName, notificationHubName);
     }
 
     public Response<PnsCredentialsResource> getPnsCredentialsWithResponse(Context context) {
         return serviceManager
             .notificationHubs()
             .getPnsCredentialsWithResponse(resourceGroupName, namespaceName, notificationHubName, context);
+    }
+
+    public PnsCredentialsResource getPnsCredentials() {
+        return serviceManager
+            .notificationHubs()
+            .getPnsCredentials(resourceGroupName, namespaceName, notificationHubName);
     }
 
     public NotificationHubResourceImpl withRegion(Region location) {

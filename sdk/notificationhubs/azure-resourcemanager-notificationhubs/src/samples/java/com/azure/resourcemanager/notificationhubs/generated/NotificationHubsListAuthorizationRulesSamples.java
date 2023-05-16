@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs ListAuthorizationRules. */
 public final class NotificationHubsListAuthorizationRulesSamples {
     /*
@@ -18,6 +16,8 @@ public final class NotificationHubsListAuthorizationRulesSamples {
      */
     public static void notificationHubAuthorizationRuleListAll(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().listAuthorizationRules("5ktrial", "nh-sdk-ns", "nh-sdk-hub", Context.NONE);
+        manager
+            .notificationHubs()
+            .listAuthorizationRules("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }

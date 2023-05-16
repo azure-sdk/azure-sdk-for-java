@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.notificationhubs.fluent.models.SharedAccessAuthorizationRuleProperties;
 import com.azure.resourcemanager.notificationhubs.models.AccessRights;
 import com.azure.resourcemanager.notificationhubs.models.SharedAccessAuthorizationRuleCreateOrUpdateParameters;
@@ -33,6 +32,6 @@ public final class NotificationHubsCreateOrUpdateAuthorizationRuleSamples {
                     .withProperties(
                         new SharedAccessAuthorizationRuleProperties()
                             .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

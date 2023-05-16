@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.notificationhubs.models.NotificationHubResource;
 
 /** Samples for NotificationHubs Patch. */
@@ -22,7 +21,8 @@ public final class NotificationHubsPatchSamples {
         NotificationHubResource resource =
             manager
                 .notificationHubs()
-                .getWithResponse("sdkresourceGroup", "nh-sdk-ns", "sdk-notificationHubs-8708", Context.NONE)
+                .getWithResponse(
+                    "sdkresourceGroup", "nh-sdk-ns", "sdk-notificationHubs-8708", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

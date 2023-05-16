@@ -134,6 +134,13 @@ public interface SharedAccessAuthorizationRuleResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner
      * com.azure.resourcemanager.notificationhubs.fluent.models.SharedAccessAuthorizationRuleResourceInner object.
      *
@@ -250,6 +257,17 @@ public interface SharedAccessAuthorizationRuleResource {
     /**
      * Gets the Primary and Secondary ConnectionStrings to the namespace.
      *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Primary and Secondary ConnectionStrings to the namespace along with {@link Response}.
+     */
+    Response<ResourceListKeys> listKeysWithResponse(Context context);
+
+    /**
+     * Gets the Primary and Secondary ConnectionStrings to the namespace.
+     *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Primary and Secondary ConnectionStrings to the namespace.
@@ -257,15 +275,16 @@ public interface SharedAccessAuthorizationRuleResource {
     ResourceListKeys listKeys();
 
     /**
-     * Gets the Primary and Secondary ConnectionStrings to the namespace.
+     * Regenerates the Primary/Secondary Keys to the Namespace Authorization Rule.
      *
+     * @param parameters Parameters supplied to regenerate the Namespace Authorization Rule Key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Primary and Secondary ConnectionStrings to the namespace.
+     * @return namespace/NotificationHub Connection String along with {@link Response}.
      */
-    Response<ResourceListKeys> listKeysWithResponse(Context context);
+    Response<ResourceListKeys> regenerateKeysWithResponse(PolicykeyResource parameters, Context context);
 
     /**
      * Regenerates the Primary/Secondary Keys to the Namespace Authorization Rule.
@@ -277,16 +296,4 @@ public interface SharedAccessAuthorizationRuleResource {
      * @return namespace/NotificationHub Connection String.
      */
     ResourceListKeys regenerateKeys(PolicykeyResource parameters);
-
-    /**
-     * Regenerates the Primary/Secondary Keys to the Namespace Authorization Rule.
-     *
-     * @param parameters Parameters supplied to regenerate the Namespace Authorization Rule Key.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namespace/NotificationHub Connection String.
-     */
-    Response<ResourceListKeys> regenerateKeysWithResponse(PolicykeyResource parameters, Context context);
 }

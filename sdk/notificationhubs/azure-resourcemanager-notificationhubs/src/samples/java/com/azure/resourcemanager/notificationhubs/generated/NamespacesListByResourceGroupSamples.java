@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces ListByResourceGroup. */
 public final class NamespacesListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class NamespacesListByResourceGroupSamples {
      */
     public static void nameSpaceListByResourceGroup(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().listByResourceGroup("5ktrial", Context.NONE);
+        manager.namespaces().listByResourceGroup("5ktrial", com.azure.core.util.Context.NONE);
     }
 }

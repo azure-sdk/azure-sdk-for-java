@@ -21,10 +21,9 @@ import com.azure.resourcemanager.notificationhubs.models.Namespaces;
 import com.azure.resourcemanager.notificationhubs.models.PolicykeyResource;
 import com.azure.resourcemanager.notificationhubs.models.ResourceListKeys;
 import com.azure.resourcemanager.notificationhubs.models.SharedAccessAuthorizationRuleResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class NamespacesImpl implements Namespaces {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NamespacesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(NamespacesImpl.class);
 
     private final NamespacesClient innerClient;
 
@@ -35,15 +34,6 @@ public final class NamespacesImpl implements Namespaces {
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public CheckAvailabilityResult checkAvailability(CheckAvailabilityParameters parameters) {
-        CheckAvailabilityResultInner inner = this.serviceClient().checkAvailability(parameters);
-        if (inner != null) {
-            return new CheckAvailabilityResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<CheckAvailabilityResult> checkAvailabilityWithResponse(
@@ -61,21 +51,21 @@ public final class NamespacesImpl implements Namespaces {
         }
     }
 
+    public CheckAvailabilityResult checkAvailability(CheckAvailabilityParameters parameters) {
+        CheckAvailabilityResultInner inner = this.serviceClient().checkAvailability(parameters);
+        if (inner != null) {
+            return new CheckAvailabilityResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void deleteByResourceGroup(String resourceGroupName, String namespaceName) {
         this.serviceClient().delete(resourceGroupName, namespaceName);
     }
 
     public void delete(String resourceGroupName, String namespaceName, Context context) {
         this.serviceClient().delete(resourceGroupName, namespaceName, context);
-    }
-
-    public NamespaceResource getByResourceGroup(String resourceGroupName, String namespaceName) {
-        NamespaceResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, namespaceName);
-        if (inner != null) {
-            return new NamespaceResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<NamespaceResource> getByResourceGroupWithResponse(
@@ -93,8 +83,13 @@ public final class NamespacesImpl implements Namespaces {
         }
     }
 
-    public void deleteAuthorizationRule(String resourceGroupName, String namespaceName, String authorizationRuleName) {
-        this.serviceClient().deleteAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
+    public NamespaceResource getByResourceGroup(String resourceGroupName, String namespaceName) {
+        NamespaceResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, namespaceName);
+        if (inner != null) {
+            return new NamespaceResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteAuthorizationRuleWithResponse(
@@ -104,15 +99,8 @@ public final class NamespacesImpl implements Namespaces {
             .deleteAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
     }
 
-    public SharedAccessAuthorizationRuleResource getAuthorizationRule(
-        String resourceGroupName, String namespaceName, String authorizationRuleName) {
-        SharedAccessAuthorizationRuleResourceInner inner =
-            this.serviceClient().getAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
-        if (inner != null) {
-            return new SharedAccessAuthorizationRuleResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void deleteAuthorizationRule(String resourceGroupName, String namespaceName, String authorizationRuleName) {
+        this.serviceClient().deleteAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
     }
 
     public Response<SharedAccessAuthorizationRuleResource> getAuthorizationRuleWithResponse(
@@ -127,6 +115,17 @@ public final class NamespacesImpl implements Namespaces {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SharedAccessAuthorizationRuleResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SharedAccessAuthorizationRuleResource getAuthorizationRule(
+        String resourceGroupName, String namespaceName, String authorizationRuleName) {
+        SharedAccessAuthorizationRuleResourceInner inner =
+            this.serviceClient().getAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
+        if (inner != null) {
+            return new SharedAccessAuthorizationRuleResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -167,16 +166,6 @@ public final class NamespacesImpl implements Namespaces {
         return Utils.mapPage(inner, inner1 -> new SharedAccessAuthorizationRuleResourceImpl(inner1, this.manager()));
     }
 
-    public ResourceListKeys listKeys(String resourceGroupName, String namespaceName, String authorizationRuleName) {
-        ResourceListKeysInner inner =
-            this.serviceClient().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
-        if (inner != null) {
-            return new ResourceListKeysImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ResourceListKeys> listKeysWithResponse(
         String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
         Response<ResourceListKeysInner> inner =
@@ -192,10 +181,9 @@ public final class NamespacesImpl implements Namespaces {
         }
     }
 
-    public ResourceListKeys regenerateKeys(
-        String resourceGroupName, String namespaceName, String authorizationRuleName, PolicykeyResource parameters) {
+    public ResourceListKeys listKeys(String resourceGroupName, String namespaceName, String authorizationRuleName) {
         ResourceListKeysInner inner =
-            this.serviceClient().regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
+            this.serviceClient().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
         if (inner != null) {
             return new ResourceListKeysImpl(inner, this.manager());
         } else {
@@ -225,10 +213,21 @@ public final class NamespacesImpl implements Namespaces {
         }
     }
 
+    public ResourceListKeys regenerateKeys(
+        String resourceGroupName, String namespaceName, String authorizationRuleName, PolicykeyResource parameters) {
+        ResourceListKeysInner inner =
+            this.serviceClient().regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
+        if (inner != null) {
+            return new ResourceListKeysImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public NamespaceResource getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -236,7 +235,7 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
@@ -247,7 +246,7 @@ public final class NamespacesImpl implements Namespaces {
     public Response<NamespaceResource> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -255,7 +254,7 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
@@ -266,7 +265,7 @@ public final class NamespacesImpl implements Namespaces {
     public SharedAccessAuthorizationRuleResource getAuthorizationRuleById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -274,14 +273,14 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
         }
         String authorizationRuleName = Utils.getValueFromIdByName(id, "AuthorizationRules");
         if (authorizationRuleName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -297,7 +296,7 @@ public final class NamespacesImpl implements Namespaces {
         String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -305,14 +304,14 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
         }
         String authorizationRuleName = Utils.getValueFromIdByName(id, "AuthorizationRules");
         if (authorizationRuleName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -325,7 +324,7 @@ public final class NamespacesImpl implements Namespaces {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -333,7 +332,7 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
@@ -344,7 +343,7 @@ public final class NamespacesImpl implements Namespaces {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -352,7 +351,7 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
@@ -363,7 +362,7 @@ public final class NamespacesImpl implements Namespaces {
     public void deleteAuthorizationRuleById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -371,14 +370,14 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
         }
         String authorizationRuleName = Utils.getValueFromIdByName(id, "AuthorizationRules");
         if (authorizationRuleName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -391,7 +390,7 @@ public final class NamespacesImpl implements Namespaces {
     public Response<Void> deleteAuthorizationRuleByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -399,14 +398,14 @@ public final class NamespacesImpl implements Namespaces {
         }
         String namespaceName = Utils.getValueFromIdByName(id, "namespaces");
         if (namespaceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'namespaces'.", id)));
         }
         String authorizationRuleName = Utils.getValueFromIdByName(id, "AuthorizationRules");
         if (authorizationRuleName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

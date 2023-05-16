@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces ListAuthorizationRules. */
 public final class NamespacesListAuthorizationRulesSamples {
     /*
@@ -18,6 +16,6 @@ public final class NamespacesListAuthorizationRulesSamples {
      */
     public static void nameSpaceAuthorizationRuleListAll(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().listAuthorizationRules("5ktrial", "nh-sdk-ns", Context.NONE);
+        manager.namespaces().listAuthorizationRules("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }

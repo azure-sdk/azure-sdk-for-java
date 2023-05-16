@@ -105,6 +105,10 @@ public final class SharedAccessAuthorizationRuleResourceImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SharedAccessAuthorizationRuleResourceInner innerModel() {
         return this.innerObject;
     }
@@ -217,26 +221,26 @@ public final class SharedAccessAuthorizationRuleResourceImpl
         return this;
     }
 
-    public ResourceListKeys listKeys() {
-        return serviceManager.namespaces().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
-    }
-
     public Response<ResourceListKeys> listKeysWithResponse(Context context) {
         return serviceManager
             .namespaces()
             .listKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
     }
 
-    public ResourceListKeys regenerateKeys(PolicykeyResource parameters) {
-        return serviceManager
-            .namespaces()
-            .regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
+    public ResourceListKeys listKeys() {
+        return serviceManager.namespaces().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
     }
 
     public Response<ResourceListKeys> regenerateKeysWithResponse(PolicykeyResource parameters, Context context) {
         return serviceManager
             .namespaces()
             .regenerateKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, parameters, context);
+    }
+
+    public ResourceListKeys regenerateKeys(PolicykeyResource parameters) {
+        return serviceManager
+            .namespaces()
+            .regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
     }
 
     public SharedAccessAuthorizationRuleResourceImpl withProperties(

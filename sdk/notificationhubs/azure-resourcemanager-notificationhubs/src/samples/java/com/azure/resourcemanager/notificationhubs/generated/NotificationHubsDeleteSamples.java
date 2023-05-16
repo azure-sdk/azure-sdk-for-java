@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs Delete. */
 public final class NotificationHubsDeleteSamples {
     /*
@@ -18,6 +16,8 @@ public final class NotificationHubsDeleteSamples {
      */
     public static void notificationHubDelete(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", Context.NONE);
+        manager
+            .notificationHubs()
+            .deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }

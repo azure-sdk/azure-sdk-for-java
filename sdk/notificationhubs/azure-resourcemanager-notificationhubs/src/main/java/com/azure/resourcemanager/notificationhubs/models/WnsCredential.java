@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.notificationhubs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.notificationhubs.fluent.models.WnsCredentialProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Description of a NotificationHub WnsCredential. */
 @Fluent
 public final class WnsCredential {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WnsCredential.class);
-
     /*
      * Properties of NotificationHub WnsCredential.
      */
     @JsonProperty(value = "properties")
     private WnsCredentialProperties innerProperties;
+
+    /** Creates an instance of WnsCredential class. */
+    public WnsCredential() {
+    }
 
     /**
      * Get the innerProperties property: Properties of NotificationHub WnsCredential.

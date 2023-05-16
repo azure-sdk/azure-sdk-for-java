@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.notificationhubs.models.PolicykeyResource;
 
 /** Samples for NotificationHubs RegenerateKeys. */
@@ -26,7 +25,7 @@ public final class NotificationHubsRegenerateKeysSamples {
                 "nh-sdk-ns",
                 "nh-sdk-hub",
                 "DefaultListenSharedAccessSignature",
-                new PolicykeyResource().withPolicyKey("PrimaryKey"),
-                Context.NONE);
+                new PolicykeyResource().withPolicyKey("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }

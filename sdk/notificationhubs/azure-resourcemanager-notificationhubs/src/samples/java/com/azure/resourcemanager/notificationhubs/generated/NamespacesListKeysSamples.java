@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces ListKeys. */
 public final class NamespacesListKeysSamples {
     /*
@@ -18,6 +16,9 @@ public final class NamespacesListKeysSamples {
      */
     public static void nameSpaceAuthorizationRuleListKey(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().listKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey", Context.NONE);
+        manager
+            .namespaces()
+            .listKeysWithResponse(
+                "5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs ListKeys. */
 public final class NotificationHubsListKeysSamples {
     /*
@@ -20,6 +18,7 @@ public final class NotificationHubsListKeysSamples {
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager
             .notificationHubs()
-            .listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800", Context.NONE);
+            .listKeysWithResponse(
+                "5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800", com.azure.core.util.Context.NONE);
     }
 }

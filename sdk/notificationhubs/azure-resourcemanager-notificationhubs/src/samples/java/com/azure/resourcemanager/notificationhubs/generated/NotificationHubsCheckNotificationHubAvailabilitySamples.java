@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParameters;
 
 /** Samples for NotificationHubs CheckNotificationHubAvailability. */
@@ -25,6 +24,6 @@ public final class NotificationHubsCheckNotificationHubAvailabilitySamples {
                 "5ktrial",
                 "locp-newns",
                 new CheckAvailabilityParameters().withName("sdktest").withLocation("West Europe"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

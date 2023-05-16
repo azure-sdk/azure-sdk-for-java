@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.notificationhubs.models.PolicykeyResource;
 
 /** Samples for Namespaces RegenerateKeys. */
@@ -25,7 +24,7 @@ public final class NamespacesRegenerateKeysSamples {
                 "5ktrial",
                 "nh-sdk-ns",
                 "RootManageSharedAccessKey",
-                new PolicykeyResource().withPolicyKey("PrimaryKey"),
-                Context.NONE);
+                new PolicykeyResource().withPolicyKey("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }

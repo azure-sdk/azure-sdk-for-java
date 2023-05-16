@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs DeleteAuthorizationRule. */
 public final class NotificationHubsDeleteAuthorizationRuleSamples {
     /*
@@ -21,6 +19,10 @@ public final class NotificationHubsDeleteAuthorizationRuleSamples {
         manager
             .notificationHubs()
             .deleteAuthorizationRuleWithResponse(
-                "5ktrial", "nh-sdk-ns", "nh-sdk-hub", "DefaultListenSharedAccessSignature", Context.NONE);
+                "5ktrial",
+                "nh-sdk-ns",
+                "nh-sdk-hub",
+                "DefaultListenSharedAccessSignature",
+                com.azure.core.util.Context.NONE);
     }
 }

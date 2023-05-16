@@ -30,7 +30,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.notificationhubs.fluent.NotificationHubsClient;
 import com.azure.resourcemanager.notificationhubs.fluent.models.CheckAvailabilityResultInner;
 import com.azure.resourcemanager.notificationhubs.fluent.models.DebugSendResponseInner;
@@ -49,8 +48,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in NotificationHubsClient. */
 public final class NotificationHubsClientImpl implements NotificationHubsClient {
-    private final ClientLogger logger = new ClientLogger(NotificationHubsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final NotificationHubsService service;
 
@@ -74,11 +71,10 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      */
     @Host("{$host}")
     @ServiceInterface(name = "NotificationHubsMana")
-    private interface NotificationHubsService {
+    public interface NotificationHubsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/checkNotificationHubAvailability")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/checkNotificationHubAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckAvailabilityResultInner>> checkNotificationHubAvailability(
@@ -93,8 +89,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NotificationHubResourceInner>> createOrUpdate(
@@ -110,8 +105,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NotificationHubResourceInner>> patch(
@@ -127,8 +121,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -142,8 +135,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NotificationHubResourceInner>> get(
@@ -158,8 +150,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/debugsend")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/debugsend")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DebugSendResponseInner>> debugSend(
@@ -175,9 +166,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules"
-                + "/{authorizationRuleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SharedAccessAuthorizationRuleResourceInner>> createOrUpdateAuthorizationRule(
@@ -194,9 +183,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules"
-                + "/{authorizationRuleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> deleteAuthorizationRule(
@@ -211,9 +198,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules"
-                + "/{authorizationRuleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SharedAccessAuthorizationRuleResourceInner>> getAuthorizationRule(
@@ -229,8 +214,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NotificationHubListResult>> list(
@@ -244,8 +228,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SharedAccessAuthorizationRuleListResult>> listAuthorizationRules(
@@ -260,9 +243,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules"
-                + "/{authorizationRuleName}/listKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}/listKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ResourceListKeysInner>> listKeys(
@@ -278,9 +259,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules"
-                + "/{authorizationRuleName}/regenerateKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}/regenerateKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ResourceListKeysInner>> regenerateKeys(
@@ -297,8 +276,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs"
-                + "/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/pnsCredentials")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/pnsCredentials")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PnsCredentialsResourceInner>> getPnsCredentials(
@@ -341,7 +319,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a CheckAvailability resource.
+     * @return description of a CheckAvailability resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckAvailabilityResultInner>> checkNotificationHubAvailabilityWithResponseAsync(
@@ -397,7 +376,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a CheckAvailability resource.
+     * @return description of a CheckAvailability resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckAvailabilityResultInner>> checkNotificationHubAvailabilityWithResponseAsync(
@@ -449,20 +429,32 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a CheckAvailability resource.
+     * @return description of a CheckAvailability resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckAvailabilityResultInner> checkNotificationHubAvailabilityAsync(
         String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters) {
         return checkNotificationHubAvailabilityWithResponseAsync(resourceGroupName, namespaceName, parameters)
-            .flatMap(
-                (Response<CheckAvailabilityResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Checks the availability of the given notificationHub in a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param parameters The notificationHub name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of a CheckAvailability resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CheckAvailabilityResultInner> checkNotificationHubAvailabilityWithResponse(
+        String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters, Context context) {
+        return checkNotificationHubAvailabilityWithResponseAsync(resourceGroupName, namespaceName, parameters, context)
+            .block();
     }
 
     /**
@@ -479,26 +471,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CheckAvailabilityResultInner checkNotificationHubAvailability(
         String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters) {
-        return checkNotificationHubAvailabilityAsync(resourceGroupName, namespaceName, parameters).block();
-    }
-
-    /**
-     * Checks the availability of the given notificationHub in a namespace.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param parameters The notificationHub name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a CheckAvailability resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CheckAvailabilityResultInner> checkNotificationHubAvailabilityWithResponse(
-        String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters, Context context) {
-        return checkNotificationHubAvailabilityWithResponseAsync(resourceGroupName, namespaceName, parameters, context)
-            .block();
+        return checkNotificationHubAvailabilityWithResponse(resourceGroupName, namespaceName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -511,7 +485,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationHubResourceInner>> createOrUpdateWithResponseAsync(
@@ -576,7 +551,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationHubResourceInner>> createOrUpdateWithResponseAsync(
@@ -638,7 +614,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationHubResourceInner> createOrUpdateAsync(
@@ -647,14 +623,32 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
         String notificationHubName,
         NotificationHubCreateOrUpdateParameters parameters) {
         return createOrUpdateWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters)
-            .flatMap(
-                (Response<NotificationHubResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Creates/Update a NotificationHub in a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters Parameters supplied to the create/update a NotificationHub Resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of a NotificationHub Resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<NotificationHubResourceInner> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        NotificationHubCreateOrUpdateParameters parameters,
+        Context context) {
+        return createOrUpdateWithResponseAsync(
+                resourceGroupName, namespaceName, notificationHubName, parameters, context)
+            .block();
     }
 
     /**
@@ -675,32 +669,9 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
         String namespaceName,
         String notificationHubName,
         NotificationHubCreateOrUpdateParameters parameters) {
-        return createOrUpdateAsync(resourceGroupName, namespaceName, notificationHubName, parameters).block();
-    }
-
-    /**
-     * Creates/Update a NotificationHub in a namespace.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param parameters Parameters supplied to the create/update a NotificationHub Resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NotificationHubResourceInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        NotificationHubCreateOrUpdateParameters parameters,
-        Context context) {
-        return createOrUpdateWithResponseAsync(
-                resourceGroupName, namespaceName, notificationHubName, parameters, context)
-            .block();
+        return createOrUpdateWithResponse(
+                resourceGroupName, namespaceName, notificationHubName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -713,7 +684,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationHubResourceInner>> patchWithResponseAsync(
@@ -776,7 +748,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationHubResourceInner>> patchWithResponseAsync(
@@ -832,27 +805,17 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @param resourceGroupName The name of the resource group.
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
-     * @param parameters Parameters supplied to patch a NotificationHub Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationHubResourceInner> patchAsync(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        NotificationHubPatchParameters parameters) {
+        String resourceGroupName, String namespaceName, String notificationHubName) {
+        final NotificationHubPatchParameters parameters = null;
         return patchWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters)
-            .flatMap(
-                (Response<NotificationHubResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -861,24 +824,22 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @param resourceGroupName The name of the resource group.
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
+     * @param parameters Parameters supplied to patch a NotificationHub Resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NotificationHubResourceInner> patchAsync(
-        String resourceGroupName, String namespaceName, String notificationHubName) {
-        final NotificationHubPatchParameters parameters = null;
-        return patchWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters)
-            .flatMap(
-                (Response<NotificationHubResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+    public Response<NotificationHubResourceInner> patchWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        NotificationHubPatchParameters parameters,
+        Context context) {
+        return patchWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters, context)
+            .block();
     }
 
     /**
@@ -896,31 +857,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     public NotificationHubResourceInner patch(
         String resourceGroupName, String namespaceName, String notificationHubName) {
         final NotificationHubPatchParameters parameters = null;
-        return patchAsync(resourceGroupName, namespaceName, notificationHubName, parameters).block();
-    }
-
-    /**
-     * Patch a NotificationHub in a namespace.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param parameters Parameters supplied to patch a NotificationHub Resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NotificationHubResourceInner> patchWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        NotificationHubPatchParameters parameters,
-        Context context) {
-        return patchWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters, context)
-            .block();
+        return patchWithResponse(resourceGroupName, namespaceName, notificationHubName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -932,7 +870,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -985,7 +923,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1034,12 +972,30 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String namespaceName, String notificationHubName) {
         return deleteWithResponseAsync(resourceGroupName, namespaceName, notificationHubName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Deletes a notification hub associated with a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(
+        String resourceGroupName, String namespaceName, String notificationHubName, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, context).block();
     }
 
     /**
@@ -1054,25 +1010,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String namespaceName, String notificationHubName) {
-        deleteAsync(resourceGroupName, namespaceName, notificationHubName).block();
-    }
-
-    /**
-     * Deletes a notification hub associated with a namespace.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String namespaceName, String notificationHubName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, context).block();
+        deleteWithResponse(resourceGroupName, namespaceName, notificationHubName, Context.NONE);
     }
 
     /**
@@ -1084,7 +1022,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationHubResourceInner>> getWithResponseAsync(
@@ -1139,7 +1078,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationHubResourceInner>> getWithResponseAsync(
@@ -1190,20 +1130,31 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationHubResourceInner> getAsync(
         String resourceGroupName, String namespaceName, String notificationHubName) {
         return getWithResponseAsync(resourceGroupName, namespaceName, notificationHubName)
-            .flatMap(
-                (Response<NotificationHubResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Lists the notification hubs associated with a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of a NotificationHub Resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<NotificationHubResourceInner> getWithResponse(
+        String resourceGroupName, String namespaceName, String notificationHubName, Context context) {
+        return getWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, context).block();
     }
 
     /**
@@ -1220,25 +1171,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NotificationHubResourceInner get(
         String resourceGroupName, String namespaceName, String notificationHubName) {
-        return getAsync(resourceGroupName, namespaceName, notificationHubName).block();
-    }
-
-    /**
-     * Lists the notification hubs associated with a namespace.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NotificationHubResourceInner> getWithResponse(
-        String resourceGroupName, String namespaceName, String notificationHubName, Context context) {
-        return getWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, context).block();
+        return getWithResponse(resourceGroupName, namespaceName, notificationHubName, Context.NONE).getValue();
     }
 
     /**
@@ -1251,7 +1184,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DebugSendResponseInner>> debugSendWithResponseAsync(
@@ -1308,7 +1242,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DebugSendResponseInner>> debugSendWithResponseAsync(
@@ -1361,24 +1296,17 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @param resourceGroupName The name of the resource group.
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
-     * @param parameters Debug send parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DebugSendResponseInner> debugSendAsync(
-        String resourceGroupName, String namespaceName, String notificationHubName, Object parameters) {
+        String resourceGroupName, String namespaceName, String notificationHubName) {
+        final Object parameters = null;
         return debugSendWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters)
-            .flatMap(
-                (Response<DebugSendResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1387,24 +1315,22 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @param resourceGroupName The name of the resource group.
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
+     * @param parameters Debug send parameters.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub Resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DebugSendResponseInner> debugSendAsync(
-        String resourceGroupName, String namespaceName, String notificationHubName) {
-        final Object parameters = null;
-        return debugSendWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters)
-            .flatMap(
-                (Response<DebugSendResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+    public Response<DebugSendResponseInner> debugSendWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        Object parameters,
+        Context context) {
+        return debugSendWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters, context)
+            .block();
     }
 
     /**
@@ -1422,31 +1348,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     public DebugSendResponseInner debugSend(
         String resourceGroupName, String namespaceName, String notificationHubName) {
         final Object parameters = null;
-        return debugSendAsync(resourceGroupName, namespaceName, notificationHubName, parameters).block();
-    }
-
-    /**
-     * test send a push notification.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param parameters Debug send parameters.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DebugSendResponseInner> debugSendWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        Object parameters,
-        Context context) {
-        return debugSendWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters, context)
-            .block();
+        return debugSendWithResponse(resourceGroupName, namespaceName, notificationHubName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1460,7 +1363,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a Namespace AuthorizationRules.
+     * @return description of a Namespace AuthorizationRules along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SharedAccessAuthorizationRuleResourceInner>> createOrUpdateAuthorizationRuleWithResponseAsync(
@@ -1532,7 +1436,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a Namespace AuthorizationRules.
+     * @return description of a Namespace AuthorizationRules along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SharedAccessAuthorizationRuleResourceInner>> createOrUpdateAuthorizationRuleWithResponseAsync(
@@ -1601,7 +1506,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a Namespace AuthorizationRules.
+     * @return description of a Namespace AuthorizationRules on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleAsync(
@@ -1612,14 +1517,34 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
         SharedAccessAuthorizationRuleCreateOrUpdateParameters parameters) {
         return createOrUpdateAuthorizationRuleWithResponseAsync(
                 resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters)
-            .flatMap(
-                (Response<SharedAccessAuthorizationRuleResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Creates/Updates an authorization rule for a NotificationHub.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param authorizationRuleName Authorization Rule Name.
+     * @param parameters The shared access authorization rule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of a Namespace AuthorizationRules along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        String authorizationRuleName,
+        SharedAccessAuthorizationRuleCreateOrUpdateParameters parameters,
+        Context context) {
+        return createOrUpdateAuthorizationRuleWithResponseAsync(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters, context)
+            .block();
     }
 
     /**
@@ -1642,36 +1567,9 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
         String notificationHubName,
         String authorizationRuleName,
         SharedAccessAuthorizationRuleCreateOrUpdateParameters parameters) {
-        return createOrUpdateAuthorizationRuleAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters)
-            .block();
-    }
-
-    /**
-     * Creates/Updates an authorization rule for a NotificationHub.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param authorizationRuleName Authorization Rule Name.
-     * @param parameters The shared access authorization rule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a Namespace AuthorizationRules.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        String authorizationRuleName,
-        SharedAccessAuthorizationRuleCreateOrUpdateParameters parameters,
-        Context context) {
-        return createOrUpdateAuthorizationRuleWithResponseAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters, context)
-            .block();
+        return createOrUpdateAuthorizationRuleWithResponse(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1684,7 +1582,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteAuthorizationRuleWithResponseAsync(
@@ -1743,7 +1641,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteAuthorizationRuleWithResponseAsync(
@@ -1802,14 +1700,39 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAuthorizationRuleAsync(
         String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName) {
         return deleteAuthorizationRuleWithResponseAsync(
                 resourceGroupName, namespaceName, notificationHubName, authorizationRuleName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Deletes a notificationHub authorization rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param authorizationRuleName Authorization Rule Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteAuthorizationRuleWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        String authorizationRuleName,
+        Context context) {
+        return deleteAuthorizationRuleWithResponseAsync(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, context)
+            .block();
     }
 
     /**
@@ -1826,33 +1749,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteAuthorizationRule(
         String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName) {
-        deleteAuthorizationRuleAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName)
-            .block();
-    }
-
-    /**
-     * Deletes a notificationHub authorization rule.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param authorizationRuleName Authorization Rule Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteAuthorizationRuleWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        String authorizationRuleName,
-        Context context) {
-        return deleteAuthorizationRuleWithResponseAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, context)
-            .block();
+        deleteAuthorizationRuleWithResponse(
+            resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, Context.NONE);
     }
 
     /**
@@ -1865,7 +1763,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an authorization rule for a NotificationHub by name.
+     * @return an authorization rule for a NotificationHub by name along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SharedAccessAuthorizationRuleResourceInner>> getAuthorizationRuleWithResponseAsync(
@@ -1926,7 +1825,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an authorization rule for a NotificationHub by name.
+     * @return an authorization rule for a NotificationHub by name along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SharedAccessAuthorizationRuleResourceInner>> getAuthorizationRuleWithResponseAsync(
@@ -1987,21 +1887,39 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an authorization rule for a NotificationHub by name.
+     * @return an authorization rule for a NotificationHub by name on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SharedAccessAuthorizationRuleResourceInner> getAuthorizationRuleAsync(
         String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName) {
         return getAuthorizationRuleWithResponseAsync(
                 resourceGroupName, namespaceName, notificationHubName, authorizationRuleName)
-            .flatMap(
-                (Response<SharedAccessAuthorizationRuleResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets an authorization rule for a NotificationHub by name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param authorizationRuleName authorization rule name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an authorization rule for a NotificationHub by name along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SharedAccessAuthorizationRuleResourceInner> getAuthorizationRuleWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        String authorizationRuleName,
+        Context context) {
+        return getAuthorizationRuleWithResponseAsync(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, context)
+            .block();
     }
 
     /**
@@ -2019,33 +1937,9 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SharedAccessAuthorizationRuleResourceInner getAuthorizationRule(
         String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName) {
-        return getAuthorizationRuleAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName)
-            .block();
-    }
-
-    /**
-     * Gets an authorization rule for a NotificationHub by name.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param authorizationRuleName authorization rule name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an authorization rule for a NotificationHub by name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SharedAccessAuthorizationRuleResourceInner> getAuthorizationRuleWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        String authorizationRuleName,
-        Context context) {
-        return getAuthorizationRuleWithResponseAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, context)
-            .block();
+        return getAuthorizationRuleWithResponse(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -2056,7 +1950,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationHubResourceInner>> listSinglePageAsync(
@@ -2114,7 +2009,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationHubResourceInner>> listSinglePageAsync(
@@ -2168,7 +2064,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NotificationHubResourceInner> listAsync(String resourceGroupName, String namespaceName) {
@@ -2185,7 +2081,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NotificationHubResourceInner> listAsync(
@@ -2203,7 +2099,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NotificationHubResourceInner> list(String resourceGroupName, String namespaceName) {
@@ -2219,7 +2115,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NotificationHubResourceInner> list(
@@ -2236,7 +2132,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the authorization rules for a NotificationHub.
+     * @return the authorization rules for a NotificationHub along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedAccessAuthorizationRuleResourceInner>> listAuthorizationRulesSinglePageAsync(
@@ -2300,7 +2197,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the authorization rules for a NotificationHub.
+     * @return the authorization rules for a NotificationHub along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedAccessAuthorizationRuleResourceInner>> listAuthorizationRulesSinglePageAsync(
@@ -2360,7 +2258,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the authorization rules for a NotificationHub.
+     * @return the authorization rules for a NotificationHub as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SharedAccessAuthorizationRuleResourceInner> listAuthorizationRulesAsync(
@@ -2380,7 +2278,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the authorization rules for a NotificationHub.
+     * @return the authorization rules for a NotificationHub as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SharedAccessAuthorizationRuleResourceInner> listAuthorizationRulesAsync(
@@ -2399,7 +2297,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the authorization rules for a NotificationHub.
+     * @return the authorization rules for a NotificationHub as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SharedAccessAuthorizationRuleResourceInner> listAuthorizationRules(
@@ -2417,7 +2315,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the authorization rules for a NotificationHub.
+     * @return the authorization rules for a NotificationHub as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SharedAccessAuthorizationRuleResourceInner> listAuthorizationRules(
@@ -2436,7 +2334,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Primary and Secondary ConnectionStrings to the NotificationHub.
+     * @return the Primary and Secondary ConnectionStrings to the NotificationHub along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ResourceListKeysInner>> listKeysWithResponseAsync(
@@ -2497,7 +2396,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Primary and Secondary ConnectionStrings to the NotificationHub.
+     * @return the Primary and Secondary ConnectionStrings to the NotificationHub along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ResourceListKeysInner>> listKeysWithResponseAsync(
@@ -2558,20 +2458,39 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Primary and Secondary ConnectionStrings to the NotificationHub.
+     * @return the Primary and Secondary ConnectionStrings to the NotificationHub on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ResourceListKeysInner> listKeysAsync(
         String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName) {
         return listKeysWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName)
-            .flatMap(
-                (Response<ResourceListKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the Primary and Secondary ConnectionStrings to the NotificationHub.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param authorizationRuleName The connection string of the NotificationHub for the specified authorizationRule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Primary and Secondary ConnectionStrings to the NotificationHub along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ResourceListKeysInner> listKeysWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        String authorizationRuleName,
+        Context context) {
+        return listKeysWithResponseAsync(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, context)
+            .block();
     }
 
     /**
@@ -2589,32 +2508,9 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ResourceListKeysInner listKeys(
         String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName) {
-        return listKeysAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName).block();
-    }
-
-    /**
-     * Gets the Primary and Secondary ConnectionStrings to the NotificationHub.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param authorizationRuleName The connection string of the NotificationHub for the specified authorizationRule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Primary and Secondary ConnectionStrings to the NotificationHub.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ResourceListKeysInner> listKeysWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        String authorizationRuleName,
-        Context context) {
-        return listKeysWithResponseAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, context)
-            .block();
+        return listKeysWithResponse(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -2628,7 +2524,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namespace/NotificationHub Connection String.
+     * @return namespace/NotificationHub Connection String along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ResourceListKeysInner>> regenerateKeysWithResponseAsync(
@@ -2700,7 +2597,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namespace/NotificationHub Connection String.
+     * @return namespace/NotificationHub Connection String along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ResourceListKeysInner>> regenerateKeysWithResponseAsync(
@@ -2769,7 +2667,7 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namespace/NotificationHub Connection String.
+     * @return namespace/NotificationHub Connection String on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ResourceListKeysInner> regenerateKeysAsync(
@@ -2780,14 +2678,34 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
         PolicykeyResource parameters) {
         return regenerateKeysWithResponseAsync(
                 resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters)
-            .flatMap(
-                (Response<ResourceListKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Regenerates the Primary/Secondary Keys to the NotificationHub Authorization Rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param authorizationRuleName The connection string of the NotificationHub for the specified authorizationRule.
+     * @param parameters Parameters supplied to regenerate the NotificationHub Authorization Rule Key.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return namespace/NotificationHub Connection String along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ResourceListKeysInner> regenerateKeysWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String notificationHubName,
+        String authorizationRuleName,
+        PolicykeyResource parameters,
+        Context context) {
+        return regenerateKeysWithResponseAsync(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters, context)
+            .block();
     }
 
     /**
@@ -2810,36 +2728,9 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
         String notificationHubName,
         String authorizationRuleName,
         PolicykeyResource parameters) {
-        return regenerateKeysAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters)
-            .block();
-    }
-
-    /**
-     * Regenerates the Primary/Secondary Keys to the NotificationHub Authorization Rule.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param authorizationRuleName The connection string of the NotificationHub for the specified authorizationRule.
-     * @param parameters Parameters supplied to regenerate the NotificationHub Authorization Rule Key.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namespace/NotificationHub Connection String.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ResourceListKeysInner> regenerateKeysWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String notificationHubName,
-        String authorizationRuleName,
-        PolicykeyResource parameters,
-        Context context) {
-        return regenerateKeysWithResponseAsync(
-                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters, context)
-            .block();
+        return regenerateKeysWithResponse(
+                resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -2851,7 +2742,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub PNS Credentials.
+     * @return description of a NotificationHub PNS Credentials along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PnsCredentialsResourceInner>> getPnsCredentialsWithResponseAsync(
@@ -2906,7 +2798,8 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub PNS Credentials.
+     * @return description of a NotificationHub PNS Credentials along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PnsCredentialsResourceInner>> getPnsCredentialsWithResponseAsync(
@@ -2957,20 +2850,32 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub PNS Credentials.
+     * @return description of a NotificationHub PNS Credentials on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PnsCredentialsResourceInner> getPnsCredentialsAsync(
         String resourceGroupName, String namespaceName, String notificationHubName) {
         return getPnsCredentialsWithResponseAsync(resourceGroupName, namespaceName, notificationHubName)
-            .flatMap(
-                (Response<PnsCredentialsResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Lists the PNS Credentials associated with a notification hub .
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of a NotificationHub PNS Credentials along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PnsCredentialsResourceInner> getPnsCredentialsWithResponse(
+        String resourceGroupName, String namespaceName, String notificationHubName, Context context) {
+        return getPnsCredentialsWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, context)
+            .block();
     }
 
     /**
@@ -2987,36 +2892,20 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PnsCredentialsResourceInner getPnsCredentials(
         String resourceGroupName, String namespaceName, String notificationHubName) {
-        return getPnsCredentialsAsync(resourceGroupName, namespaceName, notificationHubName).block();
-    }
-
-    /**
-     * Lists the PNS Credentials associated with a notification hub .
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param namespaceName The namespace name.
-     * @param notificationHubName The notification hub name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub PNS Credentials.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PnsCredentialsResourceInner> getPnsCredentialsWithResponse(
-        String resourceGroupName, String namespaceName, String notificationHubName, Context context) {
-        return getPnsCredentialsWithResponseAsync(resourceGroupName, namespaceName, notificationHubName, context)
-            .block();
+        return getPnsCredentialsWithResponse(resourceGroupName, namespaceName, notificationHubName, Context.NONE)
+            .getValue();
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationHubResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -3047,12 +2936,14 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List NotificationHub operation.
+     * @return the response of the List NotificationHub operation along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationHubResourceInner>> listNextSinglePageAsync(
@@ -3084,11 +2975,13 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List Namespace operation.
+     * @return the response of the List Namespace operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedAccessAuthorizationRuleResourceInner>> listAuthorizationRulesNextSinglePageAsync(
@@ -3121,12 +3014,14 @@ public final class NotificationHubsClientImpl implements NotificationHubsClient 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List Namespace operation.
+     * @return the response of the List Namespace operation along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedAccessAuthorizationRuleResourceInner>> listAuthorizationRulesNextSinglePageAsync(

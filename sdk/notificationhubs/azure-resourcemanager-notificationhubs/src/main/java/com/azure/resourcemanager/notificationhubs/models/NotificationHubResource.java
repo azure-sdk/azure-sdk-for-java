@@ -134,6 +134,13 @@ public interface NotificationHubResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.notificationhubs.fluent.models.NotificationHubResourceInner object.
      *
      * @return the inner object.
@@ -489,6 +496,18 @@ public interface NotificationHubResource {
     /**
      * test send a push notification.
      *
+     * @param parameters Debug send parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of a NotificationHub Resource along with {@link Response}.
+     */
+    Response<DebugSendResponse> debugSendWithResponse(Object parameters, Context context);
+
+    /**
+     * test send a push notification.
+     *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return description of a NotificationHub Resource.
@@ -496,16 +515,15 @@ public interface NotificationHubResource {
     DebugSendResponse debugSend();
 
     /**
-     * test send a push notification.
+     * Lists the PNS Credentials associated with a notification hub .
      *
-     * @param parameters Debug send parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub Resource.
+     * @return description of a NotificationHub PNS Credentials along with {@link Response}.
      */
-    Response<DebugSendResponse> debugSendWithResponse(Object parameters, Context context);
+    Response<PnsCredentialsResource> getPnsCredentialsWithResponse(Context context);
 
     /**
      * Lists the PNS Credentials associated with a notification hub .
@@ -515,15 +533,4 @@ public interface NotificationHubResource {
      * @return description of a NotificationHub PNS Credentials.
      */
     PnsCredentialsResource getPnsCredentials();
-
-    /**
-     * Lists the PNS Credentials associated with a notification hub .
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a NotificationHub PNS Credentials.
-     */
-    Response<PnsCredentialsResource> getPnsCredentialsWithResponse(Context context);
 }

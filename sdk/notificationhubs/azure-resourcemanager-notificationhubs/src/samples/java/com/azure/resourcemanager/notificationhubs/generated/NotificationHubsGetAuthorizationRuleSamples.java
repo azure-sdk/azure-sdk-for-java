@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs GetAuthorizationRule. */
 public final class NotificationHubsGetAuthorizationRuleSamples {
     /*
@@ -21,6 +19,10 @@ public final class NotificationHubsGetAuthorizationRuleSamples {
         manager
             .notificationHubs()
             .getAuthorizationRuleWithResponse(
-                "5ktrial", "nh-sdk-ns", "nh-sdk-hub", "DefaultListenSharedAccessSignature", Context.NONE);
+                "5ktrial",
+                "nh-sdk-ns",
+                "nh-sdk-hub",
+                "DefaultListenSharedAccessSignature",
+                com.azure.core.util.Context.NONE);
     }
 }

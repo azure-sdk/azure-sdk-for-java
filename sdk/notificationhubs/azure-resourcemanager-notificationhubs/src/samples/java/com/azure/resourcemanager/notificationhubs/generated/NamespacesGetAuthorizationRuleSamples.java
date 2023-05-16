@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces GetAuthorizationRule. */
 public final class NamespacesGetAuthorizationRuleSamples {
     /*
@@ -20,6 +18,7 @@ public final class NamespacesGetAuthorizationRuleSamples {
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager
             .namespaces()
-            .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey", Context.NONE);
+            .getAuthorizationRuleWithResponse(
+                "5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey", com.azure.core.util.Context.NONE);
     }
 }

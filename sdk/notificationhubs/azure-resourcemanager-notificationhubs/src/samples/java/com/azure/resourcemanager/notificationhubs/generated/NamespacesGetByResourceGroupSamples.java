@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces GetByResourceGroup. */
 public final class NamespacesGetByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class NamespacesGetByResourceGroupSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void nameSpaceGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().getByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", Context.NONE);
+        manager.namespaces().getByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }

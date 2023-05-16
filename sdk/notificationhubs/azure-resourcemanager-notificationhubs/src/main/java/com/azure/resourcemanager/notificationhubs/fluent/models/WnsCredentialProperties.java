@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.notificationhubs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Description of a NotificationHub WnsCredential. */
 @Fluent
 public final class WnsCredentialProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WnsCredentialProperties.class);
-
     /*
      * The package ID for this credential.
      */
@@ -31,6 +27,10 @@ public final class WnsCredentialProperties {
      */
     @JsonProperty(value = "windowsLiveEndpoint")
     private String windowsLiveEndpoint;
+
+    /** Creates an instance of WnsCredentialProperties class. */
+    public WnsCredentialProperties() {
+    }
 
     /**
      * Get the packageSid property: The package ID for this credential.

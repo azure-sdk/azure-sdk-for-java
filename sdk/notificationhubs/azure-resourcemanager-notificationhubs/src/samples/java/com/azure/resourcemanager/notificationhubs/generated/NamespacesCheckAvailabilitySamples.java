@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParameters;
 
 /** Samples for Namespaces CheckAvailability. */
@@ -22,6 +21,6 @@ public final class NamespacesCheckAvailabilitySamples {
         manager
             .namespaces()
             .checkAvailabilityWithResponse(
-                new CheckAvailabilityParameters().withName("sdk-Namespace-2924"), Context.NONE);
+                new CheckAvailabilityParameters().withName("sdk-Namespace-2924"), com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Namespaces List. */
 public final class NamespacesListSamples {
     /*
@@ -17,6 +15,6 @@ public final class NamespacesListSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void nameSpaceList(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().list(Context.NONE);
+        manager.namespaces().list(com.azure.core.util.Context.NONE);
     }
 }

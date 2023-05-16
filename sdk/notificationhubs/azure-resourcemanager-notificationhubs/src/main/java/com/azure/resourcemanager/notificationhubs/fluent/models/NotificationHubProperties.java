@@ -5,22 +5,18 @@
 package com.azure.resourcemanager.notificationhubs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.notificationhubs.models.AdmCredential;
 import com.azure.resourcemanager.notificationhubs.models.ApnsCredential;
 import com.azure.resourcemanager.notificationhubs.models.BaiduCredential;
 import com.azure.resourcemanager.notificationhubs.models.GcmCredential;
 import com.azure.resourcemanager.notificationhubs.models.MpnsCredential;
 import com.azure.resourcemanager.notificationhubs.models.WnsCredential;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** NotificationHub properties. */
 @Fluent
 public final class NotificationHubProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NotificationHubProperties.class);
-
     /*
      * The NotificationHub name.
      */
@@ -74,6 +70,10 @@ public final class NotificationHubProperties {
      */
     @JsonProperty(value = "baiduCredential")
     private BaiduCredential baiduCredential;
+
+    /** Creates an instance of NotificationHubProperties class. */
+    public NotificationHubProperties() {
+    }
 
     /**
      * Get the name property: The NotificationHub name.

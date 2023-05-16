@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs Get. */
 public final class NotificationHubsGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class NotificationHubsGetSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void notificationHubGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", Context.NONE);
+        manager
+            .notificationHubs()
+            .getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
