@@ -63,6 +63,7 @@ import com.azure.resourcemanager.security.fluent.PricingsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceControlsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceStandardsClient;
+import com.azure.resourcemanager.security.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlDefinitionsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoresClient;
@@ -74,6 +75,7 @@ import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
 import com.azure.resourcemanager.security.fluent.SecurityOperatorsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsReferenceDatasClient;
+import com.azure.resourcemanager.security.fluent.SensitivitySettingsClient;
 import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.SettingsClient;
 import com.azure.resourcemanager.security.fluent.SoftwareInventoriesClient;
@@ -648,6 +650,30 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.connectors;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /** The SensitivitySettingsClient object to access its operations. */
+    private final SensitivitySettingsClient sensitivitySettings;
+
+    /**
+     * Gets the SensitivitySettingsClient object to access its operations.
+     *
+     * @return the SensitivitySettingsClient object.
+     */
+    public SensitivitySettingsClient getSensitivitySettings() {
+        return this.sensitivitySettings;
+    }
+
     /** The AlertsClient object to access its operations. */
     private final AlertsClient alerts;
 
@@ -953,6 +979,8 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.secureScoreControlDefinitions = new SecureScoreControlDefinitionsClientImpl(this);
         this.securitySolutions = new SecuritySolutionsClientImpl(this);
         this.connectors = new ConnectorsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.sensitivitySettings = new SensitivitySettingsClientImpl(this);
         this.alerts = new AlertsClientImpl(this);
         this.settings = new SettingsClientImpl(this);
         this.ingestionSettings = new IngestionSettingsClientImpl(this);
