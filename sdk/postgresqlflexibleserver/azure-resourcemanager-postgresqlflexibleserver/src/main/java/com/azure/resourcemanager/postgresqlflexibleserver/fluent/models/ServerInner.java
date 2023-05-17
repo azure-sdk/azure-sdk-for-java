@@ -318,7 +318,8 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the network property: Network properties of a server.
+     * Get the network property: Network properties of a server. This Network property is required to be passed only in
+     * case you want the server to be Private access server.
      *
      * @return the network value.
      */
@@ -327,7 +328,8 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Set the network property: Network properties of a server.
+     * Set the network property: Network properties of a server. This Network property is required to be passed only in
+     * case you want the server to be Private access server.
      *
      * @param network the network value to set.
      * @return the ServerInner object itself.
