@@ -75,6 +75,29 @@ public final class AzureBareMetalInstancesImpl implements AzureBareMetalInstance
         }
     }
 
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String azureBareMetalInstanceName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, azureBareMetalInstanceName, context);
+    }
+
+    public void deleteByResourceGroup(String resourceGroupName, String azureBareMetalInstanceName) {
+        this.serviceClient().delete(resourceGroupName, azureBareMetalInstanceName);
+    }
+
+    public Response<Void> putWithResponse(
+        String resourceGroupName,
+        String azureBareMetalInstanceName,
+        AzureBareMetalInstanceInner requestBodyParameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .putWithResponse(resourceGroupName, azureBareMetalInstanceName, requestBodyParameters, context);
+    }
+
+    public void put(String resourceGroupName, String azureBareMetalInstanceName) {
+        this.serviceClient().put(resourceGroupName, azureBareMetalInstanceName);
+    }
+
     public Response<AzureBareMetalInstance> updateWithResponse(
         String resourceGroupName, String azureBareMetalInstanceName, Tags tagsParameter, Context context) {
         Response<AzureBareMetalInstanceInner> inner =
