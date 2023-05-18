@@ -12,12 +12,6 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class PaymentProperties {
     /*
-     * The type of payment.
-     */
-    @JsonProperty(value = "paymentType", access = JsonProperty.Access.WRITE_ONLY)
-    private String paymentType;
-
-    /*
      * The paid amount.
      */
     @JsonProperty(value = "amount", access = JsonProperty.Access.WRITE_ONLY)
@@ -41,17 +35,14 @@ public final class PaymentProperties {
     @JsonProperty(value = "paymentMethodType", access = JsonProperty.Access.WRITE_ONLY)
     private String paymentMethodType;
 
+    /*
+     * The type of payment.
+     */
+    @JsonProperty(value = "paymentType", access = JsonProperty.Access.WRITE_ONLY)
+    private String paymentType;
+
     /** Creates an instance of PaymentProperties class. */
     public PaymentProperties() {
-    }
-
-    /**
-     * Get the paymentType property: The type of payment.
-     *
-     * @return the paymentType value.
-     */
-    public String paymentType() {
-        return this.paymentType;
     }
 
     /**
@@ -99,6 +90,15 @@ public final class PaymentProperties {
      */
     public String paymentMethodType() {
         return this.paymentMethodType;
+    }
+
+    /**
+     * Get the paymentType property: The type of payment.
+     *
+     * @return the paymentType value.
+     */
+    public String paymentType() {
+        return this.paymentType;
     }
 
     /**

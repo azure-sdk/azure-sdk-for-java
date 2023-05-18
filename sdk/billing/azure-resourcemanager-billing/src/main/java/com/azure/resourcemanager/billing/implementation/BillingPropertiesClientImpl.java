@@ -100,13 +100,17 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .get(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context))
+                        .get(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -135,10 +139,15 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context);
+        return service
+            .get(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                this.client.getApiVersion(),
+                accept,
+                context);
     }
 
     /**
@@ -211,7 +220,6 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -220,7 +228,7 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
                         .update(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -258,12 +266,16 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .update(
-                this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, parameters, accept, context);
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                this.client.getApiVersion(),
+                parameters,
+                accept,
+                context);
     }
 
     /**

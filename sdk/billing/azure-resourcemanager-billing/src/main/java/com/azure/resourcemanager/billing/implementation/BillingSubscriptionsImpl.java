@@ -30,30 +30,6 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<BillingSubscription> listByCustomer(String billingAccountName, String customerName) {
-        PagedIterable<BillingSubscriptionInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingSubscription> listByCustomer(
-        String billingAccountName, String customerName, Context context) {
-        PagedIterable<BillingSubscriptionInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName) {
-        PagedIterable<BillingSubscriptionInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName, Context context) {
-        PagedIterable<BillingSubscriptionInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
-    }
-
     public PagedIterable<BillingSubscription> listByBillingProfile(
         String billingAccountName, String billingProfileName) {
         PagedIterable<BillingSubscriptionInner> inner =
@@ -81,6 +57,17 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
             this
                 .serviceClient()
                 .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName) {
+        PagedIterable<BillingSubscriptionInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingSubscription> listByBillingAccount(String billingAccountName, Context context) {
+        PagedIterable<BillingSubscriptionInner> inner =
+            this.serviceClient().listByBillingAccount(billingAccountName, context);
         return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
     }
 
@@ -174,6 +161,19 @@ public final class BillingSubscriptionsImpl implements BillingSubscriptions {
         } else {
             return null;
         }
+    }
+
+    public PagedIterable<BillingSubscription> listByCustomer(String billingAccountName, String customerName) {
+        PagedIterable<BillingSubscriptionInner> inner =
+            this.serviceClient().listByCustomer(billingAccountName, customerName);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingSubscription> listByCustomer(
+        String billingAccountName, String customerName, Context context) {
+        PagedIterable<BillingSubscriptionInner> inner =
+            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingSubscriptionImpl(inner1, this.manager()));
     }
 
     private BillingSubscriptionsClient serviceClient() {

@@ -12,28 +12,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ValidateProductTransferEligibilityResultInner {
     /*
-     * Specifies whether the transfer is eligible or not.
-     */
-    @JsonProperty(value = "isMoveEligible", access = JsonProperty.Access.WRITE_ONLY)
-    private Boolean isMoveEligible;
-
-    /*
      * Validation error details.
      */
     @JsonProperty(value = "errorDetails")
     private ValidateProductTransferEligibilityError errorDetails;
 
+    /*
+     * Specifies whether the transfer is eligible or not.
+     */
+    @JsonProperty(value = "isMoveEligible", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean isMoveEligible;
+
     /** Creates an instance of ValidateProductTransferEligibilityResultInner class. */
     public ValidateProductTransferEligibilityResultInner() {
-    }
-
-    /**
-     * Get the isMoveEligible property: Specifies whether the transfer is eligible or not.
-     *
-     * @return the isMoveEligible value.
-     */
-    public Boolean isMoveEligible() {
-        return this.isMoveEligible;
     }
 
     /**
@@ -55,6 +46,15 @@ public final class ValidateProductTransferEligibilityResultInner {
         ValidateProductTransferEligibilityError errorDetails) {
         this.errorDetails = errorDetails;
         return this;
+    }
+
+    /**
+     * Get the isMoveEligible property: Specifies whether the transfer is eligible or not.
+     *
+     * @return the isMoveEligible value.
+     */
+    public Boolean isMoveEligible() {
+        return this.isMoveEligible;
     }
 
     /**

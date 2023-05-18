@@ -36,20 +36,20 @@ public final class AgreementImpl implements Agreement {
         return this.innerModel().type();
     }
 
-    public String agreementLink() {
-        return this.innerModel().agreementLink();
-    }
-
-    public Category category() {
-        return this.innerModel().category();
-    }
-
     public AcceptanceMode acceptanceMode() {
         return this.innerModel().acceptanceMode();
     }
 
+    public String agreementLink() {
+        return this.innerModel().agreementLink();
+    }
+
     public BillingProfileInfo billingProfileInfo() {
         return this.innerModel().billingProfileInfo();
+    }
+
+    public Category category() {
+        return this.innerModel().category();
     }
 
     public OffsetDateTime effectiveDate() {

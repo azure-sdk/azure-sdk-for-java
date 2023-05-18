@@ -5,13 +5,13 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.billing.models.Amount;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The latest Azure credit balance. This is the balance available for pay now. */
 @Immutable
-public final class AvailableBalanceInner extends ProxyResource {
+public final class AvailableBalanceInner extends ArmResource {
     /*
      * The properties of available balance.
      */
@@ -45,7 +45,9 @@ public final class AvailableBalanceInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

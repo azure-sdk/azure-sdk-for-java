@@ -33,100 +33,36 @@ public final class TransactionImpl implements Transaction {
         return this.innerModel().type();
     }
 
-    public TransactionTypeKind kind() {
-        return this.innerModel().kind();
-    }
-
-    public OffsetDateTime date() {
-        return this.innerModel().date();
-    }
-
-    public String invoice() {
-        return this.innerModel().invoice();
-    }
-
-    public String invoiceId() {
-        return this.innerModel().invoiceId();
-    }
-
-    public String orderId() {
-        return this.innerModel().orderId();
-    }
-
-    public String orderName() {
-        return this.innerModel().orderName();
-    }
-
-    public String productFamily() {
-        return this.innerModel().productFamily();
-    }
-
-    public String productTypeId() {
-        return this.innerModel().productTypeId();
-    }
-
-    public String productType() {
-        return this.innerModel().productType();
-    }
-
-    public String productDescription() {
-        return this.innerModel().productDescription();
-    }
-
-    public ReservationType transactionType() {
-        return this.innerModel().transactionType();
-    }
-
-    public Amount transactionAmount() {
-        return this.innerModel().transactionAmount();
-    }
-
-    public Integer quantity() {
-        return this.innerModel().quantity();
-    }
-
-    public String invoiceSectionId() {
-        return this.innerModel().invoiceSectionId();
-    }
-
-    public String invoiceSectionDisplayName() {
-        return this.innerModel().invoiceSectionDisplayName();
-    }
-
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
-    }
-
-    public String customerId() {
-        return this.innerModel().customerId();
-    }
-
-    public String customerDisplayName() {
-        return this.innerModel().customerDisplayName();
-    }
-
-    public String subscriptionId() {
-        return this.innerModel().subscriptionId();
-    }
-
-    public String subscriptionName() {
-        return this.innerModel().subscriptionName();
+    public Amount azureCreditApplied() {
+        return this.innerModel().azureCreditApplied();
     }
 
     public String azurePlan() {
         return this.innerModel().azurePlan();
     }
 
-    public Amount azureCreditApplied() {
-        return this.innerModel().azureCreditApplied();
-    }
-
     public String billingCurrency() {
         return this.innerModel().billingCurrency();
+    }
+
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
+    public String customerDisplayName() {
+        return this.innerModel().customerDisplayName();
+    }
+
+    public String customerId() {
+        return this.innerModel().customerId();
+    }
+
+    public OffsetDateTime date() {
+        return this.innerModel().date();
     }
 
     public Float discount() {
@@ -141,20 +77,76 @@ public final class TransactionImpl implements Transaction {
         return this.innerModel().exchangeRate();
     }
 
+    public String invoice() {
+        return this.innerModel().invoice();
+    }
+
+    public String invoiceId() {
+        return this.innerModel().invoiceId();
+    }
+
+    public String invoiceSectionDisplayName() {
+        return this.innerModel().invoiceSectionDisplayName();
+    }
+
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
+    }
+
+    public TransactionTypeKind kind() {
+        return this.innerModel().kind();
+    }
+
     public Amount marketPrice() {
         return this.innerModel().marketPrice();
+    }
+
+    public String orderId() {
+        return this.innerModel().orderId();
+    }
+
+    public String orderName() {
+        return this.innerModel().orderName();
     }
 
     public String pricingCurrency() {
         return this.innerModel().pricingCurrency();
     }
 
-    public OffsetDateTime servicePeriodStartDate() {
-        return this.innerModel().servicePeriodStartDate();
+    public String productDescription() {
+        return this.innerModel().productDescription();
+    }
+
+    public String productFamily() {
+        return this.innerModel().productFamily();
+    }
+
+    public String productType() {
+        return this.innerModel().productType();
+    }
+
+    public String productTypeId() {
+        return this.innerModel().productTypeId();
+    }
+
+    public Integer quantity() {
+        return this.innerModel().quantity();
     }
 
     public OffsetDateTime servicePeriodEndDate() {
         return this.innerModel().servicePeriodEndDate();
+    }
+
+    public OffsetDateTime servicePeriodStartDate() {
+        return this.innerModel().servicePeriodStartDate();
+    }
+
+    public String subscriptionId() {
+        return this.innerModel().subscriptionId();
+    }
+
+    public String subscriptionName() {
+        return this.innerModel().subscriptionName();
     }
 
     public Amount subTotal() {
@@ -163,6 +155,14 @@ public final class TransactionImpl implements Transaction {
 
     public Amount tax() {
         return this.innerModel().tax();
+    }
+
+    public Amount transactionAmount() {
+        return this.innerModel().transactionAmount();
+    }
+
+    public ReservationType transactionType() {
+        return this.innerModel().transactionType();
     }
 
     public String unitOfMeasure() {

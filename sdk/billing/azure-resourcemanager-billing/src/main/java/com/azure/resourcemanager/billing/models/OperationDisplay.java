@@ -11,6 +11,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class OperationDisplay {
     /*
+     * Description of operation.
+     */
+    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
+    private String description;
+
+    /*
+     * Operation type such as read, write and delete.
+     */
+    @JsonProperty(value = "operation", access = JsonProperty.Access.WRITE_ONLY)
+    private String operation;
+
+    /*
      * Service provider: Microsoft.Billing.
      */
     @JsonProperty(value = "provider", access = JsonProperty.Access.WRITE_ONLY)
@@ -22,20 +34,26 @@ public final class OperationDisplay {
     @JsonProperty(value = "resource", access = JsonProperty.Access.WRITE_ONLY)
     private String resource;
 
-    /*
-     * Operation type such as read, write and delete.
-     */
-    @JsonProperty(value = "operation", access = JsonProperty.Access.WRITE_ONLY)
-    private String operation;
-
-    /*
-     * Description of operation.
-     */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
-    private String description;
-
     /** Creates an instance of OperationDisplay class. */
     public OperationDisplay() {
+    }
+
+    /**
+     * Get the description property: Description of operation.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Get the operation property: Operation type such as read, write and delete.
+     *
+     * @return the operation value.
+     */
+    public String operation() {
+        return this.operation;
     }
 
     /**
@@ -54,24 +72,6 @@ public final class OperationDisplay {
      */
     public String resource() {
         return this.resource;
-    }
-
-    /**
-     * Get the operation property: Operation type such as read, write and delete.
-     *
-     * @return the operation value.
-     */
-    public String operation() {
-        return this.operation;
-    }
-
-    /**
-     * Get the description property: Description of operation.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.description;
     }
 
     /**

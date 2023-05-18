@@ -34,16 +34,16 @@ public final class InstructionImpl implements Instruction {
         return this.innerModel().amount();
     }
 
-    public OffsetDateTime startDate() {
-        return this.innerModel().startDate();
+    public OffsetDateTime creationDate() {
+        return this.innerModel().creationDate();
     }
 
     public OffsetDateTime endDate() {
         return this.innerModel().endDate();
     }
 
-    public OffsetDateTime creationDate() {
-        return this.innerModel().creationDate();
+    public OffsetDateTime startDate() {
+        return this.innerModel().startDate();
     }
 
     public InstructionInner innerModel() {

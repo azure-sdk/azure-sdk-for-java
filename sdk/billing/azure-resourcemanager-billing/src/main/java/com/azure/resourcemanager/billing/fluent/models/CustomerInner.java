@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.AzurePlan;
 import com.azure.resourcemanager.billing.models.Reseller;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +13,7 @@ import java.util.List;
 
 /** A partner's customer. */
 @Fluent
-public final class CustomerInner extends ProxyResource {
+public final class CustomerInner extends ArmResource {
     /*
      * The customer.
      */
@@ -34,21 +34,21 @@ public final class CustomerInner extends ProxyResource {
     }
 
     /**
-     * Get the billingProfileId property: The ID of the billing profile for the invoice section.
-     *
-     * @return the billingProfileId value.
-     */
-    public String billingProfileId() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
-    }
-
-    /**
      * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
      *
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
         return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
+    }
+
+    /**
+     * Get the billingProfileId property: The ID of the billing profile for the invoice section.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
     }
 
     /**
@@ -125,7 +125,9 @@ public final class CustomerInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

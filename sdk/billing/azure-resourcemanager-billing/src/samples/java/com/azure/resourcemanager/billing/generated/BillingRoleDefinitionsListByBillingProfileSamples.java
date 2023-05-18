@@ -7,14 +7,15 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for BillingRoleDefinitions ListByBillingProfile. */
 public final class BillingRoleDefinitionsListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleDefinitionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleDefinitionsListByBillingProfile.json
      */
     /**
-     * Sample code: BillingProfileRoleDefinitionsList.
+     * Sample code: billingRoleDefinitionsListByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileRoleDefinitionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleDefinitionsListByBillingProfile(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleDefinitions()
             .listByBillingProfile("{billingAccountName}", "{billingProfileName}", com.azure.core.util.Context.NONE);

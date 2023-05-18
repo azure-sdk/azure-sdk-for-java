@@ -30,6 +30,39 @@ public final class ProductsImpl implements Products {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<Product> listByInvoiceSection(
+        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+        PagedIterable<ProductInner> inner =
+            this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
+        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Product> listByInvoiceSection(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String filter,
+        Context context) {
+        PagedIterable<ProductInner> inner =
+            this
+                .serviceClient()
+                .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, filter, context);
+        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Product> listByBillingProfile(String billingAccountName, String billingProfileName) {
+        PagedIterable<ProductInner> inner =
+            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Product> listByBillingProfile(
+        String billingAccountName, String billingProfileName, String filter, Context context) {
+        PagedIterable<ProductInner> inner =
+            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, filter, context);
+        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    }
+
     public PagedIterable<Product> listByCustomer(String billingAccountName, String customerName) {
         PagedIterable<ProductInner> inner = this.serviceClient().listByCustomer(billingAccountName, customerName);
         return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
@@ -49,39 +82,6 @@ public final class ProductsImpl implements Products {
     public PagedIterable<Product> listByBillingAccount(String billingAccountName, String filter, Context context) {
         PagedIterable<ProductInner> inner =
             this.serviceClient().listByBillingAccount(billingAccountName, filter, context);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Product> listByBillingProfile(String billingAccountName, String billingProfileName) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Product> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String filter, Context context) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, filter, context);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Product> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Product> listByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String filter,
-        Context context) {
-        PagedIterable<ProductInner> inner =
-            this
-                .serviceClient()
-                .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, filter, context);
         return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
