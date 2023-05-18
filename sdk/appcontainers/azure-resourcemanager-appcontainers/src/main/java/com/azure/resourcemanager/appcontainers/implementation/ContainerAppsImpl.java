@@ -161,6 +161,22 @@ public final class ContainerAppsImpl implements ContainerApps {
         }
     }
 
+    public void start(String resourceGroupName, String containerAppName) {
+        this.serviceClient().start(resourceGroupName, containerAppName);
+    }
+
+    public void start(String resourceGroupName, String containerAppName, Context context) {
+        this.serviceClient().start(resourceGroupName, containerAppName, context);
+    }
+
+    public void stop(String resourceGroupName, String containerAppName) {
+        this.serviceClient().stop(resourceGroupName, containerAppName);
+    }
+
+    public void stop(String resourceGroupName, String containerAppName, Context context) {
+        this.serviceClient().stop(resourceGroupName, containerAppName, context);
+    }
+
     public ContainerApp getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {

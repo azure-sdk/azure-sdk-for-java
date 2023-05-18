@@ -96,10 +96,6 @@ public final class ContainerAppsApiManager {
 
     private ContainerApps containerApps;
 
-    private Jobs jobs;
-
-    private JobsExecutions jobsExecutions;
-
     private ContainerAppsRevisions containerAppsRevisions;
 
     private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
@@ -111,6 +107,10 @@ public final class ContainerAppsApiManager {
     private ManagedEnvironmentsDiagnostics managedEnvironmentsDiagnostics;
 
     private Operations operations;
+
+    private Jobs jobs;
+
+    private JobsExecutions jobsExecutions;
 
     private ManagedEnvironments managedEnvironments;
 
@@ -291,7 +291,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -451,30 +451,6 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of Jobs. It manages Job.
-     *
-     * @return Resource collection API of Jobs.
-     */
-    public Jobs jobs() {
-        if (this.jobs == null) {
-            this.jobs = new JobsImpl(clientObject.getJobs(), this);
-        }
-        return jobs;
-    }
-
-    /**
-     * Gets the resource collection API of JobsExecutions.
-     *
-     * @return Resource collection API of JobsExecutions.
-     */
-    public JobsExecutions jobsExecutions() {
-        if (this.jobsExecutions == null) {
-            this.jobsExecutions = new JobsExecutionsImpl(clientObject.getJobsExecutions(), this);
-        }
-        return jobsExecutions;
-    }
-
-    /**
      * Gets the resource collection API of ContainerAppsRevisions.
      *
      * @return Resource collection API of ContainerAppsRevisions.
@@ -549,6 +525,30 @@ public final class ContainerAppsApiManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Jobs. It manages Job.
+     *
+     * @return Resource collection API of Jobs.
+     */
+    public Jobs jobs() {
+        if (this.jobs == null) {
+            this.jobs = new JobsImpl(clientObject.getJobs(), this);
+        }
+        return jobs;
+    }
+
+    /**
+     * Gets the resource collection API of JobsExecutions.
+     *
+     * @return Resource collection API of JobsExecutions.
+     */
+    public JobsExecutions jobsExecutions() {
+        if (this.jobsExecutions == null) {
+            this.jobsExecutions = new JobsExecutionsImpl(clientObject.getJobsExecutions(), this);
+        }
+        return jobsExecutions;
     }
 
     /**
