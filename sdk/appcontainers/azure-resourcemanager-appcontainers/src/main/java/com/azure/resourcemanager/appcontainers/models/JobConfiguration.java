@@ -51,6 +51,13 @@ public final class JobConfiguration {
     private JobConfigurationScheduleTriggerConfig scheduleTriggerConfig;
 
     /*
+     * Manual trigger configuration for a single execution job. Properties replicaCompletionCount and parallelism would
+     * be set to 1 by default
+     */
+    @JsonProperty(value = "eventTriggerConfig")
+    private JobConfigurationEventTriggerConfig eventTriggerConfig;
+
+    /*
      * Collection of private container registry credentials used by a Container apps job
      */
     @JsonProperty(value = "registries")
@@ -185,6 +192,28 @@ public final class JobConfiguration {
     }
 
     /**
+     * Get the eventTriggerConfig property: Manual trigger configuration for a single execution job. Properties
+     * replicaCompletionCount and parallelism would be set to 1 by default.
+     *
+     * @return the eventTriggerConfig value.
+     */
+    public JobConfigurationEventTriggerConfig eventTriggerConfig() {
+        return this.eventTriggerConfig;
+    }
+
+    /**
+     * Set the eventTriggerConfig property: Manual trigger configuration for a single execution job. Properties
+     * replicaCompletionCount and parallelism would be set to 1 by default.
+     *
+     * @param eventTriggerConfig the eventTriggerConfig value to set.
+     * @return the JobConfiguration object itself.
+     */
+    public JobConfiguration withEventTriggerConfig(JobConfigurationEventTriggerConfig eventTriggerConfig) {
+        this.eventTriggerConfig = eventTriggerConfig;
+        return this;
+    }
+
+    /**
      * Get the registries property: Collection of private container registry credentials used by a Container apps job.
      *
      * @return the registries value.
@@ -223,6 +252,9 @@ public final class JobConfiguration {
         }
         if (scheduleTriggerConfig() != null) {
             scheduleTriggerConfig().validate();
+        }
+        if (eventTriggerConfig() != null) {
+            eventTriggerConfig().validate();
         }
         if (registries() != null) {
             registries().forEach(e -> e.validate());
