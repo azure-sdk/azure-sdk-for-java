@@ -73,8 +73,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.BareMetalInfrastructure/bareMetalInstances")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureBareMetalInstancesListResult>> listByResourceGroup(
@@ -87,8 +86,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureBareMetalInstanceInner>> getByResourceGroup(
@@ -102,8 +100,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureBareMetalInstanceInner>> update(

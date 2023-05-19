@@ -7,7 +7,7 @@ package com.azure.resourcemanager.baremetalinfrastructure.generated;
 /** Samples for AzureBareMetalInstances GetByResourceGroup. */
 public final class AzureBareMetalInstancesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2021-08-09/examples/AzureBareMetalInstances_Get.json
+     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2023-04-06/examples/AzureBareMetalInstances_Get.json
      */
     /**
      * Sample code: Get an AzureBareMetal instance.
