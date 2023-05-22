@@ -141,7 +141,8 @@ public interface Server {
     Backup backup();
 
     /**
-     * Gets the network property: Network properties of a server.
+     * Gets the network property: Network properties of a server. This Network property is required to be passed only in
+     * case you want the server to be Private access server.
      *
      * @return the network value.
      */
@@ -417,9 +418,11 @@ public interface Server {
         /** The stage of the Server definition allowing to specify network. */
         interface WithNetwork {
             /**
-             * Specifies the network property: Network properties of a server..
+             * Specifies the network property: Network properties of a server. This Network property is required to be
+             * passed only in case you want the server to be Private access server..
              *
-             * @param network Network properties of a server.
+             * @param network Network properties of a server. This Network property is required to be passed only in
+             *     case you want the server to be Private access server.
              * @return the next definition stage.
              */
             WithCreate withNetwork(Network network);
@@ -520,7 +523,8 @@ public interface Server {
             UpdateStages.WithAuthConfig,
             UpdateStages.WithDataEncryption,
             UpdateStages.WithCreateMode,
-            UpdateStages.WithReplicationRole {
+            UpdateStages.WithReplicationRole,
+            UpdateStages.WithNetwork {
         /**
          * Executes the update request.
          *
@@ -667,6 +671,18 @@ public interface Server {
              * @return the next definition stage.
              */
             Update withReplicationRole(ReplicationRole replicationRole);
+        }
+        /** The stage of the Server update allowing to specify network. */
+        interface WithNetwork {
+            /**
+             * Specifies the network property: Network properties of a server. These are required to be passed only in
+             * case if server is a private access server..
+             *
+             * @param network Network properties of a server. These are required to be passed only in case if server is
+             *     a private access server.
+             * @return the next definition stage.
+             */
+            Update withNetwork(Network network);
         }
     }
     /**
