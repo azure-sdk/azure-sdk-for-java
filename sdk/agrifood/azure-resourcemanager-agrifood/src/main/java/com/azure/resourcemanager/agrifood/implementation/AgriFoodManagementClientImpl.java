@@ -27,9 +27,12 @@ import com.azure.resourcemanager.agrifood.fluent.ExtensionsClient;
 import com.azure.resourcemanager.agrifood.fluent.FarmBeatsExtensionsClient;
 import com.azure.resourcemanager.agrifood.fluent.FarmBeatsModelsClient;
 import com.azure.resourcemanager.agrifood.fluent.LocationsClient;
+import com.azure.resourcemanager.agrifood.fluent.OperationResultsClient;
 import com.azure.resourcemanager.agrifood.fluent.OperationsClient;
 import com.azure.resourcemanager.agrifood.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.agrifood.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.agrifood.fluent.SolutionsClient;
+import com.azure.resourcemanager.agrifood.fluent.SolutionsDiscoverabilitiesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -42,11 +45,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AgriFoodManagementClientImpl type. */
 @ServiceClient(builder = AgriFoodManagementClientBuilder.class)
 public final class AgriFoodManagementClientImpl implements AgriFoodManagementClient {
-    /** The ID of the target subscription. */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -150,6 +153,18 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         return this.farmBeatsModels;
     }
 
+    /** The OperationResultsClient object to access its operations. */
+    private final OperationResultsClient operationResults;
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    public OperationResultsClient getOperationResults() {
+        return this.operationResults;
+    }
+
     /** The LocationsClient object to access its operations. */
     private final LocationsClient locations;
 
@@ -198,6 +213,30 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         return this.privateLinkResources;
     }
 
+    /** The SolutionsClient object to access its operations. */
+    private final SolutionsClient solutions;
+
+    /**
+     * Gets the SolutionsClient object to access its operations.
+     *
+     * @return the SolutionsClient object.
+     */
+    public SolutionsClient getSolutions() {
+        return this.solutions;
+    }
+
+    /** The SolutionsDiscoverabilitiesClient object to access its operations. */
+    private final SolutionsDiscoverabilitiesClient solutionsDiscoverabilities;
+
+    /**
+     * Gets the SolutionsDiscoverabilitiesClient object to access its operations.
+     *
+     * @return the SolutionsDiscoverabilitiesClient object.
+     */
+    public SolutionsDiscoverabilitiesClient getSolutionsDiscoverabilities() {
+        return this.solutionsDiscoverabilities;
+    }
+
     /**
      * Initializes an instance of AgriFoodManagementClient client.
      *
@@ -205,7 +244,7 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     AgriFoodManagementClientImpl(
@@ -224,10 +263,13 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         this.extensions = new ExtensionsClientImpl(this);
         this.farmBeatsExtensions = new FarmBeatsExtensionsClientImpl(this);
         this.farmBeatsModels = new FarmBeatsModelsClientImpl(this);
+        this.operationResults = new OperationResultsClientImpl(this);
         this.locations = new LocationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.solutions = new SolutionsClientImpl(this);
+        this.solutionsDiscoverabilities = new SolutionsDiscoverabilitiesClientImpl(this);
     }
 
     /**

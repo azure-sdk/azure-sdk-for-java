@@ -24,10 +24,14 @@ public final class PrivateLinkResourceProperties {
     private List<String> requiredMembers;
 
     /*
-     * The private link resource Private link DNS zone name.
+     * The private link resource private link DNS zone name.
      */
     @JsonProperty(value = "requiredZoneNames")
     private List<String> requiredZoneNames;
+
+    /** Creates an instance of PrivateLinkResourceProperties class. */
+    public PrivateLinkResourceProperties() {
+    }
 
     /**
      * Get the groupId property: The private link resource group id.
@@ -48,7 +52,7 @@ public final class PrivateLinkResourceProperties {
     }
 
     /**
-     * Get the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Get the requiredZoneNames property: The private link resource private link DNS zone name.
      *
      * @return the requiredZoneNames value.
      */
@@ -57,7 +61,7 @@ public final class PrivateLinkResourceProperties {
     }
 
     /**
-     * Set the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Set the requiredZoneNames property: The private link resource private link DNS zone name.
      *
      * @param requiredZoneNames the requiredZoneNames value to set.
      * @return the PrivateLinkResourceProperties object itself.
