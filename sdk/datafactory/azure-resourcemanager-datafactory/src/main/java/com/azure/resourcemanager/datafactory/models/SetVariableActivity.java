@@ -52,6 +52,20 @@ public final class SetVariableActivity extends ControlActivity {
 
     /** {@inheritDoc} */
     @Override
+    public SetVariableActivity withState(ActivityState state) {
+        super.withState(state);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SetVariableActivity withOnInactiveMarkAs(ActivityOnInactiveMarkAs onInactiveMarkAs) {
+        super.withOnInactiveMarkAs(onInactiveMarkAs);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public SetVariableActivity withDependsOn(List<ActivityDependency> dependsOn) {
         super.withDependsOn(dependsOn);
         return this;
@@ -107,6 +121,29 @@ public final class SetVariableActivity extends ControlActivity {
             this.innerTypeProperties = new SetVariableActivityTypeProperties();
         }
         this.innerTypeProperties().withValue(value);
+        return this;
+    }
+
+    /**
+     * Get the setSystemVariable property: If set to true, it sets the pipeline run return value.
+     *
+     * @return the setSystemVariable value.
+     */
+    public Boolean setSystemVariable() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().setSystemVariable();
+    }
+
+    /**
+     * Set the setSystemVariable property: If set to true, it sets the pipeline run return value.
+     *
+     * @param setSystemVariable the setSystemVariable value to set.
+     * @return the SetVariableActivity object itself.
+     */
+    public SetVariableActivity withSetSystemVariable(Boolean setSystemVariable) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new SetVariableActivityTypeProperties();
+        }
+        this.innerTypeProperties().withSetSystemVariable(setSystemVariable);
         return this;
     }
 
