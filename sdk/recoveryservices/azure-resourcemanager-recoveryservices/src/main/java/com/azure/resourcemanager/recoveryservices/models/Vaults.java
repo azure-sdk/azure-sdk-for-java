@@ -83,24 +83,23 @@ public interface Vaults {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the recovery services vault.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String vaultName, Context context);
+    void deleteByResourceGroup(String resourceGroupName, String vaultName);
 
     /**
      * Deletes a vault.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The name of the recovery services vault.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroupName, String vaultName);
+    void delete(String resourceGroupName, String vaultName, Context context);
 
     /**
      * Get the Vault details.
@@ -143,9 +142,8 @@ public interface Vaults {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new Vault resource.

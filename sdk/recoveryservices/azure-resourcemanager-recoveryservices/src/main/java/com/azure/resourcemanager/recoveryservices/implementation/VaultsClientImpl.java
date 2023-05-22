@@ -121,9 +121,9 @@ public final class VaultsClientImpl implements VaultsClient {
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
+        Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("api-version") String apiVersion,
@@ -889,7 +889,7 @@ public final class VaultsClientImpl implements VaultsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String vaultName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String vaultName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -937,7 +937,8 @@ public final class VaultsClientImpl implements VaultsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String vaultName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
+        String resourceGroupName, String vaultName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -978,11 +979,15 @@ public final class VaultsClientImpl implements VaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String vaultName) {
-        return deleteWithResponseAsync(resourceGroupName, vaultName).flatMap(ignored -> Mono.empty());
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String vaultName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, vaultName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -994,11 +999,80 @@ public final class VaultsClientImpl implements VaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String vaultName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, vaultName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Deletes a vault.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the recovery services vault.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String vaultName) {
+        return this.beginDeleteAsync(resourceGroupName, vaultName).getSyncPoller();
+    }
+
+    /**
+     * Deletes a vault.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the recovery services vault.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String vaultName, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, vaultName, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes a vault.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the recovery services vault.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String vaultName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, vaultName, context).block();
+    private Mono<Void> deleteAsync(String resourceGroupName, String vaultName) {
+        return beginDeleteAsync(resourceGroupName, vaultName).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a vault.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the recovery services vault.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String vaultName, Context context) {
+        return beginDeleteAsync(resourceGroupName, vaultName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1012,7 +1086,22 @@ public final class VaultsClientImpl implements VaultsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String vaultName) {
-        deleteWithResponse(resourceGroupName, vaultName, Context.NONE);
+        deleteAsync(resourceGroupName, vaultName).block();
+    }
+
+    /**
+     * Deletes a vault.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the recovery services vault.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String vaultName, Context context) {
+        deleteAsync(resourceGroupName, vaultName, context).block();
     }
 
     /**
