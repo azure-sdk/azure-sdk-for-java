@@ -84,7 +84,8 @@ public final class ServerProperties {
     private Backup backup;
 
     /*
-     * Network properties of a server.
+     * Network properties of a server. This Network property is required to be passed only in case you want the server
+     * to be Private access server.
      */
     @JsonProperty(value = "network")
     private Network network;
@@ -313,7 +314,8 @@ public final class ServerProperties {
     }
 
     /**
-     * Get the network property: Network properties of a server.
+     * Get the network property: Network properties of a server. This Network property is required to be passed only in
+     * case you want the server to be Private access server.
      *
      * @return the network value.
      */
@@ -322,7 +324,8 @@ public final class ServerProperties {
     }
 
     /**
-     * Set the network property: Network properties of a server.
+     * Set the network property: Network properties of a server. This Network property is required to be passed only in
+     * case you want the server to be Private access server.
      *
      * @param network the network value to set.
      * @return the ServerProperties object itself.

@@ -383,8 +383,13 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
     }
 
     public ServerImpl withNetwork(Network network) {
-        this.innerModel().withNetwork(network);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withNetwork(network);
+            return this;
+        } else {
+            this.updateParameters.withNetwork(network);
+            return this;
+        }
     }
 
     public ServerImpl withHighAvailability(HighAvailability highAvailability) {
