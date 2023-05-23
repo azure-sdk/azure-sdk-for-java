@@ -10,7 +10,7 @@ import com.azure.resourcemanager.attestation.models.PrivateLinkServiceConnection
 /** Samples for PrivateEndpointConnections Create. */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/AttestationProviderPutPrivateEndpointConnection.json
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/AttestationProviderPutPrivateEndpointConnection.json
      */
     /**
      * Sample code: AttestationProviderPutPrivateEndpointConnection.

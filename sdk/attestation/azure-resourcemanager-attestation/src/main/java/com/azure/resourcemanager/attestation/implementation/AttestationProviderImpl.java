@@ -13,8 +13,11 @@ import com.azure.resourcemanager.attestation.models.AttestationProvider;
 import com.azure.resourcemanager.attestation.models.AttestationServiceCreationParams;
 import com.azure.resourcemanager.attestation.models.AttestationServiceCreationSpecificParams;
 import com.azure.resourcemanager.attestation.models.AttestationServicePatchParams;
+import com.azure.resourcemanager.attestation.models.AttestationServicePatchSpecificParams;
 import com.azure.resourcemanager.attestation.models.AttestationServiceStatus;
 import com.azure.resourcemanager.attestation.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +70,10 @@ public final class AttestationProviderImpl
         return this.innerModel().attestUri();
     }
 
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
+    }
+
     public List<PrivateEndpointConnection> privateEndpointConnections() {
         List<PrivateEndpointConnectionInner> inner = this.innerModel().privateEndpointConnections();
         if (inner != null) {
@@ -79,6 +86,10 @@ public final class AttestationProviderImpl
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.innerModel().tpmAttestationAuthentication();
     }
 
     public Region region() {
@@ -217,6 +228,11 @@ public final class AttestationProviderImpl
             this.updateUpdateParams.withTags(tags);
             return this;
         }
+    }
+
+    public AttestationProviderImpl withProperties(AttestationServicePatchSpecificParams properties) {
+        this.updateUpdateParams.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {
