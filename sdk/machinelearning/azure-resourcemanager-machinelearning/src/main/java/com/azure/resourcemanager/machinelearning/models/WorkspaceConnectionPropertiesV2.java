@@ -21,11 +21,19 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "PAT", value = PatAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "SAS", value = SasAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "AccessKey", value = AccessKeyAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class)
 })
 @Fluent
 public class WorkspaceConnectionPropertiesV2 {
+    /*
+     * The expiryTime property.
+     */
+    @JsonProperty(value = "expiryTime")
+    private String expiryTime;
+
     /*
      * Category of the connection
      */
@@ -52,6 +60,26 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /** Creates an instance of WorkspaceConnectionPropertiesV2 class. */
     public WorkspaceConnectionPropertiesV2() {
+    }
+
+    /**
+     * Get the expiryTime property: The expiryTime property.
+     *
+     * @return the expiryTime value.
+     */
+    public String expiryTime() {
+        return this.expiryTime;
+    }
+
+    /**
+     * Set the expiryTime property: The expiryTime property.
+     *
+     * @param expiryTime the expiryTime value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withExpiryTime(String expiryTime) {
+        this.expiryTime = expiryTime;
+        return this;
     }
 
     /**
