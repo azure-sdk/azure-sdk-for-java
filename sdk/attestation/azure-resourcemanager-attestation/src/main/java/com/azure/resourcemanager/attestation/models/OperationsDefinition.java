@@ -22,6 +22,12 @@ public final class OperationsDefinition {
     @JsonProperty(value = "display")
     private OperationsDisplayDefinition display;
 
+    /*
+     * Properties of the operation
+     */
+    @JsonProperty(value = "properties")
+    private OperationProperties properties;
+
     /** Creates an instance of OperationsDefinition class. */
     public OperationsDefinition() {
     }
@@ -67,6 +73,26 @@ public final class OperationsDefinition {
     }
 
     /**
+     * Get the properties property: Properties of the operation.
+     *
+     * @return the properties value.
+     */
+    public OperationProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the operation.
+     *
+     * @param properties the properties value to set.
+     * @return the OperationsDefinition object itself.
+     */
+    public OperationsDefinition withProperties(OperationProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -74,6 +100,9 @@ public final class OperationsDefinition {
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

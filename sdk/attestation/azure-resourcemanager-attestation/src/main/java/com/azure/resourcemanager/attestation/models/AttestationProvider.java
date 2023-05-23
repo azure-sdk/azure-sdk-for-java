@@ -77,12 +77,28 @@ public interface AttestationProvider {
     String attestUri();
 
     /**
+     * Gets the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    PublicNetworkAccessType publicNetworkAccess();
+
+    /**
      * Gets the privateEndpointConnections property: List of private endpoint connections associated with the
      * attestation provider.
      *
      * @return the privateEndpointConnections value.
      */
     List<PrivateEndpointConnection> privateEndpointConnections();
+
+    /**
+     * Gets the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     *
+     * @return the tpmAttestationAuthentication value.
+     */
+    TpmAttestationAuthenticationType tpmAttestationAuthentication();
 
     /**
      * Gets the region of the resource.
@@ -202,7 +218,7 @@ public interface AttestationProvider {
     AttestationProvider.Update update();
 
     /** The template for AttestationProvider update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -229,6 +245,16 @@ public interface AttestationProvider {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the AttestationProvider update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Properties of the attestation provider.
+             *
+             * @param properties Properties of the attestation provider.
+             * @return the next definition stage.
+             */
+            Update withProperties(AttestationServicePatchSpecificParams properties);
         }
     }
     /**
