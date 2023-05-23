@@ -21,7 +21,7 @@ public final class UserAssignedIdentity {
     private Map<String, UserIdentity> userAssignedIdentities;
 
     /*
-     * the types of identities associated with this resource; currently restricted to 'SystemAssigned and UserAssigned'
+     * the types of identities associated with this resource; currently restricted to 'None and UserAssigned'
      */
     @JsonProperty(value = "type", required = true)
     private IdentityType type;
@@ -51,8 +51,8 @@ public final class UserAssignedIdentity {
     }
 
     /**
-     * Get the type property: the types of identities associated with this resource; currently restricted to
-     * 'SystemAssigned and UserAssigned'.
+     * Get the type property: the types of identities associated with this resource; currently restricted to 'None and
+     * UserAssigned'.
      *
      * @return the type value.
      */
@@ -61,8 +61,8 @@ public final class UserAssignedIdentity {
     }
 
     /**
-     * Set the type property: the types of identities associated with this resource; currently restricted to
-     * 'SystemAssigned and UserAssigned'.
+     * Set the type property: the types of identities associated with this resource; currently restricted to 'None and
+     * UserAssigned'.
      *
      * @param type the type value to set.
      * @return the UserAssignedIdentity object itself.
