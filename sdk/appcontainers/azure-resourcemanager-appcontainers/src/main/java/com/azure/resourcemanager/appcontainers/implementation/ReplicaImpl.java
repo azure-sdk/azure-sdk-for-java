@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appcontainers.implementation;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.fluent.models.ReplicaInner;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppReplicaRunningState;
 import com.azure.resourcemanager.appcontainers.models.Replica;
 import com.azure.resourcemanager.appcontainers.models.ReplicaContainer;
 import java.time.OffsetDateTime;
@@ -43,8 +44,25 @@ public final class ReplicaImpl implements Replica {
         return this.innerModel().createdTime();
     }
 
+    public ContainerAppReplicaRunningState runningState() {
+        return this.innerModel().runningState();
+    }
+
+    public String runningStateDetails() {
+        return this.innerModel().runningStateDetails();
+    }
+
     public List<ReplicaContainer> containers() {
         List<ReplicaContainer> inner = this.innerModel().containers();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<ReplicaContainer> initContainers() {
+        List<ReplicaContainer> inner = this.innerModel().initContainers();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {

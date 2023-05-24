@@ -174,6 +174,13 @@ public interface ManagedEnvironment {
     String infrastructureResourceGroup();
 
     /**
+     * Gets the peerAuthentication property: Peer authentication settings for the Managed Environment.
+     *
+     * @return the peerAuthentication value.
+     */
+    ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -257,7 +264,8 @@ public interface ManagedEnvironment {
                 DefinitionStages.WithWorkloadProfiles,
                 DefinitionStages.WithKedaConfiguration,
                 DefinitionStages.WithDaprConfiguration,
-                DefinitionStages.WithInfrastructureResourceGroup {
+                DefinitionStages.WithInfrastructureResourceGroup,
+                DefinitionStages.WithPeerAuthentication {
             /**
              * Executes the create request.
              *
@@ -403,6 +411,16 @@ public interface ManagedEnvironment {
              */
             WithCreate withInfrastructureResourceGroup(String infrastructureResourceGroup);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify peerAuthentication. */
+        interface WithPeerAuthentication {
+            /**
+             * Specifies the peerAuthentication property: Peer authentication settings for the Managed Environment.
+             *
+             * @param peerAuthentication Peer authentication settings for the Managed Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -422,7 +440,8 @@ public interface ManagedEnvironment {
             UpdateStages.WithCustomDomainConfiguration,
             UpdateStages.WithWorkloadProfiles,
             UpdateStages.WithKedaConfiguration,
-            UpdateStages.WithDaprConfiguration {
+            UpdateStages.WithDaprConfiguration,
+            UpdateStages.WithPeerAuthentication {
         /**
          * Executes the update request.
          *
@@ -545,6 +564,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withDaprConfiguration(DaprConfiguration daprConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify peerAuthentication. */
+        interface WithPeerAuthentication {
+            /**
+             * Specifies the peerAuthentication property: Peer authentication settings for the Managed Environment.
+             *
+             * @param peerAuthentication Peer authentication settings for the Managed Environment.
+             * @return the next definition stage.
+             */
+            Update withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication);
         }
     }
     /**
