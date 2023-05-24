@@ -60,8 +60,7 @@ public final class RestorableDroppedSqlPoolsClientImpl implements RestorableDrop
     public interface RestorableDroppedSqlPoolsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/restorableDroppedSqlPools/{restorableDroppedSqlPoolId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/restorableDroppedSqlPools/{restorableDroppedSqlPoolId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RestorableDroppedSqlPoolInner>> get(
@@ -76,8 +75,7 @@ public final class RestorableDroppedSqlPoolsClientImpl implements RestorableDrop
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/restorableDroppedSqlPools")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/restorableDroppedSqlPools")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RestorableDroppedSqlPoolListResult>> listByWorkspace(
