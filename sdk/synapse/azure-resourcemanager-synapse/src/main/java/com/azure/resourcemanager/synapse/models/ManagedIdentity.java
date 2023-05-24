@@ -12,7 +12,7 @@ import java.util.UUID;
 
 /** The workspace managed identity. */
 @Fluent
-public class ManagedIdentity {
+public final class ManagedIdentity {
     /*
      * The principal ID of the workspace managed identity
      */
