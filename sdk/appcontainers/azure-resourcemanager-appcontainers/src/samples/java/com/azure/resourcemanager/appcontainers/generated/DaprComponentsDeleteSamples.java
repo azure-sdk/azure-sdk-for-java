@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appcontainers.generated;
 /** Samples for DaprComponents Delete. */
 public final class DaprComponentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/DaprComponents_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-04-01-preview/examples/DaprComponents_Delete.json
      */
     /**
      * Sample code: Delete dapr component.
