@@ -4,33 +4,32 @@
 
 package com.azure.resourcemanager.mixedreality.generated;
 
-import com.azure.resourcemanager.mixedreality.models.Identity;
-import com.azure.resourcemanager.mixedreality.models.RemoteRenderingAccount;
+import com.azure.resourcemanager.mixedreality.models.ObjectAnchorsAccount;
+import com.azure.resourcemanager.mixedreality.models.ObjectAnchorsAccountIdentity;
 import com.azure.resourcemanager.mixedreality.models.ResourceIdentityType;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for RemoteRenderingAccounts Update. */
-public final class RemoteRenderingAccountsUpdateSamples {
+/** Samples for ObjectAnchorsAccounts Update. */
+public final class ObjectAnchorsAccountsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-rendering/Patch.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/object-anchors/Patch.json
      */
     /**
-     * Sample code: Update remote rendering account.
+     * Sample code: Update object anchors account.
      *
      * @param manager Entry point to MixedRealityManager.
      */
-    public static void updateRemoteRenderingAccount(
-        com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
-        RemoteRenderingAccount resource =
+    public static void updateObjectAnchorsAccount(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
+        ObjectAnchorsAccount resource =
             manager
-                .remoteRenderingAccounts()
+                .objectAnchorsAccounts()
                 .getByResourceGroupWithResponse("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
             .withTags(mapOf("hero", "romeo", "heroine", "juliet"))
-            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withIdentity(new ObjectAnchorsAccountIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
             .apply();
     }
 

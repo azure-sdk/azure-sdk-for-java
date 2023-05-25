@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mixedreality.generated;
 /** Samples for RemoteRenderingAccounts ListByResourceGroup. */
 public final class RemoteRenderingAccountsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/remote-rendering/GetByResourceGroup.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-rendering/GetByResourceGroup.json
      */
     /**
      * Sample code: List remote rendering accounts by resource group.

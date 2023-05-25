@@ -25,10 +25,12 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mixedreality.fluent.MixedRealityClient;
 import com.azure.resourcemanager.mixedreality.implementation.MixedRealityClientBuilder;
+import com.azure.resourcemanager.mixedreality.implementation.ObjectAnchorsAccountsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.OperationsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.RemoteRenderingAccountsImpl;
 import com.azure.resourcemanager.mixedreality.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.mixedreality.implementation.SpatialAnchorsAccountsImpl;
+import com.azure.resourcemanager.mixedreality.models.ObjectAnchorsAccounts;
 import com.azure.resourcemanager.mixedreality.models.Operations;
 import com.azure.resourcemanager.mixedreality.models.RemoteRenderingAccounts;
 import com.azure.resourcemanager.mixedreality.models.ResourceProviders;
@@ -49,6 +51,8 @@ public final class MixedRealityManager {
     private SpatialAnchorsAccounts spatialAnchorsAccounts;
 
     private RemoteRenderingAccounts remoteRenderingAccounts;
+
+    private ObjectAnchorsAccounts objectAnchorsAccounts;
 
     private final MixedRealityClient clientObject;
 
@@ -215,7 +219,7 @@ public final class MixedRealityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.mixedreality")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -320,6 +324,18 @@ public final class MixedRealityManager {
                 new RemoteRenderingAccountsImpl(clientObject.getRemoteRenderingAccounts(), this);
         }
         return remoteRenderingAccounts;
+    }
+
+    /**
+     * Gets the resource collection API of ObjectAnchorsAccounts. It manages ObjectAnchorsAccount.
+     *
+     * @return Resource collection API of ObjectAnchorsAccounts.
+     */
+    public ObjectAnchorsAccounts objectAnchorsAccounts() {
+        if (this.objectAnchorsAccounts == null) {
+            this.objectAnchorsAccounts = new ObjectAnchorsAccountsImpl(clientObject.getObjectAnchorsAccounts(), this);
+        }
+        return objectAnchorsAccounts;
     }
 
     /**

@@ -55,8 +55,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     public interface ResourceProvidersService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.MixedReality/locations/{location}"
-                + "/checkNameAvailability")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.MixedReality/locations/{location}/checkNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckNameAvailabilityResponseInner>> checkNameAvailabilityLocal(

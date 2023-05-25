@@ -10,7 +10,7 @@ import com.azure.resourcemanager.mixedreality.models.ResourceIdentityType;
 /** Samples for RemoteRenderingAccounts Create. */
 public final class RemoteRenderingAccountsCreateSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/remote-rendering/Put.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-rendering/Put.json
      */
     /**
      * Sample code: Create remote rendering account.
