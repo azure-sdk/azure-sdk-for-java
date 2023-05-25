@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/ci.yml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlserver/
+    exclude:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/pom.xml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlserver/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/ci.yml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlserver/
+    exclude:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/pom.xml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlserver/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerpostgresqlmicrosoftdbforpostgresqlpostgresqlserver
+    displayName: azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlserver
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: postgresqlmicrosoftdbforpostgresqlpostgresqlserver
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlserver
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerpostgresqlmicrosoftdbforpostgresqlpostgresqlserver
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerpostgresqlmicrosoftdbforpostgresqlpostgresqlserver }}
