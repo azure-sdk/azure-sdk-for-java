@@ -38,7 +38,6 @@ import com.azure.resourcemanager.appcontainers.fluent.models.JobExecutionBaseInn
 import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobSecretsCollectionInner;
 import com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException;
-import com.azure.resourcemanager.appcontainers.models.JobExecutionNamesCollection;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
 import com.azure.resourcemanager.appcontainers.models.JobPatchProperties;
 import com.azure.resourcemanager.appcontainers.models.JobsCollection;
@@ -193,7 +192,6 @@ public final class JobsClientImpl implements JobsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("jobName") String jobName,
-            @BodyParam("application/json") JobExecutionNamesCollection jobExecutionName,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -544,7 +542,7 @@ public final class JobsClientImpl implements JobsClient {
      * Get the properties of a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -592,7 +590,7 @@ public final class JobsClientImpl implements JobsClient {
      * Get the properties of a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -639,7 +637,7 @@ public final class JobsClientImpl implements JobsClient {
      * Get the properties of a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -655,7 +653,7 @@ public final class JobsClientImpl implements JobsClient {
      * Get the properties of a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -672,7 +670,7 @@ public final class JobsClientImpl implements JobsClient {
      * Get the properties of a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -687,7 +685,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -742,7 +740,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -795,7 +793,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -817,7 +815,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -841,7 +839,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -858,7 +856,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -876,7 +874,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -894,7 +892,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -914,7 +912,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -930,7 +928,7 @@ public final class JobsClientImpl implements JobsClient {
      * Create or Update a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -947,7 +945,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -994,7 +992,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1040,7 +1038,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1059,7 +1057,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1080,7 +1078,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1095,7 +1093,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1111,7 +1109,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1126,7 +1124,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1144,7 +1142,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1158,7 +1156,7 @@ public final class JobsClientImpl implements JobsClient {
      * Delete a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1175,7 +1173,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1232,7 +1230,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1287,7 +1285,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1310,7 +1308,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1336,7 +1334,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1355,7 +1353,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1375,7 +1373,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1395,7 +1393,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1417,7 +1415,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1435,7 +1433,7 @@ public final class JobsClientImpl implements JobsClient {
      * <p>Patches a Container Apps Job using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobEnvelope Properties used to create a container apps job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1452,7 +1450,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1507,7 +1505,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1560,7 +1558,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1585,7 +1583,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1608,7 +1606,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1625,7 +1623,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1643,7 +1641,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1662,7 +1660,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1682,7 +1680,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1698,7 +1696,7 @@ public final class JobsClientImpl implements JobsClient {
      * Start a Container Apps Job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param template Properties used to start a job instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1716,7 +1714,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1770,7 +1768,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1822,7 +1820,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1844,7 +1842,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1867,7 +1865,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1884,7 +1882,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1902,7 +1900,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1920,7 +1918,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1940,7 +1938,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -1955,7 +1953,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param jobExecutionName Job execution name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1971,8 +1969,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1981,7 +1978,7 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopMultipleExecutionsWithResponseAsync(
-        String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName) {
+        String resourceGroupName, String jobName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2000,12 +1997,6 @@ public final class JobsClientImpl implements JobsClient {
         }
         if (jobName == null) {
             return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
-        }
-        if (jobExecutionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter jobExecutionName is required and cannot be null."));
-        } else {
-            jobExecutionName.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -2018,7 +2009,6 @@ public final class JobsClientImpl implements JobsClient {
                             resourceGroupName,
                             this.client.getApiVersion(),
                             jobName,
-                            jobExecutionName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -2028,8 +2018,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2039,7 +2028,7 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopMultipleExecutionsWithResponseAsync(
-        String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName, Context context) {
+        String resourceGroupName, String jobName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2059,12 +2048,6 @@ public final class JobsClientImpl implements JobsClient {
         if (jobName == null) {
             return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
         }
-        if (jobExecutionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter jobExecutionName is required and cannot be null."));
-        } else {
-            jobExecutionName.validate();
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2074,7 +2057,6 @@ public final class JobsClientImpl implements JobsClient {
                 resourceGroupName,
                 this.client.getApiVersion(),
                 jobName,
-                jobExecutionName,
                 accept,
                 context);
     }
@@ -2083,8 +2065,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2092,10 +2073,8 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ContainerAppJobExecutionsInner>, ContainerAppJobExecutionsInner>
-        beginStopMultipleExecutionsAsync(
-            String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            stopMultipleExecutionsWithResponseAsync(resourceGroupName, jobName, jobExecutionName);
+        beginStopMultipleExecutionsAsync(String resourceGroupName, String jobName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = stopMultipleExecutionsWithResponseAsync(resourceGroupName, jobName);
         return this
             .client
             .<ContainerAppJobExecutionsInner, ContainerAppJobExecutionsInner>getLroResult(
@@ -2110,8 +2089,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2120,11 +2098,10 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ContainerAppJobExecutionsInner>, ContainerAppJobExecutionsInner>
-        beginStopMultipleExecutionsAsync(
-            String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName, Context context) {
+        beginStopMultipleExecutionsAsync(String resourceGroupName, String jobName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            stopMultipleExecutionsWithResponseAsync(resourceGroupName, jobName, jobExecutionName, context);
+            stopMultipleExecutionsWithResponseAsync(resourceGroupName, jobName, context);
         return this
             .client
             .<ContainerAppJobExecutionsInner, ContainerAppJobExecutionsInner>getLroResult(
@@ -2139,8 +2116,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2148,17 +2124,15 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ContainerAppJobExecutionsInner>, ContainerAppJobExecutionsInner>
-        beginStopMultipleExecutions(
-            String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName) {
-        return this.beginStopMultipleExecutionsAsync(resourceGroupName, jobName, jobExecutionName).getSyncPoller();
+        beginStopMultipleExecutions(String resourceGroupName, String jobName) {
+        return this.beginStopMultipleExecutionsAsync(resourceGroupName, jobName).getSyncPoller();
     }
 
     /**
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2167,28 +2141,23 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ContainerAppJobExecutionsInner>, ContainerAppJobExecutionsInner>
-        beginStopMultipleExecutions(
-            String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName, Context context) {
-        return this
-            .beginStopMultipleExecutionsAsync(resourceGroupName, jobName, jobExecutionName, context)
-            .getSyncPoller();
+        beginStopMultipleExecutions(String resourceGroupName, String jobName, Context context) {
+        return this.beginStopMultipleExecutionsAsync(resourceGroupName, jobName, context).getSyncPoller();
     }
 
     /**
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return container App executions collection ARM resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ContainerAppJobExecutionsInner> stopMultipleExecutionsAsync(
-        String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName) {
-        return beginStopMultipleExecutionsAsync(resourceGroupName, jobName, jobExecutionName)
+    private Mono<ContainerAppJobExecutionsInner> stopMultipleExecutionsAsync(String resourceGroupName, String jobName) {
+        return beginStopMultipleExecutionsAsync(resourceGroupName, jobName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -2197,8 +2166,7 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2207,8 +2175,8 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContainerAppJobExecutionsInner> stopMultipleExecutionsAsync(
-        String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName, Context context) {
-        return beginStopMultipleExecutionsAsync(resourceGroupName, jobName, jobExecutionName, context)
+        String resourceGroupName, String jobName, Context context) {
+        return beginStopMultipleExecutionsAsync(resourceGroupName, jobName, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -2217,25 +2185,22 @@ public final class JobsClientImpl implements JobsClient {
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return container App executions collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ContainerAppJobExecutionsInner stopMultipleExecutions(
-        String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName) {
-        return stopMultipleExecutionsAsync(resourceGroupName, jobName, jobExecutionName).block();
+    public ContainerAppJobExecutionsInner stopMultipleExecutions(String resourceGroupName, String jobName) {
+        return stopMultipleExecutionsAsync(resourceGroupName, jobName).block();
     }
 
     /**
      * Terminates execution of a running container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
-     * @param jobExecutionName List of all job executions that should be stopped.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2244,15 +2209,15 @@ public final class JobsClientImpl implements JobsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ContainerAppJobExecutionsInner stopMultipleExecutions(
-        String resourceGroupName, String jobName, JobExecutionNamesCollection jobExecutionName, Context context) {
-        return stopMultipleExecutionsAsync(resourceGroupName, jobName, jobExecutionName, context).block();
+        String resourceGroupName, String jobName, Context context) {
+        return stopMultipleExecutionsAsync(resourceGroupName, jobName, context).block();
     }
 
     /**
      * List secrets for a container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2301,7 +2266,7 @@ public final class JobsClientImpl implements JobsClient {
      * List secrets for a container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2348,7 +2313,7 @@ public final class JobsClientImpl implements JobsClient {
      * List secrets for a container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2364,7 +2329,7 @@ public final class JobsClientImpl implements JobsClient {
      * List secrets for a container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -2381,7 +2346,7 @@ public final class JobsClientImpl implements JobsClient {
      * List secrets for a container apps job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param jobName Name of the Container Apps Job.
+     * @param jobName Job Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

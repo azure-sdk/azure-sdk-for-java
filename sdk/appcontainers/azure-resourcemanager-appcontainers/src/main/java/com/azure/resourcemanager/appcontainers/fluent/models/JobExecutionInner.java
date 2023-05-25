@@ -10,7 +10,7 @@ import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Container Apps Jobs execution. */
+/** Container Apps Job execution. */
 @Fluent
 public final class JobExecutionInner {
     /*
