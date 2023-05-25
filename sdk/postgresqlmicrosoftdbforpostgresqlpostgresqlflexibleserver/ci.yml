@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/ci.yml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/
+    exclude:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/pom.xml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/ci.yml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/
+    exclude:
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/pom.xml
+      - sdk/postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerpostgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver
+    displayName: azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-postgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerpostgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerpostgresqlmicrosoftdbforpostgresqlpostgresqlflexibleserver }}
