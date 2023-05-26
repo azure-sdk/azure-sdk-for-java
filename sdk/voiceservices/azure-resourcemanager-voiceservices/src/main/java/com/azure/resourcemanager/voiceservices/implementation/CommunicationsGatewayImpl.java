@@ -14,6 +14,7 @@ import com.azure.resourcemanager.voiceservices.models.CommunicationsGatewayUpdat
 import com.azure.resourcemanager.voiceservices.models.CommunicationsPlatform;
 import com.azure.resourcemanager.voiceservices.models.Connectivity;
 import com.azure.resourcemanager.voiceservices.models.E911Type;
+import com.azure.resourcemanager.voiceservices.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.voiceservices.models.ProvisioningState;
 import com.azure.resourcemanager.voiceservices.models.ServiceRegionProperties;
 import com.azure.resourcemanager.voiceservices.models.Status;
@@ -51,6 +52,10 @@ public final class CommunicationsGatewayImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public SystemData systemData() {
@@ -118,6 +123,10 @@ public final class CommunicationsGatewayImpl
 
     public Boolean onPremMcpEnabled() {
         return this.innerModel().onPremMcpEnabled();
+    }
+
+    public Boolean integratedMcpEnabled() {
+        return this.innerModel().integratedMcpEnabled();
     }
 
     public List<String> emergencyDialStrings() {
@@ -259,6 +268,16 @@ public final class CommunicationsGatewayImpl
         }
     }
 
+    public CommunicationsGatewayImpl withIdentity(ManagedServiceIdentity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateProperties.withIdentity(identity);
+            return this;
+        }
+    }
+
     public CommunicationsGatewayImpl withServiceLocations(List<ServiceRegionProperties> serviceLocations) {
         this.innerModel().withServiceLocations(serviceLocations);
         return this;
@@ -302,6 +321,11 @@ public final class CommunicationsGatewayImpl
 
     public CommunicationsGatewayImpl withOnPremMcpEnabled(Boolean onPremMcpEnabled) {
         this.innerModel().withOnPremMcpEnabled(onPremMcpEnabled);
+        return this;
+    }
+
+    public CommunicationsGatewayImpl withIntegratedMcpEnabled(Boolean integratedMcpEnabled) {
+        this.innerModel().withIntegratedMcpEnabled(integratedMcpEnabled);
         return this;
     }
 

@@ -40,7 +40,7 @@ import java.util.Arrays;
 /** Samples for CommunicationsGateways CreateOrUpdate. */
 public final class CommunicationsGatewaysCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_CreateOrUpdate.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_CreateOrUpdate.json
      */
     /**
      * Sample code: CreateCommunicationsGatewayResource.
@@ -88,7 +88,7 @@ public final class CommunicationsGatewaysCreateOrUpdateSamples {
 /** Samples for CommunicationsGateways Delete. */
 public final class CommunicationsGatewaysDeleteSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_Delete.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_Delete.json
      */
     /**
      * Sample code: DeleteCommunicationsGatewayResource.
@@ -108,7 +108,7 @@ public final class CommunicationsGatewaysDeleteSamples {
 /** Samples for CommunicationsGateways GetByResourceGroup. */
 public final class CommunicationsGatewaysGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_Get.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_Get.json
      */
     /**
      * Sample code: GetCommunicationsGatewayResource.
@@ -130,7 +130,7 @@ public final class CommunicationsGatewaysGetByResourceGroupSamples {
 /** Samples for CommunicationsGateways List. */
 public final class CommunicationsGatewaysListSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_ListBySubscription.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_ListBySubscription.json
      */
     /**
      * Sample code: ListCommunicationsGatewayResourceSub.
@@ -150,7 +150,7 @@ public final class CommunicationsGatewaysListSamples {
 /** Samples for CommunicationsGateways ListByResourceGroup. */
 public final class CommunicationsGatewaysListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_ListByResourceGroup.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_ListByResourceGroup.json
      */
     /**
      * Sample code: ListCommunicationsGatewayResource.
@@ -172,7 +172,7 @@ import com.azure.resourcemanager.voiceservices.models.CommunicationsGateway;
 /** Samples for CommunicationsGateways Update. */
 public final class CommunicationsGatewaysUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_Update.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_Update.json
      */
     /**
      * Sample code: UpdateCommunicationsGatewayResource.
@@ -199,7 +199,7 @@ import com.azure.resourcemanager.voiceservices.models.CheckNameAvailabilityReque
 /** Samples for NameAvailability CheckLocal. */
 public final class NameAvailabilityCheckLocalSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/NameAvailability_CheckLocal.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/NameAvailability_CheckLocal.json
      */
     /**
      * Sample code: CheckLocalNameAvailability.
@@ -226,7 +226,7 @@ public final class NameAvailabilityCheckLocalSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/Operations_List.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/Operations_List.json
      */
     /**
      * Sample code: OperationsList.
@@ -247,7 +247,7 @@ import com.azure.resourcemanager.voiceservices.models.TestLinePurpose;
 /** Samples for TestLines CreateOrUpdate. */
 public final class TestLinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_CreateOrUpdate.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/TestLines_CreateOrUpdate.json
      */
     /**
      * Sample code: CreateTestLineResource.
@@ -273,7 +273,7 @@ public final class TestLinesCreateOrUpdateSamples {
 /** Samples for TestLines Delete. */
 public final class TestLinesDeleteSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_Delete.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/TestLines_Delete.json
      */
     /**
      * Sample code: DeleteTestLineResource.
@@ -292,7 +292,7 @@ public final class TestLinesDeleteSamples {
 /** Samples for TestLines Get. */
 public final class TestLinesGetSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_Get.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/TestLines_Get.json
      */
     /**
      * Sample code: GetTestLineResource.
@@ -311,7 +311,7 @@ public final class TestLinesGetSamples {
 /** Samples for TestLines ListByCommunicationsGateway. */
 public final class TestLinesListByCommunicationsGatewaySamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_ListByCommunicationsGateway.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/TestLines_ListByCommunicationsGateway.json
      */
     /**
      * Sample code: ListTestLineResource.
@@ -332,7 +332,7 @@ import com.azure.resourcemanager.voiceservices.models.TestLine;
 /** Samples for TestLines Update. */
 public final class TestLinesUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_Update.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/TestLines_Update.json
      */
     /**
      * Sample code: UpdateTestLineResource.
