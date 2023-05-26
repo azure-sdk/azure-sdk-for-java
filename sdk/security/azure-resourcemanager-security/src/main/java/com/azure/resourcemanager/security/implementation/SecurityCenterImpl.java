@@ -47,7 +47,6 @@ import com.azure.resourcemanager.security.fluent.DiscoveredSecuritySolutionsClie
 import com.azure.resourcemanager.security.fluent.ExternalSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceRulesClient;
-import com.azure.resourcemanager.security.fluent.HealthReportOperationsClient;
 import com.azure.resourcemanager.security.fluent.HealthReportsClient;
 import com.azure.resourcemanager.security.fluent.InformationProtectionPoliciesClient;
 import com.azure.resourcemanager.security.fluent.IngestionSettingsClient;
@@ -63,6 +62,7 @@ import com.azure.resourcemanager.security.fluent.PricingsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceControlsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceStandardsClient;
+import com.azure.resourcemanager.security.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlDefinitionsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoresClient;
@@ -74,6 +74,7 @@ import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
 import com.azure.resourcemanager.security.fluent.SecurityOperatorsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsReferenceDatasClient;
+import com.azure.resourcemanager.security.fluent.SensitivitySettingsClient;
 import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.SettingsClient;
 import com.azure.resourcemanager.security.fluent.SoftwareInventoriesClient;
@@ -648,6 +649,30 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.connectors;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /** The SensitivitySettingsClient object to access its operations. */
+    private final SensitivitySettingsClient sensitivitySettings;
+
+    /**
+     * Gets the SensitivitySettingsClient object to access its operations.
+     *
+     * @return the SensitivitySettingsClient object.
+     */
+    public SensitivitySettingsClient getSensitivitySettings() {
+        return this.sensitivitySettings;
+    }
+
     /** The AlertsClient object to access its operations. */
     private final AlertsClient alerts;
 
@@ -804,30 +829,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.apiCollectionOffboardings;
     }
 
-    /** The HealthReportsClient object to access its operations. */
-    private final HealthReportsClient healthReports;
-
-    /**
-     * Gets the HealthReportsClient object to access its operations.
-     *
-     * @return the HealthReportsClient object.
-     */
-    public HealthReportsClient getHealthReports() {
-        return this.healthReports;
-    }
-
-    /** The HealthReportOperationsClient object to access its operations. */
-    private final HealthReportOperationsClient healthReportOperations;
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    public HealthReportOperationsClient getHealthReportOperations() {
-        return this.healthReportOperations;
-    }
-
     /** The SqlVulnerabilityAssessmentScansClient object to access its operations. */
     private final SqlVulnerabilityAssessmentScansClient sqlVulnerabilityAssessmentScans;
 
@@ -886,6 +887,18 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public SecurityOperatorsClient getSecurityOperators() {
         return this.securityOperators;
+    }
+
+    /** The HealthReportsClient object to access its operations. */
+    private final HealthReportsClient healthReports;
+
+    /**
+     * Gets the HealthReportsClient object to access its operations.
+     *
+     * @return the HealthReportsClient object.
+     */
+    public HealthReportsClient getHealthReports() {
+        return this.healthReports;
     }
 
     /**
@@ -953,6 +966,8 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.secureScoreControlDefinitions = new SecureScoreControlDefinitionsClientImpl(this);
         this.securitySolutions = new SecuritySolutionsClientImpl(this);
         this.connectors = new ConnectorsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.sensitivitySettings = new SensitivitySettingsClientImpl(this);
         this.alerts = new AlertsClientImpl(this);
         this.settings = new SettingsClientImpl(this);
         this.ingestionSettings = new IngestionSettingsClientImpl(this);
@@ -966,13 +981,12 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.apiCollections = new ApiCollectionsClientImpl(this);
         this.apiCollectionOnboardings = new ApiCollectionOnboardingsClientImpl(this);
         this.apiCollectionOffboardings = new ApiCollectionOffboardingsClientImpl(this);
-        this.healthReports = new HealthReportsClientImpl(this);
-        this.healthReportOperations = new HealthReportOperationsClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
         this.sqlVulnerabilityAssessmentScanResults = new SqlVulnerabilityAssessmentScanResultsClientImpl(this);
         this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
         this.securityConnectors = new SecurityConnectorsClientImpl(this);
         this.securityOperators = new SecurityOperatorsClientImpl(this);
+        this.healthReports = new HealthReportsClientImpl(this);
     }
 
     /**

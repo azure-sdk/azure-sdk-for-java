@@ -49,7 +49,6 @@ import com.azure.resourcemanager.security.implementation.DiscoveredSecuritySolut
 import com.azure.resourcemanager.security.implementation.ExternalSecuritySolutionsImpl;
 import com.azure.resourcemanager.security.implementation.GovernanceAssignmentsImpl;
 import com.azure.resourcemanager.security.implementation.GovernanceRulesImpl;
-import com.azure.resourcemanager.security.implementation.HealthReportOperationsImpl;
 import com.azure.resourcemanager.security.implementation.HealthReportsImpl;
 import com.azure.resourcemanager.security.implementation.InformationProtectionPoliciesImpl;
 import com.azure.resourcemanager.security.implementation.IngestionSettingsImpl;
@@ -65,6 +64,7 @@ import com.azure.resourcemanager.security.implementation.PricingsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceAssessmentsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceControlsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceStandardsImpl;
+import com.azure.resourcemanager.security.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoreControlDefinitionsImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoreControlsImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoresImpl;
@@ -76,6 +76,7 @@ import com.azure.resourcemanager.security.implementation.SecurityContactsImpl;
 import com.azure.resourcemanager.security.implementation.SecurityOperatorsImpl;
 import com.azure.resourcemanager.security.implementation.SecuritySolutionsImpl;
 import com.azure.resourcemanager.security.implementation.SecuritySolutionsReferenceDatasImpl;
+import com.azure.resourcemanager.security.implementation.SensitivitySettingsImpl;
 import com.azure.resourcemanager.security.implementation.ServerVulnerabilityAssessmentsImpl;
 import com.azure.resourcemanager.security.implementation.SettingsImpl;
 import com.azure.resourcemanager.security.implementation.SoftwareInventoriesImpl;
@@ -111,7 +112,6 @@ import com.azure.resourcemanager.security.models.DiscoveredSecuritySolutions;
 import com.azure.resourcemanager.security.models.ExternalSecuritySolutions;
 import com.azure.resourcemanager.security.models.GovernanceAssignments;
 import com.azure.resourcemanager.security.models.GovernanceRules;
-import com.azure.resourcemanager.security.models.HealthReportOperations;
 import com.azure.resourcemanager.security.models.HealthReports;
 import com.azure.resourcemanager.security.models.InformationProtectionPolicies;
 import com.azure.resourcemanager.security.models.IngestionSettings;
@@ -127,6 +127,7 @@ import com.azure.resourcemanager.security.models.Pricings;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceAssessments;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceControls;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceStandards;
+import com.azure.resourcemanager.security.models.ResourceProviders;
 import com.azure.resourcemanager.security.models.SecureScoreControlDefinitions;
 import com.azure.resourcemanager.security.models.SecureScoreControls;
 import com.azure.resourcemanager.security.models.SecureScores;
@@ -137,6 +138,7 @@ import com.azure.resourcemanager.security.models.SecurityContacts;
 import com.azure.resourcemanager.security.models.SecurityOperators;
 import com.azure.resourcemanager.security.models.SecuritySolutions;
 import com.azure.resourcemanager.security.models.SecuritySolutionsReferenceDatas;
+import com.azure.resourcemanager.security.models.SensitivitySettings;
 import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessments;
 import com.azure.resourcemanager.security.models.Settings;
 import com.azure.resourcemanager.security.models.SoftwareInventories;
@@ -238,6 +240,10 @@ public final class SecurityManager {
 
     private Connectors connectors;
 
+    private ResourceProviders resourceProviders;
+
+    private SensitivitySettings sensitivitySettings;
+
     private Alerts alerts;
 
     private Settings settings;
@@ -264,10 +270,6 @@ public final class SecurityManager {
 
     private ApiCollectionOffboardings apiCollectionOffboardings;
 
-    private HealthReports healthReports;
-
-    private HealthReportOperations healthReportOperations;
-
     private SqlVulnerabilityAssessmentScans sqlVulnerabilityAssessmentScans;
 
     private SqlVulnerabilityAssessmentScanResults sqlVulnerabilityAssessmentScanResults;
@@ -277,6 +279,8 @@ public final class SecurityManager {
     private SecurityConnectors securityConnectors;
 
     private SecurityOperators securityOperators;
+
+    private HealthReports healthReports;
 
     private final SecurityCenter clientObject;
 
@@ -443,7 +447,7 @@ public final class SecurityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.security")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1015,6 +1019,30 @@ public final class SecurityManager {
     }
 
     /**
+     * Gets the resource collection API of ResourceProviders.
+     *
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
+    }
+
+    /**
+     * Gets the resource collection API of SensitivitySettings.
+     *
+     * @return Resource collection API of SensitivitySettings.
+     */
+    public SensitivitySettings sensitivitySettings() {
+        if (this.sensitivitySettings == null) {
+            this.sensitivitySettings = new SensitivitySettingsImpl(clientObject.getSensitivitySettings(), this);
+        }
+        return sensitivitySettings;
+    }
+
+    /**
      * Gets the resource collection API of Alerts.
      *
      * @return Resource collection API of Alerts.
@@ -1176,31 +1204,6 @@ public final class SecurityManager {
     }
 
     /**
-     * Gets the resource collection API of HealthReports.
-     *
-     * @return Resource collection API of HealthReports.
-     */
-    public HealthReports healthReports() {
-        if (this.healthReports == null) {
-            this.healthReports = new HealthReportsImpl(clientObject.getHealthReports(), this);
-        }
-        return healthReports;
-    }
-
-    /**
-     * Gets the resource collection API of HealthReportOperations.
-     *
-     * @return Resource collection API of HealthReportOperations.
-     */
-    public HealthReportOperations healthReportOperations() {
-        if (this.healthReportOperations == null) {
-            this.healthReportOperations =
-                new HealthReportOperationsImpl(clientObject.getHealthReportOperations(), this);
-        }
-        return healthReportOperations;
-    }
-
-    /**
      * Gets the resource collection API of SqlVulnerabilityAssessmentScans.
      *
      * @return Resource collection API of SqlVulnerabilityAssessmentScans.
@@ -1263,6 +1266,18 @@ public final class SecurityManager {
             this.securityOperators = new SecurityOperatorsImpl(clientObject.getSecurityOperators(), this);
         }
         return securityOperators;
+    }
+
+    /**
+     * Gets the resource collection API of HealthReports.
+     *
+     * @return Resource collection API of HealthReports.
+     */
+    public HealthReports healthReports() {
+        if (this.healthReports == null) {
+            this.healthReports = new HealthReportsImpl(clientObject.getHealthReports(), this);
+        }
+        return healthReports;
     }
 
     /**
