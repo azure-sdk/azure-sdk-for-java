@@ -7,6 +7,7 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppReplicaRunningState;
 import com.azure.resourcemanager.appcontainers.models.ReplicaContainer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -59,6 +60,24 @@ public final class ReplicaInner extends ProxyResource {
     }
 
     /**
+     * Get the runningState property: Current running state of the replica.
+     *
+     * @return the runningState value.
+     */
+    public ContainerAppReplicaRunningState runningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().runningState();
+    }
+
+    /**
+     * Get the runningStateDetails property: The details of replica current running state.
+     *
+     * @return the runningStateDetails value.
+     */
+    public String runningStateDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().runningStateDetails();
+    }
+
+    /**
      * Get the containers property: The containers collection under a replica.
      *
      * @return the containers value.
@@ -78,6 +97,29 @@ public final class ReplicaInner extends ProxyResource {
             this.innerProperties = new ReplicaProperties();
         }
         this.innerProperties().withContainers(containers);
+        return this;
+    }
+
+    /**
+     * Get the initContainers property: The init containers collection under a replica.
+     *
+     * @return the initContainers value.
+     */
+    public List<ReplicaContainer> initContainers() {
+        return this.innerProperties() == null ? null : this.innerProperties().initContainers();
+    }
+
+    /**
+     * Set the initContainers property: The init containers collection under a replica.
+     *
+     * @param initContainers the initContainers value to set.
+     * @return the ReplicaInner object itself.
+     */
+    public ReplicaInner withInitContainers(List<ReplicaContainer> initContainers) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ReplicaProperties();
+        }
+        this.innerProperties().withInitContainers(initContainers);
         return this;
     }
 
