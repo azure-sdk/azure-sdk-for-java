@@ -21,10 +21,20 @@ public final class ClusterPatch {
     private Map<String, String> tags;
 
     /*
+     * Identity of Cluster resource
+     */
+    @JsonProperty(value = "identity")
+    private ManagedServiceIdentity identity;
+
+    /*
      * Cluster properties.
      */
     @JsonProperty(value = "properties")
     private ClusterPatchProperties innerProperties;
+
+    /** Creates an instance of ClusterPatch class. */
+    public ClusterPatch() {
+    }
 
     /**
      * Get the tags property: Resource tags.
@@ -43,6 +53,26 @@ public final class ClusterPatch {
      */
     public ClusterPatch withTags(Map<String, String> tags) {
         this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Get the identity property: Identity of Cluster resource.
+     *
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: Identity of Cluster resource.
+     *
+     * @param identity the identity value to set.
+     * @return the ClusterPatch object itself.
+     */
+    public ClusterPatch withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
         return this;
     }
 
@@ -153,6 +183,9 @@ public final class ClusterPatch {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (identity() != null) {
+            identity().validate();
+        }
         if (innerProperties() != null) {
             innerProperties().validate();
         }

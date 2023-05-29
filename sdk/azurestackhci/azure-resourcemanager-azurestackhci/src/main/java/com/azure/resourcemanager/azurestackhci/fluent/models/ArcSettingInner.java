@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.azurestackhci.models.ArcConnectivityProperties;
 import com.azure.resourcemanager.azurestackhci.models.ArcSettingAggregateState;
+import com.azure.resourcemanager.azurestackhci.models.DefaultExtensionDetails;
 import com.azure.resourcemanager.azurestackhci.models.PerNodeState;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,24 +19,19 @@ import java.util.List;
 @Fluent
 public final class ArcSettingInner extends ProxyResource {
     /*
-     * System data of ArcSetting resource
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * ArcSetting properties.
      */
     @JsonProperty(value = "properties")
     private ArcSettingProperties innerProperties;
 
-    /**
-     * Get the systemData property: System data of ArcSetting resource.
-     *
-     * @return the systemData value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ArcSettingInner class. */
+    public ArcSettingInner() {
     }
 
     /**
@@ -44,6 +41,15 @@ public final class ArcSettingInner extends ProxyResource {
      */
     private ArcSettingProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -195,7 +201,7 @@ public final class ArcSettingInner extends ProxyResource {
      *
      * @return the connectivityProperties value.
      */
-    public Object connectivityProperties() {
+    public ArcConnectivityProperties connectivityProperties() {
         return this.innerProperties() == null ? null : this.innerProperties().connectivityProperties();
     }
 
@@ -205,12 +211,21 @@ public final class ArcSettingInner extends ProxyResource {
      * @param connectivityProperties the connectivityProperties value to set.
      * @return the ArcSettingInner object itself.
      */
-    public ArcSettingInner withConnectivityProperties(Object connectivityProperties) {
+    public ArcSettingInner withConnectivityProperties(ArcConnectivityProperties connectivityProperties) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ArcSettingProperties();
         }
         this.innerProperties().withConnectivityProperties(connectivityProperties);
         return this;
+    }
+
+    /**
+     * Get the defaultExtensions property: Properties for each of the default extensions category.
+     *
+     * @return the defaultExtensions value.
+     */
+    public List<DefaultExtensionDetails> defaultExtensions() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultExtensions();
     }
 
     /**

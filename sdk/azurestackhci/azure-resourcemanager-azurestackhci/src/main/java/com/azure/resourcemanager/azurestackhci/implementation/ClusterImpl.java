@@ -13,7 +13,10 @@ import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponse;
 import com.azure.resourcemanager.azurestackhci.models.ClusterPatch;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
+import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceChangeRequest;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.azure.resourcemanager.azurestackhci.models.UploadCertificateRequest;
 import java.time.OffsetDateTime;
@@ -48,6 +51,10 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public SystemData systemData() {
@@ -86,6 +93,10 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().aadServicePrincipalObjectId();
     }
 
+    public SoftwareAssuranceProperties softwareAssuranceProperties() {
+        return this.innerModel().softwareAssuranceProperties();
+    }
+
     public ClusterDesiredProperties desiredProperties() {
         return this.innerModel().desiredProperties();
     }
@@ -116,6 +127,10 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     public String serviceEndpoint() {
         return this.innerModel().serviceEndpoint();
+    }
+
+    public String resourceProviderObjectId() {
+        return this.innerModel().resourceProviderObjectId();
     }
 
     public Region region() {
@@ -243,6 +258,19 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return serviceManager.clusters().createIdentity(resourceGroupName, clusterName, context);
     }
 
+    public Cluster extendSoftwareAssuranceBenefit(SoftwareAssuranceChangeRequest softwareAssuranceChangeRequest) {
+        return serviceManager
+            .clusters()
+            .extendSoftwareAssuranceBenefit(resourceGroupName, clusterName, softwareAssuranceChangeRequest);
+    }
+
+    public Cluster extendSoftwareAssuranceBenefit(
+        SoftwareAssuranceChangeRequest softwareAssuranceChangeRequest, Context context) {
+        return serviceManager
+            .clusters()
+            .extendSoftwareAssuranceBenefit(resourceGroupName, clusterName, softwareAssuranceChangeRequest, context);
+    }
+
     public ClusterImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -259,6 +287,16 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             return this;
         } else {
             this.updateCluster.withTags(tags);
+            return this;
+        }
+    }
+
+    public ClusterImpl withIdentity(ManagedServiceIdentity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateCluster.withIdentity(identity);
             return this;
         }
     }
@@ -300,6 +338,11 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     public ClusterImpl withAadServicePrincipalObjectId(String aadServicePrincipalObjectId) {
         this.innerModel().withAadServicePrincipalObjectId(aadServicePrincipalObjectId);
+        return this;
+    }
+
+    public ClusterImpl withSoftwareAssuranceProperties(SoftwareAssuranceProperties softwareAssuranceProperties) {
+        this.innerModel().withSoftwareAssuranceProperties(softwareAssuranceProperties);
         return this;
     }
 

@@ -33,7 +33,7 @@ public interface Extension {
     String type();
 
     /**
-     * Gets the systemData property: System data of Extension resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -45,6 +45,13 @@ public interface Extension {
      * @return the provisioningState value.
      */
     ProvisioningState provisioningState();
+
+    /**
+     * Gets the extensionParameters property: Parameters specific to this extension type.
+     *
+     * @return the extensionParameters value.
+     */
+    ExtensionParameters extensionParameters();
 
     /**
      * Gets the aggregateState property: Aggregate state of Arc Extensions across the nodes in this HCI cluster.
@@ -61,56 +68,11 @@ public interface Extension {
     List<PerNodeExtensionState> perNodeExtensionDetails();
 
     /**
-     * Gets the forceUpdateTag property: How the extension handler should be forced to update even if the extension
-     * configuration has not changed.
+     * Gets the managedBy property: Indicates if the extension is managed by azure or the user.
      *
-     * @return the forceUpdateTag value.
+     * @return the managedBy value.
      */
-    String forceUpdateTag();
-
-    /**
-     * Gets the publisher property: The name of the extension handler publisher.
-     *
-     * @return the publisher value.
-     */
-    String publisher();
-
-    /**
-     * Gets the typePropertiesType property: Specifies the type of the extension; an example is "CustomScriptExtension".
-     *
-     * @return the typePropertiesType value.
-     */
-    String typePropertiesType();
-
-    /**
-     * Gets the typeHandlerVersion property: Specifies the version of the script handler.
-     *
-     * @return the typeHandlerVersion value.
-     */
-    String typeHandlerVersion();
-
-    /**
-     * Gets the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if
-     * one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless
-     * redeployed, even with this property set to true.
-     *
-     * @return the autoUpgradeMinorVersion value.
-     */
-    Boolean autoUpgradeMinorVersion();
-
-    /**
-     * Gets the settings property: Json formatted public settings for the extension.
-     *
-     * @return the settings value.
-     */
-    Object settings();
-
-    /**
-     * Gets the protectedSettings property: Protected settings (may contain secrets).
-     *
-     * @return the protectedSettings value.
-     */
-    Object protectedSettings();
+    ExtensionManagedBy managedBy();
 
     /**
      * Gets the name of the resource group.
@@ -151,14 +113,7 @@ public interface Extension {
          * The stage of the Extension definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithForceUpdateTag,
-                DefinitionStages.WithPublisher,
-                DefinitionStages.WithTypePropertiesType,
-                DefinitionStages.WithTypeHandlerVersion,
-                DefinitionStages.WithAutoUpgradeMinorVersion,
-                DefinitionStages.WithSettings,
-                DefinitionStages.WithProtectedSettings {
+        interface WithCreate extends DefinitionStages.WithExtensionParameters {
             /**
              * Executes the create request.
              *
@@ -174,82 +129,15 @@ public interface Extension {
              */
             Extension create(Context context);
         }
-        /** The stage of the Extension definition allowing to specify forceUpdateTag. */
-        interface WithForceUpdateTag {
+        /** The stage of the Extension definition allowing to specify extensionParameters. */
+        interface WithExtensionParameters {
             /**
-             * Specifies the forceUpdateTag property: How the extension handler should be forced to update even if the
-             * extension configuration has not changed..
+             * Specifies the extensionParameters property: Parameters specific to this extension type..
              *
-             * @param forceUpdateTag How the extension handler should be forced to update even if the extension
-             *     configuration has not changed.
+             * @param extensionParameters Parameters specific to this extension type.
              * @return the next definition stage.
              */
-            WithCreate withForceUpdateTag(String forceUpdateTag);
-        }
-        /** The stage of the Extension definition allowing to specify publisher. */
-        interface WithPublisher {
-            /**
-             * Specifies the publisher property: The name of the extension handler publisher..
-             *
-             * @param publisher The name of the extension handler publisher.
-             * @return the next definition stage.
-             */
-            WithCreate withPublisher(String publisher);
-        }
-        /** The stage of the Extension definition allowing to specify typePropertiesType. */
-        interface WithTypePropertiesType {
-            /**
-             * Specifies the typePropertiesType property: Specifies the type of the extension; an example is
-             * "CustomScriptExtension"..
-             *
-             * @param typePropertiesType Specifies the type of the extension; an example is "CustomScriptExtension".
-             * @return the next definition stage.
-             */
-            WithCreate withTypePropertiesType(String typePropertiesType);
-        }
-        /** The stage of the Extension definition allowing to specify typeHandlerVersion. */
-        interface WithTypeHandlerVersion {
-            /**
-             * Specifies the typeHandlerVersion property: Specifies the version of the script handler..
-             *
-             * @param typeHandlerVersion Specifies the version of the script handler.
-             * @return the next definition stage.
-             */
-            WithCreate withTypeHandlerVersion(String typeHandlerVersion);
-        }
-        /** The stage of the Extension definition allowing to specify autoUpgradeMinorVersion. */
-        interface WithAutoUpgradeMinorVersion {
-            /**
-             * Specifies the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor
-             * version if one is available at deployment time. Once deployed, however, the extension will not upgrade
-             * minor versions unless redeployed, even with this property set to true..
-             *
-             * @param autoUpgradeMinorVersion Indicates whether the extension should use a newer minor version if one is
-             *     available at deployment time. Once deployed, however, the extension will not upgrade minor versions
-             *     unless redeployed, even with this property set to true.
-             * @return the next definition stage.
-             */
-            WithCreate withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion);
-        }
-        /** The stage of the Extension definition allowing to specify settings. */
-        interface WithSettings {
-            /**
-             * Specifies the settings property: Json formatted public settings for the extension..
-             *
-             * @param settings Json formatted public settings for the extension.
-             * @return the next definition stage.
-             */
-            WithCreate withSettings(Object settings);
-        }
-        /** The stage of the Extension definition allowing to specify protectedSettings. */
-        interface WithProtectedSettings {
-            /**
-             * Specifies the protectedSettings property: Protected settings (may contain secrets)..
-             *
-             * @param protectedSettings Protected settings (may contain secrets).
-             * @return the next definition stage.
-             */
-            WithCreate withProtectedSettings(Object protectedSettings);
+            WithCreate withExtensionParameters(ExtensionParameters extensionParameters);
         }
     }
     /**
@@ -260,14 +148,7 @@ public interface Extension {
     Extension.Update update();
 
     /** The template for Extension update. */
-    interface Update
-        extends UpdateStages.WithForceUpdateTag,
-            UpdateStages.WithPublisher,
-            UpdateStages.WithTypePropertiesType,
-            UpdateStages.WithTypeHandlerVersion,
-            UpdateStages.WithAutoUpgradeMinorVersion,
-            UpdateStages.WithSettings,
-            UpdateStages.WithProtectedSettings {
+    interface Update extends UpdateStages.WithExtensionParameters {
         /**
          * Executes the update request.
          *
@@ -285,82 +166,15 @@ public interface Extension {
     }
     /** The Extension update stages. */
     interface UpdateStages {
-        /** The stage of the Extension update allowing to specify forceUpdateTag. */
-        interface WithForceUpdateTag {
+        /** The stage of the Extension update allowing to specify extensionParameters. */
+        interface WithExtensionParameters {
             /**
-             * Specifies the forceUpdateTag property: How the extension handler should be forced to update even if the
-             * extension configuration has not changed..
+             * Specifies the extensionParameters property: Parameters specific to this extension type..
              *
-             * @param forceUpdateTag How the extension handler should be forced to update even if the extension
-             *     configuration has not changed.
+             * @param extensionParameters Parameters specific to this extension type.
              * @return the next definition stage.
              */
-            Update withForceUpdateTag(String forceUpdateTag);
-        }
-        /** The stage of the Extension update allowing to specify publisher. */
-        interface WithPublisher {
-            /**
-             * Specifies the publisher property: The name of the extension handler publisher..
-             *
-             * @param publisher The name of the extension handler publisher.
-             * @return the next definition stage.
-             */
-            Update withPublisher(String publisher);
-        }
-        /** The stage of the Extension update allowing to specify typePropertiesType. */
-        interface WithTypePropertiesType {
-            /**
-             * Specifies the typePropertiesType property: Specifies the type of the extension; an example is
-             * "CustomScriptExtension"..
-             *
-             * @param typePropertiesType Specifies the type of the extension; an example is "CustomScriptExtension".
-             * @return the next definition stage.
-             */
-            Update withTypePropertiesType(String typePropertiesType);
-        }
-        /** The stage of the Extension update allowing to specify typeHandlerVersion. */
-        interface WithTypeHandlerVersion {
-            /**
-             * Specifies the typeHandlerVersion property: Specifies the version of the script handler..
-             *
-             * @param typeHandlerVersion Specifies the version of the script handler.
-             * @return the next definition stage.
-             */
-            Update withTypeHandlerVersion(String typeHandlerVersion);
-        }
-        /** The stage of the Extension update allowing to specify autoUpgradeMinorVersion. */
-        interface WithAutoUpgradeMinorVersion {
-            /**
-             * Specifies the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor
-             * version if one is available at deployment time. Once deployed, however, the extension will not upgrade
-             * minor versions unless redeployed, even with this property set to true..
-             *
-             * @param autoUpgradeMinorVersion Indicates whether the extension should use a newer minor version if one is
-             *     available at deployment time. Once deployed, however, the extension will not upgrade minor versions
-             *     unless redeployed, even with this property set to true.
-             * @return the next definition stage.
-             */
-            Update withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion);
-        }
-        /** The stage of the Extension update allowing to specify settings. */
-        interface WithSettings {
-            /**
-             * Specifies the settings property: Json formatted public settings for the extension..
-             *
-             * @param settings Json formatted public settings for the extension.
-             * @return the next definition stage.
-             */
-            Update withSettings(Object settings);
-        }
-        /** The stage of the Extension update allowing to specify protectedSettings. */
-        interface WithProtectedSettings {
-            /**
-             * Specifies the protectedSettings property: Protected settings (may contain secrets)..
-             *
-             * @param protectedSettings Protected settings (may contain secrets).
-             * @return the next definition stage.
-             */
-            Update withProtectedSettings(Object protectedSettings);
+            Update withExtensionParameters(ExtensionParameters extensionParameters);
         }
     }
     /**
@@ -377,4 +191,25 @@ public interface Extension {
      * @return the refreshed resource.
      */
     Extension refresh(Context context);
+
+    /**
+     * Upgrade a particular Arc Extension of HCI Cluster.
+     *
+     * @param extensionUpgradeParameters Parameters supplied to the Upgrade Extensions operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void upgrade(ExtensionUpgradeParameters extensionUpgradeParameters);
+
+    /**
+     * Upgrade a particular Arc Extension of HCI Cluster.
+     *
+     * @param extensionUpgradeParameters Parameters supplied to the Upgrade Extensions operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void upgrade(ExtensionUpgradeParameters extensionUpgradeParameters, Context context);
 }

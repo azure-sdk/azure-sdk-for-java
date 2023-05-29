@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.azurestackhci.models.ArcConnectivityProperties;
 import com.azure.resourcemanager.azurestackhci.models.ArcSettingAggregateState;
+import com.azure.resourcemanager.azurestackhci.models.DefaultExtensionDetails;
 import com.azure.resourcemanager.azurestackhci.models.PerNodeState;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,8 +23,7 @@ public final class ArcSettingProperties {
     private ProvisioningState provisioningState;
 
     /*
-     * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine
-     * resources.
+     * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine resources.
      */
     @JsonProperty(value = "arcInstanceResourceGroup")
     private String arcInstanceResourceGroup;
@@ -67,7 +68,17 @@ public final class ArcSettingProperties {
      * contains connectivity related configuration for ARC resources
      */
     @JsonProperty(value = "connectivityProperties")
-    private Object connectivityProperties;
+    private ArcConnectivityProperties connectivityProperties;
+
+    /*
+     * Properties for each of the default extensions category
+     */
+    @JsonProperty(value = "defaultExtensions", access = JsonProperty.Access.WRITE_ONLY)
+    private List<DefaultExtensionDetails> defaultExtensions;
+
+    /** Creates an instance of ArcSettingProperties class. */
+    public ArcSettingProperties() {
+    }
 
     /**
      * Get the provisioningState property: Provisioning state of the ArcSetting proxy resource.
@@ -203,7 +214,7 @@ public final class ArcSettingProperties {
      *
      * @return the connectivityProperties value.
      */
-    public Object connectivityProperties() {
+    public ArcConnectivityProperties connectivityProperties() {
         return this.connectivityProperties;
     }
 
@@ -213,9 +224,18 @@ public final class ArcSettingProperties {
      * @param connectivityProperties the connectivityProperties value to set.
      * @return the ArcSettingProperties object itself.
      */
-    public ArcSettingProperties withConnectivityProperties(Object connectivityProperties) {
+    public ArcSettingProperties withConnectivityProperties(ArcConnectivityProperties connectivityProperties) {
         this.connectivityProperties = connectivityProperties;
         return this;
+    }
+
+    /**
+     * Get the defaultExtensions property: Properties for each of the default extensions category.
+     *
+     * @return the defaultExtensions value.
+     */
+    public List<DefaultExtensionDetails> defaultExtensions() {
+        return this.defaultExtensions;
     }
 
     /**
@@ -226,6 +246,12 @@ public final class ArcSettingProperties {
     public void validate() {
         if (perNodeDetails() != null) {
             perNodeDetails().forEach(e -> e.validate());
+        }
+        if (connectivityProperties() != null) {
+            connectivityProperties().validate();
+        }
+        if (defaultExtensions() != null) {
+            defaultExtensions().forEach(e -> e.validate());
         }
     }
 }

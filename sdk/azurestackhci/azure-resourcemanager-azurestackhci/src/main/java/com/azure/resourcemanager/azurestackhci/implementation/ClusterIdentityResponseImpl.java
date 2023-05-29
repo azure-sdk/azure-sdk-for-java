@@ -6,6 +6,7 @@ package com.azure.resourcemanager.azurestackhci.implementation;
 
 import com.azure.resourcemanager.azurestackhci.fluent.models.ClusterIdentityResponseInner;
 import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponse;
+import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponseProperties;
 
 public final class ClusterIdentityResponseImpl implements ClusterIdentityResponse {
     private ClusterIdentityResponseInner innerObject;
@@ -19,20 +20,8 @@ public final class ClusterIdentityResponseImpl implements ClusterIdentityRespons
         this.serviceManager = serviceManager;
     }
 
-    public String aadClientId() {
-        return this.innerModel().aadClientId();
-    }
-
-    public String aadTenantId() {
-        return this.innerModel().aadTenantId();
-    }
-
-    public String aadServicePrincipalObjectId() {
-        return this.innerModel().aadServicePrincipalObjectId();
-    }
-
-    public String aadApplicationObjectId() {
-        return this.innerModel().aadApplicationObjectId();
+    public ClusterIdentityResponseProperties properties() {
+        return this.innerModel().properties();
     }
 
     public ClusterIdentityResponseInner innerModel() {

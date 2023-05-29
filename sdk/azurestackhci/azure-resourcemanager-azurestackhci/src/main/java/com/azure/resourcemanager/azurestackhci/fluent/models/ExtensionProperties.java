@@ -6,6 +6,8 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestackhci.models.ExtensionAggregateState;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionManagedBy;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionParameters;
 import com.azure.resourcemanager.azurestackhci.models.PerNodeExtensionState;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +26,7 @@ public final class ExtensionProperties {
      * Parameters specific to this extension type.
      */
     @JsonProperty(value = "extensionParameters")
-    private ExtensionParameters innerExtensionParameters;
+    private ExtensionParameters extensionParameters;
 
     /*
      * Aggregate state of Arc Extensions across the nodes in this HCI cluster.
@@ -38,6 +40,16 @@ public final class ExtensionProperties {
     @JsonProperty(value = "perNodeExtensionDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<PerNodeExtensionState> perNodeExtensionDetails;
 
+    /*
+     * Indicates if the extension is managed by azure or the user.
+     */
+    @JsonProperty(value = "managedBy", access = JsonProperty.Access.WRITE_ONLY)
+    private ExtensionManagedBy managedBy;
+
+    /** Creates an instance of ExtensionProperties class. */
+    public ExtensionProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the Extension proxy resource.
      *
@@ -48,12 +60,23 @@ public final class ExtensionProperties {
     }
 
     /**
-     * Get the innerExtensionParameters property: Parameters specific to this extension type.
+     * Get the extensionParameters property: Parameters specific to this extension type.
      *
-     * @return the innerExtensionParameters value.
+     * @return the extensionParameters value.
      */
-    private ExtensionParameters innerExtensionParameters() {
-        return this.innerExtensionParameters;
+    public ExtensionParameters extensionParameters() {
+        return this.extensionParameters;
+    }
+
+    /**
+     * Set the extensionParameters property: Parameters specific to this extension type.
+     *
+     * @param extensionParameters the extensionParameters value to set.
+     * @return the ExtensionProperties object itself.
+     */
+    public ExtensionProperties withExtensionParameters(ExtensionParameters extensionParameters) {
+        this.extensionParameters = extensionParameters;
+        return this;
     }
 
     /**
@@ -75,172 +98,12 @@ public final class ExtensionProperties {
     }
 
     /**
-     * Get the forceUpdateTag property: How the extension handler should be forced to update even if the extension
-     * configuration has not changed.
+     * Get the managedBy property: Indicates if the extension is managed by azure or the user.
      *
-     * @return the forceUpdateTag value.
+     * @return the managedBy value.
      */
-    public String forceUpdateTag() {
-        return this.innerExtensionParameters() == null ? null : this.innerExtensionParameters().forceUpdateTag();
-    }
-
-    /**
-     * Set the forceUpdateTag property: How the extension handler should be forced to update even if the extension
-     * configuration has not changed.
-     *
-     * @param forceUpdateTag the forceUpdateTag value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withForceUpdateTag(String forceUpdateTag) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withForceUpdateTag(forceUpdateTag);
-        return this;
-    }
-
-    /**
-     * Get the publisher property: The name of the extension handler publisher.
-     *
-     * @return the publisher value.
-     */
-    public String publisher() {
-        return this.innerExtensionParameters() == null ? null : this.innerExtensionParameters().publisher();
-    }
-
-    /**
-     * Set the publisher property: The name of the extension handler publisher.
-     *
-     * @param publisher the publisher value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withPublisher(String publisher) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withPublisher(publisher);
-        return this;
-    }
-
-    /**
-     * Get the type property: Specifies the type of the extension; an example is "CustomScriptExtension".
-     *
-     * @return the type value.
-     */
-    public String type() {
-        return this.innerExtensionParameters() == null ? null : this.innerExtensionParameters().type();
-    }
-
-    /**
-     * Set the type property: Specifies the type of the extension; an example is "CustomScriptExtension".
-     *
-     * @param type the type value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withType(String type) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withType(type);
-        return this;
-    }
-
-    /**
-     * Get the typeHandlerVersion property: Specifies the version of the script handler.
-     *
-     * @return the typeHandlerVersion value.
-     */
-    public String typeHandlerVersion() {
-        return this.innerExtensionParameters() == null ? null : this.innerExtensionParameters().typeHandlerVersion();
-    }
-
-    /**
-     * Set the typeHandlerVersion property: Specifies the version of the script handler.
-     *
-     * @param typeHandlerVersion the typeHandlerVersion value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withTypeHandlerVersion(String typeHandlerVersion) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withTypeHandlerVersion(typeHandlerVersion);
-        return this;
-    }
-
-    /**
-     * Get the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if one
-     * is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless
-     * redeployed, even with this property set to true.
-     *
-     * @return the autoUpgradeMinorVersion value.
-     */
-    public Boolean autoUpgradeMinorVersion() {
-        return this.innerExtensionParameters() == null
-            ? null
-            : this.innerExtensionParameters().autoUpgradeMinorVersion();
-    }
-
-    /**
-     * Set the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if one
-     * is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless
-     * redeployed, even with this property set to true.
-     *
-     * @param autoUpgradeMinorVersion the autoUpgradeMinorVersion value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withAutoUpgradeMinorVersion(autoUpgradeMinorVersion);
-        return this;
-    }
-
-    /**
-     * Get the settings property: Json formatted public settings for the extension.
-     *
-     * @return the settings value.
-     */
-    public Object settings() {
-        return this.innerExtensionParameters() == null ? null : this.innerExtensionParameters().settings();
-    }
-
-    /**
-     * Set the settings property: Json formatted public settings for the extension.
-     *
-     * @param settings the settings value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withSettings(Object settings) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withSettings(settings);
-        return this;
-    }
-
-    /**
-     * Get the protectedSettings property: Protected settings (may contain secrets).
-     *
-     * @return the protectedSettings value.
-     */
-    public Object protectedSettings() {
-        return this.innerExtensionParameters() == null ? null : this.innerExtensionParameters().protectedSettings();
-    }
-
-    /**
-     * Set the protectedSettings property: Protected settings (may contain secrets).
-     *
-     * @param protectedSettings the protectedSettings value to set.
-     * @return the ExtensionProperties object itself.
-     */
-    public ExtensionProperties withProtectedSettings(Object protectedSettings) {
-        if (this.innerExtensionParameters() == null) {
-            this.innerExtensionParameters = new ExtensionParameters();
-        }
-        this.innerExtensionParameters().withProtectedSettings(protectedSettings);
-        return this;
+    public ExtensionManagedBy managedBy() {
+        return this.managedBy;
     }
 
     /**
@@ -249,8 +112,8 @@ public final class ExtensionProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerExtensionParameters() != null) {
-            innerExtensionParameters().validate();
+        if (extensionParameters() != null) {
+            extensionParameters().validate();
         }
         if (perNodeExtensionDetails() != null) {
             perNodeExtensionDetails().forEach(e -> e.validate());

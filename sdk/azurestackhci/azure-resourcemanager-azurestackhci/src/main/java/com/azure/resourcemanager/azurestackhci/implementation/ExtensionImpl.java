@@ -9,6 +9,9 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ExtensionInner;
 import com.azure.resourcemanager.azurestackhci.models.Extension;
 import com.azure.resourcemanager.azurestackhci.models.ExtensionAggregateState;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionManagedBy;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionParameters;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionUpgradeParameters;
 import com.azure.resourcemanager.azurestackhci.models.PerNodeExtensionState;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import java.util.Collections;
@@ -39,6 +42,10 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
         return this.innerModel().provisioningState();
     }
 
+    public ExtensionParameters extensionParameters() {
+        return this.innerModel().extensionParameters();
+    }
+
     public ExtensionAggregateState aggregateState() {
         return this.innerModel().aggregateState();
     }
@@ -52,32 +59,8 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
         }
     }
 
-    public String forceUpdateTag() {
-        return this.innerModel().forceUpdateTag();
-    }
-
-    public String publisher() {
-        return this.innerModel().publisher();
-    }
-
-    public String typePropertiesType() {
-        return this.innerModel().typePropertiesType();
-    }
-
-    public String typeHandlerVersion() {
-        return this.innerModel().typeHandlerVersion();
-    }
-
-    public Boolean autoUpgradeMinorVersion() {
-        return this.innerModel().autoUpgradeMinorVersion();
-    }
-
-    public Object settings() {
-        return this.innerModel().settings();
-    }
-
-    public Object protectedSettings() {
-        return this.innerModel().protectedSettings();
+    public ExtensionManagedBy managedBy() {
+        return this.innerModel().managedBy();
     }
 
     public String resourceGroupName() {
@@ -183,38 +166,21 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
         return this;
     }
 
-    public ExtensionImpl withForceUpdateTag(String forceUpdateTag) {
-        this.innerModel().withForceUpdateTag(forceUpdateTag);
-        return this;
+    public void upgrade(ExtensionUpgradeParameters extensionUpgradeParameters) {
+        serviceManager
+            .extensions()
+            .upgrade(resourceGroupName, clusterName, arcSettingName, extensionName, extensionUpgradeParameters);
     }
 
-    public ExtensionImpl withPublisher(String publisher) {
-        this.innerModel().withPublisher(publisher);
-        return this;
+    public void upgrade(ExtensionUpgradeParameters extensionUpgradeParameters, Context context) {
+        serviceManager
+            .extensions()
+            .upgrade(
+                resourceGroupName, clusterName, arcSettingName, extensionName, extensionUpgradeParameters, context);
     }
 
-    public ExtensionImpl withTypePropertiesType(String typePropertiesType) {
-        this.innerModel().withTypePropertiesType(typePropertiesType);
-        return this;
-    }
-
-    public ExtensionImpl withTypeHandlerVersion(String typeHandlerVersion) {
-        this.innerModel().withTypeHandlerVersion(typeHandlerVersion);
-        return this;
-    }
-
-    public ExtensionImpl withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion) {
-        this.innerModel().withAutoUpgradeMinorVersion(autoUpgradeMinorVersion);
-        return this;
-    }
-
-    public ExtensionImpl withSettings(Object settings) {
-        this.innerModel().withSettings(settings);
-        return this;
-    }
-
-    public ExtensionImpl withProtectedSettings(Object protectedSettings) {
-        this.innerModel().withProtectedSettings(protectedSettings);
+    public ExtensionImpl withExtensionParameters(ExtensionParameters extensionParameters) {
+        this.innerModel().withExtensionParameters(extensionParameters);
         return this;
     }
 }

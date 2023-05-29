@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponseProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Cluster Identity details. */
@@ -14,107 +15,19 @@ public final class ClusterIdentityResponseInner {
      * Cluster identity properties.
      */
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private ClusterIdentityResponseProperties innerProperties;
+    private ClusterIdentityResponseProperties properties;
 
-    /**
-     * Get the innerProperties property: Cluster identity properties.
-     *
-     * @return the innerProperties value.
-     */
-    private ClusterIdentityResponseProperties innerProperties() {
-        return this.innerProperties;
+    /** Creates an instance of ClusterIdentityResponseInner class. */
+    public ClusterIdentityResponseInner() {
     }
 
     /**
-     * Get the aadClientId property: The aadClientId property.
+     * Get the properties property: Cluster identity properties.
      *
-     * @return the aadClientId value.
+     * @return the properties value.
      */
-    public String aadClientId() {
-        return this.innerProperties() == null ? null : this.innerProperties().aadClientId();
-    }
-
-    /**
-     * Set the aadClientId property: The aadClientId property.
-     *
-     * @param aadClientId the aadClientId value to set.
-     * @return the ClusterIdentityResponseInner object itself.
-     */
-    public ClusterIdentityResponseInner withAadClientId(String aadClientId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterIdentityResponseProperties();
-        }
-        this.innerProperties().withAadClientId(aadClientId);
-        return this;
-    }
-
-    /**
-     * Get the aadTenantId property: The aadTenantId property.
-     *
-     * @return the aadTenantId value.
-     */
-    public String aadTenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().aadTenantId();
-    }
-
-    /**
-     * Set the aadTenantId property: The aadTenantId property.
-     *
-     * @param aadTenantId the aadTenantId value to set.
-     * @return the ClusterIdentityResponseInner object itself.
-     */
-    public ClusterIdentityResponseInner withAadTenantId(String aadTenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterIdentityResponseProperties();
-        }
-        this.innerProperties().withAadTenantId(aadTenantId);
-        return this;
-    }
-
-    /**
-     * Get the aadServicePrincipalObjectId property: The aadServicePrincipalObjectId property.
-     *
-     * @return the aadServicePrincipalObjectId value.
-     */
-    public String aadServicePrincipalObjectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().aadServicePrincipalObjectId();
-    }
-
-    /**
-     * Set the aadServicePrincipalObjectId property: The aadServicePrincipalObjectId property.
-     *
-     * @param aadServicePrincipalObjectId the aadServicePrincipalObjectId value to set.
-     * @return the ClusterIdentityResponseInner object itself.
-     */
-    public ClusterIdentityResponseInner withAadServicePrincipalObjectId(String aadServicePrincipalObjectId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterIdentityResponseProperties();
-        }
-        this.innerProperties().withAadServicePrincipalObjectId(aadServicePrincipalObjectId);
-        return this;
-    }
-
-    /**
-     * Get the aadApplicationObjectId property: The aadApplicationObjectId property.
-     *
-     * @return the aadApplicationObjectId value.
-     */
-    public String aadApplicationObjectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().aadApplicationObjectId();
-    }
-
-    /**
-     * Set the aadApplicationObjectId property: The aadApplicationObjectId property.
-     *
-     * @param aadApplicationObjectId the aadApplicationObjectId value to set.
-     * @return the ClusterIdentityResponseInner object itself.
-     */
-    public ClusterIdentityResponseInner withAadApplicationObjectId(String aadApplicationObjectId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterIdentityResponseProperties();
-        }
-        this.innerProperties().withAadApplicationObjectId(aadApplicationObjectId);
-        return this;
+    public ClusterIdentityResponseProperties properties() {
+        return this.properties;
     }
 
     /**
@@ -123,8 +36,8 @@ public final class ClusterIdentityResponseInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

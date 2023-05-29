@@ -4,37 +4,34 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import java.io.IOException;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionParameters;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionParametersProtectedSettings;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionParametersSettings;
 
 /** Samples for Extensions Create. */
 public final class ExtensionsCreateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/PutExtension.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2023-03-01/examples/PutExtension.json
      */
     /**
      * Sample code: Create Arc Extension.
      *
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void createArcExtension(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager)
-        throws IOException {
+    public static void createArcExtension(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
         manager
             .extensions()
             .define("MicrosoftMonitoringAgent")
             .withExistingArcSetting("test-rg", "myCluster", "default")
-            .withPublisher("Microsoft.Compute")
-            .withTypePropertiesType("MicrosoftMonitoringAgent")
-            .withTypeHandlerVersion("1.10")
-            .withSettings(
-                SerializerFactory
-                    .createDefaultManagementSerializerAdapter()
-                    .deserialize("{\"workspaceId\":\"xx\"}", Object.class, SerializerEncoding.JSON))
-            .withProtectedSettings(
-                SerializerFactory
-                    .createDefaultManagementSerializerAdapter()
-                    .deserialize("{\"workspaceKey\":\"xx\"}", Object.class, SerializerEncoding.JSON))
+            .withExtensionParameters(
+                new ExtensionParameters()
+                    .withPublisher("Microsoft.Compute")
+                    .withType("MicrosoftMonitoringAgent")
+                    .withTypeHandlerVersion("1.10")
+                    .withSettings(new ExtensionParametersSettings().withWorkspaceId("xx"))
+                    .withProtectedSettings(
+                        new ExtensionParametersProtectedSettings().withWorkspaceKey("fakeTokenPlaceholder"))
+                    .withEnableAutomaticUpgrade(false))
             .create();
     }
 }
