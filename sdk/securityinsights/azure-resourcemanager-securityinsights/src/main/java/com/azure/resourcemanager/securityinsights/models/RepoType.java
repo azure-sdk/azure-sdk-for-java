@@ -13,8 +13,17 @@ public final class RepoType extends ExpandableStringEnum<RepoType> {
     /** Static value Github for RepoType. */
     public static final RepoType GITHUB = fromString("Github");
 
-    /** Static value DevOps for RepoType. */
-    public static final RepoType DEV_OPS = fromString("DevOps");
+    /** Static value AzureDevOps for RepoType. */
+    public static final RepoType AZURE_DEV_OPS = fromString("AzureDevOps");
+
+    /**
+     * Creates a new instance of RepoType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RepoType() {
+    }
 
     /**
      * Creates or finds a RepoType from its string representation.

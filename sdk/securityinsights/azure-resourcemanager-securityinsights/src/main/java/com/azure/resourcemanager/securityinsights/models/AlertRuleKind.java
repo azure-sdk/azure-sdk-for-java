@@ -30,6 +30,15 @@ public final class AlertRuleKind extends ExpandableStringEnum<AlertRuleKind> {
     public static final AlertRuleKind NRT = fromString("NRT");
 
     /**
+     * Creates a new instance of AlertRuleKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AlertRuleKind() {
+    }
+
+    /**
      * Creates or finds a AlertRuleKind from its string representation.
      *
      * @param name a name to look for.

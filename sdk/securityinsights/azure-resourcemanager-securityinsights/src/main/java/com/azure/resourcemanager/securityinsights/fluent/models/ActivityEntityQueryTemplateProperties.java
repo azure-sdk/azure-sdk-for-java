@@ -65,6 +65,10 @@ public final class ActivityEntityQueryTemplateProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, List<String>> entitiesFilter;
 
+    /** Creates an instance of ActivityEntityQueryTemplateProperties class. */
+    public ActivityEntityQueryTemplateProperties() {
+    }
+
     /**
      * Get the title property: The entity query title.
      *
