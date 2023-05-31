@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.ConfigDataInner;
 import java.util.List;
@@ -32,6 +33,13 @@ public interface ConfigData {
     String type();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
      *
      * @return the exclude value.
@@ -45,6 +53,14 @@ public interface ConfigData {
      * @return the lowCpuThreshold value.
      */
     CpuThreshold lowCpuThreshold();
+
+    /**
+     * Gets the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @return the duration value.
+     */
+    DurationModel duration();
 
     /**
      * Gets the digests property: Advisor digest configuration. Valid only for subscriptions.
@@ -84,7 +100,10 @@ public interface ConfigData {
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithExclude, DefinitionStages.WithLowCpuThreshold, DefinitionStages.WithDigests {
+            extends DefinitionStages.WithExclude,
+                DefinitionStages.WithLowCpuThreshold,
+                DefinitionStages.WithDuration,
+                DefinitionStages.WithDigests {
             /**
              * Executes the create request.
              *
@@ -122,6 +141,18 @@ public interface ConfigData {
              * @return the next definition stage.
              */
             WithCreate withLowCpuThreshold(CpuThreshold lowCpuThreshold);
+        }
+        /** The stage of the ConfigData definition allowing to specify duration. */
+        interface WithDuration {
+            /**
+             * Specifies the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only
+             * for subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90..
+             *
+             * @param duration Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+             *     subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+             * @return the next definition stage.
+             */
+            WithCreate withDuration(DurationModel duration);
         }
         /** The stage of the ConfigData definition allowing to specify digests. */
         interface WithDigests {
