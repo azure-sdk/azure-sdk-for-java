@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appcontainers.generated;
 /** Samples for ConnectedEnvironments Update. */
 public final class ConnectedEnvironmentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/ConnectedEnvironments_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-04-01-preview/examples/ConnectedEnvironments_Patch.json
      */
     /**
      * Sample code: Patch Managed Environment.
