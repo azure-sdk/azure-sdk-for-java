@@ -9,7 +9,7 @@ import com.azure.resourcemanager.mixedreality.models.CheckNameAvailabilityReques
 /** Samples for ResourceProvider CheckNameAvailabilityLocal. */
 public final class ResourceProviderCheckNameAvailabilityLocalSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/proxy/CheckNameAvailabilityForLocalUniqueness.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/proxy/CheckNameAvailabilityForLocalUniqueness.json
      */
     /**
      * Sample code: CheckLocalNameAvailability.

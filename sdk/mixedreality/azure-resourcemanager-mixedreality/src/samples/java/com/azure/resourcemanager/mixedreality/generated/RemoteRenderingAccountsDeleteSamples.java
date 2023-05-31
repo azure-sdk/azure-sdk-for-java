@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mixedreality.generated;
 /** Samples for RemoteRenderingAccounts Delete. */
 public final class RemoteRenderingAccountsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/remote-rendering/Delete.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-rendering/Delete.json
      */
     /**
      * Sample code: Delete remote rendering account.

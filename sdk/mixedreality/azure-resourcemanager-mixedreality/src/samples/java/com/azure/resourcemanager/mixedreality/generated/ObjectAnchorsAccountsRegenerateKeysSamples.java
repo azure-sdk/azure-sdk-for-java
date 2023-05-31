@@ -7,20 +7,20 @@ package com.azure.resourcemanager.mixedreality.generated;
 import com.azure.resourcemanager.mixedreality.models.AccountKeyRegenerateRequest;
 import com.azure.resourcemanager.mixedreality.models.Serial;
 
-/** Samples for RemoteRenderingAccounts RegenerateKeys. */
-public final class RemoteRenderingAccountsRegenerateKeysSamples {
+/** Samples for ObjectAnchorsAccounts RegenerateKeys. */
+public final class ObjectAnchorsAccountsRegenerateKeysSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-rendering/RegenerateKey.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/object-anchors/RegenerateKey.json
      */
     /**
-     * Sample code: Regenerate remote rendering account keys.
+     * Sample code: Regenerate object anchors account keys.
      *
      * @param manager Entry point to MixedRealityManager.
      */
-    public static void regenerateRemoteRenderingAccountKeys(
+    public static void regenerateObjectAnchorsAccountKeys(
         com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
         manager
-            .remoteRenderingAccounts()
+            .objectAnchorsAccounts()
             .regenerateKeysWithResponse(
                 "MyResourceGroup",
                 "MyAccount",
