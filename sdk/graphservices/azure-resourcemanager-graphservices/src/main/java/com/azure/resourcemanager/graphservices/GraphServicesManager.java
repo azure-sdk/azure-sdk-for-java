@@ -24,11 +24,9 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.graphservices.fluent.GraphServices;
-import com.azure.resourcemanager.graphservices.implementation.AccountOperationsImpl;
 import com.azure.resourcemanager.graphservices.implementation.AccountsImpl;
 import com.azure.resourcemanager.graphservices.implementation.GraphServicesBuilder;
 import com.azure.resourcemanager.graphservices.implementation.OperationsImpl;
-import com.azure.resourcemanager.graphservices.models.AccountOperations;
 import com.azure.resourcemanager.graphservices.models.Accounts;
 import com.azure.resourcemanager.graphservices.models.Operations;
 import java.time.Duration;
@@ -41,8 +39,6 @@ import java.util.stream.Collectors;
 /** Entry point to GraphServicesManager. Self service experience for Microsoft Graph metered services. */
 public final class GraphServicesManager {
     private Accounts accounts;
-
-    private AccountOperations accountOperations;
 
     private Operations operations;
 
@@ -269,7 +265,7 @@ public final class GraphServicesManager {
     }
 
     /**
-     * Gets the resource collection API of Accounts.
+     * Gets the resource collection API of Accounts. It manages AccountResource.
      *
      * @return Resource collection API of Accounts.
      */
@@ -278,18 +274,6 @@ public final class GraphServicesManager {
             this.accounts = new AccountsImpl(clientObject.getAccounts(), this);
         }
         return accounts;
-    }
-
-    /**
-     * Gets the resource collection API of AccountOperations. It manages AccountResource.
-     *
-     * @return Resource collection API of AccountOperations.
-     */
-    public AccountOperations accountOperations() {
-        if (this.accountOperations == null) {
-            this.accountOperations = new AccountOperationsImpl(clientObject.getAccountOperations(), this);
-        }
-        return accountOperations;
     }
 
     /**
