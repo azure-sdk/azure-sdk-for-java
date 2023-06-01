@@ -8,10 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/**
- * The current deployment state of workspace resource. The provisioningState is to indicate states for resource
- * provisioning.
- */
+/** The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed. */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /** Static value Unknown for ProvisioningState. */
     public static final ProvisioningState UNKNOWN = fromString("Unknown");
@@ -33,6 +30,9 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
 
     /** Static value Canceled for ProvisioningState. */
     public static final ProvisioningState CANCELED = fromString("Canceled");
+
+    /** Static value SoftDeleted for ProvisioningState. */
+    public static final ProvisioningState SOFT_DELETED = fromString("SoftDeleted");
 
     /**
      * Creates a new instance of ProvisioningState value.

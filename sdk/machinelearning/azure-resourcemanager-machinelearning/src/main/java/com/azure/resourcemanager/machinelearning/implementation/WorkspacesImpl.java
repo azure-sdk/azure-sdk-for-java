@@ -66,12 +66,12 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String workspaceName) {
+    public void delete(String resourceGroupName, String workspaceName) {
         this.serviceClient().delete(resourceGroupName, workspaceName);
     }
 
-    public void delete(String resourceGroupName, String workspaceName, Context context) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, context);
+    public void delete(String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, forceToPurge, context);
     }
 
     public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName) {
@@ -79,9 +79,10 @@ public final class WorkspacesImpl implements Workspaces {
         return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName, String skip, Context context) {
+    public PagedIterable<Workspace> listByResourceGroup(
+        String resourceGroupName, String skip, String kind, Context context) {
         PagedIterable<WorkspaceInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, skip, context);
+            this.serviceClient().listByResourceGroup(resourceGroupName, skip, kind, context);
         return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
     }
 
@@ -142,8 +143,8 @@ public final class WorkspacesImpl implements Workspaces {
         return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Workspace> list(String skip, Context context) {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().list(skip, context);
+    public PagedIterable<Workspace> list(String skip, String kind, Context context) {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().list(skip, kind, context);
         return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
     }
 
@@ -322,10 +323,11 @@ public final class WorkspacesImpl implements Workspaces {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        this.delete(resourceGroupName, workspaceName, Context.NONE);
+        Boolean localForceToPurge = null;
+        this.delete(resourceGroupName, workspaceName, localForceToPurge, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Boolean forceToPurge, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -341,7 +343,7 @@ public final class WorkspacesImpl implements Workspaces {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        this.delete(resourceGroupName, workspaceName, context);
+        this.delete(resourceGroupName, workspaceName, forceToPurge, context);
     }
 
     private WorkspacesClient serviceClient() {

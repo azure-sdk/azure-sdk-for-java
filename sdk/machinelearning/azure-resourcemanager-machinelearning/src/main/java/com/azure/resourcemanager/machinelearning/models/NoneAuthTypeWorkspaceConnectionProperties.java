@@ -19,6 +19,13 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
 
     /** {@inheritDoc} */
     @Override
+    public NoneAuthTypeWorkspaceConnectionProperties withExpiryTime(String expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public NoneAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;

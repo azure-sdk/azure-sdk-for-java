@@ -9,6 +9,8 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.JobBaseInner;
 import com.azure.resourcemanager.machinelearning.models.JobBase;
 import com.azure.resourcemanager.machinelearning.models.JobBaseProperties;
+import com.azure.resourcemanager.machinelearning.models.PartialJobBase;
+import com.azure.resourcemanager.machinelearning.models.PartialJobBasePartialResource;
 
 public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.Update {
     private JobBaseInner innerObject;
@@ -53,6 +55,8 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
 
     private String id;
 
+    private PartialJobBasePartialResource updateBody;
+
     public JobBaseImpl withExistingWorkspace(String resourceGroupName, String workspaceName) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
@@ -86,6 +90,7 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
     }
 
     public JobBaseImpl update() {
+        this.updateBody = new PartialJobBasePartialResource();
         return this;
     }
 
@@ -94,7 +99,7 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
             serviceManager
                 .serviceClient()
                 .getJobs()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), Context.NONE)
+                .updateWithResponse(resourceGroupName, workspaceName, id, updateBody, Context.NONE)
                 .getValue();
         return this;
     }
@@ -104,7 +109,7 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
             serviceManager
                 .serviceClient()
                 .getJobs()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), context)
+                .updateWithResponse(resourceGroupName, workspaceName, id, updateBody, context)
                 .getValue();
         return this;
     }
@@ -148,6 +153,11 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
 
     public JobBaseImpl withProperties(JobBaseProperties properties) {
         this.innerModel().withProperties(properties);
+        return this;
+    }
+
+    public JobBaseImpl withProperties(PartialJobBase properties) {
+        this.updateBody.withProperties(properties);
         return this;
     }
 }

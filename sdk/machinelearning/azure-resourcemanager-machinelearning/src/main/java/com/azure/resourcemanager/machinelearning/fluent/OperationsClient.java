@@ -13,7 +13,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.AmlOperationInner
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public interface OperationsClient {
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -24,7 +24,7 @@ public interface OperationsClient {
     PagedIterable<AmlOperationInner> list();
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
