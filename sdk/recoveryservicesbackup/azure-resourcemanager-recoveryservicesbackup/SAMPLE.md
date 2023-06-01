@@ -1384,6 +1384,8 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.PrivateEndpointCo
 import com.azure.resourcemanager.recoveryservicesbackup.models.PrivateEndpointConnectionStatus;
 import com.azure.resourcemanager.recoveryservicesbackup.models.PrivateLinkServiceConnectionState;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ProvisioningState;
+import com.azure.resourcemanager.recoveryservicesbackup.models.VaultSubResourceType;
+import java.util.Arrays;
 
 /** Samples for PrivateEndpointConnection Put. */
 public final class PrivateEndpointConnectionPutSamples {
@@ -1415,6 +1417,7 @@ public final class PrivateEndpointConnectionPutSamples {
                         new PrivateEndpoint()
                             .withId(
                                 "/subscriptions/04cf684a-d41f-4550-9f70-7708a3a2283b/resourceGroups/gaallaRG/providers/Microsoft.Network/privateEndpoints/gaallatestpe3"))
+                    .withGroupIds(Arrays.asList(VaultSubResourceType.AZURE_BACKUP_SECONDARY))
                     .withPrivateLinkServiceConnectionState(
                         new PrivateLinkServiceConnectionState()
                             .withStatus(PrivateEndpointConnectionStatus.APPROVED)
