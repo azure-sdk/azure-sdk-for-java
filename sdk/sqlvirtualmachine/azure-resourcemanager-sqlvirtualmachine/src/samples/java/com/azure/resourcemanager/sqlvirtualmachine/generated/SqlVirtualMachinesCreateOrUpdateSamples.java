@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.generated;
 
+import com.azure.resourcemanager.sqlvirtualmachine.models.AadAuthenticationSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AdditionalFeaturesServerConfigurations;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AssessmentDayOfWeek;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AssessmentSettings;
@@ -22,7 +23,6 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.ServerConfigurationsMa
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlConnectivityUpdateSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlImageSku;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlInstanceSettings;
-import com.azure.resourcemanager.sqlvirtualmachine.models.SqlManagementMode;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlServerLicenseType;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlStorageSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlStorageUpdateSettings;
@@ -37,7 +37,7 @@ import java.util.Arrays;
 /** Samples for SqlVirtualMachines CreateOrUpdate. */
 public final class SqlVirtualMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/CreateOrUpdateSqlVirtualMachineStorageConfigurationEXTEND.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateSqlVirtualMachineStorageConfigurationEXTEND.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine for Storage Configuration Settings to EXTEND Data, Log or
@@ -63,7 +63,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/CreateOrUpdateVirtualMachineWithVMGroup.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateVirtualMachineWithVMGroup.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine and joins it to a SQL virtual machine group.
@@ -81,15 +81,15 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm2")
             .withWsfcDomainCredentials(
                 new WsfcDomainCredentials()
-                    .withClusterBootstrapAccountPassword("<Password>")
-                    .withClusterOperatorAccountPassword("<Password>")
-                    .withSqlServiceAccountPassword("<Password>"))
+                    .withClusterBootstrapAccountPassword("fakeTokenPlaceholder")
+                    .withClusterOperatorAccountPassword("fakeTokenPlaceholder")
+                    .withSqlServiceAccountPassword("fakeTokenPlaceholder"))
             .withWsfcStaticIp("10.0.0.7")
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/CreateOrUpdateSqlVirtualMachineAutomatedBackupWeekly.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateSqlVirtualMachineAutomatedBackupWeekly.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine for Automated Back up Settings with Weekly and Days of the
@@ -108,7 +108,6 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
             .withVirtualMachineResourceId(
                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm")
             .withSqlServerLicenseType(SqlServerLicenseType.PAYG)
-            .withSqlManagement(SqlManagementMode.FULL)
             .withSqlImageSku(SqlImageSku.ENTERPRISE)
             .withAutoPatchingSettings(
                 new AutoPatchingSettings()
@@ -123,8 +122,8 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                     .withRetentionPeriod(17)
                     .withStorageAccountUrl("https://teststorage.blob.core.windows.net/")
                     .withStorageContainerName("testcontainer")
-                    .withStorageAccessKey("<primary storage access key>")
-                    .withPassword("<Password>")
+                    .withStorageAccessKey("fakeTokenPlaceholder")
+                    .withPassword("fakeTokenPlaceholder")
                     .withBackupSystemDbs(true)
                     .withBackupScheduleType(BackupScheduleType.MANUAL)
                     .withFullBackupFrequency(FullBackupFrequencyType.WEEKLY)
@@ -140,7 +139,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                             .withConnectivityType(ConnectivityType.PRIVATE)
                             .withPort(1433)
                             .withSqlAuthUpdateUsername("sqllogin")
-                            .withSqlAuthUpdatePassword("<password>"))
+                            .withSqlAuthUpdatePassword("fakeTokenPlaceholder"))
                     .withSqlWorkloadTypeUpdateSettings(
                         new SqlWorkloadTypeUpdateSettings().withSqlWorkloadType(SqlWorkloadType.OLTP))
                     .withSqlStorageUpdateSettings(
@@ -154,7 +153,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/CreateOrUpdateSqlVirtualMachineStorageConfigurationNEW.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateSqlVirtualMachineStorageConfigurationNEW.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine for Storage Configuration Settings to NEW Data, Log and
@@ -193,7 +192,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/CreateOrUpdateSqlVirtualMachineMAX.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateSqlVirtualMachineMAX.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine with max parameters.
@@ -210,7 +209,6 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
             .withVirtualMachineResourceId(
                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm")
             .withSqlServerLicenseType(SqlServerLicenseType.PAYG)
-            .withSqlManagement(SqlManagementMode.FULL)
             .withLeastPrivilegeMode(LeastPrivilegeMode.ENABLED)
             .withSqlImageSku(SqlImageSku.ENTERPRISE)
             .withAutoPatchingSettings(
@@ -226,8 +224,8 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                     .withRetentionPeriod(17)
                     .withStorageAccountUrl("https://teststorage.blob.core.windows.net/")
                     .withStorageContainerName("testcontainer")
-                    .withStorageAccessKey("<primary storage access key>")
-                    .withPassword("<Password>")
+                    .withStorageAccessKey("fakeTokenPlaceholder")
+                    .withPassword("fakeTokenPlaceholder")
                     .withBackupSystemDbs(true)
                     .withBackupScheduleType(BackupScheduleType.MANUAL)
                     .withFullBackupFrequency(FullBackupFrequencyType.DAILY)
@@ -242,7 +240,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                             .withConnectivityType(ConnectivityType.PRIVATE)
                             .withPort(1433)
                             .withSqlAuthUpdateUsername("sqllogin")
-                            .withSqlAuthUpdatePassword("<password>"))
+                            .withSqlAuthUpdatePassword("fakeTokenPlaceholder"))
                     .withSqlWorkloadTypeUpdateSettings(
                         new SqlWorkloadTypeUpdateSettings().withSqlWorkloadType(SqlWorkloadType.OLTP))
                     .withSqlStorageUpdateSettings(
@@ -260,7 +258,35 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
                             .withMinServerMemoryMB(0)
                             .withMaxServerMemoryMB(128)
                             .withIsLpimEnabled(true)
-                            .withIsIfiEnabled(true)))
+                            .withIsIfiEnabled(true))
+                    .withAzureAdAuthenticationSettings(
+                        new AadAuthenticationSettings().withClientId("11111111-2222-3333-4444-555555555555")))
+            .withStorageConfigurationSettings(
+                new StorageConfigurationSettings()
+                    .withSqlDataSettings(
+                        new SqlStorageSettings()
+                            .withLuns(Arrays.asList(0))
+                            .withDefaultFilePath("F:\\folderpath\\")
+                            .withUseStoragePool(false))
+                    .withSqlLogSettings(
+                        new SqlStorageSettings()
+                            .withLuns(Arrays.asList(1))
+                            .withDefaultFilePath("G:\\folderpath\\")
+                            .withUseStoragePool(false))
+                    .withSqlTempDbSettings(
+                        new SqlTempDbSettings()
+                            .withDataFileSize(256)
+                            .withDataGrowth(512)
+                            .withLogFileSize(256)
+                            .withLogGrowth(512)
+                            .withDataFileCount(8)
+                            .withLuns(Arrays.asList(2))
+                            .withDefaultFilePath("D:\\TEMP")
+                            .withUseStoragePool(false))
+                    .withSqlSystemDbOnDataDisk(true)
+                    .withDiskConfigurationType(DiskConfigurationType.NEW)
+                    .withStorageWorkloadType(StorageWorkloadType.OLTP)
+                    .withEnableStorageConfigBlade(true))
             .withAssessmentSettings(
                 new AssessmentSettings()
                     .withEnable(true)
@@ -276,7 +302,7 @@ public final class SqlVirtualMachinesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/CreateOrUpdateSqlVirtualMachineMIN.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateSqlVirtualMachineMIN.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine with min parameters.
