@@ -42,6 +42,12 @@ public final class BackupResourceVaultConfig {
     private SoftDeleteFeatureState softDeleteFeatureState;
 
     /*
+     * Soft delete retention period in days
+     */
+    @JsonProperty(value = "softDeleteRetentionPeriod")
+    private Integer softDeleteRetentionPeriod;
+
+    /*
      * ResourceGuard Operation Requests
      */
     @JsonProperty(value = "resourceGuardOperationRequests")
@@ -156,6 +162,26 @@ public final class BackupResourceVaultConfig {
      */
     public BackupResourceVaultConfig withSoftDeleteFeatureState(SoftDeleteFeatureState softDeleteFeatureState) {
         this.softDeleteFeatureState = softDeleteFeatureState;
+        return this;
+    }
+
+    /**
+     * Get the softDeleteRetentionPeriod property: Soft delete retention period in days.
+     *
+     * @return the softDeleteRetentionPeriod value.
+     */
+    public Integer softDeleteRetentionPeriod() {
+        return this.softDeleteRetentionPeriod;
+    }
+
+    /**
+     * Set the softDeleteRetentionPeriod property: Soft delete retention period in days.
+     *
+     * @param softDeleteRetentionPeriod the softDeleteRetentionPeriod value to set.
+     * @return the BackupResourceVaultConfig object itself.
+     */
+    public BackupResourceVaultConfig withSoftDeleteRetentionPeriod(Integer softDeleteRetentionPeriod) {
+        this.softDeleteRetentionPeriod = softDeleteRetentionPeriod;
         return this;
     }
 
