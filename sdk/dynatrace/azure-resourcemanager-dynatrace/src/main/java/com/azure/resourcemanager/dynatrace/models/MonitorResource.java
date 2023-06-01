@@ -294,13 +294,7 @@ public interface MonitorResource {
     MonitorResource.Update update();
 
     /** The template for MonitorResource update. */
-    interface Update
-        extends UpdateStages.WithTags,
-            UpdateStages.WithMonitoringStatus,
-            UpdateStages.WithMarketplaceSubscriptionStatus,
-            UpdateStages.WithDynatraceEnvironmentProperties,
-            UpdateStages.WithUserInfo,
-            UpdateStages.WithPlanData {
+    interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
          *
@@ -328,56 +322,6 @@ public interface MonitorResource {
              */
             Update withTags(Map<String, String> tags);
         }
-        /** The stage of the MonitorResource update allowing to specify monitoringStatus. */
-        interface WithMonitoringStatus {
-            /**
-             * Specifies the monitoringStatus property: Status of the monitor..
-             *
-             * @param monitoringStatus Status of the monitor.
-             * @return the next definition stage.
-             */
-            Update withMonitoringStatus(MonitoringStatus monitoringStatus);
-        }
-        /** The stage of the MonitorResource update allowing to specify marketplaceSubscriptionStatus. */
-        interface WithMarketplaceSubscriptionStatus {
-            /**
-             * Specifies the marketplaceSubscriptionStatus property: Marketplace subscription status..
-             *
-             * @param marketplaceSubscriptionStatus Marketplace subscription status.
-             * @return the next definition stage.
-             */
-            Update withMarketplaceSubscriptionStatus(MarketplaceSubscriptionStatus marketplaceSubscriptionStatus);
-        }
-        /** The stage of the MonitorResource update allowing to specify dynatraceEnvironmentProperties. */
-        interface WithDynatraceEnvironmentProperties {
-            /**
-             * Specifies the dynatraceEnvironmentProperties property: Properties of the Dynatrace environment..
-             *
-             * @param dynatraceEnvironmentProperties Properties of the Dynatrace environment.
-             * @return the next definition stage.
-             */
-            Update withDynatraceEnvironmentProperties(DynatraceEnvironmentProperties dynatraceEnvironmentProperties);
-        }
-        /** The stage of the MonitorResource update allowing to specify userInfo. */
-        interface WithUserInfo {
-            /**
-             * Specifies the userInfo property: User info..
-             *
-             * @param userInfo User info.
-             * @return the next definition stage.
-             */
-            Update withUserInfo(UserInfo userInfo);
-        }
-        /** The stage of the MonitorResource update allowing to specify planData. */
-        interface WithPlanData {
-            /**
-             * Specifies the planData property: Billing plan information..
-             *
-             * @param planData Billing plan information.
-             * @return the next definition stage.
-             */
-            Update withPlanData(PlanData planData);
-        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -393,26 +337,6 @@ public interface MonitorResource {
      * @return the refreshed resource.
      */
     MonitorResource refresh(Context context);
-
-    /**
-     * Gets the user account credentials for a Monitor.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user account credentials for a Monitor.
-     */
-    AccountInfoSecure getAccountCredentials();
-
-    /**
-     * Gets the user account credentials for a Monitor.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user account credentials for a Monitor along with {@link Response}.
-     */
-    Response<AccountInfoSecure> getAccountCredentialsWithResponse(Context context);
 
     /**
      * List the resources currently being monitored by the Dynatrace monitor resource.
@@ -439,15 +363,6 @@ public interface MonitorResource {
     /**
      * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of payload to be passed while installing VM agent.
-     */
-    VMExtensionPayload getVMHostPayload();
-
-    /**
-     * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -457,7 +372,16 @@ public interface MonitorResource {
     Response<VMExtensionPayload> getVMHostPayloadWithResponse(Context context);
 
     /**
-     * List the compute resources currently being monitored by the Dynatrace resource.
+     * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of payload to be passed while installing VM agent.
+     */
+    VMExtensionPayload getVMHostPayload();
+
+    /**
+     * List the VM/VMSS resources currently being monitored by the Dynatrace resource.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -466,7 +390,7 @@ public interface MonitorResource {
     PagedIterable<VMInfo> listHosts();
 
     /**
-     * List the compute resources currently being monitored by the Dynatrace resource.
+     * List the VM/VMSS resources currently being monitored by the Dynatrace resource.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -475,6 +399,26 @@ public interface MonitorResource {
      * @return response of a list VM Host Operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VMInfo> listHosts(Context context);
+
+    /**
+     * Get metric status.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return metric status along with {@link Response}.
+     */
+    Response<MetricsStatusResponse> getMetricStatusWithResponse(Context context);
+
+    /**
+     * Get metric status.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return metric status.
+     */
+    MetricsStatusResponse getMetricStatus();
 
     /**
      * Gets list of App Services with Dynatrace PaaS OneAgent enabled.
@@ -501,23 +445,27 @@ public interface MonitorResource {
     /**
      * Gets the SSO configuration details from the partner.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SSO configuration details from the partner.
-     */
-    SsoDetailsResponse getSsoDetails();
-
-    /**
-     * Gets the SSO configuration details from the partner.
-     *
      * @param request The details of the get sso details request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner along with {@link Response}.
      */
     Response<SsoDetailsResponse> getSsoDetailsWithResponse(SsoDetailsRequest request, Context context);
+
+    /**
+     * Gets the SSO configuration details from the partner.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the SSO configuration details from the partner.
+     */
+    SsoDetailsResponse getSsoDetails();
 
     /**
      * Gets all the Dynatrace environments that a user can link a azure resource to.
