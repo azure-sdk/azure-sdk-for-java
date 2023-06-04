@@ -87,6 +87,10 @@ public final class SavingsPlanOrderAliasModelImpl implements SavingsPlanOrderAli
         return this.innerModel().commitment();
     }
 
+    public Boolean renew() {
+        return this.innerModel().renew();
+    }
+
     public SavingsPlanOrderAliasModelInner innerModel() {
         return this.innerObject;
     }
