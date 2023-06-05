@@ -11,6 +11,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class AssetJobOutput {
     /*
+     * Output Asset Name.
+     */
+    @JsonProperty(value = "assetName")
+    private String assetName;
+
+    /*
+     * Output Asset Version.
+     */
+    @JsonProperty(value = "assetVersion")
+    private String assetVersion;
+
+    /*
+     * Auto delete setting of output data asset.
+     */
+    @JsonProperty(value = "autoDeleteSetting")
+    private AutoDeleteSetting autoDeleteSetting;
+
+    /*
      * Output Asset Delivery Mode.
      */
     @JsonProperty(value = "mode")
@@ -24,6 +42,66 @@ public class AssetJobOutput {
 
     /** Creates an instance of AssetJobOutput class. */
     public AssetJobOutput() {
+    }
+
+    /**
+     * Get the assetName property: Output Asset Name.
+     *
+     * @return the assetName value.
+     */
+    public String assetName() {
+        return this.assetName;
+    }
+
+    /**
+     * Set the assetName property: Output Asset Name.
+     *
+     * @param assetName the assetName value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
+        return this;
+    }
+
+    /**
+     * Get the assetVersion property: Output Asset Version.
+     *
+     * @return the assetVersion value.
+     */
+    public String assetVersion() {
+        return this.assetVersion;
+    }
+
+    /**
+     * Set the assetVersion property: Output Asset Version.
+     *
+     * @param assetVersion the assetVersion value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withAssetVersion(String assetVersion) {
+        this.assetVersion = assetVersion;
+        return this;
+    }
+
+    /**
+     * Get the autoDeleteSetting property: Auto delete setting of output data asset.
+     *
+     * @return the autoDeleteSetting value.
+     */
+    public AutoDeleteSetting autoDeleteSetting() {
+        return this.autoDeleteSetting;
+    }
+
+    /**
+     * Set the autoDeleteSetting property: Auto delete setting of output data asset.
+     *
+     * @param autoDeleteSetting the autoDeleteSetting value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        this.autoDeleteSetting = autoDeleteSetting;
+        return this;
     }
 
     /**
@@ -72,5 +150,8 @@ public class AssetJobOutput {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (autoDeleteSetting() != null) {
+            autoDeleteSetting().validate();
+        }
     }
 }

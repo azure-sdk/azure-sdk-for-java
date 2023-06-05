@@ -19,8 +19,8 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeys
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookAccessTokenResultInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceUpdateParametersInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
-import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
 
 /** An instance of this class provides access to all the operations defined in WorkspacesClient. */
 public interface WorkspacesClient {
@@ -131,6 +131,7 @@ public interface WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -138,7 +139,8 @@ public interface WorkspacesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context);
 
     /**
      * Deletes a machine learning workspace.
@@ -157,13 +159,14 @@ public interface WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, Context context);
+    void delete(String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -178,7 +181,7 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters);
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -194,7 +197,7 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context);
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -208,7 +211,7 @@ public interface WorkspacesClient {
      * @return an object that represents a machine learning workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters);
+    WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -224,7 +227,7 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkspaceInner update(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context);
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context);
 
     /**
      * Lists all the available machine learning workspaces under the specified resource group.
@@ -244,6 +247,7 @@ public interface WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -252,7 +256,8 @@ public interface WorkspacesClient {
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkspaceInner> listByResourceGroup(String resourceGroupName, String skip, Context context);
+    PagedIterable<WorkspaceInner> listByResourceGroup(
+        String resourceGroupName, String skip, String kind, Context context);
 
     /**
      * Diagnose workspace setup issue.
@@ -414,6 +419,7 @@ public interface WorkspacesClient {
      * Lists all the available machine learning workspaces under the specified subscription.
      *
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -422,7 +428,7 @@ public interface WorkspacesClient {
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkspaceInner> list(String skip, Context context);
+    PagedIterable<WorkspaceInner> list(String skip, String kind, Context context);
 
     /**
      * return notebook access token and refresh token.
