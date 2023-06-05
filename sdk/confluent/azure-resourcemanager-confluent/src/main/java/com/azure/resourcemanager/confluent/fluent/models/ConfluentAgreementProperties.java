@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.confluent.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Terms properties for Marketplace and Confluent. */
 @Fluent
 public final class ConfluentAgreementProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConfluentAgreementProperties.class);
-
     /*
      * Publisher identifier string.
      */
@@ -46,8 +42,7 @@ public final class ConfluentAgreementProperties {
     private String privacyPolicyLink;
 
     /*
-     * Date and time in UTC of when the terms were accepted. This is empty if
-     * Accepted is false.
+     * Date and time in UTC of when the terms were accepted. This is empty if Accepted is false.
      */
     @JsonProperty(value = "retrieveDatetime")
     private OffsetDateTime retrieveDatetime;
@@ -63,6 +58,10 @@ public final class ConfluentAgreementProperties {
      */
     @JsonProperty(value = "accepted")
     private Boolean accepted;
+
+    /** Creates an instance of ConfluentAgreementProperties class. */
+    public ConfluentAgreementProperties() {
+    }
 
     /**
      * Get the publisher property: Publisher identifier string.

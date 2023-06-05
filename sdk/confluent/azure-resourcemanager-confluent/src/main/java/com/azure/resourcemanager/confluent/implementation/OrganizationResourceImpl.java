@@ -84,6 +84,10 @@ public final class OrganizationResourceImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public OrganizationResourceInner innerModel() {
         return this.innerObject;
     }

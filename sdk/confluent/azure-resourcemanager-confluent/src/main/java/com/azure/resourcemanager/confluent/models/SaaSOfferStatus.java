@@ -8,7 +8,11 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SaaSOfferStatus. */
+/**
+ * SaaSOfferStatus
+ *
+ * <p>SaaS Offer Status for confluent RP.
+ */
 public final class SaaSOfferStatus extends ExpandableStringEnum<SaaSOfferStatus> {
     /** Static value Started for SaaSOfferStatus. */
     public static final SaaSOfferStatus STARTED = fromString("Started");
@@ -41,6 +45,15 @@ public final class SaaSOfferStatus extends ExpandableStringEnum<SaaSOfferStatus>
     public static final SaaSOfferStatus UPDATING = fromString("Updating");
 
     /**
+     * Creates a new instance of SaaSOfferStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SaaSOfferStatus() {
+    }
+
+    /**
      * Creates or finds a SaaSOfferStatus from its string representation.
      *
      * @param name a name to look for.
@@ -51,7 +64,11 @@ public final class SaaSOfferStatus extends ExpandableStringEnum<SaaSOfferStatus>
         return fromString(name, SaaSOfferStatus.class);
     }
 
-    /** @return known SaaSOfferStatus values. */
+    /**
+     * Gets known SaaSOfferStatus values.
+     *
+     * @return known SaaSOfferStatus values.
+     */
     public static Collection<SaaSOfferStatus> values() {
         return values(SaaSOfferStatus.class);
     }
