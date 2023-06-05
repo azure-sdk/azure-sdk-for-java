@@ -34,6 +34,9 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /** Static value Canceled for ProvisioningState. */
     public static final ProvisioningState CANCELED = fromString("Canceled");
 
+    /** Static value SoftDeleted for ProvisioningState. */
+    public static final ProvisioningState SOFT_DELETED = fromString("SoftDeleted");
+
     /**
      * Creates a new instance of ProvisioningState value.
      *

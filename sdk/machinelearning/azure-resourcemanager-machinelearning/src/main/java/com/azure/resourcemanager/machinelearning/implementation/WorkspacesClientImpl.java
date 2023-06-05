@@ -42,9 +42,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeys
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookAccessTokenResultInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceUpdateParametersInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceListResult;
-import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -55,21 +55,21 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     private final WorkspacesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of WorkspacesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspacesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    WorkspacesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(WorkspacesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesWorkspaces to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesWorkspaces to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -77,8 +77,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     public interface WorkspacesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkspaceInner>> getByResourceGroup(
@@ -92,8 +91,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -108,8 +106,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -118,13 +115,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
+            @QueryParam("forceToPurge") Boolean forceToPurge,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -133,14 +130,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
-            @BodyParam("application/json") WorkspaceUpdateParameters parameters,
+            @BodyParam("application/json") WorkspaceUpdateParametersInner parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkspaceListResult>> listByResourceGroup(
@@ -149,13 +145,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("$skip") String skip,
+            @QueryParam("kind") String kind,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/diagnose")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/diagnose")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> diagnose(
@@ -170,8 +166,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ListWorkspaceKeysResultInner>> listKeys(
@@ -185,8 +180,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/resyncKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/resyncKeys")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> resyncKeys(
@@ -207,13 +201,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("$skip") String skip,
+            @QueryParam("kind") String kind,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listNotebookAccessToken")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listNotebookAccessToken")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NotebookAccessTokenResultInner>> listNotebookAccessToken(
@@ -227,8 +221,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/prepareNotebook")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/prepareNotebook")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> prepareNotebook(
@@ -242,8 +235,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listStorageAccountKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listStorageAccountKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ListStorageAccountKeysResultInner>> listStorageAccountKeys(
@@ -257,8 +249,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listNotebookKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/listNotebookKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ListNotebookKeysResultInner>> listNotebookKeys(
@@ -272,8 +263,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundNetworkDependenciesEndpoints")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundNetworkDependenciesEndpoints")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ExternalFqdnResponseInner>> listOutboundNetworkDependenciesEndpoints(
@@ -723,13 +713,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
+        String resourceGroupName, String workspaceName, Boolean forceToPurge) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -760,6 +752,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
+                            forceToPurge,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -770,6 +763,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -778,7 +772,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String workspaceName, Context context) {
+        String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -807,8 +801,30 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
+                forceToPurge,
                 accept,
                 context);
+    }
+
+    /**
+     * Deletes a machine learning workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String workspaceName, Boolean forceToPurge) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, workspaceName, forceToPurge);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -823,7 +839,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String workspaceName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, workspaceName);
+        final Boolean forceToPurge = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, workspaceName, forceToPurge);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -835,6 +852,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -843,9 +861,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String workspaceName, Context context) {
+        String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, workspaceName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, workspaceName, forceToPurge, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
@@ -863,7 +882,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName).getSyncPoller();
+        final Boolean forceToPurge = null;
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, forceToPurge).getSyncPoller();
     }
 
     /**
@@ -871,6 +891,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -879,8 +900,26 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String workspaceName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, context).getSyncPoller();
+        String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, forceToPurge, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes a machine learning workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, Boolean forceToPurge) {
+        return beginDeleteAsync(resourceGroupName, workspaceName, forceToPurge)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -895,7 +934,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName) {
-        return beginDeleteAsync(resourceGroupName, workspaceName).last().flatMap(this.client::getLroFinalResultOrError);
+        final Boolean forceToPurge = null;
+        return beginDeleteAsync(resourceGroupName, workspaceName, forceToPurge)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -903,6 +945,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -910,8 +953,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, context)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
+        return beginDeleteAsync(resourceGroupName, workspaceName, forceToPurge, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -927,7 +971,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName) {
-        deleteAsync(resourceGroupName, workspaceName).block();
+        final Boolean forceToPurge = null;
+        deleteAsync(resourceGroupName, workspaceName, forceToPurge).block();
     }
 
     /**
@@ -935,14 +980,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, Context context) {
-        deleteAsync(resourceGroupName, workspaceName, context).block();
+    public void delete(String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
+        deleteAsync(resourceGroupName, workspaceName, forceToPurge, context).block();
     }
 
     /**
@@ -959,7 +1005,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1016,7 +1062,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1068,7 +1114,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdateAsync(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, workspaceName, parameters);
         return this
             .client
@@ -1094,7 +1140,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdateAsync(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             updateWithResponseAsync(resourceGroupName, workspaceName, parameters, context);
@@ -1117,7 +1163,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters) {
         return this.beginUpdateAsync(resourceGroupName, workspaceName, parameters).getSyncPoller();
     }
 
@@ -1135,7 +1181,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         return this.beginUpdateAsync(resourceGroupName, workspaceName, parameters, context).getSyncPoller();
     }
 
@@ -1152,7 +1198,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> updateAsync(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters) {
         return beginUpdateAsync(resourceGroupName, workspaceName, parameters)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -1172,7 +1218,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> updateAsync(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         return beginUpdateAsync(resourceGroupName, workspaceName, parameters, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -1190,7 +1236,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return an object that represents a machine learning workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters) {
+    public WorkspaceInner update(
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters) {
         return updateAsync(resourceGroupName, workspaceName, parameters).block();
     }
 
@@ -1208,7 +1255,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspaceInner update(
-        String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         return updateAsync(resourceGroupName, workspaceName, parameters, context).block();
     }
 
@@ -1217,6 +1264,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1225,7 +1273,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, String skip) {
+        String resourceGroupName, String skip, String kind) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1253,6 +1301,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             skip,
+                            kind,
                             accept,
                             context))
             .<PagedResponse<WorkspaceInner>>map(
@@ -1272,6 +1321,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1281,7 +1331,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, String skip, Context context) {
+        String resourceGroupName, String skip, String kind, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1307,6 +1357,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 skip,
+                kind,
                 accept,
                 context)
             .map(
@@ -1325,15 +1376,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the result of a request to list machine learning workspaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName, String skip) {
+    private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName, String skip, String kind) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, skip),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, skip, kind),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
@@ -1349,8 +1401,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName) {
         final String skip = null;
+        final String kind = null;
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, skip),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, skip, kind),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
@@ -1359,6 +1412,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1366,9 +1420,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return the result of a request to list machine learning workspaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName, String skip, Context context) {
+    private PagedFlux<WorkspaceInner> listByResourceGroupAsync(
+        String resourceGroupName, String skip, String kind, Context context) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, skip, context),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, skip, kind, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
@@ -1385,7 +1440,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> listByResourceGroup(String resourceGroupName) {
         final String skip = null;
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skip));
+        final String kind = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skip, kind));
     }
 
     /**
@@ -1393,6 +1449,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1401,8 +1458,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkspaceInner> listByResourceGroup(String resourceGroupName, String skip, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skip, context));
+    public PagedIterable<WorkspaceInner> listByResourceGroup(
+        String resourceGroupName, String skip, String kind, Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skip, kind, context));
     }
 
     /**
@@ -2104,6 +2162,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Lists all the available machine learning workspaces under the specified subscription.
      *
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2111,7 +2170,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(String skip) {
+    private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(String skip, String kind) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2134,6 +2193,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             skip,
+                            kind,
                             accept,
                             context))
             .<PagedResponse<WorkspaceInner>>map(
@@ -2152,6 +2212,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Lists all the available machine learning workspaces under the specified subscription.
      *
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2160,7 +2221,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(String skip, Context context) {
+    private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(String skip, String kind, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2181,6 +2242,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 skip,
+                kind,
                 accept,
                 context)
             .map(
@@ -2198,15 +2260,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * Lists all the available machine learning workspaces under the specified subscription.
      *
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the result of a request to list machine learning workspaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkspaceInner> listAsync(String skip) {
+    private PagedFlux<WorkspaceInner> listAsync(String skip, String kind) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(skip), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(skip, kind), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -2219,14 +2282,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listAsync() {
         final String skip = null;
+        final String kind = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(skip), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(skip, kind), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists all the available machine learning workspaces under the specified subscription.
      *
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2234,9 +2299,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return the result of a request to list machine learning workspaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkspaceInner> listAsync(String skip, Context context) {
+    private PagedFlux<WorkspaceInner> listAsync(String skip, String kind, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(skip, context),
+            () -> listSinglePageAsync(skip, kind, context),
             nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
@@ -2251,13 +2316,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> list() {
         final String skip = null;
-        return new PagedIterable<>(listAsync(skip));
+        final String kind = null;
+        return new PagedIterable<>(listAsync(skip, kind));
     }
 
     /**
      * Lists all the available machine learning workspaces under the specified subscription.
      *
      * @param skip Continuation token for pagination.
+     * @param kind Kind of workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2266,8 +2333,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkspaceInner> list(String skip, Context context) {
-        return new PagedIterable<>(listAsync(skip, context));
+    public PagedIterable<WorkspaceInner> list(String skip, String kind, Context context) {
+        return new PagedIterable<>(listAsync(skip, kind, context));
     }
 
     /**
