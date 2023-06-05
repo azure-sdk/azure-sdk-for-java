@@ -173,30 +173,24 @@ public final class CommunicationServicesImpl implements CommunicationServices {
         }
     }
 
-    public Response<CommunicationServiceKeys> regenerateKeyWithResponse(
-        String resourceGroupName,
-        String communicationServiceName,
-        RegenerateKeyParameters parameters,
-        Context context) {
-        Response<CommunicationServiceKeysInner> inner =
-            this
-                .serviceClient()
-                .regenerateKeyWithResponse(resourceGroupName, communicationServiceName, parameters, context);
+    public CommunicationServiceKeys regenerateKey(
+        String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters) {
+        CommunicationServiceKeysInner inner =
+            this.serviceClient().regenerateKey(resourceGroupName, communicationServiceName, parameters);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new CommunicationServiceKeysImpl(inner.getValue(), this.manager()));
+            return new CommunicationServiceKeysImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
     public CommunicationServiceKeys regenerateKey(
-        String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters) {
+        String resourceGroupName,
+        String communicationServiceName,
+        RegenerateKeyParameters parameters,
+        Context context) {
         CommunicationServiceKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroupName, communicationServiceName, parameters);
+            this.serviceClient().regenerateKey(resourceGroupName, communicationServiceName, parameters, context);
         if (inner != null) {
             return new CommunicationServiceKeysImpl(inner, this.manager());
         } else {

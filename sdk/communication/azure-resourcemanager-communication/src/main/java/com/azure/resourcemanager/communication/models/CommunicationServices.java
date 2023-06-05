@@ -223,14 +223,13 @@ public interface CommunicationServices {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param communicationServiceName The name of the CommunicationService resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class representing the access keys of a CommunicationService along with {@link Response}.
+     * @return a class representing the access keys of a CommunicationService.
      */
-    Response<CommunicationServiceKeys> regenerateKeyWithResponse(
-        String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters, Context context);
+    CommunicationServiceKeys regenerateKey(
+        String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters);
 
     /**
      * Regenerate Key
@@ -241,13 +240,14 @@ public interface CommunicationServices {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param communicationServiceName The name of the CommunicationService resource.
      * @param parameters Parameter that describes the Regenerate Key Operation.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class representing the access keys of a CommunicationService.
      */
     CommunicationServiceKeys regenerateKey(
-        String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters);
+        String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters, Context context);
 
     /**
      * Get

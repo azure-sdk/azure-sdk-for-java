@@ -39,6 +39,31 @@ public final class UpdateDomainRequestParameters extends TaggedResource {
     }
 
     /**
+     * Get the validSenderUsernames property: Collection of valid sender usernames. This is a key-value pair where
+     * key=username and value=display name.
+     *
+     * @return the validSenderUsernames value.
+     */
+    public Map<String, String> validSenderUsernames() {
+        return this.innerProperties() == null ? null : this.innerProperties().validSenderUsernames();
+    }
+
+    /**
+     * Set the validSenderUsernames property: Collection of valid sender usernames. This is a key-value pair where
+     * key=username and value=display name.
+     *
+     * @param validSenderUsernames the validSenderUsernames value to set.
+     * @return the UpdateDomainRequestParameters object itself.
+     */
+    public UpdateDomainRequestParameters withValidSenderUsernames(Map<String, String> validSenderUsernames) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UpdateDomainProperties();
+        }
+        this.innerProperties().withValidSenderUsernames(validSenderUsernames);
+        return this;
+    }
+
+    /**
      * Get the userEngagementTracking property: Describes whether user engagement tracking is enabled or disabled.
      *
      * @return the userEngagementTracking value.

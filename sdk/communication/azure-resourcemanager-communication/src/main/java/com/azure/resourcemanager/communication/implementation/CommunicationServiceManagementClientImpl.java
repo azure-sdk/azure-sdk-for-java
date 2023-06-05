@@ -27,7 +27,6 @@ import com.azure.resourcemanager.communication.fluent.CommunicationServicesClien
 import com.azure.resourcemanager.communication.fluent.DomainsClient;
 import com.azure.resourcemanager.communication.fluent.EmailServicesClient;
 import com.azure.resourcemanager.communication.fluent.OperationsClient;
-import com.azure.resourcemanager.communication.fluent.SenderUsernamesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -40,11 +39,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the CommunicationServiceManagementClientImpl type. */
 @ServiceClient(builder = CommunicationServiceManagementClientBuilder.class)
 public final class CommunicationServiceManagementClientImpl implements CommunicationServiceManagementClient {
-    /** The ID of the target subscription. The value must be an UUID. */
+    /** The ID of the target subscription. */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription. The value must be an UUID.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -160,18 +159,6 @@ public final class CommunicationServiceManagementClientImpl implements Communica
         return this.emailServices;
     }
 
-    /** The SenderUsernamesClient object to access its operations. */
-    private final SenderUsernamesClient senderUsernames;
-
-    /**
-     * Gets the SenderUsernamesClient object to access its operations.
-     *
-     * @return the SenderUsernamesClient object.
-     */
-    public SenderUsernamesClient getSenderUsernames() {
-        return this.senderUsernames;
-    }
-
     /**
      * Initializes an instance of CommunicationServiceManagementClient client.
      *
@@ -179,7 +166,7 @@ public final class CommunicationServiceManagementClientImpl implements Communica
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     CommunicationServiceManagementClientImpl(
@@ -194,12 +181,11 @@ public final class CommunicationServiceManagementClientImpl implements Communica
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-03-31";
+        this.apiVersion = "2023-06-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.communicationServices = new CommunicationServicesClientImpl(this);
         this.domains = new DomainsClientImpl(this);
         this.emailServices = new EmailServicesClientImpl(this);
-        this.senderUsernames = new SenderUsernamesClientImpl(this);
     }
 
     /**
