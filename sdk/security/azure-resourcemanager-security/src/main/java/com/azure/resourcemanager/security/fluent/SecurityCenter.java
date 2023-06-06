@@ -325,6 +325,13 @@ public interface SecurityCenter {
     ConnectorsClient getConnectors();
 
     /**
+     * Gets the SensitivitySettingsClient object to access its operations.
+     *
+     * @return the SensitivitySettingsClient object.
+     */
+    SensitivitySettingsClient getSensitivitySettings();
+
+    /**
      * Gets the AlertsClient object to access its operations.
      *
      * @return the AlertsClient object.
@@ -416,20 +423,6 @@ public interface SecurityCenter {
     ApiCollectionOffboardingsClient getApiCollectionOffboardings();
 
     /**
-     * Gets the HealthReportsClient object to access its operations.
-     *
-     * @return the HealthReportsClient object.
-     */
-    HealthReportsClient getHealthReports();
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    HealthReportOperationsClient getHealthReportOperations();
-
-    /**
      * Gets the SqlVulnerabilityAssessmentScansClient object to access its operations.
      *
      * @return the SqlVulnerabilityAssessmentScansClient object.
@@ -463,4 +456,11 @@ public interface SecurityCenter {
      * @return the SecurityOperatorsClient object.
      */
     SecurityOperatorsClient getSecurityOperators();
+
+    /**
+     * Gets the HealthReportsClient object to access its operations.
+     *
+     * @return the HealthReportsClient object.
+     */
+    HealthReportsClient getHealthReports();
 }

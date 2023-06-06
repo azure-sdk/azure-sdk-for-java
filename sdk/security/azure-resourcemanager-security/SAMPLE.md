@@ -172,12 +172,9 @@
 - [List](#governancerules_list)
 - [OperationResults](#governancerules_operationresults)
 
-## HealthReportOperation
-
-- [Get](#healthreportoperation_get)
-
 ## HealthReports
 
+- [Get](#healthreports_get)
 - [List](#healthreports_list)
 
 ## InformationProtectionPolicies
@@ -319,6 +316,12 @@
 
 - [List](#securitysolutionsreferencedata_list)
 - [ListByHomeRegion](#securitysolutionsreferencedata_listbyhomeregion)
+
+## SensitivitySettings
+
+- [GetSensitivitySettings](#sensitivitysettings_getsensitivitysettings)
+- [ListSensitivitySettings](#sensitivitysettings_listsensitivitysettings)
+- [UpdateSensitivitySettings](#sensitivitysettings_updatesensitivitysettings)
 
 ## ServerVulnerabilityAssessment
 
@@ -3488,13 +3491,13 @@ public final class GovernanceRulesOperationResultsSamples {
 }
 ```
 
-### HealthReportOperation_Get
+### HealthReports_Get
 
 ```java
-/** Samples for HealthReportOperation Get. */
-public final class HealthReportOperationGetSamples {
+/** Samples for HealthReports Get. */
+public final class HealthReportsGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-01-preview/examples/HealthReports/GetHealthReport_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-05-01-preview/examples/HealthReports/GetHealthReports_example.json
      */
     /**
      * Sample code: Get health report of resource.
@@ -3503,7 +3506,7 @@ public final class HealthReportOperationGetSamples {
      */
     public static void getHealthReportOfResource(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .healthReportOperations()
+            .healthReports()
             .getWithResponse(
                 "subscriptions/a1efb6ca-fbc5-4782-9aaa-5c7daded1ce2/resourcegroups/E2E-IBB0WX/providers/Microsoft.Security/securityconnectors/AwsConnectorAllOfferings",
                 "909c629a-bf39-4521-8e4f-10b443a0bc02",
@@ -3518,7 +3521,7 @@ public final class HealthReportOperationGetSamples {
 /** Samples for HealthReports List. */
 public final class HealthReportsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-01-preview/examples/HealthReports/ListHealthReports_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-05-01-preview/examples/HealthReports/ListHealthReports_example.json
      */
     /**
      * Sample code: List health reports.
@@ -5493,6 +5496,79 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
         manager
             .securitySolutionsReferenceDatas()
             .listByHomeRegionWithResponse("westcentralus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_GetSensitivitySettings
+
+```java
+/** Samples for SensitivitySettings GetSensitivitySettings. */
+public final class SensitivitySettingsGetSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/GetSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().getSensitivitySettingsWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_ListSensitivitySettings
+
+```java
+/** Samples for SensitivitySettings ListSensitivitySettings. */
+public final class SensitivitySettingsListSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/GetSensitivitySettingsList_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings list.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettingsList(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().listSensitivitySettingsWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_UpdateSensitivitySettings
+
+```java
+import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
+import java.util.Arrays;
+import java.util.UUID;
+
+/** Samples for SensitivitySettings UpdateSensitivitySettings. */
+public final class SensitivitySettingsUpdateSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/PutSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Update sensitivity settings.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .sensitivitySettings()
+            .updateSensitivitySettingsWithResponse(
+                new UpdateSensitivitySettingsRequest()
+                    .withSensitiveInfoTypesIds(
+                        Arrays
+                            .asList(
+                                UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
+                                UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
+                                UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
+                    .withSensitivityThresholdLabelOrder(2.0F)
+                    .withSensitivityThresholdLabelId(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
