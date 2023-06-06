@@ -57,6 +57,13 @@ public interface WebPubSubResource {
     ResourceSku sku();
 
     /**
+     * Gets the kind property: The kind of the service.
+     *
+     * @return the kind value.
+     */
+    ServiceKind kind();
+
+    /**
      * Gets the identity property: A class represent managed identities used for request and response.
      *
      * @return the identity value.
@@ -64,7 +71,7 @@ public interface WebPubSubResource {
     ManagedIdentity identity();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -251,8 +258,7 @@ public interface WebPubSubResource {
             /**
              * Specifies resourceGroupName.
              *
-             * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this
-             *     value from the Azure Resource Manager API or the portal.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
@@ -264,6 +270,7 @@ public interface WebPubSubResource {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSku,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithTls,
                 DefinitionStages.WithLiveTraceConfiguration,
@@ -306,6 +313,16 @@ public interface WebPubSubResource {
              * @return the next definition stage.
              */
             WithCreate withSku(ResourceSku sku);
+        }
+        /** The stage of the WebPubSubResource definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: The kind of the service.
+             *
+             * @param kind The kind of the service.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(ServiceKind kind);
         }
         /** The stage of the WebPubSubResource definition allowing to specify identity. */
         interface WithIdentity {
