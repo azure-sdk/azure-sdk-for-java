@@ -16,6 +16,12 @@ public final class ScheduleActionType extends ExpandableStringEnum<ScheduleActio
     /** Static value InvokeBatchEndpoint for ScheduleActionType. */
     public static final ScheduleActionType INVOKE_BATCH_ENDPOINT = fromString("InvokeBatchEndpoint");
 
+    /** Static value ImportData for ScheduleActionType. */
+    public static final ScheduleActionType IMPORT_DATA = fromString("ImportData");
+
+    /** Static value CreateMonitor for ScheduleActionType. */
+    public static final ScheduleActionType CREATE_MONITOR = fromString("CreateMonitor");
+
     /**
      * Creates a new instance of ScheduleActionType value.
      *
