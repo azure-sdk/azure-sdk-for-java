@@ -9,18 +9,11 @@ import com.azure.resourcemanager.machinelearning.fluent.models.AmlOperationInner
 /** An immutable client-side representation of AmlOperation. */
 public interface AmlOperation {
     /**
-     * Gets the name property: Operation name: {provider}/{resource}/{operation}.
-     *
-     * @return the name value.
-     */
-    String name();
-
-    /**
-     * Gets the display property: Display name of operation.
+     * Gets the display property: Gets or sets display name of operation.
      *
      * @return the display value.
      */
-    AmlOperationDisplay display();
+    OperationDisplay display();
 
     /**
      * Gets the isDataAction property: Indicates whether the operation applies to data-plane.
@@ -28,6 +21,20 @@ public interface AmlOperation {
      * @return the isDataAction value.
      */
     Boolean isDataAction();
+
+    /**
+     * Gets the name property: Gets or sets operation name: {provider}/{resource}/{operation}.
+     *
+     * @return the name value.
+     */
+    String name();
+
+    /**
+     * Gets the origin property: The intended executor of the operation: user/system.
+     *
+     * @return the origin value.
+     */
+    String origin();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.AmlOperationInner object.

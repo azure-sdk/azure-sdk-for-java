@@ -5,60 +5,58 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpoint;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnectionProvisioningState;
+import com.azure.resourcemanager.machinelearning.models.EndpointServiceConnectionStatus;
 import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnectionState;
+import com.azure.resourcemanager.machinelearning.models.WorkspacePrivateEndpointResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the PrivateEndpointConnectProperties. */
+/** Private endpoint connection properties. */
 @Fluent
 public final class PrivateEndpointConnectionProperties {
     /*
-     * The resource of private end point.
+     * The privateEndpoint property.
      */
     @JsonProperty(value = "privateEndpoint")
-    private PrivateEndpoint privateEndpoint;
+    private WorkspacePrivateEndpointResource privateEndpoint;
 
     /*
-     * A collection of information about the state of the connection between service consumer and provider.
+     * The connection state.
      */
-    @JsonProperty(value = "privateLinkServiceConnectionState", required = true)
+    @JsonProperty(value = "privateLinkServiceConnectionState")
     private PrivateLinkServiceConnectionState privateLinkServiceConnectionState;
 
     /*
-     * The provisioning state of the private endpoint connection resource.
+     * Connection status of the service consumer with the service provider
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private PrivateEndpointConnectionProvisioningState provisioningState;
+    @JsonProperty(value = "provisioningState")
+    private EndpointServiceConnectionStatus provisioningState;
 
     /** Creates an instance of PrivateEndpointConnectionProperties class. */
     public PrivateEndpointConnectionProperties() {
     }
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
+     * Get the privateEndpoint property: The privateEndpoint property.
      *
      * @return the privateEndpoint value.
      */
-    public PrivateEndpoint privateEndpoint() {
+    public WorkspacePrivateEndpointResource privateEndpoint() {
         return this.privateEndpoint;
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
+     * Set the privateEndpoint property: The privateEndpoint property.
      *
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
      */
-    public PrivateEndpointConnectionProperties withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
+    public PrivateEndpointConnectionProperties withPrivateEndpoint(WorkspacePrivateEndpointResource privateEndpoint) {
         this.privateEndpoint = privateEndpoint;
         return this;
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
+     * Get the privateLinkServiceConnectionState property: The connection state.
      *
      * @return the privateLinkServiceConnectionState value.
      */
@@ -67,8 +65,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
+     * Set the privateLinkServiceConnectionState property: The connection state.
      *
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
@@ -80,12 +77,24 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Get the provisioningState property: The provisioning state of the private endpoint connection resource.
+     * Get the provisioningState property: Connection status of the service consumer with the service provider.
      *
      * @return the provisioningState value.
      */
-    public PrivateEndpointConnectionProvisioningState provisioningState() {
+    public EndpointServiceConnectionStatus provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: Connection status of the service consumer with the service provider.
+     *
+     * @param provisioningState the provisioningState value to set.
+     * @return the PrivateEndpointConnectionProperties object itself.
+     */
+    public PrivateEndpointConnectionProperties withProvisioningState(
+        EndpointServiceConnectionStatus provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
     }
 
     /**
@@ -97,16 +106,8 @@ public final class PrivateEndpointConnectionProperties {
         if (privateEndpoint() != null) {
             privateEndpoint().validate();
         }
-        if (privateLinkServiceConnectionState() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateLinkServiceConnectionState in model"
-                            + " PrivateEndpointConnectionProperties"));
-        } else {
+        if (privateLinkServiceConnectionState() != null) {
             privateLinkServiceConnectionState().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionProperties.class);
 }

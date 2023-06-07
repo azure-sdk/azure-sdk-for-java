@@ -5,49 +5,15 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.EncryptionUpdateProperties;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
+import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccessType;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The parameters for updating the properties of a machine learning workspace. */
+/** The parameters for updating a machine learning workspace. */
 @Fluent
 public final class WorkspacePropertiesUpdateParameters {
-    /*
-     * The description of this workspace.
-     */
-    @JsonProperty(value = "description")
-    private String description;
-
-    /*
-     * The friendly name for this workspace.
-     */
-    @JsonProperty(value = "friendlyName")
-    private String friendlyName;
-
-    /*
-     * The compute name for image build
-     */
-    @JsonProperty(value = "imageBuildCompute")
-    private String imageBuildCompute;
-
-    /*
-     * The service managed resource settings.
-     */
-    @JsonProperty(value = "serviceManagedResourcesSettings")
-    private ServiceManagedResourcesSettings serviceManagedResourcesSettings;
-
-    /*
-     * The user assigned identity resource id that represents the workspace identity.
-     */
-    @JsonProperty(value = "primaryUserAssignedIdentity")
-    private String primaryUserAssignedIdentity;
-
-    /*
-     * Whether requests from Public Network are allowed.
-     */
-    @JsonProperty(value = "publicNetworkAccess")
-    private PublicNetworkAccess publicNetworkAccess;
-
     /*
      * ARM id of the application insights associated with this workspace.
      */
@@ -60,131 +26,80 @@ public final class WorkspacePropertiesUpdateParameters {
     @JsonProperty(value = "containerRegistry")
     private String containerRegistry;
 
+    /*
+     * The description of this workspace.
+     */
+    @JsonProperty(value = "description")
+    private String description;
+
+    /*
+     * The enableDataIsolation property.
+     */
+    @JsonProperty(value = "enableDataIsolation")
+    private Boolean enableDataIsolation;
+
+    /*
+     * The encryption property.
+     */
+    @JsonProperty(value = "encryption")
+    private EncryptionUpdateProperties encryption;
+
+    /*
+     * Settings for feature store type workspace.
+     */
+    @JsonProperty(value = "featureStoreSettings")
+    private FeatureStoreSettings featureStoreSettings;
+
+    /*
+     * The friendly name for this workspace. This name in mutable
+     */
+    @JsonProperty(value = "friendlyName")
+    private String friendlyName;
+
+    /*
+     * The compute name for image build
+     */
+    @JsonProperty(value = "imageBuildCompute")
+    private String imageBuildCompute;
+
+    /*
+     * Anything
+     */
+    @JsonProperty(value = "managedNetwork")
+    private Object managedNetwork;
+
+    /*
+     * The user assigned identity resource id that represents the workspace identity.
+     */
+    @JsonProperty(value = "primaryUserAssignedIdentity")
+    private String primaryUserAssignedIdentity;
+
+    /*
+     * Whether requests from Public Network are allowed.
+     */
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccessType publicNetworkAccess;
+
+    /*
+     * The service managed resource settings.
+     */
+    @JsonProperty(value = "serviceManagedResourcesSettings")
+    private ServiceManagedResourcesSettings serviceManagedResourcesSettings;
+
+    /*
+     * Retention time in days after workspace get soft deleted.
+     */
+    @JsonProperty(value = "softDeleteRetentionInDays")
+    private Integer softDeleteRetentionInDays;
+
+    /*
+     * Enabling v1_legacy_mode may prevent you from using features provided by the v2 API.
+     */
+    @JsonProperty(value = "v1LegacyMode")
+    private Boolean v1LegacyMode;
+
     /** Creates an instance of WorkspacePropertiesUpdateParameters class. */
     public WorkspacePropertiesUpdateParameters() {
-    }
-
-    /**
-     * Get the description property: The description of this workspace.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.description;
-    }
-
-    /**
-     * Set the description property: The description of this workspace.
-     *
-     * @param description the description value to set.
-     * @return the WorkspacePropertiesUpdateParameters object itself.
-     */
-    public WorkspacePropertiesUpdateParameters withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * Get the friendlyName property: The friendly name for this workspace.
-     *
-     * @return the friendlyName value.
-     */
-    public String friendlyName() {
-        return this.friendlyName;
-    }
-
-    /**
-     * Set the friendlyName property: The friendly name for this workspace.
-     *
-     * @param friendlyName the friendlyName value to set.
-     * @return the WorkspacePropertiesUpdateParameters object itself.
-     */
-    public WorkspacePropertiesUpdateParameters withFriendlyName(String friendlyName) {
-        this.friendlyName = friendlyName;
-        return this;
-    }
-
-    /**
-     * Get the imageBuildCompute property: The compute name for image build.
-     *
-     * @return the imageBuildCompute value.
-     */
-    public String imageBuildCompute() {
-        return this.imageBuildCompute;
-    }
-
-    /**
-     * Set the imageBuildCompute property: The compute name for image build.
-     *
-     * @param imageBuildCompute the imageBuildCompute value to set.
-     * @return the WorkspacePropertiesUpdateParameters object itself.
-     */
-    public WorkspacePropertiesUpdateParameters withImageBuildCompute(String imageBuildCompute) {
-        this.imageBuildCompute = imageBuildCompute;
-        return this;
-    }
-
-    /**
-     * Get the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
-     * @return the serviceManagedResourcesSettings value.
-     */
-    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
-        return this.serviceManagedResourcesSettings;
-    }
-
-    /**
-     * Set the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
-     * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
-     * @return the WorkspacePropertiesUpdateParameters object itself.
-     */
-    public WorkspacePropertiesUpdateParameters withServiceManagedResourcesSettings(
-        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
-        this.serviceManagedResourcesSettings = serviceManagedResourcesSettings;
-        return this;
-    }
-
-    /**
-     * Get the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
-     * workspace identity.
-     *
-     * @return the primaryUserAssignedIdentity value.
-     */
-    public String primaryUserAssignedIdentity() {
-        return this.primaryUserAssignedIdentity;
-    }
-
-    /**
-     * Set the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
-     * workspace identity.
-     *
-     * @param primaryUserAssignedIdentity the primaryUserAssignedIdentity value to set.
-     * @return the WorkspacePropertiesUpdateParameters object itself.
-     */
-    public WorkspacePropertiesUpdateParameters withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity) {
-        this.primaryUserAssignedIdentity = primaryUserAssignedIdentity;
-        return this;
-    }
-
-    /**
-     * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.publicNetworkAccess;
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the WorkspacePropertiesUpdateParameters object itself.
-     */
-    public WorkspacePropertiesUpdateParameters withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        this.publicNetworkAccess = publicNetworkAccess;
-        return this;
     }
 
     /**
@@ -228,11 +143,262 @@ public final class WorkspacePropertiesUpdateParameters {
     }
 
     /**
+     * Get the description property: The description of this workspace.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Set the description property: The description of this workspace.
+     *
+     * @param description the description value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get the enableDataIsolation property: The enableDataIsolation property.
+     *
+     * @return the enableDataIsolation value.
+     */
+    public Boolean enableDataIsolation() {
+        return this.enableDataIsolation;
+    }
+
+    /**
+     * Set the enableDataIsolation property: The enableDataIsolation property.
+     *
+     * @param enableDataIsolation the enableDataIsolation value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withEnableDataIsolation(Boolean enableDataIsolation) {
+        this.enableDataIsolation = enableDataIsolation;
+        return this;
+    }
+
+    /**
+     * Get the encryption property: The encryption property.
+     *
+     * @return the encryption value.
+     */
+    public EncryptionUpdateProperties encryption() {
+        return this.encryption;
+    }
+
+    /**
+     * Set the encryption property: The encryption property.
+     *
+     * @param encryption the encryption value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withEncryption(EncryptionUpdateProperties encryption) {
+        this.encryption = encryption;
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.featureStoreSettings;
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        this.featureStoreSettings = featureStoreSettings;
+        return this;
+    }
+
+    /**
+     * Get the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.friendlyName;
+    }
+
+    /**
+     * Set the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
+        return this;
+    }
+
+    /**
+     * Get the imageBuildCompute property: The compute name for image build.
+     *
+     * @return the imageBuildCompute value.
+     */
+    public String imageBuildCompute() {
+        return this.imageBuildCompute;
+    }
+
+    /**
+     * Set the imageBuildCompute property: The compute name for image build.
+     *
+     * @param imageBuildCompute the imageBuildCompute value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withImageBuildCompute(String imageBuildCompute) {
+        this.imageBuildCompute = imageBuildCompute;
+        return this;
+    }
+
+    /**
+     * Get the managedNetwork property: Anything.
+     *
+     * @return the managedNetwork value.
+     */
+    public Object managedNetwork() {
+        return this.managedNetwork;
+    }
+
+    /**
+     * Set the managedNetwork property: Anything.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withManagedNetwork(Object managedNetwork) {
+        this.managedNetwork = managedNetwork;
+        return this;
+    }
+
+    /**
+     * Get the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
+     * workspace identity.
+     *
+     * @return the primaryUserAssignedIdentity value.
+     */
+    public String primaryUserAssignedIdentity() {
+        return this.primaryUserAssignedIdentity;
+    }
+
+    /**
+     * Set the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
+     * workspace identity.
+     *
+     * @param primaryUserAssignedIdentity the primaryUserAssignedIdentity value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity) {
+        this.primaryUserAssignedIdentity = primaryUserAssignedIdentity;
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
+    }
+
+    /**
+     * Get the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @return the serviceManagedResourcesSettings value.
+     */
+    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
+        return this.serviceManagedResourcesSettings;
+    }
+
+    /**
+     * Set the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withServiceManagedResourcesSettings(
+        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
+        this.serviceManagedResourcesSettings = serviceManagedResourcesSettings;
+        return this;
+    }
+
+    /**
+     * Get the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    public Integer softDeleteRetentionInDays() {
+        return this.softDeleteRetentionInDays;
+    }
+
+    /**
+     * Set the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
+        this.softDeleteRetentionInDays = softDeleteRetentionInDays;
+        return this;
+    }
+
+    /**
+     * Get the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @return the v1LegacyMode value.
+     */
+    public Boolean v1LegacyMode() {
+        return this.v1LegacyMode;
+    }
+
+    /**
+     * Set the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @param v1LegacyMode the v1LegacyMode value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withV1LegacyMode(Boolean v1LegacyMode) {
+        this.v1LegacyMode = v1LegacyMode;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (encryption() != null) {
+            encryption().validate();
+        }
+        if (featureStoreSettings() != null) {
+            featureStoreSettings().validate();
+        }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
         }

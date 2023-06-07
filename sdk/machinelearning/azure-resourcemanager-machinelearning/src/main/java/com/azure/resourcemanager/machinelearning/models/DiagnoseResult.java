@@ -7,7 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Result of Diagnose. */
+/** The DiagnoseResult model. */
 @Immutable
 public final class DiagnoseResult {
     /*

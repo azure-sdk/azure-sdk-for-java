@@ -35,21 +35,21 @@ public final class OperationsClientImpl implements OperationsClient {
     private final OperationsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    OperationsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesOperations to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesOperations to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -71,8 +71,7 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of operations supported by the resource provider along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AmlOperationInner>> listSinglePageAsync() {
@@ -100,8 +99,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of operations supported by the resource provider along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AmlOperationInner>> listSinglePageAsync(Context context) {
@@ -126,7 +124,7 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of operations supported by the resource provider as paginated response with {@link PagedFlux}.
+     * @return the paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AmlOperationInner> listAsync() {
@@ -140,7 +138,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of operations supported by the resource provider as paginated response with {@link PagedFlux}.
+     * @return the paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AmlOperationInner> listAsync(Context context) {
@@ -152,8 +150,7 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of operations supported by the resource provider as paginated response with {@link
-     *     PagedIterable}.
+     * @return the paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AmlOperationInner> list() {
@@ -167,8 +164,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of operations supported by the resource provider as paginated response with {@link
-     *     PagedIterable}.
+     * @return the paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AmlOperationInner> list(Context context) {

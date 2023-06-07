@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
@@ -46,6 +47,13 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
     SystemData systemData();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner
      * com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner object.
      *
@@ -73,7 +81,7 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
              * Specifies resourceGroupName, workspaceName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param workspaceName Azure Machine Learning Workspace Name.
              * @return the next definition stage.
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
@@ -111,6 +119,44 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
         }
     }
     /**
+     * Begins update for the WorkspaceConnectionPropertiesV2BasicResource resource.
+     *
+     * @return the stage of resource update.
+     */
+    WorkspaceConnectionPropertiesV2BasicResource.Update update();
+
+    /** The template for WorkspaceConnectionPropertiesV2BasicResource update. */
+    interface Update extends UpdateStages.WithProperties {
+        /**
+         * Executes the update request.
+         *
+         * @return the updated resource.
+         */
+        WorkspaceConnectionPropertiesV2BasicResource apply();
+
+        /**
+         * Executes the update request.
+         *
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        WorkspaceConnectionPropertiesV2BasicResource apply(Context context);
+    }
+    /** The WorkspaceConnectionPropertiesV2BasicResource update stages. */
+    interface UpdateStages {
+        /** The stage of the WorkspaceConnectionPropertiesV2BasicResource update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The properties that the machine learning workspace connection will be
+             * updated with..
+             *
+             * @param properties The properties that the machine learning workspace connection will be updated with.
+             * @return the next definition stage.
+             */
+            Update withProperties(WorkspaceConnectionPropertiesV2 properties);
+        }
+    }
+    /**
      * Refreshes the resource to sync with Azure.
      *
      * @return the refreshed resource.
@@ -124,4 +170,24 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
      * @return the refreshed resource.
      */
     WorkspaceConnectionPropertiesV2BasicResource refresh(Context context);
+
+    /**
+     * The listSecrets operation.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<WorkspaceConnectionPropertiesV2BasicResource> listSecretsWithResponse(Context context);
+
+    /**
+     * The listSecrets operation.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    WorkspaceConnectionPropertiesV2BasicResource listSecrets();
 }

@@ -9,11 +9,11 @@ import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointCo
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of private endpoint connection associated with the specified workspace. */
+/** The PrivateEndpointConnectionListResult model. */
 @Fluent
 public final class PrivateEndpointConnectionListResult {
     /*
-     * Array of private endpoint connections
+     * The value property.
      */
     @JsonProperty(value = "value")
     private List<PrivateEndpointConnectionInner> value;
@@ -23,7 +23,7 @@ public final class PrivateEndpointConnectionListResult {
     }
 
     /**
-     * Get the value property: Array of private endpoint connections.
+     * Get the value property: The value property.
      *
      * @return the value value.
      */
@@ -32,7 +32,7 @@ public final class PrivateEndpointConnectionListResult {
     }
 
     /**
-     * Set the value property: Array of private endpoint connections.
+     * Set the value property: The value property.
      *
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionListResult object itself.

@@ -14,20 +14,7 @@ import java.util.Map;
 @Fluent
 public final class WorkspaceUpdateParameters {
     /*
-     * The resource tags for the machine learning workspace.
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
-
-    /*
-     * The sku of the workspace.
-     */
-    @JsonProperty(value = "sku")
-    private Sku sku;
-
-    /*
-     * The identity of the resource.
+     * Managed service identity (system assigned and/or user assigned identities)
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -38,52 +25,25 @@ public final class WorkspaceUpdateParameters {
     @JsonProperty(value = "properties")
     private WorkspacePropertiesUpdateParameters innerProperties;
 
+    /*
+     * Optional. This field is required to be implemented by the RP because AML is supporting more than one tier
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
+
+    /*
+     * The resource tags for the machine learning workspace.
+     */
+    @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
+
     /** Creates an instance of WorkspaceUpdateParameters class. */
     public WorkspaceUpdateParameters() {
     }
 
     /**
-     * Get the tags property: The resource tags for the machine learning workspace.
-     *
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: The resource tags for the machine learning workspace.
-     *
-     * @param tags the tags value to set.
-     * @return the WorkspaceUpdateParameters object itself.
-     */
-    public WorkspaceUpdateParameters withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the sku property: The sku of the workspace.
-     *
-     * @return the sku value.
-     */
-    public Sku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: The sku of the workspace.
-     *
-     * @param sku the sku value to set.
-     * @return the WorkspaceUpdateParameters object itself.
-     */
-    public WorkspaceUpdateParameters withSku(Sku sku) {
-        this.sku = sku;
-        return this;
-    }
-
-    /**
-     * Get the identity property: The identity of the resource.
+     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @return the identity value.
      */
@@ -92,7 +52,7 @@ public final class WorkspaceUpdateParameters {
     }
 
     /**
-     * Set the identity property: The identity of the resource.
+     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @param identity the identity value to set.
      * @return the WorkspaceUpdateParameters object itself.
@@ -112,143 +72,44 @@ public final class WorkspaceUpdateParameters {
     }
 
     /**
-     * Get the description property: The description of this workspace.
+     * Get the sku property: Optional. This field is required to be implemented by the RP because AML is supporting more
+     * than one tier.
      *
-     * @return the description value.
+     * @return the sku value.
      */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
+    public Sku sku() {
+        return this.sku;
     }
 
     /**
-     * Set the description property: The description of this workspace.
+     * Set the sku property: Optional. This field is required to be implemented by the RP because AML is supporting more
+     * than one tier.
      *
-     * @param description the description value to set.
+     * @param sku the sku value to set.
      * @return the WorkspaceUpdateParameters object itself.
      */
-    public WorkspaceUpdateParameters withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspacePropertiesUpdateParameters();
-        }
-        this.innerProperties().withDescription(description);
+    public WorkspaceUpdateParameters withSku(Sku sku) {
+        this.sku = sku;
         return this;
     }
 
     /**
-     * Get the friendlyName property: The friendly name for this workspace.
+     * Get the tags property: The resource tags for the machine learning workspace.
      *
-     * @return the friendlyName value.
+     * @return the tags value.
      */
-    public String friendlyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
+    public Map<String, String> tags() {
+        return this.tags;
     }
 
     /**
-     * Set the friendlyName property: The friendly name for this workspace.
+     * Set the tags property: The resource tags for the machine learning workspace.
      *
-     * @param friendlyName the friendlyName value to set.
+     * @param tags the tags value to set.
      * @return the WorkspaceUpdateParameters object itself.
      */
-    public WorkspaceUpdateParameters withFriendlyName(String friendlyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspacePropertiesUpdateParameters();
-        }
-        this.innerProperties().withFriendlyName(friendlyName);
-        return this;
-    }
-
-    /**
-     * Get the imageBuildCompute property: The compute name for image build.
-     *
-     * @return the imageBuildCompute value.
-     */
-    public String imageBuildCompute() {
-        return this.innerProperties() == null ? null : this.innerProperties().imageBuildCompute();
-    }
-
-    /**
-     * Set the imageBuildCompute property: The compute name for image build.
-     *
-     * @param imageBuildCompute the imageBuildCompute value to set.
-     * @return the WorkspaceUpdateParameters object itself.
-     */
-    public WorkspaceUpdateParameters withImageBuildCompute(String imageBuildCompute) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspacePropertiesUpdateParameters();
-        }
-        this.innerProperties().withImageBuildCompute(imageBuildCompute);
-        return this;
-    }
-
-    /**
-     * Get the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
-     * @return the serviceManagedResourcesSettings value.
-     */
-    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().serviceManagedResourcesSettings();
-    }
-
-    /**
-     * Set the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
-     * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
-     * @return the WorkspaceUpdateParameters object itself.
-     */
-    public WorkspaceUpdateParameters withServiceManagedResourcesSettings(
-        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspacePropertiesUpdateParameters();
-        }
-        this.innerProperties().withServiceManagedResourcesSettings(serviceManagedResourcesSettings);
-        return this;
-    }
-
-    /**
-     * Get the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
-     * workspace identity.
-     *
-     * @return the primaryUserAssignedIdentity value.
-     */
-    public String primaryUserAssignedIdentity() {
-        return this.innerProperties() == null ? null : this.innerProperties().primaryUserAssignedIdentity();
-    }
-
-    /**
-     * Set the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
-     * workspace identity.
-     *
-     * @param primaryUserAssignedIdentity the primaryUserAssignedIdentity value to set.
-     * @return the WorkspaceUpdateParameters object itself.
-     */
-    public WorkspaceUpdateParameters withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspacePropertiesUpdateParameters();
-        }
-        this.innerProperties().withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
-        return this;
-    }
-
-    /**
-     * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the WorkspaceUpdateParameters object itself.
-     */
-    public WorkspaceUpdateParameters withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkspacePropertiesUpdateParameters();
-        }
-        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+    public WorkspaceUpdateParameters withTags(Map<String, String> tags) {
+        this.tags = tags;
         return this;
     }
 
@@ -299,19 +160,300 @@ public final class WorkspaceUpdateParameters {
     }
 
     /**
+     * Get the description property: The description of this workspace.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: The description of this workspace.
+     *
+     * @param description the description value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the enableDataIsolation property: The enableDataIsolation property.
+     *
+     * @return the enableDataIsolation value.
+     */
+    public Boolean enableDataIsolation() {
+        return this.innerProperties() == null ? null : this.innerProperties().enableDataIsolation();
+    }
+
+    /**
+     * Set the enableDataIsolation property: The enableDataIsolation property.
+     *
+     * @param enableDataIsolation the enableDataIsolation value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withEnableDataIsolation(Boolean enableDataIsolation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withEnableDataIsolation(enableDataIsolation);
+        return this;
+    }
+
+    /**
+     * Get the encryption property: The encryption property.
+     *
+     * @return the encryption value.
+     */
+    public EncryptionUpdateProperties encryption() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryption();
+    }
+
+    /**
+     * Set the encryption property: The encryption property.
+     *
+     * @param encryption the encryption value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withEncryption(EncryptionUpdateProperties encryption) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withEncryption(encryption);
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().featureStoreSettings();
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withFeatureStoreSettings(featureStoreSettings);
+        return this;
+    }
+
+    /**
+     * Get the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
+    }
+
+    /**
+     * Set the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withFriendlyName(String friendlyName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withFriendlyName(friendlyName);
+        return this;
+    }
+
+    /**
+     * Get the imageBuildCompute property: The compute name for image build.
+     *
+     * @return the imageBuildCompute value.
+     */
+    public String imageBuildCompute() {
+        return this.innerProperties() == null ? null : this.innerProperties().imageBuildCompute();
+    }
+
+    /**
+     * Set the imageBuildCompute property: The compute name for image build.
+     *
+     * @param imageBuildCompute the imageBuildCompute value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withImageBuildCompute(String imageBuildCompute) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withImageBuildCompute(imageBuildCompute);
+        return this;
+    }
+
+    /**
+     * Get the managedNetwork property: Anything.
+     *
+     * @return the managedNetwork value.
+     */
+    public Object managedNetwork() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedNetwork();
+    }
+
+    /**
+     * Set the managedNetwork property: Anything.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withManagedNetwork(Object managedNetwork) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withManagedNetwork(managedNetwork);
+        return this;
+    }
+
+    /**
+     * Get the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
+     * workspace identity.
+     *
+     * @return the primaryUserAssignedIdentity value.
+     */
+    public String primaryUserAssignedIdentity() {
+        return this.innerProperties() == null ? null : this.innerProperties().primaryUserAssignedIdentity();
+    }
+
+    /**
+     * Set the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
+     * workspace identity.
+     *
+     * @param primaryUserAssignedIdentity the primaryUserAssignedIdentity value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    /**
+     * Get the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @return the serviceManagedResourcesSettings value.
+     */
+    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().serviceManagedResourcesSettings();
+    }
+
+    /**
+     * Set the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withServiceManagedResourcesSettings(
+        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withServiceManagedResourcesSettings(serviceManagedResourcesSettings);
+        return this;
+    }
+
+    /**
+     * Get the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    public Integer softDeleteRetentionInDays() {
+        return this.innerProperties() == null ? null : this.innerProperties().softDeleteRetentionInDays();
+    }
+
+    /**
+     * Set the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withSoftDeleteRetentionInDays(softDeleteRetentionInDays);
+        return this;
+    }
+
+    /**
+     * Get the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @return the v1LegacyMode value.
+     */
+    public Boolean v1LegacyMode() {
+        return this.innerProperties() == null ? null : this.innerProperties().v1LegacyMode();
+    }
+
+    /**
+     * Set the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @param v1LegacyMode the v1LegacyMode value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withV1LegacyMode(Boolean v1LegacyMode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sku() != null) {
-            sku().validate();
-        }
         if (identity() != null) {
             identity().validate();
         }
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 }

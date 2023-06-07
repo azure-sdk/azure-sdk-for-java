@@ -11,7 +11,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.WorkspacesClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.DiagnoseResponseResultInner;
-import com.azure.resourcemanager.machinelearning.fluent.models.ExternalFqdnResponseInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ListNotebookKeysResultInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ListStorageAccountKeysResultInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeysResultInner;
@@ -20,7 +19,6 @@ import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceI
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseResponseResult;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
-import com.azure.resourcemanager.machinelearning.models.ExternalFqdnResponse;
 import com.azure.resourcemanager.machinelearning.models.ListNotebookKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListStorageAccountKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListWorkspaceKeysResult;
@@ -40,6 +38,35 @@ public final class WorkspacesImpl implements Workspaces {
         WorkspacesClient innerClient, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public PagedIterable<Workspace> list() {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Workspace> list(String kind, Context context) {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().list(kind, context);
+        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<WorkspaceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName, String kind, Context context) {
+        PagedIterable<WorkspaceInner> inner =
+            this.serviceClient().listByResourceGroup(resourceGroupName, kind, context);
+        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
+    }
+
+    public void delete(String resourceGroupName, String workspaceName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, forceToPurge, context);
     }
 
     public Response<Workspace> getByResourceGroupWithResponse(
@@ -66,25 +93,6 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String workspaceName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName);
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, Context context) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, context);
-    }
-
-    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Workspace> listByResourceGroup(String resourceGroupName, String skip, Context context) {
-        PagedIterable<WorkspaceInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, skip, context);
-        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
-    }
-
     public DiagnoseResponseResult diagnose(String resourceGroupName, String workspaceName) {
         DiagnoseResponseResultInner inner = this.serviceClient().diagnose(resourceGroupName, workspaceName);
         if (inner != null) {
@@ -95,9 +103,9 @@ public final class WorkspacesImpl implements Workspaces {
     }
 
     public DiagnoseResponseResult diagnose(
-        String resourceGroupName, String workspaceName, DiagnoseWorkspaceParameters parameters, Context context) {
+        String resourceGroupName, String workspaceName, DiagnoseWorkspaceParameters body, Context context) {
         DiagnoseResponseResultInner inner =
-            this.serviceClient().diagnose(resourceGroupName, workspaceName, parameters, context);
+            this.serviceClient().diagnose(resourceGroupName, workspaceName, body, context);
         if (inner != null) {
             return new DiagnoseResponseResultImpl(inner, this.manager());
         } else {
@@ -129,24 +137,6 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public void resyncKeys(String resourceGroupName, String workspaceName) {
-        this.serviceClient().resyncKeys(resourceGroupName, workspaceName);
-    }
-
-    public void resyncKeys(String resourceGroupName, String workspaceName, Context context) {
-        this.serviceClient().resyncKeys(resourceGroupName, workspaceName, context);
-    }
-
-    public PagedIterable<Workspace> list() {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Workspace> list(String skip, Context context) {
-        PagedIterable<WorkspaceInner> inner = this.serviceClient().list(skip, context);
-        return Utils.mapPage(inner, inner1 -> new WorkspaceImpl(inner1, this.manager()));
-    }
-
     public Response<NotebookAccessTokenResult> listNotebookAccessTokenWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         Response<NotebookAccessTokenResultInner> inner =
@@ -172,20 +162,25 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public NotebookResourceInfo prepareNotebook(String resourceGroupName, String workspaceName) {
-        NotebookResourceInfoInner inner = this.serviceClient().prepareNotebook(resourceGroupName, workspaceName);
+    public Response<ListNotebookKeysResult> listNotebookKeysWithResponse(
+        String resourceGroupName, String workspaceName, Context context) {
+        Response<ListNotebookKeysResultInner> inner =
+            this.serviceClient().listNotebookKeysWithResponse(resourceGroupName, workspaceName, context);
         if (inner != null) {
-            return new NotebookResourceInfoImpl(inner, this.manager());
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ListNotebookKeysResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public NotebookResourceInfo prepareNotebook(String resourceGroupName, String workspaceName, Context context) {
-        NotebookResourceInfoInner inner =
-            this.serviceClient().prepareNotebook(resourceGroupName, workspaceName, context);
+    public ListNotebookKeysResult listNotebookKeys(String resourceGroupName, String workspaceName) {
+        ListNotebookKeysResultInner inner = this.serviceClient().listNotebookKeys(resourceGroupName, workspaceName);
         if (inner != null) {
-            return new NotebookResourceInfoImpl(inner, this.manager());
+            return new ListNotebookKeysResultImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -216,56 +211,31 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public Response<ListNotebookKeysResult> listNotebookKeysWithResponse(
-        String resourceGroupName, String workspaceName, Context context) {
-        Response<ListNotebookKeysResultInner> inner =
-            this.serviceClient().listNotebookKeysWithResponse(resourceGroupName, workspaceName, context);
+    public NotebookResourceInfo prepareNotebook(String resourceGroupName, String workspaceName) {
+        NotebookResourceInfoInner inner = this.serviceClient().prepareNotebook(resourceGroupName, workspaceName);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ListNotebookKeysResultImpl(inner.getValue(), this.manager()));
+            return new NotebookResourceInfoImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public ListNotebookKeysResult listNotebookKeys(String resourceGroupName, String workspaceName) {
-        ListNotebookKeysResultInner inner = this.serviceClient().listNotebookKeys(resourceGroupName, workspaceName);
+    public NotebookResourceInfo prepareNotebook(String resourceGroupName, String workspaceName, Context context) {
+        NotebookResourceInfoInner inner =
+            this.serviceClient().prepareNotebook(resourceGroupName, workspaceName, context);
         if (inner != null) {
-            return new ListNotebookKeysResultImpl(inner, this.manager());
+            return new NotebookResourceInfoImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<ExternalFqdnResponse> listOutboundNetworkDependenciesEndpointsWithResponse(
-        String resourceGroupName, String workspaceName, Context context) {
-        Response<ExternalFqdnResponseInner> inner =
-            this
-                .serviceClient()
-                .listOutboundNetworkDependenciesEndpointsWithResponse(resourceGroupName, workspaceName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ExternalFqdnResponseImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public void resyncKeys(String resourceGroupName, String workspaceName) {
+        this.serviceClient().resyncKeys(resourceGroupName, workspaceName);
     }
 
-    public ExternalFqdnResponse listOutboundNetworkDependenciesEndpoints(
-        String resourceGroupName, String workspaceName) {
-        ExternalFqdnResponseInner inner =
-            this.serviceClient().listOutboundNetworkDependenciesEndpoints(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new ExternalFqdnResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void resyncKeys(String resourceGroupName, String workspaceName, Context context) {
+        this.serviceClient().resyncKeys(resourceGroupName, workspaceName, context);
     }
 
     public Workspace getById(String id) {
@@ -322,10 +292,11 @@ public final class WorkspacesImpl implements Workspaces {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        this.delete(resourceGroupName, workspaceName, Context.NONE);
+        Boolean localForceToPurge = null;
+        this.delete(resourceGroupName, workspaceName, localForceToPurge, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Boolean forceToPurge, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -341,7 +312,7 @@ public final class WorkspacesImpl implements Workspaces {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        this.delete(resourceGroupName, workspaceName, context);
+        this.delete(resourceGroupName, workspaceName, forceToPurge, context);
     }
 
     private WorkspacesClient serviceClient() {

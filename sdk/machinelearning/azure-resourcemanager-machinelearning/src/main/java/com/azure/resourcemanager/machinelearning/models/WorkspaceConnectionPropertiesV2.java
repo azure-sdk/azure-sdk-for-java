@@ -5,10 +5,13 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
+import java.util.Map;
 
 /** The WorkspaceConnectionPropertiesV2 model. */
 @JsonTypeInfo(
@@ -18,11 +21,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = WorkspaceConnectionPropertiesV2.class)
 @JsonTypeName("WorkspaceConnectionPropertiesV2")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "AccessKey", value = AccessKeyAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ApiKey", value = ApiKeyAuthWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "CustomKeys", value = CustomKeysWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "PAT", value = PatAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "SAS", value = SasAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class)
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class)
 })
 @Fluent
 public class WorkspaceConnectionPropertiesV2 {
@@ -33,22 +40,23 @@ public class WorkspaceConnectionPropertiesV2 {
     private ConnectionCategory category;
 
     /*
+     * The expiryTime property.
+     */
+    @JsonProperty(value = "expiryTime")
+    private OffsetDateTime expiryTime;
+
+    /*
+     * Dictionary of <AnyObject>
+     */
+    @JsonProperty(value = "metadata")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> metadata;
+
+    /*
      * The target property.
      */
     @JsonProperty(value = "target")
     private String target;
-
-    /*
-     * Value details of the workspace connection.
-     */
-    @JsonProperty(value = "value")
-    private String value;
-
-    /*
-     * format for the workspace connection value
-     */
-    @JsonProperty(value = "valueFormat")
-    private ValueFormat valueFormat;
 
     /** Creates an instance of WorkspaceConnectionPropertiesV2 class. */
     public WorkspaceConnectionPropertiesV2() {
@@ -75,6 +83,46 @@ public class WorkspaceConnectionPropertiesV2 {
     }
 
     /**
+     * Get the expiryTime property: The expiryTime property.
+     *
+     * @return the expiryTime value.
+     */
+    public OffsetDateTime expiryTime() {
+        return this.expiryTime;
+    }
+
+    /**
+     * Set the expiryTime property: The expiryTime property.
+     *
+     * @param expiryTime the expiryTime value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withExpiryTime(OffsetDateTime expiryTime) {
+        this.expiryTime = expiryTime;
+        return this;
+    }
+
+    /**
+     * Get the metadata property: Dictionary of &lt;AnyObject&gt;.
+     *
+     * @return the metadata value.
+     */
+    public Map<String, Object> metadata() {
+        return this.metadata;
+    }
+
+    /**
+     * Set the metadata property: Dictionary of &lt;AnyObject&gt;.
+     *
+     * @param metadata the metadata value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withMetadata(Map<String, Object> metadata) {
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
      * Get the target property: The target property.
      *
      * @return the target value.
@@ -91,46 +139,6 @@ public class WorkspaceConnectionPropertiesV2 {
      */
     public WorkspaceConnectionPropertiesV2 withTarget(String target) {
         this.target = target;
-        return this;
-    }
-
-    /**
-     * Get the value property: Value details of the workspace connection.
-     *
-     * @return the value value.
-     */
-    public String value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: Value details of the workspace connection.
-     *
-     * @param value the value value to set.
-     * @return the WorkspaceConnectionPropertiesV2 object itself.
-     */
-    public WorkspaceConnectionPropertiesV2 withValue(String value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the valueFormat property: format for the workspace connection value.
-     *
-     * @return the valueFormat value.
-     */
-    public ValueFormat valueFormat() {
-        return this.valueFormat;
-    }
-
-    /**
-     * Set the valueFormat property: format for the workspace connection value.
-     *
-     * @param valueFormat the valueFormat value to set.
-     * @return the WorkspaceConnectionPropertiesV2 object itself.
-     */
-    public WorkspaceConnectionPropertiesV2 withValueFormat(ValueFormat valueFormat) {
-        this.valueFormat = valueFormat;
         return this;
     }
 

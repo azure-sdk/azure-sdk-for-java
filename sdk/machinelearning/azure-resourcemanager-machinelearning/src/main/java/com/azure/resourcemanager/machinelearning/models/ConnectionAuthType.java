@@ -25,6 +25,18 @@ public final class ConnectionAuthType extends ExpandableStringEnum<ConnectionAut
     /** Static value SAS for ConnectionAuthType. */
     public static final ConnectionAuthType SAS = fromString("SAS");
 
+    /** Static value ServicePrincipal for ConnectionAuthType. */
+    public static final ConnectionAuthType SERVICE_PRINCIPAL = fromString("ServicePrincipal");
+
+    /** Static value AccessKey for ConnectionAuthType. */
+    public static final ConnectionAuthType ACCESS_KEY = fromString("AccessKey");
+
+    /** Static value ApiKey for ConnectionAuthType. */
+    public static final ConnectionAuthType API_KEY = fromString("ApiKey");
+
+    /** Static value CustomKeys for ConnectionAuthType. */
+    public static final ConnectionAuthType CUSTOM_KEYS = fromString("CustomKeys");
+
     /**
      * Creates a new instance of ConnectionAuthType value.
      *
