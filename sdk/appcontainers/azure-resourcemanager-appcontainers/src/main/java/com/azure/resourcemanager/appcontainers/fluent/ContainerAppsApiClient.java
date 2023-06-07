@@ -66,6 +66,20 @@ public interface ContainerAppsApiClient {
     BillingMetersClient getBillingMeters();
 
     /**
+     * Gets the BuildersClient object to access its operations.
+     *
+     * @return the BuildersClient object.
+     */
+    BuildersClient getBuilders();
+
+    /**
+     * Gets the BuildsClient object to access its operations.
+     *
+     * @return the BuildsClient object.
+     */
+    BuildsClient getBuilds();
+
+    /**
      * Gets the ConnectedEnvironmentsClient object to access its operations.
      *
      * @return the ConnectedEnvironmentsClient object.
@@ -99,20 +113,6 @@ public interface ContainerAppsApiClient {
      * @return the ContainerAppsClient object.
      */
     ContainerAppsClient getContainerApps();
-
-    /**
-     * Gets the JobsClient object to access its operations.
-     *
-     * @return the JobsClient object.
-     */
-    JobsClient getJobs();
-
-    /**
-     * Gets the JobsExecutionsClient object to access its operations.
-     *
-     * @return the JobsExecutionsClient object.
-     */
-    JobsExecutionsClient getJobsExecutions();
 
     /**
      * Gets the ContainerAppsRevisionsClient object to access its operations.
@@ -155,6 +155,20 @@ public interface ContainerAppsApiClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the JobsClient object to access its operations.
+     *
+     * @return the JobsClient object.
+     */
+    JobsClient getJobs();
+
+    /**
+     * Gets the JobsExecutionsClient object to access its operations.
+     *
+     * @return the JobsExecutionsClient object.
+     */
+    JobsExecutionsClient getJobsExecutions();
 
     /**
      * Gets the ManagedEnvironmentsClient object to access its operations.

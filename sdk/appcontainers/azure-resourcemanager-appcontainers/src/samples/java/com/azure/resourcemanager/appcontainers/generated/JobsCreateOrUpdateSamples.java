@@ -20,7 +20,7 @@ import java.util.Arrays;
 /** Samples for Jobs CreateOrUpdate. */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/Job_CreateorUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-05-02-preview/examples/Job_CreateorUpdate.json
      */
     /**
      * Sample code: Create or Update Container Apps Job.

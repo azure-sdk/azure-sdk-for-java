@@ -47,11 +47,32 @@ public interface Replica {
     OffsetDateTime createdTime();
 
     /**
+     * Gets the runningState property: Current running state of the replica.
+     *
+     * @return the runningState value.
+     */
+    ContainerAppReplicaRunningState runningState();
+
+    /**
+     * Gets the runningStateDetails property: The details of replica current running state.
+     *
+     * @return the runningStateDetails value.
+     */
+    String runningStateDetails();
+
+    /**
      * Gets the containers property: The containers collection under a replica.
      *
      * @return the containers value.
      */
     List<ReplicaContainer> containers();
+
+    /**
+     * Gets the initContainers property: The init containers collection under a replica.
+     *
+     * @return the initContainers value.
+     */
+    List<ReplicaContainer> initContainers();
 
     /**
      * Gets the inner com.azure.resourcemanager.appcontainers.fluent.models.ReplicaInner object.
