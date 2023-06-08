@@ -48,7 +48,7 @@ public interface StorageMover {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: Resource system metadata.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
