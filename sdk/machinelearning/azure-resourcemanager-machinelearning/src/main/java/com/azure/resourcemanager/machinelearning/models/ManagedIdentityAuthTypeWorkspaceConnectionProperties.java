@@ -47,6 +47,13 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
 
     /** {@inheritDoc} */
     @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withExpiryTime(String expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
