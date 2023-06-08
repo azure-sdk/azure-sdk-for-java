@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appcontainers.generated;
 /** Samples for Jobs GetByResourceGroup. */
 public final class JobsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/Job_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-04-01-preview/examples/Job_Get.json
      */
     /**
      * Sample code: Get Container Apps Job.

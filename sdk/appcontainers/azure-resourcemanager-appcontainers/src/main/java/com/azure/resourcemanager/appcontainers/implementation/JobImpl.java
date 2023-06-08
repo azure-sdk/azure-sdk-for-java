@@ -13,7 +13,6 @@ import com.azure.resourcemanager.appcontainers.models.ContainerAppJobExecutions;
 import com.azure.resourcemanager.appcontainers.models.Job;
 import com.azure.resourcemanager.appcontainers.models.JobConfiguration;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionBase;
-import com.azure.resourcemanager.appcontainers.models.JobExecutionNamesCollection;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
 import com.azure.resourcemanager.appcontainers.models.JobPatchProperties;
 import com.azure.resourcemanager.appcontainers.models.JobPatchPropertiesProperties;
@@ -206,13 +205,12 @@ public final class JobImpl implements Job, Job.Definition, Job.Update {
         return serviceManager.jobs().start(resourceGroupName, jobName, template, context);
     }
 
-    public ContainerAppJobExecutions stopMultipleExecutions(JobExecutionNamesCollection jobExecutionName) {
-        return serviceManager.jobs().stopMultipleExecutions(resourceGroupName, jobName, jobExecutionName);
+    public ContainerAppJobExecutions stopMultipleExecutions() {
+        return serviceManager.jobs().stopMultipleExecutions(resourceGroupName, jobName);
     }
 
-    public ContainerAppJobExecutions stopMultipleExecutions(
-        JobExecutionNamesCollection jobExecutionName, Context context) {
-        return serviceManager.jobs().stopMultipleExecutions(resourceGroupName, jobName, jobExecutionName, context);
+    public ContainerAppJobExecutions stopMultipleExecutions(Context context) {
+        return serviceManager.jobs().stopMultipleExecutions(resourceGroupName, jobName, context);
     }
 
     public Response<JobSecretsCollection> listSecretsWithResponse(Context context) {
