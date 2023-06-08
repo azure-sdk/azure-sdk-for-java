@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthbot.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Bots Delete. */
 public final class BotsDeleteSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceDeletionDelete.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2023-05-01/examples/ResourceDeletionDelete.json
      */
     /**
      * Sample code: BotDelete.
@@ -17,6 +15,6 @@ public final class BotsDeleteSamples {
      * @param manager Entry point to HealthbotManager.
      */
     public static void botDelete(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
-        manager.bots().delete("healthbotClient", "samplebotname", Context.NONE);
+        manager.bots().delete("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE);
     }
 }

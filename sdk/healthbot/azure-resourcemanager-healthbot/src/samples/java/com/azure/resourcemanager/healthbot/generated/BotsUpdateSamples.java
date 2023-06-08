@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.healthbot.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthbot.models.HealthBot;
 import com.azure.resourcemanager.healthbot.models.Sku;
 import com.azure.resourcemanager.healthbot.models.SkuName;
@@ -12,7 +11,7 @@ import com.azure.resourcemanager.healthbot.models.SkuName;
 /** Samples for Bots Update. */
 public final class BotsUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceUpdatePatch.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2023-05-01/examples/ResourceUpdatePatch.json
      */
     /**
      * Sample code: BotUpdate.
@@ -21,7 +20,10 @@ public final class BotsUpdateSamples {
      */
     public static void botUpdate(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
         HealthBot resource =
-            manager.bots().getByResourceGroupWithResponse("healthbotClient", "samplebotname", Context.NONE).getValue();
+            manager
+                .bots()
+                .getByResourceGroupWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withSku(new Sku().withName(SkuName.F0)).apply();
     }
 }

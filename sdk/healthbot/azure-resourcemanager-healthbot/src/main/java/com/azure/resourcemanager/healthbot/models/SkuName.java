@@ -7,7 +7,7 @@ package com.azure.resourcemanager.healthbot.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for SkuName. */
+/** The name of the Azure Health Bot SKU. */
 public enum SkuName {
     /** Enum value F0. */
     F0("F0"),
@@ -16,7 +16,10 @@ public enum SkuName {
     S1("S1"),
 
     /** Enum value C0. */
-    C0("C0");
+    C0("C0"),
+
+    /** Enum value PES. */
+    PES("PES");
 
     /** The actual serialized value for a SkuName instance. */
     private final String value;
@@ -33,6 +36,9 @@ public enum SkuName {
      */
     @JsonCreator
     public static SkuName fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SkuName[] items = SkuName.values();
         for (SkuName item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -42,6 +48,7 @@ public enum SkuName {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {
