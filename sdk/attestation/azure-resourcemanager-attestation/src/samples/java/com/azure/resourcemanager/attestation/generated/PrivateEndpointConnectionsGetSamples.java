@@ -7,7 +7,7 @@ package com.azure.resourcemanager.attestation.generated;
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/AttestationProviderGetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/AttestationProviderGetPrivateEndpointConnection.json
      */
     /**
      * Sample code: AttestationProviderGetPrivateEndpointConnection.

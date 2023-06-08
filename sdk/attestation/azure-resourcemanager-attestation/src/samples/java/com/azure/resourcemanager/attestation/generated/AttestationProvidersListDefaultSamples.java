@@ -7,7 +7,7 @@ package com.azure.resourcemanager.attestation.generated;
 /** Samples for AttestationProviders ListDefault. */
 public final class AttestationProvidersListDefaultSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/Get_DefaultProviders.json
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/Get_DefaultProviders.json
      */
     /**
      * Sample code: AttestationProviders_GetDefault.
