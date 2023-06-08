@@ -69,7 +69,7 @@ public interface Scripts {
     Script get(String resourceGroupName, String clusterName, String databaseName, String scriptName);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -82,7 +82,7 @@ public interface Scripts {
     void delete(String resourceGroupName, String clusterName, String databaseName, String scriptName);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
@@ -154,7 +154,7 @@ public interface Scripts {
     Response<Script> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -164,7 +164,7 @@ public interface Scripts {
     void deleteById(String id);
 
     /**
-     * Deletes a Kusto principalAssignment.
+     * Deletes a Kusto database script.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
