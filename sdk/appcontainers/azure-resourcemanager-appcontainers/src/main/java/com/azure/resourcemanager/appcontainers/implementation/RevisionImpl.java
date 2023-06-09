@@ -9,6 +9,7 @@ import com.azure.resourcemanager.appcontainers.fluent.models.RevisionInner;
 import com.azure.resourcemanager.appcontainers.models.Revision;
 import com.azure.resourcemanager.appcontainers.models.RevisionHealthState;
 import com.azure.resourcemanager.appcontainers.models.RevisionProvisioningState;
+import com.azure.resourcemanager.appcontainers.models.RevisionRunningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import java.time.OffsetDateTime;
 
@@ -77,6 +78,10 @@ public final class RevisionImpl implements Revision {
 
     public RevisionProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public RevisionRunningState runningState() {
+        return this.innerModel().runningState();
     }
 
     public RevisionInner innerModel() {
