@@ -239,7 +239,11 @@ public interface NetAppAccount {
     NetAppAccount.Update update();
 
     /** The template for NetAppAccount update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithActiveDirectories, UpdateStages.WithEncryption {
+    interface Update
+        extends UpdateStages.WithTags,
+            UpdateStages.WithIdentity,
+            UpdateStages.WithActiveDirectories,
+            UpdateStages.WithEncryption {
         /**
          * Executes the update request.
          *
@@ -266,6 +270,16 @@ public interface NetAppAccount {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the NetAppAccount update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity used for the resource..
+             *
+             * @param identity The identity used for the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(ManagedServiceIdentity identity);
         }
         /** The stage of the NetAppAccount update allowing to specify activeDirectories. */
         interface WithActiveDirectories {

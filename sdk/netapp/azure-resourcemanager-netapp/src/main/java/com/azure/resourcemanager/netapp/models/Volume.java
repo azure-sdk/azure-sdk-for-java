@@ -238,7 +238,7 @@ public interface Volume {
 
     /**
      * Gets the snapshotDirectoryVisible property: If enabled (true) the volume will contain a read-only snapshot
-     * directory which provides access to each of the volume's snapshots (default to true).
+     * directory which provides access to each of the volume's snapshots (defaults to true).
      *
      * @return the snapshotDirectoryVisible value.
      */
@@ -301,6 +301,14 @@ public interface Volume {
      * @return the throughputMibps value.
      */
     Float throughputMibps();
+
+    /**
+     * Gets the actualThroughputMibps property: Actual throughput in MiB/s for auto qosType volumes calculated based on
+     * size and serviceLevel.
+     *
+     * @return the actualThroughputMibps value.
+     */
+    Float actualThroughputMibps();
 
     /**
      * Gets the encryptionKeySource property: Source of key used to encrypt data in volume. Applicable if NetApp account
@@ -497,6 +505,15 @@ public interface Volume {
      * @return the isLargeVolume value.
      */
     Boolean isLargeVolume();
+
+    /**
+     * Gets the originatingResourceId property: Originating Resource Id
+     *
+     * <p>Id of the snapshot or backup that the volume is restored from.
+     *
+     * @return the originatingResourceId value.
+     */
+    String originatingResourceId();
 
     /**
      * Gets the region of the resource.
@@ -816,10 +833,10 @@ public interface Volume {
         interface WithSnapshotDirectoryVisible {
             /**
              * Specifies the snapshotDirectoryVisible property: If enabled (true) the volume will contain a read-only
-             * snapshot directory which provides access to each of the volume's snapshots (default to true)..
+             * snapshot directory which provides access to each of the volume's snapshots (defaults to true)..
              *
              * @param snapshotDirectoryVisible If enabled (true) the volume will contain a read-only snapshot directory
-             *     which provides access to each of the volume's snapshots (default to true).
+             *     which provides access to each of the volume's snapshots (defaults to true).
              * @return the next definition stage.
              */
             WithCreate withSnapshotDirectoryVisible(Boolean snapshotDirectoryVisible);
@@ -1127,7 +1144,8 @@ public interface Volume {
             UpdateStages.WithDefaultGroupQuotaInKiBs,
             UpdateStages.WithUnixPermissions,
             UpdateStages.WithCoolAccess,
-            UpdateStages.WithCoolnessPeriod {
+            UpdateStages.WithCoolnessPeriod,
+            UpdateStages.WithSnapshotDirectoryVisible {
         /**
          * Executes the update request.
          *
@@ -1295,6 +1313,18 @@ public interface Volume {
              */
             Update withCoolnessPeriod(Integer coolnessPeriod);
         }
+        /** The stage of the Volume update allowing to specify snapshotDirectoryVisible. */
+        interface WithSnapshotDirectoryVisible {
+            /**
+             * Specifies the snapshotDirectoryVisible property: If enabled (true) the volume will contain a read-only
+             * snapshot directory which provides access to each of the volume's snapshots..
+             *
+             * @param snapshotDirectoryVisible If enabled (true) the volume will contain a read-only snapshot directory
+             *     which provides access to each of the volume's snapshots.
+             * @return the next definition stage.
+             */
+            Update withSnapshotDirectoryVisible(Boolean snapshotDirectoryVisible);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -1380,6 +1410,34 @@ public interface Volume {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void breakFileLocks(BreakFileLocksRequest body, Context context);
+
+    /**
+     * Get Group Id List for LDAP User
+     *
+     * <p>Returns the list of group Ids for a specific LDAP User.
+     *
+     * @param body Returns group Id list for a specific LDAP user.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return group Id list for Ldap user.
+     */
+    GetGroupIdListForLdapUserResponse listGetGroupIdListForLdapUser(GetGroupIdListForLdapUserRequest body);
+
+    /**
+     * Get Group Id List for LDAP User
+     *
+     * <p>Returns the list of group Ids for a specific LDAP User.
+     *
+     * @param body Returns group Id list for a specific LDAP user.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return group Id list for Ldap user.
+     */
+    GetGroupIdListForLdapUserResponse listGetGroupIdListForLdapUser(
+        GetGroupIdListForLdapUserRequest body, Context context);
 
     /**
      * Break volume replication
