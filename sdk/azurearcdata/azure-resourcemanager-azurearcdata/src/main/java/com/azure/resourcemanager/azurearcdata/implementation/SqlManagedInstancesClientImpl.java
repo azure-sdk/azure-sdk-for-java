@@ -79,8 +79,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData"
-                + "/sqlManagedInstances")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlManagedInstances")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlManagedInstanceListResult>> listByResourceGroup(
@@ -93,8 +92,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData"
-                + "/sqlManagedInstances/{sqlManagedInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlManagedInstances/{sqlManagedInstanceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlManagedInstanceInner>> getByResourceGroup(
@@ -108,8 +106,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData"
-                + "/sqlManagedInstances/{sqlManagedInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlManagedInstances/{sqlManagedInstanceName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -124,8 +121,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData"
-                + "/sqlManagedInstances/{sqlManagedInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlManagedInstances/{sqlManagedInstanceName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -139,8 +135,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData"
-                + "/sqlManagedInstances/{sqlManagedInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlManagedInstances/{sqlManagedInstanceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlManagedInstanceInner>> update(
@@ -642,7 +637,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -700,7 +695,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -759,7 +754,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -785,7 +780,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -816,7 +811,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -833,7 +828,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -856,7 +851,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -875,7 +870,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -898,7 +893,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -915,7 +910,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Creates or replaces a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of SQL Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param sqlManagedInstance The SQL Managed Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -936,7 +931,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -986,7 +981,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1034,7 +1029,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1054,7 +1049,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1076,7 +1071,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1091,7 +1086,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1108,7 +1103,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1125,7 +1120,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1143,7 +1138,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1157,7 +1152,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Deletes a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName The name of Sql Managed Instances.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1172,7 +1167,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Updates a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName Name of sqlManagedInstance.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param parameters The SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1229,7 +1224,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Updates a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName Name of sqlManagedInstance.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param parameters The SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1284,7 +1279,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Updates a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName Name of sqlManagedInstance.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param parameters The SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1302,7 +1297,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Updates a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName Name of sqlManagedInstance.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param parameters The SQL Managed Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1320,7 +1315,7 @@ public final class SqlManagedInstancesClientImpl implements SqlManagedInstancesC
      * Updates a SQL Managed Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlManagedInstanceName Name of sqlManagedInstance.
+     * @param sqlManagedInstanceName Name of SQL Managed Instance.
      * @param parameters The SQL Managed Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
