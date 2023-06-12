@@ -16,13 +16,14 @@ public interface Validations {
      * @param resourceGroupName Resource group name.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource along with {@link Response}.
      */
-    OrganizationResource validateOrganization(
-        String resourceGroupName, String organizationName, OrganizationResourceInner body);
+    Response<OrganizationResource> validateOrganizationWithResponse(
+        String resourceGroupName, String organizationName, OrganizationResourceInner body, Context context);
 
     /**
      * Organization Validate proxy resource.
@@ -30,12 +31,11 @@ public interface Validations {
      * @param resourceGroupName Resource group name.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return organization resource.
      */
-    Response<OrganizationResource> validateOrganizationWithResponse(
-        String resourceGroupName, String organizationName, OrganizationResourceInner body, Context context);
+    OrganizationResource validateOrganization(
+        String resourceGroupName, String organizationName, OrganizationResourceInner body);
 }

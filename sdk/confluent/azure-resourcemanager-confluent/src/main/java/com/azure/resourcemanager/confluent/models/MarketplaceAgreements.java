@@ -16,7 +16,7 @@ public interface MarketplaceAgreements {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ConfluentAgreementResource> list();
 
@@ -27,18 +27,9 @@ public interface MarketplaceAgreements {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ConfluentAgreementResource> list(Context context);
-
-    /**
-     * Create Confluent Marketplace agreement in the subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return agreement Terms definition.
-     */
-    ConfluentAgreementResource create();
 
     /**
      * Create Confluent Marketplace agreement in the subscription.
@@ -48,7 +39,16 @@ public interface MarketplaceAgreements {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return agreement Terms definition.
+     * @return agreement Terms definition along with {@link Response}.
      */
     Response<ConfluentAgreementResource> createWithResponse(ConfluentAgreementResourceInner body, Context context);
+
+    /**
+     * Create Confluent Marketplace agreement in the subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return agreement Terms definition.
+     */
+    ConfluentAgreementResource create();
 }

@@ -25,12 +25,10 @@
 ### MarketplaceAgreements_Create
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for MarketplaceAgreements Create. */
 public final class MarketplaceAgreementsCreateSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/MarketplaceAgreements_Create.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/MarketplaceAgreements_Create.json
      */
     /**
      * Sample code: MarketplaceAgreements_Create.
@@ -38,7 +36,7 @@ public final class MarketplaceAgreementsCreateSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void marketplaceAgreementsCreate(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.marketplaceAgreements().createWithResponse(null, Context.NONE);
+        manager.marketplaceAgreements().createWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -46,12 +44,10 @@ public final class MarketplaceAgreementsCreateSamples {
 ### MarketplaceAgreements_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for MarketplaceAgreements List. */
 public final class MarketplaceAgreementsListSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/MarketplaceAgreements_List.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/MarketplaceAgreements_List.json
      */
     /**
      * Sample code: MarketplaceAgreements_List.
@@ -59,7 +55,7 @@ public final class MarketplaceAgreementsListSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void marketplaceAgreementsList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.marketplaceAgreements().list(Context.NONE);
+        manager.marketplaceAgreements().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -75,7 +71,7 @@ import java.util.Map;
 /** Samples for Organization Create. */
 public final class OrganizationCreateSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_Create.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Organization_Create.json
      */
     /**
      * Sample code: Organization_Create.
@@ -120,12 +116,10 @@ public final class OrganizationCreateSamples {
 ### Organization_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Organization Delete. */
 public final class OrganizationDeleteSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_Delete.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Organization_Delete.json
      */
     /**
      * Sample code: Confluent_Delete.
@@ -133,7 +127,7 @@ public final class OrganizationDeleteSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void confluentDelete(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().delete("myResourceGroup", "myOrganization", Context.NONE);
+        manager.organizations().delete("myResourceGroup", "myOrganization", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -141,12 +135,10 @@ public final class OrganizationDeleteSamples {
 ### Organization_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Organization GetByResourceGroup. */
 public final class OrganizationGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_Get.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Organization_Get.json
      */
     /**
      * Sample code: Organization_Get.
@@ -154,7 +146,9 @@ public final class OrganizationGetByResourceGroupSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationGet(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getByResourceGroupWithResponse("myResourceGroup", "myOrganization", Context.NONE);
+        manager
+            .organizations()
+            .getByResourceGroupWithResponse("myResourceGroup", "myOrganization", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -162,12 +156,10 @@ public final class OrganizationGetByResourceGroupSamples {
 ### Organization_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Organization List. */
 public final class OrganizationListSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_ListBySubscription.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Organization_ListBySubscription.json
      */
     /**
      * Sample code: Organization_ListBySubscription.
@@ -175,7 +167,7 @@ public final class OrganizationListSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListBySubscription(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().list(Context.NONE);
+        manager.organizations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -183,12 +175,10 @@ public final class OrganizationListSamples {
 ### Organization_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Organization ListByResourceGroup. */
 public final class OrganizationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_ListByResourceGroup.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Organization_ListByResourceGroup.json
      */
     /**
      * Sample code: Organization_ListByResourceGroup.
@@ -196,7 +186,7 @@ public final class OrganizationListByResourceGroupSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListByResourceGroup(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listByResourceGroup("myResourceGroup", Context.NONE);
+        manager.organizations().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -204,7 +194,6 @@ public final class OrganizationListByResourceGroupSamples {
 ### Organization_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.models.OrganizationResource;
 import java.util.HashMap;
 import java.util.Map;
@@ -212,7 +201,7 @@ import java.util.Map;
 /** Samples for Organization Update. */
 public final class OrganizationUpdateSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_Update.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Organization_Update.json
      */
     /**
      * Sample code: Confluent_Update.
@@ -223,7 +212,7 @@ public final class OrganizationUpdateSamples {
         OrganizationResource resource =
             manager
                 .organizations()
-                .getByResourceGroupWithResponse("myResourceGroup", "myOrganization", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myOrganization", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("client", "dev-client", "env", "dev")).apply();
     }
@@ -244,12 +233,10 @@ public final class OrganizationUpdateSamples {
 ### OrganizationOperations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for OrganizationOperations List. */
 public final class OrganizationOperationsListSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/OrganizationOperations_List.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/OrganizationOperations_List.json
      */
     /**
      * Sample code: OrganizationOperations_List.
@@ -257,7 +244,7 @@ public final class OrganizationOperationsListSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationOperationsList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizationOperations().list(Context.NONE);
+        manager.organizationOperations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -265,7 +252,6 @@ public final class OrganizationOperationsListSamples {
 ### Validations_ValidateOrganization
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.fluent.models.OrganizationResourceInner;
 import com.azure.resourcemanager.confluent.models.OfferDetail;
 import com.azure.resourcemanager.confluent.models.UserDetail;
@@ -275,7 +261,7 @@ import java.util.Map;
 /** Samples for Validations ValidateOrganization. */
 public final class ValidationsValidateOrganizationSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Validations_ValidateOrganizations.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Validations_ValidateOrganizations.json
      */
     /**
      * Sample code: Validations_ValidateOrganizations.
@@ -303,7 +289,7 @@ public final class ValidationsValidateOrganizationSamples {
                             .withFirstName("string")
                             .withLastName("string")
                             .withEmailAddress("abc@microsoft.com")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
