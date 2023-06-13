@@ -13,7 +13,8 @@ import java.util.List;
 @Fluent
 public final class AmlOperationListResult {
     /*
-     * List of AML workspace operations supported by the AML workspace resource provider.
+     * Gets or sets list of AML team account operations supported by the
+     * AML team account resource provider.
      */
     @JsonProperty(value = "value")
     private List<AmlOperationInner> value;
@@ -23,7 +24,8 @@ public final class AmlOperationListResult {
     }
 
     /**
-     * Get the value property: List of AML workspace operations supported by the AML workspace resource provider.
+     * Get the value property: Gets or sets list of AML team account operations supported by the AML team account
+     * resource provider.
      *
      * @return the value value.
      */
@@ -32,7 +34,8 @@ public final class AmlOperationListResult {
     }
 
     /**
-     * Set the value property: List of AML workspace operations supported by the AML workspace resource provider.
+     * Set the value property: Gets or sets list of AML team account operations supported by the AML team account
+     * resource provider.
      *
      * @param value the value value to set.
      * @return the AmlOperationListResult object itself.
