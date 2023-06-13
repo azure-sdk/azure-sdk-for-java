@@ -16,7 +16,7 @@ import java.util.Arrays;
 /** Samples for CommunicationsGateways CreateOrUpdate. */
 public final class CommunicationsGatewaysCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_CreateOrUpdate.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_CreateOrUpdate.json
      */
     /**
      * Sample code: CreateCommunicationsGatewayResource.
