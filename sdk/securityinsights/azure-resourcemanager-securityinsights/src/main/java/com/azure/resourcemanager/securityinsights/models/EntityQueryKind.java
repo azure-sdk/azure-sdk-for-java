@@ -20,6 +20,15 @@ public final class EntityQueryKind extends ExpandableStringEnum<EntityQueryKind>
     public static final EntityQueryKind ACTIVITY = fromString("Activity");
 
     /**
+     * Creates a new instance of EntityQueryKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityQueryKind() {
+    }
+
+    /**
      * Creates or finds a EntityQueryKind from its string representation.
      *
      * @param name a name to look for.

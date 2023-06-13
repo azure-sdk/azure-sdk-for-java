@@ -49,15 +49,6 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
         return Utils.mapPage(inner, inner1 -> new RelationImpl(inner1, this.manager()));
     }
 
-    public Relation get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
-        RelationInner inner = this.serviceClient().get(resourceGroupName, workspaceName, bookmarkId, relationName);
-        if (inner != null) {
-            return new RelationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Relation> getWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context) {
         Response<RelationInner> inner =
@@ -73,8 +64,13 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, bookmarkId, relationName);
+    public Relation get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
+        RelationInner inner = this.serviceClient().get(resourceGroupName, workspaceName, bookmarkId, relationName);
+        if (inner != null) {
+            return new RelationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -82,6 +78,10 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
         return this
             .serviceClient()
             .deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, bookmarkId, relationName);
     }
 
     public Relation getById(String id) {
