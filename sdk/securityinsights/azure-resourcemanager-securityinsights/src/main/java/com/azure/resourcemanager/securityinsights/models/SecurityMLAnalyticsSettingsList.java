@@ -25,6 +25,10 @@ public final class SecurityMLAnalyticsSettingsList {
     @JsonProperty(value = "value", required = true)
     private List<SecurityMLAnalyticsSettingInner> value;
 
+    /** Creates an instance of SecurityMLAnalyticsSettingsList class. */
+    public SecurityMLAnalyticsSettingsList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of SecurityMLAnalyticsSettings.
      *

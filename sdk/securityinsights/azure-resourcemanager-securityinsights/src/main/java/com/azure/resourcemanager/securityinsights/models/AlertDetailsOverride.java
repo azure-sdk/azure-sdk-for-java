@@ -6,6 +6,7 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** Settings for how to dynamically override alert static details. */
 @Fluent
@@ -33,6 +34,16 @@ public final class AlertDetailsOverride {
      */
     @JsonProperty(value = "alertSeverityColumnName")
     private String alertSeverityColumnName;
+
+    /*
+     * List of additional dynamic properties to override
+     */
+    @JsonProperty(value = "alertDynamicProperties")
+    private List<AlertPropertyMapping> alertDynamicProperties;
+
+    /** Creates an instance of AlertDetailsOverride class. */
+    public AlertDetailsOverride() {
+    }
 
     /**
      * Get the alertDisplayNameFormat property: the format containing columns name(s) to override the alert name.
@@ -115,10 +126,33 @@ public final class AlertDetailsOverride {
     }
 
     /**
+     * Get the alertDynamicProperties property: List of additional dynamic properties to override.
+     *
+     * @return the alertDynamicProperties value.
+     */
+    public List<AlertPropertyMapping> alertDynamicProperties() {
+        return this.alertDynamicProperties;
+    }
+
+    /**
+     * Set the alertDynamicProperties property: List of additional dynamic properties to override.
+     *
+     * @param alertDynamicProperties the alertDynamicProperties value to set.
+     * @return the AlertDetailsOverride object itself.
+     */
+    public AlertDetailsOverride withAlertDynamicProperties(List<AlertPropertyMapping> alertDynamicProperties) {
+        this.alertDynamicProperties = alertDynamicProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (alertDynamicProperties() != null) {
+            alertDynamicProperties().forEach(e -> e.validate());
+        }
     }
 }

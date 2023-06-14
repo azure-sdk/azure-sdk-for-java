@@ -17,6 +17,15 @@ public final class TriggersOn extends ExpandableStringEnum<TriggersOn> {
     public static final TriggersOn ALERTS = fromString("Alerts");
 
     /**
+     * Creates a new instance of TriggersOn value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public TriggersOn() {
+    }
+
+    /**
      * Creates or finds a TriggersOn from its string representation.
      *
      * @param name a name to look for.

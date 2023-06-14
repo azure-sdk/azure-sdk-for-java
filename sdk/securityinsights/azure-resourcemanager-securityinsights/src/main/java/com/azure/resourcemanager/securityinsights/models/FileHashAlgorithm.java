@@ -26,6 +26,15 @@ public final class FileHashAlgorithm extends ExpandableStringEnum<FileHashAlgori
     public static final FileHashAlgorithm SHA256AC = fromString("SHA256AC");
 
     /**
+     * Creates a new instance of FileHashAlgorithm value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public FileHashAlgorithm() {
+    }
+
+    /**
      * Creates or finds a FileHashAlgorithm from its string representation.
      *
      * @param name a name to look for.
