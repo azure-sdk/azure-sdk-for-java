@@ -111,6 +111,13 @@ public interface Revision {
     RevisionProvisioningState provisioningState();
 
     /**
+     * Gets the runningState property: Current running state of the revision.
+     *
+     * @return the runningState value.
+     */
+    RevisionRunningState runningState();
+
+    /**
      * Gets the inner com.azure.resourcemanager.appcontainers.fluent.models.RevisionInner object.
      *
      * @return the inner object.

@@ -373,19 +373,16 @@ public interface Job {
     /**
      * Terminates execution of a running container apps job.
      *
-     * @param jobExecutionName List of all job executions that should be stopped.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return container App executions collection ARM resource.
      */
-    ContainerAppJobExecutions stopMultipleExecutions(JobExecutionNamesCollection jobExecutionName);
+    ContainerAppJobExecutions stopMultipleExecutions();
 
     /**
      * Terminates execution of a running container apps job.
      *
-     * @param jobExecutionName List of all job executions that should be stopped.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
@@ -393,7 +390,7 @@ public interface Job {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return container App executions collection ARM resource.
      */
-    ContainerAppJobExecutions stopMultipleExecutions(JobExecutionNamesCollection jobExecutionName, Context context);
+    ContainerAppJobExecutions stopMultipleExecutions(Context context);
 
     /**
      * List secrets for a container apps job.
