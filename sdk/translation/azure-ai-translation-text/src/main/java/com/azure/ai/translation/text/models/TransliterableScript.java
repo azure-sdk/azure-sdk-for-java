@@ -4,6 +4,7 @@
 
 package com.azure.ai.translation.text.models;
 
+import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +16,8 @@ public final class TransliterableScript extends CommonScriptModel {
     /*
      * List of scripts available to convert text to.
      */
-    @JsonProperty(value = "toScripts", required = true)
+    @Generated
+    @JsonProperty(value = "toScripts")
     private List<CommonScriptModel> toScripts;
 
     /**
@@ -27,13 +29,14 @@ public final class TransliterableScript extends CommonScriptModel {
      * @param dir the dir value to set.
      * @param toScripts the toScripts value to set.
      */
+    @Generated
     @JsonCreator
     private TransliterableScript(
-            @JsonProperty(value = "code", required = true) String code,
-            @JsonProperty(value = "name", required = true) String name,
-            @JsonProperty(value = "nativeName", required = true) String nativeName,
-            @JsonProperty(value = "dir", required = true) String dir,
-            @JsonProperty(value = "toScripts", required = true) List<CommonScriptModel> toScripts) {
+            @JsonProperty(value = "code") String code,
+            @JsonProperty(value = "name") String name,
+            @JsonProperty(value = "nativeName") String nativeName,
+            @JsonProperty(value = "dir") String dir,
+            @JsonProperty(value = "toScripts") List<CommonScriptModel> toScripts) {
         super(code, name, nativeName, dir);
         this.toScripts = toScripts;
     }
@@ -43,6 +46,7 @@ public final class TransliterableScript extends CommonScriptModel {
      *
      * @return the toScripts value.
      */
+    @Generated
     public List<CommonScriptModel> getToScripts() {
         return this.toScripts;
     }

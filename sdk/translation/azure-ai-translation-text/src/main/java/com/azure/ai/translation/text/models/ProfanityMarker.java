@@ -4,6 +4,7 @@
 
 package com.azure.ai.translation.text.models;
 
+import com.azure.core.annotation.Generated;
 import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
@@ -11,16 +12,17 @@ import java.util.Collection;
 /** Defines values for ProfanityMarker. */
 public final class ProfanityMarker extends ExpandableStringEnum<ProfanityMarker> {
     /** Static value Asterisk for ProfanityMarker. */
-    public static final ProfanityMarker ASTERISK = fromString("Asterisk");
+    @Generated public static final ProfanityMarker ASTERISK = fromString("Asterisk");
 
     /** Static value Tag for ProfanityMarker. */
-    public static final ProfanityMarker TAG = fromString("Tag");
+    @Generated public static final ProfanityMarker TAG = fromString("Tag");
 
     /**
      * Creates a new instance of ProfanityMarker value.
      *
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
+    @Generated
     @Deprecated
     public ProfanityMarker() {}
 
@@ -30,6 +32,7 @@ public final class ProfanityMarker extends ExpandableStringEnum<ProfanityMarker>
      * @param name a name to look for.
      * @return the corresponding ProfanityMarker.
      */
+    @Generated
     @JsonCreator
     public static ProfanityMarker fromString(String name) {
         return fromString(name, ProfanityMarker.class);
@@ -40,6 +43,7 @@ public final class ProfanityMarker extends ExpandableStringEnum<ProfanityMarker>
      *
      * @return known ProfanityMarker values.
      */
+    @Generated
     public static Collection<ProfanityMarker> values() {
         return values(ProfanityMarker.class);
     }
