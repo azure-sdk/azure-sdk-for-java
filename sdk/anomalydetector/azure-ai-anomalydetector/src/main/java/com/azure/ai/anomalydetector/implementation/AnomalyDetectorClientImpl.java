@@ -50,13 +50,13 @@ public final class AnomalyDetectorClientImpl {
     private final AnomalyDetectorClientService service;
 
     /**
-     * Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * Supported Azure Cognitive Services endpoints (protocol and host name, such as
      * https://westus2.api.cognitive.microsoft.com).
      */
     private final String endpoint;
 
     /**
-     * Gets Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * Gets Supported Azure Cognitive Services endpoints (protocol and host name, such as
      * https://westus2.api.cognitive.microsoft.com).
      *
      * @return the endpoint value.
@@ -104,7 +104,7 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Initializes an instance of AnomalyDetectorClient client.
      *
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * @param endpoint Supported Azure Cognitive Services endpoints (protocol and host name, such as
      *     https://westus2.api.cognitive.microsoft.com).
      * @param serviceVersion Service version.
      */
@@ -122,7 +122,7 @@ public final class AnomalyDetectorClientImpl {
      * Initializes an instance of AnomalyDetectorClient client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * @param endpoint Supported Azure Cognitive Services endpoints (protocol and host name, such as
      *     https://westus2.api.cognitive.microsoft.com).
      * @param serviceVersion Service version.
      */
@@ -136,7 +136,7 @@ public final class AnomalyDetectorClientImpl {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * @param endpoint Supported Azure Cognitive Services endpoints (protocol and host name, such as
      *     https://westus2.api.cognitive.microsoft.com).
      * @param serviceVersion Service version.
      */
@@ -192,7 +192,7 @@ public final class AnomalyDetectorClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> detectUnivariateLastPoint(
+        Mono<Response<BinaryData>> detectUnivariateLastAnomaly(
                 @HostParam("Endpoint") String endpoint,
                 @HostParam("ApiVersion") String apiVersion,
                 @HeaderParam("accept") String accept,
@@ -385,9 +385,9 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect anomalies for the entire series in batch.
      *
-     * <p>This operation generates a model with an entire series, each point is detected with the same model. With this
-     * method, points before and after a certain point are used to determine whether it is an anomaly. The entire
-     * detection can give user an overall status of the time series.
+     * <p>This operation generates a model with an entire series. Each point is detected with the same model. With this
+     * method, points before and after a certain point are used to determine whether it's an anomaly. The entire
+     * detection can give the user an overall status of the time series.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -444,7 +444,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of entire anomaly detection along with {@link Response} on successful completion of {@link
+     * @return response of the entire anomaly detection along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -465,9 +465,9 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect anomalies for the entire series in batch.
      *
-     * <p>This operation generates a model with an entire series, each point is detected with the same model. With this
-     * method, points before and after a certain point are used to determine whether it is an anomaly. The entire
-     * detection can give user an overall status of the time series.
+     * <p>This operation generates a model with an entire series. Each point is detected with the same model. With this
+     * method, points before and after a certain point are used to determine whether it's an anomaly. The entire
+     * detection can give the user an overall status of the time series.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -524,7 +524,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of entire anomaly detection along with {@link Response}.
+     * @return response of the entire anomaly detection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> detectUnivariateEntireSeriesWithResponse(
@@ -535,7 +535,7 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect anomaly status of the latest point in time series.
      *
-     * <p>This operation generates a model using the points that you sent into the API, and based on all data to
+     * <p>This operation generates a model by using the points that you sent in to the API and based on all data to
      * determine whether the last point is anomalous.
      *
      * <p><strong>Request Body Schema</strong>
@@ -580,16 +580,16 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of last anomaly detection along with {@link Response} on successful completion of {@link
+     * @return response of the last anomaly detection along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> detectUnivariateLastPointWithResponseAsync(
+    public Mono<Response<BinaryData>> detectUnivariateLastAnomalyWithResponseAsync(
             BinaryData options, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.detectUnivariateLastPoint(
+                        service.detectUnivariateLastAnomaly(
                                 this.getEndpoint(),
                                 this.getServiceVersion().getVersion(),
                                 accept,
@@ -601,7 +601,7 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect anomaly status of the latest point in time series.
      *
-     * <p>This operation generates a model using the points that you sent into the API, and based on all data to
+     * <p>This operation generates a model by using the points that you sent in to the API and based on all data to
      * determine whether the last point is anomalous.
      *
      * <p><strong>Request Body Schema</strong>
@@ -646,18 +646,18 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of last anomaly detection along with {@link Response}.
+     * @return response of the last anomaly detection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> detectUnivariateLastPointWithResponse(
+    public Response<BinaryData> detectUnivariateLastAnomalyWithResponse(
             BinaryData options, RequestOptions requestOptions) {
-        return detectUnivariateLastPointWithResponseAsync(options, requestOptions).block();
+        return detectUnivariateLastAnomalyWithResponseAsync(options, requestOptions).block();
     }
 
     /**
      * Detect change point for the entire series
      *
-     * <p>Evaluate change point score of every series point.
+     * <p>Evaluate the change point score of every series point.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -697,8 +697,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of change point detection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return response of change point detection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> detectUnivariateChangePointWithResponseAsync(
@@ -718,7 +717,7 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect change point for the entire series
      *
-     * <p>Evaluate change point score of every series point.
+     * <p>Evaluate the change point score of every series point.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -758,7 +757,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of change point detection along with {@link Response}.
+     * @return response of change point detection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> detectUnivariateChangePointWithResponse(
@@ -769,8 +768,8 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Get Multivariate Anomaly Detection Result
      *
-     * <p>For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the
-     * BatchDetectAnomaly api.
+     * <p>For asynchronous inference, get a multivariate anomaly detection result based on the resultId value that the
+     * BatchDetectAnomaly API returns.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -781,13 +780,23 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Required)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         variableStates (Optional): [
      *              (Optional){
-     *                 variable: String (Optional)
+     *                 variable: String (Required)
      *                 filledNARatio: Double (Optional)
      *                 effectiveCount: Integer (Optional)
      *                 firstTimestamp: OffsetDateTime (Optional)
@@ -796,7 +805,7 @@ public final class AnomalyDetectorClientImpl {
      *         ]
      *         setupInfo (Required): {
      *             dataSource: String (Required)
-     *             topContributorCount: int (Required)
+     *             topContributorCount: Integer (Optional)
      *             startTime: OffsetDateTime (Required)
      *             endTime: OffsetDateTime (Required)
      *         }
@@ -834,7 +843,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return detection results for the given resultId along with {@link Response} on successful completion of {@link
+     * @return detection results for the resultId value along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -855,8 +864,8 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Get Multivariate Anomaly Detection Result
      *
-     * <p>For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the
-     * BatchDetectAnomaly api.
+     * <p>For asynchronous inference, get a multivariate anomaly detection result based on the resultId value that the
+     * BatchDetectAnomaly API returns.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -867,13 +876,23 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Required)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         variableStates (Optional): [
      *              (Optional){
-     *                 variable: String (Optional)
+     *                 variable: String (Required)
      *                 filledNARatio: Double (Optional)
      *                 effectiveCount: Integer (Optional)
      *                 firstTimestamp: OffsetDateTime (Optional)
@@ -882,7 +901,7 @@ public final class AnomalyDetectorClientImpl {
      *         ]
      *         setupInfo (Required): {
      *             dataSource: String (Required)
-     *             topContributorCount: int (Required)
+     *             topContributorCount: Integer (Optional)
      *             startTime: OffsetDateTime (Required)
      *             endTime: OffsetDateTime (Required)
      *         }
@@ -920,7 +939,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return detection results for the given resultId along with {@link Response}.
+     * @return detection results for the resultId value along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getMultivariateBatchDetectionResultWithResponse(
@@ -932,10 +951,12 @@ public final class AnomalyDetectorClientImpl {
      * Train a Multivariate Anomaly Detection Model
      *
      * <p>Create and train a multivariate anomaly detection model. The request must include a source parameter to
-     * indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an
-     * Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp
-     * and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the
-     * variables and a timestamp column.
+     * indicate an Azure Blob Storage URI that's accessible to the service. There are two types of data input. The Blob
+     * Storage URI can point to an Azure Blob Storage folder that contains multiple CSV files, where each CSV file has
+     * two columns, time stamp and variable. Or the Blob Storage URI can point to a single blob that contains a CSV file
+     * that has all the variables and a time stamp column. The model object will be created and returned in the
+     * response, but the training process happens asynchronously. To check the training status, call
+     * GetMultivariateModel with the modelId value and check the status field in the modelInfo object.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -955,8 +976,18 @@ public final class AnomalyDetectorClientImpl {
      *     status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *     errors (Optional): [
      *          (Optional){
-     *             code: String (Required)
-     *             message: String (Required)
+     *             error (Required): {
+     *                 code: String (Required)
+     *                 message: String (Required)
+     *                 target: String (Optional)
+     *                 details (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 innererror (Optional): {
+     *                     code: String (Optional)
+     *                     innererror (Optional): (recursive schema, see innererror above)
+     *                 }
+     *             }
      *         }
      *     ]
      *     diagnosticsInfo (Optional): {
@@ -976,7 +1007,7 @@ public final class AnomalyDetectorClientImpl {
      *         }
      *         variableStates (Optional): [
      *              (Optional){
-     *                 variable: String (Optional)
+     *                 variable: String (Required)
      *                 filledNARatio: Double (Optional)
      *                 effectiveCount: Integer (Optional)
      *                 firstTimestamp: OffsetDateTime (Optional)
@@ -1009,8 +1040,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1030,7 +1071,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1069,10 +1110,12 @@ public final class AnomalyDetectorClientImpl {
      * Train a Multivariate Anomaly Detection Model
      *
      * <p>Create and train a multivariate anomaly detection model. The request must include a source parameter to
-     * indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an
-     * Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp
-     * and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the
-     * variables and a timestamp column.
+     * indicate an Azure Blob Storage URI that's accessible to the service. There are two types of data input. The Blob
+     * Storage URI can point to an Azure Blob Storage folder that contains multiple CSV files, where each CSV file has
+     * two columns, time stamp and variable. Or the Blob Storage URI can point to a single blob that contains a CSV file
+     * that has all the variables and a time stamp column. The model object will be created and returned in the
+     * response, but the training process happens asynchronously. To check the training status, call
+     * GetMultivariateModel with the modelId value and check the status field in the modelInfo object.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -1092,8 +1135,18 @@ public final class AnomalyDetectorClientImpl {
      *     status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *     errors (Optional): [
      *          (Optional){
-     *             code: String (Required)
-     *             message: String (Required)
+     *             error (Required): {
+     *                 code: String (Required)
+     *                 message: String (Required)
+     *                 target: String (Optional)
+     *                 details (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 innererror (Optional): {
+     *                     code: String (Optional)
+     *                     innererror (Optional): (recursive schema, see innererror above)
+     *                 }
+     *             }
      *         }
      *     ]
      *     diagnosticsInfo (Optional): {
@@ -1113,7 +1166,7 @@ public final class AnomalyDetectorClientImpl {
      *         }
      *         variableStates (Optional): [
      *              (Optional){
-     *                 variable: String (Optional)
+     *                 variable: String (Required)
      *                 filledNARatio: Double (Optional)
      *                 effectiveCount: Integer (Optional)
      *                 firstTimestamp: OffsetDateTime (Optional)
@@ -1146,8 +1199,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1167,7 +1230,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1203,8 +1266,8 @@ public final class AnomalyDetectorClientImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>skip</td><td>Integer</td><td>No</td><td>Skip indicates how many models will be skipped.</td></tr>
-     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Top indicates how many models will be fetched.</td></tr>
+     *     <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>The number of result items to return.</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -1231,8 +1294,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1252,7 +1325,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1303,8 +1376,8 @@ public final class AnomalyDetectorClientImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>skip</td><td>Integer</td><td>No</td><td>Skip indicates how many models will be skipped.</td></tr>
-     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Top indicates how many models will be fetched.</td></tr>
+     *     <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>The number of result items to return.</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -1331,8 +1404,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1352,7 +1435,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1393,8 +1476,8 @@ public final class AnomalyDetectorClientImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>skip</td><td>Integer</td><td>No</td><td>Skip indicates how many models will be skipped.</td></tr>
-     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Top indicates how many models will be fetched.</td></tr>
+     *     <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>The number of result items to return.</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -1421,8 +1504,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1442,7 +1535,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1469,7 +1562,7 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Delete Multivariate Model
      *
-     * <p>Delete an existing multivariate model according to the modelId.
+     * <p>Delete an existing multivariate model according to the modelId value.
      *
      * @param modelId Model identifier.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -1497,7 +1590,7 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Delete Multivariate Model
      *
-     * <p>Delete an existing multivariate model according to the modelId.
+     * <p>Delete an existing multivariate model according to the modelId value.
      *
      * @param modelId Model identifier.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -1515,7 +1608,8 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Get Multivariate Model
      *
-     * <p>Get detailed information of multivariate model, including the training status and variables used in the model.
+     * <p>Get detailed information about the multivariate model, including the training status and variables used in the
+     * model.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1539,8 +1633,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1560,7 +1664,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1578,8 +1682,8 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return detailed information of multivariate model, including the training status and variables used in the model
-     *     along with {@link Response} on successful completion of {@link Mono}.
+     * @return detailed information about the multivariate model, including the training status and variables used in
+     *     the model along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getMultivariateModelWithResponseAsync(
@@ -1599,7 +1703,8 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Get Multivariate Model
      *
-     * <p>Get detailed information of multivariate model, including the training status and variables used in the model.
+     * <p>Get detailed information about the multivariate model, including the training status and variables used in the
+     * model.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1623,8 +1728,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -1644,7 +1759,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
@@ -1662,8 +1777,8 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return detailed information of multivariate model, including the training status and variables used in the model
-     *     along with {@link Response}.
+     * @return detailed information about the multivariate model, including the training status and variables used in
+     *     the model along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getMultivariateModelWithResponse(String modelId, RequestOptions requestOptions) {
@@ -1673,18 +1788,18 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect Multivariate Anomaly
      *
-     * <p>Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input
-     * schema should be the same with the training request. The request will complete asynchronously and return a
-     * resultId to query the detection result.The request should be a source link to indicate an externally accessible
-     * Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob
-     * storage.
+     * <p>Submit a multivariate anomaly detection task with the modelId value of a trained model and inference data. The
+     * input schema should be the same with the training request. The request will finish asynchronously and return a
+     * resultId value to query the detection result. The request should be a source link to indicate an externally
+     * accessible Azure Storage URI that either points to an Azure Blob Storage folder or points to a CSV file in Azure
+     * Blob Storage.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     dataSource: String (Required)
-     *     topContributorCount: int (Required)
+     *     topContributorCount: Integer (Optional)
      *     startTime: OffsetDateTime (Required)
      *     endTime: OffsetDateTime (Required)
      * }
@@ -1699,13 +1814,23 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Required)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         variableStates (Optional): [
      *              (Optional){
-     *                 variable: String (Optional)
+     *                 variable: String (Required)
      *                 filledNARatio: Double (Optional)
      *                 effectiveCount: Integer (Optional)
      *                 firstTimestamp: OffsetDateTime (Optional)
@@ -1714,7 +1839,7 @@ public final class AnomalyDetectorClientImpl {
      *         ]
      *         setupInfo (Required): {
      *             dataSource: String (Required)
-     *             topContributorCount: int (Required)
+     *             topContributorCount: Integer (Optional)
      *             startTime: OffsetDateTime (Required)
      *             endTime: OffsetDateTime (Required)
      *         }
@@ -1753,7 +1878,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return detection results for the given resultId along with {@link Response} on successful completion of {@link
+     * @return detection results for the resultId value along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1775,18 +1900,18 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect Multivariate Anomaly
      *
-     * <p>Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input
-     * schema should be the same with the training request. The request will complete asynchronously and return a
-     * resultId to query the detection result.The request should be a source link to indicate an externally accessible
-     * Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob
-     * storage.
+     * <p>Submit a multivariate anomaly detection task with the modelId value of a trained model and inference data. The
+     * input schema should be the same with the training request. The request will finish asynchronously and return a
+     * resultId value to query the detection result. The request should be a source link to indicate an externally
+     * accessible Azure Storage URI that either points to an Azure Blob Storage folder or points to a CSV file in Azure
+     * Blob Storage.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     dataSource: String (Required)
-     *     topContributorCount: int (Required)
+     *     topContributorCount: Integer (Optional)
      *     startTime: OffsetDateTime (Required)
      *     endTime: OffsetDateTime (Required)
      * }
@@ -1801,13 +1926,23 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Required)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         variableStates (Optional): [
      *              (Optional){
-     *                 variable: String (Optional)
+     *                 variable: String (Required)
      *                 filledNARatio: Double (Optional)
      *                 effectiveCount: Integer (Optional)
      *                 firstTimestamp: OffsetDateTime (Optional)
@@ -1816,7 +1951,7 @@ public final class AnomalyDetectorClientImpl {
      *         ]
      *         setupInfo (Required): {
      *             dataSource: String (Required)
-     *             topContributorCount: int (Required)
+     *             topContributorCount: Integer (Optional)
      *             startTime: OffsetDateTime (Required)
      *             endTime: OffsetDateTime (Required)
      *         }
@@ -1855,7 +1990,7 @@ public final class AnomalyDetectorClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return detection results for the given resultId along with {@link Response}.
+     * @return detection results for the resultId value along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> detectMultivariateBatchAnomalyWithResponse(
@@ -1866,8 +2001,8 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect anomalies in the last point of the request body
      *
-     * <p>Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the
-     * inference data should be put into request body in a JSON format. The request will complete synchronously and
+     * <p>Submit a multivariate anomaly detection task with the modelId value of a trained model and inference data. The
+     * inference data should be put into the request body in JSON format. The request will finish synchronously and
      * return the detection immediately in the response body.
      *
      * <p><strong>Request Body Schema</strong>
@@ -1878,14 +2013,14 @@ public final class AnomalyDetectorClientImpl {
      *          (Required){
      *             variable: String (Required)
      *             timestamps (Required): [
-     *                 String (Required)
+     *                 OffsetDateTime (Required)
      *             ]
      *             values (Required): [
      *                 double (Required)
      *             ]
      *         }
      *     ]
-     *     topContributorCount: int (Required)
+     *     topContributorCount: Integer (Optional)
      * }
      * }</pre>
      *
@@ -1895,7 +2030,7 @@ public final class AnomalyDetectorClientImpl {
      * {
      *     variableStates (Optional): [
      *          (Optional){
-     *             variable: String (Optional)
+     *             variable: String (Required)
      *             filledNARatio: Double (Optional)
      *             effectiveCount: Integer (Optional)
      *             firstTimestamp: OffsetDateTime (Optional)
@@ -1923,8 +2058,18 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             errors (Optional): [
      *                  (Optional){
-     *                     code: String (Required)
-     *                     message: String (Required)
+     *                     error (Required): {
+     *                         code: String (Required)
+     *                         message: String (Required)
+     *                         target: String (Optional)
+     *                         details (Optional): [
+     *                             (recursive schema, see above)
+     *                         ]
+     *                         innererror (Optional): {
+     *                             code: String (Optional)
+     *                             innererror (Optional): (recursive schema, see innererror above)
+     *                         }
+     *                     }
      *                 }
      *             ]
      *         }
@@ -1933,13 +2078,13 @@ public final class AnomalyDetectorClientImpl {
      * }</pre>
      *
      * @param modelId Model identifier.
-     * @param options Request of last detection.
+     * @param options Request of the last detection.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of last detection along with {@link Response} on successful completion of {@link Mono}.
+     * @return results of the last detection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> detectMultivariateLastAnomalyWithResponseAsync(
@@ -1960,8 +2105,8 @@ public final class AnomalyDetectorClientImpl {
     /**
      * Detect anomalies in the last point of the request body
      *
-     * <p>Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the
-     * inference data should be put into request body in a JSON format. The request will complete synchronously and
+     * <p>Submit a multivariate anomaly detection task with the modelId value of a trained model and inference data. The
+     * inference data should be put into the request body in JSON format. The request will finish synchronously and
      * return the detection immediately in the response body.
      *
      * <p><strong>Request Body Schema</strong>
@@ -1972,14 +2117,14 @@ public final class AnomalyDetectorClientImpl {
      *          (Required){
      *             variable: String (Required)
      *             timestamps (Required): [
-     *                 String (Required)
+     *                 OffsetDateTime (Required)
      *             ]
      *             values (Required): [
      *                 double (Required)
      *             ]
      *         }
      *     ]
-     *     topContributorCount: int (Required)
+     *     topContributorCount: Integer (Optional)
      * }
      * }</pre>
      *
@@ -1989,7 +2134,7 @@ public final class AnomalyDetectorClientImpl {
      * {
      *     variableStates (Optional): [
      *          (Optional){
-     *             variable: String (Optional)
+     *             variable: String (Required)
      *             filledNARatio: Double (Optional)
      *             effectiveCount: Integer (Optional)
      *             firstTimestamp: OffsetDateTime (Optional)
@@ -2017,8 +2162,18 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             errors (Optional): [
      *                  (Optional){
-     *                     code: String (Required)
-     *                     message: String (Required)
+     *                     error (Required): {
+     *                         code: String (Required)
+     *                         message: String (Required)
+     *                         target: String (Optional)
+     *                         details (Optional): [
+     *                             (recursive schema, see above)
+     *                         ]
+     *                         innererror (Optional): {
+     *                             code: String (Optional)
+     *                             innererror (Optional): (recursive schema, see innererror above)
+     *                         }
+     *                     }
      *                 }
      *             ]
      *         }
@@ -2027,13 +2182,13 @@ public final class AnomalyDetectorClientImpl {
      * }</pre>
      *
      * @param modelId Model identifier.
-     * @param options Request of last detection.
+     * @param options Request of the last detection.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of last detection along with {@link Response}.
+     * @return results of the last detection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> detectMultivariateLastAnomalyWithResponse(
@@ -2068,8 +2223,18 @@ public final class AnomalyDetectorClientImpl {
      *         status: String(CREATED/RUNNING/READY/FAILED) (Optional)
      *         errors (Optional): [
      *              (Optional){
-     *                 code: String (Required)
-     *                 message: String (Required)
+     *                 error (Required): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         ]
      *         diagnosticsInfo (Optional): {
@@ -2089,7 +2254,7 @@ public final class AnomalyDetectorClientImpl {
      *             }
      *             variableStates (Optional): [
      *                  (Optional){
-     *                     variable: String (Optional)
+     *                     variable: String (Required)
      *                     filledNARatio: Double (Optional)
      *                     effectiveCount: Integer (Optional)
      *                     firstTimestamp: OffsetDateTime (Optional)
