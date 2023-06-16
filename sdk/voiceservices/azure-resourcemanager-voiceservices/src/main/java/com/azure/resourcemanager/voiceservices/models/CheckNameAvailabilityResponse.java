@@ -23,7 +23,7 @@ public interface CheckNameAvailabilityResponse {
     CheckNameAvailabilityReason reason();
 
     /**
-     * Gets the message property: Detailed reason why the given name is not available.
+     * Gets the message property: Detailed reason why the given name is available.
      *
      * @return the message value.
      */

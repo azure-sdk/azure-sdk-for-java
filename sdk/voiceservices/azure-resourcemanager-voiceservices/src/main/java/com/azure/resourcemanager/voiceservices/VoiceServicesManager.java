@@ -26,11 +26,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.voiceservices.fluent.MicrosoftVoiceServices;
 import com.azure.resourcemanager.voiceservices.implementation.CommunicationsGatewaysImpl;
 import com.azure.resourcemanager.voiceservices.implementation.MicrosoftVoiceServicesBuilder;
-import com.azure.resourcemanager.voiceservices.implementation.NameAvailabilitiesImpl;
 import com.azure.resourcemanager.voiceservices.implementation.OperationsImpl;
 import com.azure.resourcemanager.voiceservices.implementation.TestLinesImpl;
 import com.azure.resourcemanager.voiceservices.models.CommunicationsGateways;
-import com.azure.resourcemanager.voiceservices.models.NameAvailabilities;
 import com.azure.resourcemanager.voiceservices.models.Operations;
 import com.azure.resourcemanager.voiceservices.models.TestLines;
 import java.time.Duration;
@@ -45,8 +43,6 @@ public final class VoiceServicesManager {
     private Operations operations;
 
     private CommunicationsGateways communicationsGateways;
-
-    private NameAvailabilities nameAvailabilities;
 
     private TestLines testLines;
 
@@ -215,7 +211,7 @@ public final class VoiceServicesManager {
                 .append("-")
                 .append("com.azure.resourcemanager.voiceservices")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -295,18 +291,6 @@ public final class VoiceServicesManager {
                 new CommunicationsGatewaysImpl(clientObject.getCommunicationsGateways(), this);
         }
         return communicationsGateways;
-    }
-
-    /**
-     * Gets the resource collection API of NameAvailabilities.
-     *
-     * @return Resource collection API of NameAvailabilities.
-     */
-    public NameAvailabilities nameAvailabilities() {
-        if (this.nameAvailabilities == null) {
-            this.nameAvailabilities = new NameAvailabilitiesImpl(clientObject.getNameAvailabilities(), this);
-        }
-        return nameAvailabilities;
     }
 
     /**

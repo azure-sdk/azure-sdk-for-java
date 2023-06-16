@@ -11,6 +11,32 @@ import com.azure.core.util.Context;
 /** Resource collection API of CommunicationsGateways. */
 public interface CommunicationsGateways {
     /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result along with {@link Response}.
+     */
+    Response<CheckNameAvailabilityResponse> checkLocalWithResponse(
+        String location, CheckNameAvailabilityRequest body, Context context);
+
+    /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    CheckNameAvailabilityResponse checkLocal(String location, CheckNameAvailabilityRequest body);
+
+    /**
      * List CommunicationsGateway resources by subscription ID.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

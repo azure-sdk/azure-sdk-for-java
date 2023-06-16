@@ -24,7 +24,7 @@ public final class CheckNameAvailabilityResponseInner {
     private CheckNameAvailabilityReason reason;
 
     /*
-     * Detailed reason why the given name is not available.
+     * Detailed reason why the given name is available.
      */
     @JsonProperty(value = "message")
     private String message;
@@ -74,7 +74,7 @@ public final class CheckNameAvailabilityResponseInner {
     }
 
     /**
-     * Get the message property: Detailed reason why the given name is not available.
+     * Get the message property: Detailed reason why the given name is available.
      *
      * @return the message value.
      */
@@ -83,7 +83,7 @@ public final class CheckNameAvailabilityResponseInner {
     }
 
     /**
-     * Set the message property: Detailed reason why the given name is not available.
+     * Set the message property: Detailed reason why the given name is available.
      *
      * @param message the message value to set.
      * @return the CheckNameAvailabilityResponseInner object itself.

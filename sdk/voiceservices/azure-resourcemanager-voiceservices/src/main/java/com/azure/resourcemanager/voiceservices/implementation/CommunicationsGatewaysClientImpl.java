@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -33,7 +34,9 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.voiceservices.fluent.CommunicationsGatewaysClient;
+import com.azure.resourcemanager.voiceservices.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.voiceservices.fluent.models.CommunicationsGatewayInner;
+import com.azure.resourcemanager.voiceservices.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.voiceservices.models.CommunicationsGatewayListResult;
 import com.azure.resourcemanager.voiceservices.models.CommunicationsGatewayUpdate;
 import java.nio.ByteBuffer;
@@ -67,6 +70,20 @@ public final class CommunicationsGatewaysClientImpl implements CommunicationsGat
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftVoiceServic")
     public interface CommunicationsGatewaysService {
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/locations/{location}/providers/Microsoft.VoiceServices/checkNameAvailability")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CheckNameAvailabilityResponseInner>> checkLocal(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("location") String location,
+            @BodyParam("application/json") CheckNameAvailabilityRequest body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.VoiceServices/communicationsGateways")
         @ExpectedResponses({200})
@@ -168,6 +185,150 @@ public final class CommunicationsGatewaysClientImpl implements CommunicationsGat
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
+    }
+
+    /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CheckNameAvailabilityResponseInner>> checkLocalWithResponseAsync(
+        String location, CheckNameAvailabilityRequest body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .checkLocal(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            location,
+                            body,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CheckNameAvailabilityResponseInner>> checkLocalWithResponseAsync(
+        String location, CheckNameAvailabilityRequest body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .checkLocal(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                location,
+                body,
+                accept,
+                context);
+    }
+
+    /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CheckNameAvailabilityResponseInner> checkLocalAsync(
+        String location, CheckNameAvailabilityRequest body) {
+        return checkLocalWithResponseAsync(location, body).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CheckNameAvailabilityResponseInner> checkLocalWithResponse(
+        String location, CheckNameAvailabilityRequest body, Context context) {
+        return checkLocalWithResponseAsync(location, body, context).block();
+    }
+
+    /**
+     * Implements global CheckNameAvailability operations.
+     *
+     * @param location The location name.
+     * @param body The CheckAvailability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameAvailabilityResponseInner checkLocal(String location, CheckNameAvailabilityRequest body) {
+        return checkLocalWithResponse(location, body, Context.NONE).getValue();
     }
 
     /**

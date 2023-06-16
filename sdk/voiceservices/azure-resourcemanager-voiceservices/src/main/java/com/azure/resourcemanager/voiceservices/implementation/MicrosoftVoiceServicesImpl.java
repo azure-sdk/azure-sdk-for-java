@@ -24,7 +24,6 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.voiceservices.fluent.CommunicationsGatewaysClient;
 import com.azure.resourcemanager.voiceservices.fluent.MicrosoftVoiceServices;
-import com.azure.resourcemanager.voiceservices.fluent.NameAvailabilitiesClient;
 import com.azure.resourcemanager.voiceservices.fluent.OperationsClient;
 import com.azure.resourcemanager.voiceservices.fluent.TestLinesClient;
 import java.io.IOException;
@@ -135,18 +134,6 @@ public final class MicrosoftVoiceServicesImpl implements MicrosoftVoiceServices 
         return this.communicationsGateways;
     }
 
-    /** The NameAvailabilitiesClient object to access its operations. */
-    private final NameAvailabilitiesClient nameAvailabilities;
-
-    /**
-     * Gets the NameAvailabilitiesClient object to access its operations.
-     *
-     * @return the NameAvailabilitiesClient object.
-     */
-    public NameAvailabilitiesClient getNameAvailabilities() {
-        return this.nameAvailabilities;
-    }
-
     /** The TestLinesClient object to access its operations. */
     private final TestLinesClient testLines;
 
@@ -181,10 +168,9 @@ public final class MicrosoftVoiceServicesImpl implements MicrosoftVoiceServices 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-31";
+        this.apiVersion = "2023-04-03";
         this.operations = new OperationsClientImpl(this);
         this.communicationsGateways = new CommunicationsGatewaysClientImpl(this);
-        this.nameAvailabilities = new NameAvailabilitiesClientImpl(this);
         this.testLines = new TestLinesClientImpl(this);
     }
 

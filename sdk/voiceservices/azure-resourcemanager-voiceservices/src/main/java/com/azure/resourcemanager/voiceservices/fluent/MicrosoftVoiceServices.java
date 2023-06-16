@@ -59,13 +59,6 @@ public interface MicrosoftVoiceServices {
     CommunicationsGatewaysClient getCommunicationsGateways();
 
     /**
-     * Gets the NameAvailabilitiesClient object to access its operations.
-     *
-     * @return the NameAvailabilitiesClient object.
-     */
-    NameAvailabilitiesClient getNameAvailabilities();
-
-    /**
      * Gets the TestLinesClient object to access its operations.
      *
      * @return the TestLinesClient object.

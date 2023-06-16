@@ -10,7 +10,10 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.voiceservices.fluent.CommunicationsGatewaysClient;
+import com.azure.resourcemanager.voiceservices.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.voiceservices.fluent.models.CommunicationsGatewayInner;
+import com.azure.resourcemanager.voiceservices.models.CheckNameAvailabilityRequest;
+import com.azure.resourcemanager.voiceservices.models.CheckNameAvailabilityResponse;
 import com.azure.resourcemanager.voiceservices.models.CommunicationsGateway;
 import com.azure.resourcemanager.voiceservices.models.CommunicationsGateways;
 
@@ -26,6 +29,30 @@ public final class CommunicationsGatewaysImpl implements CommunicationsGateways 
         com.azure.resourcemanager.voiceservices.VoiceServicesManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public Response<CheckNameAvailabilityResponse> checkLocalWithResponse(
+        String location, CheckNameAvailabilityRequest body, Context context) {
+        Response<CheckNameAvailabilityResponseInner> inner =
+            this.serviceClient().checkLocalWithResponse(location, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new CheckNameAvailabilityResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CheckNameAvailabilityResponse checkLocal(String location, CheckNameAvailabilityRequest body) {
+        CheckNameAvailabilityResponseInner inner = this.serviceClient().checkLocal(location, body);
+        if (inner != null) {
+            return new CheckNameAvailabilityResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public PagedIterable<CommunicationsGateway> list() {
