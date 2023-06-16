@@ -67,11 +67,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureDedicatedHsmRes")
-    private interface DedicatedHsmsService {
+    public interface DedicatedHsmsService {
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -86,8 +85,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -102,8 +100,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -117,8 +114,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorException.class)
         Mono<Response<DedicatedHsmInner>> getByResourceGroup(
@@ -132,8 +128,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.HardwareSecurityModules/dedicatedHSMs")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorException.class)
         Mono<Response<DedicatedHsmListResult>> listByResourceGroup(
@@ -159,8 +154,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}/outboundNetworkDependenciesEndpoints")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}/outboundNetworkDependenciesEndpoints")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ErrorException.class)
         Mono<Response<OutboundEnvironmentEndpointCollection>> listOutboundNetworkDependenciesEndpoints(
@@ -376,7 +370,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DedicatedHsmInner>, DedicatedHsmInner> beginCreateOrUpdate(
         String resourceGroupName, String name, DedicatedHsmInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, name, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, name, parameters).getSyncPoller();
     }
 
     /**
@@ -394,7 +388,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DedicatedHsmInner>, DedicatedHsmInner> beginCreateOrUpdate(
         String resourceGroupName, String name, DedicatedHsmInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, name, parameters, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, name, parameters, context).getSyncPoller();
     }
 
     /**
@@ -642,7 +636,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DedicatedHsmInner>, DedicatedHsmInner> beginUpdate(
         String resourceGroupName, String name, DedicatedHsmPatchParameters parameters) {
-        return beginUpdateAsync(resourceGroupName, name, parameters).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, name, parameters).getSyncPoller();
     }
 
     /**
@@ -660,7 +654,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DedicatedHsmInner>, DedicatedHsmInner> beginUpdate(
         String resourceGroupName, String name, DedicatedHsmPatchParameters parameters, Context context) {
-        return beginUpdateAsync(resourceGroupName, name, parameters, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, name, parameters, context).getSyncPoller();
     }
 
     /**
@@ -881,7 +875,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String name) {
-        return beginDeleteAsync(resourceGroupName, name).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, name).getSyncPoller();
     }
 
     /**
@@ -897,7 +891,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String name, Context context) {
-        return beginDeleteAsync(resourceGroupName, name, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, name, context).getSyncPoller();
     }
 
     /**
@@ -1067,29 +1061,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DedicatedHsmInner> getByResourceGroupAsync(String resourceGroupName, String name) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, name)
-            .flatMap(
-                (Response<DedicatedHsmInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the specified Azure dedicated HSM.
-     *
-     * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
-     * @param name The name of the dedicated HSM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Azure dedicated HSM.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DedicatedHsmInner getByResourceGroup(String resourceGroupName, String name) {
-        return getByResourceGroupAsync(resourceGroupName, name).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1107,6 +1079,21 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     public Response<DedicatedHsmInner> getByResourceGroupWithResponse(
         String resourceGroupName, String name, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, name, context).block();
+    }
+
+    /**
+     * Gets the specified Azure dedicated HSM.
+     *
+     * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
+     * @param name The name of the dedicated HSM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified Azure dedicated HSM.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DedicatedHsmInner getByResourceGroup(String resourceGroupName, String name) {
+        return getByResourceGroupWithResponse(resourceGroupName, name, Context.NONE).getValue();
     }
 
     /**
@@ -1475,7 +1462,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1534,7 +1524,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1592,7 +1585,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1612,7 +1608,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1633,7 +1632,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1651,7 +1653,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1671,7 +1676,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1707,7 +1713,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
@@ -1744,7 +1751,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1780,7 +1788,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
@@ -1817,7 +1826,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1858,7 +1868,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.

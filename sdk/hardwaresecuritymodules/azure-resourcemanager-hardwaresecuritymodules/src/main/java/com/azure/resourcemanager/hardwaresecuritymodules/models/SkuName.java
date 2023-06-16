@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuName. */
+/** SKU of the dedicated HSM. */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
     /** Static value SafeNet Luna Network HSM A790 for SkuName. */
     public static final SkuName SAFE_NET_LUNA_NETWORK_HSM_A790 = fromString("SafeNet Luna Network HSM A790");
@@ -30,6 +30,15 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
 
     /** Static value payShield10K_LMK2_CPS2500 for SkuName. */
     public static final SkuName PAY_SHIELD10K_LMK2_CPS2500 = fromString("payShield10K_LMK2_CPS2500");
+
+    /**
+     * Creates a new instance of SkuName value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SkuName() {
+    }
 
     /**
      * Creates or finds a SkuName from its string representation.

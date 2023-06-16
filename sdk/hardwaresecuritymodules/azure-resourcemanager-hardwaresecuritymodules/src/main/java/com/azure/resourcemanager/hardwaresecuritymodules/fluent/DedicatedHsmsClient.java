@@ -208,20 +208,6 @@ public interface DedicatedHsmsClient {
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.hardwaresecuritymodules.models.ErrorException thrown if the request is rejected
-     *     by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Azure dedicated HSM.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DedicatedHsmInner getByResourceGroup(String resourceGroupName, String name);
-
-    /**
-     * Gets the specified Azure dedicated HSM.
-     *
-     * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
-     * @param name The name of the dedicated HSM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.hardwaresecuritymodules.models.ErrorException thrown if the request is rejected
@@ -231,6 +217,20 @@ public interface DedicatedHsmsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DedicatedHsmInner> getByResourceGroupWithResponse(String resourceGroupName, String name, Context context);
+
+    /**
+     * Gets the specified Azure dedicated HSM.
+     *
+     * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
+     * @param name The name of the dedicated HSM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.hardwaresecuritymodules.models.ErrorException thrown if the request is rejected
+     *     by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified Azure dedicated HSM.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DedicatedHsmInner getByResourceGroup(String resourceGroupName, String name);
 
     /**
      * The List operation gets information about the dedicated hsms associated with the subscription and within the
@@ -289,7 +289,10 @@ public interface DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -306,7 +309,10 @@ public interface DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.

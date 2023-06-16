@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for JsonWebKeyType. */
+/** Provisioning state. */
 public final class JsonWebKeyType extends ExpandableStringEnum<JsonWebKeyType> {
     /** Static value Succeeded for JsonWebKeyType. */
     public static final JsonWebKeyType SUCCEEDED = fromString("Succeeded");
@@ -30,6 +30,15 @@ public final class JsonWebKeyType extends ExpandableStringEnum<JsonWebKeyType> {
 
     /** Static value Deleting for JsonWebKeyType. */
     public static final JsonWebKeyType DELETING = fromString("Deleting");
+
+    /**
+     * Creates a new instance of JsonWebKeyType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public JsonWebKeyType() {
+    }
 
     /**
      * Creates or finds a JsonWebKeyType from its string representation.

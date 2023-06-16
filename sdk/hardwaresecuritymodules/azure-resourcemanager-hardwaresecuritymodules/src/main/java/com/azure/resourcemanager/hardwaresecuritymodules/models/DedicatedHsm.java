@@ -49,13 +49,6 @@ public interface DedicatedHsm {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the sku property: SKU details.
      *
      * @return the sku value.
@@ -68,6 +61,13 @@ public interface DedicatedHsm {
      * @return the zones value.
      */
     List<String> zones();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the networkProfile property: Specifies the network interfaces of the dedicated hsm.
@@ -117,6 +117,13 @@ public interface DedicatedHsm {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.DedicatedHsmInner object.

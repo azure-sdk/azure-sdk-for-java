@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.hardwaresecuritymodules.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsmResource;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.JsonWebKeyType;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.NetworkProfile;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.Sku;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 /** Resource information with extended details. */
 @Fluent
-public final class DedicatedHsmInner extends Resource {
+public final class DedicatedHsmInner extends DedicatedHsmResource {
     /*
      * Metadata pertaining to creation and last modification of the resource
      */
@@ -30,17 +30,9 @@ public final class DedicatedHsmInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private DedicatedHsmProperties innerProperties = new DedicatedHsmProperties();
 
-    /*
-     * SKU details
-     */
-    @JsonProperty(value = "sku")
-    private Sku sku;
-
-    /*
-     * The Dedicated Hsm zones.
-     */
-    @JsonProperty(value = "zones")
-    private List<String> zones;
+    /** Creates an instance of DedicatedHsmInner class. */
+    public DedicatedHsmInner() {
+    }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
@@ -60,43 +52,17 @@ public final class DedicatedHsmInner extends Resource {
         return this.innerProperties;
     }
 
-    /**
-     * Get the sku property: SKU details.
-     *
-     * @return the sku value.
-     */
-    public Sku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: SKU details.
-     *
-     * @param sku the sku value to set.
-     * @return the DedicatedHsmInner object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public DedicatedHsmInner withSku(Sku sku) {
-        this.sku = sku;
+        super.withSku(sku);
         return this;
     }
 
-    /**
-     * Get the zones property: The Dedicated Hsm zones.
-     *
-     * @return the zones value.
-     */
-    public List<String> zones() {
-        return this.zones;
-    }
-
-    /**
-     * Set the zones property: The Dedicated Hsm zones.
-     *
-     * @param zones the zones value to set.
-     * @return the DedicatedHsmInner object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public DedicatedHsmInner withZones(List<String> zones) {
-        this.zones = zones;
+        super.withZones(zones);
         return this;
     }
 
@@ -206,7 +172,9 @@ public final class DedicatedHsmInner extends Resource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() == null) {
             throw LOGGER
                 .logExceptionAsError(
@@ -214,9 +182,6 @@ public final class DedicatedHsmInner extends Resource {
                         "Missing required property innerProperties in model DedicatedHsmInner"));
         } else {
             innerProperties().validate();
-        }
-        if (sku() != null) {
-            sku().validate();
         }
     }
 

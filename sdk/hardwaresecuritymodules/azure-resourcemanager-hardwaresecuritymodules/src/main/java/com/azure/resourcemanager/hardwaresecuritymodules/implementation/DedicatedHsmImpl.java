@@ -47,10 +47,6 @@ public final class DedicatedHsmImpl implements DedicatedHsm, DedicatedHsm.Defini
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public Sku sku() {
         return this.innerModel().sku();
     }
@@ -62,6 +58,10 @@ public final class DedicatedHsmImpl implements DedicatedHsm, DedicatedHsm.Defini
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public NetworkProfile networkProfile() {
@@ -90,6 +90,10 @@ public final class DedicatedHsmImpl implements DedicatedHsm, DedicatedHsm.Defini
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public DedicatedHsmInner innerModel() {
