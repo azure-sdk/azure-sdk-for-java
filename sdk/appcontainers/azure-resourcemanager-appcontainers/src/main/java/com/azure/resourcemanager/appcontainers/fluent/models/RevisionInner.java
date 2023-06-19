@@ -9,6 +9,7 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.RevisionHealthState;
 import com.azure.resourcemanager.appcontainers.models.RevisionProvisioningState;
+import com.azure.resourcemanager.appcontainers.models.RevisionRunningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -140,6 +141,15 @@ public final class RevisionInner extends ProxyResource {
      */
     public RevisionProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the runningState property: Current running state of the revision.
+     *
+     * @return the runningState value.
+     */
+    public RevisionRunningState runningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().runningState();
     }
 
     /**
