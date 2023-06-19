@@ -18,11 +18,14 @@ public final class NetworkProfile {
     private ApiEntityReference subnet;
 
     /*
-     * Specifies the list of resource Ids for the network interfaces associated
-     * with the dedicated HSM.
+     * Specifies the list of resource Ids for the network interfaces associated with the dedicated HSM.
      */
     @JsonProperty(value = "networkInterfaces")
     private List<NetworkInterface> networkInterfaces;
+
+    /** Creates an instance of NetworkProfile class. */
+    public NetworkProfile() {
+    }
 
     /**
      * Get the subnet property: Specifies the identifier of the subnet.

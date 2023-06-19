@@ -20,7 +20,14 @@ public interface DedicatedHsmOperation {
      *
      * @return the isDataAction value.
      */
-    String isDataAction();
+    Boolean isDataAction();
+
+    /**
+     * Gets the origin property: The origin of the operation.
+     *
+     * @return the origin value.
+     */
+    String origin();
 
     /**
      * Gets the display property: The display string.
