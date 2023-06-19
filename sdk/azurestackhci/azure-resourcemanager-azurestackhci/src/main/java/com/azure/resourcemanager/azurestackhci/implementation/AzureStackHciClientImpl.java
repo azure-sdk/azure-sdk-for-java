@@ -25,8 +25,18 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.azurestackhci.fluent.ArcSettingsClient;
 import com.azure.resourcemanager.azurestackhci.fluent.AzureStackHciClient;
 import com.azure.resourcemanager.azurestackhci.fluent.ClustersClient;
+import com.azure.resourcemanager.azurestackhci.fluent.CreatesClient;
 import com.azure.resourcemanager.azurestackhci.fluent.ExtensionsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.GetsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.NodeConfigurationsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.OffersClient;
 import com.azure.resourcemanager.azurestackhci.fluent.OperationsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.PublishersClient;
+import com.azure.resourcemanager.azurestackhci.fluent.SkusClient;
+import com.azure.resourcemanager.azurestackhci.fluent.UpdateOperationsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.UpdateRunsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.UpdateSummariesOperationsClient;
+import com.azure.resourcemanager.azurestackhci.fluent.UpdatesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -147,6 +157,18 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
         return this.extensions;
     }
 
+    /** The OffersClient object to access its operations. */
+    private final OffersClient offers;
+
+    /**
+     * Gets the OffersClient object to access its operations.
+     *
+     * @return the OffersClient object.
+     */
+    public OffersClient getOffers() {
+        return this.offers;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -157,6 +179,114 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /** The PublishersClient object to access its operations. */
+    private final PublishersClient publishers;
+
+    /**
+     * Gets the PublishersClient object to access its operations.
+     *
+     * @return the PublishersClient object.
+     */
+    public PublishersClient getPublishers() {
+        return this.publishers;
+    }
+
+    /** The SkusClient object to access its operations. */
+    private final SkusClient skus;
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     *
+     * @return the SkusClient object.
+     */
+    public SkusClient getSkus() {
+        return this.skus;
+    }
+
+    /** The UpdateRunsClient object to access its operations. */
+    private final UpdateRunsClient updateRuns;
+
+    /**
+     * Gets the UpdateRunsClient object to access its operations.
+     *
+     * @return the UpdateRunsClient object.
+     */
+    public UpdateRunsClient getUpdateRuns() {
+        return this.updateRuns;
+    }
+
+    /** The UpdateSummariesOperationsClient object to access its operations. */
+    private final UpdateSummariesOperationsClient updateSummariesOperations;
+
+    /**
+     * Gets the UpdateSummariesOperationsClient object to access its operations.
+     *
+     * @return the UpdateSummariesOperationsClient object.
+     */
+    public UpdateSummariesOperationsClient getUpdateSummariesOperations() {
+        return this.updateSummariesOperations;
+    }
+
+    /** The UpdatesClient object to access its operations. */
+    private final UpdatesClient updates;
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    public UpdatesClient getUpdates() {
+        return this.updates;
+    }
+
+    /** The GetsClient object to access its operations. */
+    private final GetsClient gets;
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    public GetsClient getGets() {
+        return this.gets;
+    }
+
+    /** The CreatesClient object to access its operations. */
+    private final CreatesClient creates;
+
+    /**
+     * Gets the CreatesClient object to access its operations.
+     *
+     * @return the CreatesClient object.
+     */
+    public CreatesClient getCreates() {
+        return this.creates;
+    }
+
+    /** The UpdateOperationsClient object to access its operations. */
+    private final UpdateOperationsClient updateOperations;
+
+    /**
+     * Gets the UpdateOperationsClient object to access its operations.
+     *
+     * @return the UpdateOperationsClient object.
+     */
+    public UpdateOperationsClient getUpdateOperations() {
+        return this.updateOperations;
+    }
+
+    /** The NodeConfigurationsClient object to access its operations. */
+    private final NodeConfigurationsClient nodeConfigurations;
+
+    /**
+     * Gets the NodeConfigurationsClient object to access its operations.
+     *
+     * @return the NodeConfigurationsClient object.
+     */
+    public NodeConfigurationsClient getNodeConfigurations() {
+        return this.nodeConfigurations;
     }
 
     /**
@@ -181,11 +311,21 @@ public final class AzureStackHciClientImpl implements AzureStackHciClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-01";
+        this.apiVersion = "2023-07-01-preview";
         this.arcSettings = new ArcSettingsClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.extensions = new ExtensionsClientImpl(this);
+        this.offers = new OffersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.publishers = new PublishersClientImpl(this);
+        this.skus = new SkusClientImpl(this);
+        this.updateRuns = new UpdateRunsClientImpl(this);
+        this.updateSummariesOperations = new UpdateSummariesOperationsClientImpl(this);
+        this.updates = new UpdatesClientImpl(this);
+        this.gets = new GetsClientImpl(this);
+        this.creates = new CreatesClientImpl(this);
+        this.updateOperations = new UpdateOperationsClientImpl(this);
+        this.nodeConfigurations = new NodeConfigurationsClientImpl(this);
     }
 
     /**
