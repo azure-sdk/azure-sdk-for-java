@@ -172,12 +172,9 @@
 - [List](#governancerules_list)
 - [OperationResults](#governancerules_operationresults)
 
-## HealthReportOperation
-
-- [Get](#healthreportoperation_get)
-
 ## HealthReports
 
+- [Get](#healthreports_get)
 - [List](#healthreports_list)
 
 ## InformationProtectionPolicies
@@ -262,6 +259,11 @@
 - [Get](#regulatorycompliancestandards_get)
 - [List](#regulatorycompliancestandards_list)
 
+## ResourceProvider
+
+- [GetSensitivitySettings](#resourceprovider_getsensitivitysettings)
+- [UpdateSensitivitySettings](#resourceprovider_updatesensitivitysettings)
+
 ## SecureScoreControlDefinitions
 
 - [List](#securescorecontroldefinitions_list)
@@ -320,12 +322,23 @@
 - [List](#securitysolutionsreferencedata_list)
 - [ListByHomeRegion](#securitysolutionsreferencedata_listbyhomeregion)
 
+## SensitivitySettings
+
+- [List](#sensitivitysettings_list)
+
 ## ServerVulnerabilityAssessment
 
 - [CreateOrUpdate](#servervulnerabilityassessment_createorupdate)
 - [Delete](#servervulnerabilityassessment_delete)
 - [Get](#servervulnerabilityassessment_get)
 - [ListByExtendedResource](#servervulnerabilityassessment_listbyextendedresource)
+
+## ServerVulnerabilityAssessmentsSettings
+
+- [CreateOrUpdate](#servervulnerabilityassessmentssettings_createorupdate)
+- [Delete](#servervulnerabilityassessmentssettings_delete)
+- [Get](#servervulnerabilityassessmentssettings_get)
+- [List](#servervulnerabilityassessmentssettings_list)
 
 ## Settings
 
@@ -3488,13 +3501,13 @@ public final class GovernanceRulesOperationResultsSamples {
 }
 ```
 
-### HealthReportOperation_Get
+### HealthReports_Get
 
 ```java
-/** Samples for HealthReportOperation Get. */
-public final class HealthReportOperationGetSamples {
+/** Samples for HealthReports Get. */
+public final class HealthReportsGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-01-preview/examples/HealthReports/GetHealthReport_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-05-01-preview/examples/HealthReports/GetHealthReports_example.json
      */
     /**
      * Sample code: Get health report of resource.
@@ -3503,7 +3516,7 @@ public final class HealthReportOperationGetSamples {
      */
     public static void getHealthReportOfResource(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .healthReportOperations()
+            .healthReports()
             .getWithResponse(
                 "subscriptions/a1efb6ca-fbc5-4782-9aaa-5c7daded1ce2/resourcegroups/E2E-IBB0WX/providers/Microsoft.Security/securityconnectors/AwsConnectorAllOfferings",
                 "909c629a-bf39-4521-8e4f-10b443a0bc02",
@@ -3518,7 +3531,7 @@ public final class HealthReportOperationGetSamples {
 /** Samples for HealthReports List. */
 public final class HealthReportsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-01-preview/examples/HealthReports/ListHealthReports_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-05-01-preview/examples/HealthReports/ListHealthReports_example.json
      */
     /**
      * Sample code: List health reports.
@@ -4784,6 +4797,60 @@ public final class RegulatoryComplianceStandardsListSamples {
 }
 ```
 
+### ResourceProvider_GetSensitivitySettings
+
+```java
+/** Samples for ResourceProvider GetSensitivitySettings. */
+public final class ResourceProviderGetSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/GetSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.resourceProviders().getSensitivitySettingsWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_UpdateSensitivitySettings
+
+```java
+import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
+import java.util.Arrays;
+import java.util.UUID;
+
+/** Samples for ResourceProvider UpdateSensitivitySettings. */
+public final class ResourceProviderUpdateSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/PutSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Update sensitivity settings.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .resourceProviders()
+            .updateSensitivitySettingsWithResponse(
+                new UpdateSensitivitySettingsRequest()
+                    .withSensitiveInfoTypesIds(
+                        Arrays
+                            .asList(
+                                UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
+                                UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
+                                UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
+                    .withSensitivityThresholdLabelOrder(2.0F)
+                    .withSensitivityThresholdLabelId(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### SecureScoreControlDefinitions_List
 
 ```java
@@ -5497,6 +5564,25 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
 }
 ```
 
+### SensitivitySettings_List
+
+```java
+/** Samples for SensitivitySettings List. */
+public final class SensitivitySettingsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/GetSensitivitySettingsList_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings list.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettingsList(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().listWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ServerVulnerabilityAssessment_CreateOrUpdate
 
 ```java
@@ -5591,6 +5677,107 @@ public final class ServerVulnerabilityAssessmentListByExtendedResourceSamples {
             .serverVulnerabilityAssessments()
             .listByExtendedResourceWithResponse(
                 "rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.AzureServersSetting;
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsAzureSettingSelectedProvider;
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsSettingKindName;
+
+/** Samples for ServerVulnerabilityAssessmentsSettings CreateOrUpdate. */
+public final class ServerVulnerabilityAssessmentsSettingsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/PutServerVulnerabilityAssessmentsSetting_example.json
+     */
+    /**
+     * Sample code: Set a server vulnerability assessments setting of the kind settingKind on the subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void setAServerVulnerabilityAssessmentsSettingOfTheKindSettingKindOnTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .serverVulnerabilityAssessmentsSettings()
+            .createOrUpdateWithResponse(
+                ServerVulnerabilityAssessmentsSettingKindName.AZURE_SERVERS_SETTING,
+                new AzureServersSetting()
+                    .withSelectedProvider(ServerVulnerabilityAssessmentsAzureSettingSelectedProvider.MDE_TVM),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_Delete
+
+```java
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsSettingKindName;
+
+/** Samples for ServerVulnerabilityAssessmentsSettings Delete. */
+public final class ServerVulnerabilityAssessmentsSettingsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/DeleteServerVulnerabilityAssessmentsSetting_example.json
+     */
+    /**
+     * Sample code: Delete the server vulnerability assessments setting of the kind settingKind from the subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void deleteTheServerVulnerabilityAssessmentsSettingOfTheKindSettingKindFromTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .serverVulnerabilityAssessmentsSettings()
+            .deleteWithResponse(
+                ServerVulnerabilityAssessmentsSettingKindName.AZURE_SERVERS_SETTING, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_Get
+
+```java
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsSettingKindName;
+
+/** Samples for ServerVulnerabilityAssessmentsSettings Get. */
+public final class ServerVulnerabilityAssessmentsSettingsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/GetServerVulnerabilityAssessmentsSetting_example.json
+     */
+    /**
+     * Sample code: Get the server vulnerability assessments setting of the kind settingKind that is set on the
+     * subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getTheServerVulnerabilityAssessmentsSettingOfTheKindSettingKindThatIsSetOnTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .serverVulnerabilityAssessmentsSettings()
+            .getWithResponse(
+                ServerVulnerabilityAssessmentsSettingKindName.AZURE_SERVERS_SETTING, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_List
+
+```java
+/** Samples for ServerVulnerabilityAssessmentsSettings List. */
+public final class ServerVulnerabilityAssessmentsSettingsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/ListServerVulnerabilityAssessmentsSettings_example.json
+     */
+    /**
+     * Sample code: List the server vulnerability assessments settings set on the subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listTheServerVulnerabilityAssessmentsSettingsSetOnTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.serverVulnerabilityAssessmentsSettings().list(com.azure.core.util.Context.NONE);
     }
 }
 ```

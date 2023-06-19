@@ -6,6 +6,7 @@ package com.azure.resourcemanager.security.models;
 
 import com.azure.resourcemanager.security.fluent.models.HealthReportInner;
 import java.util.List;
+import java.util.Map;
 
 /** An immutable client-side representation of HealthReport. */
 public interface HealthReport {
@@ -64,6 +65,21 @@ public interface HealthReport {
      * @return the affectedDefendersPlans value.
      */
     List<String> affectedDefendersPlans();
+
+    /**
+     * Gets the affectedDefendersSubPlans property: The affected defenders sub plans by unhealthy report.
+     *
+     * @return the affectedDefendersSubPlans value.
+     */
+    List<String> affectedDefendersSubPlans();
+
+    /**
+     * Gets the reportAdditionalData property: Additional data for the given health report, this field can include more
+     * details on the resource and the health scenario.
+     *
+     * @return the reportAdditionalData value.
+     */
+    Map<String, String> reportAdditionalData();
 
     /**
      * Gets the issues property: A collection of the issues in the report.
