@@ -67,7 +67,7 @@ public final class ServicesClientImpl implements ServicesClient {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/locations/{location}/availableSkus")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AvailableSkusResult>> listAvailableSkusByResourceGroup(
             @HostParam("$host") String endpoint,
@@ -150,7 +150,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AvailableSkusResult>> listAvailableSkusByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
