@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.synapse.models;
 
-import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner;
@@ -584,30 +583,4 @@ public interface SqlPool {
      * @return sQL pool.
      */
     SqlPool resume(Context context);
-
-    /**
-     * Rename a SQL pool
-     *
-     * <p>Rename a SQL pool.
-     *
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> renameWithResponse(ResourceMoveDefinition parameters, Context context);
-
-    /**
-     * Rename a SQL pool
-     *
-     * <p>Rename a SQL pool.
-     *
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void rename(ResourceMoveDefinition parameters);
 }
