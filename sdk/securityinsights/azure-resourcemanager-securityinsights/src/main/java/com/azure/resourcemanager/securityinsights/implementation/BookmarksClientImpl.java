@@ -58,11 +58,10 @@ public final class BookmarksClientImpl implements BookmarksClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsBook")
-    private interface BookmarksService {
+    public interface BookmarksService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BookmarkList>> list(
@@ -76,8 +75,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BookmarkInner>> get(
@@ -92,8 +90,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BookmarkInner>> createOrUpdate(
@@ -109,8 +106,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -437,22 +433,6 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a bookmark.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BookmarkInner get(String resourceGroupName, String workspaceName, String bookmarkId) {
-        return getAsync(resourceGroupName, workspaceName, bookmarkId).block();
-    }
-
-    /**
-     * Gets a bookmark.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -463,6 +443,22 @@ public final class BookmarksClientImpl implements BookmarksClient {
     public Response<BookmarkInner> getWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, bookmarkId, context).block();
+    }
+
+    /**
+     * Gets a bookmark.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a bookmark.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BookmarkInner get(String resourceGroupName, String workspaceName, String bookmarkId) {
+        return getWithResponse(resourceGroupName, workspaceName, bookmarkId, Context.NONE).getValue();
     }
 
     /**
@@ -611,24 +607,6 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
      * @param bookmark The bookmark.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a bookmark in Azure Security Insights.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BookmarkInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkInner bookmark) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, bookmarkId, bookmark).block();
-    }
-
-    /**
-     * Creates or updates the bookmark.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
-     * @param bookmark The bookmark.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -639,6 +617,25 @@ public final class BookmarksClientImpl implements BookmarksClient {
     public Response<BookmarkInner> createOrUpdateWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, BookmarkInner bookmark, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, bookmarkId, bookmark, context).block();
+    }
+
+    /**
+     * Creates or updates the bookmark.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @param bookmark The bookmark.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a bookmark in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BookmarkInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkInner bookmark) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, bookmarkId, bookmark, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -767,21 +764,6 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String bookmarkId) {
-        deleteAsync(resourceGroupName, workspaceName, bookmarkId).block();
-    }
-
-    /**
-     * Delete the bookmark.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -792,6 +774,21 @@ public final class BookmarksClientImpl implements BookmarksClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, bookmarkId, context).block();
+    }
+
+    /**
+     * Delete the bookmark.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String bookmarkId) {
+        deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, Context.NONE);
     }
 
     /**
