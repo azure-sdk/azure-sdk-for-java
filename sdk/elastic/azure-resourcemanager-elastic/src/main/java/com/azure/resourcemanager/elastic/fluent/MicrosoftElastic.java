@@ -87,6 +87,20 @@ public interface MicrosoftElastic {
     ExternalUsersClient getExternalUsers();
 
     /**
+     * Gets the BillingInfoesClient object to access its operations.
+     *
+     * @return the BillingInfoesClient object.
+     */
+    BillingInfoesClient getBillingInfoes();
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     *
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    ConnectedPartnerResourcesClient getConnectedPartnerResources();
+
+    /**
      * Gets the TagRulesClient object to access its operations.
      *
      * @return the TagRulesClient object.

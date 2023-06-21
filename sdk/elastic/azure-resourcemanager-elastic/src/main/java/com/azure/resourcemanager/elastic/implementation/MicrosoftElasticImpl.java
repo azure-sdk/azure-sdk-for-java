@@ -24,6 +24,8 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.elastic.fluent.AllTrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.AssociateTrafficFiltersClient;
+import com.azure.resourcemanager.elastic.fluent.BillingInfoesClient;
+import com.azure.resourcemanager.elastic.fluent.ConnectedPartnerResourcesClient;
 import com.azure.resourcemanager.elastic.fluent.CreateAndAssociateIpFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.CreateAndAssociatePLFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.DeploymentInfoesClient;
@@ -198,6 +200,30 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
      */
     public ExternalUsersClient getExternalUsers() {
         return this.externalUsers;
+    }
+
+    /** The BillingInfoesClient object to access its operations. */
+    private final BillingInfoesClient billingInfoes;
+
+    /**
+     * Gets the BillingInfoesClient object to access its operations.
+     *
+     * @return the BillingInfoesClient object.
+     */
+    public BillingInfoesClient getBillingInfoes() {
+        return this.billingInfoes;
+    }
+
+    /** The ConnectedPartnerResourcesClient object to access its operations. */
+    private final ConnectedPartnerResourcesClient connectedPartnerResources;
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     *
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    public ConnectedPartnerResourcesClient getConnectedPartnerResources() {
+        return this.connectedPartnerResources;
     }
 
     /** The TagRulesClient object to access its operations. */
@@ -403,13 +429,15 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-02-01-preview";
+        this.apiVersion = "2023-06-15-preview";
         this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.elasticVersions = new ElasticVersionsClientImpl(this);
         this.monitoredResources = new MonitoredResourcesClientImpl(this);
         this.deploymentInfoes = new DeploymentInfoesClientImpl(this);
         this.externalUsers = new ExternalUsersClientImpl(this);
+        this.billingInfoes = new BillingInfoesClientImpl(this);
+        this.connectedPartnerResources = new ConnectedPartnerResourcesClientImpl(this);
         this.tagRules = new TagRulesClientImpl(this);
         this.vMHosts = new VMHostsClientImpl(this);
         this.vMIngestions = new VMIngestionsClientImpl(this);
