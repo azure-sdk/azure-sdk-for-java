@@ -548,7 +548,7 @@ public final class OpenAIClientImpl {
      *                     int (Required)
      *                 ]
      *             }
-     *             finish_reason: String(stopped/tokenLimitReached/contentFiltered) (Required)
+     *             finish_reason: String(stop/length/content_filter) (Required)
      *         }
      *     ]
      *     usage (Required): {
@@ -645,7 +645,7 @@ public final class OpenAIClientImpl {
      *                     int (Required)
      *                 ]
      *             }
-     *             finish_reason: String(stopped/tokenLimitReached/contentFiltered) (Required)
+     *             finish_reason: String(stop/length/content_filter) (Required)
      *         }
      *     ]
      *     usage (Required): {
@@ -726,7 +726,7 @@ public final class OpenAIClientImpl {
      *                 content: String (Optional)
      *             }
      *             index: int (Required)
-     *             finish_reason: String(stopped/tokenLimitReached/contentFiltered) (Required)
+     *             finish_reason: String(stop/length/content_filter) (Required)
      *             delta (Optional): (recursive schema, see delta above)
      *         }
      *     ]
@@ -811,7 +811,7 @@ public final class OpenAIClientImpl {
      *                 content: String (Optional)
      *             }
      *             index: int (Required)
-     *             finish_reason: String(stopped/tokenLimitReached/contentFiltered) (Required)
+     *             finish_reason: String(stop/length/content_filter) (Required)
      *             delta (Optional): (recursive schema, see delta above)
      *         }
      *     ]
