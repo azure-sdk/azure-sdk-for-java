@@ -9,9 +9,12 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.Registratio
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
+import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagementType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfo;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.util.Collections;
@@ -82,6 +85,10 @@ public final class HostPoolPropertiesImpl implements HostPoolProperties {
         return this.innerModel().vmTemplate();
     }
 
+    public ManagementType managementType() {
+        return this.innerModel().managementType();
+    }
+
     public List<String> applicationGroupReferences() {
         List<String> inner = this.innerModel().applicationGroupReferences();
         if (inner != null) {
@@ -119,8 +126,21 @@ public final class HostPoolPropertiesImpl implements HostPoolProperties {
         return this.innerModel().cloudPcResource();
     }
 
+    public HostpoolPublicNetworkAccess publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
+    }
+
     public AgentUpdateProperties agentUpdate() {
         return this.innerModel().agentUpdate();
+    }
+
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        List<PrivateEndpointConnection> inner = this.innerModel().privateEndpointConnections();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public HostPoolPropertiesInner innerModel() {

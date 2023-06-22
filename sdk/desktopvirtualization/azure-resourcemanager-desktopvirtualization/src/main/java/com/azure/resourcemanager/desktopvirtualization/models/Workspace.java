@@ -140,6 +140,22 @@ public interface Workspace {
     Boolean cloudPcResource();
 
     /**
+     * Gets the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
+     * networks, Disabled allows this resource to only be accessed via private endpoints.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    PublicNetworkAccess publicNetworkAccess();
+
+    /**
+     * Gets the privateEndpointConnections property: List of private endpoint connection associated with the specified
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -220,7 +236,8 @@ public interface Workspace {
                 DefinitionStages.WithPlan,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithFriendlyName,
-                DefinitionStages.WithApplicationGroupReferences {
+                DefinitionStages.WithApplicationGroupReferences,
+                DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
              *
@@ -335,6 +352,18 @@ public interface Workspace {
              */
             WithCreate withApplicationGroupReferences(List<String> applicationGroupReferences);
         }
+        /** The stage of the Workspace definition allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Enabled allows this resource to be accessed from both public
+             * and private networks, Disabled allows this resource to only be accessed via private endpoints.
+             *
+             * @param publicNetworkAccess Enabled allows this resource to be accessed from both public and private
+             *     networks, Disabled allows this resource to only be accessed via private endpoints.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+        }
     }
     /**
      * Begins update for the Workspace resource.
@@ -348,7 +377,8 @@ public interface Workspace {
         extends UpdateStages.WithTags,
             UpdateStages.WithDescription,
             UpdateStages.WithFriendlyName,
-            UpdateStages.WithApplicationGroupReferences {
+            UpdateStages.WithApplicationGroupReferences,
+            UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          *
@@ -405,6 +435,17 @@ public interface Workspace {
              * @return the next definition stage.
              */
             Update withApplicationGroupReferences(List<String> applicationGroupReferences);
+        }
+        /** The stage of the Workspace update allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Enabled to allow this resource to be access from the public
+             * network.
+             *
+             * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
+             * @return the next definition stage.
+             */
+            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
     }
     /**

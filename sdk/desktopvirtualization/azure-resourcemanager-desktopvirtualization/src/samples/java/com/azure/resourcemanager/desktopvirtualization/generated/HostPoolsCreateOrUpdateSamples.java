@@ -10,6 +10,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MaintenanceWindowProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagementType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
@@ -23,7 +24,7 @@ import java.util.Map;
 /** Samples for HostPools CreateOrUpdate. */
 public final class HostPoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-09-09/examples/HostPool_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-04-06-preview/examples/HostPool_Create.json
      */
     /**
      * Sample code: HostPool_Create.
@@ -50,6 +51,7 @@ public final class HostPoolsCreateOrUpdateSamples {
                     .withExpirationTime(OffsetDateTime.parse("2020-10-01T14:01:54.9571247Z"))
                     .withRegistrationTokenOperation(RegistrationTokenOperation.UPDATE))
             .withVmTemplate("{json:json}")
+            .withManagementType(ManagementType.AUTOMATED)
             .withSsoadfsAuthority("https://adfs")
             .withSsoClientId("client")
             .withSsoClientSecretKeyVaultPath("https://keyvault/secret")

@@ -22,19 +22,30 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.desktopvirtualization.fluent.ActiveSessionHostConfigurationsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationGroupsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.ControlSessionHostUpdatesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopVirtualizationApiClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.HostPoolsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.InitiateSessionHostUpdatesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixImagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixPackagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPooledSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlansClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostConfigurationsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostConfigurationsOperationStatusClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostManagementsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostManagementsOperationStatusClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostOperationsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.StartMenuItemsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.UserSessionsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.ValidateSessionHostUpdatesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.WorkspacesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -144,6 +155,30 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         return this.workspaces;
     }
 
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
     /** The ScalingPlansClient object to access its operations. */
     private final ScalingPlansClient scalingPlans;
 
@@ -228,6 +263,102 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         return this.hostPools;
     }
 
+    /** The SessionHostManagementsClient object to access its operations. */
+    private final SessionHostManagementsClient sessionHostManagements;
+
+    /**
+     * Gets the SessionHostManagementsClient object to access its operations.
+     *
+     * @return the SessionHostManagementsClient object.
+     */
+    public SessionHostManagementsClient getSessionHostManagements() {
+        return this.sessionHostManagements;
+    }
+
+    /** The ValidateSessionHostUpdatesClient object to access its operations. */
+    private final ValidateSessionHostUpdatesClient validateSessionHostUpdates;
+
+    /**
+     * Gets the ValidateSessionHostUpdatesClient object to access its operations.
+     *
+     * @return the ValidateSessionHostUpdatesClient object.
+     */
+    public ValidateSessionHostUpdatesClient getValidateSessionHostUpdates() {
+        return this.validateSessionHostUpdates;
+    }
+
+    /** The InitiateSessionHostUpdatesClient object to access its operations. */
+    private final InitiateSessionHostUpdatesClient initiateSessionHostUpdates;
+
+    /**
+     * Gets the InitiateSessionHostUpdatesClient object to access its operations.
+     *
+     * @return the InitiateSessionHostUpdatesClient object.
+     */
+    public InitiateSessionHostUpdatesClient getInitiateSessionHostUpdates() {
+        return this.initiateSessionHostUpdates;
+    }
+
+    /** The ControlSessionHostUpdatesClient object to access its operations. */
+    private final ControlSessionHostUpdatesClient controlSessionHostUpdates;
+
+    /**
+     * Gets the ControlSessionHostUpdatesClient object to access its operations.
+     *
+     * @return the ControlSessionHostUpdatesClient object.
+     */
+    public ControlSessionHostUpdatesClient getControlSessionHostUpdates() {
+        return this.controlSessionHostUpdates;
+    }
+
+    /** The SessionHostManagementsOperationStatusClient object to access its operations. */
+    private final SessionHostManagementsOperationStatusClient sessionHostManagementsOperationStatus;
+
+    /**
+     * Gets the SessionHostManagementsOperationStatusClient object to access its operations.
+     *
+     * @return the SessionHostManagementsOperationStatusClient object.
+     */
+    public SessionHostManagementsOperationStatusClient getSessionHostManagementsOperationStatus() {
+        return this.sessionHostManagementsOperationStatus;
+    }
+
+    /** The SessionHostConfigurationsClient object to access its operations. */
+    private final SessionHostConfigurationsClient sessionHostConfigurations;
+
+    /**
+     * Gets the SessionHostConfigurationsClient object to access its operations.
+     *
+     * @return the SessionHostConfigurationsClient object.
+     */
+    public SessionHostConfigurationsClient getSessionHostConfigurations() {
+        return this.sessionHostConfigurations;
+    }
+
+    /** The SessionHostConfigurationsOperationStatusClient object to access its operations. */
+    private final SessionHostConfigurationsOperationStatusClient sessionHostConfigurationsOperationStatus;
+
+    /**
+     * Gets the SessionHostConfigurationsOperationStatusClient object to access its operations.
+     *
+     * @return the SessionHostConfigurationsOperationStatusClient object.
+     */
+    public SessionHostConfigurationsOperationStatusClient getSessionHostConfigurationsOperationStatus() {
+        return this.sessionHostConfigurationsOperationStatus;
+    }
+
+    /** The ActiveSessionHostConfigurationsClient object to access its operations. */
+    private final ActiveSessionHostConfigurationsClient activeSessionHostConfigurations;
+
+    /**
+     * Gets the ActiveSessionHostConfigurationsClient object to access its operations.
+     *
+     * @return the ActiveSessionHostConfigurationsClient object.
+     */
+    public ActiveSessionHostConfigurationsClient getActiveSessionHostConfigurations() {
+        return this.activeSessionHostConfigurations;
+    }
+
     /** The UserSessionsClient object to access its operations. */
     private final UserSessionsClient userSessions;
 
@@ -250,6 +381,18 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
      */
     public SessionHostsClient getSessionHosts() {
         return this.sessionHosts;
+    }
+
+    /** The SessionHostOperationsClient object to access its operations. */
+    private final SessionHostOperationsClient sessionHostOperations;
+
+    /**
+     * Gets the SessionHostOperationsClient object to access its operations.
+     *
+     * @return the SessionHostOperationsClient object.
+     */
+    public SessionHostOperationsClient getSessionHostOperations() {
+        return this.sessionHostOperations;
     }
 
     /** The MsixPackagesClient object to access its operations. */
@@ -298,9 +441,11 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-09";
+        this.apiVersion = "2023-04-06-preview";
         this.operations = new OperationsClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.scalingPlans = new ScalingPlansClientImpl(this);
         this.scalingPlanPooledSchedules = new ScalingPlanPooledSchedulesClientImpl(this);
         this.applicationGroups = new ApplicationGroupsClientImpl(this);
@@ -308,8 +453,17 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.applications = new ApplicationsClientImpl(this);
         this.desktops = new DesktopsClientImpl(this);
         this.hostPools = new HostPoolsClientImpl(this);
+        this.sessionHostManagements = new SessionHostManagementsClientImpl(this);
+        this.validateSessionHostUpdates = new ValidateSessionHostUpdatesClientImpl(this);
+        this.initiateSessionHostUpdates = new InitiateSessionHostUpdatesClientImpl(this);
+        this.controlSessionHostUpdates = new ControlSessionHostUpdatesClientImpl(this);
+        this.sessionHostManagementsOperationStatus = new SessionHostManagementsOperationStatusClientImpl(this);
+        this.sessionHostConfigurations = new SessionHostConfigurationsClientImpl(this);
+        this.sessionHostConfigurationsOperationStatus = new SessionHostConfigurationsOperationStatusClientImpl(this);
+        this.activeSessionHostConfigurations = new ActiveSessionHostConfigurationsClientImpl(this);
         this.userSessions = new UserSessionsClientImpl(this);
         this.sessionHosts = new SessionHostsClientImpl(this);
+        this.sessionHostOperations = new SessionHostOperationsClientImpl(this);
         this.msixPackages = new MsixPackagesClientImpl(this);
         this.msixImages = new MsixImagesClientImpl(this);
     }

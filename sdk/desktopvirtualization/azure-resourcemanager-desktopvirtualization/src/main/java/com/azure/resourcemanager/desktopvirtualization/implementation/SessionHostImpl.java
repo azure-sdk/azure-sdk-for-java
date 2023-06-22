@@ -106,6 +106,14 @@ public final class SessionHostImpl implements SessionHost {
         return this.innerModel().updateErrorMessage();
     }
 
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.innerModel().lastSessionHostUpdateTime();
+    }
+
+    public String sessionHostConfiguration() {
+        return this.innerModel().sessionHostConfiguration();
+    }
+
     public List<SessionHostHealthCheckReport> sessionHostHealthCheckResults() {
         List<SessionHostHealthCheckReport> inner = this.innerModel().sessionHostHealthCheckResults();
         if (inner != null) {

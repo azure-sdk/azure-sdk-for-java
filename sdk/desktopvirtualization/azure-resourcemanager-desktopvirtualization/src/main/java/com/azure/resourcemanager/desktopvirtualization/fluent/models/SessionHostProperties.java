@@ -112,6 +112,18 @@ public final class SessionHostProperties {
     private String updateErrorMessage;
 
     /*
+     * The last time update was completed.
+     */
+    @JsonProperty(value = "lastSessionHostUpdateTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastSessionHostUpdateTime;
+
+    /*
+     * SessionHostConfiguration version reference at the time the update is initiated, in the format of date time.
+     */
+    @JsonProperty(value = "sessionHostConfiguration", access = JsonProperty.Access.WRITE_ONLY)
+    private String sessionHostConfiguration;
+
+    /*
      * List of SessionHostHealthCheckReports
      */
     @JsonProperty(value = "sessionHostHealthCheckResults", access = JsonProperty.Access.WRITE_ONLY)
@@ -384,6 +396,25 @@ public final class SessionHostProperties {
     public SessionHostProperties withUpdateErrorMessage(String updateErrorMessage) {
         this.updateErrorMessage = updateErrorMessage;
         return this;
+    }
+
+    /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     *
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.lastSessionHostUpdateTime;
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time.
+     *
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.sessionHostConfiguration;
     }
 
     /**

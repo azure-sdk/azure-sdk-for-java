@@ -152,6 +152,21 @@ public interface SessionHost {
     String updateErrorMessage();
 
     /**
+     * Gets the lastSessionHostUpdateTime property: The last time update was completed.
+     *
+     * @return the lastSessionHostUpdateTime value.
+     */
+    OffsetDateTime lastSessionHostUpdateTime();
+
+    /**
+     * Gets the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time.
+     *
+     * @return the sessionHostConfiguration value.
+     */
+    String sessionHostConfiguration();
+
+    /**
      * Gets the sessionHostHealthCheckResults property: List of SessionHostHealthCheckReports.
      *
      * @return the sessionHostHealthCheckResults value.

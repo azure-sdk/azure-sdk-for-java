@@ -94,6 +94,14 @@ public interface HostPoolProperties {
     String vmTemplate();
 
     /**
+     * Gets the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     *
+     * @return the managementType value.
+     */
+    ManagementType managementType();
+
+    /**
      * Gets the applicationGroupReferences property: List of applicationGroup links.
      *
      * @return the applicationGroupReferences value.
@@ -152,12 +160,28 @@ public interface HostPoolProperties {
     Boolean cloudPcResource();
 
     /**
+     * Gets the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
+     * networks, Disabled allows this resource to only be accessed via private endpoints.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    HostpoolPublicNetworkAccess publicNetworkAccess();
+
+    /**
      * Gets the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
      *
      * @return the agentUpdate value.
      */
     AgentUpdateProperties agentUpdate();
+
+    /**
+     * Gets the privateEndpointConnections property: List of private endpoint connection associated with the specified
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolPropertiesInner object.

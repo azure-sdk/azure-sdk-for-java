@@ -59,6 +59,20 @@ public interface DesktopVirtualizationApiClient {
     WorkspacesClient getWorkspaces();
 
     /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
      * Gets the ScalingPlansClient object to access its operations.
      *
      * @return the ScalingPlansClient object.
@@ -108,6 +122,62 @@ public interface DesktopVirtualizationApiClient {
     HostPoolsClient getHostPools();
 
     /**
+     * Gets the SessionHostManagementsClient object to access its operations.
+     *
+     * @return the SessionHostManagementsClient object.
+     */
+    SessionHostManagementsClient getSessionHostManagements();
+
+    /**
+     * Gets the ValidateSessionHostUpdatesClient object to access its operations.
+     *
+     * @return the ValidateSessionHostUpdatesClient object.
+     */
+    ValidateSessionHostUpdatesClient getValidateSessionHostUpdates();
+
+    /**
+     * Gets the InitiateSessionHostUpdatesClient object to access its operations.
+     *
+     * @return the InitiateSessionHostUpdatesClient object.
+     */
+    InitiateSessionHostUpdatesClient getInitiateSessionHostUpdates();
+
+    /**
+     * Gets the ControlSessionHostUpdatesClient object to access its operations.
+     *
+     * @return the ControlSessionHostUpdatesClient object.
+     */
+    ControlSessionHostUpdatesClient getControlSessionHostUpdates();
+
+    /**
+     * Gets the SessionHostManagementsOperationStatusClient object to access its operations.
+     *
+     * @return the SessionHostManagementsOperationStatusClient object.
+     */
+    SessionHostManagementsOperationStatusClient getSessionHostManagementsOperationStatus();
+
+    /**
+     * Gets the SessionHostConfigurationsClient object to access its operations.
+     *
+     * @return the SessionHostConfigurationsClient object.
+     */
+    SessionHostConfigurationsClient getSessionHostConfigurations();
+
+    /**
+     * Gets the SessionHostConfigurationsOperationStatusClient object to access its operations.
+     *
+     * @return the SessionHostConfigurationsOperationStatusClient object.
+     */
+    SessionHostConfigurationsOperationStatusClient getSessionHostConfigurationsOperationStatus();
+
+    /**
+     * Gets the ActiveSessionHostConfigurationsClient object to access its operations.
+     *
+     * @return the ActiveSessionHostConfigurationsClient object.
+     */
+    ActiveSessionHostConfigurationsClient getActiveSessionHostConfigurations();
+
+    /**
      * Gets the UserSessionsClient object to access its operations.
      *
      * @return the UserSessionsClient object.
@@ -120,6 +190,13 @@ public interface DesktopVirtualizationApiClient {
      * @return the SessionHostsClient object.
      */
     SessionHostsClient getSessionHosts();
+
+    /**
+     * Gets the SessionHostOperationsClient object to access its operations.
+     *
+     * @return the SessionHostOperationsClient object.
+     */
+    SessionHostOperationsClient getSessionHostOperations();
 
     /**
      * Gets the MsixPackagesClient object to access its operations.

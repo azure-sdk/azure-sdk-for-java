@@ -46,6 +46,12 @@ public final class Status extends ExpandableStringEnum<Status> {
     /** Static value NeedsAssistance for Status. */
     public static final Status NEEDS_ASSISTANCE = fromString("NeedsAssistance");
 
+    /** Static value Provisioning for Status. */
+    public static final Status PROVISIONING = fromString("Provisioning");
+
+    /** Static value ProvisioningFailed for Status. */
+    public static final Status PROVISIONING_FAILED = fromString("ProvisioningFailed");
+
     /**
      * Creates a new instance of Status value.
      *
