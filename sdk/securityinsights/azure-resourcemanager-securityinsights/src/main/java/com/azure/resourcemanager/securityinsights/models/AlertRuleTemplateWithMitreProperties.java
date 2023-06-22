@@ -23,6 +23,10 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
     @JsonProperty(value = "techniques")
     private List<String> techniques;
 
+    /** Creates an instance of AlertRuleTemplateWithMitreProperties class. */
+    public AlertRuleTemplateWithMitreProperties() {
+    }
+
     /**
      * Get the tactics property: The tactics of the alert rule.
      *

@@ -11,19 +11,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents AAD (Azure Active Directory) data connector. */
+/** Represents AADIP (Azure Active Directory Identity Protection) data connector. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureActiveDirectory")
 @Fluent
 public final class AadDataConnector extends DataConnectorInner {
     /*
-     * AAD (Azure Active Directory) data connector properties.
+     * AADIP (Azure Active Directory Identity Protection) data connector properties.
      */
     @JsonProperty(value = "properties")
     private AadDataConnectorProperties innerProperties;
 
+    /** Creates an instance of AadDataConnector class. */
+    public AadDataConnector() {
+    }
+
     /**
-     * Get the innerProperties property: AAD (Azure Active Directory) data connector properties.
+     * Get the innerProperties property: AADIP (Azure Active Directory Identity Protection) data connector properties.
      *
      * @return the innerProperties value.
      */
