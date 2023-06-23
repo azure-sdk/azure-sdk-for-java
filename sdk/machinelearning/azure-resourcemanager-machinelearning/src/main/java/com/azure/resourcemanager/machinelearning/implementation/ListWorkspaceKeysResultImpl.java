@@ -22,14 +22,6 @@ public final class ListWorkspaceKeysResultImpl implements ListWorkspaceKeysResul
         this.serviceManager = serviceManager;
     }
 
-    public String userStorageKey() {
-        return this.innerModel().userStorageKey();
-    }
-
-    public String userStorageResourceId() {
-        return this.innerModel().userStorageResourceId();
-    }
-
     public String appInsightsInstrumentationKey() {
         return this.innerModel().appInsightsInstrumentationKey();
     }
@@ -45,6 +37,14 @@ public final class ListWorkspaceKeysResultImpl implements ListWorkspaceKeysResul
         } else {
             return null;
         }
+    }
+
+    public String userStorageArmId() {
+        return this.innerModel().userStorageArmId();
+    }
+
+    public String userStorageKey() {
+        return this.innerModel().userStorageKey();
     }
 
     public ListWorkspaceKeysResultInner innerModel() {

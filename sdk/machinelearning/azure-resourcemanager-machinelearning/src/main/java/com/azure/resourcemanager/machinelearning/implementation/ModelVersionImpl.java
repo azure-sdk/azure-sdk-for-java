@@ -4,11 +4,16 @@
 
 package com.azure.resourcemanager.machinelearning.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
 import com.azure.resourcemanager.machinelearning.models.ModelVersion;
 import com.azure.resourcemanager.machinelearning.models.ModelVersionProperties;
+import com.azure.resourcemanager.machinelearning.models.PackageRequest;
+import com.azure.resourcemanager.machinelearning.models.PackageResponse;
+import com.azure.resourcemanager.machinelearning.models.PendingUploadRequestDto;
+import com.azure.resourcemanager.machinelearning.models.PendingUploadResponseDto;
 
 public final class ModelVersionImpl implements ModelVersion, ModelVersion.Definition, ModelVersion.Update {
     private ModelVersionInner innerObject;
@@ -49,16 +54,16 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String modelName;
 
     private String version;
 
-    public ModelVersionImpl withExistingModel(String resourceGroupName, String workspaceName, String name) {
+    public ModelVersionImpl withExistingModel(String resourceGroupName, String registryName, String modelName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.modelName = modelName;
         return this;
     }
 
@@ -66,10 +71,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -77,9 +80,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), context);
         return this;
     }
 
@@ -97,10 +99,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -108,9 +108,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryModelVersions()
+                .createOrUpdate(resourceGroupName, registryName, modelName, version, this.innerModel(), context);
         return this;
     }
 
@@ -120,8 +119,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "models");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
+        this.modelName = Utils.getValueFromIdByName(innerObject.id(), "models");
         this.version = Utils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
@@ -129,8 +128,8 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+                .getRegistryModelVersions()
+                .getWithResponse(resourceGroupName, registryName, modelName, version, Context.NONE)
                 .getValue();
         return this;
     }
@@ -139,10 +138,36 @@ public final class ModelVersionImpl implements ModelVersion, ModelVersion.Defini
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getModelVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+                .getRegistryModelVersions()
+                .getWithResponse(resourceGroupName, registryName, modelName, version, context)
                 .getValue();
         return this;
+    }
+
+    public PackageResponse packageMethod(PackageRequest body) {
+        return serviceManager
+            .registryModelVersions()
+            .packageMethod(resourceGroupName, registryName, modelName, version, body);
+    }
+
+    public PackageResponse packageMethod(PackageRequest body, Context context) {
+        return serviceManager
+            .registryModelVersions()
+            .packageMethod(resourceGroupName, registryName, modelName, version, body, context);
+    }
+
+    public Response<PendingUploadResponseDto> createOrGetStartPendingUploadWithResponse(
+        PendingUploadRequestDto body, Context context) {
+        return serviceManager
+            .registryModelVersions()
+            .createOrGetStartPendingUploadWithResponse(
+                resourceGroupName, registryName, modelName, version, body, context);
+    }
+
+    public PendingUploadResponseDto createOrGetStartPendingUpload(PendingUploadRequestDto body) {
+        return serviceManager
+            .registryModelVersions()
+            .createOrGetStartPendingUpload(resourceGroupName, registryName, modelName, version, body);
     }
 
     public ModelVersionImpl withProperties(ModelVersionProperties properties) {
