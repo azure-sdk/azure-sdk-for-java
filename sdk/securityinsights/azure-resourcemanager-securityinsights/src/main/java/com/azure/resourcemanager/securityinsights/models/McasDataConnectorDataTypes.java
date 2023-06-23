@@ -16,6 +16,10 @@ public final class McasDataConnectorDataTypes extends AlertsDataTypeOfDataConnec
     @JsonProperty(value = "discoveryLogs")
     private DataConnectorDataTypeCommon discoveryLogs;
 
+    /** Creates an instance of McasDataConnectorDataTypes class. */
+    public McasDataConnectorDataTypes() {
+    }
+
     /**
      * Get the discoveryLogs property: Discovery log data type connection.
      *

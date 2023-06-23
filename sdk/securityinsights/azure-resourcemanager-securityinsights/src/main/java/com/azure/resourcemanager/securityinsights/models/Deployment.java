@@ -41,6 +41,10 @@ public final class Deployment {
     @JsonProperty(value = "deploymentLogsUrl")
     private String deploymentLogsUrl;
 
+    /** Creates an instance of Deployment class. */
+    public Deployment() {
+    }
+
     /**
      * Get the deploymentId property: Deployment identifier.
      *
