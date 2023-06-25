@@ -226,7 +226,7 @@ public interface SimGroup {
     SimGroup.Update update();
 
     /** The template for SimGroup update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -253,6 +253,16 @@ public interface SimGroup {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the SimGroup update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identity associated with this resource..
+             *
+             * @param identity The managed service identity associated with this resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(ManagedServiceIdentity identity);
         }
     }
     /**
