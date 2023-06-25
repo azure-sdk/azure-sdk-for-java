@@ -47,7 +47,7 @@ public interface Table {
     Integer retentionInDays();
 
     /**
-     * Gets the totalRetentionInDays property: The table total retention in days, between 4 and 2555. Setting this
+     * Gets the totalRetentionInDays property: The table total retention in days, between 4 and 2556. Setting this
      * property to -1 will default to table retention.
      *
      * @return the totalRetentionInDays value.
@@ -114,6 +114,22 @@ public interface Table {
     ProvisioningStateEnum provisioningState();
 
     /**
+     * Gets the retentionInDaysAsDefault property: True - Value originates from workspace retention in days, False -
+     * Customer specific.
+     *
+     * @return the retentionInDaysAsDefault value.
+     */
+    Boolean retentionInDaysAsDefault();
+
+    /**
+     * Gets the totalRetentionInDaysAsDefault property: True - Value originates from retention in days, False - Customer
+     * specific.
+     *
+     * @return the totalRetentionInDaysAsDefault value.
+     */
+    Boolean totalRetentionInDaysAsDefault();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -156,7 +172,6 @@ public interface Table {
                 DefinitionStages.WithTotalRetentionInDays,
                 DefinitionStages.WithSearchResults,
                 DefinitionStages.WithRestoredLogs,
-                DefinitionStages.WithResultStatistics,
                 DefinitionStages.WithPlan,
                 DefinitionStages.WithSchema {
             /**
@@ -189,10 +204,10 @@ public interface Table {
         /** The stage of the Table definition allowing to specify totalRetentionInDays. */
         interface WithTotalRetentionInDays {
             /**
-             * Specifies the totalRetentionInDays property: The table total retention in days, between 4 and 2555.
+             * Specifies the totalRetentionInDays property: The table total retention in days, between 4 and 2556.
              * Setting this property to -1 will default to table retention..
              *
-             * @param totalRetentionInDays The table total retention in days, between 4 and 2555. Setting this property
+             * @param totalRetentionInDays The table total retention in days, between 4 and 2556. Setting this property
              *     to -1 will default to table retention.
              * @return the next definition stage.
              */
@@ -217,16 +232,6 @@ public interface Table {
              * @return the next definition stage.
              */
             WithCreate withRestoredLogs(RestoredLogs restoredLogs);
-        }
-        /** The stage of the Table definition allowing to specify resultStatistics. */
-        interface WithResultStatistics {
-            /**
-             * Specifies the resultStatistics property: Search job execution statistics..
-             *
-             * @param resultStatistics Search job execution statistics.
-             * @return the next definition stage.
-             */
-            WithCreate withResultStatistics(ResultStatistics resultStatistics);
         }
         /** The stage of the Table definition allowing to specify plan. */
         interface WithPlan {
@@ -263,7 +268,6 @@ public interface Table {
             UpdateStages.WithTotalRetentionInDays,
             UpdateStages.WithSearchResults,
             UpdateStages.WithRestoredLogs,
-            UpdateStages.WithResultStatistics,
             UpdateStages.WithPlan,
             UpdateStages.WithSchema {
         /**
@@ -298,10 +302,10 @@ public interface Table {
         /** The stage of the Table update allowing to specify totalRetentionInDays. */
         interface WithTotalRetentionInDays {
             /**
-             * Specifies the totalRetentionInDays property: The table total retention in days, between 4 and 2555.
+             * Specifies the totalRetentionInDays property: The table total retention in days, between 4 and 2556.
              * Setting this property to -1 will default to table retention..
              *
-             * @param totalRetentionInDays The table total retention in days, between 4 and 2555. Setting this property
+             * @param totalRetentionInDays The table total retention in days, between 4 and 2556. Setting this property
              *     to -1 will default to table retention.
              * @return the next definition stage.
              */
@@ -326,16 +330,6 @@ public interface Table {
              * @return the next definition stage.
              */
             Update withRestoredLogs(RestoredLogs restoredLogs);
-        }
-        /** The stage of the Table update allowing to specify resultStatistics. */
-        interface WithResultStatistics {
-            /**
-             * Specifies the resultStatistics property: Search job execution statistics..
-             *
-             * @param resultStatistics Search job execution statistics.
-             * @return the next definition stage.
-             */
-            Update withResultStatistics(ResultStatistics resultStatistics);
         }
         /** The stage of the Table update allowing to specify plan. */
         interface WithPlan {
@@ -378,15 +372,6 @@ public interface Table {
      * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
      * Data Collection Rule-based Custom Logs.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void migrate();
-
-    /**
-     * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
-     * Data Collection Rule-based Custom Logs.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -394,4 +379,32 @@ public interface Table {
      * @return the {@link Response}.
      */
     Response<Void> migrateWithResponse(Context context);
+
+    /**
+     * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
+     * Data Collection Rule-based Custom Logs.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate();
+
+    /**
+     * Cancel a log analytics workspace search results table query run.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> cancelSearchWithResponse(Context context);
+
+    /**
+     * Cancel a log analytics workspace search results table query run.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void cancelSearch();
 }

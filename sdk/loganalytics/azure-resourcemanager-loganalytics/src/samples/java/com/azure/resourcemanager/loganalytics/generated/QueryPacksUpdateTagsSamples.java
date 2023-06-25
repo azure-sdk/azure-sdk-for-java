@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.loganalytics.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPack;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public final class QueryPacksUpdateTagsSamples {
         LogAnalyticsQueryPack resource =
             manager
                 .queryPacks()
-                .getByResourceGroupWithResponse("my-resource-group", "my-querypack", Context.NONE)
+                .getByResourceGroupWithResponse("my-resource-group", "my-querypack", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("Tag1", "Value1", "Tag2", "Value2")).apply();
     }
