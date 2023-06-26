@@ -699,7 +699,6 @@ public interface Pool {
             UpdateStages.WithScaleSettings,
             UpdateStages.WithInterNodeCommunication,
             UpdateStages.WithNetworkConfiguration,
-            UpdateStages.WithTaskSlotsPerNode,
             UpdateStages.WithTaskSchedulingPolicy,
             UpdateStages.WithUserAccounts,
             UpdateStages.WithMetadata,
@@ -846,23 +845,6 @@ public interface Pool {
              * @return the next definition stage.
              */
             Update withNetworkConfiguration(NetworkConfiguration networkConfiguration);
-        }
-        /** The stage of the Pool update allowing to specify taskSlotsPerNode. */
-        interface WithTaskSlotsPerNode {
-            /**
-             * Specifies the taskSlotsPerNode property: The number of task slots that can be used to run concurrent
-             * tasks on a single compute node in the pool.
-             *
-             * <p>The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize
-             * of the pool or 256..
-             *
-             * @param taskSlotsPerNode The number of task slots that can be used to run concurrent tasks on a single
-             *     compute node in the pool.
-             *     <p>The default value is 1. The maximum value is the smaller of 4 times the number of cores of the
-             *     vmSize of the pool or 256.
-             * @return the next definition stage.
-             */
-            Update withTaskSlotsPerNode(Integer taskSlotsPerNode);
         }
         /** The stage of the Pool update allowing to specify taskSchedulingPolicy. */
         interface WithTaskSchedulingPolicy {
