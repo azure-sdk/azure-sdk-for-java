@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.notificationhubs.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.notificationhubs.fluent.models.OperationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,24 +15,27 @@ import java.util.List;
  */
 @Immutable
 public final class OperationListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationListResult.class);
-
     /*
-     * List of NotificationHubs operations supported by the
+     * Gets list of NotificationHubs operations supported by the
      * Microsoft.NotificationHubs resource provider.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationInner> value;
 
     /*
-     * URL to get the next set of operation list results if there are any.
+     * Gets URL to get the next set of operation list results if there are
+     * any.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of OperationListResult class. */
+    public OperationListResult() {
+    }
+
     /**
-     * Get the value property: List of NotificationHubs operations supported by the Microsoft.NotificationHubs resource
-     * provider.
+     * Get the value property: Gets list of NotificationHubs operations supported by the Microsoft.NotificationHubs
+     * resource provider.
      *
      * @return the value value.
      */
@@ -43,7 +44,7 @@ public final class OperationListResult {
     }
 
     /**
-     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * Get the nextLink property: Gets URL to get the next set of operation list results if there are any.
      *
      * @return the nextLink value.
      */

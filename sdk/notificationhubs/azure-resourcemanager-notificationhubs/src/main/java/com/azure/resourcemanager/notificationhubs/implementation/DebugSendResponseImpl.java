@@ -4,9 +4,10 @@
 
 package com.azure.resourcemanager.notificationhubs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.notificationhubs.fluent.models.DebugSendResponseInner;
 import com.azure.resourcemanager.notificationhubs.models.DebugSendResponse;
-import com.azure.resourcemanager.notificationhubs.models.Sku;
+import com.azure.resourcemanager.notificationhubs.models.DebugSendResult;
 import java.util.Collections;
 import java.util.Map;
 
@@ -34,6 +35,10 @@ public final class DebugSendResponseImpl implements DebugSendResponse {
         return this.innerModel().type();
     }
 
+    public DebugSendResult properties() {
+        return this.innerModel().properties();
+    }
+
     public String location() {
         return this.innerModel().location();
     }
@@ -47,20 +52,8 @@ public final class DebugSendResponseImpl implements DebugSendResponse {
         }
     }
 
-    public Sku sku() {
-        return this.innerModel().sku();
-    }
-
-    public Float success() {
-        return this.innerModel().success();
-    }
-
-    public Float failure() {
-        return this.innerModel().failure();
-    }
-
-    public Object results() {
-        return this.innerModel().results();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public DebugSendResponseInner innerModel() {
