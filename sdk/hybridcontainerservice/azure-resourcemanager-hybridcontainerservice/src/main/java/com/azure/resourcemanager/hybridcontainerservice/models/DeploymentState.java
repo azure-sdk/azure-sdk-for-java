@@ -19,6 +19,14 @@ public final class DeploymentState extends ExpandableStringEnum<DeploymentState>
     /** Static value provisioning for DeploymentState. */
     public static final DeploymentState PROVISIONING = fromString("provisioning");
 
+    /** Static value provisioning {HelmChartInstalled} for DeploymentState. */
+    public static final DeploymentState PROVISIONING_HELM_CHART_INSTALLED =
+        fromString("provisioning {HelmChartInstalled}");
+
+    /** Static value provisioning {MSICertificateDownloaded} for DeploymentState. */
+    public static final DeploymentState PROVISIONING_MSICERTIFICATE_DOWNLOADED =
+        fromString("provisioning {MSICertificateDownloaded}");
+
     /** Static value provisioned for DeploymentState. */
     public static final DeploymentState PROVISIONED = fromString("provisioned");
 
