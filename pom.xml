@@ -97,6 +97,7 @@
     <module>sdk/hybridnetwork</module>
     <module>sdk/identity</module>
     <module>sdk/imagebuilder</module>
+    <module>sdk/intelligentdataexperiences</module>
     <module>sdk/iotcentral</module>
     <module>sdk/iothub</module>
     <module>sdk/keyvault</module>
