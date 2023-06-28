@@ -4,19 +4,31 @@
 
 package com.azure.resourcemanager.oep.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EnergyServices Delete. */
 public final class EnergyServicesDeleteSamples {
     /*
-     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/preview/2021-06-01-preview/examples/OepResource_Delete.json
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/EnergyServices_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: OepResource_Delete.
+     * Sample code: EnergyServices_Delete_MaximumSet_Gen.
      *
      * @param manager Entry point to OepManager.
      */
-    public static void oepResourceDelete(com.azure.resourcemanager.oep.OepManager manager) {
-        manager.energyServices().delete("DummyResourceGroupName", "DummyResourceName", Context.NONE);
+    public static void energyServicesDeleteMaximumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
+        manager.energyServices().delete("SampleResourceGroupName", "mvvwqx", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/EnergyServices_Delete_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: EnergyServices_Delete_MinimumSet_Gen.
+     *
+     * @param manager Entry point to OepManager.
+     */
+    public static void energyServicesDeleteMinimumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
+        manager
+            .energyServices()
+            .delete("SampleResourceGroupName", "iejsdomjuircytyhxsr", com.azure.core.util.Context.NONE);
     }
 }

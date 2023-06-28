@@ -4,24 +4,39 @@
 
 package com.azure.resourcemanager.oep.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.oep.models.CheckNameAvailabilityRequest;
 
 /** Samples for Locations CheckNameAvailability. */
 public final class LocationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/preview/2021-06-01-preview/examples/Locations_CheckNameAvailability.json
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/Locations_CheckNameAvailability_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Locations_CheckNameAvailability.
+     * Sample code: Locations_CheckNameAvailability_MaximumSet_Gen.
      *
      * @param manager Entry point to OepManager.
      */
-    public static void locationsCheckNameAvailability(com.azure.resourcemanager.oep.OepManager manager) {
+    public static void locationsCheckNameAvailabilityMaximumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(
-                new CheckNameAvailabilityRequest().withName("sample-name").withType("Microsoft.OEP/oepResource"),
-                Context.NONE);
+                new CheckNameAvailabilityRequest()
+                    .withName("qytbxhilipmtgntssjdfjfmzvhvve")
+                    .withType("kfnfnrintouvwgzlhhr"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/Locations_CheckNameAvailability_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: Locations_CheckNameAvailability_MinimumSet_Gen.
+     *
+     * @param manager Entry point to OepManager.
+     */
+    public static void locationsCheckNameAvailabilityMinimumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
+        manager
+            .locations()
+            .checkNameAvailabilityWithResponse(new CheckNameAvailabilityRequest(), com.azure.core.util.Context.NONE);
     }
 }

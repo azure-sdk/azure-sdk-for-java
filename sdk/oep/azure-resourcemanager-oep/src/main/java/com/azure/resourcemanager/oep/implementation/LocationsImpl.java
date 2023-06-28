@@ -13,10 +13,9 @@ import com.azure.resourcemanager.oep.fluent.models.CheckNameAvailabilityResponse
 import com.azure.resourcemanager.oep.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.oep.models.CheckNameAvailabilityResponse;
 import com.azure.resourcemanager.oep.models.Locations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class LocationsImpl implements Locations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LocationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(LocationsImpl.class);
 
     private final LocationsClient innerClient;
 
@@ -25,15 +24,6 @@ public final class LocationsImpl implements Locations {
     public LocationsImpl(LocationsClient innerClient, com.azure.resourcemanager.oep.OepManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public CheckNameAvailabilityResponse checkNameAvailability(CheckNameAvailabilityRequest body) {
-        CheckNameAvailabilityResponseInner inner = this.serviceClient().checkNameAvailability(body);
-        if (inner != null) {
-            return new CheckNameAvailabilityResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<CheckNameAvailabilityResponse> checkNameAvailabilityWithResponse(
@@ -46,6 +36,15 @@ public final class LocationsImpl implements Locations {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new CheckNameAvailabilityResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CheckNameAvailabilityResponse checkNameAvailability(CheckNameAvailabilityRequest body) {
+        CheckNameAvailabilityResponseInner inner = this.serviceClient().checkNameAvailability(body);
+        if (inner != null) {
+            return new CheckNameAvailabilityResponseImpl(inner, this.manager());
         } else {
             return null;
         }

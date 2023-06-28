@@ -4,19 +4,18 @@
 
 package com.azure.resourcemanager.oep.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EnergyServices ListByResourceGroup. */
 public final class EnergyServicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/preview/2021-06-01-preview/examples/OepResource_ListByResourceGroup.json
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/EnergyServices_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
-     * Sample code: OepResource_ListByResourceGroup.
+     * Sample code: EnergyServices_ListByResourceGroup_MaximumSet_Gen.
      *
      * @param manager Entry point to OepManager.
      */
-    public static void oepResourceListByResourceGroup(com.azure.resourcemanager.oep.OepManager manager) {
-        manager.energyServices().listByResourceGroup("DummyResourceGroupName", Context.NONE);
+    public static void energyServicesListByResourceGroupMaximumSetGen(
+        com.azure.resourcemanager.oep.OepManager manager) {
+        manager.energyServices().listByResourceGroup("SampleResourceGroupName", com.azure.core.util.Context.NONE);
     }
 }

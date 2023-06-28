@@ -4,22 +4,92 @@
 
 package com.azure.resourcemanager.oep.generated;
 
+import com.azure.resourcemanager.oep.fluent.models.PrivateEndpointConnectionInner;
+import com.azure.resourcemanager.oep.models.AllowedMethods;
+import com.azure.resourcemanager.oep.models.CorsRulesList;
+import com.azure.resourcemanager.oep.models.DataPartitionNames;
+import com.azure.resourcemanager.oep.models.Encryption;
+import com.azure.resourcemanager.oep.models.EnergyServiceProperties;
+import com.azure.resourcemanager.oep.models.KeySource;
+import com.azure.resourcemanager.oep.models.KeyVaultProperties;
+import com.azure.resourcemanager.oep.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.oep.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.oep.models.PrivateEndpoint;
+import com.azure.resourcemanager.oep.models.PrivateEndpointServiceConnectionStatus;
+import com.azure.resourcemanager.oep.models.PrivateLinkServiceConnectionState;
+import com.azure.resourcemanager.oep.models.PublicNetworkAccess;
+import com.azure.resourcemanager.oep.models.Sku;
+import com.azure.resourcemanager.oep.models.UserAssignedIdentity;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /** Samples for EnergyServices Create. */
 public final class EnergyServicesCreateSamples {
     /*
-     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/preview/2021-06-01-preview/examples/OepResource_Create.json
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/EnergyServices_Create_MaximumSet_Gen.json
      */
     /**
-     * Sample code: OepResource_Create.
+     * Sample code: EnergyServices_Create_MaximumSet_Gen.
      *
      * @param manager Entry point to OepManager.
      */
-    public static void oepResourceCreate(com.azure.resourcemanager.oep.OepManager manager) {
+    public static void energyServicesCreateMaximumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
         manager
             .energyServices()
-            .define("DummyResourceName")
-            .withRegion((String) null)
-            .withExistingResourceGroup("DummyResourceGroupName")
+            .define("flfdlfw")
+            .withRegion("us west2")
+            .withExistingResourceGroup("SampleResourceGroupName")
+            .withTags(mapOf("key7957", "fwqdvx"))
+            .withProperties(
+                new EnergyServiceProperties()
+                    .withAuthAppId("00000000-0000-0000-0000-000000000009")
+                    .withDataPartitionNames(Arrays.asList(new DataPartitionNames().withName("sample-dp1")))
+                    .withEncryption(
+                        new Encryption()
+                            .withKeyVaultProperties(
+                                new KeyVaultProperties()
+                                    .withKeyName("fakeTokenPlaceholder")
+                                    .withKeyVersion("fakeTokenPlaceholder")
+                                    .withKeyVaultUri("fakeTokenPlaceholder")
+                                    .withUserIdentity("syzvgkqssocaftbsebtbesdsawi"))
+                            .withKeySource(KeySource.MICROSOFT_KEYVAULT))
+                    .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+                    .withPrivateEndpointConnections(
+                        Arrays
+                            .asList(
+                                new PrivateEndpointConnectionInner()
+                                    .withPrivateEndpoint(new PrivateEndpoint())
+                                    .withPrivateLinkServiceConnectionState(
+                                        new PrivateLinkServiceConnectionState()
+                                            .withStatus(PrivateEndpointServiceConnectionStatus.PENDING)
+                                            .withDescription("sample-description")
+                                            .withActionsRequired("rjdoqbgocxanqzjrhligy"))))
+                    .withCorsRules(
+                        Arrays
+                            .asList(
+                                new CorsRulesList()
+                                    .withAllowedHeaders(Arrays.asList("eiaktpaiivsenfpzgmx"))
+                                    .withAllowedMethods(Arrays.asList(AllowedMethods.DELETE))
+                                    .withAllowedOrigins(Arrays.asList("yigdbqiyddet"))
+                                    .withExposedHeaders(Arrays.asList("bhgcsgafeyej"))
+                                    .withMaxAgeInSeconds(0)))
+                    .withSku(new Sku().withName("samplesku")))
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.NONE)
+                    .withUserAssignedIdentities(mapOf("key9753", new UserAssignedIdentity())))
             .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }

@@ -20,15 +20,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.oep.fluent.OperationsClient;
 import com.azure.resourcemanager.oep.fluent.models.OperationListResultInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public final class OperationsClientImpl implements OperationsClient {
-    private final ClientLogger logger = new ClientLogger(OperationsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final OperationsService service;
 
@@ -52,7 +49,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "OpenEnergyPlatformMa")
-    private interface OperationsService {
+    public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.OpenEnergyPlatform/operations")
         @ExpectedResponses({200})
@@ -120,27 +117,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationListResultInner> listAsync() {
-        return listWithResponseAsync()
-            .flatMap(
-                (Response<OperationListResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Lists the available operations of Microsoft.OpenEnergyPlatform resource provider.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationListResultInner list() {
-        return listAsync().block();
+        return listWithResponseAsync().flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -155,5 +132,17 @@ public final class OperationsClientImpl implements OperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationListResultInner> listWithResponse(Context context) {
         return listWithResponseAsync(context).block();
+    }
+
+    /**
+     * Lists the available operations of Microsoft.OpenEnergyPlatform resource provider.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of REST API operations supported by an Azure Resource Provider.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationListResultInner list() {
+        return listWithResponse(Context.NONE).getValue();
     }
 }

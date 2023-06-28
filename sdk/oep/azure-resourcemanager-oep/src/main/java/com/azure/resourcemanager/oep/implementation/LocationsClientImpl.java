@@ -21,7 +21,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.oep.fluent.LocationsClient;
 import com.azure.resourcemanager.oep.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.oep.models.CheckNameAvailabilityRequest;
@@ -29,8 +28,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LocationsClient. */
 public final class LocationsClientImpl implements LocationsClient {
-    private final ClientLogger logger = new ClientLogger(LocationsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final LocationsService service;
 
@@ -54,7 +51,7 @@ public final class LocationsClientImpl implements LocationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "OpenEnergyPlatformMa")
-    private interface LocationsService {
+    public interface LocationsService {
         @Headers({"Content-Type: application/json"})
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.OpenEnergyPlatform/checkNameAvailability")
         @ExpectedResponses({200})
@@ -153,29 +150,7 @@ public final class LocationsClientImpl implements LocationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckNameAvailabilityResponseInner> checkNameAvailabilityAsync(CheckNameAvailabilityRequest body) {
-        return checkNameAvailabilityWithResponseAsync(body)
-            .flatMap(
-                (Response<CheckNameAvailabilityResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Checks the name availability of the resource with requested resource name.
-     *
-     * @param body NameAvailabilityRequest object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest body) {
-        return checkNameAvailabilityAsync(body).block();
+        return checkNameAvailabilityWithResponseAsync(body).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -192,5 +167,19 @@ public final class LocationsClientImpl implements LocationsClient {
     public Response<CheckNameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityRequest body, Context context) {
         return checkNameAvailabilityWithResponseAsync(body, context).block();
+    }
+
+    /**
+     * Checks the name availability of the resource with requested resource name.
+     *
+     * @param body NameAvailabilityRequest object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest body) {
+        return checkNameAvailabilityWithResponse(body, Context.NONE).getValue();
     }
 }

@@ -4,25 +4,38 @@
 
 package com.azure.resourcemanager.oep.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.oep.models.EnergyService;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Samples for EnergyServices Update. */
 public final class EnergyServicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/preview/2021-06-01-preview/examples/OepResource_Update.json
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/EnergyServices_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: OepResource_Update.
+     * Sample code: EnergyServices_Update_MaximumSet_Gen.
      *
      * @param manager Entry point to OepManager.
      */
-    public static void oepResourceUpdate(com.azure.resourcemanager.oep.OepManager manager) {
+    public static void energyServicesUpdateMaximumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
         EnergyService resource =
             manager
                 .energyServices()
-                .getByResourceGroupWithResponse("DummyResourceGroupName", "DummyResourceName", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "SampleResourceGroupName", "ozxrnhcbqohcevhnjxvmo", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().apply();
+        resource.update().withTags(mapOf("key9048", "amp")).apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }

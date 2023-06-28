@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.oep.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,14 +12,16 @@ import java.util.Map;
 /** The resource model definition used for updating a tracked ARM resource. */
 @Fluent
 public final class EnergyResourceUpdate {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnergyResourceUpdate.class);
-
     /*
      * Resource tags.
      */
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /** Creates an instance of EnergyResourceUpdate class. */
+    public EnergyResourceUpdate() {
+    }
 
     /**
      * Get the tags property: Resource tags.

@@ -9,18 +9,16 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.oep.models.EnergyServiceProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.oep.models.ManagedServiceIdentity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The EnergyService model. */
+/** An Energy service resource. */
 @Fluent
 public final class EnergyServiceInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnergyServiceInner.class);
-
     /*
-     * The properties property.
+     * The properties of an Energy service resource.
      */
     @JsonProperty(value = "properties")
     private EnergyServiceProperties properties;
@@ -39,14 +37,23 @@ public final class EnergyServiceInner extends ProxyResource {
     private String location;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * The type of identity used for the resource.
+     */
+    @JsonProperty(value = "identity")
+    private ManagedServiceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of EnergyServiceInner class. */
+    public EnergyServiceInner() {
+    }
+
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: The properties of an Energy service resource.
      *
      * @return the properties value.
      */
@@ -55,7 +62,7 @@ public final class EnergyServiceInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: The properties of an Energy service resource.
      *
      * @param properties the properties value to set.
      * @return the EnergyServiceInner object itself.
@@ -106,6 +113,26 @@ public final class EnergyServiceInner extends ProxyResource {
     }
 
     /**
+     * Get the identity property: The type of identity used for the resource.
+     *
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The type of identity used for the resource.
+     *
+     * @param identity the identity value to set.
+     * @return the EnergyServiceInner object itself.
+     */
+    public EnergyServiceInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -124,9 +151,14 @@ public final class EnergyServiceInner extends ProxyResource {
             properties().validate();
         }
         if (location() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property location in model EnergyServiceInner"));
         }
+        if (identity() != null) {
+            identity().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(EnergyServiceInner.class);
 }

@@ -15,6 +15,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
@@ -25,21 +26,21 @@ import com.azure.resourcemanager.oep.fluent.EnergyServicesClient;
 import com.azure.resourcemanager.oep.fluent.LocationsClient;
 import com.azure.resourcemanager.oep.fluent.OpenEnergyPlatformManagementServiceAPIs;
 import com.azure.resourcemanager.oep.fluent.OperationsClient;
+import com.azure.resourcemanager.oep.fluent.PrivateEndpointConnectionProxiesClient;
+import com.azure.resourcemanager.oep.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.oep.fluent.PrivateLinkResourcesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the OpenEnergyPlatformManagementServiceAPIsImpl type. */
 @ServiceClient(builder = OpenEnergyPlatformManagementServiceAPIsBuilder.class)
 public final class OpenEnergyPlatformManagementServiceAPIsImpl implements OpenEnergyPlatformManagementServiceAPIs {
-    private final ClientLogger logger = new ClientLogger(OpenEnergyPlatformManagementServiceAPIsImpl.class);
-
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -136,6 +137,42 @@ public final class OpenEnergyPlatformManagementServiceAPIsImpl implements OpenEn
         return this.energyServices;
     }
 
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
+    /** The PrivateEndpointConnectionProxiesClient object to access its operations. */
+    private final PrivateEndpointConnectionProxiesClient privateEndpointConnectionProxies;
+
+    /**
+     * Gets the PrivateEndpointConnectionProxiesClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionProxiesClient object.
+     */
+    public PrivateEndpointConnectionProxiesClient getPrivateEndpointConnectionProxies() {
+        return this.privateEndpointConnectionProxies;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -170,9 +207,12 @@ public final class OpenEnergyPlatformManagementServiceAPIsImpl implements OpenEn
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-06-01-preview";
+        this.apiVersion = "2023-06-12";
         this.locations = new LocationsClientImpl(this);
         this.energyServices = new EnergyServicesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.privateEndpointConnectionProxies = new PrivateEndpointConnectionProxiesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
 
@@ -192,10 +232,7 @@ public final class OpenEnergyPlatformManagementServiceAPIsImpl implements OpenEn
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -259,7 +296,7 @@ public final class OpenEnergyPlatformManagementServiceAPIsImpl implements OpenEn
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -318,4 +355,6 @@ public final class OpenEnergyPlatformManagementServiceAPIsImpl implements OpenEn
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(OpenEnergyPlatformManagementServiceAPIsImpl.class);
 }

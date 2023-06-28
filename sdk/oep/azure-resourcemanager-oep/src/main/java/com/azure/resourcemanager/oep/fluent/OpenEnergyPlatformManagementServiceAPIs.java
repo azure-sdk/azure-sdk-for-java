@@ -59,6 +59,27 @@ public interface OpenEnergyPlatformManagementServiceAPIs {
     EnergyServicesClient getEnergyServices();
 
     /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the PrivateEndpointConnectionProxiesClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionProxiesClient object.
+     */
+    PrivateEndpointConnectionProxiesClient getPrivateEndpointConnectionProxies();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.

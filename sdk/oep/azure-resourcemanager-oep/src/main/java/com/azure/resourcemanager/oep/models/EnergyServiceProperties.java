@@ -5,16 +5,13 @@
 package com.azure.resourcemanager.oep.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.oep.fluent.models.PrivateEndpointConnectionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The EnergyServiceProperties model. */
+/** The properties of an Energy service resource. */
 @Fluent
 public final class EnergyServiceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnergyServiceProperties.class);
-
     /*
      * The dnsName property.
      */
@@ -38,6 +35,40 @@ public final class EnergyServiceProperties {
      */
     @JsonProperty(value = "dataPartitionNames")
     private List<DataPartitionNames> dataPartitionNames;
+
+    /*
+     * Properties to configure Encryption
+     */
+    @JsonProperty(value = "encryption")
+    private Encryption encryption;
+
+    /*
+     * Whether or not public network access is allowed for the OAK resource.
+     */
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccess publicNetworkAccess;
+
+    /*
+     * List of private endpoint connections associated with the OAK resource.
+     */
+    @JsonProperty(value = "privateEndpointConnections")
+    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+
+    /*
+     * List of cors rules
+     */
+    @JsonProperty(value = "corsRules")
+    private List<CorsRulesList> corsRules;
+
+    /*
+     * The resource model definition representing SKU
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
+
+    /** Creates an instance of EnergyServiceProperties class. */
+    public EnergyServiceProperties() {
+    }
 
     /**
      * Get the dnsName property: The dnsName property.
@@ -98,6 +129,109 @@ public final class EnergyServiceProperties {
     }
 
     /**
+     * Get the encryption property: Properties to configure Encryption.
+     *
+     * @return the encryption value.
+     */
+    public Encryption encryption() {
+        return this.encryption;
+    }
+
+    /**
+     * Set the encryption property: Properties to configure Encryption.
+     *
+     * @param encryption the encryption value to set.
+     * @return the EnergyServiceProperties object itself.
+     */
+    public EnergyServiceProperties withEncryption(Encryption encryption) {
+        this.encryption = encryption;
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: Whether or not public network access is allowed for the OAK resource.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Whether or not public network access is allowed for the OAK resource.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the EnergyServiceProperties object itself.
+     */
+    public EnergyServiceProperties withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
+    }
+
+    /**
+     * Get the privateEndpointConnections property: List of private endpoint connections associated with the OAK
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * Set the privateEndpointConnections property: List of private endpoint connections associated with the OAK
+     * resource.
+     *
+     * @param privateEndpointConnections the privateEndpointConnections value to set.
+     * @return the EnergyServiceProperties object itself.
+     */
+    public EnergyServiceProperties withPrivateEndpointConnections(
+        List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+        this.privateEndpointConnections = privateEndpointConnections;
+        return this;
+    }
+
+    /**
+     * Get the corsRules property: List of cors rules.
+     *
+     * @return the corsRules value.
+     */
+    public List<CorsRulesList> corsRules() {
+        return this.corsRules;
+    }
+
+    /**
+     * Set the corsRules property: List of cors rules.
+     *
+     * @param corsRules the corsRules value to set.
+     * @return the EnergyServiceProperties object itself.
+     */
+    public EnergyServiceProperties withCorsRules(List<CorsRulesList> corsRules) {
+        this.corsRules = corsRules;
+        return this;
+    }
+
+    /**
+     * Get the sku property: The resource model definition representing SKU.
+     *
+     * @return the sku value.
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The resource model definition representing SKU.
+     *
+     * @param sku the sku value to set.
+     * @return the EnergyServiceProperties object itself.
+     */
+    public EnergyServiceProperties withSku(Sku sku) {
+        this.sku = sku;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -105,6 +239,18 @@ public final class EnergyServiceProperties {
     public void validate() {
         if (dataPartitionNames() != null) {
             dataPartitionNames().forEach(e -> e.validate());
+        }
+        if (encryption() != null) {
+            encryption().validate();
+        }
+        if (privateEndpointConnections() != null) {
+            privateEndpointConnections().forEach(e -> e.validate());
+        }
+        if (corsRules() != null) {
+            corsRules().forEach(e -> e.validate());
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 }

@@ -4,19 +4,29 @@
 
 package com.azure.resourcemanager.oep.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/preview/2021-06-01-preview/examples/Operations_List.json
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/Operations_List_MinimumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: Operations_List_MinimumSet_Gen.
      *
      * @param manager Entry point to OepManager.
      */
-    public static void operationsList(com.azure.resourcemanager.oep.OepManager manager) {
-        manager.operations().listWithResponse(Context.NONE);
+    public static void operationsListMinimumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
+        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/oep/resource-manager/Microsoft.OpenEnergyPlatform/stable/2023-06-12/examples/Operations_List_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Operations_List_MaximumSet_Gen.
+     *
+     * @param manager Entry point to OepManager.
+     */
+    public static void operationsListMaximumSetGen(com.azure.resourcemanager.oep.OepManager manager) {
+        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }

@@ -4,9 +4,11 @@
 
 package com.azure.resourcemanager.oep.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.oep.fluent.models.DataPartitionAddOrRemoveRequestInner;
 import com.azure.resourcemanager.oep.fluent.models.EnergyServiceInner;
 import java.util.Map;
 
@@ -34,7 +36,7 @@ public interface EnergyService {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
+     * Gets the properties property: The properties of an Energy service resource.
      *
      * @return the properties value.
      */
@@ -53,6 +55,13 @@ public interface EnergyService {
      * @return the location value.
      */
     String location();
+
+    /**
+     * Gets the identity property: The type of identity used for the resource.
+     *
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -74,6 +83,13 @@ public interface EnergyService {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.oep.fluent.models.EnergyServiceInner object.
@@ -126,7 +142,8 @@ public interface EnergyService {
          * The stage of the EnergyService definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithIdentity {
             /**
              * Executes the create request.
              *
@@ -155,12 +172,22 @@ public interface EnergyService {
         /** The stage of the EnergyService definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: The properties of an Energy service resource..
              *
-             * @param properties The properties property.
+             * @param properties The properties of an Energy service resource.
              * @return the next definition stage.
              */
             WithCreate withProperties(EnergyServiceProperties properties);
+        }
+        /** The stage of the EnergyService definition allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The type of identity used for the resource..
+             *
+             * @param identity The type of identity used for the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
     /**
@@ -214,4 +241,66 @@ public interface EnergyService {
      * @return the refreshed resource.
      */
     EnergyService refresh(Context context);
+
+    /**
+     * Method that gets called if new partition is to be added in a resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the partition add/ delete action properties.
+     */
+    DataPartitionAddOrRemoveRequest addPartition();
+
+    /**
+     * Method that gets called if new partition is to be added in a resource.
+     *
+     * @param body add partition action payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the partition add/ delete action properties.
+     */
+    DataPartitionAddOrRemoveRequest addPartition(DataPartitionAddOrRemoveRequestInner body, Context context);
+
+    /**
+     * Method that gets called if new partition is to be removed from a resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the partition add/ delete action properties.
+     */
+    DataPartitionAddOrRemoveRequest removePartition();
+
+    /**
+     * Method that gets called if new partition is to be removed from a resource.
+     *
+     * @param body remove partition action payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the partition add/ delete action properties.
+     */
+    DataPartitionAddOrRemoveRequest removePartition(DataPartitionAddOrRemoveRequestInner body, Context context);
+
+    /**
+     * Method that gets called when list of partitions is requested.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of data partitions along with {@link Response}.
+     */
+    Response<DataPartitionsListResult> listPartitionsWithResponse(Context context);
+
+    /**
+     * Method that gets called when list of partitions is requested.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of data partitions.
+     */
+    DataPartitionsListResult listPartitions();
 }
