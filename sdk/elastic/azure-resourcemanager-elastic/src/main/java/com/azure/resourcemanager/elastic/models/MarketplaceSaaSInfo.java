@@ -28,6 +28,12 @@ public final class MarketplaceSaaSInfo {
     @JsonProperty(value = "marketplaceResourceId")
     private String marketplaceResourceId;
 
+    /*
+     * Marketplace Subscription Details: SaaS Subscription Status
+     */
+    @JsonProperty(value = "marketplaceStatus")
+    private String marketplaceStatus;
+
     /** Creates an instance of MarketplaceSaaSInfo class. */
     public MarketplaceSaaSInfo() {
     }
@@ -90,6 +96,26 @@ public final class MarketplaceSaaSInfo {
      */
     public MarketplaceSaaSInfo withMarketplaceResourceId(String marketplaceResourceId) {
         this.marketplaceResourceId = marketplaceResourceId;
+        return this;
+    }
+
+    /**
+     * Get the marketplaceStatus property: Marketplace Subscription Details: SaaS Subscription Status.
+     *
+     * @return the marketplaceStatus value.
+     */
+    public String marketplaceStatus() {
+        return this.marketplaceStatus;
+    }
+
+    /**
+     * Set the marketplaceStatus property: Marketplace Subscription Details: SaaS Subscription Status.
+     *
+     * @param marketplaceStatus the marketplaceStatus value to set.
+     * @return the MarketplaceSaaSInfo object itself.
+     */
+    public MarketplaceSaaSInfo withMarketplaceStatus(String marketplaceStatus) {
+        this.marketplaceStatus = marketplaceStatus;
         return this;
     }
 
