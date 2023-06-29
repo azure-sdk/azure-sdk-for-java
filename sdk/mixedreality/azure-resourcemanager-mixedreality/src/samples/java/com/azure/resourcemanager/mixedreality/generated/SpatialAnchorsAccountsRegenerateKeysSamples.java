@@ -10,7 +10,7 @@ import com.azure.resourcemanager.mixedreality.models.Serial;
 /** Samples for SpatialAnchorsAccounts RegenerateKeys. */
 public final class SpatialAnchorsAccountsRegenerateKeysSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/spatial-anchors/RegenerateKey.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-anchors/RegenerateKey.json
      */
     /**
      * Sample code: Regenerate spatial anchors account keys.

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mixedreality.generated;
 /** Samples for SpatialAnchorsAccounts ListKeys. */
 public final class SpatialAnchorsAccountsListKeysSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/spatial-anchors/ListKeys.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-anchors/ListKeys.json
      */
     /**
      * Sample code: List spatial anchor account key.

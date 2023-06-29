@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for SpatialAnchorsAccounts Update. */
 public final class SpatialAnchorsAccountsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/spatial-anchors/Patch.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-anchors/Patch.json
      */
     /**
      * Sample code: Update spatial anchors account.

@@ -77,8 +77,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SpatialAnchorsAccountPage>> listByResourceGroup(
@@ -91,8 +90,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts/{accountName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -106,8 +104,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts/{accountName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SpatialAnchorsAccountInner>> getByResourceGroup(
@@ -121,8 +118,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts/{accountName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SpatialAnchorsAccountInner>> update(
@@ -137,8 +133,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts/{accountName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SpatialAnchorsAccountInner>> create(
@@ -153,8 +148,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts/{accountName}/listKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}/listKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AccountKeysInner>> listKeys(
@@ -168,8 +162,7 @@ public final class SpatialAnchorsAccountsClientImpl implements SpatialAnchorsAcc
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality"
-                + "/spatialAnchorsAccounts/{accountName}/regenerateKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}/regenerateKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AccountKeysInner>> regenerateKeys(

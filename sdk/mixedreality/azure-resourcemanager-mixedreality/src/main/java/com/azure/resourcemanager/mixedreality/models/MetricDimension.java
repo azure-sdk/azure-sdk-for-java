@@ -29,7 +29,7 @@ public final class MetricDimension {
     private String internalName;
 
     /*
-     * Whether the dimension should be included for the shoebox export scenario.
+     * Flag to indicate export for Shoebox
      */
     @JsonProperty(value = "toBeExportedForShoebox")
     private Boolean toBeExportedForShoebox;
@@ -99,8 +99,7 @@ public final class MetricDimension {
     }
 
     /**
-     * Get the toBeExportedForShoebox property: Whether the dimension should be included for the shoebox export
-     * scenario.
+     * Get the toBeExportedForShoebox property: Flag to indicate export for Shoebox.
      *
      * @return the toBeExportedForShoebox value.
      */
@@ -109,8 +108,7 @@ public final class MetricDimension {
     }
 
     /**
-     * Set the toBeExportedForShoebox property: Whether the dimension should be included for the shoebox export
-     * scenario.
+     * Set the toBeExportedForShoebox property: Flag to indicate export for Shoebox.
      *
      * @param toBeExportedForShoebox the toBeExportedForShoebox value to set.
      * @return the MetricDimension object itself.

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.mixedreality.generated;
 /** Samples for SpatialAnchorsAccounts GetByResourceGroup. */
 public final class SpatialAnchorsAccountsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/spatial-anchors/Get.json
+     * x-ms-original-file: specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-anchors/Get.json
      */
     /**
      * Sample code: Get spatial anchors account.
