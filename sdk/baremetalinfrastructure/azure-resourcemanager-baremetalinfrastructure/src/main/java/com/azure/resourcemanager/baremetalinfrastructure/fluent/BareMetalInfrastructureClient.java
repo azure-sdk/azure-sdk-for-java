@@ -57,4 +57,11 @@ public interface BareMetalInfrastructureClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the AzureBareMetalStorageInstancesClient object to access its operations.
+     *
+     * @return the AzureBareMetalStorageInstancesClient object.
+     */
+    AzureBareMetalStorageInstancesClient getAzureBareMetalStorageInstances();
 }
