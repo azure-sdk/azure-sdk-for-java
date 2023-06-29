@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.hdinsight.generated;
 
-import com.azure.core.util.Context;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Configurations Update. */
 public final class ConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ChangeHttpConnectivityEnable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/ChangeHttpConnectivityEnable.json
      */
     /**
      * Sample code: Enable HTTP connectivity.
@@ -32,11 +31,11 @@ public final class ConfigurationsUpdateSamples {
                     "**********",
                     "restAuthCredential.username",
                     "hadoop"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ChangeHttpConnectivityDisable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/ChangeHttpConnectivityDisable.json
      */
     /**
      * Sample code: Disable HTTP connectivity.
@@ -46,7 +45,12 @@ public final class ConfigurationsUpdateSamples {
     public static void disableHTTPConnectivity(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
         manager
             .configurations()
-            .update("rg1", "cluster1", "gateway", mapOf("restAuthCredential.isEnabled", "false"), Context.NONE);
+            .update(
+                "rg1",
+                "cluster1",
+                "gateway",
+                mapOf("restAuthCredential.isEnabled", "false"),
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
