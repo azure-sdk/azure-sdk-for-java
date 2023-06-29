@@ -7,11 +7,10 @@ package com.azure.resourcemanager.hardwaresecuritymodules.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for AzureDedicatedHsmResourceProvider class. */
-public interface AzureDedicatedHsmResourceProvider {
+/** The interface for AzureHsmResourceProvider class. */
+public interface AzureHsmResourceProvider {
     /**
-     * Gets Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms
-     * part of the URI for every service call.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -23,13 +22,6 @@ public interface AzureDedicatedHsmResourceProvider {
      * @return the endpoint value.
      */
     String getEndpoint();
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -44,6 +36,34 @@ public interface AzureDedicatedHsmResourceProvider {
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
+
+    /**
+     * Gets the CloudHsmClustersClient object to access its operations.
+     *
+     * @return the CloudHsmClustersClient object.
+     */
+    CloudHsmClustersClient getCloudHsmClusters();
+
+    /**
+     * Gets the CloudHsmClusterPrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the CloudHsmClusterPrivateLinkResourcesClient object.
+     */
+    CloudHsmClusterPrivateLinkResourcesClient getCloudHsmClusterPrivateLinkResources();
+
+    /**
+     * Gets the CloudHsmClusterPrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the CloudHsmClusterPrivateEndpointConnectionsClient object.
+     */
+    CloudHsmClusterPrivateEndpointConnectionsClient getCloudHsmClusterPrivateEndpointConnections();
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
 
     /**
      * Gets the OperationsClient object to access its operations.

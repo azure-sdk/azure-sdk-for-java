@@ -34,6 +34,10 @@ public final class DedicatedHsmOperationDisplay {
     @JsonProperty(value = "description")
     private String description;
 
+    /** Creates an instance of DedicatedHsmOperationDisplay class. */
+    public DedicatedHsmOperationDisplay() {
+    }
+
     /**
      * Get the provider property: The Resource Provider of the operation.
      *

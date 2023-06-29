@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsm;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +21,10 @@ public final class DedicatedHsmUpdateSamples {
     public static void updateAnExistingDedicatedHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         DedicatedHsm resource =
-            manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE).getValue();
+            manager
+                .dedicatedHsms()
+                .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("Dept", "hsm", "Environment", "dogfood", "Slice", "A")).apply();
     }
 
@@ -37,7 +39,10 @@ public final class DedicatedHsmUpdateSamples {
     public static void updateAnExistingPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         DedicatedHsm resource =
-            manager.dedicatedHsms().getByResourceGroupWithResponse("hsm-group", "hsm1", Context.NONE).getValue();
+            manager
+                .dedicatedHsms()
+                .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withTags(mapOf("Dept", "hsm", "Environment", "dogfood", "Slice", "A")).apply();
     }
 
