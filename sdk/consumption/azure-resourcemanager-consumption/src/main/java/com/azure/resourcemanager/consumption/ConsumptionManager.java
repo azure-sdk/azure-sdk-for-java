@@ -10,11 +10,13 @@ import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
+import com.azure.core.http.policy.AddHeadersFromContextPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
+import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
@@ -131,6 +133,19 @@ public final class ConsumptionManager {
     }
 
     /**
+     * Creates an instance of Consumption service API entry point.
+     *
+     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param profile the Azure profile for client.
+     * @return the Consumption service API instance.
+     */
+    public static ConsumptionManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
+        Objects.requireNonNull(profile, "'profile' cannot be null.");
+        return new ConsumptionManager(httpPipeline, profile, null);
+    }
+
+    /**
      * Gets a Configurable instance that can be used to create ConsumptionManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
@@ -141,13 +156,14 @@ public final class ConsumptionManager {
 
     /** The Configurable allowing configurations to be set. */
     public static final class Configurable {
-        private final ClientLogger logger = new ClientLogger(Configurable.class);
+        private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
         private final List<HttpPipelinePolicy> policies = new ArrayList<>();
         private final List<String> scopes = new ArrayList<>();
         private RetryPolicy retryPolicy;
+        private RetryOptions retryOptions;
         private Duration defaultPollInterval;
 
         private Configurable() {
@@ -209,15 +225,30 @@ public final class ConsumptionManager {
         }
 
         /**
+         * Sets the retry options for the HTTP pipeline retry policy.
+         *
+         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         *
+         * @param retryOptions the retry options for the HTTP pipeline retry policy.
+         * @return the configurable object itself.
+         */
+        public Configurable withRetryOptions(RetryOptions retryOptions) {
+            this.retryOptions = Objects.requireNonNull(retryOptions, "'retryOptions' cannot be null.");
+            return this;
+        }
+
+        /**
          * Sets the default poll interval, used when service does not provide "Retry-After" header.
          *
          * @param defaultPollInterval the default poll interval.
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval = Objects.requireNonNull(defaultPollInterval, "'retryPolicy' cannot be null.");
+            this.defaultPollInterval =
+                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
-                throw logger.logExceptionAsError(new IllegalArgumentException("'httpPipeline' cannot be negative"));
+                throw LOGGER
+                    .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
             }
             return this;
         }
@@ -239,7 +270,7 @@ public final class ConsumptionManager {
                 .append("-")
                 .append("com.azure.resourcemanager.consumption")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -257,10 +288,15 @@ public final class ConsumptionManager {
                 scopes.add(profile.getEnvironment().getManagementEndpoint() + "/.default");
             }
             if (retryPolicy == null) {
-                retryPolicy = new RetryPolicy("Retry-After", ChronoUnit.SECONDS);
+                if (retryOptions != null) {
+                    retryPolicy = new RetryPolicy(retryOptions);
+                } else {
+                    retryPolicy = new RetryPolicy("Retry-After", ChronoUnit.SECONDS);
+                }
             }
             List<HttpPipelinePolicy> policies = new ArrayList<>();
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
+            policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
             policies
                 .addAll(
@@ -291,7 +327,11 @@ public final class ConsumptionManager {
         }
     }
 
-    /** @return Resource collection API of UsageDetails. */
+    /**
+     * Gets the resource collection API of UsageDetails.
+     *
+     * @return Resource collection API of UsageDetails.
+     */
     public UsageDetails usageDetails() {
         if (this.usageDetails == null) {
             this.usageDetails = new UsageDetailsImpl(clientObject.getUsageDetails(), this);
@@ -299,7 +339,11 @@ public final class ConsumptionManager {
         return usageDetails;
     }
 
-    /** @return Resource collection API of Marketplaces. */
+    /**
+     * Gets the resource collection API of Marketplaces.
+     *
+     * @return Resource collection API of Marketplaces.
+     */
     public Marketplaces marketplaces() {
         if (this.marketplaces == null) {
             this.marketplaces = new MarketplacesImpl(clientObject.getMarketplaces(), this);
@@ -307,7 +351,11 @@ public final class ConsumptionManager {
         return marketplaces;
     }
 
-    /** @return Resource collection API of Budgets. */
+    /**
+     * Gets the resource collection API of Budgets. It manages Budget.
+     *
+     * @return Resource collection API of Budgets.
+     */
     public Budgets budgets() {
         if (this.budgets == null) {
             this.budgets = new BudgetsImpl(clientObject.getBudgets(), this);
@@ -315,7 +363,11 @@ public final class ConsumptionManager {
         return budgets;
     }
 
-    /** @return Resource collection API of Tags. */
+    /**
+     * Gets the resource collection API of Tags.
+     *
+     * @return Resource collection API of Tags.
+     */
     public Tags tags() {
         if (this.tags == null) {
             this.tags = new TagsImpl(clientObject.getTags(), this);
@@ -323,7 +375,11 @@ public final class ConsumptionManager {
         return tags;
     }
 
-    /** @return Resource collection API of Charges. */
+    /**
+     * Gets the resource collection API of Charges.
+     *
+     * @return Resource collection API of Charges.
+     */
     public Charges charges() {
         if (this.charges == null) {
             this.charges = new ChargesImpl(clientObject.getCharges(), this);
@@ -331,7 +387,11 @@ public final class ConsumptionManager {
         return charges;
     }
 
-    /** @return Resource collection API of Balances. */
+    /**
+     * Gets the resource collection API of Balances.
+     *
+     * @return Resource collection API of Balances.
+     */
     public Balances balances() {
         if (this.balances == null) {
             this.balances = new BalancesImpl(clientObject.getBalances(), this);
@@ -339,7 +399,11 @@ public final class ConsumptionManager {
         return balances;
     }
 
-    /** @return Resource collection API of ReservationsSummaries. */
+    /**
+     * Gets the resource collection API of ReservationsSummaries.
+     *
+     * @return Resource collection API of ReservationsSummaries.
+     */
     public ReservationsSummaries reservationsSummaries() {
         if (this.reservationsSummaries == null) {
             this.reservationsSummaries = new ReservationsSummariesImpl(clientObject.getReservationsSummaries(), this);
@@ -347,7 +411,11 @@ public final class ConsumptionManager {
         return reservationsSummaries;
     }
 
-    /** @return Resource collection API of ReservationsDetails. */
+    /**
+     * Gets the resource collection API of ReservationsDetails.
+     *
+     * @return Resource collection API of ReservationsDetails.
+     */
     public ReservationsDetails reservationsDetails() {
         if (this.reservationsDetails == null) {
             this.reservationsDetails = new ReservationsDetailsImpl(clientObject.getReservationsDetails(), this);
@@ -355,7 +423,11 @@ public final class ConsumptionManager {
         return reservationsDetails;
     }
 
-    /** @return Resource collection API of ReservationRecommendations. */
+    /**
+     * Gets the resource collection API of ReservationRecommendations.
+     *
+     * @return Resource collection API of ReservationRecommendations.
+     */
     public ReservationRecommendations reservationRecommendations() {
         if (this.reservationRecommendations == null) {
             this.reservationRecommendations =
@@ -364,7 +436,11 @@ public final class ConsumptionManager {
         return reservationRecommendations;
     }
 
-    /** @return Resource collection API of ReservationRecommendationDetails. */
+    /**
+     * Gets the resource collection API of ReservationRecommendationDetails.
+     *
+     * @return Resource collection API of ReservationRecommendationDetails.
+     */
     public ReservationRecommendationDetails reservationRecommendationDetails() {
         if (this.reservationRecommendationDetails == null) {
             this.reservationRecommendationDetails =
@@ -373,7 +449,11 @@ public final class ConsumptionManager {
         return reservationRecommendationDetails;
     }
 
-    /** @return Resource collection API of ReservationTransactions. */
+    /**
+     * Gets the resource collection API of ReservationTransactions.
+     *
+     * @return Resource collection API of ReservationTransactions.
+     */
     public ReservationTransactions reservationTransactions() {
         if (this.reservationTransactions == null) {
             this.reservationTransactions =
@@ -382,7 +462,11 @@ public final class ConsumptionManager {
         return reservationTransactions;
     }
 
-    /** @return Resource collection API of PriceSheets. */
+    /**
+     * Gets the resource collection API of PriceSheets.
+     *
+     * @return Resource collection API of PriceSheets.
+     */
     public PriceSheets priceSheets() {
         if (this.priceSheets == null) {
             this.priceSheets = new PriceSheetsImpl(clientObject.getPriceSheets(), this);
@@ -390,7 +474,11 @@ public final class ConsumptionManager {
         return priceSheets;
     }
 
-    /** @return Resource collection API of Operations. */
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
@@ -398,7 +486,11 @@ public final class ConsumptionManager {
         return operations;
     }
 
-    /** @return Resource collection API of AggregatedCosts. */
+    /**
+     * Gets the resource collection API of AggregatedCosts.
+     *
+     * @return Resource collection API of AggregatedCosts.
+     */
     public AggregatedCosts aggregatedCosts() {
         if (this.aggregatedCosts == null) {
             this.aggregatedCosts = new AggregatedCostsImpl(clientObject.getAggregatedCosts(), this);
@@ -406,7 +498,11 @@ public final class ConsumptionManager {
         return aggregatedCosts;
     }
 
-    /** @return Resource collection API of EventsOperations. */
+    /**
+     * Gets the resource collection API of EventsOperations.
+     *
+     * @return Resource collection API of EventsOperations.
+     */
     public EventsOperations eventsOperations() {
         if (this.eventsOperations == null) {
             this.eventsOperations = new EventsOperationsImpl(clientObject.getEventsOperations(), this);
@@ -414,7 +510,11 @@ public final class ConsumptionManager {
         return eventsOperations;
     }
 
-    /** @return Resource collection API of LotsOperations. */
+    /**
+     * Gets the resource collection API of LotsOperations.
+     *
+     * @return Resource collection API of LotsOperations.
+     */
     public LotsOperations lotsOperations() {
         if (this.lotsOperations == null) {
             this.lotsOperations = new LotsOperationsImpl(clientObject.getLotsOperations(), this);
@@ -422,7 +522,11 @@ public final class ConsumptionManager {
         return lotsOperations;
     }
 
-    /** @return Resource collection API of Credits. */
+    /**
+     * Gets the resource collection API of Credits.
+     *
+     * @return Resource collection API of Credits.
+     */
     public Credits credits() {
         if (this.credits == null) {
             this.credits = new CreditsImpl(clientObject.getCredits(), this);

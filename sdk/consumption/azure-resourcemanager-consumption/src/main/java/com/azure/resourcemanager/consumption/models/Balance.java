@@ -139,6 +139,13 @@ public interface Balance {
     Boolean priceHidden();
 
     /**
+     * Gets the overageRefund property: Overage Refunds.
+     *
+     * @return the overageRefund value.
+     */
+    BigDecimal overageRefund();
+
+    /**
      * Gets the newPurchasesDetails property: List of new purchases.
      *
      * @return the newPurchasesDetails value.
