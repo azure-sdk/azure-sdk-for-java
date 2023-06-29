@@ -10,6 +10,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.AvailableRpOperationInner;
 import com.azure.resourcemanager.synapse.fluent.models.CheckNameAvailabilityResponseInner;
+import com.azure.resourcemanager.synapse.fluent.models.ListUsagesResultInner;
 import com.azure.resourcemanager.synapse.fluent.models.OperationResourceInner;
 import com.azure.resourcemanager.synapse.models.CheckNameAvailabilityRequest;
 import java.util.List;
@@ -45,6 +46,59 @@ public interface OperationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest request);
+
+    /**
+     * Gets the current resource usage and quota of a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current resource usage and quota of a subscription/region along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ListUsagesResultInner> getSubscriptionQuotaAndUsageWithResponse(String location, Context context);
+
+    /**
+     * Gets the current resource usage and quota of a subscription/region.
+     *
+     * @param location The location on which resource usage is queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current resource usage and quota of a subscription/region.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ListUsagesResultInner getSubscriptionQuotaAndUsage(String location);
+
+    /**
+     * Gets the current usage and quota of a workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of a workspace along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ListUsagesResultInner> getWorkspaceQuotaAndUsageWithResponse(
+        String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Gets the current usage and quota of a workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current usage and quota of a workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ListUsagesResultInner getWorkspaceQuotaAndUsage(String resourceGroupName, String workspaceName);
 
     /**
      * All operations

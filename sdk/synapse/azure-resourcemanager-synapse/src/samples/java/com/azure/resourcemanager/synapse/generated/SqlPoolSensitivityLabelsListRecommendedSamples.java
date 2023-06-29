@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolSensitivityLabels ListRecommended. */
 public final class SqlPoolSensitivityLabelsListRecommendedSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListSqlPoolSensitivityLabelsWithSourceRecommended.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ListSqlPoolSensitivityLabelsWithSourceRecommended.json
      */
     /**
      * Sample code: Gets the recommended sensitivity labels of a given SQL Analytics pool.

@@ -56,8 +56,7 @@ public final class SqlPoolConnectionPoliciesClientImpl implements SqlPoolConnect
     public interface SqlPoolConnectionPoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/connectionPolicies/{connectionPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/connectionPolicies/{connectionPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SqlPoolConnectionPolicyInner>> get(
@@ -116,7 +115,6 @@ public final class SqlPoolConnectionPoliciesClientImpl implements SqlPoolConnect
             return Mono
                 .error(new IllegalArgumentException("Parameter connectionPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -124,7 +122,7 @@ public final class SqlPoolConnectionPoliciesClientImpl implements SqlPoolConnect
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -184,13 +182,12 @@ public final class SqlPoolConnectionPoliciesClientImpl implements SqlPoolConnect
             return Mono
                 .error(new IllegalArgumentException("Parameter connectionPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

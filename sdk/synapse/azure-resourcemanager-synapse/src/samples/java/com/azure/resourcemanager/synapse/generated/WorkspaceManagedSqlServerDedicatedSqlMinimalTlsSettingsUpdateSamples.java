@@ -10,7 +10,7 @@ import com.azure.resourcemanager.synapse.models.DedicatedSqlMinimalTlsSettingsNa
 /** Samples for WorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettings Update. */
 public final class WorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingsUpdateSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/UpdateWorkspaceManagedSqlServerDedicatedSQLminimalTlsSettings.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/UpdateWorkspaceManagedSqlServerDedicatedSQLminimalTlsSettings.json
      */
     /**
      * Sample code: Update tls version of the workspace managed sql server.

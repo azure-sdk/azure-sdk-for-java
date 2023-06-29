@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolSensitivityLabels DisableRecommendation. */
 public final class SqlPoolSensitivityLabelsDisableRecommendationSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/RecommendedColumnSensitivityLabelDisable.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/RecommendedColumnSensitivityLabelDisable.json
      */
     /**
      * Sample code: Disables sensitivity recommendations on a given column.

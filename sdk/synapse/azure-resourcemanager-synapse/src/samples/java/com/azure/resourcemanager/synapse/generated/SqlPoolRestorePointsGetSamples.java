@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolRestorePoints Get. */
 public final class SqlPoolRestorePointsGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/SqlPoolRestorePointsGet.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/SqlPoolRestorePointsGet.json
      */
     /**
      * Sample code: Gets a Sql pool restore point.

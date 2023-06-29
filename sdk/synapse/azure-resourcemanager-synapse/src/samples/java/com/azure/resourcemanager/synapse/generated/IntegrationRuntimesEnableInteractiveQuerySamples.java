@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for IntegrationRuntimes EnableInteractiveQuery. */
 public final class IntegrationRuntimesEnableInteractiveQuerySamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/IntegrationRuntimes_EnableInteractiveQuery.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/IntegrationRuntimes_EnableInteractiveQuery.json
      */
     /**
      * Sample code: Stop integration runtime.

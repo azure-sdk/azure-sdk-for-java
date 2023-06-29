@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPools Resume. */
 public final class SqlPoolsResumeSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ResumeSqlPool.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/ResumeSqlPool.json
      */
     /**
      * Sample code: Resume a SQL Analytics pool.

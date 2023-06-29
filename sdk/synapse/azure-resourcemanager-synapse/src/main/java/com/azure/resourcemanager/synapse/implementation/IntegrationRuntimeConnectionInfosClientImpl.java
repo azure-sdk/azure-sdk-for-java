@@ -59,8 +59,7 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
     public interface IntegrationRuntimeConnectionInfosService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/getConnectionInfo")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/getConnectionInfo")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeConnectionInfoInner>> get(
@@ -115,7 +114,6 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -123,7 +121,7 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -175,13 +173,12 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

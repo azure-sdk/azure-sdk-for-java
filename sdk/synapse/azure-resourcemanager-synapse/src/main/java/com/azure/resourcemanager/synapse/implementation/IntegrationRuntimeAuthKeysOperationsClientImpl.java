@@ -63,8 +63,7 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     public interface IntegrationRuntimeAuthKeysOperationsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/regenerateAuthKey")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/regenerateAuthKey")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeAuthKeysInner>> regenerate(
@@ -80,8 +79,7 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/listAuthKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/listAuthKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeAuthKeysInner>> list(
@@ -147,7 +145,6 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
         } else {
             regenerateKeyParameters.validate();
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -155,7 +152,7 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
                     service
                         .regenerate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -220,13 +217,12 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
         } else {
             regenerateKeyParameters.validate();
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .regenerate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -354,7 +350,6 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -362,7 +357,7 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
                     service
                         .list(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -414,13 +409,12 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
                 .error(
                     new IllegalArgumentException("Parameter integrationRuntimeName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

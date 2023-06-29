@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for WorkspaceManagedSqlServerRecoverableSqlPools Get. */
 public final class WorkspaceManagedSqlServerRecoverableSqlPoolsGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetWorkspaceManagedSqlServerRecoverableSqlPool.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetWorkspaceManagedSqlServerRecoverableSqlPool.json
      */
     /**
      * Sample code: Get recoverable sql pools for the server.

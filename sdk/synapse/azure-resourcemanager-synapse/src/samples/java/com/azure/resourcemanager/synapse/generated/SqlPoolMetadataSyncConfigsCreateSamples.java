@@ -9,7 +9,7 @@ import com.azure.resourcemanager.synapse.fluent.models.MetadataSyncConfigInner;
 /** Samples for SqlPoolMetadataSyncConfigs Create. */
 public final class SqlPoolMetadataSyncConfigsCreateSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/CreateSqlPoolMetadataSyncConfig.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/CreateSqlPoolMetadataSyncConfig.json
      */
     /**
      * Sample code: Set metadata sync config for a SQL Analytics pool.
