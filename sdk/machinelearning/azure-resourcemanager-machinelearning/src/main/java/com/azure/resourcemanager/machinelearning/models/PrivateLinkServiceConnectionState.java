@@ -11,51 +11,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class PrivateLinkServiceConnectionState {
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+     * Some RP chose "None". Other RPs use this for region expansion.
      */
-    @JsonProperty(value = "status")
-    private PrivateEndpointServiceConnectionStatus status;
+    @JsonProperty(value = "actionsRequired")
+    private String actionsRequired;
 
     /*
-     * The reason for approval/rejection of the connection.
+     * User-defined message that, per NRP doc, may be used for approval-related message.
      */
     @JsonProperty(value = "description")
     private String description;
 
     /*
-     * A message indicating if changes on the service provider require any updates on the consumer.
+     * Connection status of the service consumer with the service provider
      */
-    @JsonProperty(value = "actionsRequired")
-    private String actionsRequired;
+    @JsonProperty(value = "status")
+    private EndpointServiceConnectionStatus status;
 
     /** Creates an instance of PrivateLinkServiceConnectionState class. */
     public PrivateLinkServiceConnectionState() {
     }
 
     /**
-     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Get the actionsRequired property: Some RP chose "None". Other RPs use this for region expansion.
      *
-     * @return the status value.
+     * @return the actionsRequired value.
      */
-    public PrivateEndpointServiceConnectionStatus status() {
-        return this.status;
+    public String actionsRequired() {
+        return this.actionsRequired;
     }
 
     /**
-     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Set the actionsRequired property: Some RP chose "None". Other RPs use this for region expansion.
      *
-     * @param status the status value to set.
+     * @param actionsRequired the actionsRequired value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
-    public PrivateLinkServiceConnectionState withStatus(PrivateEndpointServiceConnectionStatus status) {
-        this.status = status;
+    public PrivateLinkServiceConnectionState withActionsRequired(String actionsRequired) {
+        this.actionsRequired = actionsRequired;
         return this;
     }
 
     /**
-     * Get the description property: The reason for approval/rejection of the connection.
+     * Get the description property: User-defined message that, per NRP doc, may be used for approval-related message.
      *
      * @return the description value.
      */
@@ -64,7 +62,7 @@ public final class PrivateLinkServiceConnectionState {
     }
 
     /**
-     * Set the description property: The reason for approval/rejection of the connection.
+     * Set the description property: User-defined message that, per NRP doc, may be used for approval-related message.
      *
      * @param description the description value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
@@ -75,24 +73,22 @@ public final class PrivateLinkServiceConnectionState {
     }
 
     /**
-     * Get the actionsRequired property: A message indicating if changes on the service provider require any updates on
-     * the consumer.
+     * Get the status property: Connection status of the service consumer with the service provider.
      *
-     * @return the actionsRequired value.
+     * @return the status value.
      */
-    public String actionsRequired() {
-        return this.actionsRequired;
+    public EndpointServiceConnectionStatus status() {
+        return this.status;
     }
 
     /**
-     * Set the actionsRequired property: A message indicating if changes on the service provider require any updates on
-     * the consumer.
+     * Set the status property: Connection status of the service consumer with the service provider.
      *
-     * @param actionsRequired the actionsRequired value to set.
+     * @param status the status value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
-    public PrivateLinkServiceConnectionState withActionsRequired(String actionsRequired) {
-        this.actionsRequired = actionsRequired;
+    public PrivateLinkServiceConnectionState withStatus(EndpointServiceConnectionStatus status) {
+        this.status = status;
         return this;
     }
 

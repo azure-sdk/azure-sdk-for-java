@@ -18,6 +18,18 @@ public final class ComponentVersionProperties extends AssetBase {
     @JsonProperty(value = "componentSpec")
     private Object componentSpec;
 
+    /*
+     * Provisioning state for the component version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the component lifecycle
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
+
     /** Creates an instance of ComponentVersionProperties class. */
     public ComponentVersionProperties() {
     }
@@ -41,6 +53,42 @@ public final class ComponentVersionProperties extends AssetBase {
      */
     public ComponentVersionProperties withComponentSpec(Object componentSpec) {
         this.componentSpec = componentSpec;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the component version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the component lifecycle.
+     *
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the component lifecycle.
+     *
+     * @param stage the stage value to set.
+     * @return the ComponentVersionProperties object itself.
+     */
+    public ComponentVersionProperties withStage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ComponentVersionProperties withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
         return this;
     }
 
