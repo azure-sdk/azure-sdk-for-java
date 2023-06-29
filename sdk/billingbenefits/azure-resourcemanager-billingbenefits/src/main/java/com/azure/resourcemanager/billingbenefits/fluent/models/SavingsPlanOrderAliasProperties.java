@@ -70,6 +70,12 @@ public final class SavingsPlanOrderAliasProperties {
     @JsonProperty(value = "commitment")
     private Commitment commitment;
 
+    /*
+     * Setting this to true will automatically purchase a new benefit on the expiration date time.
+     */
+    @JsonProperty(value = "renew")
+    private Boolean renew;
+
     /** Creates an instance of SavingsPlanOrderAliasProperties class. */
     public SavingsPlanOrderAliasProperties() {
     }
@@ -233,6 +239,28 @@ public final class SavingsPlanOrderAliasProperties {
      */
     public SavingsPlanOrderAliasProperties withCommitment(Commitment commitment) {
         this.commitment = commitment;
+        return this;
+    }
+
+    /**
+     * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     *
+     * @return the renew value.
+     */
+    public Boolean renew() {
+        return this.renew;
+    }
+
+    /**
+     * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     *
+     * @param renew the renew value to set.
+     * @return the SavingsPlanOrderAliasProperties object itself.
+     */
+    public SavingsPlanOrderAliasProperties withRenew(Boolean renew) {
+        this.renew = renew;
         return this;
     }
 

@@ -290,6 +290,31 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     }
 
     /**
+     * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     *
+     * @return the renew value.
+     */
+    public Boolean renew() {
+        return this.innerProperties() == null ? null : this.innerProperties().renew();
+    }
+
+    /**
+     * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     *
+     * @param renew the renew value to set.
+     * @return the SavingsPlanOrderAliasModelInner object itself.
+     */
+    public SavingsPlanOrderAliasModelInner withRenew(Boolean renew) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SavingsPlanOrderAliasProperties();
+        }
+        this.innerProperties().withRenew(renew);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
