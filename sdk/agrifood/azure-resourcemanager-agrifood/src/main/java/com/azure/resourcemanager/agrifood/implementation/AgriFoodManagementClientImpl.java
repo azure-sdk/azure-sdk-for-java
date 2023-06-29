@@ -23,13 +23,17 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.agrifood.fluent.AgriFoodManagementClient;
+import com.azure.resourcemanager.agrifood.fluent.CheckNameAvailabilitiesClient;
+import com.azure.resourcemanager.agrifood.fluent.DataConnectorsClient;
+import com.azure.resourcemanager.agrifood.fluent.DataManagerForAgricultureExtensionsClient;
+import com.azure.resourcemanager.agrifood.fluent.DataManagerForAgricultureResourcesClient;
 import com.azure.resourcemanager.agrifood.fluent.ExtensionsClient;
-import com.azure.resourcemanager.agrifood.fluent.FarmBeatsExtensionsClient;
-import com.azure.resourcemanager.agrifood.fluent.FarmBeatsModelsClient;
-import com.azure.resourcemanager.agrifood.fluent.LocationsClient;
+import com.azure.resourcemanager.agrifood.fluent.OperationResultsClient;
 import com.azure.resourcemanager.agrifood.fluent.OperationsClient;
 import com.azure.resourcemanager.agrifood.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.agrifood.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.agrifood.fluent.SolutionsClient;
+import com.azure.resourcemanager.agrifood.fluent.SolutionsDiscoverabilitiesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -42,11 +46,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AgriFoodManagementClientImpl type. */
 @ServiceClient(builder = AgriFoodManagementClientBuilder.class)
 public final class AgriFoodManagementClientImpl implements AgriFoodManagementClient {
-    /** The ID of the target subscription. */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -114,6 +118,66 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         return this.defaultPollInterval;
     }
 
+    /** The CheckNameAvailabilitiesClient object to access its operations. */
+    private final CheckNameAvailabilitiesClient checkNameAvailabilities;
+
+    /**
+     * Gets the CheckNameAvailabilitiesClient object to access its operations.
+     *
+     * @return the CheckNameAvailabilitiesClient object.
+     */
+    public CheckNameAvailabilitiesClient getCheckNameAvailabilities() {
+        return this.checkNameAvailabilities;
+    }
+
+    /** The DataConnectorsClient object to access its operations. */
+    private final DataConnectorsClient dataConnectors;
+
+    /**
+     * Gets the DataConnectorsClient object to access its operations.
+     *
+     * @return the DataConnectorsClient object.
+     */
+    public DataConnectorsClient getDataConnectors() {
+        return this.dataConnectors;
+    }
+
+    /** The DataManagerForAgricultureExtensionsClient object to access its operations. */
+    private final DataManagerForAgricultureExtensionsClient dataManagerForAgricultureExtensions;
+
+    /**
+     * Gets the DataManagerForAgricultureExtensionsClient object to access its operations.
+     *
+     * @return the DataManagerForAgricultureExtensionsClient object.
+     */
+    public DataManagerForAgricultureExtensionsClient getDataManagerForAgricultureExtensions() {
+        return this.dataManagerForAgricultureExtensions;
+    }
+
+    /** The DataManagerForAgricultureResourcesClient object to access its operations. */
+    private final DataManagerForAgricultureResourcesClient dataManagerForAgricultureResources;
+
+    /**
+     * Gets the DataManagerForAgricultureResourcesClient object to access its operations.
+     *
+     * @return the DataManagerForAgricultureResourcesClient object.
+     */
+    public DataManagerForAgricultureResourcesClient getDataManagerForAgricultureResources() {
+        return this.dataManagerForAgricultureResources;
+    }
+
+    /** The OperationResultsClient object to access its operations. */
+    private final OperationResultsClient operationResults;
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    public OperationResultsClient getOperationResults() {
+        return this.operationResults;
+    }
+
     /** The ExtensionsClient object to access its operations. */
     private final ExtensionsClient extensions;
 
@@ -124,42 +188,6 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
      */
     public ExtensionsClient getExtensions() {
         return this.extensions;
-    }
-
-    /** The FarmBeatsExtensionsClient object to access its operations. */
-    private final FarmBeatsExtensionsClient farmBeatsExtensions;
-
-    /**
-     * Gets the FarmBeatsExtensionsClient object to access its operations.
-     *
-     * @return the FarmBeatsExtensionsClient object.
-     */
-    public FarmBeatsExtensionsClient getFarmBeatsExtensions() {
-        return this.farmBeatsExtensions;
-    }
-
-    /** The FarmBeatsModelsClient object to access its operations. */
-    private final FarmBeatsModelsClient farmBeatsModels;
-
-    /**
-     * Gets the FarmBeatsModelsClient object to access its operations.
-     *
-     * @return the FarmBeatsModelsClient object.
-     */
-    public FarmBeatsModelsClient getFarmBeatsModels() {
-        return this.farmBeatsModels;
-    }
-
-    /** The LocationsClient object to access its operations. */
-    private final LocationsClient locations;
-
-    /**
-     * Gets the LocationsClient object to access its operations.
-     *
-     * @return the LocationsClient object.
-     */
-    public LocationsClient getLocations() {
-        return this.locations;
     }
 
     /** The OperationsClient object to access its operations. */
@@ -198,6 +226,30 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         return this.privateLinkResources;
     }
 
+    /** The SolutionsClient object to access its operations. */
+    private final SolutionsClient solutions;
+
+    /**
+     * Gets the SolutionsClient object to access its operations.
+     *
+     * @return the SolutionsClient object.
+     */
+    public SolutionsClient getSolutions() {
+        return this.solutions;
+    }
+
+    /** The SolutionsDiscoverabilitiesClient object to access its operations. */
+    private final SolutionsDiscoverabilitiesClient solutionsDiscoverabilities;
+
+    /**
+     * Gets the SolutionsDiscoverabilitiesClient object to access its operations.
+     *
+     * @return the SolutionsDiscoverabilitiesClient object.
+     */
+    public SolutionsDiscoverabilitiesClient getSolutionsDiscoverabilities() {
+        return this.solutionsDiscoverabilities;
+    }
+
     /**
      * Initializes an instance of AgriFoodManagementClient client.
      *
@@ -205,7 +257,7 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     AgriFoodManagementClientImpl(
@@ -220,14 +272,18 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-09-01-preview";
+        this.apiVersion = "2023-06-01-preview";
+        this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
+        this.dataConnectors = new DataConnectorsClientImpl(this);
+        this.dataManagerForAgricultureExtensions = new DataManagerForAgricultureExtensionsClientImpl(this);
+        this.dataManagerForAgricultureResources = new DataManagerForAgricultureResourcesClientImpl(this);
+        this.operationResults = new OperationResultsClientImpl(this);
         this.extensions = new ExtensionsClientImpl(this);
-        this.farmBeatsExtensions = new FarmBeatsExtensionsClientImpl(this);
-        this.farmBeatsModels = new FarmBeatsModelsClientImpl(this);
-        this.locations = new LocationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.solutions = new SolutionsClientImpl(this);
+        this.solutionsDiscoverabilities = new SolutionsDiscoverabilitiesClientImpl(this);
     }
 
     /**
