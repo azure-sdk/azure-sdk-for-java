@@ -6,14 +6,11 @@ package com.azure.resourcemanager.confluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Subscriber detail. */
 @Fluent
 public final class UserDetail {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UserDetail.class);
-
     /*
      * First name
      */
@@ -31,6 +28,10 @@ public final class UserDetail {
      */
     @JsonProperty(value = "emailAddress", required = true)
     private String emailAddress;
+
+    /** Creates an instance of UserDetail class. */
+    public UserDetail() {
+    }
 
     /**
      * Get the firstName property: First name.
@@ -99,9 +100,11 @@ public final class UserDetail {
      */
     public void validate() {
         if (emailAddress() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property emailAddress in model UserDetail"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(UserDetail.class);
 }
