@@ -207,7 +207,7 @@ public final class GraphServicesManager {
                 .append("-")
                 .append("com.azure.resourcemanager.graphservices")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
