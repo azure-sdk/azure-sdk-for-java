@@ -19,6 +19,12 @@ public final class AttestationServicePatchParams {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /*
+     * Properties of the attestation provider
+     */
+    @JsonProperty(value = "properties")
+    private AttestationServicePatchSpecificParams properties;
+
     /** Creates an instance of AttestationServicePatchParams class. */
     public AttestationServicePatchParams() {
     }
@@ -44,10 +50,33 @@ public final class AttestationServicePatchParams {
     }
 
     /**
+     * Get the properties property: Properties of the attestation provider.
+     *
+     * @return the properties value.
+     */
+    public AttestationServicePatchSpecificParams properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the attestation provider.
+     *
+     * @param properties the properties value to set.
+     * @return the AttestationServicePatchParams object itself.
+     */
+    public AttestationServicePatchParams withProperties(AttestationServicePatchSpecificParams properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
     }
 }

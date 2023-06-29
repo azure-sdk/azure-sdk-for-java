@@ -8,6 +8,8 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.attestation.models.AttestationServiceStatus;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -133,6 +135,31 @@ public final class AttestationProviderInner extends Resource {
     }
 
     /**
+     * Get the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the AttestationProviderInner object itself.
+     */
+    public AttestationProviderInner withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StatusResult();
+        }
+        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    /**
      * Get the privateEndpointConnections property: List of private endpoint connections associated with the attestation
      * provider.
      *
@@ -140,6 +167,32 @@ public final class AttestationProviderInner extends Resource {
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
         return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
+     * Get the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     *
+     * @return the tpmAttestationAuthentication value.
+     */
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.innerProperties() == null ? null : this.innerProperties().tpmAttestationAuthentication();
+    }
+
+    /**
+     * Set the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     *
+     * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
+     * @return the AttestationProviderInner object itself.
+     */
+    public AttestationProviderInner withTpmAttestationAuthentication(
+        TpmAttestationAuthenticationType tpmAttestationAuthentication) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StatusResult();
+        }
+        this.innerProperties().withTpmAttestationAuthentication(tpmAttestationAuthentication);
+        return this;
     }
 
     /**
