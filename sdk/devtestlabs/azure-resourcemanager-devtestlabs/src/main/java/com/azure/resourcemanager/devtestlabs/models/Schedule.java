@@ -86,7 +86,10 @@ public interface Schedule {
     HourDetails hourlyRecurrence();
 
     /**
-     * Gets the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     * Gets the timeZoneId property: The time zone ID (e.g. China Standard Time, Greenland Standard Time, Pacific
+     * Standard time, etc.). The possible values for this property can be found in `IReadOnlyCollection&lt;string&gt;
+     * TimeZoneConverter.TZConvert.KnownWindowsTimeZoneIds`
+     * (https://github.com/mattjohnsonpint/TimeZoneConverter/blob/main/README.md).
      *
      * @return the timeZoneId value.
      */
@@ -293,9 +296,15 @@ public interface Schedule {
         /** The stage of the Schedule definition allowing to specify timeZoneId. */
         interface WithTimeZoneId {
             /**
-             * Specifies the timeZoneId property: The time zone ID (e.g. Pacific Standard time)..
+             * Specifies the timeZoneId property: The time zone ID (e.g. China Standard Time, Greenland Standard Time,
+             * Pacific Standard time, etc.). The possible values for this property can be found in
+             * `IReadOnlyCollection&lt;string&gt; TimeZoneConverter.TZConvert.KnownWindowsTimeZoneIds`
+             * (https://github.com/mattjohnsonpint/TimeZoneConverter/blob/main/README.md).
              *
-             * @param timeZoneId The time zone ID (e.g. Pacific Standard time).
+             * @param timeZoneId The time zone ID (e.g. China Standard Time, Greenland Standard Time, Pacific Standard
+             *     time, etc.). The possible values for this property can be found in `IReadOnlyCollection&lt;string&gt;
+             *     TimeZoneConverter.TZConvert.KnownWindowsTimeZoneIds`
+             *     (https://github.com/mattjohnsonpint/TimeZoneConverter/blob/main/README.md).
              * @return the next definition stage.
              */
             WithCreate withTimeZoneId(String timeZoneId);
