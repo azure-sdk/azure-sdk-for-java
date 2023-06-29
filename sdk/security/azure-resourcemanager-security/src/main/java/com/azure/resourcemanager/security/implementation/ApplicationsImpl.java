@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.security.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.ApplicationsClient;
@@ -25,13 +27,69 @@ public final class ApplicationsImpl implements Applications {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Application> list() {
-        PagedIterable<ApplicationInner> inner = this.serviceClient().list();
+    public Response<Application> getWithResponse(String scope, String ruleId, String applicationId, Context context) {
+        Response<ApplicationInner> inner = this.serviceClient().getWithResponse(scope, ruleId, applicationId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ApplicationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Application get(String scope, String ruleId, String applicationId) {
+        ApplicationInner inner = this.serviceClient().get(scope, ruleId, applicationId);
+        if (inner != null) {
+            return new ApplicationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Application> updateWithResponse(
+        String scope, String ruleId, String applicationId, ApplicationInner application, Context context) {
+        Response<ApplicationInner> inner =
+            this.serviceClient().updateWithResponse(scope, ruleId, applicationId, application, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ApplicationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Application update(String scope, String ruleId, String applicationId, ApplicationInner application) {
+        ApplicationInner inner = this.serviceClient().update(scope, ruleId, applicationId, application);
+        if (inner != null) {
+            return new ApplicationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<Application> list(String scope) {
+        PagedIterable<ApplicationInner> inner = this.serviceClient().list(scope);
         return Utils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Application> list(Context context) {
-        PagedIterable<ApplicationInner> inner = this.serviceClient().list(context);
+    public PagedIterable<Application> list(String scope, Context context) {
+        PagedIterable<ApplicationInner> inner = this.serviceClient().list(scope, context);
+        return Utils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Application> listByRuleId(String scope, String ruleId) {
+        PagedIterable<ApplicationInner> inner = this.serviceClient().listByRuleId(scope, ruleId);
+        return Utils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Application> listByRuleId(String scope, String ruleId, Context context) {
+        PagedIterable<ApplicationInner> inner = this.serviceClient().listByRuleId(scope, ruleId, context);
         return Utils.mapPage(inner, inner1 -> new ApplicationImpl(inner1, this.manager()));
     }
 

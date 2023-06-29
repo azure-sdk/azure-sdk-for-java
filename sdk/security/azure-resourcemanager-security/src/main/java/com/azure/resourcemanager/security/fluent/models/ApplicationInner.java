@@ -6,15 +6,14 @@ package com.azure.resourcemanager.security.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.resourcemanager.security.models.ApplicationSourceResourceType;
+import com.azure.resourcemanager.security.models.BusinessCriticality;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** Security Application over a given scope. */
+/** The application business criticality resource. */
 @Fluent
 public final class ApplicationInner extends ProxyResource {
     /*
-     * Properties of a security application
+     * Properties of an application business criticality
      */
     @JsonProperty(value = "properties")
     private ApplicationProperties innerProperties;
@@ -24,7 +23,7 @@ public final class ApplicationInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Properties of a security application.
+     * Get the innerProperties property: Properties of an application business criticality.
      *
      * @return the innerProperties value.
      */
@@ -33,94 +32,94 @@ public final class ApplicationInner extends ProxyResource {
     }
 
     /**
-     * Get the displayName property: display name of the application.
+     * Get the tenantId property: The tenant Id associated with the application (GUID).
      *
-     * @return the displayName value.
+     * @return the tenantId value.
      */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
     }
 
     /**
-     * Set the displayName property: display name of the application.
+     * Set the tenantId property: The tenant Id associated with the application (GUID).
      *
-     * @param displayName the displayName value to set.
+     * @param tenantId the tenantId value to set.
      * @return the ApplicationInner object itself.
      */
-    public ApplicationInner withDisplayName(String displayName) {
+    public ApplicationInner withTenantId(String tenantId) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ApplicationProperties();
         }
-        this.innerProperties().withDisplayName(displayName);
+        this.innerProperties().withTenantId(tenantId);
         return this;
     }
 
     /**
-     * Get the description property: description of the application.
+     * Get the kqlQuery property: The application mapping KQL query.
      *
-     * @return the description value.
+     * @return the kqlQuery value.
      */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
+    public String kqlQuery() {
+        return this.innerProperties() == null ? null : this.innerProperties().kqlQuery();
     }
 
     /**
-     * Set the description property: description of the application.
+     * Set the kqlQuery property: The application mapping KQL query.
      *
-     * @param description the description value to set.
+     * @param kqlQuery the kqlQuery value to set.
      * @return the ApplicationInner object itself.
      */
-    public ApplicationInner withDescription(String description) {
+    public ApplicationInner withKqlQuery(String kqlQuery) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ApplicationProperties();
         }
-        this.innerProperties().withDescription(description);
+        this.innerProperties().withKqlQuery(kqlQuery);
         return this;
     }
 
     /**
-     * Get the sourceResourceType property: The application source, what it affects, e.g. Assessments.
+     * Get the applicationOwner property: Application owner (GUID).
      *
-     * @return the sourceResourceType value.
+     * @return the applicationOwner value.
      */
-    public ApplicationSourceResourceType sourceResourceType() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceResourceType();
+    public String applicationOwner() {
+        return this.innerProperties() == null ? null : this.innerProperties().applicationOwner();
     }
 
     /**
-     * Set the sourceResourceType property: The application source, what it affects, e.g. Assessments.
+     * Set the applicationOwner property: Application owner (GUID).
      *
-     * @param sourceResourceType the sourceResourceType value to set.
+     * @param applicationOwner the applicationOwner value to set.
      * @return the ApplicationInner object itself.
      */
-    public ApplicationInner withSourceResourceType(ApplicationSourceResourceType sourceResourceType) {
+    public ApplicationInner withApplicationOwner(String applicationOwner) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ApplicationProperties();
         }
-        this.innerProperties().withSourceResourceType(sourceResourceType);
+        this.innerProperties().withApplicationOwner(applicationOwner);
         return this;
     }
 
     /**
-     * Get the conditionSets property: The application conditionSets - see examples.
+     * Get the businessCriticality property: The business criticality of the application.
      *
-     * @return the conditionSets value.
+     * @return the businessCriticality value.
      */
-    public List<Object> conditionSets() {
-        return this.innerProperties() == null ? null : this.innerProperties().conditionSets();
+    public BusinessCriticality businessCriticality() {
+        return this.innerProperties() == null ? null : this.innerProperties().businessCriticality();
     }
 
     /**
-     * Set the conditionSets property: The application conditionSets - see examples.
+     * Set the businessCriticality property: The business criticality of the application.
      *
-     * @param conditionSets the conditionSets value to set.
+     * @param businessCriticality the businessCriticality value to set.
      * @return the ApplicationInner object itself.
      */
-    public ApplicationInner withConditionSets(List<Object> conditionSets) {
+    public ApplicationInner withBusinessCriticality(BusinessCriticality businessCriticality) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ApplicationProperties();
         }
-        this.innerProperties().withConditionSets(conditionSets);
+        this.innerProperties().withBusinessCriticality(businessCriticality);
         return this;
     }
 

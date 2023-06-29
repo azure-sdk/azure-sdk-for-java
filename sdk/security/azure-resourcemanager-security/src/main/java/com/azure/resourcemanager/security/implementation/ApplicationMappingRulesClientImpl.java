@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.security.implementation;
 
 import com.azure.core.annotation.BodyParam;
+import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
@@ -27,80 +28,79 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.security.fluent.ApplicationsClient;
-import com.azure.resourcemanager.security.fluent.models.ApplicationInner;
-import com.azure.resourcemanager.security.models.ApplicationList;
+import com.azure.resourcemanager.security.fluent.ApplicationMappingRulesClient;
+import com.azure.resourcemanager.security.fluent.models.ApplicationMappingRuleInner;
+import com.azure.resourcemanager.security.models.ApplicationMappingRuleList;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ApplicationsClient. */
-public final class ApplicationsClientImpl implements ApplicationsClient {
+/** An instance of this class provides access to all the operations defined in ApplicationMappingRulesClient. */
+public final class ApplicationMappingRulesClientImpl implements ApplicationMappingRulesClient {
     /** The proxy service used to perform REST calls. */
-    private final ApplicationsService service;
+    private final ApplicationMappingRulesService service;
 
     /** The service client containing this operation class. */
     private final SecurityCenterImpl client;
 
     /**
-     * Initializes an instance of ApplicationsClientImpl.
+     * Initializes an instance of ApplicationMappingRulesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ApplicationsClientImpl(SecurityCenterImpl client) {
+    ApplicationMappingRulesClientImpl(SecurityCenterImpl client) {
         this.service =
-            RestProxy.create(ApplicationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+            RestProxy
+                .create(ApplicationMappingRulesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for SecurityCenterApplications to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for SecurityCenterApplicationMappingRules to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityCenterApplic")
-    public interface ApplicationsService {
+    public interface ApplicationMappingRulesService {
         @Headers({"Content-Type: application/json"})
-        @Get("/{scope}/providers/Microsoft.Security/applicationMappingRule/{ruleId}/applications/{applicationId}")
+        @Get("/{scope}/providers/Microsoft.Security/applicationMappingRules")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationInner>> get(
+        Mono<Response<ApplicationMappingRuleList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("scope") String scope,
-            @PathParam("ruleId") String ruleId,
-            @PathParam("applicationId") String applicationId,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Put("/{scope}/providers/Microsoft.Security/applicationMappingRule/{ruleId}/applications/{applicationId}")
+        @Get("/{scope}/providers/Microsoft.Security/applicationMappingRules/{ruleId}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ApplicationMappingRuleInner>> get(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("scope") String scope,
+            @PathParam("ruleId") String ruleId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Put("/{scope}/providers/Microsoft.Security/applicationMappingRules/{ruleId}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationInner>> update(
+        Mono<Response<ApplicationMappingRuleInner>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("scope") String scope,
             @PathParam("ruleId") String ruleId,
-            @PathParam("applicationId") String applicationId,
-            @BodyParam("application/json") ApplicationInner application,
+            @BodyParam("application/json") ApplicationMappingRuleInner applicationMappingRule,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get("/{scope}/providers/Microsoft.Security/applications")
-        @ExpectedResponses({200})
+        @Delete("/{scope}/providers/Microsoft.Security/applicationMappingRules/{ruleId}")
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationList>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("/{scope}/providers/Microsoft.Security/applicationMappingRule/{ruleId}/applications")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationList>> listByRuleId(
+        Mono<Response<Void>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("scope") String scope,
@@ -112,17 +112,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationList>> listByRuleIdNext(
+        Mono<Response<ApplicationMappingRuleList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -130,341 +120,20 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     }
 
     /**
-     * Retrieves details of a specific application.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplicationInner>> getWithResponseAsync(String scope, String ruleId, String applicationId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (ruleId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
-        }
-        if (applicationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            scope,
-                            ruleId,
-                            applicationId,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Retrieves details of a specific application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplicationInner>> getWithResponseAsync(
-        String scope, String ruleId, String applicationId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (ruleId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
-        }
-        if (applicationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .get(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, applicationId, accept, context);
-    }
-
-    /**
-     * Retrieves details of a specific application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ApplicationInner> getAsync(String scope, String ruleId, String applicationId) {
-        return getWithResponseAsync(scope, ruleId, applicationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Retrieves details of a specific application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApplicationInner> getWithResponse(
-        String scope, String ruleId, String applicationId, Context context) {
-        return getWithResponseAsync(scope, ruleId, applicationId, context).block();
-    }
-
-    /**
-     * Retrieves details of a specific application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplicationInner get(String scope, String ruleId, String applicationId) {
-        return getWithResponse(scope, ruleId, applicationId, Context.NONE).getValue();
-    }
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplicationInner>> updateWithResponseAsync(
-        String scope, String ruleId, String applicationId, ApplicationInner application) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (ruleId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
-        }
-        if (applicationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
-        }
-        if (application == null) {
-            return Mono.error(new IllegalArgumentException("Parameter application is required and cannot be null."));
-        } else {
-            application.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            scope,
-                            ruleId,
-                            applicationId,
-                            application,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplicationInner>> updateWithResponseAsync(
-        String scope, String ruleId, String applicationId, ApplicationInner application, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (ruleId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
-        }
-        if (applicationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
-        }
-        if (application == null) {
-            return Mono.error(new IllegalArgumentException("Parameter application is required and cannot be null."));
-        } else {
-            application.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                scope,
-                ruleId,
-                applicationId,
-                application,
-                accept,
-                context);
-    }
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ApplicationInner> updateAsync(
-        String scope, String ruleId, String applicationId, ApplicationInner application) {
-        return updateWithResponseAsync(scope, ruleId, applicationId, application)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApplicationInner> updateWithResponse(
-        String scope, String ruleId, String applicationId, ApplicationInner application, Context context) {
-        return updateWithResponseAsync(scope, ruleId, applicationId, application, context).block();
-    }
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplicationInner update(String scope, String ruleId, String applicationId, ApplicationInner application) {
-        return updateWithResponse(scope, ruleId, applicationId, application, Context.NONE).getValue();
-    }
-
-    /**
-     * Get a list of all relevant applications over a scope.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return a list of all relevant application mapping rules over a scope along with {@link PagedResponse} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listSinglePageAsync(String scope) {
+    private Mono<PagedResponse<ApplicationMappingRuleInner>> listSinglePageAsync(String scope) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -478,7 +147,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
         return FluxUtil
             .withContext(
                 context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
-            .<PagedResponse<ApplicationInner>>map(
+            .<PagedResponse<ApplicationMappingRuleInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -491,9 +160,9 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     }
 
     /**
-     * Get a list of all relevant applications over a scope.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
@@ -501,11 +170,11 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return a list of all relevant application mapping rules over a scope along with {@link PagedResponse} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listSinglePageAsync(String scope, Context context) {
+    private Mono<PagedResponse<ApplicationMappingRuleInner>> listSinglePageAsync(String scope, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -531,26 +200,27 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     }
 
     /**
-     * Get a list of all relevant applications over a scope.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope as paginated response with {@link PagedFlux}.
+     * @return a list of all relevant application mapping rules over a scope as paginated response with {@link
+     *     PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ApplicationInner> listAsync(String scope) {
+    private PagedFlux<ApplicationMappingRuleInner> listAsync(String scope) {
         return new PagedFlux<>(() -> listSinglePageAsync(scope), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Get a list of all relevant applications over a scope.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
@@ -558,35 +228,37 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope as paginated response with {@link PagedFlux}.
+     * @return a list of all relevant application mapping rules over a scope as paginated response with {@link
+     *     PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ApplicationInner> listAsync(String scope, Context context) {
+    private PagedFlux<ApplicationMappingRuleInner> listAsync(String scope, Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(scope, context), nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Get a list of all relevant applications over a scope.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope as paginated response with {@link PagedIterable}.
+     * @return a list of all relevant application mapping rules over a scope as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ApplicationInner> list(String scope) {
+    public PagedIterable<ApplicationMappingRuleInner> list(String scope) {
         return new PagedIterable<>(listAsync(scope));
     }
 
     /**
-     * Get a list of all relevant applications over a scope.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
@@ -594,29 +266,321 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope as paginated response with {@link PagedIterable}.
+     * @return a list of all relevant application mapping rules over a scope as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ApplicationInner> list(String scope, Context context) {
+    public PagedIterable<ApplicationMappingRuleInner> list(String scope, Context context) {
         return new PagedIterable<>(listAsync(scope, context));
     }
 
     /**
-     * Get a list of all relevant applications over a rule Id.
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
+     * @param ruleId The rule key - unique key for the rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the application mapping rule resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listByRuleIdSinglePageAsync(String scope, String ruleId) {
+    private Mono<Response<ApplicationMappingRuleInner>> getWithResponseAsync(String scope, String ruleId) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (ruleId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplicationMappingRuleInner>> getWithResponseAsync(
+        String scope, String ruleId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (ruleId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context);
+    }
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ApplicationMappingRuleInner> getAsync(String scope, String ruleId) {
+        return getWithResponseAsync(scope, ruleId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ApplicationMappingRuleInner> getWithResponse(String scope, String ruleId, Context context) {
+        return getWithResponseAsync(scope, ruleId, context).block();
+    }
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApplicationMappingRuleInner get(String scope, String ruleId) {
+        return getWithResponse(scope, ruleId, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param applicationMappingRule The application mapping rules resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplicationMappingRuleInner>> createOrUpdateWithResponseAsync(
+        String scope, String ruleId, ApplicationMappingRuleInner applicationMappingRule) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (ruleId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
+        }
+        if (applicationMappingRule == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter applicationMappingRule is required and cannot be null."));
+        } else {
+            applicationMappingRule.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .createOrUpdate(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            scope,
+                            ruleId,
+                            applicationMappingRule,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates or updates a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param applicationMappingRule The application mapping rules resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplicationMappingRuleInner>> createOrUpdateWithResponseAsync(
+        String scope, String ruleId, ApplicationMappingRuleInner applicationMappingRule, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (ruleId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
+        }
+        if (applicationMappingRule == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter applicationMappingRule is required and cannot be null."));
+        } else {
+            applicationMappingRule.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .createOrUpdate(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                scope,
+                ruleId,
+                applicationMappingRule,
+                accept,
+                context);
+    }
+
+    /**
+     * Creates or updates a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param applicationMappingRule The application mapping rules resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ApplicationMappingRuleInner> createOrUpdateAsync(
+        String scope, String ruleId, ApplicationMappingRuleInner applicationMappingRule) {
+        return createOrUpdateWithResponseAsync(scope, ruleId, applicationMappingRule)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Creates or updates a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param applicationMappingRule The application mapping rules resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ApplicationMappingRuleInner> createOrUpdateWithResponse(
+        String scope, String ruleId, ApplicationMappingRuleInner applicationMappingRule, Context context) {
+        return createOrUpdateWithResponseAsync(scope, ruleId, applicationMappingRule, context).block();
+    }
+
+    /**
+     * Creates or updates a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param applicationMappingRule The application mapping rules resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApplicationMappingRuleInner createOrUpdate(
+        String scope, String ruleId, ApplicationMappingRuleInner applicationMappingRule) {
+        return createOrUpdateWithResponse(scope, ruleId, applicationMappingRule, Context.NONE).getValue();
+    }
+
+    /**
+     * Delete a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String scope, String ruleId) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -634,38 +598,26 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
             .withContext(
                 context ->
                     service
-                        .listByRuleId(
-                            this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context))
-            .<PagedResponse<ApplicationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+                        .delete(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get a list of all relevant applications over a rule Id.
+     * Delete a single application mapping rule over a given scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
+     * @param ruleId The rule key - unique key for the rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listByRuleIdSinglePageAsync(
-        String scope, String ruleId, Context context) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String scope, String ruleId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -680,94 +632,61 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByRuleId(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context);
     }
 
     /**
-     * Get a list of all relevant applications over a rule Id.
+     * Delete a single application mapping rule over a given scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
+     * @param ruleId The rule key - unique key for the rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id as paginated response with {@link PagedFlux}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ApplicationInner> listByRuleIdAsync(String scope, String ruleId) {
-        return new PagedFlux<>(
-            () -> listByRuleIdSinglePageAsync(scope, ruleId), nextLink -> listByRuleIdNextSinglePageAsync(nextLink));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String scope, String ruleId) {
+        return deleteWithResponseAsync(scope, ruleId).flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * Get a list of all relevant applications over a rule Id.
+     * Delete a single application mapping rule over a given scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
+     * @param ruleId The rule key - unique key for the rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id as paginated response with {@link PagedFlux}.
+     * @return the {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ApplicationInner> listByRuleIdAsync(String scope, String ruleId, Context context) {
-        return new PagedFlux<>(
-            () -> listByRuleIdSinglePageAsync(scope, ruleId, context),
-            nextLink -> listByRuleIdNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(String scope, String ruleId, Context context) {
+        return deleteWithResponseAsync(scope, ruleId, context).block();
     }
 
     /**
-     * Get a list of all relevant applications over a rule Id.
+     * Delete a single application mapping rule over a given scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
+     * @param ruleId The rule key - unique key for the rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ApplicationInner> listByRuleId(String scope, String ruleId) {
-        return new PagedIterable<>(listByRuleIdAsync(scope, ruleId));
-    }
-
-    /**
-     * Get a list of all relevant applications over a rule Id.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ApplicationInner> listByRuleId(String scope, String ruleId, Context context) {
-        return new PagedIterable<>(listByRuleIdAsync(scope, ruleId, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String scope, String ruleId) {
+        deleteWithResponse(scope, ruleId, Context.NONE);
     }
 
     /**
@@ -778,10 +697,11 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a application list along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return page of a application mapping rules list along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ApplicationMappingRuleInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -794,7 +714,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ApplicationInner>>map(
+            .<PagedResponse<ApplicationMappingRuleInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -815,10 +735,11 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a application list along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return page of a application mapping rules list along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<ApplicationMappingRuleInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -832,79 +753,6 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
         context = this.client.mergeContext(context);
         return service
             .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a application list along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listByRuleIdNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByRuleIdNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ApplicationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a application list along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApplicationInner>> listByRuleIdNextSinglePageAsync(String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByRuleIdNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

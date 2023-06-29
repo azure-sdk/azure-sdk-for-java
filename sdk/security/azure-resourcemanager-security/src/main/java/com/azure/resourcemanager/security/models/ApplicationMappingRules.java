@@ -7,97 +7,28 @@ package com.azure.resourcemanager.security.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.security.fluent.models.ApplicationInner;
 
-/** Resource collection API of Applications. */
-public interface Applications {
+/** Resource collection API of ApplicationMappingRules. */
+public interface ApplicationMappingRules {
     /**
-     * Retrieves details of a specific application.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response}.
-     */
-    Response<Application> getWithResponse(String scope, String ruleId, String applicationId, Context context);
-
-    /**
-     * Retrieves details of a specific application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource.
-     */
-    Application get(String scope, String ruleId, String applicationId);
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource along with {@link Response}.
-     */
-    Response<Application> updateWithResponse(
-        String scope, String ruleId, String applicationId, ApplicationInner application, Context context);
-
-    /**
-     * Updates a single application.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @param applicationId The rule Key - unique key for the application (GUID).
-     * @param application The application resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the application business criticality resource.
-     */
-    Application update(String scope, String ruleId, String applicationId, ApplicationInner application);
-
-    /**
-     * Get a list of all relevant applications over a scope.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope as paginated response with {@link PagedIterable}.
+     * @return a list of all relevant application mapping rules over a scope as paginated response with {@link
+     *     PagedIterable}.
      */
-    PagedIterable<Application> list(String scope);
+    PagedIterable<ApplicationMappingRule> list(String scope);
 
     /**
-     * Get a list of all relevant applications over a scope.
+     * Get a list of all relevant application mapping rules over a scope.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
@@ -105,38 +36,122 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a scope as paginated response with {@link PagedIterable}.
+     * @return a list of all relevant application mapping rules over a scope as paginated response with {@link
+     *     PagedIterable}.
      */
-    PagedIterable<Application> list(String scope, Context context);
+    PagedIterable<ApplicationMappingRule> list(String scope, Context context);
 
     /**
-     * Get a list of all relevant applications over a rule Id.
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
      *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
      *     'subscriptions/{subscriptionId}'), or security connector (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Application> listByRuleId(String scope, String ruleId);
-
-    /**
-     * Get a list of all relevant applications over a rule Id.
-     *
-     * @param scope The scope of the application. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
-     * @param ruleId The rule Key - unique key for the rule (GUID).
+     * @param ruleId The rule key - unique key for the rule (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant applications over a rule Id as paginated response with {@link PagedIterable}.
+     * @return the application mapping rule resource along with {@link Response}.
      */
-    PagedIterable<Application> listByRuleId(String scope, String ruleId, Context context);
+    Response<ApplicationMappingRule> getWithResponse(String scope, String ruleId, Context context);
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource.
+     */
+    ApplicationMappingRule get(String scope, String ruleId);
+
+    /**
+     * Delete a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByResourceGroupWithResponse(String scope, String ruleId, Context context);
+
+    /**
+     * Delete a single application mapping rule over a given scope.
+     *
+     * @param scope The scope of the application mapping rules rules. Valid scopes are: management group (format:
+     *     'providers/Microsoft.Management/managementGroups/{resourceName}'), subscription (format:
+     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Security/securityConnectors/{resourceName})'.
+     * @param ruleId The rule key - unique key for the rule (GUID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByResourceGroup(String scope, String ruleId);
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response}.
+     */
+    ApplicationMappingRule getById(String id);
+
+    /**
+     * Retrieves details of a specific application mapping rule for the requested scope by ruleId.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the application mapping rule resource along with {@link Response}.
+     */
+    Response<ApplicationMappingRule> getByIdWithResponse(String id, Context context);
+
+    /**
+     * Delete a single application mapping rule over a given scope.
+     *
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Delete a single application mapping rule over a given scope.
+     *
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByIdWithResponse(String id, Context context);
+
+    /**
+     * Begins definition for a new ApplicationMappingRule resource.
+     *
+     * @param name resource name.
+     * @return the first stage of the new ApplicationMappingRule definition.
+     */
+    ApplicationMappingRule.DefinitionStages.Blank define(String name);
 }
