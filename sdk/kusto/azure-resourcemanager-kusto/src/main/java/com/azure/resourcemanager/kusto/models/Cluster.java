@@ -258,6 +258,13 @@ public interface Cluster {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the migrationCluster property: Properties of the peer cluster involved in a migration to/from this cluster.
+     *
+     * @return the migrationCluster value.
+     */
+    MigrationClusterProperties migrationCluster();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -321,7 +328,7 @@ public interface Cluster {
             /**
              * Specifies resourceGroupName.
              *
-             * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithSku withExistingResourceGroup(String resourceGroupName);
@@ -950,6 +957,27 @@ public interface Cluster {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void start(Context context);
+
+    /**
+     * Migrate data from a Kusto cluster to another cluster.
+     *
+     * @param clusterMigrateRequest The cluster migrate request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate(ClusterMigrateRequest clusterMigrateRequest);
+
+    /**
+     * Migrate data from a Kusto cluster to another cluster.
+     *
+     * @param clusterMigrateRequest The cluster migrate request parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void migrate(ClusterMigrateRequest clusterMigrateRequest, Context context);
 
     /**
      * Returns a list of databases that are owned by this cluster and were followed by another cluster.

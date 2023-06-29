@@ -103,7 +103,7 @@ public interface ManagedPrivateEndpoint {
             /**
              * Specifies resourceGroupName, clusterName.
              *
-             * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param clusterName The name of the Kusto cluster.
              * @return the next definition stage.
              */
