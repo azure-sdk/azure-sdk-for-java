@@ -99,11 +99,18 @@ public interface PacketCoreControlPlane {
     CoreNetworkType coreNetworkTechnology();
 
     /**
-     * Gets the version property: The version of the packet core software that is deployed.
+     * Gets the version property: The desired version of the packet core software.
      *
      * @return the version value.
      */
     String version();
+
+    /**
+     * Gets the installedVersion property: The currently installed version of the packet core software.
+     *
+     * @return the installedVersion value.
+     */
+    String installedVersion();
 
     /**
      * Gets the rollbackVersion property: The previous version of the packet core software that was deployed. Used when
@@ -145,6 +152,13 @@ public interface PacketCoreControlPlane {
      * @return the localDiagnosticsAccess value.
      */
     LocalDiagnosticsAccessConfiguration localDiagnosticsAccess();
+
+    /**
+     * Gets the diagnosticsUpload property: Configuration for uploading packet core diagnostics.
+     *
+     * @return the diagnosticsUpload value.
+     */
+    DiagnosticsUploadConfiguration diagnosticsUpload();
 
     /**
      * Gets the interopSettings property: Settings to allow interoperability with third party components e.g. RANs and
@@ -292,9 +306,11 @@ public interface PacketCoreControlPlane {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithIdentity,
+                DefinitionStages.WithInstallation,
                 DefinitionStages.WithCoreNetworkTechnology,
                 DefinitionStages.WithVersion,
                 DefinitionStages.WithUeMtu,
+                DefinitionStages.WithDiagnosticsUpload,
                 DefinitionStages.WithInteropSettings {
             /**
              * Executes the create request.
@@ -332,6 +348,16 @@ public interface PacketCoreControlPlane {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+        /** The stage of the PacketCoreControlPlane definition allowing to specify installation. */
+        interface WithInstallation {
+            /**
+             * Specifies the installation property: The installation state of the packet core control plane resource..
+             *
+             * @param installation The installation state of the packet core control plane resource.
+             * @return the next definition stage.
+             */
+            WithCreate withInstallation(Installation installation);
+        }
         /** The stage of the PacketCoreControlPlane definition allowing to specify coreNetworkTechnology. */
         interface WithCoreNetworkTechnology {
             /**
@@ -346,9 +372,9 @@ public interface PacketCoreControlPlane {
         /** The stage of the PacketCoreControlPlane definition allowing to specify version. */
         interface WithVersion {
             /**
-             * Specifies the version property: The version of the packet core software that is deployed..
+             * Specifies the version property: The desired version of the packet core software..
              *
-             * @param version The version of the packet core software that is deployed.
+             * @param version The desired version of the packet core software.
              * @return the next definition stage.
              */
             WithCreate withVersion(String version);
@@ -366,6 +392,16 @@ public interface PacketCoreControlPlane {
              * @return the next definition stage.
              */
             WithCreate withUeMtu(Integer ueMtu);
+        }
+        /** The stage of the PacketCoreControlPlane definition allowing to specify diagnosticsUpload. */
+        interface WithDiagnosticsUpload {
+            /**
+             * Specifies the diagnosticsUpload property: Configuration for uploading packet core diagnostics.
+             *
+             * @param diagnosticsUpload Configuration for uploading packet core diagnostics.
+             * @return the next definition stage.
+             */
+            WithCreate withDiagnosticsUpload(DiagnosticsUploadConfiguration diagnosticsUpload);
         }
         /** The stage of the PacketCoreControlPlane definition allowing to specify interopSettings. */
         interface WithInteropSettings {
@@ -387,7 +423,7 @@ public interface PacketCoreControlPlane {
     PacketCoreControlPlane.Update update();
 
     /** The template for PacketCoreControlPlane update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -414,6 +450,16 @@ public interface PacketCoreControlPlane {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the PacketCoreControlPlane update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identity associated with this resource..
+             *
+             * @param identity The managed service identity associated with this resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(ManagedServiceIdentity identity);
         }
     }
     /**

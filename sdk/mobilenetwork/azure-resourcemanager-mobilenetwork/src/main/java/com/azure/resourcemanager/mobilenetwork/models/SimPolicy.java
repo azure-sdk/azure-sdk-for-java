@@ -95,7 +95,8 @@ public interface SimPolicy {
     Integer rfspIndex();
 
     /**
-     * Gets the registrationTimer property: Interval for the UE periodic registration update procedure, in seconds.
+     * Gets the registrationTimer property: UE periodic registration update timer (5G) or UE periodic tracking area
+     * update timer (4G), in seconds.
      *
      * @return the registrationTimer value.
      */
@@ -264,10 +265,11 @@ public interface SimPolicy {
         /** The stage of the SimPolicy definition allowing to specify registrationTimer. */
         interface WithRegistrationTimer {
             /**
-             * Specifies the registrationTimer property: Interval for the UE periodic registration update procedure, in
-             * seconds..
+             * Specifies the registrationTimer property: UE periodic registration update timer (5G) or UE periodic
+             * tracking area update timer (4G), in seconds..
              *
-             * @param registrationTimer Interval for the UE periodic registration update procedure, in seconds.
+             * @param registrationTimer UE periodic registration update timer (5G) or UE periodic tracking area update
+             *     timer (4G), in seconds.
              * @return the next definition stage.
              */
             WithCreate withRegistrationTimer(Integer registrationTimer);
