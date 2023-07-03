@@ -134,7 +134,7 @@ public interface Devices {
     void downloadUpdates(String deviceName, String resourceGroupName, Context context);
 
     /**
-     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     * Generates certificate for activation key.
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
@@ -142,21 +142,47 @@ public interface Devices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return additional information for the specified Data Box Edge/Data Box Gateway device along with {@link
-     *     Response}.
+     * @return used in activation key generation flow along with {@link Response}.
      */
-    Response<DataBoxEdgeDeviceExtendedInfo> getExtendedInformationWithResponse(
+    Response<GenerateCertResponse> generateCertificateWithResponse(
         String deviceName, String resourceGroupName, Context context);
 
     /**
-     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     * Generates certificate for activation key.
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return additional information for the specified Data Box Edge/Data Box Gateway device.
+     * @return used in activation key generation flow.
+     */
+    GenerateCertResponse generateCertificate(String deviceName, String resourceGroupName);
+
+    /**
+     * Gets additional information for the specified Azure Stack Edge/Data Box Gateway device.
+     *
+     * @param deviceName The device name.
+     * @param resourceGroupName The resource group name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Azure Stack Edge/Data Box Gateway device along with {@link
+     *     Response}.
+     */
+    Response<DataBoxEdgeDeviceExtendedInfo> getExtendedInformationWithResponse(
+        String deviceName, String resourceGroupName, Context context);
+
+    /**
+     * Gets additional information for the specified Azure Stack Edge/Data Box Gateway device.
+     *
+     * @param deviceName The device name.
+     * @param resourceGroupName The resource group name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Azure Stack Edge/Data Box Gateway device.
      */
     DataBoxEdgeDeviceExtendedInfo getExtendedInformation(String deviceName, String resourceGroupName);
 
@@ -257,6 +283,36 @@ public interface Devices {
      */
     void createOrUpdateSecuritySettings(
         String deviceName, String resourceGroupName, SecuritySettings securitySettings, Context context);
+
+    /**
+     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     *
+     * @param deviceName The device name.
+     * @param resourceGroupName The resource group name.
+     * @param parameters The patch object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Data Box Edge/Data Box Gateway device along with {@link
+     *     Response}.
+     */
+    Response<DataBoxEdgeDeviceExtendedInfo> updateExtendedInformationWithResponse(
+        String deviceName, String resourceGroupName, DataBoxEdgeDeviceExtendedInfoPatch parameters, Context context);
+
+    /**
+     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     *
+     * @param deviceName The device name.
+     * @param resourceGroupName The resource group name.
+     * @param parameters The patch object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Data Box Edge/Data Box Gateway device.
+     */
+    DataBoxEdgeDeviceExtendedInfo updateExtendedInformation(
+        String deviceName, String resourceGroupName, DataBoxEdgeDeviceExtendedInfoPatch parameters);
 
     /**
      * Gets information about the availability of updates based on the last scan of the device. It also gets information
