@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for HierarchySettingsOperation Delete. */
 public final class HierarchySettingsOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/DeleteHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/DeleteHierarchySettings.json
      */
     /**
      * Sample code: GetGroupSettings.
