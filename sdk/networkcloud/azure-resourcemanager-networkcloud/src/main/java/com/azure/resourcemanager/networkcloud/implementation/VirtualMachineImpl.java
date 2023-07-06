@@ -24,7 +24,6 @@ import com.azure.resourcemanager.networkcloud.models.VirtualMachinePowerOffParam
 import com.azure.resourcemanager.networkcloud.models.VirtualMachinePowerState;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachineProvisioningState;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachineVirtioInterfaceType;
-import com.azure.resourcemanager.networkcloud.models.VirtualMachineVolumeParameters;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -287,30 +286,6 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
                 .getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, context)
                 .getValue();
         return this;
-    }
-
-    public void attachVolume(VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters) {
-        serviceManager
-            .virtualMachines()
-            .attachVolume(resourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters);
-    }
-
-    public void attachVolume(VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters, Context context) {
-        serviceManager
-            .virtualMachines()
-            .attachVolume(resourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters, context);
-    }
-
-    public void detachVolume(VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters) {
-        serviceManager
-            .virtualMachines()
-            .detachVolume(resourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters);
-    }
-
-    public void detachVolume(VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters, Context context) {
-        serviceManager
-            .virtualMachines()
-            .detachVolume(resourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters, context);
     }
 
     public void powerOff() {

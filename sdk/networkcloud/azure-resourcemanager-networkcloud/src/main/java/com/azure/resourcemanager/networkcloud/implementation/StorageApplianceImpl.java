@@ -17,7 +17,6 @@ import com.azure.resourcemanager.networkcloud.models.StorageApplianceDetailedSta
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceEnableRemoteVendorManagementParameters;
 import com.azure.resourcemanager.networkcloud.models.StorageAppliancePatchParameters;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceProvisioningState;
-import com.azure.resourcemanager.networkcloud.models.StorageApplianceRunReadCommandsParameters;
 import java.util.Collections;
 import java.util.Map;
 
@@ -246,20 +245,6 @@ public final class StorageApplianceImpl
                 storageApplianceName,
                 storageApplianceEnableRemoteVendorManagementParameters,
                 context);
-    }
-
-    public void runReadCommands(StorageApplianceRunReadCommandsParameters storageApplianceRunReadCommandsParameters) {
-        serviceManager
-            .storageAppliances()
-            .runReadCommands(resourceGroupName, storageApplianceName, storageApplianceRunReadCommandsParameters);
-    }
-
-    public void runReadCommands(
-        StorageApplianceRunReadCommandsParameters storageApplianceRunReadCommandsParameters, Context context) {
-        serviceManager
-            .storageAppliances()
-            .runReadCommands(
-                resourceGroupName, storageApplianceName, storageApplianceRunReadCommandsParameters, context);
     }
 
     public StorageApplianceImpl withRegion(Region location) {

@@ -13,7 +13,6 @@ import com.azure.resourcemanager.networkcloud.fluent.VirtualMachinesClient;
 import com.azure.resourcemanager.networkcloud.fluent.models.VirtualMachineInner;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachine;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachinePowerOffParameters;
-import com.azure.resourcemanager.networkcloud.models.VirtualMachineVolumeParameters;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachines;
 
 public final class VirtualMachinesImpl implements VirtualMachines {
@@ -79,40 +78,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
 
     public void delete(String resourceGroupName, String virtualMachineName, Context context) {
         this.serviceClient().delete(resourceGroupName, virtualMachineName, context);
-    }
-
-    public void attachVolume(
-        String resourceGroupName,
-        String virtualMachineName,
-        VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters) {
-        this.serviceClient().attachVolume(resourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters);
-    }
-
-    public void attachVolume(
-        String resourceGroupName,
-        String virtualMachineName,
-        VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters,
-        Context context) {
-        this
-            .serviceClient()
-            .attachVolume(resourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters, context);
-    }
-
-    public void detachVolume(
-        String resourceGroupName,
-        String virtualMachineName,
-        VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters) {
-        this.serviceClient().detachVolume(resourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters);
-    }
-
-    public void detachVolume(
-        String resourceGroupName,
-        String virtualMachineName,
-        VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters,
-        Context context) {
-        this
-            .serviceClient()
-            .detachVolume(resourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters, context);
     }
 
     public void powerOff(String resourceGroupName, String virtualMachineName) {

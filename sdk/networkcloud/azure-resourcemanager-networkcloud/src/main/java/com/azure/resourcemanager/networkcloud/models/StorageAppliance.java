@@ -451,30 +451,4 @@ public interface StorageAppliance {
     void enableRemoteVendorManagement(
         StorageApplianceEnableRemoteVendorManagementParameters storageApplianceEnableRemoteVendorManagementParameters,
         Context context);
-
-    /**
-     * Retrieve output from read-only commands exercised against a storage appliance.
-     *
-     * <p>Run and retrieve output from read only commands on the provided storage appliance.
-     *
-     * @param storageApplianceRunReadCommandsParameters The request body.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void runReadCommands(StorageApplianceRunReadCommandsParameters storageApplianceRunReadCommandsParameters);
-
-    /**
-     * Retrieve output from read-only commands exercised against a storage appliance.
-     *
-     * <p>Run and retrieve output from read only commands on the provided storage appliance.
-     *
-     * @param storageApplianceRunReadCommandsParameters The request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void runReadCommands(
-        StorageApplianceRunReadCommandsParameters storageApplianceRunReadCommandsParameters, Context context);
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for AgentPools Update. */
 public final class AgentPoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-05-01-preview/examples/AgentPools_Patch.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/AgentPools_Patch.json
      */
     /**
      * Sample code: Patch Kubernetes cluster agent pool.

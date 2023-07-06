@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Racks CreateOrUpdate. */
 public final class RacksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-05-01-preview/examples/Racks_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Racks_Create.json
      */
     /**
      * Sample code: Create or update rack.
