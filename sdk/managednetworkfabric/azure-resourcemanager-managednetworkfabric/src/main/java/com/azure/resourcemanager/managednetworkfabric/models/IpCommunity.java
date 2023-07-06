@@ -56,32 +56,32 @@ public interface IpCommunity {
     SystemData systemData();
 
     /**
-     * Gets the action property: Action to be taken on the configuration. Example: Permit | Deny.
+     * Gets the configurationState property: Configuration state of the resource.
      *
-     * @return the action value.
+     * @return the configurationState value.
      */
-    CommunityActionTypes action();
+    ConfigurationState configurationState();
 
     /**
-     * Gets the wellKnownCommunities property: Supported well known Community List.
-     *
-     * @return the wellKnownCommunities value.
-     */
-    List<WellKnownCommunities> wellKnownCommunities();
-
-    /**
-     * Gets the communityMembers property: List the communityMembers of IP Community .
-     *
-     * @return the communityMembers value.
-     */
-    List<String> communityMembers();
-
-    /**
-     * Gets the provisioningState property: Gets the provisioning state of the resource.
+     * Gets the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
      */
     ProvisioningState provisioningState();
+
+    /**
+     * Gets the administrativeState property: Administrative state of the resource.
+     *
+     * @return the administrativeState value.
+     */
+    AdministrativeState administrativeState();
+
+    /**
+     * Gets the ipCommunityRules property: List of IP Community Rules.
+     *
+     * @return the ipCommunityRules value.
+     */
+    List<IpCommunityRule> ipCommunityRules();
 
     /**
      * Gets the annotation property: Switch configuration description.
@@ -163,11 +163,7 @@ public interface IpCommunity {
          * to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags,
-                DefinitionStages.WithAction,
-                DefinitionStages.WithWellKnownCommunities,
-                DefinitionStages.WithCommunityMembers,
-                DefinitionStages.WithAnnotation {
+            extends DefinitionStages.WithTags, DefinitionStages.WithIpCommunityRules, DefinitionStages.WithAnnotation {
             /**
              * Executes the create request.
              *
@@ -193,35 +189,15 @@ public interface IpCommunity {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the IpCommunity definition allowing to specify action. */
-        interface WithAction {
+        /** The stage of the IpCommunity definition allowing to specify ipCommunityRules. */
+        interface WithIpCommunityRules {
             /**
-             * Specifies the action property: Action to be taken on the configuration. Example: Permit | Deny..
+             * Specifies the ipCommunityRules property: List of IP Community Rules..
              *
-             * @param action Action to be taken on the configuration. Example: Permit | Deny.
+             * @param ipCommunityRules List of IP Community Rules.
              * @return the next definition stage.
              */
-            WithCreate withAction(CommunityActionTypes action);
-        }
-        /** The stage of the IpCommunity definition allowing to specify wellKnownCommunities. */
-        interface WithWellKnownCommunities {
-            /**
-             * Specifies the wellKnownCommunities property: Supported well known Community List..
-             *
-             * @param wellKnownCommunities Supported well known Community List.
-             * @return the next definition stage.
-             */
-            WithCreate withWellKnownCommunities(List<WellKnownCommunities> wellKnownCommunities);
-        }
-        /** The stage of the IpCommunity definition allowing to specify communityMembers. */
-        interface WithCommunityMembers {
-            /**
-             * Specifies the communityMembers property: List the communityMembers of IP Community ..
-             *
-             * @param communityMembers List the communityMembers of IP Community .
-             * @return the next definition stage.
-             */
-            WithCreate withCommunityMembers(List<String> communityMembers);
+            WithCreate withIpCommunityRules(List<IpCommunityRule> ipCommunityRules);
         }
         /** The stage of the IpCommunity definition allowing to specify annotation. */
         interface WithAnnotation {
@@ -242,7 +218,7 @@ public interface IpCommunity {
     IpCommunity.Update update();
 
     /** The template for IpCommunity update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIpCommunityRules {
         /**
          * Executes the update request.
          *
@@ -269,6 +245,16 @@ public interface IpCommunity {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the IpCommunity update allowing to specify ipCommunityRules. */
+        interface WithIpCommunityRules {
+            /**
+             * Specifies the ipCommunityRules property: List of IP Community Rules..
+             *
+             * @param ipCommunityRules List of IP Community Rules.
+             * @return the next definition stage.
+             */
+            Update withIpCommunityRules(List<IpCommunityRule> ipCommunityRules);
         }
     }
     /**

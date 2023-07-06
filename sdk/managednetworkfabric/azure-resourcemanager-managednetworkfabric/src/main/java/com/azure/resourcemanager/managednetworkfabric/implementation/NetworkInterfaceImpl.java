@@ -7,8 +7,8 @@ package com.azure.resourcemanager.managednetworkfabric.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkInterfaceInner;
-import com.azure.resourcemanager.managednetworkfabric.models.EnabledDisabledState;
-import com.azure.resourcemanager.managednetworkfabric.models.InterfaceStatus;
+import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
+import com.azure.resourcemanager.managednetworkfabric.models.CommonPostActionResponseForStateUpdate;
 import com.azure.resourcemanager.managednetworkfabric.models.InterfaceType;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkInterface;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkInterfacePatch;
@@ -41,14 +41,6 @@ public final class NetworkInterfaceImpl
         return this.innerModel().physicalIdentifier();
     }
 
-    public EnabledDisabledState administrativeState() {
-        return this.innerModel().administrativeState();
-    }
-
-    public ProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
     public String connectedTo() {
         return this.innerModel().connectedTo();
     }
@@ -63,6 +55,14 @@ public final class NetworkInterfaceImpl
 
     public String ipv6Address() {
         return this.innerModel().ipv6Address();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public AdministrativeState administrativeState() {
+        return this.innerModel().administrativeState();
     }
 
     public String annotation() {
@@ -173,24 +173,15 @@ public final class NetworkInterfaceImpl
         return this;
     }
 
-    public InterfaceStatus getStatus() {
-        return serviceManager.networkInterfaces().getStatus(resourceGroupName, networkDeviceName, networkInterfaceName);
-    }
-
-    public InterfaceStatus getStatus(Context context) {
+    public CommonPostActionResponseForStateUpdate updateAdministrativeState(UpdateAdministrativeState body) {
         return serviceManager
-            .networkInterfaces()
-            .getStatus(resourceGroupName, networkDeviceName, networkInterfaceName, context);
-    }
-
-    public void updateAdministrativeState(UpdateAdministrativeState body) {
-        serviceManager
             .networkInterfaces()
             .updateAdministrativeState(resourceGroupName, networkDeviceName, networkInterfaceName, body);
     }
 
-    public void updateAdministrativeState(UpdateAdministrativeState body, Context context) {
-        serviceManager
+    public CommonPostActionResponseForStateUpdate updateAdministrativeState(
+        UpdateAdministrativeState body, Context context) {
+        return serviceManager
             .networkInterfaces()
             .updateAdministrativeState(resourceGroupName, networkDeviceName, networkInterfaceName, body, context);
     }
