@@ -56,11 +56,10 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface PrivateLinkResourcesService {
+    public interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateLinkResources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateLinkResources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceListResult>> listByResource(
@@ -74,9 +73,11 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/privateLinkResources/{subResourceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/privateLinkResources/{subResourceName}")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceInner>> get(
             @HostParam("$host") String endpoint,
@@ -267,6 +268,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param subResourceName Sub resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private link resource object along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -323,6 +325,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private link resource object along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -375,6 +378,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param subResourceName Sub resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private link resource object on successful completion of {@link Mono}.
      */
@@ -391,15 +395,17 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param subResourceName Sub resource name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private link resource object.
+     * @return private link resource object along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(
-        String resourceGroupName, String farmBeatsResourceName, String subResourceName) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, subResourceName).block();
+    public Response<PrivateLinkResourceInner> getWithResponse(
+        String resourceGroupName, String farmBeatsResourceName, String subResourceName, Context context) {
+        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, subResourceName, context).block();
     }
 
     /**
@@ -408,15 +414,15 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param subResourceName Sub resource name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private link resource object along with {@link Response}.
+     * @return private link resource object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PrivateLinkResourceInner> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String subResourceName, Context context) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, subResourceName, context).block();
+    public PrivateLinkResourceInner get(
+        String resourceGroupName, String farmBeatsResourceName, String subResourceName) {
+        return getWithResponse(resourceGroupName, farmBeatsResourceName, subResourceName, Context.NONE).getValue();
     }
 }

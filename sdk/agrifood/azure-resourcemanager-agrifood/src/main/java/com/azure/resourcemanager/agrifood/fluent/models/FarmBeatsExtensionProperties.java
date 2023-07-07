@@ -75,6 +75,10 @@ public final class FarmBeatsExtensionProperties {
     @JsonProperty(value = "detailedInformation", access = JsonProperty.Access.WRITE_ONLY)
     private List<DetailedInformation> detailedInformation;
 
+    /** Creates an instance of FarmBeatsExtensionProperties class. */
+    public FarmBeatsExtensionProperties() {
+    }
+
     /**
      * Get the targetResourceType property: Target ResourceType of the farmBeatsExtension.
      *
