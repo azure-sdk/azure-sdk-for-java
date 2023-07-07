@@ -24,6 +24,10 @@ public final class UnitSystemsInfo {
     @JsonProperty(value = "values", required = true)
     private List<String> values;
 
+    /** Creates an instance of UnitSystemsInfo class. */
+    public UnitSystemsInfo() {
+    }
+
     /**
      * Get the key property: UnitSystem key sent as part of ProviderInput.
      *
