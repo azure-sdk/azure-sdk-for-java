@@ -29,16 +29,22 @@ import com.azure.resourcemanager.agrifood.implementation.ExtensionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.FarmBeatsExtensionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.FarmBeatsModelsImpl;
 import com.azure.resourcemanager.agrifood.implementation.LocationsImpl;
+import com.azure.resourcemanager.agrifood.implementation.OperationResultsImpl;
 import com.azure.resourcemanager.agrifood.implementation.OperationsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateLinkResourcesImpl;
+import com.azure.resourcemanager.agrifood.implementation.SolutionsDiscoverabilitiesImpl;
+import com.azure.resourcemanager.agrifood.implementation.SolutionsImpl;
 import com.azure.resourcemanager.agrifood.models.Extensions;
 import com.azure.resourcemanager.agrifood.models.FarmBeatsExtensions;
 import com.azure.resourcemanager.agrifood.models.FarmBeatsModels;
 import com.azure.resourcemanager.agrifood.models.Locations;
+import com.azure.resourcemanager.agrifood.models.OperationResults;
 import com.azure.resourcemanager.agrifood.models.Operations;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkResources;
+import com.azure.resourcemanager.agrifood.models.Solutions;
+import com.azure.resourcemanager.agrifood.models.SolutionsDiscoverabilities;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -54,6 +60,8 @@ public final class AgriFoodManager {
 
     private FarmBeatsModels farmBeatsModels;
 
+    private OperationResults operationResults;
+
     private Locations locations;
 
     private Operations operations;
@@ -61,6 +69,10 @@ public final class AgriFoodManager {
     private PrivateEndpointConnections privateEndpointConnections;
 
     private PrivateLinkResources privateLinkResources;
+
+    private Solutions solutions;
+
+    private SolutionsDiscoverabilities solutionsDiscoverabilities;
 
     private final AgriFoodManagementClient clientObject;
 
@@ -285,7 +297,7 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Extensions.
+     * Gets the resource collection API of Extensions. It manages Extension.
      *
      * @return Resource collection API of Extensions.
      */
@@ -318,6 +330,18 @@ public final class AgriFoodManager {
             this.farmBeatsModels = new FarmBeatsModelsImpl(clientObject.getFarmBeatsModels(), this);
         }
         return farmBeatsModels;
+    }
+
+    /**
+     * Gets the resource collection API of OperationResults.
+     *
+     * @return Resource collection API of OperationResults.
+     */
+    public OperationResults operationResults() {
+        if (this.operationResults == null) {
+            this.operationResults = new OperationResultsImpl(clientObject.getOperationResults(), this);
+        }
+        return operationResults;
     }
 
     /**
@@ -367,6 +391,31 @@ public final class AgriFoodManager {
             this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
         }
         return privateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of Solutions. It manages Solution.
+     *
+     * @return Resource collection API of Solutions.
+     */
+    public Solutions solutions() {
+        if (this.solutions == null) {
+            this.solutions = new SolutionsImpl(clientObject.getSolutions(), this);
+        }
+        return solutions;
+    }
+
+    /**
+     * Gets the resource collection API of SolutionsDiscoverabilities.
+     *
+     * @return Resource collection API of SolutionsDiscoverabilities.
+     */
+    public SolutionsDiscoverabilities solutionsDiscoverabilities() {
+        if (this.solutionsDiscoverabilities == null) {
+            this.solutionsDiscoverabilities =
+                new SolutionsDiscoverabilitiesImpl(clientObject.getSolutionsDiscoverabilities(), this);
+        }
+        return solutionsDiscoverabilities;
     }
 
     /**
