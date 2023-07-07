@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.models.CheckNameAvailabilityRequest;
 
 /** Samples for Locations CheckNameAvailability. */
@@ -25,7 +24,7 @@ public final class LocationsCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityRequest()
                     .withName("newaccountname")
                     .withType("Microsoft.AgFoodPlatform/farmBeats"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -44,6 +43,6 @@ public final class LocationsCheckNameAvailabilitySamples {
                 new CheckNameAvailabilityRequest()
                     .withName("existingaccountname")
                     .withType("Microsoft.AgFoodPlatform/farmBeats"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
