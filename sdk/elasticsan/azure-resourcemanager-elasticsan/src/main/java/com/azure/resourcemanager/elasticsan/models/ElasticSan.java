@@ -49,7 +49,7 @@ public interface ElasticSan {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: Resource metadata required by ARM RPC.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -124,6 +124,13 @@ public interface ElasticSan {
      * @return the totalSizeTiB value.
      */
     Long totalSizeTiB();
+
+    /**
+     * Gets the privateEndpointConnections property: The list of Private Endpoint Connections.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
      * Gets the region of the resource.
