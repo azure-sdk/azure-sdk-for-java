@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions Get. */
 public final class ExtensionsGetSamples {
     /*
@@ -19,6 +17,10 @@ public final class ExtensionsGetSamples {
     public static void extensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .extensions()
-            .getWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
+            .getWithResponse(
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                "provider.extension",
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.models.FarmBeats;
 import com.azure.resourcemanager.agrifood.models.FarmBeatsUpdateProperties;
 import com.azure.resourcemanager.agrifood.models.Identity;
@@ -27,7 +26,8 @@ public final class FarmBeatsModelsUpdateSamples {
         FarmBeats resource =
             manager
                 .farmBeatsModels()
-                .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "examples-rg", "examples-farmBeatsResourceName", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("key1", "value1", "key2", "value2")).apply();
     }
@@ -44,7 +44,8 @@ public final class FarmBeatsModelsUpdateSamples {
         FarmBeats resource =
             manager
                 .farmBeatsModels()
-                .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "examples-rg", "examples-farmBeatsResourceName", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
