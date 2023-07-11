@@ -7,6 +7,7 @@ package com.azure.resourcemanager.agrifood.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionInner;
+import java.util.List;
 
 /** An immutable client-side representation of PrivateEndpointConnection. */
 public interface PrivateEndpointConnection {
@@ -39,7 +40,14 @@ public interface PrivateEndpointConnection {
     SystemData systemData();
 
     /**
-     * Gets the privateEndpoint property: The resource of private end point.
+     * Gets the groupIds property: The group ids for the private endpoint resource.
+     *
+     * @return the groupIds value.
+     */
+    List<String> groupIds();
+
+    /**
+     * Gets the privateEndpoint property: The private endpoint resource.
      *
      * @return the privateEndpoint value.
      */
@@ -86,13 +94,13 @@ public interface PrivateEndpointConnection {
         /** The stage of the PrivateEndpointConnection definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, farmBeatsResourceName.
+             * Specifies resourceGroupName, dataManagerForAgricultureResourceName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param farmBeatsResourceName FarmBeats resource name.
+             * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
              * @return the next definition stage.
              */
-            WithCreate withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName);
+            WithCreate withExistingFarmBeat(String resourceGroupName, String dataManagerForAgricultureResourceName);
         }
         /**
          * The stage of the PrivateEndpointConnection definition which contains all the minimum required properties for
@@ -118,9 +126,9 @@ public interface PrivateEndpointConnection {
         /** The stage of the PrivateEndpointConnection definition allowing to specify privateEndpoint. */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
+             * Specifies the privateEndpoint property: The private endpoint resource..
              *
-             * @param privateEndpoint The resource of private end point.
+             * @param privateEndpoint The private endpoint resource.
              * @return the next definition stage.
              */
             WithCreate withPrivateEndpoint(PrivateEndpoint privateEndpoint);
@@ -170,9 +178,9 @@ public interface PrivateEndpointConnection {
         /** The stage of the PrivateEndpointConnection update allowing to specify privateEndpoint. */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
+             * Specifies the privateEndpoint property: The private endpoint resource..
              *
-             * @param privateEndpoint The resource of private end point.
+             * @param privateEndpoint The private endpoint resource.
              * @return the next definition stage.
              */
             Update withPrivateEndpoint(PrivateEndpoint privateEndpoint);
