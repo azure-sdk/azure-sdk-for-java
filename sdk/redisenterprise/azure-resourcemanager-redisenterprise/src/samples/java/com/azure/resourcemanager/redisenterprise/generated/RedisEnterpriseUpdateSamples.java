@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for RedisEnterprise Update. */
 public final class RedisEnterpriseUpdateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseUpdate.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-07-01-preview/examples/RedisEnterpriseUpdate.json
      */
     /**
      * Sample code: RedisEnterpriseUpdate.
