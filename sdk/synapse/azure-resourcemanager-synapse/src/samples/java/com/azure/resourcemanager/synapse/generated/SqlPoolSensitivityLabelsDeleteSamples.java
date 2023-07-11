@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for SqlPoolSensitivityLabels Delete. */
 public final class SqlPoolSensitivityLabelsDeleteSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/DeleteSqlPoolColumnSensitivityLabel.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/DeleteSqlPoolColumnSensitivityLabel.json
      */
     /**
      * Sample code: Deletes the sensitivity label of a given column.

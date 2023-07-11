@@ -68,8 +68,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
     public interface PrivateLinkHubsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkHubInfoListResult>> listByResourceGroup(
@@ -82,8 +81,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs/{privateLinkHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkHubInner>> getByResourceGroup(
@@ -97,8 +95,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs/{privateLinkHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkHubInner>> update(
@@ -113,8 +110,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs/{privateLinkHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkHubInner>> createOrUpdate(
@@ -129,8 +125,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse"
-                + "/privateLinkHubs/{privateLinkHubName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -201,7 +196,6 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -209,7 +203,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     service
                         .listByResourceGroup(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             accept,
@@ -255,13 +249,12 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 accept,
@@ -372,7 +365,6 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter privateLinkHubName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -380,7 +372,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     service
                         .getByResourceGroup(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             privateLinkHubName,
@@ -423,13 +415,12 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter privateLinkHubName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getByResourceGroup(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 privateLinkHubName,
@@ -526,7 +517,6 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
         } else {
             privateLinkHubPatchInfo.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -534,7 +524,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     service
                         .update(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             privateLinkHubName,
@@ -589,13 +579,12 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
         } else {
             privateLinkHubPatchInfo.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .update(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 privateLinkHubName,
@@ -701,7 +690,6 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
         } else {
             privateLinkHubInfo.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -709,7 +697,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             privateLinkHubName,
@@ -760,13 +748,12 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
         } else {
             privateLinkHubInfo.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 privateLinkHubName,
@@ -863,7 +850,6 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter privateLinkHubName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -871,7 +857,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             privateLinkHubName,
@@ -914,13 +900,12 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter privateLinkHubName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 privateLinkHubName,
@@ -1085,13 +1070,17 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context))
+                        .list(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            accept,
+                            context))
             .<PagedResponse<PrivateLinkHubInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1127,11 +1116,15 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+            .list(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(

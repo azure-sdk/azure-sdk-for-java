@@ -66,8 +66,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     public interface SqlPoolSensitivityLabelsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/currentSensitivityLabels")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/currentSensitivityLabels")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SensitivityLabelListResult>> listCurrent(
@@ -83,8 +82,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/currentSensitivityLabels")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/currentSensitivityLabels")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> update(
@@ -99,8 +97,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/recommendedSensitivityLabels")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/recommendedSensitivityLabels")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SensitivityLabelListResult>> listRecommended(
@@ -118,9 +115,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}"
-                + "/sensitivityLabels/{sensitivityLabelSource}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SensitivityLabelInner>> createOrUpdate(
@@ -140,9 +135,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}"
-                + "/sensitivityLabels/{sensitivityLabelSource}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -160,9 +153,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}"
-                + "/sensitivityLabels/{sensitivityLabelSource}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SensitivityLabelInner>> get(
@@ -181,9 +172,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}"
-                + "/sensitivityLabels/{sensitivityLabelSource}/enable")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}/enable")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> enableRecommendation(
@@ -201,9 +190,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}"
-                + "/sensitivityLabels/{sensitivityLabelSource}/disable")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}/disable")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> disableRecommendation(
@@ -279,7 +266,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -287,7 +273,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .listCurrent(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -347,13 +333,12 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listCurrent(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -522,14 +507,13 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .update(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -586,12 +570,11 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         context = this.client.mergeContext(context);
         return service
             .update(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -706,7 +689,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -714,7 +696,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .listRecommended(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -785,13 +767,12 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (sqlPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter sqlPoolName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listRecommended(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1029,7 +1010,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "current";
         final String accept = "application/json";
         return FluxUtil
@@ -1038,7 +1018,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1115,14 +1095,13 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "current";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1285,7 +1264,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (columnName == null) {
             return Mono.error(new IllegalArgumentException("Parameter columnName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "current";
         return FluxUtil
             .withContext(
@@ -1293,7 +1271,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1361,13 +1339,12 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (columnName == null) {
             return Mono.error(new IllegalArgumentException("Parameter columnName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "current";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1520,7 +1497,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                 .error(
                     new IllegalArgumentException("Parameter sensitivityLabelSource is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1528,7 +1504,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1605,13 +1581,12 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                 .error(
                     new IllegalArgumentException("Parameter sensitivityLabelSource is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -1786,7 +1761,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (columnName == null) {
             return Mono.error(new IllegalArgumentException("Parameter columnName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "recommended";
         return FluxUtil
             .withContext(
@@ -1794,7 +1768,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .enableRecommendation(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -1862,13 +1836,12 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (columnName == null) {
             return Mono.error(new IllegalArgumentException("Parameter columnName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "recommended";
         context = this.client.mergeContext(context);
         return service
             .enableRecommendation(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -2014,7 +1987,6 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (columnName == null) {
             return Mono.error(new IllegalArgumentException("Parameter columnName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "recommended";
         return FluxUtil
             .withContext(
@@ -2022,7 +1994,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                     service
                         .disableRecommendation(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -2090,13 +2062,12 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         if (columnName == null) {
             return Mono.error(new IllegalArgumentException("Parameter columnName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String sensitivityLabelSource = "recommended";
         context = this.client.mergeContext(context);
         return service
             .disableRecommendation(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

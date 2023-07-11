@@ -11,10 +11,12 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.synapse.fluent.OperationsClient;
 import com.azure.resourcemanager.synapse.fluent.models.AvailableRpOperationInner;
 import com.azure.resourcemanager.synapse.fluent.models.CheckNameAvailabilityResponseInner;
+import com.azure.resourcemanager.synapse.fluent.models.ListUsagesResultInner;
 import com.azure.resourcemanager.synapse.fluent.models.OperationResourceInner;
 import com.azure.resourcemanager.synapse.models.AvailableRpOperation;
 import com.azure.resourcemanager.synapse.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.synapse.models.CheckNameAvailabilityResponse;
+import com.azure.resourcemanager.synapse.models.ListUsagesResult;
 import com.azure.resourcemanager.synapse.models.OperationResource;
 import com.azure.resourcemanager.synapse.models.Operations;
 import java.util.Collections;
@@ -53,6 +55,53 @@ public final class OperationsImpl implements Operations {
         CheckNameAvailabilityResponseInner inner = this.serviceClient().checkNameAvailability(request);
         if (inner != null) {
             return new CheckNameAvailabilityResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ListUsagesResult> getSubscriptionQuotaAndUsageWithResponse(String location, Context context) {
+        Response<ListUsagesResultInner> inner =
+            this.serviceClient().getSubscriptionQuotaAndUsageWithResponse(location, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ListUsagesResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ListUsagesResult getSubscriptionQuotaAndUsage(String location) {
+        ListUsagesResultInner inner = this.serviceClient().getSubscriptionQuotaAndUsage(location);
+        if (inner != null) {
+            return new ListUsagesResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ListUsagesResult> getWorkspaceQuotaAndUsageWithResponse(
+        String resourceGroupName, String workspaceName, Context context) {
+        Response<ListUsagesResultInner> inner =
+            this.serviceClient().getWorkspaceQuotaAndUsageWithResponse(resourceGroupName, workspaceName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ListUsagesResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ListUsagesResult getWorkspaceQuotaAndUsage(String resourceGroupName, String workspaceName) {
+        ListUsagesResultInner inner = this.serviceClient().getWorkspaceQuotaAndUsage(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new ListUsagesResultImpl(inner, this.manager());
         } else {
             return null;
         }

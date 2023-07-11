@@ -29,7 +29,6 @@ import com.azure.resourcemanager.synapse.implementation.BigDataPoolsImpl;
 import com.azure.resourcemanager.synapse.implementation.DataMaskingPoliciesImpl;
 import com.azure.resourcemanager.synapse.implementation.DataMaskingRulesImpl;
 import com.azure.resourcemanager.synapse.implementation.ExtendedSqlPoolBlobAuditingPoliciesImpl;
-import com.azure.resourcemanager.synapse.implementation.GetsImpl;
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeAuthKeysOperationsImpl;
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeConnectionInfosImpl;
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeCredentialsImpl;
@@ -41,15 +40,6 @@ import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimeStatus
 import com.azure.resourcemanager.synapse.implementation.IntegrationRuntimesImpl;
 import com.azure.resourcemanager.synapse.implementation.IpFirewallRulesImpl;
 import com.azure.resourcemanager.synapse.implementation.KeysImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoOperationsImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolAttachedDatabaseConfigurationsImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolChildResourcesImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolDataConnectionsImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolDatabasePrincipalAssignmentsImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolDatabasesImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolPrincipalAssignmentsImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolPrivateLinkResourcesOperationsImpl;
-import com.azure.resourcemanager.synapse.implementation.KustoPoolsImpl;
 import com.azure.resourcemanager.synapse.implementation.LibrariesImpl;
 import com.azure.resourcemanager.synapse.implementation.LibrariesOperationsImpl;
 import com.azure.resourcemanager.synapse.implementation.OperationsImpl;
@@ -57,10 +47,8 @@ import com.azure.resourcemanager.synapse.implementation.PrivateEndpointConnectio
 import com.azure.resourcemanager.synapse.implementation.PrivateEndpointConnectionsPrivateLinkHubsImpl;
 import com.azure.resourcemanager.synapse.implementation.PrivateLinkHubPrivateLinkResourcesImpl;
 import com.azure.resourcemanager.synapse.implementation.PrivateLinkHubsImpl;
-import com.azure.resourcemanager.synapse.implementation.PrivateLinkResourcesOperationsImpl;
+import com.azure.resourcemanager.synapse.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.synapse.implementation.RestorableDroppedSqlPoolsImpl;
-import com.azure.resourcemanager.synapse.implementation.SparkConfigurationsImpl;
-import com.azure.resourcemanager.synapse.implementation.SparkConfigurationsOperationsImpl;
 import com.azure.resourcemanager.synapse.implementation.SqlPoolBlobAuditingPoliciesImpl;
 import com.azure.resourcemanager.synapse.implementation.SqlPoolColumnsImpl;
 import com.azure.resourcemanager.synapse.implementation.SqlPoolConnectionPoliciesImpl;
@@ -105,7 +93,6 @@ import com.azure.resourcemanager.synapse.models.BigDataPools;
 import com.azure.resourcemanager.synapse.models.DataMaskingPolicies;
 import com.azure.resourcemanager.synapse.models.DataMaskingRules;
 import com.azure.resourcemanager.synapse.models.ExtendedSqlPoolBlobAuditingPolicies;
-import com.azure.resourcemanager.synapse.models.Gets;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeAuthKeysOperations;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeConnectionInfos;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeCredentials;
@@ -117,15 +104,6 @@ import com.azure.resourcemanager.synapse.models.IntegrationRuntimeStatusOperatio
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimes;
 import com.azure.resourcemanager.synapse.models.IpFirewallRules;
 import com.azure.resourcemanager.synapse.models.Keys;
-import com.azure.resourcemanager.synapse.models.KustoOperations;
-import com.azure.resourcemanager.synapse.models.KustoPoolAttachedDatabaseConfigurations;
-import com.azure.resourcemanager.synapse.models.KustoPoolChildResources;
-import com.azure.resourcemanager.synapse.models.KustoPoolDataConnections;
-import com.azure.resourcemanager.synapse.models.KustoPoolDatabasePrincipalAssignments;
-import com.azure.resourcemanager.synapse.models.KustoPoolDatabases;
-import com.azure.resourcemanager.synapse.models.KustoPoolPrincipalAssignments;
-import com.azure.resourcemanager.synapse.models.KustoPoolPrivateLinkResourcesOperations;
-import com.azure.resourcemanager.synapse.models.KustoPools;
 import com.azure.resourcemanager.synapse.models.Libraries;
 import com.azure.resourcemanager.synapse.models.LibrariesOperations;
 import com.azure.resourcemanager.synapse.models.Operations;
@@ -133,10 +111,8 @@ import com.azure.resourcemanager.synapse.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.synapse.models.PrivateEndpointConnectionsPrivateLinkHubs;
 import com.azure.resourcemanager.synapse.models.PrivateLinkHubPrivateLinkResources;
 import com.azure.resourcemanager.synapse.models.PrivateLinkHubs;
-import com.azure.resourcemanager.synapse.models.PrivateLinkResourcesOperations;
+import com.azure.resourcemanager.synapse.models.PrivateLinkResources;
 import com.azure.resourcemanager.synapse.models.RestorableDroppedSqlPools;
-import com.azure.resourcemanager.synapse.models.SparkConfigurations;
-import com.azure.resourcemanager.synapse.models.SparkConfigurationsOperations;
 import com.azure.resourcemanager.synapse.models.SqlPoolBlobAuditingPolicies;
 import com.azure.resourcemanager.synapse.models.SqlPoolColumns;
 import com.azure.resourcemanager.synapse.models.SqlPoolConnectionPolicies;
@@ -186,15 +162,39 @@ import java.util.stream.Collectors;
 public final class SynapseManager {
     private AzureADOnlyAuthentications azureADOnlyAuthentications;
 
+    private BigDataPools bigDataPools;
+
     private Operations operations;
 
     private IpFirewallRules ipFirewallRules;
 
+    private IntegrationRuntimes integrationRuntimes;
+
+    private IntegrationRuntimeNodeIpAddressOperations integrationRuntimeNodeIpAddressOperations;
+
+    private IntegrationRuntimeObjectMetadatas integrationRuntimeObjectMetadatas;
+
+    private IntegrationRuntimeNodes integrationRuntimeNodes;
+
+    private IntegrationRuntimeCredentials integrationRuntimeCredentials;
+
+    private IntegrationRuntimeConnectionInfos integrationRuntimeConnectionInfos;
+
+    private IntegrationRuntimeAuthKeysOperations integrationRuntimeAuthKeysOperations;
+
+    private IntegrationRuntimeMonitoringDatas integrationRuntimeMonitoringDatas;
+
+    private IntegrationRuntimeStatusOperations integrationRuntimeStatusOperations;
+
     private Keys keys;
+
+    private Libraries libraries;
+
+    private LibrariesOperations librariesOperations;
 
     private PrivateEndpointConnections privateEndpointConnections;
 
-    private PrivateLinkResourcesOperations privateLinkResourcesOperations;
+    private PrivateLinkResources privateLinkResources;
 
     private PrivateLinkHubPrivateLinkResources privateLinkHubPrivateLinkResources;
 
@@ -286,54 +286,6 @@ public final class SynapseManager {
     private WorkspaceManagedIdentitySqlControlSettings workspaceManagedIdentitySqlControlSettings;
 
     private RestorableDroppedSqlPools restorableDroppedSqlPools;
-
-    private BigDataPools bigDataPools;
-
-    private Libraries libraries;
-
-    private LibrariesOperations librariesOperations;
-
-    private IntegrationRuntimes integrationRuntimes;
-
-    private IntegrationRuntimeNodeIpAddressOperations integrationRuntimeNodeIpAddressOperations;
-
-    private IntegrationRuntimeObjectMetadatas integrationRuntimeObjectMetadatas;
-
-    private IntegrationRuntimeNodes integrationRuntimeNodes;
-
-    private IntegrationRuntimeCredentials integrationRuntimeCredentials;
-
-    private IntegrationRuntimeConnectionInfos integrationRuntimeConnectionInfos;
-
-    private IntegrationRuntimeAuthKeysOperations integrationRuntimeAuthKeysOperations;
-
-    private IntegrationRuntimeMonitoringDatas integrationRuntimeMonitoringDatas;
-
-    private IntegrationRuntimeStatusOperations integrationRuntimeStatusOperations;
-
-    private Gets gets;
-
-    private SparkConfigurations sparkConfigurations;
-
-    private SparkConfigurationsOperations sparkConfigurationsOperations;
-
-    private KustoOperations kustoOperations;
-
-    private KustoPools kustoPools;
-
-    private KustoPoolChildResources kustoPoolChildResources;
-
-    private KustoPoolAttachedDatabaseConfigurations kustoPoolAttachedDatabaseConfigurations;
-
-    private KustoPoolDatabases kustoPoolDatabases;
-
-    private KustoPoolDataConnections kustoPoolDataConnections;
-
-    private KustoPoolPrincipalAssignments kustoPoolPrincipalAssignments;
-
-    private KustoPoolDatabasePrincipalAssignments kustoPoolDatabasePrincipalAssignments;
-
-    private KustoPoolPrivateLinkResourcesOperations kustoPoolPrivateLinkResourcesOperations;
 
     private final SynapseManagementClient clientObject;
 
@@ -500,7 +452,7 @@ public final class SynapseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.synapse")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -571,6 +523,18 @@ public final class SynapseManager {
     }
 
     /**
+     * Gets the resource collection API of BigDataPools. It manages BigDataPoolResourceInfo.
+     *
+     * @return Resource collection API of BigDataPools.
+     */
+    public BigDataPools bigDataPools() {
+        if (this.bigDataPools == null) {
+            this.bigDataPools = new BigDataPoolsImpl(clientObject.getBigDataPools(), this);
+        }
+        return bigDataPools;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      *
      * @return Resource collection API of Operations.
@@ -595,6 +559,124 @@ public final class SynapseManager {
     }
 
     /**
+     * Gets the resource collection API of IntegrationRuntimes. It manages IntegrationRuntimeResource.
+     *
+     * @return Resource collection API of IntegrationRuntimes.
+     */
+    public IntegrationRuntimes integrationRuntimes() {
+        if (this.integrationRuntimes == null) {
+            this.integrationRuntimes = new IntegrationRuntimesImpl(clientObject.getIntegrationRuntimes(), this);
+        }
+        return integrationRuntimes;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeNodeIpAddressOperations.
+     *
+     * @return Resource collection API of IntegrationRuntimeNodeIpAddressOperations.
+     */
+    public IntegrationRuntimeNodeIpAddressOperations integrationRuntimeNodeIpAddressOperations() {
+        if (this.integrationRuntimeNodeIpAddressOperations == null) {
+            this.integrationRuntimeNodeIpAddressOperations =
+                new IntegrationRuntimeNodeIpAddressOperationsImpl(
+                    clientObject.getIntegrationRuntimeNodeIpAddressOperations(), this);
+        }
+        return integrationRuntimeNodeIpAddressOperations;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeObjectMetadatas.
+     *
+     * @return Resource collection API of IntegrationRuntimeObjectMetadatas.
+     */
+    public IntegrationRuntimeObjectMetadatas integrationRuntimeObjectMetadatas() {
+        if (this.integrationRuntimeObjectMetadatas == null) {
+            this.integrationRuntimeObjectMetadatas =
+                new IntegrationRuntimeObjectMetadatasImpl(clientObject.getIntegrationRuntimeObjectMetadatas(), this);
+        }
+        return integrationRuntimeObjectMetadatas;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeNodes.
+     *
+     * @return Resource collection API of IntegrationRuntimeNodes.
+     */
+    public IntegrationRuntimeNodes integrationRuntimeNodes() {
+        if (this.integrationRuntimeNodes == null) {
+            this.integrationRuntimeNodes =
+                new IntegrationRuntimeNodesImpl(clientObject.getIntegrationRuntimeNodes(), this);
+        }
+        return integrationRuntimeNodes;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeCredentials.
+     *
+     * @return Resource collection API of IntegrationRuntimeCredentials.
+     */
+    public IntegrationRuntimeCredentials integrationRuntimeCredentials() {
+        if (this.integrationRuntimeCredentials == null) {
+            this.integrationRuntimeCredentials =
+                new IntegrationRuntimeCredentialsImpl(clientObject.getIntegrationRuntimeCredentials(), this);
+        }
+        return integrationRuntimeCredentials;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeConnectionInfos.
+     *
+     * @return Resource collection API of IntegrationRuntimeConnectionInfos.
+     */
+    public IntegrationRuntimeConnectionInfos integrationRuntimeConnectionInfos() {
+        if (this.integrationRuntimeConnectionInfos == null) {
+            this.integrationRuntimeConnectionInfos =
+                new IntegrationRuntimeConnectionInfosImpl(clientObject.getIntegrationRuntimeConnectionInfos(), this);
+        }
+        return integrationRuntimeConnectionInfos;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeAuthKeysOperations.
+     *
+     * @return Resource collection API of IntegrationRuntimeAuthKeysOperations.
+     */
+    public IntegrationRuntimeAuthKeysOperations integrationRuntimeAuthKeysOperations() {
+        if (this.integrationRuntimeAuthKeysOperations == null) {
+            this.integrationRuntimeAuthKeysOperations =
+                new IntegrationRuntimeAuthKeysOperationsImpl(
+                    clientObject.getIntegrationRuntimeAuthKeysOperations(), this);
+        }
+        return integrationRuntimeAuthKeysOperations;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeMonitoringDatas.
+     *
+     * @return Resource collection API of IntegrationRuntimeMonitoringDatas.
+     */
+    public IntegrationRuntimeMonitoringDatas integrationRuntimeMonitoringDatas() {
+        if (this.integrationRuntimeMonitoringDatas == null) {
+            this.integrationRuntimeMonitoringDatas =
+                new IntegrationRuntimeMonitoringDatasImpl(clientObject.getIntegrationRuntimeMonitoringDatas(), this);
+        }
+        return integrationRuntimeMonitoringDatas;
+    }
+
+    /**
+     * Gets the resource collection API of IntegrationRuntimeStatusOperations.
+     *
+     * @return Resource collection API of IntegrationRuntimeStatusOperations.
+     */
+    public IntegrationRuntimeStatusOperations integrationRuntimeStatusOperations() {
+        if (this.integrationRuntimeStatusOperations == null) {
+            this.integrationRuntimeStatusOperations =
+                new IntegrationRuntimeStatusOperationsImpl(clientObject.getIntegrationRuntimeStatusOperations(), this);
+        }
+        return integrationRuntimeStatusOperations;
+    }
+
+    /**
      * Gets the resource collection API of Keys. It manages Key.
      *
      * @return Resource collection API of Keys.
@@ -604,6 +686,30 @@ public final class SynapseManager {
             this.keys = new KeysImpl(clientObject.getKeys(), this);
         }
         return keys;
+    }
+
+    /**
+     * Gets the resource collection API of Libraries.
+     *
+     * @return Resource collection API of Libraries.
+     */
+    public Libraries libraries() {
+        if (this.libraries == null) {
+            this.libraries = new LibrariesImpl(clientObject.getLibraries(), this);
+        }
+        return libraries;
+    }
+
+    /**
+     * Gets the resource collection API of LibrariesOperations.
+     *
+     * @return Resource collection API of LibrariesOperations.
+     */
+    public LibrariesOperations librariesOperations() {
+        if (this.librariesOperations == null) {
+            this.librariesOperations = new LibrariesOperationsImpl(clientObject.getLibrariesOperations(), this);
+        }
+        return librariesOperations;
     }
 
     /**
@@ -620,16 +726,15 @@ public final class SynapseManager {
     }
 
     /**
-     * Gets the resource collection API of PrivateLinkResourcesOperations.
+     * Gets the resource collection API of PrivateLinkResources.
      *
-     * @return Resource collection API of PrivateLinkResourcesOperations.
+     * @return Resource collection API of PrivateLinkResources.
      */
-    public PrivateLinkResourcesOperations privateLinkResourcesOperations() {
-        if (this.privateLinkResourcesOperations == null) {
-            this.privateLinkResourcesOperations =
-                new PrivateLinkResourcesOperationsImpl(clientObject.getPrivateLinkResourcesOperations(), this);
+    public PrivateLinkResources privateLinkResources() {
+        if (this.privateLinkResources == null) {
+            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
         }
-        return privateLinkResourcesOperations;
+        return privateLinkResources;
     }
 
     /**
@@ -1222,316 +1327,6 @@ public final class SynapseManager {
                 new RestorableDroppedSqlPoolsImpl(clientObject.getRestorableDroppedSqlPools(), this);
         }
         return restorableDroppedSqlPools;
-    }
-
-    /**
-     * Gets the resource collection API of BigDataPools. It manages BigDataPoolResourceInfo.
-     *
-     * @return Resource collection API of BigDataPools.
-     */
-    public BigDataPools bigDataPools() {
-        if (this.bigDataPools == null) {
-            this.bigDataPools = new BigDataPoolsImpl(clientObject.getBigDataPools(), this);
-        }
-        return bigDataPools;
-    }
-
-    /**
-     * Gets the resource collection API of Libraries.
-     *
-     * @return Resource collection API of Libraries.
-     */
-    public Libraries libraries() {
-        if (this.libraries == null) {
-            this.libraries = new LibrariesImpl(clientObject.getLibraries(), this);
-        }
-        return libraries;
-    }
-
-    /**
-     * Gets the resource collection API of LibrariesOperations.
-     *
-     * @return Resource collection API of LibrariesOperations.
-     */
-    public LibrariesOperations librariesOperations() {
-        if (this.librariesOperations == null) {
-            this.librariesOperations = new LibrariesOperationsImpl(clientObject.getLibrariesOperations(), this);
-        }
-        return librariesOperations;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimes. It manages IntegrationRuntimeResource.
-     *
-     * @return Resource collection API of IntegrationRuntimes.
-     */
-    public IntegrationRuntimes integrationRuntimes() {
-        if (this.integrationRuntimes == null) {
-            this.integrationRuntimes = new IntegrationRuntimesImpl(clientObject.getIntegrationRuntimes(), this);
-        }
-        return integrationRuntimes;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeNodeIpAddressOperations.
-     *
-     * @return Resource collection API of IntegrationRuntimeNodeIpAddressOperations.
-     */
-    public IntegrationRuntimeNodeIpAddressOperations integrationRuntimeNodeIpAddressOperations() {
-        if (this.integrationRuntimeNodeIpAddressOperations == null) {
-            this.integrationRuntimeNodeIpAddressOperations =
-                new IntegrationRuntimeNodeIpAddressOperationsImpl(
-                    clientObject.getIntegrationRuntimeNodeIpAddressOperations(), this);
-        }
-        return integrationRuntimeNodeIpAddressOperations;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeObjectMetadatas.
-     *
-     * @return Resource collection API of IntegrationRuntimeObjectMetadatas.
-     */
-    public IntegrationRuntimeObjectMetadatas integrationRuntimeObjectMetadatas() {
-        if (this.integrationRuntimeObjectMetadatas == null) {
-            this.integrationRuntimeObjectMetadatas =
-                new IntegrationRuntimeObjectMetadatasImpl(clientObject.getIntegrationRuntimeObjectMetadatas(), this);
-        }
-        return integrationRuntimeObjectMetadatas;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeNodes.
-     *
-     * @return Resource collection API of IntegrationRuntimeNodes.
-     */
-    public IntegrationRuntimeNodes integrationRuntimeNodes() {
-        if (this.integrationRuntimeNodes == null) {
-            this.integrationRuntimeNodes =
-                new IntegrationRuntimeNodesImpl(clientObject.getIntegrationRuntimeNodes(), this);
-        }
-        return integrationRuntimeNodes;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeCredentials.
-     *
-     * @return Resource collection API of IntegrationRuntimeCredentials.
-     */
-    public IntegrationRuntimeCredentials integrationRuntimeCredentials() {
-        if (this.integrationRuntimeCredentials == null) {
-            this.integrationRuntimeCredentials =
-                new IntegrationRuntimeCredentialsImpl(clientObject.getIntegrationRuntimeCredentials(), this);
-        }
-        return integrationRuntimeCredentials;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeConnectionInfos.
-     *
-     * @return Resource collection API of IntegrationRuntimeConnectionInfos.
-     */
-    public IntegrationRuntimeConnectionInfos integrationRuntimeConnectionInfos() {
-        if (this.integrationRuntimeConnectionInfos == null) {
-            this.integrationRuntimeConnectionInfos =
-                new IntegrationRuntimeConnectionInfosImpl(clientObject.getIntegrationRuntimeConnectionInfos(), this);
-        }
-        return integrationRuntimeConnectionInfos;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeAuthKeysOperations.
-     *
-     * @return Resource collection API of IntegrationRuntimeAuthKeysOperations.
-     */
-    public IntegrationRuntimeAuthKeysOperations integrationRuntimeAuthKeysOperations() {
-        if (this.integrationRuntimeAuthKeysOperations == null) {
-            this.integrationRuntimeAuthKeysOperations =
-                new IntegrationRuntimeAuthKeysOperationsImpl(
-                    clientObject.getIntegrationRuntimeAuthKeysOperations(), this);
-        }
-        return integrationRuntimeAuthKeysOperations;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeMonitoringDatas.
-     *
-     * @return Resource collection API of IntegrationRuntimeMonitoringDatas.
-     */
-    public IntegrationRuntimeMonitoringDatas integrationRuntimeMonitoringDatas() {
-        if (this.integrationRuntimeMonitoringDatas == null) {
-            this.integrationRuntimeMonitoringDatas =
-                new IntegrationRuntimeMonitoringDatasImpl(clientObject.getIntegrationRuntimeMonitoringDatas(), this);
-        }
-        return integrationRuntimeMonitoringDatas;
-    }
-
-    /**
-     * Gets the resource collection API of IntegrationRuntimeStatusOperations.
-     *
-     * @return Resource collection API of IntegrationRuntimeStatusOperations.
-     */
-    public IntegrationRuntimeStatusOperations integrationRuntimeStatusOperations() {
-        if (this.integrationRuntimeStatusOperations == null) {
-            this.integrationRuntimeStatusOperations =
-                new IntegrationRuntimeStatusOperationsImpl(clientObject.getIntegrationRuntimeStatusOperations(), this);
-        }
-        return integrationRuntimeStatusOperations;
-    }
-
-    /**
-     * Gets the resource collection API of Gets.
-     *
-     * @return Resource collection API of Gets.
-     */
-    public Gets gets() {
-        if (this.gets == null) {
-            this.gets = new GetsImpl(clientObject.getGets(), this);
-        }
-        return gets;
-    }
-
-    /**
-     * Gets the resource collection API of SparkConfigurations.
-     *
-     * @return Resource collection API of SparkConfigurations.
-     */
-    public SparkConfigurations sparkConfigurations() {
-        if (this.sparkConfigurations == null) {
-            this.sparkConfigurations = new SparkConfigurationsImpl(clientObject.getSparkConfigurations(), this);
-        }
-        return sparkConfigurations;
-    }
-
-    /**
-     * Gets the resource collection API of SparkConfigurationsOperations.
-     *
-     * @return Resource collection API of SparkConfigurationsOperations.
-     */
-    public SparkConfigurationsOperations sparkConfigurationsOperations() {
-        if (this.sparkConfigurationsOperations == null) {
-            this.sparkConfigurationsOperations =
-                new SparkConfigurationsOperationsImpl(clientObject.getSparkConfigurationsOperations(), this);
-        }
-        return sparkConfigurationsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of KustoOperations.
-     *
-     * @return Resource collection API of KustoOperations.
-     */
-    public KustoOperations kustoOperations() {
-        if (this.kustoOperations == null) {
-            this.kustoOperations = new KustoOperationsImpl(clientObject.getKustoOperations(), this);
-        }
-        return kustoOperations;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPools. It manages KustoPool.
-     *
-     * @return Resource collection API of KustoPools.
-     */
-    public KustoPools kustoPools() {
-        if (this.kustoPools == null) {
-            this.kustoPools = new KustoPoolsImpl(clientObject.getKustoPools(), this);
-        }
-        return kustoPools;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolChildResources.
-     *
-     * @return Resource collection API of KustoPoolChildResources.
-     */
-    public KustoPoolChildResources kustoPoolChildResources() {
-        if (this.kustoPoolChildResources == null) {
-            this.kustoPoolChildResources =
-                new KustoPoolChildResourcesImpl(clientObject.getKustoPoolChildResources(), this);
-        }
-        return kustoPoolChildResources;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolAttachedDatabaseConfigurations. It manages
-     * AttachedDatabaseConfiguration.
-     *
-     * @return Resource collection API of KustoPoolAttachedDatabaseConfigurations.
-     */
-    public KustoPoolAttachedDatabaseConfigurations kustoPoolAttachedDatabaseConfigurations() {
-        if (this.kustoPoolAttachedDatabaseConfigurations == null) {
-            this.kustoPoolAttachedDatabaseConfigurations =
-                new KustoPoolAttachedDatabaseConfigurationsImpl(
-                    clientObject.getKustoPoolAttachedDatabaseConfigurations(), this);
-        }
-        return kustoPoolAttachedDatabaseConfigurations;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolDatabases.
-     *
-     * @return Resource collection API of KustoPoolDatabases.
-     */
-    public KustoPoolDatabases kustoPoolDatabases() {
-        if (this.kustoPoolDatabases == null) {
-            this.kustoPoolDatabases = new KustoPoolDatabasesImpl(clientObject.getKustoPoolDatabases(), this);
-        }
-        return kustoPoolDatabases;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolDataConnections.
-     *
-     * @return Resource collection API of KustoPoolDataConnections.
-     */
-    public KustoPoolDataConnections kustoPoolDataConnections() {
-        if (this.kustoPoolDataConnections == null) {
-            this.kustoPoolDataConnections =
-                new KustoPoolDataConnectionsImpl(clientObject.getKustoPoolDataConnections(), this);
-        }
-        return kustoPoolDataConnections;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolPrincipalAssignments. It manages ClusterPrincipalAssignment.
-     *
-     * @return Resource collection API of KustoPoolPrincipalAssignments.
-     */
-    public KustoPoolPrincipalAssignments kustoPoolPrincipalAssignments() {
-        if (this.kustoPoolPrincipalAssignments == null) {
-            this.kustoPoolPrincipalAssignments =
-                new KustoPoolPrincipalAssignmentsImpl(clientObject.getKustoPoolPrincipalAssignments(), this);
-        }
-        return kustoPoolPrincipalAssignments;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolDatabasePrincipalAssignments. It manages
-     * DatabasePrincipalAssignment.
-     *
-     * @return Resource collection API of KustoPoolDatabasePrincipalAssignments.
-     */
-    public KustoPoolDatabasePrincipalAssignments kustoPoolDatabasePrincipalAssignments() {
-        if (this.kustoPoolDatabasePrincipalAssignments == null) {
-            this.kustoPoolDatabasePrincipalAssignments =
-                new KustoPoolDatabasePrincipalAssignmentsImpl(
-                    clientObject.getKustoPoolDatabasePrincipalAssignments(), this);
-        }
-        return kustoPoolDatabasePrincipalAssignments;
-    }
-
-    /**
-     * Gets the resource collection API of KustoPoolPrivateLinkResourcesOperations.
-     *
-     * @return Resource collection API of KustoPoolPrivateLinkResourcesOperations.
-     */
-    public KustoPoolPrivateLinkResourcesOperations kustoPoolPrivateLinkResourcesOperations() {
-        if (this.kustoPoolPrivateLinkResourcesOperations == null) {
-            this.kustoPoolPrivateLinkResourcesOperations =
-                new KustoPoolPrivateLinkResourcesOperationsImpl(
-                    clientObject.getKustoPoolPrivateLinkResourcesOperations(), this);
-        }
-        return kustoPoolPrivateLinkResourcesOperations;
     }
 
     /**

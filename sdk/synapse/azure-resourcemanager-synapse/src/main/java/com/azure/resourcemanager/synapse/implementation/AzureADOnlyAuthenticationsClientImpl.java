@@ -68,8 +68,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     public interface AzureADOnlyAuthenticationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/azureADOnlyAuthentications/{azureADOnlyAuthenticationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/azureADOnlyAuthentications/{azureADOnlyAuthenticationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureADOnlyAuthenticationInner>> get(
@@ -84,8 +83,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/azureADOnlyAuthentications/{azureADOnlyAuthenticationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/azureADOnlyAuthentications/{azureADOnlyAuthenticationName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -101,8 +99,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/azureADOnlyAuthentications")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/azureADOnlyAuthentications")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureADOnlyAuthenticationListResult>> list(
@@ -167,7 +164,6 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
                     new IllegalArgumentException(
                         "Parameter azureADOnlyAuthenticationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -175,7 +171,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -231,13 +227,12 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
                     new IllegalArgumentException(
                         "Parameter azureADOnlyAuthenticationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -363,7 +358,6 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
         } else {
             azureADOnlyAuthenticationInfo.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -371,7 +365,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
                     service
                         .create(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -438,13 +432,12 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
         } else {
             azureADOnlyAuthenticationInfo.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -722,7 +715,6 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -730,7 +722,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
                     service
                         .list(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -784,13 +776,12 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

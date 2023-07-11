@@ -9,7 +9,7 @@ import com.azure.resourcemanager.synapse.models.BlobAuditingPolicyName;
 /** Samples for WorkspaceManagedSqlServerBlobAuditingPolicies Get. */
 public final class WorkspaceManagedSqlServerBlobAuditingPoliciesGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetWorkspaceManagedSqlServerBlobAuditingSettings.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetWorkspaceManagedSqlServerBlobAuditingSettings.json
      */
     /**
      * Sample code: Get blob auditing setting of workspace managed sql Server.

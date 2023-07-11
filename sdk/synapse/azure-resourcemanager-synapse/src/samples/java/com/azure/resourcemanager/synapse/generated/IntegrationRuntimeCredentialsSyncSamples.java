@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for IntegrationRuntimeCredentials Sync. */
 public final class IntegrationRuntimeCredentialsSyncSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/IntegrationRuntimes_SyncCredentials.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/IntegrationRuntimes_SyncCredentials.json
      */
     /**
      * Sample code: Sync credentials.

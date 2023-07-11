@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for IntegrationRuntimes Upgrade. */
 public final class IntegrationRuntimesUpgradeSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/IntegrationRuntimes_Upgrade.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/IntegrationRuntimes_Upgrade.json
      */
     /**
      * Sample code: Upgrade integration runtime.

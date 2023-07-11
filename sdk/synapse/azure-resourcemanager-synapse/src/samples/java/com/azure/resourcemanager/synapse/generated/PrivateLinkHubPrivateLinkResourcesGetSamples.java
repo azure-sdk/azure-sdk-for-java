@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for PrivateLinkHubPrivateLinkResources Get. */
 public final class PrivateLinkHubPrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetPrivateLinkHubPrivateLinkResource.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetPrivateLinkHubPrivateLinkResource.json
      */
     /**
      * Sample code: Get private link resources for private link hub.

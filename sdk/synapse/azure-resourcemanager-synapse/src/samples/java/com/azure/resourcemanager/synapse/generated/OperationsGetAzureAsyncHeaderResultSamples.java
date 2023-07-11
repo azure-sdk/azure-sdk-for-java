@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for Operations GetAzureAsyncHeaderResult. */
 public final class OperationsGetAzureAsyncHeaderResultSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetAzureAsyncOperationHeader.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/GetAzureAsyncOperationHeader.json
      */
     /**
      * Sample code: Get azure async operation header result.

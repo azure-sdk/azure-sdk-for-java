@@ -57,8 +57,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     public interface SqlPoolMaintenanceWindowOptionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/maintenanceWindowOptions/current")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/maintenanceWindowOptions/current")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MaintenanceWindowOptionsInner>> get(
@@ -119,7 +118,6 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
                     new IllegalArgumentException(
                         "Parameter maintenanceWindowOptionsName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -127,7 +125,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -189,13 +187,12 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
                     new IllegalArgumentException(
                         "Parameter maintenanceWindowOptionsName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

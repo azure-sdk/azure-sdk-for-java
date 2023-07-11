@@ -75,8 +75,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     public interface WorkspaceManagedSqlServerEncryptionProtectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/encryptionProtector/{encryptionProtectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/encryptionProtector/{encryptionProtectorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EncryptionProtectorInner>> get(
@@ -91,8 +90,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/encryptionProtector/{encryptionProtectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/encryptionProtector/{encryptionProtectorName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -108,8 +106,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/encryptionProtector")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/encryptionProtector")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EncryptionProtectorListResult>> list(
@@ -123,8 +120,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/encryptionProtector/{encryptionProtectorName}/revalidate")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/encryptionProtector/{encryptionProtectorName}/revalidate")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> revalidate(
@@ -188,7 +184,6 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                 .error(
                     new IllegalArgumentException("Parameter encryptionProtectorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -196,7 +191,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -251,13 +246,12 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                 .error(
                     new IllegalArgumentException("Parameter encryptionProtectorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -377,7 +371,6 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -385,7 +378,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -447,13 +440,12 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -719,7 +711,6 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -727,7 +718,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                     service
                         .list(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -781,13 +772,12 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -923,14 +913,13 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                 .error(
                     new IllegalArgumentException("Parameter encryptionProtectorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .revalidate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -983,12 +972,11 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                 .error(
                     new IllegalArgumentException("Parameter encryptionProtectorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         context = this.client.mergeContext(context);
         return service
             .revalidate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.synapse.generated;
 /** Samples for LibrariesOperation ListByWorkspace. */
 public final class LibrariesOperationListByWorkspaceSamples {
     /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/Libraries_ListByWorkspace.json
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2023-05-01/examples/Libraries_ListByWorkspace.json
      */
     /**
      * Sample code: List libraries in a workspace.
