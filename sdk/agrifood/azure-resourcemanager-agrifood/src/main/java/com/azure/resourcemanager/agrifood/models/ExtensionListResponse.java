@@ -24,6 +24,10 @@ public final class ExtensionListResponse {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of ExtensionListResponse class. */
+    public ExtensionListResponse() {
+    }
+
     /**
      * Get the value property: List of requested objects.
      *
