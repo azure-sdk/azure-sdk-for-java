@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The OrchestratorIdentity model. */
 @Fluent
-public class OrchestratorIdentity {
+public final class OrchestratorIdentity {
     /*
      * The principal id of the system assigned identity which is used by orchestrator.
      */

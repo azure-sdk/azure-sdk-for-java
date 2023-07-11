@@ -37,6 +37,12 @@ public final class DelegatedSubnetProperties {
     @JsonProperty(value = "controllerDetails")
     private ControllerDetails controllerDetails;
 
+    /*
+     * Defines size of CIDR blocks allocated to nodes in VnetBlock Mode.
+     */
+    @JsonProperty(value = "allocationBlockPrefixSize")
+    private Integer allocationBlockPrefixSize;
+
     /** Creates an instance of DelegatedSubnetProperties class. */
     public DelegatedSubnetProperties() {
     }
@@ -96,6 +102,26 @@ public final class DelegatedSubnetProperties {
      */
     public DelegatedSubnetProperties withControllerDetails(ControllerDetails controllerDetails) {
         this.controllerDetails = controllerDetails;
+        return this;
+    }
+
+    /**
+     * Get the allocationBlockPrefixSize property: Defines size of CIDR blocks allocated to nodes in VnetBlock Mode.
+     *
+     * @return the allocationBlockPrefixSize value.
+     */
+    public Integer allocationBlockPrefixSize() {
+        return this.allocationBlockPrefixSize;
+    }
+
+    /**
+     * Set the allocationBlockPrefixSize property: Defines size of CIDR blocks allocated to nodes in VnetBlock Mode.
+     *
+     * @param allocationBlockPrefixSize the allocationBlockPrefixSize value to set.
+     * @return the DelegatedSubnetProperties object itself.
+     */
+    public DelegatedSubnetProperties withAllocationBlockPrefixSize(Integer allocationBlockPrefixSize) {
+        this.allocationBlockPrefixSize = allocationBlockPrefixSize;
         return this;
     }
 
