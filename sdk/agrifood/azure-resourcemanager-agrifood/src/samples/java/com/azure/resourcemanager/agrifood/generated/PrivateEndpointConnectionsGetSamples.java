@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
@@ -20,6 +18,9 @@ public final class PrivateEndpointConnectionsGetSamples {
         manager
             .privateEndpointConnections()
             .getWithResponse(
-                "examples-rg", "examples-farmbeatsResourceName", "privateEndpointConnectionName", Context.NONE);
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                "privateEndpointConnectionName",
+                com.azure.core.util.Context.NONE);
     }
 }
