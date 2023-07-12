@@ -62,6 +62,30 @@ public final class ConfigurationsImpl implements Configurations {
         }
     }
 
+    public Response<ConfigData> createInSubscriptionWithResponse(
+        ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
+        Response<ConfigDataInner> inner =
+            this.serviceClient().createInSubscriptionWithResponse(configurationName, configContract, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ConfigDataImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ConfigData createInSubscription(ConfigurationName configurationName, ConfigDataInner configContract) {
+        ConfigDataInner inner = this.serviceClient().createInSubscription(configurationName, configContract);
+        if (inner != null) {
+            return new ConfigDataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PagedIterable<ConfigData> listByResourceGroup(String resourceGroup) {
         PagedIterable<ConfigDataInner> inner = this.serviceClient().listByResourceGroup(resourceGroup);
         return Utils.mapPage(inner, inner1 -> new ConfigDataImpl(inner1, this.manager()));
