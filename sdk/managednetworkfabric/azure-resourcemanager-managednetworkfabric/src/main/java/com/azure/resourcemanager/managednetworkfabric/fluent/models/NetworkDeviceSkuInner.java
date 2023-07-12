@@ -9,7 +9,6 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.DeviceInterfaceProperties;
-import com.azure.resourcemanager.managednetworkfabric.models.DeviceLimits;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkDeviceRoleName;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.azure.resourcemanager.managednetworkfabric.models.SupportedVersionProperties;
@@ -100,7 +99,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
     }
 
     /**
-     * Get the supportedVersions property: List of network device interfaces.
+     * Get the supportedVersions property: List of supported version details of network device.
      *
      * @return the supportedVersions value.
      */
@@ -109,7 +108,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
     }
 
     /**
-     * Set the supportedVersions property: List of network device interfaces.
+     * Set the supportedVersions property: List of supported version details of network device.
      *
      * @param supportedVersions the supportedVersions value to set.
      * @return the NetworkDeviceSkuInner object itself.
@@ -119,29 +118,6 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
             this.innerProperties = new NetworkDeviceSkuProperties();
         }
         this.innerProperties().withSupportedVersions(supportedVersions);
-        return this;
-    }
-
-    /**
-     * Get the limits property: Network device limits.
-     *
-     * @return the limits value.
-     */
-    public DeviceLimits limits() {
-        return this.innerProperties() == null ? null : this.innerProperties().limits();
-    }
-
-    /**
-     * Set the limits property: Network device limits.
-     *
-     * @param limits the limits value to set.
-     * @return the NetworkDeviceSkuInner object itself.
-     */
-    public NetworkDeviceSkuInner withLimits(DeviceLimits limits) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new NetworkDeviceSkuProperties();
-        }
-        this.innerProperties().withLimits(limits);
         return this;
     }
 
@@ -192,7 +168,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: Gets the provisioning state of the resource.
+     * Get the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
      */

@@ -53,18 +53,11 @@ public interface NetworkDeviceSku {
     String manufacturer();
 
     /**
-     * Gets the supportedVersions property: List of network device interfaces.
+     * Gets the supportedVersions property: List of supported version details of network device.
      *
      * @return the supportedVersions value.
      */
     List<SupportedVersionProperties> supportedVersions();
-
-    /**
-     * Gets the limits property: Network device limits.
-     *
-     * @return the limits value.
-     */
-    DeviceLimits limits();
 
     /**
      * Gets the supportedRoleTypes property: Available roles for the network device.
@@ -81,7 +74,7 @@ public interface NetworkDeviceSku {
     List<DeviceInterfaceProperties> interfaces();
 
     /**
-     * Gets the provisioningState property: Gets the provisioning state of the resource.
+     * Gets the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
      */

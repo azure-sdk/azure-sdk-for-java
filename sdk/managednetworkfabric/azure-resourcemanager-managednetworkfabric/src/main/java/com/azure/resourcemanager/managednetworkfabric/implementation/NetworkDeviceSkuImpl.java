@@ -7,7 +7,6 @@ package com.azure.resourcemanager.managednetworkfabric.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkDeviceSkuInner;
 import com.azure.resourcemanager.managednetworkfabric.models.DeviceInterfaceProperties;
-import com.azure.resourcemanager.managednetworkfabric.models.DeviceLimits;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkDeviceRoleName;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkDeviceSku;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
@@ -58,10 +57,6 @@ public final class NetworkDeviceSkuImpl implements NetworkDeviceSku {
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public DeviceLimits limits() {
-        return this.innerModel().limits();
     }
 
     public List<NetworkDeviceRoleName> supportedRoleTypes() {

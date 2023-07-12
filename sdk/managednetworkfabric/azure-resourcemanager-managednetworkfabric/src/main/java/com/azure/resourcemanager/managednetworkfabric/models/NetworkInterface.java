@@ -39,28 +39,14 @@ public interface NetworkInterface {
     SystemData systemData();
 
     /**
-     * Gets the physicalIdentifier property: physicalIdentifier of the network interface.
+     * Gets the physicalIdentifier property: Physical Identifier of the network interface.
      *
      * @return the physicalIdentifier value.
      */
     String physicalIdentifier();
 
     /**
-     * Gets the administrativeState property: administrativeState of the network interface. Example: Enabled | Disabled.
-     *
-     * @return the administrativeState value.
-     */
-    EnabledDisabledState administrativeState();
-
-    /**
-     * Gets the provisioningState property: Gets the provisioning state of the resource.
-     *
-     * @return the provisioningState value.
-     */
-    ProvisioningState provisioningState();
-
-    /**
-     * Gets the connectedTo property: The arm resource id of the interface or compute server its connected to.
+     * Gets the connectedTo property: The ARM resource id of the interface or compute server its connected to.
      *
      * @return the connectedTo value.
      */
@@ -74,18 +60,32 @@ public interface NetworkInterface {
     InterfaceType interfaceType();
 
     /**
-     * Gets the ipv4Address property: ipv4Address.
+     * Gets the ipv4Address property: IPv4Address of the interface.
      *
      * @return the ipv4Address value.
      */
     String ipv4Address();
 
     /**
-     * Gets the ipv6Address property: ipv6Address.
+     * Gets the ipv6Address property: IPv6Address of the interface.
      *
      * @return the ipv6Address value.
      */
     String ipv6Address();
+
+    /**
+     * Gets the provisioningState property: Provisioning state of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the administrativeState property: Administrative state of the resource.
+     *
+     * @return the administrativeState value.
+     */
+    AdministrativeState administrativeState();
 
     /**
      * Gets the annotation property: Switch configuration description.
@@ -123,7 +123,7 @@ public interface NetworkInterface {
              * Specifies resourceGroupName, networkDeviceName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param networkDeviceName Name of the NetworkDevice.
+             * @param networkDeviceName Name of the Network Device.
              * @return the next definition stage.
              */
             WithCreate withExistingNetworkDevice(String resourceGroupName, String networkDeviceName);
@@ -212,30 +212,6 @@ public interface NetworkInterface {
     NetworkInterface refresh(Context context);
 
     /**
-     * Implements the operation to the underlying resources.
-     *
-     * <p>Get the running status of the Network Interface.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the running status of the Network Interface.
-     */
-    InterfaceStatus getStatus();
-
-    /**
-     * Implements the operation to the underlying resources.
-     *
-     * <p>Get the running status of the Network Interface.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the running status of the Network Interface.
-     */
-    InterfaceStatus getStatus(Context context);
-
-    /**
      * Updates the admin state of the network interface.
      *
      * <p>Update the admin state of the Network Interface.
@@ -244,8 +220,9 @@ public interface NetworkInterface {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response for the state updates.
      */
-    void updateAdministrativeState(UpdateAdministrativeState body);
+    CommonPostActionResponseForStateUpdate updateAdministrativeState(UpdateAdministrativeState body);
 
     /**
      * Updates the admin state of the network interface.
@@ -257,6 +234,7 @@ public interface NetworkInterface {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response for the state updates.
      */
-    void updateAdministrativeState(UpdateAdministrativeState body, Context context);
+    CommonPostActionResponseForStateUpdate updateAdministrativeState(UpdateAdministrativeState body, Context context);
 }

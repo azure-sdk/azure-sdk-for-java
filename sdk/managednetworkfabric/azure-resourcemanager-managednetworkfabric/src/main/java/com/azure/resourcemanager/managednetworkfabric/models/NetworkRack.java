@@ -56,28 +56,28 @@ public interface NetworkRack {
     SystemData systemData();
 
     /**
-     * Gets the networkRackSku property: Network Rack SKU name.
+     * Gets the networkRackType property: Network Rack SKU name.
      *
-     * @return the networkRackSku value.
+     * @return the networkRackType value.
      */
-    String networkRackSku();
+    NetworkRackType networkRackType();
 
     /**
-     * Gets the networkFabricId property: Network Fabric ARM resource id.
+     * Gets the networkFabricId property: ARM resource ID of the Network Fabric.
      *
      * @return the networkFabricId value.
      */
     String networkFabricId();
 
     /**
-     * Gets the networkDevices property: List of network device ARM resource ids.
+     * Gets the networkDevices property: List of network device ARM resource IDs.
      *
      * @return the networkDevices value.
      */
     List<String> networkDevices();
 
     /**
-     * Gets the provisioningState property: Gets the provisioning state of the resource.
+     * Gets the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
      */
@@ -123,7 +123,6 @@ public interface NetworkRack {
         extends DefinitionStages.Blank,
             DefinitionStages.WithLocation,
             DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithNetworkRackSku,
             DefinitionStages.WithNetworkFabricId,
             DefinitionStages.WithCreate {
     }
@@ -158,24 +157,14 @@ public interface NetworkRack {
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithNetworkRackSku withExistingResourceGroup(String resourceGroupName);
-        }
-        /** The stage of the NetworkRack definition allowing to specify networkRackSku. */
-        interface WithNetworkRackSku {
-            /**
-             * Specifies the networkRackSku property: Network Rack SKU name..
-             *
-             * @param networkRackSku Network Rack SKU name.
-             * @return the next definition stage.
-             */
-            WithNetworkFabricId withNetworkRackSku(String networkRackSku);
+            WithNetworkFabricId withExistingResourceGroup(String resourceGroupName);
         }
         /** The stage of the NetworkRack definition allowing to specify networkFabricId. */
         interface WithNetworkFabricId {
             /**
-             * Specifies the networkFabricId property: Network Fabric ARM resource id..
+             * Specifies the networkFabricId property: ARM resource ID of the Network Fabric..
              *
-             * @param networkFabricId Network Fabric ARM resource id.
+             * @param networkFabricId ARM resource ID of the Network Fabric.
              * @return the next definition stage.
              */
             WithCreate withNetworkFabricId(String networkFabricId);
@@ -184,7 +173,8 @@ public interface NetworkRack {
          * The stage of the NetworkRack definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithAnnotation {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithNetworkRackType, DefinitionStages.WithAnnotation {
             /**
              * Executes the create request.
              *
@@ -210,6 +200,16 @@ public interface NetworkRack {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+        /** The stage of the NetworkRack definition allowing to specify networkRackType. */
+        interface WithNetworkRackType {
+            /**
+             * Specifies the networkRackType property: Network Rack SKU name..
+             *
+             * @param networkRackType Network Rack SKU name.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkRackType(NetworkRackType networkRackType);
+        }
         /** The stage of the NetworkRack definition allowing to specify annotation. */
         interface WithAnnotation {
             /**
@@ -229,7 +229,7 @@ public interface NetworkRack {
     NetworkRack.Update update();
 
     /** The template for NetworkRack update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
          *
@@ -256,16 +256,6 @@ public interface NetworkRack {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
-        }
-        /** The stage of the NetworkRack update allowing to specify properties. */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Resource properties..
-             *
-             * @param properties Resource properties.
-             * @return the next definition stage.
-             */
-            Update withProperties(Object properties);
         }
     }
     /**
