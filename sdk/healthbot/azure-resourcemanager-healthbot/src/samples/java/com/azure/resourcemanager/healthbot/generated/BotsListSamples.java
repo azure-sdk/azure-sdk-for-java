@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthbot.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Bots List. */
 public final class BotsListSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsBySubscription.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2023-05-01/examples/ListBotsBySubscription.json
      */
     /**
      * Sample code: List Bots by Subscription.
@@ -17,6 +15,6 @@ public final class BotsListSamples {
      * @param manager Entry point to HealthbotManager.
      */
     public static void listBotsBySubscription(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
-        manager.bots().list(Context.NONE);
+        manager.bots().list(com.azure.core.util.Context.NONE);
     }
 }
