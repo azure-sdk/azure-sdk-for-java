@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,8 +12,6 @@ import java.util.UUID;
 /** The properties of the price sheet. */
 @Immutable
 public final class PriceSheetProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PriceSheetProperties.class);
-
     /*
      * The id of the billing period resource that the usage belongs to.
      */
@@ -29,8 +25,7 @@ public final class PriceSheetProperties {
     private UUID meterId;
 
     /*
-     * The details about the meter. By default this is not populated, unless
-     * it's specified in $expand.
+     * The details about the meter. By default this is not populated, unless it's specified in $expand.
      */
     @JsonProperty(value = "meterDetails", access = JsonProperty.Access.WRITE_ONLY)
     private MeterDetails meterDetails;
@@ -70,6 +65,16 @@ public final class PriceSheetProperties {
      */
     @JsonProperty(value = "offerId", access = JsonProperty.Access.WRITE_ONLY)
     private String offerId;
+
+    /*
+     * SavingsPlan Details
+     */
+    @JsonProperty(value = "savingsPlan", access = JsonProperty.Access.WRITE_ONLY)
+    private SavingsPlan savingsPlan;
+
+    /** Creates an instance of PriceSheetProperties class. */
+    public PriceSheetProperties() {
+    }
 
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the usage belongs to.
@@ -154,6 +159,15 @@ public final class PriceSheetProperties {
     }
 
     /**
+     * Get the savingsPlan property: SavingsPlan Details.
+     *
+     * @return the savingsPlan value.
+     */
+    public SavingsPlan savingsPlan() {
+        return this.savingsPlan;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -161,6 +175,9 @@ public final class PriceSheetProperties {
     public void validate() {
         if (meterDetails() != null) {
             meterDetails().validate();
+        }
+        if (savingsPlan() != null) {
+            savingsPlan().validate();
         }
     }
 }
