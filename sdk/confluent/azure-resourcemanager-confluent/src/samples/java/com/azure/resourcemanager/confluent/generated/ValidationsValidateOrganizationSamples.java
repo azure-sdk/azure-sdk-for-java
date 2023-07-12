@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.confluent.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.fluent.models.OrganizationResourceInner;
 import com.azure.resourcemanager.confluent.models.OfferDetail;
 import com.azure.resourcemanager.confluent.models.UserDetail;
@@ -14,7 +13,7 @@ import java.util.Map;
 /** Samples for Validations ValidateOrganization. */
 public final class ValidationsValidateOrganizationSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Validations_ValidateOrganizations.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2021-12-01/examples/Validations_ValidateOrganizations.json
      */
     /**
      * Sample code: Validations_ValidateOrganizations.
@@ -42,7 +41,7 @@ public final class ValidationsValidateOrganizationSamples {
                             .withFirstName("string")
                             .withLastName("string")
                             .withEmailAddress("abc@microsoft.com")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     @SuppressWarnings("unchecked")
