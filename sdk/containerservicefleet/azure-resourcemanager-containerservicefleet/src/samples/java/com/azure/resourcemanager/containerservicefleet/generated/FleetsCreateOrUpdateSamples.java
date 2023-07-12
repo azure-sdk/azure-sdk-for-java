@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Fleets CreateOrUpdate. */
 public final class FleetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2023-03-15-preview/examples/Fleets_CreateOrUpdate.json
+     * x-ms-original-file: specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2023-07-15-preview/examples/Fleets_CreateOrUpdate.json
      */
     /**
      * Sample code: Creates a Fleet resource with a long running operation.

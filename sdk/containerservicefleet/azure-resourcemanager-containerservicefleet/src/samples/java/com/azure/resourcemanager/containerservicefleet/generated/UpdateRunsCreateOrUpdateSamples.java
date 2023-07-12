@@ -15,7 +15,7 @@ import java.util.Arrays;
 /** Samples for UpdateRuns CreateOrUpdate. */
 public final class UpdateRunsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2023-03-15-preview/examples/UpdateRuns_CreateOrUpdate.json
+     * x-ms-original-file: specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2023-07-15-preview/examples/UpdateRuns_CreateOrUpdate.json
      */
     /**
      * Sample code: Create an UpdateRun.
