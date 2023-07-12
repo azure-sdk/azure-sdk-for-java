@@ -7,11 +7,10 @@ package com.azure.resourcemanager.elasticsan.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.models.IscsiTargetInfo;
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /** Response for Volume request. */
 @Fluent
@@ -19,21 +18,14 @@ public final class VolumeInner extends ProxyResource {
     /*
      * Properties of Volume.
      */
-    @JsonProperty(value = "properties")
-    private VolumeProperties innerProperties;
+    @JsonProperty(value = "properties", required = true)
+    private VolumeProperties innerProperties = new VolumeProperties();
 
     /*
-     * Resource metadata required by ARM RPC
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
-
-    /*
-     * Azure resource tags.
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /** Creates an instance of VolumeInner class. */
     public VolumeInner() {
@@ -49,32 +41,12 @@ public final class VolumeInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: Resource metadata required by ARM RPC.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /**
-     * Get the tags property: Azure resource tags.
-     *
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Azure resource tags.
-     *
-     * @param tags the tags value to set.
-     * @return the VolumeInner object itself.
-     */
-    public VolumeInner withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
     }
 
     /**
@@ -114,8 +86,8 @@ public final class VolumeInner extends ProxyResource {
      *
      * @return the sizeGiB value.
      */
-    public Long sizeGiB() {
-        return this.innerProperties() == null ? null : this.innerProperties().sizeGiB();
+    public long sizeGiB() {
+        return this.innerProperties() == null ? 0L : this.innerProperties().sizeGiB();
     }
 
     /**
@@ -124,7 +96,7 @@ public final class VolumeInner extends ProxyResource {
      * @param sizeGiB the sizeGiB value to set.
      * @return the VolumeInner object itself.
      */
-    public VolumeInner withSizeGiB(Long sizeGiB) {
+    public VolumeInner withSizeGiB(long sizeGiB) {
         if (this.innerProperties() == null) {
             this.innerProperties = new VolumeProperties();
         }
@@ -147,8 +119,14 @@ public final class VolumeInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
+        } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(VolumeInner.class);
 }
