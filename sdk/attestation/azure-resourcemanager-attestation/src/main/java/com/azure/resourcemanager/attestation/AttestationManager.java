@@ -28,9 +28,11 @@ import com.azure.resourcemanager.attestation.implementation.AttestationManagemen
 import com.azure.resourcemanager.attestation.implementation.AttestationProvidersImpl;
 import com.azure.resourcemanager.attestation.implementation.OperationsImpl;
 import com.azure.resourcemanager.attestation.implementation.PrivateEndpointConnectionsImpl;
+import com.azure.resourcemanager.attestation.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.attestation.models.AttestationProviders;
 import com.azure.resourcemanager.attestation.models.Operations;
 import com.azure.resourcemanager.attestation.models.PrivateEndpointConnections;
+import com.azure.resourcemanager.attestation.models.PrivateLinkResources;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -48,6 +50,8 @@ public final class AttestationManager {
     private AttestationProviders attestationProviders;
 
     private PrivateEndpointConnections privateEndpointConnections;
+
+    private PrivateLinkResources privateLinkResources;
 
     private final AttestationManagementClient clientObject;
 
@@ -214,7 +218,7 @@ public final class AttestationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.attestation")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -306,6 +310,18 @@ public final class AttestationManager {
                 new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
         }
         return privateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateLinkResources.
+     *
+     * @return Resource collection API of PrivateLinkResources.
+     */
+    public PrivateLinkResources privateLinkResources() {
+        if (this.privateLinkResources == null) {
+            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
+        }
+        return privateLinkResources;
     }
 
     /**

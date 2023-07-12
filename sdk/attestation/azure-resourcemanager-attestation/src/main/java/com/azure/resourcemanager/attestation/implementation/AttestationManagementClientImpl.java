@@ -26,6 +26,7 @@ import com.azure.resourcemanager.attestation.fluent.AttestationManagementClient;
 import com.azure.resourcemanager.attestation.fluent.AttestationProvidersClient;
 import com.azure.resourcemanager.attestation.fluent.OperationsClient;
 import com.azure.resourcemanager.attestation.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.attestation.fluent.PrivateLinkResourcesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -146,6 +147,18 @@ public final class AttestationManagementClientImpl implements AttestationManagem
         return this.privateEndpointConnections;
     }
 
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
     /**
      * Initializes an instance of AttestationManagementClient client.
      *
@@ -168,10 +181,11 @@ public final class AttestationManagementClientImpl implements AttestationManagem
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-10-01";
+        this.apiVersion = "2021-06-01";
         this.operations = new OperationsClientImpl(this);
         this.attestationProviders = new AttestationProvidersClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
     }
 
     /**

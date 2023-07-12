@@ -7,9 +7,9 @@ package com.azure.resourcemanager.attestation.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Client supplied parameters used to create a new attestation provider. */
+/** Client supplied parameters used to patch an existing attestation provider. */
 @Fluent
-public final class AttestationServiceCreationSpecificParams {
+public final class AttestationServicePatchSpecificParams {
     /*
      * Controls whether traffic from the public network is allowed to access the Attestation Provider APIs.
      */
@@ -17,20 +17,13 @@ public final class AttestationServiceCreationSpecificParams {
     private PublicNetworkAccessType publicNetworkAccess;
 
     /*
-     * JSON Web Key Set defining a set of X.509 Certificates that will represent the parent certificate for the signing
-     * certificate used for policy operations
-     */
-    @JsonProperty(value = "policySigningCertificates")
-    private JsonWebKeySet policySigningCertificates;
-
-    /*
      * The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs.
      */
     @JsonProperty(value = "tpmAttestationAuthentication")
     private TpmAttestationAuthenticationType tpmAttestationAuthentication;
 
-    /** Creates an instance of AttestationServiceCreationSpecificParams class. */
-    public AttestationServiceCreationSpecificParams() {
+    /** Creates an instance of AttestationServicePatchSpecificParams class. */
+    public AttestationServicePatchSpecificParams() {
     }
 
     /**
@@ -48,34 +41,10 @@ public final class AttestationServiceCreationSpecificParams {
      * Attestation Provider APIs.
      *
      * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the AttestationServiceCreationSpecificParams object itself.
+     * @return the AttestationServicePatchSpecificParams object itself.
      */
-    public AttestationServiceCreationSpecificParams withPublicNetworkAccess(
-        PublicNetworkAccessType publicNetworkAccess) {
+    public AttestationServicePatchSpecificParams withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
         this.publicNetworkAccess = publicNetworkAccess;
-        return this;
-    }
-
-    /**
-     * Get the policySigningCertificates property: JSON Web Key Set defining a set of X.509 Certificates that will
-     * represent the parent certificate for the signing certificate used for policy operations.
-     *
-     * @return the policySigningCertificates value.
-     */
-    public JsonWebKeySet policySigningCertificates() {
-        return this.policySigningCertificates;
-    }
-
-    /**
-     * Set the policySigningCertificates property: JSON Web Key Set defining a set of X.509 Certificates that will
-     * represent the parent certificate for the signing certificate used for policy operations.
-     *
-     * @param policySigningCertificates the policySigningCertificates value to set.
-     * @return the AttestationServiceCreationSpecificParams object itself.
-     */
-    public AttestationServiceCreationSpecificParams withPolicySigningCertificates(
-        JsonWebKeySet policySigningCertificates) {
-        this.policySigningCertificates = policySigningCertificates;
         return this;
     }
 
@@ -94,9 +63,9 @@ public final class AttestationServiceCreationSpecificParams {
      * disabled for TPM Attestation REST APIs.
      *
      * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
-     * @return the AttestationServiceCreationSpecificParams object itself.
+     * @return the AttestationServicePatchSpecificParams object itself.
      */
-    public AttestationServiceCreationSpecificParams withTpmAttestationAuthentication(
+    public AttestationServicePatchSpecificParams withTpmAttestationAuthentication(
         TpmAttestationAuthenticationType tpmAttestationAuthentication) {
         this.tpmAttestationAuthentication = tpmAttestationAuthentication;
         return this;
@@ -108,8 +77,5 @@ public final class AttestationServiceCreationSpecificParams {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (policySigningCertificates() != null) {
-            policySigningCertificates().validate();
-        }
     }
 }
