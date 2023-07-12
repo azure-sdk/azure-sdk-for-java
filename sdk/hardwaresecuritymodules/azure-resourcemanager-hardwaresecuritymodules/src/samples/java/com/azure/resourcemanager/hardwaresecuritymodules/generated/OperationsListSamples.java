@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -18,7 +16,7 @@ public final class OperationsListSamples {
      */
     public static void getAListOfPaymentHSMOperations(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class OperationsListSamples {
      */
     public static void getAListOfDedicatedHSMOperations(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

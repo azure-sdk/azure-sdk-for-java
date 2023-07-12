@@ -35,26 +35,26 @@ public final class OperationsClientImpl implements OperationsClient {
     private final OperationsService service;
 
     /** The service client containing this operation class. */
-    private final AzureDedicatedHsmResourceProviderImpl client;
+    private final AzureHsmResourceProviderImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(AzureDedicatedHsmResourceProviderImpl client) {
+    OperationsClientImpl(AzureHsmResourceProviderImpl client) {
         this.service =
             RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureDedicatedHsmResourceProviderOperations to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureHsmResourceProviderOperations to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AzureDedicatedHsmRes")
-    private interface OperationsService {
+    @ServiceInterface(name = "AzureHsmResourceProv")
+    public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.HardwareSecurityModules/operations")
         @ExpectedResponses({200})
@@ -82,10 +82,10 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-11-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
             .<PagedResponse<DedicatedHsmOperationInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -111,10 +111,11 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-11-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
+            .list(this.client.getEndpoint(), apiVersion, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

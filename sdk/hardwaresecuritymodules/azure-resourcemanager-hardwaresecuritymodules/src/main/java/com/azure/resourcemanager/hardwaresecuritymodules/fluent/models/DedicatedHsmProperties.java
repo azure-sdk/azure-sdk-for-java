@@ -42,6 +42,10 @@ public final class DedicatedHsmProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private JsonWebKeyType provisioningState;
 
+    /** Creates an instance of DedicatedHsmProperties class. */
+    public DedicatedHsmProperties() {
+    }
+
     /**
      * Get the networkProfile property: Specifies the network interfaces of the dedicated hsm.
      *
