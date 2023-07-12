@@ -108,6 +108,9 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
         @Patch(
             "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}")
         @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<SavingsPlansUpdateResponse> update(
             @HostParam("$host") String endpoint,
@@ -120,8 +123,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}"
-                + "/validate")
+            "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}/validate")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SavingsPlanValidateResponseInner>> validateUpdate(
@@ -687,6 +689,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan on successful completion of {@link Mono}.
      */
@@ -736,6 +739,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan on successful completion of {@link Mono}.
      */
@@ -781,6 +785,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan on successful completion of {@link Mono}.
      */
@@ -800,6 +805,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan.
      */
@@ -817,6 +823,7 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return savings plan.
      */

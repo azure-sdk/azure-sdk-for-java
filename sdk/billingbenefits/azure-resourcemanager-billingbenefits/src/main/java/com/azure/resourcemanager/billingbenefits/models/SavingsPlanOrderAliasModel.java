@@ -117,6 +117,14 @@ public interface SavingsPlanOrderAliasModel {
     Commitment commitment();
 
     /**
+     * Gets the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     *
+     * @return the renew value.
+     */
+    Boolean renew();
+
+    /**
      * Gets the inner com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanOrderAliasModelInner object.
      *
      * @return the inner object.
