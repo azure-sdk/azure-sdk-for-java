@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Controller Patch. */
 public final class ControllerPatchSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchController.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-05-18-preview/examples/patchController.json
      */
     /**
      * Sample code: update controller.
