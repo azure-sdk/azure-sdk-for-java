@@ -64,6 +64,10 @@ public final class AutomationRuleProperties {
     @JsonProperty(value = "createdBy", access = JsonProperty.Access.WRITE_ONLY)
     private ClientInfo createdBy;
 
+    /** Creates an instance of AutomationRuleProperties class. */
+    public AutomationRuleProperties() {
+    }
+
     /**
      * Get the displayName property: The display name of the automation rule.
      *

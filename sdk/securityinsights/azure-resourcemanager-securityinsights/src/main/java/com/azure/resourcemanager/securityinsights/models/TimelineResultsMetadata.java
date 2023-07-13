@@ -30,6 +30,10 @@ public final class TimelineResultsMetadata {
     @JsonProperty(value = "errors")
     private List<TimelineError> errors;
 
+    /** Creates an instance of TimelineResultsMetadata class. */
+    public TimelineResultsMetadata() {
+    }
+
     /**
      * Get the totalCount property: the total items found for the timeline request.
      *

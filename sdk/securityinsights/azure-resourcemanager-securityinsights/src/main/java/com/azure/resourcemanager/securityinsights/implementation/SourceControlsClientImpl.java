@@ -58,11 +58,10 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSour")
-    private interface SourceControlsService {
+    public interface SourceControlsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RepoList>> listRepositories(

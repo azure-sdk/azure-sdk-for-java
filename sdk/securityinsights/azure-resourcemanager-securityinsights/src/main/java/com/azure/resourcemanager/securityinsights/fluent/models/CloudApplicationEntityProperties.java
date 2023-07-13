@@ -30,6 +30,10 @@ public final class CloudApplicationEntityProperties extends EntityCommonProperti
     @JsonProperty(value = "instanceName", access = JsonProperty.Access.WRITE_ONLY)
     private String instanceName;
 
+    /** Creates an instance of CloudApplicationEntityProperties class. */
+    public CloudApplicationEntityProperties() {
+    }
+
     /**
      * Get the appId property: The technical identifier of the application.
      *
