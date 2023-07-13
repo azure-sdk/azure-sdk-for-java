@@ -123,6 +123,20 @@ public interface ManagedEnvironment {
     AppLogsConfiguration appLogsConfiguration();
 
     /**
+     * Gets the appInsightsConfiguration property: Environment level Application Insights configuration.
+     *
+     * @return the appInsightsConfiguration value.
+     */
+    AppInsightsConfiguration appInsightsConfiguration();
+
+    /**
+     * Gets the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+     *
+     * @return the openTelemetryConfiguration value.
+     */
+    OpenTelemetryConfiguration openTelemetryConfiguration();
+
+    /**
      * Gets the zoneRedundant property: Whether or not this Managed Environment is zone-redundant.
      *
      * @return the zoneRedundant value.
@@ -172,6 +186,13 @@ public interface ManagedEnvironment {
      * @return the infrastructureResourceGroup value.
      */
     String infrastructureResourceGroup();
+
+    /**
+     * Gets the peerAuthentication property: Peer authentication settings for the Managed Environment.
+     *
+     * @return the peerAuthentication value.
+     */
+    ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication();
 
     /**
      * Gets the region of the resource.
@@ -252,12 +273,15 @@ public interface ManagedEnvironment {
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
                 DefinitionStages.WithAppLogsConfiguration,
+                DefinitionStages.WithAppInsightsConfiguration,
+                DefinitionStages.WithOpenTelemetryConfiguration,
                 DefinitionStages.WithZoneRedundant,
                 DefinitionStages.WithCustomDomainConfiguration,
                 DefinitionStages.WithWorkloadProfiles,
                 DefinitionStages.WithKedaConfiguration,
                 DefinitionStages.WithDaprConfiguration,
-                DefinitionStages.WithInfrastructureResourceGroup {
+                DefinitionStages.WithInfrastructureResourceGroup,
+                DefinitionStages.WithPeerAuthentication {
             /**
              * Executes the create request.
              *
@@ -339,6 +363,26 @@ public interface ManagedEnvironment {
              */
             WithCreate withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify appInsightsConfiguration. */
+        interface WithAppInsightsConfiguration {
+            /**
+             * Specifies the appInsightsConfiguration property: Environment level Application Insights configuration.
+             *
+             * @param appInsightsConfiguration Environment level Application Insights configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify openTelemetryConfiguration. */
+        interface WithOpenTelemetryConfiguration {
+            /**
+             * Specifies the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+             *
+             * @param openTelemetryConfiguration Environment Open Telemetry configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
+        }
         /** The stage of the ManagedEnvironment definition allowing to specify zoneRedundant. */
         interface WithZoneRedundant {
             /**
@@ -403,6 +447,16 @@ public interface ManagedEnvironment {
              */
             WithCreate withInfrastructureResourceGroup(String infrastructureResourceGroup);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify peerAuthentication. */
+        interface WithPeerAuthentication {
+            /**
+             * Specifies the peerAuthentication property: Peer authentication settings for the Managed Environment.
+             *
+             * @param peerAuthentication Peer authentication settings for the Managed Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -419,10 +473,13 @@ public interface ManagedEnvironment {
             UpdateStages.WithDaprAIConnectionString,
             UpdateStages.WithVnetConfiguration,
             UpdateStages.WithAppLogsConfiguration,
+            UpdateStages.WithAppInsightsConfiguration,
+            UpdateStages.WithOpenTelemetryConfiguration,
             UpdateStages.WithCustomDomainConfiguration,
             UpdateStages.WithWorkloadProfiles,
             UpdateStages.WithKedaConfiguration,
-            UpdateStages.WithDaprConfiguration {
+            UpdateStages.WithDaprConfiguration,
+            UpdateStages.WithPeerAuthentication {
         /**
          * Executes the update request.
          *
@@ -506,6 +563,26 @@ public interface ManagedEnvironment {
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
         }
+        /** The stage of the ManagedEnvironment update allowing to specify appInsightsConfiguration. */
+        interface WithAppInsightsConfiguration {
+            /**
+             * Specifies the appInsightsConfiguration property: Environment level Application Insights configuration.
+             *
+             * @param appInsightsConfiguration Environment level Application Insights configuration.
+             * @return the next definition stage.
+             */
+            Update withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify openTelemetryConfiguration. */
+        interface WithOpenTelemetryConfiguration {
+            /**
+             * Specifies the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+             *
+             * @param openTelemetryConfiguration Environment Open Telemetry configuration.
+             * @return the next definition stage.
+             */
+            Update withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
+        }
         /** The stage of the ManagedEnvironment update allowing to specify customDomainConfiguration. */
         interface WithCustomDomainConfiguration {
             /**
@@ -545,6 +622,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withDaprConfiguration(DaprConfiguration daprConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify peerAuthentication. */
+        interface WithPeerAuthentication {
+            /**
+             * Specifies the peerAuthentication property: Peer authentication settings for the Managed Environment.
+             *
+             * @param peerAuthentication Peer authentication settings for the Managed Environment.
+             * @return the next definition stage.
+             */
+            Update withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication);
         }
     }
     /**
