@@ -7,7 +7,7 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 /** Samples for Controller Create. */
 public final class ControllerCreateSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putController.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putController.json
      */
     /**
      * Sample code: Create controller.

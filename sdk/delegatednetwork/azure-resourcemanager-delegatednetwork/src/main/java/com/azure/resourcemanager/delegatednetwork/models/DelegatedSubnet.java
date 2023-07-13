@@ -75,6 +75,13 @@ public interface DelegatedSubnet {
     ControllerDetails controllerDetails();
 
     /**
+     * Gets the allocationBlockPrefixSize property: Defines size of CIDR blocks allocated to nodes in VnetBlock Mode.
+     *
+     * @return the allocationBlockPrefixSize value.
+     */
+    Integer allocationBlockPrefixSize();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -149,7 +156,8 @@ public interface DelegatedSubnet {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSubnetDetails,
-                DefinitionStages.WithControllerDetails {
+                DefinitionStages.WithControllerDetails,
+                DefinitionStages.WithAllocationBlockPrefixSize {
             /**
              * Executes the create request.
              *
@@ -194,6 +202,17 @@ public interface DelegatedSubnet {
              * @return the next definition stage.
              */
             WithCreate withControllerDetails(ControllerDetails controllerDetails);
+        }
+        /** The stage of the DelegatedSubnet definition allowing to specify allocationBlockPrefixSize. */
+        interface WithAllocationBlockPrefixSize {
+            /**
+             * Specifies the allocationBlockPrefixSize property: Defines size of CIDR blocks allocated to nodes in
+             * VnetBlock Mode..
+             *
+             * @param allocationBlockPrefixSize Defines size of CIDR blocks allocated to nodes in VnetBlock Mode.
+             * @return the next definition stage.
+             */
+            WithCreate withAllocationBlockPrefixSize(Integer allocationBlockPrefixSize);
         }
     }
     /**

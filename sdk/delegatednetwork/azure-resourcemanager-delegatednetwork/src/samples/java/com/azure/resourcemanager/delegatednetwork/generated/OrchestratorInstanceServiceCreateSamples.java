@@ -13,7 +13,7 @@ import com.azure.resourcemanager.delegatednetwork.models.ResourceIdentityType;
 /** Samples for OrchestratorInstanceService Create. */
 public final class OrchestratorInstanceServiceCreateSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putOrchestrator.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putOrchestrator.json
      */
     /**
      * Sample code: Create orchestrator instance.

@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for DelegatedSubnetService PatchDetails. */
 public final class DelegatedSubnetServicePatchDetailsSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchDelegatedSubnet.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/patchDelegatedSubnet.json
      */
     /**
      * Sample code: patch delegated subnet.
