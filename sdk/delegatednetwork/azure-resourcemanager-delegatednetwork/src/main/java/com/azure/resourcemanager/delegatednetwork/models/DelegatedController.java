@@ -125,7 +125,7 @@ public interface DelegatedController {
          * The stage of the DelegatedController definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              *
@@ -150,6 +150,16 @@ public interface DelegatedController {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the DelegatedController definition allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Properties of the provision operation request..
+             *
+             * @param properties Properties of the provision operation request.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(DelegatedControllerProperties properties);
         }
     }
     /**

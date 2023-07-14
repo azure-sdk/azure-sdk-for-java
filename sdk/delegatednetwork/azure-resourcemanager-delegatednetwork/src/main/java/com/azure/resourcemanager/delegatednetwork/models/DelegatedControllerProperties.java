@@ -4,11 +4,11 @@
 
 package com.azure.resourcemanager.delegatednetwork.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of Delegated controller resource. */
-@Immutable
+@Fluent
 public final class DelegatedControllerProperties {
     /*
      * Resource guid.
@@ -39,6 +39,12 @@ public final class DelegatedControllerProperties {
      */
     @JsonProperty(value = "dncEndpoint", access = JsonProperty.Access.WRITE_ONLY)
     private String dncEndpoint;
+
+    /*
+     * The purpose of the dnc controller resource.
+     */
+    @JsonProperty(value = "purpose")
+    private ControllerPurpose purpose;
 
     /** Creates an instance of DelegatedControllerProperties class. */
     public DelegatedControllerProperties() {
@@ -87,6 +93,26 @@ public final class DelegatedControllerProperties {
      */
     public String dncEndpoint() {
         return this.dncEndpoint;
+    }
+
+    /**
+     * Get the purpose property: The purpose of the dnc controller resource.
+     *
+     * @return the purpose value.
+     */
+    public ControllerPurpose purpose() {
+        return this.purpose;
+    }
+
+    /**
+     * Set the purpose property: The purpose of the dnc controller resource.
+     *
+     * @param purpose the purpose value to set.
+     * @return the DelegatedControllerProperties object itself.
+     */
+    public DelegatedControllerProperties withPurpose(ControllerPurpose purpose) {
+        this.purpose = purpose;
+        return this;
     }
 
     /**
