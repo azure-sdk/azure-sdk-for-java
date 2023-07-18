@@ -36,6 +36,18 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     private Integer imageSize;
 
     /*
+     * Enable computing and logging training metrics.
+     */
+    @JsonProperty(value = "logTrainingMetrics")
+    private LogTrainingMetrics logTrainingMetrics;
+
+    /*
+     * Enable computing and logging validation loss.
+     */
+    @JsonProperty(value = "logValidationLoss")
+    private LogValidationLoss logValidationLoss;
+
+    /*
      * Maximum size of the image to be rescaled before feeding it to the backbone.
      * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
      * Note: This settings is not supported for the 'yolov5' algorithm.
@@ -177,6 +189,46 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      */
     public ImageModelSettingsObjectDetection withImageSize(Integer imageSize) {
         this.imageSize = imageSize;
+        return this;
+    }
+
+    /**
+     * Get the logTrainingMetrics property: Enable computing and logging training metrics.
+     *
+     * @return the logTrainingMetrics value.
+     */
+    public LogTrainingMetrics logTrainingMetrics() {
+        return this.logTrainingMetrics;
+    }
+
+    /**
+     * Set the logTrainingMetrics property: Enable computing and logging training metrics.
+     *
+     * @param logTrainingMetrics the logTrainingMetrics value to set.
+     * @return the ImageModelSettingsObjectDetection object itself.
+     */
+    public ImageModelSettingsObjectDetection withLogTrainingMetrics(LogTrainingMetrics logTrainingMetrics) {
+        this.logTrainingMetrics = logTrainingMetrics;
+        return this;
+    }
+
+    /**
+     * Get the logValidationLoss property: Enable computing and logging validation loss.
+     *
+     * @return the logValidationLoss value.
+     */
+    public LogValidationLoss logValidationLoss() {
+        return this.logValidationLoss;
+    }
+
+    /**
+     * Set the logValidationLoss property: Enable computing and logging validation loss.
+     *
+     * @param logValidationLoss the logValidationLoss value to set.
+     * @return the ImageModelSettingsObjectDetection object itself.
+     */
+    public ImageModelSettingsObjectDetection withLogValidationLoss(LogValidationLoss logValidationLoss) {
+        this.logValidationLoss = logValidationLoss;
         return this;
     }
 
