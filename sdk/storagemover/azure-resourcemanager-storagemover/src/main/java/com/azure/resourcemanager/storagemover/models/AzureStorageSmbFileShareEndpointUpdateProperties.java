@@ -8,18 +8,18 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The AzureStorageBlobContainerEndpointUpdateProperties model. */
+/** The properties of Azure Storage SMB file share endpoint to update. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "endpointType")
-@JsonTypeName("AzureStorageBlobContainer")
+@JsonTypeName("AzureStorageSmbFileShare")
 @Fluent
-public final class AzureStorageBlobContainerEndpointUpdateProperties extends EndpointBaseUpdateProperties {
-    /** Creates an instance of AzureStorageBlobContainerEndpointUpdateProperties class. */
-    public AzureStorageBlobContainerEndpointUpdateProperties() {
+public final class AzureStorageSmbFileShareEndpointUpdateProperties extends EndpointBaseUpdateProperties {
+    /** Creates an instance of AzureStorageSmbFileShareEndpointUpdateProperties class. */
+    public AzureStorageSmbFileShareEndpointUpdateProperties() {
     }
 
     /** {@inheritDoc} */
     @Override
-    public AzureStorageBlobContainerEndpointUpdateProperties withDescription(String description) {
+    public AzureStorageSmbFileShareEndpointUpdateProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
