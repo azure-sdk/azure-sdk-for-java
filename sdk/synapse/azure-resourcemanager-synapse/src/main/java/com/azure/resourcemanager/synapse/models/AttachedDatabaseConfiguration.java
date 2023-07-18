@@ -124,11 +124,13 @@ public interface AttachedDatabaseConfiguration {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The AttachedDatabaseConfiguration definition stages. */
     interface DefinitionStages {
         /** The first stage of the AttachedDatabaseConfiguration definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the AttachedDatabaseConfiguration definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -141,6 +143,7 @@ public interface AttachedDatabaseConfiguration {
              */
             WithCreate withExistingKustoPool(String workspaceName, String kustoPoolName, String resourceGroupName);
         }
+
         /**
          * The stage of the AttachedDatabaseConfiguration definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -166,6 +169,7 @@ public interface AttachedDatabaseConfiguration {
              */
             AttachedDatabaseConfiguration create(Context context);
         }
+
         /** The stage of the AttachedDatabaseConfiguration definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -184,6 +188,7 @@ public interface AttachedDatabaseConfiguration {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the AttachedDatabaseConfiguration definition allowing to specify databaseName. */
         interface WithDatabaseName {
             /**
@@ -196,6 +201,7 @@ public interface AttachedDatabaseConfiguration {
              */
             WithCreate withDatabaseName(String databaseName);
         }
+
         /** The stage of the AttachedDatabaseConfiguration definition allowing to specify kustoPoolResourceId. */
         interface WithKustoPoolResourceId {
             /**
@@ -208,6 +214,7 @@ public interface AttachedDatabaseConfiguration {
              */
             WithCreate withKustoPoolResourceId(String kustoPoolResourceId);
         }
+
         /**
          * The stage of the AttachedDatabaseConfiguration definition allowing to specify
          * defaultPrincipalsModificationKind.
@@ -222,6 +229,7 @@ public interface AttachedDatabaseConfiguration {
             WithCreate withDefaultPrincipalsModificationKind(
                 DefaultPrincipalsModificationKind defaultPrincipalsModificationKind);
         }
+
         /**
          * The stage of the AttachedDatabaseConfiguration definition allowing to specify tableLevelSharingProperties.
          */
@@ -235,6 +243,7 @@ public interface AttachedDatabaseConfiguration {
             WithCreate withTableLevelSharingProperties(TableLevelSharingProperties tableLevelSharingProperties);
         }
     }
+
     /**
      * Begins update for the AttachedDatabaseConfiguration resource.
      *
@@ -263,6 +272,7 @@ public interface AttachedDatabaseConfiguration {
          */
         AttachedDatabaseConfiguration apply(Context context);
     }
+
     /** The AttachedDatabaseConfiguration update stages. */
     interface UpdateStages {
         /** The stage of the AttachedDatabaseConfiguration update allowing to specify databaseName. */
@@ -277,6 +287,7 @@ public interface AttachedDatabaseConfiguration {
              */
             Update withDatabaseName(String databaseName);
         }
+
         /** The stage of the AttachedDatabaseConfiguration update allowing to specify kustoPoolResourceId. */
         interface WithKustoPoolResourceId {
             /**
@@ -289,6 +300,7 @@ public interface AttachedDatabaseConfiguration {
              */
             Update withKustoPoolResourceId(String kustoPoolResourceId);
         }
+
         /**
          * The stage of the AttachedDatabaseConfiguration update allowing to specify defaultPrincipalsModificationKind.
          */
@@ -302,6 +314,7 @@ public interface AttachedDatabaseConfiguration {
             Update withDefaultPrincipalsModificationKind(
                 DefaultPrincipalsModificationKind defaultPrincipalsModificationKind);
         }
+
         /** The stage of the AttachedDatabaseConfiguration update allowing to specify tableLevelSharingProperties. */
         interface WithTableLevelSharingProperties {
             /**
@@ -313,6 +326,7 @@ public interface AttachedDatabaseConfiguration {
             Update withTableLevelSharingProperties(TableLevelSharingProperties tableLevelSharingProperties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

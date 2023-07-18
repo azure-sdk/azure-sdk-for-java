@@ -113,11 +113,13 @@ public interface DatabasePrincipalAssignment {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The DatabasePrincipalAssignment definition stages. */
     interface DefinitionStages {
         /** The first stage of the DatabasePrincipalAssignment definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the DatabasePrincipalAssignment definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -132,6 +134,7 @@ public interface DatabasePrincipalAssignment {
             WithCreate withExistingDatabase(
                 String workspaceName, String kustoPoolName, String databaseName, String resourceGroupName);
         }
+
         /**
          * The stage of the DatabasePrincipalAssignment definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -156,6 +159,7 @@ public interface DatabasePrincipalAssignment {
              */
             DatabasePrincipalAssignment create(Context context);
         }
+
         /** The stage of the DatabasePrincipalAssignment definition allowing to specify principalId. */
         interface WithPrincipalId {
             /**
@@ -168,6 +172,7 @@ public interface DatabasePrincipalAssignment {
              */
             WithCreate withPrincipalId(String principalId);
         }
+
         /** The stage of the DatabasePrincipalAssignment definition allowing to specify role. */
         interface WithRole {
             /**
@@ -178,6 +183,7 @@ public interface DatabasePrincipalAssignment {
              */
             WithCreate withRole(DatabasePrincipalRole role);
         }
+
         /** The stage of the DatabasePrincipalAssignment definition allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -188,6 +194,7 @@ public interface DatabasePrincipalAssignment {
              */
             WithCreate withTenantId(String tenantId);
         }
+
         /** The stage of the DatabasePrincipalAssignment definition allowing to specify principalType. */
         interface WithPrincipalType {
             /**
@@ -199,6 +206,7 @@ public interface DatabasePrincipalAssignment {
             WithCreate withPrincipalType(PrincipalType principalType);
         }
     }
+
     /**
      * Begins update for the DatabasePrincipalAssignment resource.
      *
@@ -227,6 +235,7 @@ public interface DatabasePrincipalAssignment {
          */
         DatabasePrincipalAssignment apply(Context context);
     }
+
     /** The DatabasePrincipalAssignment update stages. */
     interface UpdateStages {
         /** The stage of the DatabasePrincipalAssignment update allowing to specify principalId. */
@@ -241,6 +250,7 @@ public interface DatabasePrincipalAssignment {
              */
             Update withPrincipalId(String principalId);
         }
+
         /** The stage of the DatabasePrincipalAssignment update allowing to specify role. */
         interface WithRole {
             /**
@@ -251,6 +261,7 @@ public interface DatabasePrincipalAssignment {
              */
             Update withRole(DatabasePrincipalRole role);
         }
+
         /** The stage of the DatabasePrincipalAssignment update allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -261,6 +272,7 @@ public interface DatabasePrincipalAssignment {
              */
             Update withTenantId(String tenantId);
         }
+
         /** The stage of the DatabasePrincipalAssignment update allowing to specify principalType. */
         interface WithPrincipalType {
             /**
@@ -272,6 +284,7 @@ public interface DatabasePrincipalAssignment {
             Update withPrincipalType(PrincipalType principalType);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
