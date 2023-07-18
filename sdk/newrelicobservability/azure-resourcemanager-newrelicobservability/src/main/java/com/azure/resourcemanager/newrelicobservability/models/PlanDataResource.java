@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.newrelicobservability.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.newrelicobservability.fluent.models.PlanDataResourceInner;
 
 /** An immutable client-side representation of PlanDataResource. */
@@ -29,13 +28,6 @@ public interface PlanDataResource {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the planData property: Plan details.

@@ -37,7 +37,7 @@ public final class MonitorsCreateOrUpdateSamples {
             .define("cdlymktqw")
             .withRegion("k")
             .withExistingResourceGroup("rgNewRelic")
-            .withTags(mapOf("key6976", "oaxfhf"))
+            .withTags(mapOf("key6976", "fakeTokenPlaceholder"))
             .withNewRelicAccountProperties(
                 new NewRelicAccountProperties()
                     .withUserId("vcscxlncofcuduadesd")

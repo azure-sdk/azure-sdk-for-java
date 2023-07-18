@@ -175,11 +175,13 @@ public interface NewRelicMonitorResource {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The NewRelicMonitorResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the NewRelicMonitorResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -198,6 +200,7 @@ public interface NewRelicMonitorResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -208,6 +211,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the NewRelicMonitorResource definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -235,6 +239,7 @@ public interface NewRelicMonitorResource {
              */
             NewRelicMonitorResource create(Context context);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -245,6 +250,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -255,6 +261,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify newRelicAccountProperties. */
         interface WithNewRelicAccountProperties {
             /**
@@ -265,6 +272,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withNewRelicAccountProperties(NewRelicAccountProperties newRelicAccountProperties);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify userInfo. */
         interface WithUserInfo {
             /**
@@ -275,6 +283,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withUserInfo(UserInfo userInfo);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify planData. */
         interface WithPlanData {
             /**
@@ -285,6 +294,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withPlanData(PlanData planData);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify orgCreationSource. */
         interface WithOrgCreationSource {
             /**
@@ -295,6 +305,7 @@ public interface NewRelicMonitorResource {
              */
             WithCreate withOrgCreationSource(OrgCreationSource orgCreationSource);
         }
+
         /** The stage of the NewRelicMonitorResource definition allowing to specify accountCreationSource. */
         interface WithAccountCreationSource {
             /**
@@ -306,6 +317,7 @@ public interface NewRelicMonitorResource {
             WithCreate withAccountCreationSource(AccountCreationSource accountCreationSource);
         }
     }
+
     /**
      * Begins update for the NewRelicMonitorResource resource.
      *
@@ -337,6 +349,7 @@ public interface NewRelicMonitorResource {
          */
         NewRelicMonitorResource apply(Context context);
     }
+
     /** The NewRelicMonitorResource update stages. */
     interface UpdateStages {
         /** The stage of the NewRelicMonitorResource update allowing to specify tags. */
@@ -349,6 +362,7 @@ public interface NewRelicMonitorResource {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the NewRelicMonitorResource update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -359,6 +373,7 @@ public interface NewRelicMonitorResource {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the NewRelicMonitorResource update allowing to specify newRelicAccountProperties. */
         interface WithNewRelicAccountProperties {
             /**
@@ -369,6 +384,7 @@ public interface NewRelicMonitorResource {
              */
             Update withNewRelicAccountProperties(NewRelicAccountProperties newRelicAccountProperties);
         }
+
         /** The stage of the NewRelicMonitorResource update allowing to specify userInfo. */
         interface WithUserInfo {
             /**
@@ -379,6 +395,7 @@ public interface NewRelicMonitorResource {
              */
             Update withUserInfo(UserInfo userInfo);
         }
+
         /** The stage of the NewRelicMonitorResource update allowing to specify planData. */
         interface WithPlanData {
             /**
@@ -389,6 +406,7 @@ public interface NewRelicMonitorResource {
              */
             Update withPlanData(PlanData planData);
         }
+
         /** The stage of the NewRelicMonitorResource update allowing to specify orgCreationSource. */
         interface WithOrgCreationSource {
             /**
@@ -399,6 +417,7 @@ public interface NewRelicMonitorResource {
              */
             Update withOrgCreationSource(OrgCreationSource orgCreationSource);
         }
+
         /** The stage of the NewRelicMonitorResource update allowing to specify accountCreationSource. */
         interface WithAccountCreationSource {
             /**
@@ -410,6 +429,7 @@ public interface NewRelicMonitorResource {
             Update withAccountCreationSource(AccountCreationSource accountCreationSource);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

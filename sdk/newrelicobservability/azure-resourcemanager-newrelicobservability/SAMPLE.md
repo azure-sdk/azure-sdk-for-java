@@ -109,7 +109,7 @@ public final class MonitorsCreateOrUpdateSamples {
             .define("cdlymktqw")
             .withRegion("k")
             .withExistingResourceGroup("rgNewRelic")
-            .withTags(mapOf("key6976", "oaxfhf"))
+            .withTags(mapOf("key6976", "fakeTokenPlaceholder"))
             .withNewRelicAccountProperties(
                 new NewRelicAccountProperties()
                     .withUserId("vcscxlncofcuduadesd")
@@ -291,7 +291,12 @@ public final class MonitorsGetMetricStatusSamples {
             .getMetricStatusWithResponse(
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
-                new MetricsStatusRequest().withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
+                new MetricsStatusRequest()
+                    .withAzureResourceIds(
+                        Arrays
+                            .asList(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz"))
+                    .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
                 com.azure.core.util.Context.NONE);
     }
 
@@ -311,7 +316,10 @@ public final class MonitorsGetMetricStatusSamples {
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
                 new MetricsStatusRequest()
-                    .withAzureResourceIds(Arrays.asList("enfghpfw"))
+                    .withAzureResourceIds(
+                        Arrays
+                            .asList(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz"))
                     .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
                 com.azure.core.util.Context.NONE);
     }
@@ -362,7 +370,10 @@ public final class MonitorsListAppServicesSamples {
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
                 new AppServicesGetRequest()
-                    .withAzureResourceIds(Arrays.asList("pvzrksrmzowobuhxpwiotnpcvjbu"))
+                    .withAzureResourceIds(
+                        Arrays
+                            .asList(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz"))
                     .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
                 com.azure.core.util.Context.NONE);
     }
@@ -382,7 +393,12 @@ public final class MonitorsListAppServicesSamples {
             .listAppServices(
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
-                new AppServicesGetRequest().withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
+                new AppServicesGetRequest()
+                    .withAzureResourceIds(
+                        Arrays
+                            .asList(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz"))
+                    .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -543,7 +559,8 @@ public final class MonitorsSwitchBillingSamples {
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
                 new SwitchBillingRequest()
-                    .withAzureResourceId("enfghpfw")
+                    .withAzureResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz")
                     .withOrganizationId("k")
                     .withPlanData(
                         new PlanData()
@@ -599,7 +616,7 @@ public final class MonitorsUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key164", "jqakdrrmmyzytqu"))
+            .withTags(mapOf("key164", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.NONE)
@@ -781,7 +798,7 @@ public final class PlansListSamples {
      */
     public static void plansListMinimumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.plans().list(null, null, com.azure.core.util.Context.NONE);
+        manager.plans().list(null, "hilawwjz", com.azure.core.util.Context.NONE);
     }
 }
 ```
