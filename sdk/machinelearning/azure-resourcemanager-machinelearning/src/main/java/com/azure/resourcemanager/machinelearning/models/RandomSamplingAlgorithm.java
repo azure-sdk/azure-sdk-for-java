@@ -15,6 +15,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
     /*
+     * An optional positive number or e in string format to be used as base for log based random sampling
+     */
+    @JsonProperty(value = "logbase")
+    private String logbase;
+
+    /*
      * The specific type of random algorithm
      */
     @JsonProperty(value = "rule")
@@ -28,6 +34,28 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
 
     /** Creates an instance of RandomSamplingAlgorithm class. */
     public RandomSamplingAlgorithm() {
+    }
+
+    /**
+     * Get the logbase property: An optional positive number or e in string format to be used as base for log based
+     * random sampling.
+     *
+     * @return the logbase value.
+     */
+    public String logbase() {
+        return this.logbase;
+    }
+
+    /**
+     * Set the logbase property: An optional positive number or e in string format to be used as base for log based
+     * random sampling.
+     *
+     * @param logbase the logbase value to set.
+     * @return the RandomSamplingAlgorithm object itself.
+     */
+    public RandomSamplingAlgorithm withLogbase(String logbase) {
+        this.logbase = logbase;
+        return this;
     }
 
     /**
