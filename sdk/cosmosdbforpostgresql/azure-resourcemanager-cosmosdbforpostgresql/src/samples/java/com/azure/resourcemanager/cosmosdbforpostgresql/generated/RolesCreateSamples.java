@@ -10,11 +10,11 @@ public final class RolesCreateSamples {
      * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/stable/2022-11-08/examples/RoleCreate.json
      */
     /**
-     * Sample code: RoleCreate.
+     * Sample code: Create a role for the cluster.
      *
      * @param manager Entry point to CosmosDBForPostgreSqlManager.
      */
-    public static void roleCreate(
+    public static void createARoleForTheCluster(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
         manager
             .roles()
