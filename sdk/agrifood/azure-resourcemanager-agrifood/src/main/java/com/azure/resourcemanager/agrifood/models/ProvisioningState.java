@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Sensor integration instance provisioning state. */
+/** Data Manager For Agriculture instance provisioning state. */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /** Static value Creating for ProvisioningState. */
     public static final ProvisioningState CREATING = fromString("Creating");
@@ -24,6 +24,18 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
 
     /** Static value Failed for ProvisioningState. */
     public static final ProvisioningState FAILED = fromString("Failed");
+
+    /** Static value Running for ProvisioningState. */
+    public static final ProvisioningState RUNNING = fromString("Running");
+
+    /**
+     * Creates a new instance of ProvisioningState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ProvisioningState() {
+    }
 
     /**
      * Creates or finds a ProvisioningState from its string representation.
