@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class ListStorageAccountKeysResultInner {
     /*
-     * The userStorageKey property.
+     * The access key of the storage
      */
     @JsonProperty(value = "userStorageKey", access = JsonProperty.Access.WRITE_ONLY)
     private String userStorageKey;
@@ -21,7 +21,7 @@ public final class ListStorageAccountKeysResultInner {
     }
 
     /**
-     * Get the userStorageKey property: The userStorageKey property.
+     * Get the userStorageKey property: The access key of the storage.
      *
      * @return the userStorageKey value.
      */

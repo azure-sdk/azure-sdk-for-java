@@ -9,21 +9,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeys
 /** An immutable client-side representation of ListWorkspaceKeysResult. */
 public interface ListWorkspaceKeysResult {
     /**
-     * Gets the userStorageKey property: The userStorageKey property.
-     *
-     * @return the userStorageKey value.
-     */
-    String userStorageKey();
-
-    /**
-     * Gets the userStorageResourceId property: The userStorageResourceId property.
-     *
-     * @return the userStorageResourceId value.
-     */
-    String userStorageResourceId();
-
-    /**
-     * Gets the appInsightsInstrumentationKey property: The appInsightsInstrumentationKey property.
+     * Gets the appInsightsInstrumentationKey property: The access key of the workspace app insights.
      *
      * @return the appInsightsInstrumentationKey value.
      */
@@ -42,6 +28,20 @@ public interface ListWorkspaceKeysResult {
      * @return the notebookAccessKeys value.
      */
     ListNotebookKeysResult notebookAccessKeys();
+
+    /**
+     * Gets the userStorageArmId property: The arm Id key of the workspace storage.
+     *
+     * @return the userStorageArmId value.
+     */
+    String userStorageArmId();
+
+    /**
+     * Gets the userStorageKey property: The access key of the workspace storage.
+     *
+     * @return the userStorageKey value.
+     */
+    String userStorageKey();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeysResultInner object.

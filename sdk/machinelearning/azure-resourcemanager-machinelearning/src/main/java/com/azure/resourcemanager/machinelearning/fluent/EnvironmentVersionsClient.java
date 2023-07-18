@@ -38,6 +38,7 @@ public interface EnvironmentVersionsClient {
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -53,6 +54,7 @@ public interface EnvironmentVersionsClient {
         Integer top,
         String skip,
         ListViewType listViewType,
+        String stage,
         Context context);
 
     /**
