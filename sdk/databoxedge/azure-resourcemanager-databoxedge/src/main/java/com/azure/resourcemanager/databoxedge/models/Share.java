@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.ShareInner;
 import java.util.List;
@@ -30,6 +31,13 @@ public interface Share {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of Share.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the description property: Description for the share.
@@ -126,11 +134,13 @@ public interface Share {
             DefinitionStages.WithAccessProtocol,
             DefinitionStages.WithCreate {
     }
+
     /** The Share definition stages. */
     interface DefinitionStages {
         /** The first stage of the Share definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Share definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -142,6 +152,7 @@ public interface Share {
              */
             WithShareStatus withExistingDataBoxEdgeDevice(String deviceName, String resourceGroupName);
         }
+
         /** The stage of the Share definition allowing to specify shareStatus. */
         interface WithShareStatus {
             /**
@@ -152,6 +163,7 @@ public interface Share {
              */
             WithMonitoringStatus withShareStatus(ShareStatus shareStatus);
         }
+
         /** The stage of the Share definition allowing to specify monitoringStatus. */
         interface WithMonitoringStatus {
             /**
@@ -162,6 +174,7 @@ public interface Share {
              */
             WithAccessProtocol withMonitoringStatus(MonitoringStatus monitoringStatus);
         }
+
         /** The stage of the Share definition allowing to specify accessProtocol. */
         interface WithAccessProtocol {
             /**
@@ -172,6 +185,7 @@ public interface Share {
              */
             WithCreate withAccessProtocol(ShareAccessProtocol accessProtocol);
         }
+
         /**
          * The stage of the Share definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -198,6 +212,7 @@ public interface Share {
              */
             Share create(Context context);
         }
+
         /** The stage of the Share definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -208,6 +223,7 @@ public interface Share {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Share definition allowing to specify azureContainerInfo. */
         interface WithAzureContainerInfo {
             /**
@@ -218,6 +234,7 @@ public interface Share {
              */
             WithCreate withAzureContainerInfo(AzureContainerInfo azureContainerInfo);
         }
+
         /** The stage of the Share definition allowing to specify userAccessRights. */
         interface WithUserAccessRights {
             /**
@@ -230,6 +247,7 @@ public interface Share {
              */
             WithCreate withUserAccessRights(List<UserAccessRight> userAccessRights);
         }
+
         /** The stage of the Share definition allowing to specify clientAccessRights. */
         interface WithClientAccessRights {
             /**
@@ -242,6 +260,7 @@ public interface Share {
              */
             WithCreate withClientAccessRights(List<ClientAccessRight> clientAccessRights);
         }
+
         /** The stage of the Share definition allowing to specify refreshDetails. */
         interface WithRefreshDetails {
             /**
@@ -252,6 +271,7 @@ public interface Share {
              */
             WithCreate withRefreshDetails(RefreshDetails refreshDetails);
         }
+
         /** The stage of the Share definition allowing to specify dataPolicy. */
         interface WithDataPolicy {
             /**
@@ -263,6 +283,7 @@ public interface Share {
             WithCreate withDataPolicy(DataPolicy dataPolicy);
         }
     }
+
     /**
      * Begins update for the Share resource.
      *
@@ -296,6 +317,7 @@ public interface Share {
          */
         Share apply(Context context);
     }
+
     /** The Share update stages. */
     interface UpdateStages {
         /** The stage of the Share update allowing to specify description. */
@@ -308,6 +330,7 @@ public interface Share {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Share update allowing to specify shareStatus. */
         interface WithShareStatus {
             /**
@@ -318,6 +341,7 @@ public interface Share {
              */
             Update withShareStatus(ShareStatus shareStatus);
         }
+
         /** The stage of the Share update allowing to specify monitoringStatus. */
         interface WithMonitoringStatus {
             /**
@@ -328,6 +352,7 @@ public interface Share {
              */
             Update withMonitoringStatus(MonitoringStatus monitoringStatus);
         }
+
         /** The stage of the Share update allowing to specify azureContainerInfo. */
         interface WithAzureContainerInfo {
             /**
@@ -338,6 +363,7 @@ public interface Share {
              */
             Update withAzureContainerInfo(AzureContainerInfo azureContainerInfo);
         }
+
         /** The stage of the Share update allowing to specify accessProtocol. */
         interface WithAccessProtocol {
             /**
@@ -348,6 +374,7 @@ public interface Share {
              */
             Update withAccessProtocol(ShareAccessProtocol accessProtocol);
         }
+
         /** The stage of the Share update allowing to specify userAccessRights. */
         interface WithUserAccessRights {
             /**
@@ -360,6 +387,7 @@ public interface Share {
              */
             Update withUserAccessRights(List<UserAccessRight> userAccessRights);
         }
+
         /** The stage of the Share update allowing to specify clientAccessRights. */
         interface WithClientAccessRights {
             /**
@@ -372,6 +400,7 @@ public interface Share {
              */
             Update withClientAccessRights(List<ClientAccessRight> clientAccessRights);
         }
+
         /** The stage of the Share update allowing to specify refreshDetails. */
         interface WithRefreshDetails {
             /**
@@ -382,6 +411,7 @@ public interface Share {
              */
             Update withRefreshDetails(RefreshDetails refreshDetails);
         }
+
         /** The stage of the Share update allowing to specify dataPolicy. */
         interface WithDataPolicy {
             /**
@@ -393,6 +423,7 @@ public interface Share {
             Update withDataPolicy(DataPolicy dataPolicy);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
