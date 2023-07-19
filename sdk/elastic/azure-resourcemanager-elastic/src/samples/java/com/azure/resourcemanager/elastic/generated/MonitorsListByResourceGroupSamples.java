@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for Monitors ListByResourceGroup. */
 public final class MonitorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/Monitors_ListByResourceGroup.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-07-01-preview/examples/Monitors_ListByResourceGroup.json
      */
     /**
      * Sample code: Monitors_ListByResourceGroup.
