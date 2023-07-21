@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/azuresiterecovery/ci.yml
+      - sdk/azuresiterecovery/azure-resourcemanager-azuresiterecovery/
+    exclude:
+      - sdk/azuresiterecovery/pom.xml
+      - sdk/azuresiterecovery/azure-resourcemanager-azuresiterecovery/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/azuresiterecovery/ci.yml
+      - sdk/azuresiterecovery/azure-resourcemanager-azuresiterecovery/
+    exclude:
+      - sdk/azuresiterecovery/pom.xml
+      - sdk/azuresiterecovery/azure-resourcemanager-azuresiterecovery/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerazuresiterecovery
+    displayName: azure-resourcemanager-azuresiterecovery
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: azuresiterecovery
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-azuresiterecovery
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerazuresiterecovery
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerazuresiterecovery }}
