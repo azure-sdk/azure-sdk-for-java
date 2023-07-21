@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.AzureContainerInfo;
@@ -28,6 +29,12 @@ public final class ShareInner extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private ShareProperties innerProperties = new ShareProperties();
 
+    /*
+     * Metadata pertaining to creation and last modification of Share
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of ShareInner class. */
     public ShareInner() {
     }
@@ -39,6 +46,15 @@ public final class ShareInner extends ArmBaseModel {
      */
     private ShareProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Share.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
