@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.StorageAccountInner;
 
@@ -29,6 +30,13 @@ public interface StorageAccount {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of StorageAccount.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the description property: Description for the storage Account.
@@ -89,13 +97,18 @@ public interface StorageAccount {
 
     /** The entirety of the StorageAccount definition. */
     interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank,
+            DefinitionStages.WithParentResource,
+            DefinitionStages.WithDataPolicy,
+            DefinitionStages.WithCreate {
     }
+
     /** The StorageAccount definition stages. */
     interface DefinitionStages {
         /** The first stage of the StorageAccount definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the StorageAccount definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -105,8 +118,20 @@ public interface StorageAccount {
              * @param resourceGroupName The resource group name.
              * @return the next definition stage.
              */
-            WithCreate withExistingDataBoxEdgeDevice(String deviceName, String resourceGroupName);
+            WithDataPolicy withExistingDataBoxEdgeDevice(String deviceName, String resourceGroupName);
         }
+
+        /** The stage of the StorageAccount definition allowing to specify dataPolicy. */
+        interface WithDataPolicy {
+            /**
+             * Specifies the dataPolicy property: Data policy of the storage Account..
+             *
+             * @param dataPolicy Data policy of the storage Account.
+             * @return the next definition stage.
+             */
+            WithCreate withDataPolicy(DataPolicy dataPolicy);
+        }
+
         /**
          * The stage of the StorageAccount definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -114,7 +139,6 @@ public interface StorageAccount {
         interface WithCreate
             extends DefinitionStages.WithDescription,
                 DefinitionStages.WithStorageAccountStatus,
-                DefinitionStages.WithDataPolicy,
                 DefinitionStages.WithStorageAccountCredentialId {
             /**
              * Executes the create request.
@@ -131,6 +155,7 @@ public interface StorageAccount {
              */
             StorageAccount create(Context context);
         }
+
         /** The stage of the StorageAccount definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -141,6 +166,7 @@ public interface StorageAccount {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the StorageAccount definition allowing to specify storageAccountStatus. */
         interface WithStorageAccountStatus {
             /**
@@ -151,16 +177,7 @@ public interface StorageAccount {
              */
             WithCreate withStorageAccountStatus(StorageAccountStatus storageAccountStatus);
         }
-        /** The stage of the StorageAccount definition allowing to specify dataPolicy. */
-        interface WithDataPolicy {
-            /**
-             * Specifies the dataPolicy property: Data policy of the storage Account..
-             *
-             * @param dataPolicy Data policy of the storage Account.
-             * @return the next definition stage.
-             */
-            WithCreate withDataPolicy(DataPolicy dataPolicy);
-        }
+
         /** The stage of the StorageAccount definition allowing to specify storageAccountCredentialId. */
         interface WithStorageAccountCredentialId {
             /**
@@ -172,6 +189,7 @@ public interface StorageAccount {
             WithCreate withStorageAccountCredentialId(String storageAccountCredentialId);
         }
     }
+
     /**
      * Begins update for the StorageAccount resource.
      *
@@ -200,6 +218,7 @@ public interface StorageAccount {
          */
         StorageAccount apply(Context context);
     }
+
     /** The StorageAccount update stages. */
     interface UpdateStages {
         /** The stage of the StorageAccount update allowing to specify description. */
@@ -212,6 +231,7 @@ public interface StorageAccount {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the StorageAccount update allowing to specify storageAccountStatus. */
         interface WithStorageAccountStatus {
             /**
@@ -222,6 +242,7 @@ public interface StorageAccount {
              */
             Update withStorageAccountStatus(StorageAccountStatus storageAccountStatus);
         }
+
         /** The stage of the StorageAccount update allowing to specify dataPolicy. */
         interface WithDataPolicy {
             /**
@@ -232,6 +253,7 @@ public interface StorageAccount {
              */
             Update withDataPolicy(DataPolicy dataPolicy);
         }
+
         /** The stage of the StorageAccount update allowing to specify storageAccountCredentialId. */
         interface WithStorageAccountCredentialId {
             /**
@@ -243,6 +265,7 @@ public interface StorageAccount {
             Update withStorageAccountCredentialId(String storageAccountCredentialId);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

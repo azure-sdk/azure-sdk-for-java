@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 /** Samples for Shares Get. */
 public final class SharesGetSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/ShareGet.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-07-01/examples/ShareGet.json
      */
     /**
      * Sample code: ShareGet.
