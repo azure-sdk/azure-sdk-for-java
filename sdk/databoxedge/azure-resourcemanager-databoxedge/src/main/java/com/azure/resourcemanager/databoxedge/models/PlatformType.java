@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Host OS supported by the IoT role. */
+/** Host OS supported by the Arc addon. */
 public final class PlatformType extends ExpandableStringEnum<PlatformType> {
     /** Static value Windows for PlatformType. */
     public static final PlatformType WINDOWS = fromString("Windows");
