@@ -22,7 +22,6 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineReplacePara
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineRunCommandParameters;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineRunDataExtractsParameters;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineRunReadCommandsParameters;
-import com.azure.resourcemanager.networkcloud.models.BareMetalMachineValidateHardwareParameters;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.HardwareInventory;
 import com.azure.resourcemanager.networkcloud.models.HardwareValidationStatus;
@@ -402,21 +401,6 @@ public final class BareMetalMachineImpl
 
     public void uncordon(Context context) {
         serviceManager.bareMetalMachines().uncordon(resourceGroupName, bareMetalMachineName, context);
-    }
-
-    public void validateHardware(
-        BareMetalMachineValidateHardwareParameters bareMetalMachineValidateHardwareParameters) {
-        serviceManager
-            .bareMetalMachines()
-            .validateHardware(resourceGroupName, bareMetalMachineName, bareMetalMachineValidateHardwareParameters);
-    }
-
-    public void validateHardware(
-        BareMetalMachineValidateHardwareParameters bareMetalMachineValidateHardwareParameters, Context context) {
-        serviceManager
-            .bareMetalMachines()
-            .validateHardware(
-                resourceGroupName, bareMetalMachineName, bareMetalMachineValidateHardwareParameters, context);
     }
 
     public BareMetalMachineImpl withRegion(Region location) {
