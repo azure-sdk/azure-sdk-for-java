@@ -326,11 +326,13 @@ public interface BareMetalMachine {
             DefinitionStages.WithSerialNumber,
             DefinitionStages.WithCreate {
     }
+
     /** The BareMetalMachine definition stages. */
     interface DefinitionStages {
         /** The first stage of the BareMetalMachine definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -349,6 +351,7 @@ public interface BareMetalMachine {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -359,6 +362,7 @@ public interface BareMetalMachine {
              */
             WithExtendedLocation withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify extendedLocation. */
         interface WithExtendedLocation {
             /**
@@ -374,6 +378,7 @@ public interface BareMetalMachine {
              */
             WithBmcConnectionString withExtendedLocation(ExtendedLocation extendedLocation);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify bmcConnectionString. */
         interface WithBmcConnectionString {
             /**
@@ -386,6 +391,7 @@ public interface BareMetalMachine {
              */
             WithBmcCredentials withBmcConnectionString(String bmcConnectionString);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify bmcCredentials. */
         interface WithBmcCredentials {
             /**
@@ -401,6 +407,7 @@ public interface BareMetalMachine {
              */
             WithBmcMacAddress withBmcCredentials(AdministrativeCredentials bmcCredentials);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify bmcMacAddress. */
         interface WithBmcMacAddress {
             /**
@@ -411,6 +418,7 @@ public interface BareMetalMachine {
              */
             WithBootMacAddress withBmcMacAddress(String bmcMacAddress);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify bootMacAddress. */
         interface WithBootMacAddress {
             /**
@@ -421,6 +429,7 @@ public interface BareMetalMachine {
              */
             WithMachineDetails withBootMacAddress(String bootMacAddress);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify machineDetails. */
         interface WithMachineDetails {
             /**
@@ -431,6 +440,7 @@ public interface BareMetalMachine {
              */
             WithMachineName withMachineDetails(String machineDetails);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify machineName. */
         interface WithMachineName {
             /**
@@ -441,6 +451,7 @@ public interface BareMetalMachine {
              */
             WithMachineSkuId withMachineName(String machineName);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify machineSkuId. */
         interface WithMachineSkuId {
             /**
@@ -451,6 +462,7 @@ public interface BareMetalMachine {
              */
             WithRackId withMachineSkuId(String machineSkuId);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify rackId. */
         interface WithRackId {
             /**
@@ -461,6 +473,7 @@ public interface BareMetalMachine {
              */
             WithRackSlot withRackId(String rackId);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify rackSlot. */
         interface WithRackSlot {
             /**
@@ -473,6 +486,7 @@ public interface BareMetalMachine {
              */
             WithSerialNumber withRackSlot(long rackSlot);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify serialNumber. */
         interface WithSerialNumber {
             /**
@@ -483,6 +497,7 @@ public interface BareMetalMachine {
              */
             WithCreate withSerialNumber(String serialNumber);
         }
+
         /**
          * The stage of the BareMetalMachine definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -503,6 +518,7 @@ public interface BareMetalMachine {
              */
             BareMetalMachine create(Context context);
         }
+
         /** The stage of the BareMetalMachine definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -514,6 +530,7 @@ public interface BareMetalMachine {
             WithCreate withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Begins update for the BareMetalMachine resource.
      *
@@ -538,6 +555,7 @@ public interface BareMetalMachine {
          */
         BareMetalMachine apply(Context context);
     }
+
     /** The BareMetalMachine update stages. */
     interface UpdateStages {
         /** The stage of the BareMetalMachine update allowing to specify tags. */
@@ -550,6 +568,7 @@ public interface BareMetalMachine {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the BareMetalMachine update allowing to specify machineDetails. */
         interface WithMachineDetails {
             /**
@@ -563,6 +582,7 @@ public interface BareMetalMachine {
             Update withMachineDetails(String machineDetails);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -821,30 +841,4 @@ public interface BareMetalMachine {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void uncordon(Context context);
-
-    /**
-     * Trigger hardware validation of the bare metal machine.
-     *
-     * <p>Validate the hardware of the provided bare metal machine.
-     *
-     * @param bareMetalMachineValidateHardwareParameters The request body.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void validateHardware(BareMetalMachineValidateHardwareParameters bareMetalMachineValidateHardwareParameters);
-
-    /**
-     * Trigger hardware validation of the bare metal machine.
-     *
-     * <p>Validate the hardware of the provided bare metal machine.
-     *
-     * @param bareMetalMachineValidateHardwareParameters The request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void validateHardware(
-        BareMetalMachineValidateHardwareParameters bareMetalMachineValidateHardwareParameters, Context context);
 }
