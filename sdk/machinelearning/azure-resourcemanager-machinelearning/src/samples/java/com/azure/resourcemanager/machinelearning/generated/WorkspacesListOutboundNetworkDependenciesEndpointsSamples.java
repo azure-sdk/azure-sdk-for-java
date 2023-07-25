@@ -7,7 +7,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for Workspaces ListOutboundNetworkDependenciesEndpoints. */
 public final class WorkspacesListOutboundNetworkDependenciesEndpointsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/ExternalFQDN/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/ExternalFQDN/get.json
      */
     /**
      * Sample code: ListOutboundNetworkDependenciesEndpoints.
