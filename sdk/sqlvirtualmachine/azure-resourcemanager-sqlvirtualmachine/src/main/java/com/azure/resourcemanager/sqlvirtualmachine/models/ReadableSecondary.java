@@ -10,14 +10,14 @@ import java.util.Collection;
 
 /** Replica readable secondary mode in availability group. */
 public final class ReadableSecondary extends ExpandableStringEnum<ReadableSecondary> {
-    /** Static value NO for ReadableSecondary. */
-    public static final ReadableSecondary NO = fromString("NO");
+    /** Static value No for ReadableSecondary. */
+    public static final ReadableSecondary NO = fromString("No");
 
-    /** Static value ALL for ReadableSecondary. */
-    public static final ReadableSecondary ALL = fromString("ALL");
+    /** Static value All for ReadableSecondary. */
+    public static final ReadableSecondary ALL = fromString("All");
 
-    /** Static value READ_ONLY for ReadableSecondary. */
-    public static final ReadableSecondary READ_ONLY = fromString("READ_ONLY");
+    /** Static value Read_Only for ReadableSecondary. */
+    public static final ReadableSecondary READ_ONLY = fromString("Read_Only");
 
     /**
      * Creates a new instance of ReadableSecondary value.

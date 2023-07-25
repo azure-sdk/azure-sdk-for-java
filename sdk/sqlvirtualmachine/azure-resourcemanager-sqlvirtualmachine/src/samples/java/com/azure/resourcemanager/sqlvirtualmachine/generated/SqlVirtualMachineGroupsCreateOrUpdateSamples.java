@@ -13,7 +13,7 @@ import java.util.Map;
 /** Samples for SqlVirtualMachineGroups CreateOrUpdate. */
 public final class SqlVirtualMachineGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/CreateOrUpdateSqlVirtualMachineGroup.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/CreateOrUpdateSqlVirtualMachineGroup.json
      */
     /**
      * Sample code: Creates or updates a SQL virtual machine group.
@@ -37,6 +37,7 @@ public final class SqlVirtualMachineGroupsCreateOrUpdateSamples {
                     .withClusterBootstrapAccount("testrpadmin")
                     .withClusterOperatorAccount("testrp@testdomain.com")
                     .withSqlServiceAccount("sqlservice@testdomain.com")
+                    .withIsSqlServiceAccountGmsa(false)
                     .withStorageAccountUrl("https://storgact.blob.core.windows.net/")
                     .withStorageAccountPrimaryKey("fakeTokenPlaceholder")
                     .withClusterSubnetType(ClusterSubnetType.MULTI_SUBNET))

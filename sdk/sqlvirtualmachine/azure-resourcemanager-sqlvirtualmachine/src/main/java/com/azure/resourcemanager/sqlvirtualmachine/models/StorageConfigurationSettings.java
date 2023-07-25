@@ -46,6 +46,12 @@ public final class StorageConfigurationSettings {
     @JsonProperty(value = "storageWorkloadType")
     private StorageWorkloadType storageWorkloadType;
 
+    /*
+     * Enable SQL IaaS Agent storage configuration blade in Azure Portal.
+     */
+    @JsonProperty(value = "enableStorageConfigBlade")
+    private Boolean enableStorageConfigBlade;
+
     /** Creates an instance of StorageConfigurationSettings class. */
     public StorageConfigurationSettings() {
     }
@@ -167,6 +173,26 @@ public final class StorageConfigurationSettings {
      */
     public StorageConfigurationSettings withStorageWorkloadType(StorageWorkloadType storageWorkloadType) {
         this.storageWorkloadType = storageWorkloadType;
+        return this;
+    }
+
+    /**
+     * Get the enableStorageConfigBlade property: Enable SQL IaaS Agent storage configuration blade in Azure Portal.
+     *
+     * @return the enableStorageConfigBlade value.
+     */
+    public Boolean enableStorageConfigBlade() {
+        return this.enableStorageConfigBlade;
+    }
+
+    /**
+     * Set the enableStorageConfigBlade property: Enable SQL IaaS Agent storage configuration blade in Azure Portal.
+     *
+     * @param enableStorageConfigBlade the enableStorageConfigBlade value to set.
+     * @return the StorageConfigurationSettings object itself.
+     */
+    public StorageConfigurationSettings withEnableStorageConfigBlade(Boolean enableStorageConfigBlade) {
+        this.enableStorageConfigBlade = enableStorageConfigBlade;
         return this;
     }
 

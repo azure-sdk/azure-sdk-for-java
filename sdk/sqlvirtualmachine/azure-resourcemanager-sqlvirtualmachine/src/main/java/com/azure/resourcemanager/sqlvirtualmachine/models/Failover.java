@@ -10,11 +10,11 @@ import java.util.Collection;
 
 /** Replica failover mode in availability group. */
 public final class Failover extends ExpandableStringEnum<Failover> {
-    /** Static value AUTOMATIC for Failover. */
-    public static final Failover AUTOMATIC = fromString("AUTOMATIC");
+    /** Static value Automatic for Failover. */
+    public static final Failover AUTOMATIC = fromString("Automatic");
 
-    /** Static value MANUAL for Failover. */
-    public static final Failover MANUAL = fromString("MANUAL");
+    /** Static value Manual for Failover. */
+    public static final Failover MANUAL = fromString("Manual");
 
     /**
      * Creates a new instance of Failover value.
