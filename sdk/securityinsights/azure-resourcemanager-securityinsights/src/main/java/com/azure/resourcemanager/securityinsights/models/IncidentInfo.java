@@ -34,6 +34,10 @@ public final class IncidentInfo {
     @JsonProperty(value = "relationName")
     private String relationName;
 
+    /** Creates an instance of IncidentInfo class. */
+    public IncidentInfo() {
+    }
+
     /**
      * Get the incidentId property: Incident Id.
      *

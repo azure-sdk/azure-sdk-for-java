@@ -12,16 +12,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class IncidentEntitiesResultsMetadata {
     /*
+     * The kind of the aggregated entity.
+     */
+    @JsonProperty(value = "entityKind", required = true)
+    private EntityKindEnum entityKind;
+
+    /*
      * Total number of aggregations of the given kind in the incident related entities result.
      */
     @JsonProperty(value = "count", required = true)
     private int count;
 
-    /*
-     * The kind of the aggregated entity.
+    /** Creates an instance of IncidentEntitiesResultsMetadata class. */
+    public IncidentEntitiesResultsMetadata() {
+    }
+
+    /**
+     * Get the entityKind property: The kind of the aggregated entity.
+     *
+     * @return the entityKind value.
      */
-    @JsonProperty(value = "entityKind", required = true)
-    private EntityKind entityKind;
+    public EntityKindEnum entityKind() {
+        return this.entityKind;
+    }
+
+    /**
+     * Set the entityKind property: The kind of the aggregated entity.
+     *
+     * @param entityKind the entityKind value to set.
+     * @return the IncidentEntitiesResultsMetadata object itself.
+     */
+    public IncidentEntitiesResultsMetadata withEntityKind(EntityKindEnum entityKind) {
+        this.entityKind = entityKind;
+        return this;
+    }
 
     /**
      * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
@@ -40,26 +64,6 @@ public final class IncidentEntitiesResultsMetadata {
      */
     public IncidentEntitiesResultsMetadata withCount(int count) {
         this.count = count;
-        return this;
-    }
-
-    /**
-     * Get the entityKind property: The kind of the aggregated entity.
-     *
-     * @return the entityKind value.
-     */
-    public EntityKind entityKind() {
-        return this.entityKind;
-    }
-
-    /**
-     * Set the entityKind property: The kind of the aggregated entity.
-     *
-     * @param entityKind the entityKind value to set.
-     * @return the IncidentEntitiesResultsMetadata object itself.
-     */
-    public IncidentEntitiesResultsMetadata withEntityKind(EntityKind entityKind) {
-        this.entityKind = entityKind;
         return this;
     }
 
