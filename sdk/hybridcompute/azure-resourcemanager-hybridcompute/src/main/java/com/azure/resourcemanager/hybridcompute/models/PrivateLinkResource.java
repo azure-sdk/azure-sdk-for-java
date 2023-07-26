@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hybridcompute.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcompute.fluent.models.PrivateLinkResourceInner;
 
 /** An immutable client-side representation of PrivateLinkResource. */
@@ -36,13 +35,6 @@ public interface PrivateLinkResource {
      * @return the properties value.
      */
     PrivateLinkResourceProperties properties();
-
-    /**
-     * Gets the systemData property: The system meta data relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.hybridcompute.fluent.models.PrivateLinkResourceInner object.
