@@ -38,6 +38,7 @@ public interface ComponentVersionsClient {
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Component stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -53,6 +54,7 @@ public interface ComponentVersionsClient {
         Integer top,
         String skip,
         ListViewType listViewType,
+        String stage,
         Context context);
 
     /**
