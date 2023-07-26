@@ -19,6 +19,10 @@ public final class IncidentCommentInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private IncidentCommentProperties innerProperties;
 
+    /** Creates an instance of IncidentCommentInner class. */
+    public IncidentCommentInner() {
+    }
+
     /**
      * Get the innerProperties property: Incident comment properties.
      *
@@ -33,24 +37,6 @@ public final class IncidentCommentInner extends ResourceWithEtag {
     public IncidentCommentInner withEtag(String etag) {
         super.withEtag(etag);
         return this;
-    }
-
-    /**
-     * Get the createdTimeUtc property: The time the comment was created.
-     *
-     * @return the createdTimeUtc value.
-     */
-    public OffsetDateTime createdTimeUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdTimeUtc();
-    }
-
-    /**
-     * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     *
-     * @return the lastModifiedTimeUtc value.
-     */
-    public OffsetDateTime lastModifiedTimeUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedTimeUtc();
     }
 
     /**
@@ -74,6 +60,24 @@ public final class IncidentCommentInner extends ResourceWithEtag {
         }
         this.innerProperties().withMessage(message);
         return this;
+    }
+
+    /**
+     * Get the createdTimeUtc property: The time the comment was created.
+     *
+     * @return the createdTimeUtc value.
+     */
+    public OffsetDateTime createdTimeUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdTimeUtc();
+    }
+
+    /**
+     * Get the lastModifiedTimeUtc property: The time the comment was updated.
+     *
+     * @return the lastModifiedTimeUtc value.
+     */
+    public OffsetDateTime lastModifiedTimeUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedTimeUtc();
     }
 
     /**

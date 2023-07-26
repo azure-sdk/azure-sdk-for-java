@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryTemplateInner;
-import com.azure.resourcemanager.securityinsights.models.Constant88;
+import com.azure.resourcemanager.securityinsights.models.Constant106;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateList;
 import reactor.core.publisher.Mono;
 
@@ -57,16 +57,15 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsEnti")
-    private interface EntityQueryTemplatesService {
+    public interface EntityQueryTemplatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueryTemplates")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueryTemplates")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityQueryTemplateList>> list(
             @HostParam("$host") String endpoint,
-            @QueryParam("kind") Constant88 kind,
+            @QueryParam("kind") Constant106 kind,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -76,9 +75,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueryTemplates"
-                + "/{entityQueryTemplateId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueryTemplates/{entityQueryTemplateId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityQueryTemplateInner>> get(
@@ -115,7 +112,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EntityQueryTemplateInner>> listSinglePageAsync(
-        String resourceGroupName, String workspaceName, Constant88 kind) {
+        String resourceGroupName, String workspaceName, Constant106 kind) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -175,7 +172,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EntityQueryTemplateInner>> listSinglePageAsync(
-        String resourceGroupName, String workspaceName, Constant88 kind, Context context) {
+        String resourceGroupName, String workspaceName, Constant106 kind, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -231,7 +228,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EntityQueryTemplateInner> listAsync(
-        String resourceGroupName, String workspaceName, Constant88 kind) {
+        String resourceGroupName, String workspaceName, Constant106 kind) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, workspaceName, kind),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -249,7 +246,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EntityQueryTemplateInner> listAsync(String resourceGroupName, String workspaceName) {
-        final Constant88 kind = null;
+        final Constant106 kind = null;
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, workspaceName, kind),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -269,7 +266,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EntityQueryTemplateInner> listAsync(
-        String resourceGroupName, String workspaceName, Constant88 kind, Context context) {
+        String resourceGroupName, String workspaceName, Constant106 kind, Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, workspaceName, kind, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
@@ -287,7 +284,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EntityQueryTemplateInner> list(String resourceGroupName, String workspaceName) {
-        final Constant88 kind = null;
+        final Constant106 kind = null;
         return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, kind));
     }
 
@@ -305,7 +302,7 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EntityQueryTemplateInner> list(
-        String resourceGroupName, String workspaceName, Constant88 kind, Context context) {
+        String resourceGroupName, String workspaceName, Constant106 kind, Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, kind, context));
     }
 
@@ -439,22 +436,6 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityQueryTemplateId entity query template ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity query.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityQueryTemplateInner get(String resourceGroupName, String workspaceName, String entityQueryTemplateId) {
-        return getAsync(resourceGroupName, workspaceName, entityQueryTemplateId).block();
-    }
-
-    /**
-     * Gets an entity query.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityQueryTemplateId entity query template ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -465,6 +446,22 @@ public final class EntityQueryTemplatesClientImpl implements EntityQueryTemplate
     public Response<EntityQueryTemplateInner> getWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryTemplateId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, entityQueryTemplateId, context).block();
+    }
+
+    /**
+     * Gets an entity query.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityQueryTemplateId entity query template ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entity query.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityQueryTemplateInner get(String resourceGroupName, String workspaceName, String entityQueryTemplateId) {
+        return getWithResponse(resourceGroupName, workspaceName, entityQueryTemplateId, Context.NONE).getValue();
     }
 
     /**
