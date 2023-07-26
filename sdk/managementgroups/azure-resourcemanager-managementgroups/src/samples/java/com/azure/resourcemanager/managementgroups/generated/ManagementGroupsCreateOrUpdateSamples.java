@@ -11,7 +11,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateParentGroupInfo;
 /** Samples for ManagementGroups CreateOrUpdate. */
 public final class ManagementGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PutManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/PutManagementGroup.json
      */
     /**
      * Sample code: PutManagementGroup.
