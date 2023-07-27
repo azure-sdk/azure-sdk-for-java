@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Images ListByLabPlan. */
 public final class ImagesListByLabPlanSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/listImages.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/listImages.json
      */
     /**
      * Sample code: listImages.
@@ -17,6 +15,6 @@ public final class ImagesListByLabPlanSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listImages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images().listByLabPlan("testrg123", "testlabplan", null, Context.NONE);
+        manager.images().listByLabPlan("testrg123", "testlabplan", null, com.azure.core.util.Context.NONE);
     }
 }

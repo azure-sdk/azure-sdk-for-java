@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Images Get. */
 public final class ImagesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/getImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/getImage.json
      */
     /**
      * Sample code: getImage.
@@ -17,6 +15,6 @@ public final class ImagesGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images().getWithResponse("testrg123", "testlabplan", "image1", Context.NONE);
+        manager.images().getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE);
     }
 }

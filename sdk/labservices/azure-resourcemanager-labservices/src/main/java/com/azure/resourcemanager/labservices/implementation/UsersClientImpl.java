@@ -66,11 +66,10 @@ public final class UsersClientImpl implements UsersClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LabServicesClientUse")
-    private interface UsersService {
+    public interface UsersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/users")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PagedUsers>> listByLab(
@@ -85,8 +84,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/users/{userName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UserInner>> get(
@@ -101,8 +99,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/users/{userName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -118,8 +115,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/users/{userName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -135,8 +131,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/users/{userName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -151,8 +146,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/users/{userName}/invite")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}/invite")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> invite(
@@ -534,24 +528,6 @@ public final class UsersClientImpl implements UsersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public UserInner get(String resourceGroupName, String labName, String username) {
-        return getAsync(resourceGroupName, labName, username).block();
-    }
-
-    /**
-     * Get a lab user.
-     *
-     * <p>Returns the properties of a lab user.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -562,6 +538,24 @@ public final class UsersClientImpl implements UsersClient {
     public Response<UserInner> getWithResponse(
         String resourceGroupName, String labName, String username, Context context) {
         return getWithResponseAsync(resourceGroupName, labName, username, context).block();
+    }
+
+    /**
+     * Get a lab user.
+     *
+     * <p>Returns the properties of a lab user.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
+     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return user of a lab that can register for and use virtual machines within the lab.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public UserInner get(String resourceGroupName, String labName, String username) {
+        return getWithResponse(resourceGroupName, labName, username, Context.NONE).getValue();
     }
 
     /**
@@ -760,7 +754,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<UserInner>, UserInner> beginCreateOrUpdate(
         String resourceGroupName, String labName, String username, UserInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, labName, username, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, labName, username, body).getSyncPoller();
     }
 
     /**
@@ -782,7 +776,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<UserInner>, UserInner> beginCreateOrUpdate(
         String resourceGroupName, String labName, String username, UserInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, labName, username, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, labName, username, body, context).getSyncPoller();
     }
 
     /**
@@ -1067,7 +1061,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<UserInner>, UserInner> beginUpdate(
         String resourceGroupName, String labName, String username, UserUpdate body) {
-        return beginUpdateAsync(resourceGroupName, labName, username, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, labName, username, body).getSyncPoller();
     }
 
     /**
@@ -1089,7 +1083,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<UserInner>, UserInner> beginUpdate(
         String resourceGroupName, String labName, String username, UserUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, labName, username, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, labName, username, body, context).getSyncPoller();
     }
 
     /**
@@ -1348,7 +1342,7 @@ public final class UsersClientImpl implements UsersClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String username) {
-        return beginDeleteAsync(resourceGroupName, labName, username).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, labName, username).getSyncPoller();
     }
 
     /**
@@ -1368,7 +1362,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String labName, String username, Context context) {
-        return beginDeleteAsync(resourceGroupName, labName, username, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, labName, username, context).getSyncPoller();
     }
 
     /**
@@ -1636,7 +1630,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginInvite(
         String resourceGroupName, String labName, String username, InviteBody body) {
-        return beginInviteAsync(resourceGroupName, labName, username, body).getSyncPoller();
+        return this.beginInviteAsync(resourceGroupName, labName, username, body).getSyncPoller();
     }
 
     /**
@@ -1657,7 +1651,7 @@ public final class UsersClientImpl implements UsersClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginInvite(
         String resourceGroupName, String labName, String username, InviteBody body, Context context) {
-        return beginInviteAsync(resourceGroupName, labName, username, body, context).getSyncPoller();
+        return this.beginInviteAsync(resourceGroupName, labName, username, body, context).getSyncPoller();
     }
 
     /**

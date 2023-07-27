@@ -30,6 +30,10 @@ public final class ImageInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private ImageProperties innerProperties = new ImageProperties();
 
+    /** Creates an instance of ImageInner class. */
+    public ImageInner() {
+    }
+
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the image.
      *
