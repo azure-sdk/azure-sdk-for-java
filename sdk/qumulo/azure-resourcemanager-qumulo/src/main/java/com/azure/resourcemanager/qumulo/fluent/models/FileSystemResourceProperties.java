@@ -61,7 +61,7 @@ public final class FileSystemResourceProperties {
     /*
      * Initial administrator password of the resource
      */
-    @JsonProperty(value = "adminPassword", required = true)
+    @JsonProperty(value = "adminPassword")
     private String adminPassword;
 
     /*

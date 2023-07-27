@@ -173,11 +173,13 @@ public interface FileSystemResource {
             DefinitionStages.WithInitialCapacity,
             DefinitionStages.WithCreate {
     }
+
     /** The FileSystemResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the FileSystemResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the FileSystemResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -196,6 +198,7 @@ public interface FileSystemResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -206,6 +209,7 @@ public interface FileSystemResource {
              */
             WithMarketplaceDetails withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify marketplaceDetails. */
         interface WithMarketplaceDetails {
             /**
@@ -216,6 +220,7 @@ public interface FileSystemResource {
              */
             WithStorageSku withMarketplaceDetails(MarketplaceDetails marketplaceDetails);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify storageSku. */
         interface WithStorageSku {
             /**
@@ -226,6 +231,7 @@ public interface FileSystemResource {
              */
             WithUserDetails withStorageSku(StorageSku storageSku);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify userDetails. */
         interface WithUserDetails {
             /**
@@ -236,6 +242,7 @@ public interface FileSystemResource {
              */
             WithDelegatedSubnetId withUserDetails(UserDetails userDetails);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify delegatedSubnetId. */
         interface WithDelegatedSubnetId {
             /**
@@ -246,6 +253,7 @@ public interface FileSystemResource {
              */
             WithAdminPassword withDelegatedSubnetId(String delegatedSubnetId);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify adminPassword. */
         interface WithAdminPassword {
             /**
@@ -256,6 +264,7 @@ public interface FileSystemResource {
              */
             WithInitialCapacity withAdminPassword(String adminPassword);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify initialCapacity. */
         interface WithInitialCapacity {
             /**
@@ -266,6 +275,7 @@ public interface FileSystemResource {
              */
             WithCreate withInitialCapacity(int initialCapacity);
         }
+
         /**
          * The stage of the FileSystemResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -291,6 +301,7 @@ public interface FileSystemResource {
              */
             FileSystemResource create(Context context);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -301,6 +312,7 @@ public interface FileSystemResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -311,6 +323,7 @@ public interface FileSystemResource {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify clusterLoginUrl. */
         interface WithClusterLoginUrl {
             /**
@@ -321,6 +334,7 @@ public interface FileSystemResource {
              */
             WithCreate withClusterLoginUrl(String clusterLoginUrl);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify privateIPs. */
         interface WithPrivateIPs {
             /**
@@ -331,6 +345,7 @@ public interface FileSystemResource {
              */
             WithCreate withPrivateIPs(List<String> privateIPs);
         }
+
         /** The stage of the FileSystemResource definition allowing to specify availabilityZone. */
         interface WithAvailabilityZone {
             /**
@@ -342,6 +357,7 @@ public interface FileSystemResource {
             WithCreate withAvailabilityZone(String availabilityZone);
         }
     }
+
     /**
      * Begins update for the FileSystemResource resource.
      *
@@ -366,6 +382,7 @@ public interface FileSystemResource {
          */
         FileSystemResource apply(Context context);
     }
+
     /** The FileSystemResource update stages. */
     interface UpdateStages {
         /** The stage of the FileSystemResource update allowing to specify tags. */
@@ -378,6 +395,7 @@ public interface FileSystemResource {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the FileSystemResource update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -388,6 +406,7 @@ public interface FileSystemResource {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the FileSystemResource update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -399,6 +418,7 @@ public interface FileSystemResource {
             Update withProperties(FileSystemResourceUpdateProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
