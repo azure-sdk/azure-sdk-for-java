@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.appcontainers.models.AuthPlatform;
+import com.azure.resourcemanager.appcontainers.models.EncryptionSettings;
 import com.azure.resourcemanager.appcontainers.models.GlobalValidation;
 import com.azure.resourcemanager.appcontainers.models.HttpSettings;
 import com.azure.resourcemanager.appcontainers.models.IdentityProviders;
@@ -47,6 +48,13 @@ public final class AuthConfigProperties {
      */
     @JsonProperty(value = "httpSettings")
     private HttpSettings httpSettings;
+
+    /*
+     * The configuration settings of the secrets references of encryption key and signing key for ContainerApp Service
+     * Authentication/Authorization.
+     */
+    @JsonProperty(value = "encryptionSettings")
+    private EncryptionSettings encryptionSettings;
 
     /** Creates an instance of AuthConfigProperties class. */
     public AuthConfigProperties() {
@@ -163,6 +171,28 @@ public final class AuthConfigProperties {
     }
 
     /**
+     * Get the encryptionSettings property: The configuration settings of the secrets references of encryption key and
+     * signing key for ContainerApp Service Authentication/Authorization.
+     *
+     * @return the encryptionSettings value.
+     */
+    public EncryptionSettings encryptionSettings() {
+        return this.encryptionSettings;
+    }
+
+    /**
+     * Set the encryptionSettings property: The configuration settings of the secrets references of encryption key and
+     * signing key for ContainerApp Service Authentication/Authorization.
+     *
+     * @param encryptionSettings the encryptionSettings value to set.
+     * @return the AuthConfigProperties object itself.
+     */
+    public AuthConfigProperties withEncryptionSettings(EncryptionSettings encryptionSettings) {
+        this.encryptionSettings = encryptionSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -182,6 +212,9 @@ public final class AuthConfigProperties {
         }
         if (httpSettings() != null) {
             httpSettings().validate();
+        }
+        if (encryptionSettings() != null) {
+            encryptionSettings().validate();
         }
     }
 }
