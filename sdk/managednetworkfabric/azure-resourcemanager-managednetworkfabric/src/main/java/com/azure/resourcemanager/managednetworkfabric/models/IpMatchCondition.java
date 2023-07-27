@@ -12,19 +12,19 @@ import java.util.List;
 @Fluent
 public final class IpMatchCondition {
     /*
-     * IP Address type.
+     * IP Address type that needs to be matched.
      */
     @JsonProperty(value = "type")
     private SourceDestinationType type;
 
     /*
-     * IP Prefix Type.
+     * IP Prefix Type that needs to be matched.
      */
     @JsonProperty(value = "prefixType")
     private PrefixType prefixType;
 
     /*
-     * The list of IP Prefixes.
+     * The list of IP Prefixes that need to be matched.
      */
     @JsonProperty(value = "ipPrefixValues")
     private List<String> ipPrefixValues;
@@ -40,7 +40,7 @@ public final class IpMatchCondition {
     }
 
     /**
-     * Get the type property: IP Address type.
+     * Get the type property: IP Address type that needs to be matched.
      *
      * @return the type value.
      */
@@ -49,7 +49,7 @@ public final class IpMatchCondition {
     }
 
     /**
-     * Set the type property: IP Address type.
+     * Set the type property: IP Address type that needs to be matched.
      *
      * @param type the type value to set.
      * @return the IpMatchCondition object itself.
@@ -60,7 +60,7 @@ public final class IpMatchCondition {
     }
 
     /**
-     * Get the prefixType property: IP Prefix Type.
+     * Get the prefixType property: IP Prefix Type that needs to be matched.
      *
      * @return the prefixType value.
      */
@@ -69,7 +69,7 @@ public final class IpMatchCondition {
     }
 
     /**
-     * Set the prefixType property: IP Prefix Type.
+     * Set the prefixType property: IP Prefix Type that needs to be matched.
      *
      * @param prefixType the prefixType value to set.
      * @return the IpMatchCondition object itself.
@@ -80,7 +80,7 @@ public final class IpMatchCondition {
     }
 
     /**
-     * Get the ipPrefixValues property: The list of IP Prefixes.
+     * Get the ipPrefixValues property: The list of IP Prefixes that need to be matched.
      *
      * @return the ipPrefixValues value.
      */
@@ -89,7 +89,7 @@ public final class IpMatchCondition {
     }
 
     /**
-     * Set the ipPrefixValues property: The list of IP Prefixes.
+     * Set the ipPrefixValues property: The list of IP Prefixes that need to be matched.
      *
      * @param ipPrefixValues the ipPrefixValues value to set.
      * @return the IpMatchCondition object itself.

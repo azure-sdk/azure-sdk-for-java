@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Encapsulation Type. */
+/** Encapsulation Type that needs to be matched. */
 public final class EncapsulationType extends ExpandableStringEnum<EncapsulationType> {
     /** Static value None for EncapsulationType. */
     public static final EncapsulationType NONE = fromString("None");

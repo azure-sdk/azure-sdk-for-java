@@ -40,6 +40,31 @@ public final class RoutePolicyPatch extends TagsUpdate {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultAction();
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @param defaultAction the defaultAction value to set.
+     * @return the RoutePolicyPatch object itself.
+     */
+    public RoutePolicyPatch withDefaultAction(CommunityActionTypes defaultAction) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RoutePolicyPatchableProperties();
+        }
+        this.innerProperties().withDefaultAction(defaultAction);
+        return this;
+    }
+
+    /**
      * Get the statements property: Route Policy statements.
      *
      * @return the statements value.

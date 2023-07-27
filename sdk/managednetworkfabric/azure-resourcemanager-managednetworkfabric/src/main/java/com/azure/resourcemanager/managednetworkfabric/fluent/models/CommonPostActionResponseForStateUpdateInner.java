@@ -7,22 +7,17 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
+import com.azure.resourcemanager.managednetworkfabric.models.ErrorResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Common response for the state updates. */
 @Fluent
-public final class CommonPostActionResponseForStateUpdateInner {
+public final class CommonPostActionResponseForStateUpdateInner extends ErrorResponse {
     /*
      * Gets the configuration state.
      */
     @JsonProperty(value = "configurationState", access = JsonProperty.Access.WRITE_ONLY)
     private ConfigurationState configurationState;
-
-    /*
-     * The error object.
-     */
-    @JsonProperty(value = "error")
-    private ManagementError error;
 
     /** Creates an instance of CommonPostActionResponseForStateUpdateInner class. */
     public CommonPostActionResponseForStateUpdateInner() {
@@ -37,23 +32,10 @@ public final class CommonPostActionResponseForStateUpdateInner {
         return this.configurationState;
     }
 
-    /**
-     * Get the error property: The error object.
-     *
-     * @return the error value.
-     */
-    public ManagementError error() {
-        return this.error;
-    }
-
-    /**
-     * Set the error property: The error object.
-     *
-     * @param error the error value to set.
-     * @return the CommonPostActionResponseForStateUpdateInner object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public CommonPostActionResponseForStateUpdateInner withError(ManagementError error) {
-        this.error = error;
+        super.withError(error);
         return this;
     }
 
@@ -62,6 +44,8 @@ public final class CommonPostActionResponseForStateUpdateInner {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
     }
 }

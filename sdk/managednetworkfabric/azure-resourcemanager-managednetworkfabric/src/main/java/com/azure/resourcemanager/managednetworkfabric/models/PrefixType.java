@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** IP Prefix Type. */
+/** IP Prefix Type that needs to be matched. */
 public final class PrefixType extends ExpandableStringEnum<PrefixType> {
     /** Static value Prefix for PrefixType. */
     public static final PrefixType PREFIX = fromString("Prefix");
