@@ -65,8 +65,7 @@ public final class UsersClientImpl implements UsersClient {
     public interface UsersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge"
-                + "/dataBoxEdgeDevices/{deviceName}/users")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UserList>> listByDataBoxEdgeDevice(
@@ -81,8 +80,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge"
-                + "/dataBoxEdgeDevices/{deviceName}/users/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UserInner>> get(
@@ -97,8 +95,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge"
-                + "/dataBoxEdgeDevices/{deviceName}/users/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -114,8 +111,7 @@ public final class UsersClientImpl implements UsersClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge"
-                + "/dataBoxEdgeDevices/{deviceName}/users/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -144,7 +140,7 @@ public final class UsersClientImpl implements UsersClient {
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
-     * @param filter Specify $filter='UserType eq &lt;type&gt;' to filter on user type property.
+     * @param filter Specify $filter='Type eq &lt;type&gt;' to filter on user type property.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -204,7 +200,7 @@ public final class UsersClientImpl implements UsersClient {
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
-     * @param filter Specify $filter='UserType eq &lt;type&gt;' to filter on user type property.
+     * @param filter Specify $filter='Type eq &lt;type&gt;' to filter on user type property.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -262,7 +258,7 @@ public final class UsersClientImpl implements UsersClient {
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
-     * @param filter Specify $filter='UserType eq &lt;type&gt;' to filter on user type property.
+     * @param filter Specify $filter='Type eq &lt;type&gt;' to filter on user type property.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -301,7 +297,7 @@ public final class UsersClientImpl implements UsersClient {
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
-     * @param filter Specify $filter='UserType eq &lt;type&gt;' to filter on user type property.
+     * @param filter Specify $filter='Type eq &lt;type&gt;' to filter on user type property.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -339,7 +335,7 @@ public final class UsersClientImpl implements UsersClient {
      *
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
-     * @param filter Specify $filter='UserType eq &lt;type&gt;' to filter on user type property.
+     * @param filter Specify $filter='Type eq &lt;type&gt;' to filter on user type property.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

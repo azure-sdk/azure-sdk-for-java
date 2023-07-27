@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databoxedge.generated;
 /** Samples for Roles ListByDataBoxEdgeDevice. */
 public final class RolesListByDataBoxEdgeDeviceSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/RoleGetAllInDevice.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-07-01/examples/RoleGetAllInDevice.json
      */
     /**
      * Sample code: RoleGetAllInDevice.
