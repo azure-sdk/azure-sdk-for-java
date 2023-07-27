@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for MySqlManagementClient class. */
 public interface MySqlManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -22,6 +22,13 @@ public interface MySqlManagementClient {
      * @return the endpoint value.
      */
     String getEndpoint();
+
+    /**
+     * Gets Api Version.
+     *
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -38,107 +45,16 @@ public interface MySqlManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the AzureADAdministratorsClient object to access its operations.
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
      *
-     * @return the AzureADAdministratorsClient object.
+     * @return the PrivateEndpointConnectionsClient object.
      */
-    AzureADAdministratorsClient getAzureADAdministrators();
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
 
     /**
-     * Gets the BackupsClient object to access its operations.
+     * Gets the PrivateLinkResourcesClient object to access its operations.
      *
-     * @return the BackupsClient object.
+     * @return the PrivateLinkResourcesClient object.
      */
-    BackupsClient getBackups();
-
-    /**
-     * Gets the BackupAndExportsClient object to access its operations.
-     *
-     * @return the BackupAndExportsClient object.
-     */
-    BackupAndExportsClient getBackupAndExports();
-
-    /**
-     * Gets the ConfigurationsClient object to access its operations.
-     *
-     * @return the ConfigurationsClient object.
-     */
-    ConfigurationsClient getConfigurations();
-
-    /**
-     * Gets the DatabasesClient object to access its operations.
-     *
-     * @return the DatabasesClient object.
-     */
-    DatabasesClient getDatabases();
-
-    /**
-     * Gets the FirewallRulesClient object to access its operations.
-     *
-     * @return the FirewallRulesClient object.
-     */
-    FirewallRulesClient getFirewallRules();
-
-    /**
-     * Gets the ServersClient object to access its operations.
-     *
-     * @return the ServersClient object.
-     */
-    ServersClient getServers();
-
-    /**
-     * Gets the ReplicasClient object to access its operations.
-     *
-     * @return the ReplicasClient object.
-     */
-    ReplicasClient getReplicas();
-
-    /**
-     * Gets the LogFilesClient object to access its operations.
-     *
-     * @return the LogFilesClient object.
-     */
-    LogFilesClient getLogFiles();
-
-    /**
-     * Gets the LocationBasedCapabilitiesClient object to access its operations.
-     *
-     * @return the LocationBasedCapabilitiesClient object.
-     */
-    LocationBasedCapabilitiesClient getLocationBasedCapabilities();
-
-    /**
-     * Gets the CheckVirtualNetworkSubnetUsagesClient object to access its operations.
-     *
-     * @return the CheckVirtualNetworkSubnetUsagesClient object.
-     */
-    CheckVirtualNetworkSubnetUsagesClient getCheckVirtualNetworkSubnetUsages();
-
-    /**
-     * Gets the CheckNameAvailabilitiesClient object to access its operations.
-     *
-     * @return the CheckNameAvailabilitiesClient object.
-     */
-    CheckNameAvailabilitiesClient getCheckNameAvailabilities();
-
-    /**
-     * Gets the CheckNameAvailabilityWithoutLocationsClient object to access its operations.
-     *
-     * @return the CheckNameAvailabilityWithoutLocationsClient object.
-     */
-    CheckNameAvailabilityWithoutLocationsClient getCheckNameAvailabilityWithoutLocations();
-
-    /**
-     * Gets the GetPrivateDnsZoneSuffixesClient object to access its operations.
-     *
-     * @return the GetPrivateDnsZoneSuffixesClient object.
-     */
-    GetPrivateDnsZoneSuffixesClient getGetPrivateDnsZoneSuffixes();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
+    PrivateLinkResourcesClient getPrivateLinkResources();
 }
