@@ -10,7 +10,7 @@ import com.azure.resourcemanager.delegatednetwork.models.SubnetDetails;
 /** Samples for DelegatedSubnetService PutDetails. */
 public final class DelegatedSubnetServicePutDetailsSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putDelegatedSubnet.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-05-18-preview/examples/putDelegatedSubnet.json
      */
     /**
      * Sample code: put delegated subnet.
