@@ -48,14 +48,16 @@ public final class OpenAIClientImpl {
     private final OpenAIClientService service;
 
     /**
-     * Supported Cognitive Services endpoints (protocol and hostname, for example:
-     * https://westus.api.cognitive.microsoft.com).
+     * The connection endpoint for an Azure OpenAI resource as obtained via Azure Portal or Azure AI Studio. This URL
+     * should include protocol and hostname with no additional path information. An example could be:
+     * https://my-resource.openai.azure.com .
      */
     private final String endpoint;
 
     /**
-     * Gets Supported Cognitive Services endpoints (protocol and hostname, for example:
-     * https://westus.api.cognitive.microsoft.com).
+     * Gets The connection endpoint for an Azure OpenAI resource as obtained via Azure Portal or Azure AI Studio. This
+     * URL should include protocol and hostname with no additional path information. An example could be:
+     * https://my-resource.openai.azure.com .
      *
      * @return the endpoint value.
      */
@@ -102,8 +104,9 @@ public final class OpenAIClientImpl {
     /**
      * Initializes an instance of OpenAIClient client.
      *
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
-     *     https://westus.api.cognitive.microsoft.com).
+     * @param endpoint The connection endpoint for an Azure OpenAI resource as obtained via Azure Portal or Azure AI
+     *     Studio. This URL should include protocol and hostname with no additional path information. An example could
+     *     be: https://my-resource.openai.azure.com .
      * @param serviceVersion Service version.
      */
     public OpenAIClientImpl(String endpoint, OpenAIServiceVersion serviceVersion) {
@@ -118,8 +121,9 @@ public final class OpenAIClientImpl {
      * Initializes an instance of OpenAIClient client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
-     *     https://westus.api.cognitive.microsoft.com).
+     * @param endpoint The connection endpoint for an Azure OpenAI resource as obtained via Azure Portal or Azure AI
+     *     Studio. This URL should include protocol and hostname with no additional path information. An example could
+     *     be: https://my-resource.openai.azure.com .
      * @param serviceVersion Service version.
      */
     public OpenAIClientImpl(HttpPipeline httpPipeline, String endpoint, OpenAIServiceVersion serviceVersion) {
@@ -131,8 +135,9 @@ public final class OpenAIClientImpl {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
-     *     https://westus.api.cognitive.microsoft.com).
+     * @param endpoint The connection endpoint for an Azure OpenAI resource as obtained via Azure Portal or Azure AI
+     *     Studio. This URL should include protocol and hostname with no additional path information. An example could
+     *     be: https://my-resource.openai.azure.com .
      * @param serviceVersion Service version.
      */
     public OpenAIClientImpl(

@@ -47,11 +47,11 @@ public final class ChatMessage {
     }
 
     /*
-     * The name of the author of this message. `name` is required if role is `function`, and it should be the name of
-     * the
-     * function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length
-     * of
-     * 64 characters.
+     * The name of the author of this message. When the `role` of a message is `function`, this `name` is required and
+     * must match the name of the function whose response is in the `content` of the message. For other `role` values,
+     * `name` is optional and provides an extra identifier for the messenger. May contain a-z, A-Z, 0-9, and
+     * underscores,
+     * with a maximum length of 64 characters.
      */
     @Generated
     @JsonProperty(value = "name")
@@ -65,9 +65,10 @@ public final class ChatMessage {
     private FunctionCall functionCall;
 
     /**
-     * Get the name property: The name of the author of this message. `name` is required if role is `function`, and it
-     * should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and
-     * underscores, with a maximum length of 64 characters.
+     * Get the name property: The name of the author of this message. When the `role` of a message is `function`, this
+     * `name` is required and must match the name of the function whose response is in the `content` of the message. For
+     * other `role` values, `name` is optional and provides an extra identifier for the messenger. May contain a-z, A-Z,
+     * 0-9, and underscores, with a maximum length of 64 characters.
      *
      * @return the name value.
      */
@@ -77,9 +78,10 @@ public final class ChatMessage {
     }
 
     /**
-     * Set the name property: The name of the author of this message. `name` is required if role is `function`, and it
-     * should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and
-     * underscores, with a maximum length of 64 characters.
+     * Set the name property: The name of the author of this message. When the `role` of a message is `function`, this
+     * `name` is required and must match the name of the function whose response is in the `content` of the message. For
+     * other `role` values, `name` is optional and provides an extra identifier for the messenger. May contain a-z, A-Z,
+     * 0-9, and underscores, with a maximum length of 64 characters.
      *
      * @param name the name value to set.
      * @return the ChatMessage object itself.
