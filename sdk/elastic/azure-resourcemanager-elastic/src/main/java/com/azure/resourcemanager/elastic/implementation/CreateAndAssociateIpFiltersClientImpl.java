@@ -77,7 +77,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -129,7 +129,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -179,7 +179,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -201,7 +201,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -222,7 +222,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -246,7 +246,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -263,7 +263,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -282,7 +282,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -301,7 +301,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -320,7 +320,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
@@ -341,7 +341,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -357,7 +357,7 @@ public final class CreateAndAssociateIpFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate IP traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ips List of ips.
      * @param name Name of the traffic filter.
