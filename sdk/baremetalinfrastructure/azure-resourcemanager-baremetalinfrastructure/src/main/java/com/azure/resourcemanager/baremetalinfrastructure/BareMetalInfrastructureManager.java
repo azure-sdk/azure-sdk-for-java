@@ -25,9 +25,11 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.baremetalinfrastructure.fluent.BareMetalInfrastructureClient;
 import com.azure.resourcemanager.baremetalinfrastructure.implementation.AzureBareMetalInstancesImpl;
+import com.azure.resourcemanager.baremetalinfrastructure.implementation.AzureBareMetalStorageInstancesImpl;
 import com.azure.resourcemanager.baremetalinfrastructure.implementation.BareMetalInfrastructureClientBuilder;
 import com.azure.resourcemanager.baremetalinfrastructure.implementation.OperationsImpl;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalInstances;
+import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstances;
 import com.azure.resourcemanager.baremetalinfrastructure.models.Operations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -41,6 +43,8 @@ public final class BareMetalInfrastructureManager {
     private AzureBareMetalInstances azureBareMetalInstances;
 
     private Operations operations;
+
+    private AzureBareMetalStorageInstances azureBareMetalStorageInstances;
 
     private final BareMetalInfrastructureClient clientObject;
 
@@ -209,7 +213,7 @@ public final class BareMetalInfrastructureManager {
                 .append("-")
                 .append("com.azure.resourcemanager.baremetalinfrastructure")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -289,6 +293,19 @@ public final class BareMetalInfrastructureManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of AzureBareMetalStorageInstances. It manages AzureBareMetalStorageInstance.
+     *
+     * @return Resource collection API of AzureBareMetalStorageInstances.
+     */
+    public AzureBareMetalStorageInstances azureBareMetalStorageInstances() {
+        if (this.azureBareMetalStorageInstances == null) {
+            this.azureBareMetalStorageInstances =
+                new AzureBareMetalStorageInstancesImpl(clientObject.getAzureBareMetalStorageInstances(), this);
+        }
+        return azureBareMetalStorageInstances;
     }
 
     /**

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalInstanceInner;
 
 /** Resource collection API of AzureBareMetalInstances. */
 public interface AzureBareMetalInstances {
@@ -99,6 +100,76 @@ public interface AzureBareMetalInstances {
      * @return an Azure BareMetal instance for the specified subscription, resource group, and instance name.
      */
     AzureBareMetalInstance getByResourceGroup(String resourceGroupName, String azureBareMetalInstanceName);
+
+    /**
+     * Deletes an Azure BareMetal instance.
+     *
+     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String azureBareMetalInstanceName, Context context);
+
+    /**
+     * Deletes an Azure BareMetal instance.
+     *
+     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByResourceGroup(String resourceGroupName, String azureBareMetalInstanceName);
+
+    /**
+     * Adds an Azure BareMetal Instance.
+     *
+     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param requestBodyParameters request body for put call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> putWithResponse(
+        String resourceGroupName,
+        String azureBareMetalInstanceName,
+        AzureBareMetalInstanceInner requestBodyParameters,
+        Context context);
+
+    /**
+     * Adds an Azure BareMetal Instance.
+     *
+     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void put(String resourceGroupName, String azureBareMetalInstanceName);
 
     /**
      * Patches the Tags field of a Azure BareMetal instance.

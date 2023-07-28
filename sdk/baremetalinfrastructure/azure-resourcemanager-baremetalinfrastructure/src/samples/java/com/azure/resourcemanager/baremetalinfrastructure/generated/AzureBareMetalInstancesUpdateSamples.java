@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for AzureBareMetalInstances Update. */
 public final class AzureBareMetalInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2021-08-09/examples/AzureBareMetalInstances_PatchTags.json
+     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2023-04-06/examples/AzureBareMetalInstances_PatchTags.json
      */
     /**
      * Sample code: Update Tags field of an AzureBareMetal instance.
@@ -25,12 +25,12 @@ public final class AzureBareMetalInstancesUpdateSamples {
             .updateWithResponse(
                 "myResourceGroup",
                 "myABMInstance",
-                new Tags().withTags(mapOf("testkey", "testvalue")),
+                new Tags().withTags(mapOf("testkey", "fakeTokenPlaceholder")),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2021-08-09/examples/AzureBareMetalInstances_PatchTags_Delete.json
+     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2023-04-06/examples/AzureBareMetalInstances_PatchTags_Delete.json
      */
     /**
      * Sample code: Delete Tags field of an AzureBareMetal instance.

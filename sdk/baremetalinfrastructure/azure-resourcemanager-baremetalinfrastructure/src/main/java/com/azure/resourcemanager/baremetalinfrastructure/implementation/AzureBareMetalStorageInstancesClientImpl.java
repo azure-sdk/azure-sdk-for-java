@@ -29,44 +29,47 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.baremetalinfrastructure.fluent.AzureBareMetalInstancesClient;
-import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalInstanceInner;
-import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalInstancesListResult;
+import com.azure.resourcemanager.baremetalinfrastructure.fluent.AzureBareMetalStorageInstancesClient;
+import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalStorageInstanceInner;
+import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstancesListResult;
 import com.azure.resourcemanager.baremetalinfrastructure.models.Tags;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in AzureBareMetalInstancesClient. */
-public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalInstancesClient {
+/** An instance of this class provides access to all the operations defined in AzureBareMetalStorageInstancesClient. */
+public final class AzureBareMetalStorageInstancesClientImpl implements AzureBareMetalStorageInstancesClient {
     /** The proxy service used to perform REST calls. */
-    private final AzureBareMetalInstancesService service;
+    private final AzureBareMetalStorageInstancesService service;
 
     /** The service client containing this operation class. */
     private final BareMetalInfrastructureClientImpl client;
 
     /**
-     * Initializes an instance of AzureBareMetalInstancesClientImpl.
+     * Initializes an instance of AzureBareMetalStorageInstancesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    AzureBareMetalInstancesClientImpl(BareMetalInfrastructureClientImpl client) {
+    AzureBareMetalStorageInstancesClientImpl(BareMetalInfrastructureClientImpl client) {
         this.service =
             RestProxy
-                .create(AzureBareMetalInstancesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+                .create(
+                    AzureBareMetalStorageInstancesService.class,
+                    client.getHttpPipeline(),
+                    client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for BareMetalInfrastructureClientAzureBareMetalInstances to be used by
-     * the proxy service to perform REST calls.
+     * The interface defining all the services for BareMetalInfrastructureClientAzureBareMetalStorageInstances to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "BareMetalInfrastruct")
-    public interface AzureBareMetalInstancesService {
+    public interface AzureBareMetalStorageInstancesService {
         @Headers({"Content-Type: application/json"})
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureBareMetalInstancesListResult>> list(
+        Mono<Response<AzureBareMetalStorageInstancesListResult>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -75,10 +78,10 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureBareMetalInstancesListResult>> listByResourceGroup(
+        Mono<Response<AzureBareMetalStorageInstancesListResult>> listByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -88,63 +91,59 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureBareMetalInstanceInner>> getByResourceGroup(
+        Mono<Response<AzureBareMetalStorageInstanceInner>> getByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("azureBareMetalInstanceName") String azureBareMetalInstanceName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
-        @UnexpectedResponseExceptionType(
-            value = ManagementException.class,
-            code = {501})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("azureBareMetalInstanceName") String azureBareMetalInstanceName,
+            @PathParam("azureBareMetalStorageInstanceName") String azureBareMetalStorageInstanceName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
-        @UnexpectedResponseExceptionType(
-            value = ManagementException.class,
-            code = {501})
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}")
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> put(
+        Mono<Response<AzureBareMetalStorageInstanceInner>> create(
             @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("azureBareMetalInstanceName") String azureBareMetalInstanceName,
-            @BodyParam("application/json") AzureBareMetalInstanceInner requestBodyParameters,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("azureBareMetalStorageInstanceName") String azureBareMetalStorageInstanceName,
+            @BodyParam("application/json") AzureBareMetalStorageInstanceInner requestBodyParameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureBareMetalInstanceInner>> update(
+        Mono<Response<AzureBareMetalStorageInstanceInner>> update(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("azureBareMetalInstanceName") String azureBareMetalInstanceName,
+            @PathParam("azureBareMetalStorageInstanceName") String azureBareMetalStorageInstanceName,
             @BodyParam("application/json") Tags tagsParameter,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Delete(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}")
+        @ExpectedResponses({200, 204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> delete(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("azureBareMetalStorageInstanceName") String azureBareMetalStorageInstanceName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -152,7 +151,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureBareMetalInstancesListResult>> listBySubscriptionNext(
+        Mono<Response<AzureBareMetalStorageInstancesListResult>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -162,7 +161,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureBareMetalInstancesListResult>> listByResourceGroupNext(
+        Mono<Response<AzureBareMetalStorageInstancesListResult>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -170,18 +169,18 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription. The operations returns various
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various
      * properties of each Azure BareMetal instance.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription along with {@link PagedResponse}
+     *     on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -205,7 +204,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
                             this.client.getSubscriptionId(),
                             accept,
                             context))
-            .<PagedResponse<AzureBareMetalInstanceInner>>map(
+            .<PagedResponse<AzureBareMetalStorageInstanceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -218,20 +217,20 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription. The operations returns various
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various
      * properties of each Azure BareMetal instance.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription along with {@link PagedResponse}
+     *     on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -265,90 +264,90 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription. The operations returns various
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various
      * properties of each Azure BareMetal instance.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription as paginated response with {@link
+     * @return a list of AzureBareMetalStorage instances in the specified subscription as paginated response with {@link
      *     PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AzureBareMetalInstanceInner> listAsync() {
+    private PagedFlux<AzureBareMetalStorageInstanceInner> listAsync() {
         return new PagedFlux<>(
             () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription. The operations returns various
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various
      * properties of each Azure BareMetal instance.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription as paginated response with {@link
+     * @return a list of AzureBareMetalStorage instances in the specified subscription as paginated response with {@link
      *     PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AzureBareMetalInstanceInner> listAsync(Context context) {
+    private PagedFlux<AzureBareMetalStorageInstanceInner> listAsync(Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription. The operations returns various
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various
      * properties of each Azure BareMetal instance.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription as paginated response with {@link
+     * @return a list of AzureBareMetalStorage instances in the specified subscription as paginated response with {@link
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AzureBareMetalInstanceInner> list() {
+    public PagedIterable<AzureBareMetalStorageInstanceInner> list() {
         return new PagedIterable<>(listAsync());
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription. The operations returns various
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various
      * properties of each Azure BareMetal instance.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription as paginated response with {@link
+     * @return a list of AzureBareMetalStorage instances in the specified subscription as paginated response with {@link
      *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AzureBareMetalInstanceInner> list(Context context) {
+    public PagedIterable<AzureBareMetalStorageInstanceInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription and resource group.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations
-     * returns various properties of each Azure BareMetal instance.
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The
+     * operations returns various properties of each Azure BareMetal instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription and resource group along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription and resource group along with
+     *     {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listByResourceGroupSinglePageAsync(
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listByResourceGroupSinglePageAsync(
         String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -378,7 +377,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
                             resourceGroupName,
                             accept,
                             context))
-            .<PagedResponse<AzureBareMetalInstanceInner>>map(
+            .<PagedResponse<AzureBareMetalStorageInstanceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -391,21 +390,21 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription and resource group.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations
-     * returns various properties of each Azure BareMetal instance.
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The
+     * operations returns various properties of each Azure BareMetal instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription and resource group along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription and resource group along with
+     *     {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listByResourceGroupSinglePageAsync(
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listByResourceGroupSinglePageAsync(
         String resourceGroupName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -445,99 +444,101 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription and resource group.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations
-     * returns various properties of each Azure BareMetal instance.
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The
+     * operations returns various properties of each Azure BareMetal instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription and resource group as paginated response
-     *     with {@link PagedFlux}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription and resource group as paginated
+     *     response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AzureBareMetalInstanceInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<AzureBareMetalStorageInstanceInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription and resource group.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations
-     * returns various properties of each Azure BareMetal instance.
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The
+     * operations returns various properties of each Azure BareMetal instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription and resource group as paginated response
-     *     with {@link PagedFlux}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription and resource group as paginated
+     *     response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AzureBareMetalInstanceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
+    private PagedFlux<AzureBareMetalStorageInstanceInner> listByResourceGroupAsync(
+        String resourceGroupName, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription and resource group.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations
-     * returns various properties of each Azure BareMetal instance.
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The
+     * operations returns various properties of each Azure BareMetal instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription and resource group as paginated response
-     *     with {@link PagedIterable}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription and resource group as paginated
+     *     response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AzureBareMetalInstanceInner> listByResourceGroup(String resourceGroupName) {
+    public PagedIterable<AzureBareMetalStorageInstanceInner> listByResourceGroup(String resourceGroupName) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
     }
 
     /**
-     * Gets a list of Azure BareMetal instances in the specified subscription and resource group.
+     * Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.
      *
-     * <p>Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations
-     * returns various properties of each Azure BareMetal instance.
+     * <p>Gets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The
+     * operations returns various properties of each Azure BareMetal instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureBareMetal instances in the specified subscription and resource group as paginated response
-     *     with {@link PagedIterable}.
+     * @return a list of AzureBareMetalStorage instances in the specified subscription and resource group as paginated
+     *     response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<AzureBareMetalInstanceInner> listByResourceGroup(String resourceGroupName, Context context) {
+    public PagedIterable<AzureBareMetalStorageInstanceInner> listByResourceGroup(
+        String resourceGroupName, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
     }
 
     /**
-     * Gets an Azure BareMetal instance.
+     * Gets an Azure BareMetal Storage instance.
      *
-     * <p>Gets an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * <p>Gets an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure BareMetal instance for the specified subscription, resource group, and instance name along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name
+     *     along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureBareMetalInstanceInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String azureBareMetalInstanceName) {
+    private Mono<Response<AzureBareMetalStorageInstanceInner>> getByResourceGroupWithResponseAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -554,11 +555,11 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (azureBareMetalInstanceName == null) {
+        if (azureBareMetalStorageInstanceName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -570,29 +571,29 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            azureBareMetalInstanceName,
+                            azureBareMetalStorageInstanceName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets an Azure BareMetal instance.
+     * Gets an Azure BareMetal Storage instance.
      *
-     * <p>Gets an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * <p>Gets an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure BareMetal instance for the specified subscription, resource group, and instance name along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name
+     *     along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureBareMetalInstanceInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String azureBareMetalInstanceName, Context context) {
+    private Mono<Response<AzureBareMetalStorageInstanceInner>> getByResourceGroupWithResponseAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -609,11 +610,11 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (azureBareMetalInstanceName == null) {
+        if (azureBareMetalStorageInstanceName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -623,247 +624,88 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                azureBareMetalInstanceName,
+                azureBareMetalStorageInstanceName,
                 accept,
                 context);
     }
 
     /**
-     * Gets an Azure BareMetal instance.
+     * Gets an Azure BareMetal Storage instance.
      *
-     * <p>Gets an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * <p>Gets an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure BareMetal instance for the specified subscription, resource group, and instance name on
+     * @return an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name on
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureBareMetalInstanceInner> getByResourceGroupAsync(
-        String resourceGroupName, String azureBareMetalInstanceName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, azureBareMetalInstanceName)
+    private Mono<AzureBareMetalStorageInstanceInner> getByResourceGroupAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets an Azure BareMetal instance.
+     * Gets an Azure BareMetal Storage instance.
      *
-     * <p>Gets an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * <p>Gets an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure BareMetal instance for the specified subscription, resource group, and instance name along with
-     *     {@link Response}.
+     * @return an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name
+     *     along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AzureBareMetalInstanceInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String azureBareMetalInstanceName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, azureBareMetalInstanceName, context).block();
+    public Response<AzureBareMetalStorageInstanceInner> getByResourceGroupWithResponse(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName, context)
+            .block();
     }
 
     /**
-     * Gets an Azure BareMetal instance.
+     * Gets an Azure BareMetal Storage instance.
      *
-     * <p>Gets an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * <p>Gets an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * @return an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AzureBareMetalInstanceInner getByResourceGroup(String resourceGroupName, String azureBareMetalInstanceName) {
-        return getByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, Context.NONE).getValue();
+    public AzureBareMetalStorageInstanceInner getByResourceGroup(
+        String resourceGroupName, String azureBareMetalStorageInstanceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, Context.NONE)
+            .getValue();
     }
 
     /**
-     * Deletes an Azure BareMetal instance.
-     *
-     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * Create an azure baremetal storage resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String azureBareMetalInstanceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (azureBareMetalInstanceName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            azureBareMetalInstanceName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes an Azure BareMetal instance.
-     *
-     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroupName, String azureBareMetalInstanceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (azureBareMetalInstanceName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                azureBareMetalInstanceName,
-                accept,
-                context);
-    }
-
-    /**
-     * Deletes an Azure BareMetal instance.
-     *
-     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String azureBareMetalInstanceName) {
-        return deleteWithResponseAsync(resourceGroupName, azureBareMetalInstanceName).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Deletes an Azure BareMetal instance.
-     *
-     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String azureBareMetalInstanceName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, azureBareMetalInstanceName, context).block();
-    }
-
-    /**
-     * Deletes an Azure BareMetal instance.
-     *
-     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String azureBareMetalInstanceName) {
-        deleteWithResponse(resourceGroupName, azureBareMetalInstanceName, Context.NONE);
-    }
-
-    /**
-     * Adds an Azure BareMetal Instance.
-     *
-     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param requestBodyParameters request body for put call.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) along
+     *     with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> putWithResponseAsync(
+    private Mono<Response<AzureBareMetalStorageInstanceInner>> createWithResponseAsync(
         String resourceGroupName,
-        String azureBareMetalInstanceName,
-        AzureBareMetalInstanceInner requestBodyParameters) {
+        String azureBareMetalStorageInstanceName,
+        AzureBareMetalStorageInstanceInner requestBodyParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -880,13 +722,16 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (azureBareMetalInstanceName == null) {
+        if (azureBareMetalStorageInstanceName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
         }
-        if (requestBodyParameters != null) {
+        if (requestBodyParameters == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter requestBodyParameters is required and cannot be null."));
+        } else {
             requestBodyParameters.validate();
         }
         final String accept = "application/json";
@@ -894,12 +739,12 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             .withContext(
                 context ->
                     service
-                        .put(
+                        .create(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            azureBareMetalInstanceName,
+                            this.client.getApiVersion(),
+                            azureBareMetalStorageInstanceName,
                             requestBodyParameters,
                             accept,
                             context))
@@ -907,25 +752,23 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Adds an Azure BareMetal Instance.
-     *
-     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * Create an azure baremetal storage resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param requestBodyParameters request body for put call.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) along
+     *     with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> putWithResponseAsync(
+    private Mono<Response<AzureBareMetalStorageInstanceInner>> createWithResponseAsync(
         String resourceGroupName,
-        String azureBareMetalInstanceName,
-        AzureBareMetalInstanceInner requestBodyParameters,
+        String azureBareMetalStorageInstanceName,
+        AzureBareMetalStorageInstanceInner requestBodyParameters,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -943,110 +786,116 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (azureBareMetalInstanceName == null) {
+        if (azureBareMetalStorageInstanceName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
         }
-        if (requestBodyParameters != null) {
+        if (requestBodyParameters == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter requestBodyParameters is required and cannot be null."));
+        } else {
             requestBodyParameters.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .put(
+            .create(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                azureBareMetalInstanceName,
+                this.client.getApiVersion(),
+                azureBareMetalStorageInstanceName,
                 requestBodyParameters,
                 accept,
                 context);
     }
 
     /**
-     * Adds an Azure BareMetal Instance.
-     *
-     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * Create an azure baremetal storage resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @param requestBodyParameters request body for put call.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> putAsync(String resourceGroupName, String azureBareMetalInstanceName) {
-        final AzureBareMetalInstanceInner requestBodyParameters = null;
-        return putWithResponseAsync(resourceGroupName, azureBareMetalInstanceName, requestBodyParameters)
-            .flatMap(ignored -> Mono.empty());
+    private Mono<AzureBareMetalStorageInstanceInner> createAsync(
+        String resourceGroupName,
+        String azureBareMetalStorageInstanceName,
+        AzureBareMetalStorageInstanceInner requestBodyParameters) {
+        return createWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName, requestBodyParameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Adds an Azure BareMetal Instance.
-     *
-     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * Create an azure baremetal storage resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param requestBodyParameters request body for put call.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) along
+     *     with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> putWithResponse(
+    public Response<AzureBareMetalStorageInstanceInner> createWithResponse(
         String resourceGroupName,
-        String azureBareMetalInstanceName,
-        AzureBareMetalInstanceInner requestBodyParameters,
+        String azureBareMetalStorageInstanceName,
+        AzureBareMetalStorageInstanceInner requestBodyParameters,
         Context context) {
-        return putWithResponseAsync(resourceGroupName, azureBareMetalInstanceName, requestBodyParameters, context)
+        return createWithResponseAsync(
+                resourceGroupName, azureBareMetalStorageInstanceName, requestBodyParameters, context)
             .block();
     }
 
     /**
-     * Adds an Azure BareMetal Instance.
-     *
-     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     * Create an azure baremetal storage resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @param requestBodyParameters request body for put call.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 501.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void put(String resourceGroupName, String azureBareMetalInstanceName) {
-        final AzureBareMetalInstanceInner requestBodyParameters = null;
-        putWithResponse(resourceGroupName, azureBareMetalInstanceName, requestBodyParameters, Context.NONE);
+    public AzureBareMetalStorageInstanceInner create(
+        String resourceGroupName,
+        String azureBareMetalStorageInstanceName,
+        AzureBareMetalStorageInstanceInner requestBodyParameters) {
+        return createWithResponse(
+                resourceGroupName, azureBareMetalStorageInstanceName, requestBodyParameters, Context.NONE)
+            .getValue();
     }
 
     /**
-     * Patches the Tags field of a Azure BareMetal instance.
+     * Patches the Tags field of a Azure BareMetalStorage instance.
      *
-     * <p>Patches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and
-     * instance name.
+     * <p>Patches the Tags field of a Azure BareMetalStorage instance for the specified subscription, resource group,
+     * and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties) along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) along
+     *     with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureBareMetalInstanceInner>> updateWithResponseAsync(
-        String resourceGroupName, String azureBareMetalInstanceName, Tags tagsParameter) {
+    private Mono<Response<AzureBareMetalStorageInstanceInner>> updateWithResponseAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Tags tagsParameter) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1063,11 +912,11 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (azureBareMetalInstanceName == null) {
+        if (azureBareMetalStorageInstanceName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
         }
         if (tagsParameter == null) {
             return Mono.error(new IllegalArgumentException("Parameter tagsParameter is required and cannot be null."));
@@ -1084,7 +933,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            azureBareMetalInstanceName,
+                            azureBareMetalStorageInstanceName,
                             tagsParameter,
                             accept,
                             context))
@@ -1092,24 +941,24 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
     }
 
     /**
-     * Patches the Tags field of a Azure BareMetal instance.
+     * Patches the Tags field of a Azure BareMetalStorage instance.
      *
-     * <p>Patches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and
-     * instance name.
+     * <p>Patches the Tags field of a Azure BareMetalStorage instance for the specified subscription, resource group,
+     * and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param tagsParameter Request body that only contains the new Tags field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties) along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) along
+     *     with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureBareMetalInstanceInner>> updateWithResponseAsync(
-        String resourceGroupName, String azureBareMetalInstanceName, Tags tagsParameter, Context context) {
+    private Mono<Response<AzureBareMetalStorageInstanceInner>> updateWithResponseAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Tags tagsParameter, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1126,11 +975,11 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (azureBareMetalInstanceName == null) {
+        if (azureBareMetalStorageInstanceName == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
-                        "Parameter azureBareMetalInstanceName is required and cannot be null."));
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
         }
         if (tagsParameter == null) {
             return Mono.error(new IllegalArgumentException("Parameter tagsParameter is required and cannot be null."));
@@ -1145,75 +994,223 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                azureBareMetalInstanceName,
+                azureBareMetalStorageInstanceName,
                 tagsParameter,
                 accept,
                 context);
     }
 
     /**
-     * Patches the Tags field of a Azure BareMetal instance.
+     * Patches the Tags field of a Azure BareMetalStorage instance.
      *
-     * <p>Patches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and
-     * instance name.
+     * <p>Patches the Tags field of a Azure BareMetalStorage instance for the specified subscription, resource group,
+     * and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties) on successful
-     *     completion of {@link Mono}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureBareMetalInstanceInner> updateAsync(
-        String resourceGroupName, String azureBareMetalInstanceName, Tags tagsParameter) {
-        return updateWithResponseAsync(resourceGroupName, azureBareMetalInstanceName, tagsParameter)
+    private Mono<AzureBareMetalStorageInstanceInner> updateAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Tags tagsParameter) {
+        return updateWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName, tagsParameter)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Patches the Tags field of a Azure BareMetal instance.
+     * Patches the Tags field of a Azure BareMetalStorage instance.
      *
-     * <p>Patches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and
-     * instance name.
+     * <p>Patches the Tags field of a Azure BareMetalStorage instance for the specified subscription, resource group,
+     * and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param tagsParameter Request body that only contains the new Tags field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties) along with {@link
-     *     Response}.
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties) along
+     *     with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AzureBareMetalInstanceInner> updateWithResponse(
-        String resourceGroupName, String azureBareMetalInstanceName, Tags tagsParameter, Context context) {
-        return updateWithResponseAsync(resourceGroupName, azureBareMetalInstanceName, tagsParameter, context).block();
+    public Response<AzureBareMetalStorageInstanceInner> updateWithResponse(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Tags tagsParameter, Context context) {
+        return updateWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName, tagsParameter, context)
+            .block();
     }
 
     /**
-     * Patches the Tags field of a Azure BareMetal instance.
+     * Patches the Tags field of a Azure BareMetalStorage instance.
      *
-     * <p>Patches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and
-     * instance name.
+     * <p>Patches the Tags field of a Azure BareMetalStorage instance for the specified subscription, resource group,
+     * and instance name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
      * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties).
+     * @return azureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AzureBareMetalInstanceInner update(
-        String resourceGroupName, String azureBareMetalInstanceName, Tags tagsParameter) {
-        return updateWithResponse(resourceGroupName, azureBareMetalInstanceName, tagsParameter, Context.NONE)
+    public AzureBareMetalStorageInstanceInner update(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Tags tagsParameter) {
+        return updateWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, tagsParameter, Context.NONE)
             .getValue();
+    }
+
+    /**
+     * Delete an AzureBareMetalStorageInstance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (azureBareMetalStorageInstanceName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .delete(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            azureBareMetalStorageInstanceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Delete an AzureBareMetalStorageInstance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (azureBareMetalStorageInstanceName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter azureBareMetalStorageInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .delete(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                azureBareMetalStorageInstanceName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Delete an AzureBareMetalStorageInstance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String azureBareMetalStorageInstanceName) {
+        return deleteWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Delete an AzureBareMetalStorageInstance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(
+        String resourceGroupName, String azureBareMetalStorageInstanceName, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, azureBareMetalStorageInstanceName, context).block();
+    }
+
+    /**
+     * Delete an AzureBareMetalStorageInstance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalStorageInstanceName Name of the AzureBareMetalStorage on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String azureBareMetalStorageInstanceName) {
+        deleteWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, Context.NONE);
     }
 
     /**
@@ -1224,11 +1221,12 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List AzureBareMetal Instances operation along with {@link PagedResponse} on
+     * @return the response from the Get AzureBareMetalStorageInstances operation along with {@link PagedResponse} on
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listBySubscriptionNextSinglePageAsync(
+        String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1242,7 +1240,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<AzureBareMetalInstanceInner>>map(
+            .<PagedResponse<AzureBareMetalStorageInstanceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1263,11 +1261,11 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List AzureBareMetal Instances operation along with {@link PagedResponse} on
+     * @return the response from the Get AzureBareMetalStorageInstances operation along with {@link PagedResponse} on
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listBySubscriptionNextSinglePageAsync(
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listBySubscriptionNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1301,11 +1299,12 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List AzureBareMetal Instances operation along with {@link PagedResponse} on
+     * @return the response from the Get AzureBareMetalStorageInstances operation along with {@link PagedResponse} on
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listByResourceGroupNextSinglePageAsync(
+        String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1319,7 +1318,7 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<AzureBareMetalInstanceInner>>map(
+            .<PagedResponse<AzureBareMetalStorageInstanceInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1340,11 +1339,11 @@ public final class AzureBareMetalInstancesClientImpl implements AzureBareMetalIn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List AzureBareMetal Instances operation along with {@link PagedResponse} on
+     * @return the response from the Get AzureBareMetalStorageInstances operation along with {@link PagedResponse} on
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AzureBareMetalInstanceInner>> listByResourceGroupNextSinglePageAsync(
+    private Mono<PagedResponse<AzureBareMetalStorageInstanceInner>> listByResourceGroupNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));

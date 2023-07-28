@@ -111,6 +111,79 @@ public interface AzureBareMetalInstancesClient {
     AzureBareMetalInstanceInner getByResourceGroup(String resourceGroupName, String azureBareMetalInstanceName);
 
     /**
+     * Deletes an Azure BareMetal instance.
+     *
+     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> deleteWithResponse(String resourceGroupName, String azureBareMetalInstanceName, Context context);
+
+    /**
+     * Deletes an Azure BareMetal instance.
+     *
+     * <p>Deletes an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String azureBareMetalInstanceName);
+
+    /**
+     * Adds an Azure BareMetal Instance.
+     *
+     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @param requestBodyParameters request body for put call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> putWithResponse(
+        String resourceGroupName,
+        String azureBareMetalInstanceName,
+        AzureBareMetalInstanceInner requestBodyParameters,
+        Context context);
+
+    /**
+     * Adds an Azure BareMetal Instance.
+     *
+     * <p>Adds an Azure BareMetal instance for the specified subscription, resource group, and instance name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureBareMetalInstanceName Name of the Azure BareMetal on Azure instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 501.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void put(String resourceGroupName, String azureBareMetalInstanceName);
+
+    /**
      * Patches the Tags field of a Azure BareMetal instance.
      *
      * <p>Patches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and

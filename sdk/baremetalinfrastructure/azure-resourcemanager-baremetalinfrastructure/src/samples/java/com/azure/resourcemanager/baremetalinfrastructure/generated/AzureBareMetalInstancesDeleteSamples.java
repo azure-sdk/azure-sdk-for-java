@@ -4,21 +4,21 @@
 
 package com.azure.resourcemanager.baremetalinfrastructure.generated;
 
-/** Samples for AzureBareMetalInstances GetByResourceGroup. */
-public final class AzureBareMetalInstancesGetByResourceGroupSamples {
+/** Samples for AzureBareMetalInstances Delete. */
+public final class AzureBareMetalInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2023-04-06/examples/AzureBareMetalInstances_Get.json
+     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2023-04-06/examples/AzureBareMetalInstances_Delete.json
      */
     /**
-     * Sample code: Get an AzureBareMetal instance.
+     * Sample code: Delete an AzureBareMetal instance.
      *
      * @param manager Entry point to BareMetalInfrastructureManager.
      */
-    public static void getAnAzureBareMetalInstance(
+    public static void deleteAnAzureBareMetalInstance(
         com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager manager) {
         manager
             .azureBareMetalInstances()
-            .getByResourceGroupWithResponse(
+            .deleteByResourceGroupWithResponse(
                 "myResourceGroup", "myAzureBareMetalInstance", com.azure.core.util.Context.NONE);
     }
 }
