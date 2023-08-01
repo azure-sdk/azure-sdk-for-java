@@ -4,212 +4,95 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceInner;
 import java.util.List;
 import java.util.Map;
 
-/** A private link resource. */
-@Fluent
-public final class PrivateLinkResource extends ProxyResource {
-    /*
-     * Resource properties.
-     */
-    @JsonProperty(value = "properties")
-    private PrivateLinkResourceProperties innerProperties;
-
-    /*
-     * The identity of the resource.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
-
-    /*
-     * Specifies the location of the resource.
-     */
-    @JsonProperty(value = "location")
-    private String location;
-
-    /*
-     * Contains resource tags defined as key/value pairs.
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
-
-    /*
-     * The sku of the workspace.
-     */
-    @JsonProperty(value = "sku")
-    private Sku sku;
-
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /** Creates an instance of PrivateLinkResource class. */
-    public PrivateLinkResource() {
-    }
-
+/** An immutable client-side representation of PrivateLinkResource. */
+public interface PrivateLinkResource {
     /**
-     * Get the innerProperties property: Resource properties.
+     * Gets the id property: Fully qualified resource Id for the resource.
      *
-     * @return the innerProperties value.
+     * @return the id value.
      */
-    private PrivateLinkResourceProperties innerProperties() {
-        return this.innerProperties;
-    }
+    String id();
 
     /**
-     * Get the identity property: The identity of the resource.
+     * Gets the name property: The name of the resource.
+     *
+     * @return the name value.
+     */
+    String name();
+
+    /**
+     * Gets the type property: The type of the resource.
+     *
+     * @return the type value.
+     */
+    String type();
+
+    /**
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @return the identity value.
      */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
+    ManagedServiceIdentity identity();
 
     /**
-     * Set the identity property: The identity of the resource.
-     *
-     * @param identity the identity value to set.
-     * @return the PrivateLinkResource object itself.
-     */
-    public PrivateLinkResource withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the location property: Specifies the location of the resource.
+     * Gets the location property: Same as workspace location.
      *
      * @return the location value.
      */
-    public String location() {
-        return this.location;
-    }
+    String location();
 
     /**
-     * Set the location property: Specifies the location of the resource.
-     *
-     * @param location the location value to set.
-     * @return the PrivateLinkResource object itself.
-     */
-    public PrivateLinkResource withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Contains resource tags defined as key/value pairs.
-     *
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Contains resource tags defined as key/value pairs.
-     *
-     * @param tags the tags value to set.
-     * @return the PrivateLinkResource object itself.
-     */
-    public PrivateLinkResource withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the sku property: The sku of the workspace.
+     * Gets the sku property: Optional. This field is required to be implemented by the RP because AML is supporting
+     * more than one tier.
      *
      * @return the sku value.
      */
-    public Sku sku() {
-        return this.sku;
-    }
+    Sku sku();
 
     /**
-     * Set the sku property: The sku of the workspace.
+     * Gets the tags property: Dictionary of &lt;string&gt;.
      *
-     * @param sku the sku value to set.
-     * @return the PrivateLinkResource object itself.
+     * @return the tags value.
      */
-    public PrivateLinkResource withSku(Sku sku) {
-        this.sku = sku;
-        return this;
-    }
+    Map<String, String> tags();
 
     /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+    SystemData systemData();
 
     /**
-     * Get the groupId property: The private link resource group id.
+     * Gets the groupId property: The private link resource group id.
      *
      * @return the groupId value.
      */
-    public String groupId() {
-        return this.innerProperties() == null ? null : this.innerProperties().groupId();
-    }
+    String groupId();
 
     /**
-     * Get the requiredMembers property: The private link resource required member names.
+     * Gets the requiredMembers property: The private link resource required member names.
      *
      * @return the requiredMembers value.
      */
-    public List<String> requiredMembers() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredMembers();
-    }
+    List<String> requiredMembers();
 
     /**
-     * Get the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Gets the requiredZoneNames property: The private link resource Private link DNS zone name.
      *
      * @return the requiredZoneNames value.
      */
-    public List<String> requiredZoneNames() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredZoneNames();
-    }
+    List<String> requiredZoneNames();
 
     /**
-     * Set the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceInner object.
      *
-     * @param requiredZoneNames the requiredZoneNames value to set.
-     * @return the PrivateLinkResource object itself.
+     * @return the inner object.
      */
-    public PrivateLinkResource withRequiredZoneNames(List<String> requiredZoneNames) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateLinkResourceProperties();
-        }
-        this.innerProperties().withRequiredZoneNames(requiredZoneNames);
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
-        }
-        if (sku() != null) {
-            sku().validate();
-        }
-    }
+    PrivateLinkResourceInner innerModel();
 }

@@ -46,6 +46,12 @@ public final class Classification extends AutoMLVertical {
     private TableVerticalFeaturizationSettings featurizationSettings;
 
     /*
+     * Model/training parameters that will remain constant throughout training.
+     */
+    @JsonProperty(value = "fixedParameters")
+    private TableFixedParameters fixedParameters;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     @JsonProperty(value = "limitSettings")
@@ -57,6 +63,18 @@ public final class Classification extends AutoMLVertical {
      */
     @JsonProperty(value = "nCrossValidations")
     private NCrossValidations nCrossValidations;
+
+    /*
+     * Search space for sampling different combinations of models and their hyperparameters.
+     */
+    @JsonProperty(value = "searchSpace")
+    private List<TableParameterSubspace> searchSpace;
+
+    /*
+     * Settings for model sweeping and hyperparameter tuning.
+     */
+    @JsonProperty(value = "sweepSettings")
+    private TableSweepSettings sweepSettings;
 
     /*
      * Test data input.
@@ -198,6 +216,26 @@ public final class Classification extends AutoMLVertical {
     }
 
     /**
+     * Get the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @return the fixedParameters value.
+     */
+    public TableFixedParameters fixedParameters() {
+        return this.fixedParameters;
+    }
+
+    /**
+     * Set the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @param fixedParameters the fixedParameters value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withFixedParameters(TableFixedParameters fixedParameters) {
+        this.fixedParameters = fixedParameters;
+        return this;
+    }
+
+    /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
      *
      * @return the limitSettings value.
@@ -236,6 +274,48 @@ public final class Classification extends AutoMLVertical {
      */
     public Classification withNCrossValidations(NCrossValidations nCrossValidations) {
         this.nCrossValidations = nCrossValidations;
+        return this;
+    }
+
+    /**
+     * Get the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @return the searchSpace value.
+     */
+    public List<TableParameterSubspace> searchSpace() {
+        return this.searchSpace;
+    }
+
+    /**
+     * Set the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @param searchSpace the searchSpace value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withSearchSpace(List<TableParameterSubspace> searchSpace) {
+        this.searchSpace = searchSpace;
+        return this;
+    }
+
+    /**
+     * Get the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @return the sweepSettings value.
+     */
+    public TableSweepSettings sweepSettings() {
+        return this.sweepSettings;
+    }
+
+    /**
+     * Set the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @param sweepSettings the sweepSettings value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withSweepSettings(TableSweepSettings sweepSettings) {
+        this.sweepSettings = sweepSettings;
         return this;
     }
 
@@ -380,11 +460,20 @@ public final class Classification extends AutoMLVertical {
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
         }
+        if (fixedParameters() != null) {
+            fixedParameters().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
         }
         if (nCrossValidations() != null) {
             nCrossValidations().validate();
+        }
+        if (searchSpace() != null) {
+            searchSpace().forEach(e -> e.validate());
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
         }
         if (testData() != null) {
             testData().validate();
