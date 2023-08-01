@@ -31,6 +31,12 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     private Boolean appInsightsEnabled;
 
     /*
+     * The mdc configuration, we disable mdc when it's null.
+     */
+    @JsonProperty(value = "dataCollector")
+    private DataCollector dataCollector;
+
+    /*
      * If Enabled, allow egress public network access. If Disabled, this will create secure egress. Default: Enabled.
      */
     @JsonProperty(value = "egressPublicNetworkAccess")
@@ -109,6 +115,26 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
      */
     public OnlineDeploymentProperties withAppInsightsEnabled(Boolean appInsightsEnabled) {
         this.appInsightsEnabled = appInsightsEnabled;
+        return this;
+    }
+
+    /**
+     * Get the dataCollector property: The mdc configuration, we disable mdc when it's null.
+     *
+     * @return the dataCollector value.
+     */
+    public DataCollector dataCollector() {
+        return this.dataCollector;
+    }
+
+    /**
+     * Set the dataCollector property: The mdc configuration, we disable mdc when it's null.
+     *
+     * @param dataCollector the dataCollector value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withDataCollector(DataCollector dataCollector) {
+        this.dataCollector = dataCollector;
         return this;
     }
 
@@ -333,6 +359,9 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     @Override
     public void validate() {
         super.validate();
+        if (dataCollector() != null) {
+            dataCollector().validate();
+        }
         if (livenessProbe() != null) {
             livenessProbe().validate();
         }
