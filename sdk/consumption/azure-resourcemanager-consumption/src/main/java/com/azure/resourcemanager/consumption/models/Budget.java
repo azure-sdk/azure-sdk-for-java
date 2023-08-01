@@ -111,11 +111,13 @@ public interface Budget {
     /** The entirety of the Budget definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The Budget definition stages. */
     interface DefinitionStages {
         /** The first stage of the Budget definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the Budget definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -132,12 +134,13 @@ public interface Budget {
              *     for Management Group scope,
              *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}'
              *     for billingProfile scope,
-             *     'providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}'
+             *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}'
              *     for invoiceSection scope.
              * @return the next definition stage.
              */
             WithCreate withExistingScope(String scope);
         }
+
         /**
          * The stage of the Budget definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -165,6 +168,7 @@ public interface Budget {
              */
             Budget create(Context context);
         }
+
         /** The stage of the Budget definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -177,6 +181,7 @@ public interface Budget {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the Budget definition allowing to specify category. */
         interface WithCategory {
             /**
@@ -187,6 +192,7 @@ public interface Budget {
              */
             WithCreate withCategory(CategoryType category);
         }
+
         /** The stage of the Budget definition allowing to specify amount. */
         interface WithAmount {
             /**
@@ -197,6 +203,7 @@ public interface Budget {
              */
             WithCreate withAmount(BigDecimal amount);
         }
+
         /** The stage of the Budget definition allowing to specify timeGrain. */
         interface WithTimeGrain {
             /**
@@ -210,6 +217,7 @@ public interface Budget {
              */
             WithCreate withTimeGrain(TimeGrainType timeGrain);
         }
+
         /** The stage of the Budget definition allowing to specify timePeriod. */
         interface WithTimePeriod {
             /**
@@ -226,6 +234,7 @@ public interface Budget {
              */
             WithCreate withTimePeriod(BudgetTimePeriod timePeriod);
         }
+
         /** The stage of the Budget definition allowing to specify filter. */
         interface WithFilter {
             /**
@@ -236,6 +245,7 @@ public interface Budget {
              */
             WithCreate withFilter(BudgetFilter filter);
         }
+
         /** The stage of the Budget definition allowing to specify notifications. */
         interface WithNotifications {
             /**
@@ -249,6 +259,7 @@ public interface Budget {
             WithCreate withNotifications(Map<String, Notification> notifications);
         }
     }
+
     /**
      * Begins update for the Budget resource.
      *
@@ -280,6 +291,7 @@ public interface Budget {
          */
         Budget apply(Context context);
     }
+
     /** The Budget update stages. */
     interface UpdateStages {
         /** The stage of the Budget update allowing to specify etag. */
@@ -294,6 +306,7 @@ public interface Budget {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the Budget update allowing to specify category. */
         interface WithCategory {
             /**
@@ -304,6 +317,7 @@ public interface Budget {
              */
             Update withCategory(CategoryType category);
         }
+
         /** The stage of the Budget update allowing to specify amount. */
         interface WithAmount {
             /**
@@ -314,6 +328,7 @@ public interface Budget {
              */
             Update withAmount(BigDecimal amount);
         }
+
         /** The stage of the Budget update allowing to specify timeGrain. */
         interface WithTimeGrain {
             /**
@@ -327,6 +342,7 @@ public interface Budget {
              */
             Update withTimeGrain(TimeGrainType timeGrain);
         }
+
         /** The stage of the Budget update allowing to specify timePeriod. */
         interface WithTimePeriod {
             /**
@@ -343,6 +359,7 @@ public interface Budget {
              */
             Update withTimePeriod(BudgetTimePeriod timePeriod);
         }
+
         /** The stage of the Budget update allowing to specify filter. */
         interface WithFilter {
             /**
@@ -353,6 +370,7 @@ public interface Budget {
              */
             Update withFilter(BudgetFilter filter);
         }
+
         /** The stage of the Budget update allowing to specify notifications. */
         interface WithNotifications {
             /**
@@ -366,6 +384,7 @@ public interface Budget {
             Update withNotifications(Map<String, Notification> notifications);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
