@@ -65,6 +65,12 @@ public final class SqlTempDbSettings {
     @JsonProperty(value = "defaultFilePath")
     private String defaultFilePath;
 
+    /*
+     * Use storage pool to build a drive if true or not provided
+     */
+    @JsonProperty(value = "useStoragePool")
+    private Boolean useStoragePool;
+
     /** Creates an instance of SqlTempDbSettings class. */
     public SqlTempDbSettings() {
     }
@@ -246,6 +252,26 @@ public final class SqlTempDbSettings {
      */
     public SqlTempDbSettings withDefaultFilePath(String defaultFilePath) {
         this.defaultFilePath = defaultFilePath;
+        return this;
+    }
+
+    /**
+     * Get the useStoragePool property: Use storage pool to build a drive if true or not provided.
+     *
+     * @return the useStoragePool value.
+     */
+    public Boolean useStoragePool() {
+        return this.useStoragePool;
+    }
+
+    /**
+     * Set the useStoragePool property: Use storage pool to build a drive if true or not provided.
+     *
+     * @param useStoragePool the useStoragePool value to set.
+     * @return the SqlTempDbSettings object itself.
+     */
+    public SqlTempDbSettings withUseStoragePool(Boolean useStoragePool) {
+        this.useStoragePool = useStoragePool;
         return this;
     }
 

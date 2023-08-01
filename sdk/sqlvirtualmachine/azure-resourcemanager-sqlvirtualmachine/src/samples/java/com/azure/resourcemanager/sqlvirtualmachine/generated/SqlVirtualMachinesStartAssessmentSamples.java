@@ -7,7 +7,7 @@ package com.azure.resourcemanager.sqlvirtualmachine.generated;
 /** Samples for SqlVirtualMachines StartAssessment. */
 public final class SqlVirtualMachinesStartAssessmentSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/StartAssessmentOnSqlVirtualMachine.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/StartAssessmentOnSqlVirtualMachine.json
      */
     /**
      * Sample code: Starts SQL best practices Assessment on SQL virtual machine.
