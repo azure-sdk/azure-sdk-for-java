@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** Office365 Project requirements check properties. */
 @Fluent
 public final class Office365ProjectCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of Office365ProjectCheckRequirementsProperties class. */
+    public Office365ProjectCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public Office365ProjectCheckRequirementsProperties withTenantId(String tenantId) {

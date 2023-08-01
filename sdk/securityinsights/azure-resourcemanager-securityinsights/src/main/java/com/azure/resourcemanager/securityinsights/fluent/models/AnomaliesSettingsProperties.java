@@ -16,6 +16,10 @@ public final class AnomaliesSettingsProperties {
     @JsonProperty(value = "isEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isEnabled;
 
+    /** Creates an instance of AnomaliesSettingsProperties class. */
+    public AnomaliesSettingsProperties() {
+    }
+
     /**
      * Get the isEnabled property: Determines whether the setting is enable or disabled.
      *

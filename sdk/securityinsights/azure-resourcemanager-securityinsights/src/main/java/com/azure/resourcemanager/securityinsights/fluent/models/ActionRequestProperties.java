@@ -15,8 +15,12 @@ public final class ActionRequestProperties extends ActionPropertiesBase {
     /*
      * Logic App Callback URL for this specific workflow.
      */
-    @JsonProperty(value = "triggerUri", required = true)
+    @JsonProperty(value = "triggerUri")
     private String triggerUri;
+
+    /** Creates an instance of ActionRequestProperties class. */
+    public ActionRequestProperties() {
+    }
 
     /**
      * Get the triggerUri property: Logic App Callback URL for this specific workflow.
