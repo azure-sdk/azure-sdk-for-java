@@ -140,11 +140,13 @@ public interface Appliance {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Appliance definition stages. */
     interface DefinitionStages {
         /** The first stage of the Appliance definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Appliance definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -163,6 +165,7 @@ public interface Appliance {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Appliance definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -173,6 +176,7 @@ public interface Appliance {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Appliance definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -199,6 +203,7 @@ public interface Appliance {
              */
             Appliance create(Context context);
         }
+
         /** The stage of the Appliance definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -209,6 +214,7 @@ public interface Appliance {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Appliance definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -219,6 +225,7 @@ public interface Appliance {
              */
             WithCreate withIdentity(Identity identity);
         }
+
         /** The stage of the Appliance definition allowing to specify distro. */
         interface WithDistro {
             /**
@@ -229,6 +236,7 @@ public interface Appliance {
              */
             WithCreate withDistro(Distro distro);
         }
+
         /** The stage of the Appliance definition allowing to specify infrastructureConfig. */
         interface WithInfrastructureConfig {
             /**
@@ -239,6 +247,7 @@ public interface Appliance {
              */
             WithCreate withInfrastructureConfig(AppliancePropertiesInfrastructureConfig infrastructureConfig);
         }
+
         /** The stage of the Appliance definition allowing to specify publicKey. */
         interface WithPublicKey {
             /**
@@ -250,6 +259,7 @@ public interface Appliance {
              */
             WithCreate withPublicKey(String publicKey);
         }
+
         /** The stage of the Appliance definition allowing to specify version. */
         interface WithVersion {
             /**
@@ -261,6 +271,7 @@ public interface Appliance {
             WithCreate withVersion(String version);
         }
     }
+
     /**
      * Begins update for the Appliance resource.
      *
@@ -285,6 +296,7 @@ public interface Appliance {
          */
         Appliance apply(Context context);
     }
+
     /** The Appliance update stages. */
     interface UpdateStages {
         /** The stage of the Appliance update allowing to specify tags. */
@@ -298,6 +310,7 @@ public interface Appliance {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

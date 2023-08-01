@@ -250,7 +250,7 @@ public final class AppliancesUpdateSamples {
                 .appliances()
                 .getByResourceGroupWithResponse("testresourcegroup", "appliance01", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
     @SuppressWarnings("unchecked")
