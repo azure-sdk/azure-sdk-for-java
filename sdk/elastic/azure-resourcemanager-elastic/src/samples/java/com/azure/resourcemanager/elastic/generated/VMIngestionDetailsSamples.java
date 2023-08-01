@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for VMIngestion Details. */
 public final class VMIngestionDetailsSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/VMIngestion_Details.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-07-01-preview/examples/VMIngestion_Details.json
      */
     /**
      * Sample code: VMIngestion_Details.

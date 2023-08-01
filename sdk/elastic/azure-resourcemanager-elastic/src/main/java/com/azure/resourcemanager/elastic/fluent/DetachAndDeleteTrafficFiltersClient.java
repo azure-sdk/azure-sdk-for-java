@@ -14,7 +14,7 @@ public interface DetachAndDeleteTrafficFiltersClient {
     /**
      * Detach and Delete traffic filter from the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param rulesetId Ruleset Id of the filter.
      * @param context The context to associate with this operation.
@@ -29,7 +29,7 @@ public interface DetachAndDeleteTrafficFiltersClient {
     /**
      * Detach and Delete traffic filter from the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
