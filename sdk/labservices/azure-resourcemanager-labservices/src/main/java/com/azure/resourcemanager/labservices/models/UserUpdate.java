@@ -18,6 +18,10 @@ public final class UserUpdate {
     @JsonProperty(value = "properties")
     private UserUpdateProperties innerProperties;
 
+    /** Creates an instance of UserUpdate class. */
+    public UserUpdate() {
+    }
+
     /**
      * Get the innerProperties property: User resource properties.
      *

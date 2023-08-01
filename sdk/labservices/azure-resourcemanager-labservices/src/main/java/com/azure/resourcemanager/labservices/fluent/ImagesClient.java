@@ -58,23 +58,6 @@ public interface ImagesClient {
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
      * @param imageName The image name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an image resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ImageInner get(String resourceGroupName, String labPlanName, String imageName);
-
-    /**
-     * Gets an image.
-     *
-     * <p>Gets an image resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
-     *     resource URIs and in UI.
-     * @param imageName The image name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -86,22 +69,21 @@ public interface ImagesClient {
         String resourceGroupName, String labPlanName, String imageName, Context context);
 
     /**
-     * Updates an image via PUT.
+     * Gets an image.
      *
-     * <p>Updates an image resource via PUT. Creating new resources via PUT will not function.
+     * <p>Gets an image resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
      * @param imageName The image name.
-     * @param body The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab services virtual machine image.
+     * @return an image resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ImageInner createOrUpdate(String resourceGroupName, String labPlanName, String imageName, ImageInner body);
+    ImageInner get(String resourceGroupName, String labPlanName, String imageName);
 
     /**
      * Updates an image via PUT.
@@ -124,9 +106,9 @@ public interface ImagesClient {
         String resourceGroupName, String labPlanName, String imageName, ImageInner body, Context context);
 
     /**
-     * Updates an image.
+     * Updates an image via PUT.
      *
-     * <p>Updates an image resource.
+     * <p>Updates an image resource via PUT. Creating new resources via PUT will not function.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
@@ -139,7 +121,7 @@ public interface ImagesClient {
      * @return lab services virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ImageInner update(String resourceGroupName, String labPlanName, String imageName, ImageUpdate body);
+    ImageInner createOrUpdate(String resourceGroupName, String labPlanName, String imageName, ImageInner body);
 
     /**
      * Updates an image.
@@ -160,4 +142,22 @@ public interface ImagesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ImageInner> updateWithResponse(
         String resourceGroupName, String labPlanName, String imageName, ImageUpdate body, Context context);
+
+    /**
+     * Updates an image.
+     *
+     * <p>Updates an image resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
+     *     resource URIs and in UI.
+     * @param imageName The image name.
+     * @param body The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return lab services virtual machine image.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ImageInner update(String resourceGroupName, String labPlanName, String imageName, ImageUpdate body);
 }

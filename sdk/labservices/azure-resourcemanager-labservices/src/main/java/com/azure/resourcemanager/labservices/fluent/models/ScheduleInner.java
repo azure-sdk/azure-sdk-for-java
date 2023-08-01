@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RecurrencePattern;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -27,6 +28,10 @@ public final class ScheduleInner extends ProxyResource {
      */
     @JsonProperty(value = "properties", required = true)
     private ScheduleProperties innerProperties = new ScheduleProperties();
+
+    /** Creates an instance of ScheduleInner class. */
+    public ScheduleInner() {
+    }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the schedule.
@@ -53,6 +58,15 @@ public final class ScheduleInner extends ProxyResource {
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on schedule.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**

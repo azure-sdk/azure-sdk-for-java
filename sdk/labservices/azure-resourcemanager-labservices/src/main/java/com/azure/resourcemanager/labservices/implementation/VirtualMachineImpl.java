@@ -7,6 +7,7 @@ package com.azure.resourcemanager.labservices.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.labservices.fluent.models.VirtualMachineInner;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.VirtualMachine;
 import com.azure.resourcemanager.labservices.models.VirtualMachineConnectionProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineState;
@@ -45,6 +46,10 @@ public final class VirtualMachineImpl implements VirtualMachine {
 
     public VirtualMachineState state() {
         return this.innerModel().state();
+    }
+
+    public ResourceOperationError resourceOperationError() {
+        return this.innerModel().resourceOperationError();
     }
 
     public VirtualMachineConnectionProfile connectionProfile() {

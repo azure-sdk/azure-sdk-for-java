@@ -24,6 +24,10 @@ public final class PagedVirtualMachines {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of PagedVirtualMachines class. */
+    public PagedVirtualMachines() {
+    }
+
     /**
      * Get the value property: The array page of virtual machine results.
      *

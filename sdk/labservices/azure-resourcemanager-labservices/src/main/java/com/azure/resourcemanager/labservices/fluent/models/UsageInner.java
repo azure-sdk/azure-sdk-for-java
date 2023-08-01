@@ -42,6 +42,10 @@ public final class UsageInner {
     @JsonProperty(value = "id")
     private String id;
 
+    /** Creates an instance of UsageInner class. */
+    public UsageInner() {
+    }
+
     /**
      * Get the currentValue property: The current usage.
      *
