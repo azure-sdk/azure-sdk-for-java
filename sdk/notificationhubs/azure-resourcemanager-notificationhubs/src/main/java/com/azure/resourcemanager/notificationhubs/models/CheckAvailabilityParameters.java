@@ -6,7 +6,6 @@ package com.azure.resourcemanager.notificationhubs.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,54 +13,55 @@ import java.util.Map;
 /** Parameters supplied to the Check Name Availability for Namespace and NotificationHubs. */
 @Fluent
 public final class CheckAvailabilityParameters {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckAvailabilityParameters.class);
-
     /*
-     * Resource Id
+     * Gets resource Id
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /*
-     * Resource name
+     * Gets or sets resource name
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /*
-     * Resource type
+     * Gets resource type
      */
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
 
     /*
-     * Resource location
+     * Gets or sets resource location
      */
     @JsonProperty(value = "location")
     private String location;
 
     /*
-     * Resource tags
+     * Gets or sets resource tags
      */
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /*
-     * The sku of the created namespace
-     */
-    @JsonProperty(value = "sku")
-    private Sku sku;
-
-    /*
-     * True if the name is available and can be used to create new
-     * Namespace/NotificationHub. Otherwise false.
+     * Not used and deprecated since API version 2023-09-01
      */
     @JsonProperty(value = "isAvailiable")
     private Boolean isAvailiable;
 
+    /*
+     * The Sku description for a namespace
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
+
+    /** Creates an instance of CheckAvailabilityParameters class. */
+    public CheckAvailabilityParameters() {
+    }
+
     /**
-     * Get the id property: Resource Id.
+     * Get the id property: Gets resource Id.
      *
      * @return the id value.
      */
@@ -70,7 +70,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the name property: Resource name.
+     * Get the name property: Gets or sets resource name.
      *
      * @return the name value.
      */
@@ -79,7 +79,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the name property: Resource name.
+     * Set the name property: Gets or sets resource name.
      *
      * @param name the name value to set.
      * @return the CheckAvailabilityParameters object itself.
@@ -90,7 +90,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the type property: Resource type.
+     * Get the type property: Gets resource type.
      *
      * @return the type value.
      */
@@ -99,7 +99,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the location property: Resource location.
+     * Get the location property: Gets or sets resource location.
      *
      * @return the location value.
      */
@@ -108,7 +108,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the location property: Resource location.
+     * Set the location property: Gets or sets resource location.
      *
      * @param location the location value to set.
      * @return the CheckAvailabilityParameters object itself.
@@ -119,7 +119,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the tags property: Resource tags.
+     * Get the tags property: Gets or sets resource tags.
      *
      * @return the tags value.
      */
@@ -128,7 +128,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the tags property: Resource tags.
+     * Set the tags property: Gets or sets resource tags.
      *
      * @param tags the tags value to set.
      * @return the CheckAvailabilityParameters object itself.
@@ -139,28 +139,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the sku property: The sku of the created namespace.
-     *
-     * @return the sku value.
-     */
-    public Sku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: The sku of the created namespace.
-     *
-     * @param sku the sku value to set.
-     * @return the CheckAvailabilityParameters object itself.
-     */
-    public CheckAvailabilityParameters withSku(Sku sku) {
-        this.sku = sku;
-        return this;
-    }
-
-    /**
-     * Get the isAvailiable property: True if the name is available and can be used to create new
-     * Namespace/NotificationHub. Otherwise false.
+     * Get the isAvailiable property: Not used and deprecated since API version 2023-09-01.
      *
      * @return the isAvailiable value.
      */
@@ -169,8 +148,7 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the isAvailiable property: True if the name is available and can be used to create new
-     * Namespace/NotificationHub. Otherwise false.
+     * Set the isAvailiable property: Not used and deprecated since API version 2023-09-01.
      *
      * @param isAvailiable the isAvailiable value to set.
      * @return the CheckAvailabilityParameters object itself.
@@ -181,13 +159,33 @@ public final class CheckAvailabilityParameters {
     }
 
     /**
+     * Get the sku property: The Sku description for a namespace.
+     *
+     * @return the sku value.
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The Sku description for a namespace.
+     *
+     * @param sku the sku value to set.
+     * @return the CheckAvailabilityParameters object itself.
+     */
+    public CheckAvailabilityParameters withSku(Sku sku) {
+        this.sku = sku;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model CheckAvailabilityParameters"));
@@ -196,4 +194,6 @@ public final class CheckAvailabilityParameters {
             sku().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CheckAvailabilityParameters.class);
 }
