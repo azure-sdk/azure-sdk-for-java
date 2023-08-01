@@ -12,31 +12,31 @@ import java.util.List;
 @Fluent
 public final class AccessControlListMatchCondition extends CommonMatchConditions {
     /*
-     * List of ether type values that needs to be matched.
+     * List of ether type values that need to be matched.
      */
     @JsonProperty(value = "etherTypes")
     private List<String> etherTypes;
 
     /*
-     * List of IP fragment packets that needs to be matched.
+     * List of IP fragment packets that need to be matched.
      */
     @JsonProperty(value = "fragments")
     private List<String> fragments;
 
     /*
-     * List of IP Lengths that needs to be matched.
+     * List of IP Lengths that need to be matched.
      */
     @JsonProperty(value = "ipLengths")
     private List<String> ipLengths;
 
     /*
-     * List of TTL [Time To Live] values that needs to be matched.
+     * List of TTL [Time To Live] values that need to be matched.
      */
     @JsonProperty(value = "ttlValues")
     private List<String> ttlValues;
 
     /*
-     * List of DSCP Markings that needs to be matched.
+     * List of DSCP Markings that need to be matched.
      */
     @JsonProperty(value = "dscpMarkings")
     private List<String> dscpMarkings;
@@ -52,7 +52,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Get the etherTypes property: List of ether type values that needs to be matched.
+     * Get the etherTypes property: List of ether type values that need to be matched.
      *
      * @return the etherTypes value.
      */
@@ -61,7 +61,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Set the etherTypes property: List of ether type values that needs to be matched.
+     * Set the etherTypes property: List of ether type values that need to be matched.
      *
      * @param etherTypes the etherTypes value to set.
      * @return the AccessControlListMatchCondition object itself.
@@ -72,7 +72,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Get the fragments property: List of IP fragment packets that needs to be matched.
+     * Get the fragments property: List of IP fragment packets that need to be matched.
      *
      * @return the fragments value.
      */
@@ -81,7 +81,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Set the fragments property: List of IP fragment packets that needs to be matched.
+     * Set the fragments property: List of IP fragment packets that need to be matched.
      *
      * @param fragments the fragments value to set.
      * @return the AccessControlListMatchCondition object itself.
@@ -92,7 +92,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Get the ipLengths property: List of IP Lengths that needs to be matched.
+     * Get the ipLengths property: List of IP Lengths that need to be matched.
      *
      * @return the ipLengths value.
      */
@@ -101,7 +101,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Set the ipLengths property: List of IP Lengths that needs to be matched.
+     * Set the ipLengths property: List of IP Lengths that need to be matched.
      *
      * @param ipLengths the ipLengths value to set.
      * @return the AccessControlListMatchCondition object itself.
@@ -112,7 +112,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Get the ttlValues property: List of TTL [Time To Live] values that needs to be matched.
+     * Get the ttlValues property: List of TTL [Time To Live] values that need to be matched.
      *
      * @return the ttlValues value.
      */
@@ -121,7 +121,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Set the ttlValues property: List of TTL [Time To Live] values that needs to be matched.
+     * Set the ttlValues property: List of TTL [Time To Live] values that need to be matched.
      *
      * @param ttlValues the ttlValues value to set.
      * @return the AccessControlListMatchCondition object itself.
@@ -132,7 +132,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Get the dscpMarkings property: List of DSCP Markings that needs to be matched.
+     * Get the dscpMarkings property: List of DSCP Markings that need to be matched.
      *
      * @return the dscpMarkings value.
      */
@@ -141,7 +141,7 @@ public final class AccessControlListMatchCondition extends CommonMatchConditions
     }
 
     /**
-     * Set the dscpMarkings property: List of DSCP Markings that needs to be matched.
+     * Set the dscpMarkings property: List of DSCP Markings that need to be matched.
      *
      * @param dscpMarkings the dscpMarkings value to set.
      * @return the AccessControlListMatchCondition object itself.

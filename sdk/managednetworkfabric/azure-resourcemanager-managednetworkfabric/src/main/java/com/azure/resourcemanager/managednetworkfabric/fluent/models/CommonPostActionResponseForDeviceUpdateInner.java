@@ -7,12 +7,13 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
+import com.azure.resourcemanager.managednetworkfabric.models.ErrorResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Common response for device updates. */
 @Fluent
-public final class CommonPostActionResponseForDeviceUpdateInner {
+public final class CommonPostActionResponseForDeviceUpdateInner extends ErrorResponse {
     /*
      * Gets the configuration state.
      */
@@ -30,12 +31,6 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
      */
     @JsonProperty(value = "failedDevices")
     private List<String> failedDevices;
-
-    /*
-     * The error object.
-     */
-    @JsonProperty(value = "error")
-    private ManagementError error;
 
     /** Creates an instance of CommonPostActionResponseForDeviceUpdateInner class. */
     public CommonPostActionResponseForDeviceUpdateInner() {
@@ -90,23 +85,10 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
         return this;
     }
 
-    /**
-     * Get the error property: The error object.
-     *
-     * @return the error value.
-     */
-    public ManagementError error() {
-        return this.error;
-    }
-
-    /**
-     * Set the error property: The error object.
-     *
-     * @param error the error value to set.
-     * @return the CommonPostActionResponseForDeviceUpdateInner object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public CommonPostActionResponseForDeviceUpdateInner withError(ManagementError error) {
-        this.error = error;
+        super.withError(error);
         return this;
     }
 
@@ -115,6 +97,8 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
     }
 }

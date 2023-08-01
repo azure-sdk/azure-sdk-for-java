@@ -10,6 +10,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPortCondition;
 import com.azure.resourcemanager.managednetworkfabric.models.AclActionType;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpAddressType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpGroupProperties;
@@ -45,6 +46,7 @@ public final class AccessControlListsCreateSamples {
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
             .withConfigurationType(ConfigurationType.FILE)
             .withAclsUrl("https://ACL-Storage-URL")
+            .withDefaultAction(CommunityActionTypes.PERMIT)
             .withMatchConfigurations(
                 Arrays
                     .asList(

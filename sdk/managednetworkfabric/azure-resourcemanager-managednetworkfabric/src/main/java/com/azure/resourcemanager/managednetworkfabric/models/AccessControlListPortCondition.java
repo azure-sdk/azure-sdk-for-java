@@ -12,7 +12,7 @@ import java.util.List;
 @Fluent
 public final class AccessControlListPortCondition extends PortCondition {
     /*
-     * List of protocol flags that needs to be matched.
+     * List of protocol flags that need to be matched.
      */
     @JsonProperty(value = "flags")
     private List<String> flags;
@@ -22,7 +22,7 @@ public final class AccessControlListPortCondition extends PortCondition {
     }
 
     /**
-     * Get the flags property: List of protocol flags that needs to be matched.
+     * Get the flags property: List of protocol flags that need to be matched.
      *
      * @return the flags value.
      */
@@ -31,7 +31,7 @@ public final class AccessControlListPortCondition extends PortCondition {
     }
 
     /**
-     * Set the flags property: List of protocol flags that needs to be matched.
+     * Set the flags property: List of protocol flags that need to be matched.
      *
      * @param flags the flags value to set.
      * @return the AccessControlListPortCondition object itself.

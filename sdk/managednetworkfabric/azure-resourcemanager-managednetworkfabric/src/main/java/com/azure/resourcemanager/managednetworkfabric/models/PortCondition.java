@@ -31,7 +31,7 @@ public class PortCondition {
     private List<String> ports;
 
     /*
-     * List of the port Group Names that to be matched.
+     * List of the port Group Names that need to be matched.
      */
     @JsonProperty(value = "portGroupNames")
     private List<String> portGroupNames;
@@ -101,7 +101,7 @@ public class PortCondition {
     }
 
     /**
-     * Get the portGroupNames property: List of the port Group Names that to be matched.
+     * Get the portGroupNames property: List of the port Group Names that need to be matched.
      *
      * @return the portGroupNames value.
      */
@@ -110,7 +110,7 @@ public class PortCondition {
     }
 
     /**
-     * Set the portGroupNames property: List of the port Group Names that to be matched.
+     * Set the portGroupNames property: List of the port Group Names that need to be matched.
      *
      * @param portGroupNames the portGroupNames value to set.
      * @return the PortCondition object itself.
