@@ -192,7 +192,7 @@ public final class ManagementGroupsApiImpl implements ManagementGroupsApi {
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-04-01";
+        this.apiVersion = "2023-04-01";
         this.managementGroups = new ManagementGroupsClientImpl(this);
         this.managementGroupSubscriptions = new ManagementGroupSubscriptionsClientImpl(this);
         this.hierarchySettingsOperations = new HierarchySettingsOperationsClientImpl(this);

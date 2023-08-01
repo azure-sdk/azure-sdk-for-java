@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for ManagementGroupSubscriptions Create. */
 public final class ManagementGroupSubscriptionsCreateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/AddManagementGroupSubscription.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/AddManagementGroupSubscription.json
      */
     /**
      * Sample code: AddSubscriptionToManagementGroup.

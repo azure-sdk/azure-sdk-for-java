@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for ManagementGroups GetDescendants. */
 public final class ManagementGroupsGetDescendantsSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetDescendants.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetDescendants.json
      */
     /**
      * Sample code: GetDescendants.
