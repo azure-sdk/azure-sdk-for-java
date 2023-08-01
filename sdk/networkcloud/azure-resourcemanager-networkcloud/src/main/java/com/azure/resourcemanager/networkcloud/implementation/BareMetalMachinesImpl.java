@@ -18,7 +18,6 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineReplacePara
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineRunCommandParameters;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineRunDataExtractsParameters;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineRunReadCommandsParameters;
-import com.azure.resourcemanager.networkcloud.models.BareMetalMachineValidateHardwareParameters;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachines;
 
 public final class BareMetalMachinesImpl implements BareMetalMachines {
@@ -215,26 +214,6 @@ public final class BareMetalMachinesImpl implements BareMetalMachines {
 
     public void uncordon(String resourceGroupName, String bareMetalMachineName, Context context) {
         this.serviceClient().uncordon(resourceGroupName, bareMetalMachineName, context);
-    }
-
-    public void validateHardware(
-        String resourceGroupName,
-        String bareMetalMachineName,
-        BareMetalMachineValidateHardwareParameters bareMetalMachineValidateHardwareParameters) {
-        this
-            .serviceClient()
-            .validateHardware(resourceGroupName, bareMetalMachineName, bareMetalMachineValidateHardwareParameters);
-    }
-
-    public void validateHardware(
-        String resourceGroupName,
-        String bareMetalMachineName,
-        BareMetalMachineValidateHardwareParameters bareMetalMachineValidateHardwareParameters,
-        Context context) {
-        this
-            .serviceClient()
-            .validateHardware(
-                resourceGroupName, bareMetalMachineName, bareMetalMachineValidateHardwareParameters, context);
     }
 
     public BareMetalMachine getById(String id) {

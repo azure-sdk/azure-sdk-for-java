@@ -13,7 +13,6 @@ import com.azure.resourcemanager.networkcloud.fluent.StorageAppliancesClient;
 import com.azure.resourcemanager.networkcloud.fluent.models.StorageApplianceInner;
 import com.azure.resourcemanager.networkcloud.models.StorageAppliance;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceEnableRemoteVendorManagementParameters;
-import com.azure.resourcemanager.networkcloud.models.StorageApplianceRunReadCommandsParameters;
 import com.azure.resourcemanager.networkcloud.models.StorageAppliances;
 
 public final class StorageAppliancesImpl implements StorageAppliances {
@@ -107,26 +106,6 @@ public final class StorageAppliancesImpl implements StorageAppliances {
                 storageApplianceName,
                 storageApplianceEnableRemoteVendorManagementParameters,
                 context);
-    }
-
-    public void runReadCommands(
-        String resourceGroupName,
-        String storageApplianceName,
-        StorageApplianceRunReadCommandsParameters storageApplianceRunReadCommandsParameters) {
-        this
-            .serviceClient()
-            .runReadCommands(resourceGroupName, storageApplianceName, storageApplianceRunReadCommandsParameters);
-    }
-
-    public void runReadCommands(
-        String resourceGroupName,
-        String storageApplianceName,
-        StorageApplianceRunReadCommandsParameters storageApplianceRunReadCommandsParameters,
-        Context context) {
-        this
-            .serviceClient()
-            .runReadCommands(
-                resourceGroupName, storageApplianceName, storageApplianceRunReadCommandsParameters, context);
     }
 
     public StorageAppliance getById(String id) {
