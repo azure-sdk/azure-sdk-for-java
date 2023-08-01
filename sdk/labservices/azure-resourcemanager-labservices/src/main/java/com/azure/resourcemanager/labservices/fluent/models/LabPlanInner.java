@@ -13,6 +13,7 @@ import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.Identity;
 import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.SupportInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -41,6 +42,10 @@ public final class LabPlanInner extends Resource {
      */
     @JsonProperty(value = "identity")
     private Identity identity;
+
+    /** Creates an instance of LabPlanInner class. */
+    public LabPlanInner() {
+    }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the lab plan.
@@ -101,6 +106,15 @@ public final class LabPlanInner extends Resource {
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**

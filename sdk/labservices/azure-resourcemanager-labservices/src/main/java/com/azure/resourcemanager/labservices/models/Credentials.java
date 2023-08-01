@@ -23,6 +23,10 @@ public final class Credentials {
     @JsonProperty(value = "password")
     private String password;
 
+    /** Creates an instance of Credentials class. */
+    public Credentials() {
+    }
+
     /**
      * Get the username property: The username to use when signing in to lab VMs.
      *

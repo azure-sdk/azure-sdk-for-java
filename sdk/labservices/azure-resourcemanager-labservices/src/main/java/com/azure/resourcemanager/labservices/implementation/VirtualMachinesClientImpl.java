@@ -63,11 +63,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LabServicesClientVir")
-    private interface VirtualMachinesService {
+    public interface VirtualMachinesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PagedVirtualMachines>> listByLab(
@@ -82,8 +81,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineInner>> get(
@@ -98,8 +96,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines/{virtualMachineName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -114,8 +111,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines/{virtualMachineName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -130,8 +126,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines/{virtualMachineName}/reimage")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/reimage")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> reimage(
@@ -146,8 +141,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines/{virtualMachineName}/redeploy")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/redeploy")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> redeploy(
@@ -162,8 +156,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/virtualMachines/{virtualMachineName}/resetPassword")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/resetPassword")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> resetPassword(
@@ -551,14 +544,16 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param virtualMachineName The ID of the virtual machine that uniquely identifies it within the containing lab.
      *     Used in resource URIs.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a lab virtual machine resource.
+     * @return a lab virtual machine resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner get(String resourceGroupName, String labName, String virtualMachineName) {
-        return getAsync(resourceGroupName, labName, virtualMachineName).block();
+    public Response<VirtualMachineInner> getWithResponse(
+        String resourceGroupName, String labName, String virtualMachineName, Context context) {
+        return getWithResponseAsync(resourceGroupName, labName, virtualMachineName, context).block();
     }
 
     /**
@@ -570,16 +565,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param virtualMachineName The ID of the virtual machine that uniquely identifies it within the containing lab.
      *     Used in resource URIs.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a lab virtual machine resource along with {@link Response}.
+     * @return a lab virtual machine resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VirtualMachineInner> getWithResponse(
-        String resourceGroupName, String labName, String virtualMachineName, Context context) {
-        return getWithResponseAsync(resourceGroupName, labName, virtualMachineName, context).block();
+    public VirtualMachineInner get(String resourceGroupName, String labName, String virtualMachineName) {
+        return getWithResponse(resourceGroupName, labName, virtualMachineName, Context.NONE).getValue();
     }
 
     /**
@@ -761,7 +754,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(
         String resourceGroupName, String labName, String virtualMachineName) {
-        return beginStartAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
+        return this.beginStartAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
     }
 
     /**
@@ -782,7 +775,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(
         String resourceGroupName, String labName, String virtualMachineName, Context context) {
-        return beginStartAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
+        return this.beginStartAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
@@ -1045,7 +1038,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStop(
         String resourceGroupName, String labName, String virtualMachineName) {
-        return beginStopAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
+        return this.beginStopAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
     }
 
     /**
@@ -1066,7 +1059,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStop(
         String resourceGroupName, String labName, String virtualMachineName, Context context) {
-        return beginStopAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
+        return this.beginStopAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
@@ -1334,7 +1327,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginReimage(
         String resourceGroupName, String labName, String virtualMachineName) {
-        return beginReimageAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
+        return this.beginReimageAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
     }
 
     /**
@@ -1356,7 +1349,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginReimage(
         String resourceGroupName, String labName, String virtualMachineName, Context context) {
-        return beginReimageAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
+        return this.beginReimageAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
@@ -1624,7 +1617,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRedeploy(
         String resourceGroupName, String labName, String virtualMachineName) {
-        return beginRedeployAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
+        return this.beginRedeployAsync(resourceGroupName, labName, virtualMachineName).getSyncPoller();
     }
 
     /**
@@ -1645,7 +1638,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRedeploy(
         String resourceGroupName, String labName, String virtualMachineName, Context context) {
-        return beginRedeployAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
+        return this.beginRedeployAsync(resourceGroupName, labName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
@@ -1926,7 +1919,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginResetPassword(
         String resourceGroupName, String labName, String virtualMachineName, ResetPasswordBody body) {
-        return beginResetPasswordAsync(resourceGroupName, labName, virtualMachineName, body).getSyncPoller();
+        return this.beginResetPasswordAsync(resourceGroupName, labName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
@@ -1948,7 +1941,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginResetPassword(
         String resourceGroupName, String labName, String virtualMachineName, ResetPasswordBody body, Context context) {
-        return beginResetPasswordAsync(resourceGroupName, labName, virtualMachineName, body, context).getSyncPoller();
+        return this
+            .beginResetPasswordAsync(resourceGroupName, labName, virtualMachineName, body, context)
+            .getSyncPoller();
     }
 
     /**

@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.User;
 import java.time.Duration;
 
 /** Samples for Users Update. */
 public final class UsersUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/patchUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/patchUser.json
      */
     /**
      * Sample code: patchUser.
@@ -19,7 +18,11 @@ public final class UsersUpdateSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void patchUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        User resource = manager.users().getWithResponse("testrg123", "testlab", "testuser", Context.NONE).getValue();
+        User resource =
+            manager
+                .users()
+                .getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withAdditionalUsageQuota(Duration.parse("PT10H")).apply();
     }
 }

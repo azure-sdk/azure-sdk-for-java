@@ -22,7 +22,7 @@ import java.time.Duration;
 /** Samples for Labs CreateOrUpdate. */
 public final class LabsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/putLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/putLab.json
      */
     /**
      * Sample code: putLab.

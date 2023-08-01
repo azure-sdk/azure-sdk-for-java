@@ -16,7 +16,7 @@ import java.time.Duration;
 /** Samples for LabPlans CreateOrUpdate. */
 public final class LabPlansCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/putLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/putLabPlan.json
      */
     /**
      * Sample code: putLabPlan.

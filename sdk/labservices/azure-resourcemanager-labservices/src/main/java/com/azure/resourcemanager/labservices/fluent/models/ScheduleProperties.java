@@ -7,6 +7,7 @@ package com.azure.resourcemanager.labservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RecurrencePattern;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -19,6 +20,16 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
+    /*
+     * Error details of last operation done on schedule.
+     */
+    @JsonProperty(value = "resourceOperationError", access = JsonProperty.Access.WRITE_ONLY)
+    private ResourceOperationError resourceOperationError;
+
+    /** Creates an instance of ScheduleProperties class. */
+    public ScheduleProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the schedule.
      *
@@ -26,6 +37,15 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on schedule.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /** {@inheritDoc} */
@@ -71,5 +91,8 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
     @Override
     public void validate() {
         super.validate();
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
     }
 }

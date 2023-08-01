@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.ConnectionType;
 import com.azure.resourcemanager.labservices.models.LabPlan;
@@ -12,7 +11,7 @@ import com.azure.resourcemanager.labservices.models.LabPlan;
 /** Samples for LabPlans Update. */
 public final class LabPlansUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/patchLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/patchLabPlan.json
      */
     /**
      * Sample code: patchLabPlan.
@@ -21,7 +20,10 @@ public final class LabPlansUpdateSamples {
      */
     public static void patchLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
         LabPlan resource =
-            manager.labPlans().getByResourceGroupWithResponse("testrg123", "testlabplan", Context.NONE).getValue();
+            manager
+                .labPlans()
+                .getByResourceGroupWithResponse("testrg123", "testlabplan", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withDefaultConnectionProfile(

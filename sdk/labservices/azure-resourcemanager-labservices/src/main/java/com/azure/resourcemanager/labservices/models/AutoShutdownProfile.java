@@ -48,6 +48,10 @@ public final class AutoShutdownProfile {
     @JsonProperty(value = "idleDelay")
     private Duration idleDelay;
 
+    /** Creates an instance of AutoShutdownProfile class. */
+    public AutoShutdownProfile() {
+    }
+
     /**
      * Get the shutdownOnDisconnect property: Whether shutdown on disconnect is enabled.
      *

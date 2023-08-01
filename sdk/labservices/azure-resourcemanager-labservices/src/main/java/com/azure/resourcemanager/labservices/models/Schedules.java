@@ -49,12 +49,14 @@ public interface Schedules {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times along with
+     *     {@link Response}.
      */
-    Schedule get(String resourceGroupName, String labName, String scheduleName);
+    Response<Schedule> getWithResponse(String resourceGroupName, String labName, String scheduleName, Context context);
 
     /**
      * Get a lab Schedule.
@@ -65,14 +67,12 @@ public interface Schedules {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times along with
-     *     {@link Response}.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
      */
-    Response<Schedule> getWithResponse(String resourceGroupName, String labName, String scheduleName, Context context);
+    Schedule get(String resourceGroupName, String labName, String scheduleName);
 
     /**
      * Deletes a schedule resource.
