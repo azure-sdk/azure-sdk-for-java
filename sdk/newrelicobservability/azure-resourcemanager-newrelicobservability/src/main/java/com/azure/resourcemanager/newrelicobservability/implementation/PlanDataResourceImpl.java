@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.newrelicobservability.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.newrelicobservability.fluent.models.PlanDataResourceInner;
 import com.azure.resourcemanager.newrelicobservability.models.AccountCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.OrgCreationSource;
@@ -33,10 +32,6 @@ public final class PlanDataResourceImpl implements PlanDataResource {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public PlanData planData() {

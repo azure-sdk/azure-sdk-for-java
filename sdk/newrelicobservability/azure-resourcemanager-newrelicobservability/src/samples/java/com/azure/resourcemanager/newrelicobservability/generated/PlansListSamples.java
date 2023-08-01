@@ -29,6 +29,6 @@ public final class PlansListSamples {
      */
     public static void plansListMinimumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.plans().list(null, null, com.azure.core.util.Context.NONE);
+        manager.plans().list(null, "hilawwjz", com.azure.core.util.Context.NONE);
     }
 }

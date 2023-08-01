@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.newrelicobservability.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.newrelicobservability.fluent.models.MetricRulesInner;
 import com.azure.resourcemanager.newrelicobservability.fluent.models.TagRuleInner;
@@ -29,10 +28,6 @@ public final class TagRuleImpl implements TagRule, TagRule.Definition, TagRule.U
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public ProvisioningState provisioningState() {

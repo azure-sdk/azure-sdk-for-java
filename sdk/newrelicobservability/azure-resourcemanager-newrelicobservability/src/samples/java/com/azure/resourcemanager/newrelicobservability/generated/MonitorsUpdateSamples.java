@@ -43,7 +43,7 @@ public final class MonitorsUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key164", "jqakdrrmmyzytqu"))
+            .withTags(mapOf("key164", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.NONE)
