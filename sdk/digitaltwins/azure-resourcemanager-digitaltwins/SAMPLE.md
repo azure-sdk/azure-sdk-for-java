@@ -725,7 +725,6 @@ public final class PrivateLinkResourcesListSamples {
 import com.azure.resourcemanager.digitaltwins.models.AzureDataExplorerConnectionProperties;
 import com.azure.resourcemanager.digitaltwins.models.IdentityType;
 import com.azure.resourcemanager.digitaltwins.models.ManagedIdentityReference;
-import com.azure.resourcemanager.digitaltwins.models.RecordPropertyAndItemRemovals;
 
 /** Samples for TimeSeriesDatabaseConnections CreateOrUpdate. */
 public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
@@ -756,7 +755,7 @@ public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
                     .withEventHubEntityPath("myeh")
                     .withEventHubNamespaceResourceId(
                         "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.EventHub/namespaces/myeh")
-                    .withRecordPropertyAndItemRemovals(RecordPropertyAndItemRemovals.TRUE))
+                    .withRecordPropertyAndItemRemovals(true))
             .create();
     }
 

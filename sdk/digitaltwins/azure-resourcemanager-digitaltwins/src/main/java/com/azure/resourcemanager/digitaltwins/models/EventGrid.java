@@ -24,7 +24,7 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     /*
      * EventGrid secondary accesskey. Will be obfuscated during read.
      */
-    @JsonProperty(value = "accessKey1", required = true)
+    @JsonProperty(value = "accessKey1")
     private String accessKey1;
 
     /*

@@ -85,7 +85,7 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
      * ADX.
      */
     @JsonProperty(value = "recordPropertyAndItemRemovals")
-    private RecordPropertyAndItemRemovals recordPropertyAndItemRemovals;
+    private Boolean recordPropertyAndItemRemovals;
 
     /** Creates an instance of AzureDataExplorerConnectionProperties class. */
     public AzureDataExplorerConnectionProperties() {
@@ -313,7 +313,7 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
      *
      * @return the recordPropertyAndItemRemovals value.
      */
-    public RecordPropertyAndItemRemovals recordPropertyAndItemRemovals() {
+    public Boolean recordPropertyAndItemRemovals() {
         return this.recordPropertyAndItemRemovals;
     }
 
@@ -327,7 +327,7 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
      * @return the AzureDataExplorerConnectionProperties object itself.
      */
     public AzureDataExplorerConnectionProperties withRecordPropertyAndItemRemovals(
-        RecordPropertyAndItemRemovals recordPropertyAndItemRemovals) {
+        Boolean recordPropertyAndItemRemovals) {
         this.recordPropertyAndItemRemovals = recordPropertyAndItemRemovals;
         return this;
     }
